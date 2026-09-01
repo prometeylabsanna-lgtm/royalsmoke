@@ -1,0 +1,196 @@
+/* Royal Smoke — brand panel ROYAL watermark pattern */
+
+.rs-brand-snap {
+  --rs-pattern-ink: color-mix(in srgb, #fcf2ee 16%, transparent);
+  --rs-pattern-gold: color-mix(in srgb, var(--rs-gold) 58%, transparent);
+}
+
+.rs-brand-snap--amber {
+  --rs-pattern-ink: color-mix(in srgb, #d2b48c 22%, transparent);
+}
+
+.rs-brand-snap--burgundy {
+  --rs-pattern-ink: color-mix(in srgb, #c4a0a8 20%, transparent);
+}
+
+.rs-brand-snap--green {
+  --rs-pattern-ink: color-mix(in srgb, #a8c4b0 20%, transparent);
+}
+
+.rs-brand-snap--brown {
+  --rs-pattern-ink: color-mix(in srgb, #c4b4a0 20%, transparent);
+}
+
+.rs-brand-snap__content {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.rs-brand-snap__pattern {
+  position: absolute;
+  inset: -2% -6%;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: var(--rs-pattern-ink);
+  font-family: var(--rs-font-display);
+  font-weight: 400;
+  font-size: clamp(16px, 1.7vw, 24px);
+  line-height: 1.22;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  opacity: 0.92;
+  -webkit-mask-image: linear-gradient(
+    145deg,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.55) 16%,
+    rgba(0, 0, 0, 0.12) 36%,
+    rgba(0, 0, 0, 0.04) 48%,
+    rgba(0, 0, 0, 0.04) 52%,
+    rgba(0, 0, 0, 0.12) 64%,
+    rgba(0, 0, 0, 0.55) 84%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  mask-image: linear-gradient(
+    145deg,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.55) 16%,
+    rgba(0, 0, 0, 0.12) 36%,
+    rgba(0, 0, 0, 0.04) 48%,
+    rgba(0, 0, 0, 0.04) 52%,
+    rgba(0, 0, 0, 0.12) 64%,
+    rgba(0, 0, 0, 0.55) 84%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.rs-brand-snap__pattern-row {
+  margin: 0;
+  padding: 0;
+  flex: 0 0 auto;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: inherit;
+  white-space: nowrap;
+}
+
+.rs-brand-snap__pattern-row:nth-child(even) {
+  -webkit-transform: translate3d(-1.35em, 0, 0);
+  transform: translate3d(-1.35em, 0, 0);
+}
+
+.rs-brand-snap__pattern-row:nth-child(odd) {
+  -webkit-transform: translate3d(0.15em, 0, 0);
+  transform: translate3d(0.15em, 0, 0);
+}
+
+.rs-brand-snap__pattern-g {
+  color: var(--rs-pattern-gold);
+  font-style: normal;
+}
+
+.rs-brand-snap__wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* Tablet */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .rs-brand-snap__pattern {
+    font-size: clamp(14px, 1.9vw, 20px);
+    letter-spacing: 0.16em;
+    inset: -2% -5%;
+  }
+}
+
+/* Mobile / iOS Safari — pattern on text block with tone fill */
+@media (max-width: 767px) {
+  .rs-brand-snap--amber .rs-brand-snap__content {
+    background: linear-gradient(145deg, var(--rs-brand-amber-mid), var(--rs-brand-amber));
+  }
+
+  .rs-brand-snap--burgundy .rs-brand-snap__content {
+    background: linear-gradient(145deg, var(--rs-brand-burgundy-mid), var(--rs-brand-burgundy));
+  }
+
+  .rs-brand-snap--green .rs-brand-snap__content {
+    background: linear-gradient(145deg, var(--rs-brand-green-mid), var(--rs-brand-green));
+  }
+
+  .rs-brand-snap--brown .rs-brand-snap__content {
+    background: linear-gradient(145deg, var(--rs-brand-brown-mid), var(--rs-brand-brown));
+  }
+
+  .rs-brand-snap__content {
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+
+  .rs-brand-snap__pattern {
+    font-size: clamp(13px, 3.8vw, 17px);
+    letter-spacing: 0.14em;
+    line-height: 1.28;
+    inset: -2% -4%;
+    -webkit-mask-image: linear-gradient(
+      145deg,
+      rgba(0, 0, 0, 0.88) 0%,
+      rgba(0, 0, 0, 0.42) 18%,
+      rgba(0, 0, 0, 0.08) 38%,
+      rgba(0, 0, 0, 0.03) 50%,
+      rgba(0, 0, 0, 0.08) 62%,
+      rgba(0, 0, 0, 0.42) 82%,
+      rgba(0, 0, 0, 0.88) 100%
+    );
+    mask-image: linear-gradient(
+      145deg,
+      rgba(0, 0, 0, 0.88) 0%,
+      rgba(0, 0, 0, 0.42) 18%,
+      rgba(0, 0, 0, 0.08) 38%,
+      rgba(0, 0, 0, 0.03) 50%,
+      rgba(0, 0, 0, 0.08) 62%,
+      rgba(0, 0, 0, 0.42) 82%,
+      rgba(0, 0, 0, 0.88) 100%
+    );
+  }
+
+  .rs-brand-snap__pattern-row:nth-child(even) {
+    -webkit-transform: translate3d(-1em, 0, 0);
+    transform: translate3d(-1em, 0, 0);
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .rs-brand-snap__pattern {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rs-brand-snap__pattern-row:nth-child(even),
+  .rs-brand-snap__pattern-row:nth-child(odd) {
+    -webkit-transform: none;
+    transform: none;
+  }
+
+  .rs-brand-snap__pattern-row:nth-child(even) {
+    text-indent: -1.2em;
+  }
+}

@@ -1,5 +1,6 @@
 /* Royal Smoke — brands snap (Cohiba-inspired, no GSAP)
    Desktop ≥768: soft proximity snap + image 100%→50% then text reveal (one-way).
+   Snap only near the header line and only on the nearest panel (rarer / softer pull).
    Reverse scroll never trapped: snap off while scrolling up / near section top.
    Mobile: simple reveal once.
 */
@@ -10,6 +11,13 @@
   var SHRINK_MS = 780;
   var TEXT_DELAY_MS = 160;
   var EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
+  /* Fraction of viewport: snap engages only when panel top is this close to header */
+  var SNAP_BAND = 0.11;
+  /* Extra px slack so tiny trackpad jitter doesn’t re-arm snap */
+  var SNAP_BAND_PX_MIN = 56;
+  /* Play when panel is further into view (first slide waits a bit more) */
+  var PLAY_RATIO = 0.4;
+  var PLAY_RATIO_FIRST = 0.55;
 
   function prefersReduced() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -111,8 +119,45 @@
     var scrollingUp = false;
     var snapLockedOff = false;
 
+    function headerInset() {
+      var raw = getComputedStyle(html).getPropertyValue('--rs-header-h').trim();
+      var h = parseFloat(raw);
+      if (!isFinite(h) || h <= 0) h = 60;
+      return h;
+    }
+
+    function clearSnapTargets() {
+      panels.forEach(function (p) {
+        p.classList.remove('is-snap-target');
+      });
+    }
+
+    /** Only the nearest panel gets snap-align, and only inside a tight band. */
+    function syncNearestSnapTarget() {
+      clearSnapTargets();
+      if (!isDesktop() || prefersReduced() || !zoneVisible) return false;
+
+      var inset = headerInset();
+      var band = Math.max(SNAP_BAND_PX_MIN, window.innerHeight * SNAP_BAND);
+      var nearest = null;
+      var nearestDist = Infinity;
+
+      panels.forEach(function (p) {
+        var dist = Math.abs(p.getBoundingClientRect().top - inset);
+        if (dist < nearestDist) {
+          nearestDist = dist;
+          nearest = p;
+        }
+      });
+
+      if (!nearest || nearestDist > band) return false;
+      nearest.classList.add('is-snap-target');
+      return true;
+    }
+
     function setSnapAllowed(allow) {
       if (!isDesktop() || prefersReduced() || !zoneVisible) {
+        clearSnapTargets();
         html.classList.remove('rs-brands-snap-on', 'rs-brands-snap-off');
         return;
       }
@@ -120,6 +165,7 @@
       if (allow && !snapLockedOff) {
         html.classList.remove('rs-brands-snap-off');
       } else {
+        clearSnapTargets();
         html.classList.add('rs-brands-snap-off');
       }
     }
@@ -128,6 +174,12 @@
       var rect = snapZone.getBoundingClientRect();
       // Top of brands zone near/above viewport — free scroll to hero
       return rect.top > -Math.min(120, window.innerHeight * 0.18);
+    }
+
+    function nearBottomExit() {
+      var rect = snapZone.getBoundingClientRect();
+      // Leaving brands toward next section — free scroll, no last-panel yank
+      return rect.bottom < window.innerHeight * 0.72;
     }
 
     function updateSnapFromScroll() {
@@ -141,18 +193,21 @@
         return;
       }
 
-      // Reverse scroll or leaving toward hero: disable snap so it never traps
-      if (scrollingUp || nearTopExit()) {
+      // Reverse scroll or leaving toward hero / next block: never trap
+      if (scrollingUp || nearTopExit() || nearBottomExit()) {
         snapLockedOff = true;
         setSnapAllowed(false);
         return;
       }
 
       // Scrolling down deeper into brands: soft proximity ok again
-      if (!scrollingUp && snapZone.getBoundingClientRect().top < -40) {
+      if (!scrollingUp && snapZone.getBoundingClientRect().top < -80) {
         snapLockedOff = false;
       }
-      setSnapAllowed(true);
+
+      // Engage only when a panel is already almost aligned (rarer pull)
+      var inBand = syncNearestSnapTarget();
+      setSnapAllowed(inBand);
     }
 
     function disconnectObservers() {
@@ -168,6 +223,7 @@
       });
       if (!zoneVisible) {
         snapLockedOff = false;
+        clearSnapTargets();
         html.classList.remove('rs-brands-snap-on', 'rs-brands-snap-off');
         return;
       }
@@ -182,6 +238,7 @@
 
     function wireDesktop() {
       disconnectObservers();
+      clearSnapTargets();
       html.classList.remove('rs-brands-snap-on', 'rs-brands-snap-off');
       zoneVisible = false;
       snapLockedOff = false;
@@ -193,11 +250,17 @@
         function (entries) {
           entries.forEach(function (entry) {
             if (!entry.isIntersecting) return;
-            if (entry.intersectionRatio < 0.28) return;
+            var first = entry.target.getAttribute('data-index') === '0';
+            var need = first ? PLAY_RATIO_FIRST : PLAY_RATIO;
+            if (entry.intersectionRatio < need) return;
             play(entry.target);
           });
         },
-        { root: null, threshold: [0.28, 0.45, 0.65] }
+        {
+          root: null,
+          threshold: [0.35, 0.4, 0.45, 0.5, 0.55, 0.65, 0.75],
+          rootMargin: '0px 0px -10% 0px',
+        }
       );
       panels.forEach(function (p) {
         ioPanels.observe(p);
@@ -206,6 +269,7 @@
 
     function wireMobile() {
       disconnectObservers();
+      clearSnapTargets();
       html.classList.remove('rs-brands-snap-on', 'rs-brands-snap-off');
       ioZone.disconnect();
 
@@ -240,6 +304,7 @@
       if (prefersReduced()) {
         disconnectObservers();
         ioZone.disconnect();
+        clearSnapTargets();
         html.classList.remove('rs-brands-snap-on', 'rs-brands-snap-off');
         panels.forEach(function (p) {
           finishPanel(
@@ -290,6 +355,7 @@
     window.addEventListener(
       'pagehide',
       function () {
+        clearSnapTargets();
         html.classList.remove('rs-brands-snap-on', 'rs-brands-snap-off');
       },
       { passive: true }

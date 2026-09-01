@@ -22,29 +22,6 @@
   border: 0;
 }
 
-/* ——— Delivery info ——— */
-.rs-delivery-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-  padding-block: 8px 8px;
-  margin-bottom: 0;
-  border-top: 1px solid var(--rs-hairline);
-}
-
-.rs-home-delivery {
-  padding-bottom: var(--rs-space-5);
-}
-
-.rs-delivery-info__text {
-  margin: 0;
-  max-width: 48ch;
-  color: var(--rs-text-muted);
-  font-size: 15px;
-  line-height: 1.6;
-}
-
 /* ——— Calculator results ——— */
 .rs-calc-results__list {
   display: flex;
@@ -165,11 +142,15 @@
   }
 
   .rs-pcard__name {
-    font-size: 19px;
+    font-size: 22px;
+  }
+
+  .rs-pcard__price {
+    font-size: 20px;
   }
 
   .rs-pcard__buy {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .rs-pcard__media {
@@ -207,16 +188,16 @@
   }
 
   .rs-pcard__name {
-    font-size: 15px;
+    font-size: 17px;
     max-width: none;
   }
 
   .rs-pcard__price {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .rs-pcard__buy {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .rs-pcard__row {

@@ -1,46 +1,40 @@
 {% extends "base.html" %}
 
-{% block title %}Доставка — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}Доставка і оплата — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 
 {% block content %}
 <header class="rs-page-head" data-rs-reveal>
-  <h1>Доставка</h1>
-  <p>Київ — того ж дня, Україна — 1–2 дні. Термобокси для сигар.</p>
+  <h1>Доставка і оплата</h1>
+  <p>Київ — того ж дня · Україна — 1–2 дні · ЄС — 3–5 днів. Термобокси для сигар і страхування відправлення.</p>
 </header>
 
 <div class="rs-container rs-service-page rs-legal" data-rs-reveal data-reveal-delay="80">
-  <h2>Київ</h2>
+  <h2>Доставка</h2>
+
+  <h3>Київ</h3>
   <p>Курʼєрська доставка того ж дня при замовленні до 15:00. Самовивіз зі шоуруму за адресою {{ site_settings.address|default:"Київ" }}.</p>
 
-  <h2>Україна</h2>
-  <p>Нова Пошта 1–2 дні. Сигари пакуємо в термобокси зі страхуванням відправлення.</p>
+  <h3>Україна</h3>
+  <p>Нова Пошта — 1–2 дні. Сигари пакуємо в термобокси зі страхуванням відправлення.</p>
 
-  <h2>ЄС</h2>
-  <p>Міжнародна доставка 3–5 робочих днів. Умови та вартість уточнюйте у менеджера.</p>
+  <h3>ЄС</h3>
+  <p>Міжнародна доставка — 3–5 робочих днів. Умови та вартість уточнюйте у менеджера.</p>
+
+  <h3>Способи доставки</h3>
+  <p>Нова Пошта, курʼєр або самовивіз — обираєте під час оформлення замовлення.</p>
 
   {% if site_settings.free_delivery_from %}
-    <h2>Безкоштовна доставка</h2>
+    <h3>Безкоштовна доставка</h3>
     <p>Від {{ site_settings.free_delivery_from }} ₴ по Україні (окрім віддалених регіонів).</p>
   {% endif %}
 
-  <form class="rs-form" method="post" action="{% url 'leads:delivery' %}" style="margin-top:36px">
-    {% csrf_token %}
-    <h2 style="margin-top:0">Уточнити умови</h2>
-    <div class="rs-field">
-      <label for="id_name">Імʼя</label>
-      <input id="id_name" type="text" name="name" required>
-    </div>
-    <div class="rs-field">
-      <label for="id_phone">Телефон</label>
-      <input id="id_phone" type="tel" name="phone" required>
-    </div>
-    <div class="rs-field">
-      <label for="id_city">Місто</label>
-      <input id="id_city" type="text" name="city">
-    </div>
-    <div class="rs-form__actions">
-      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">Надіслати запит</button>
-    </div>
-  </form>
+  <h2 id="payment">Оплата</h2>
+  <p>Доступні способи оплати під час оформлення замовлення:</p>
+  <ul>
+    <li><strong>Онлайн оплата</strong> — банківською карткою через платіжний сервіс.</li>
+    <li><strong>Оплата при отриманні</strong> — готівкою або карткою курʼєру / у відділенні.</li>
+    <li><strong>Безготівковий розрахунок</strong> — для юридичних осіб та B2B-замовлень за рахунком.</li>
+  </ul>
+  <p>Деталі рахунку або підтвердження онлайн-платежу надсилаємо на email після оформлення замовлення.</p>
 </div>
 {% endblock %}

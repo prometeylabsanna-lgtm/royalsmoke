@@ -7,6 +7,7 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/home-calculator.css' %}">
+<link rel="stylesheet" href="{% static 'css/home-calculator2.css' %}">
 <link rel="stylesheet" href="{% static 'css/home-booking.css' %}">
 {% endblock %}
 
@@ -99,22 +100,6 @@
         <a class="rs-btn rs-btn--gold" data-hero-cta-secondary href="{% url 'catalog:category' slug='cigars' %}">Сигари</a>
       {% endif %}
     </div>
-
-    <div class="rs-hero__controls">
-      <div class="rs-hero__dots" role="tablist" aria-label="Слайди">
-        {% for slide in hero_slides %}
-          <button type="button" class="rs-hero__dot{% if forloop.first %} is-active{% endif %}" data-hero-dot aria-label="Слайд {{ forloop.counter }}" {% if forloop.first %}aria-current="true"{% endif %}><span></span></button>
-        {% empty %}
-          <button type="button" class="rs-hero__dot is-active" data-hero-dot aria-current="true"><span></span></button>
-          <button type="button" class="rs-hero__dot" data-hero-dot><span></span></button>
-          <button type="button" class="rs-hero__dot" data-hero-dot><span></span></button>
-        {% endfor %}
-      </div>
-      <button type="button" class="rs-hero__next" data-hero-next aria-label="Наступний">
-        <svg width="26" height="8" viewBox="0 0 26 8" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 4h24M21 1l3 3-3 3"/></svg>
-      </button>
-      <span class="rs-hero__counter" data-hero-counter>{% if hero_slides %}01 / {{ hero_slides|length|stringformat:"02d" }}{% else %}01 / 03{% endif %}</span>
-    </div>
   </div>
 </section>
 
@@ -132,5 +117,4 @@
     </div>
   </div>
 </section>
-{% include "pages/partials/home_delivery.html" %}
 {% endblock %}

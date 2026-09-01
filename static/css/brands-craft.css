@@ -116,32 +116,39 @@
   min-height: 0;
   padding: clamp(24px, 4vw, 56px) clamp(20px, 4vw, 48px);
   box-sizing: border-box;
-  opacity: 0;
-  -webkit-transform: translate3d(-50%, 0, 0);
-  transform: translate3d(-50%, 0, 0);
-  transition:
-    opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.12s,
-    transform 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
   pointer-events: none;
 }
 
 .rs-brand-snap--flip .rs-brand-snap__content {
   margin-left: 0;
   margin-right: auto;
+}
+
+.rs-brand-snap__content.is-done {
+  pointer-events: auto;
+}
+
+/* Text/CTA only — pattern stays as a static mask on the panel */
+.rs-brand-snap__wrap {
+  width: 100%;
+  max-width: 36ch;
+  opacity: 0;
+  -webkit-transform: translate3d(-50%, 0, 0);
+  transform: translate3d(-50%, 0, 0);
+  transition:
+    opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.12s,
+    transform 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
+}
+
+.rs-brand-snap--flip .rs-brand-snap__wrap {
   -webkit-transform: translate3d(50%, 0, 0);
   transform: translate3d(50%, 0, 0);
 }
 
-.rs-brand-snap__content.is-done {
+.rs-brand-snap__content.is-done .rs-brand-snap__wrap {
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
-  pointer-events: auto;
-}
-
-.rs-brand-snap__wrap {
-  width: 100%;
-  max-width: 36ch;
 }
 
 .rs-brand-snap__country {
@@ -273,9 +280,9 @@
   white-space: nowrap;
 }
 
-/* Desktop: soft proximity snap only — never traps reverse scroll to hero */
+/* Desktop: soft proximity snap — only the nearest in-band panel (JS adds .is-snap-target) */
 @media (min-width: 768px) {
-  .rs-brand-snap {
+  .rs-brand-snap.is-snap-target {
     scroll-snap-align: start;
     scroll-snap-stop: normal;
   }
@@ -370,6 +377,11 @@
     width: 100%;
     flex: none;
     padding: 20px var(--rs-pad-x-sm, 16px) 8px;
+  }
+
+  .rs-brand-snap__wrap,
+  .rs-brand-snap--flip .rs-brand-snap__wrap {
+    max-width: none;
     opacity: 0;
     -webkit-transform: translate3d(0, 20px, 0);
     transform: translate3d(0, 20px, 0);
@@ -378,15 +390,10 @@
       transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.18s;
   }
 
-  .rs-brand-snap__content.is-done {
+  .rs-brand-snap__content.is-done .rs-brand-snap__wrap {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    pointer-events: auto;
-  }
-
-  .rs-brand-snap__wrap {
-    max-width: none;
   }
 
   .rs-brand-snap__desc {
@@ -428,7 +435,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .rs-brand-snap__asset,
-  .rs-brand-snap__content,
+  .rs-brand-snap__wrap,
   .rs-brand-tile__media img {
     transition: none;
   }
@@ -441,10 +448,13 @@
     transform: none;
   }
 
-  .rs-brand-snap__content,
-  .rs-brand-snap__content.is-done {
+  .rs-brand-snap__wrap,
+  .rs-brand-snap__content.is-done .rs-brand-snap__wrap {
     opacity: 1;
     transform: none;
+  }
+
+  .rs-brand-snap__content.is-done {
     pointer-events: auto;
   }
 

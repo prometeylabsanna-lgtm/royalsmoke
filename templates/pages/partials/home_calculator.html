@@ -1,35 +1,47 @@
 {% load static %}
 <section class="rs-section rs-home-calc" id="home-calculator" data-home-calc data-calc-step="0">
-  <div class="rs-container">
-    <nav class="rs-home-calc__progress" aria-label="Кроки підбору">
-      <ol class="rs-home-calc__progress-list">
-        <li class="rs-home-calc__progress-item is-active" data-calc-progress="0">
-          <button type="button" class="rs-home-calc__progress-btn" data-calc-goto="0">Міцність</button>
-        </li>
-        <li class="rs-home-calc__progress-item" data-calc-progress="1">
-          <button type="button" class="rs-home-calc__progress-btn" data-calc-goto="1">Формат</button>
-        </li>
-        <li class="rs-home-calc__progress-item" data-calc-progress="2">
-          <button type="button" class="rs-home-calc__progress-btn" data-calc-goto="2">Країна</button>
-        </li>
-        <li class="rs-home-calc__progress-item" data-calc-progress="3">
-          <button type="button" class="rs-home-calc__progress-btn" data-calc-goto="3">Бюджет</button>
-        </li>
-      </ol>
-    </nav>
-
+  <div class="rs-home-calc__bg" aria-hidden="true">
+    <img
+      class="rs-home-calc__bg-img"
+      src="{% static 'img/calculator/lounge-bg.jpg' %}"
+      alt=""
+      width="1536"
+      height="1024"
+      loading="lazy"
+      decoding="async"
+    >
+  </div>
+  <div class="rs-container rs-home-calc__inner">
     <div class="rs-home-calc__layout">
-      <div class="rs-home-calc__main">
-        <form
-          class="rs-home-calc__form"
-          id="home-calc-form"
-          method="get"
-          action="{% url 'calculator:results' %}"
-          hx-get="{% url 'calculator:results' %}"
-          hx-target="#home-calc-results"
-          hx-swap="innerHTML"
-          hx-push-url="false"
-        >
+      <div class="rs-home-calc__stage">
+        <nav class="rs-home-calc__progress" aria-label="Кроки підбору">
+          <ol class="rs-home-calc__progress-list">
+            <li class="rs-home-calc__progress-item is-active" data-calc-progress="0">
+              <button type="button" class="rs-home-calc__progress-btn" data-calc-goto="0">Міцність</button>
+            </li>
+            <li class="rs-home-calc__progress-item" data-calc-progress="1">
+              <button type="button" class="rs-home-calc__progress-btn" data-calc-goto="1">Формат</button>
+            </li>
+            <li class="rs-home-calc__progress-item" data-calc-progress="2">
+              <button type="button" class="rs-home-calc__progress-btn" data-calc-goto="2">Країна</button>
+            </li>
+            <li class="rs-home-calc__progress-item" data-calc-progress="3">
+              <button type="button" class="rs-home-calc__progress-btn" data-calc-goto="3">Бюджет</button>
+            </li>
+          </ol>
+        </nav>
+
+        <div class="rs-home-calc__main">
+          <form
+            class="rs-home-calc__form"
+            id="home-calc-form"
+            method="get"
+            action="{% url 'calculator:results' %}"
+            hx-get="{% url 'calculator:results' %}"
+            hx-target="#home-calc-results"
+            hx-swap="innerHTML"
+            hx-push-url="false"
+          >
           <div class="rs-home-calc__panels">
             <fieldset class="rs-home-calc__step is-active" data-calc-panel="0">
               <p class="rs-home-calc__meta" aria-hidden="true">
@@ -184,6 +196,7 @@
             </button>
           </div>
         </form>
+      </div>
       </div>
 
       <aside class="rs-home-calc__aside" aria-label="Підсумок вибору">

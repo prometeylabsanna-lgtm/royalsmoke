@@ -62,20 +62,8 @@ def b2b_page(request):
     return render(request, 'leads/b2b.html', {'form': form})
 
 
-@require_http_methods(['GET', 'POST'])
+@require_http_methods(['GET'])
 def delivery_page(request):
-    if request.method == 'POST':
-        lead = Lead.objects.create(
-            kind=Lead.Kind.CONTACT,
-            name=request.POST.get('name') or '',
-            phone=request.POST.get('phone') or '',
-            message=f"Уточнення доставки. Місто: {request.POST.get('city') or '—'}",
-            source_url=request.path,
-            payload={'city': request.POST.get('city') or ''},
-        )
-        _notify(lead)
-        messages.success(request, 'Запит прийнято. Менеджер уточнить умови.')
-        return redirect('leads:delivery')
     return render(request, 'leads/delivery.html')
 
 

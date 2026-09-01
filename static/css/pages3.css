@@ -160,7 +160,6 @@ body.rs-home {
   z-index: 2;
   opacity: 1;
   transform: none;
-  background: rgba(10, 8, 7, 0.92);
 }
 
 [data-parallax-media] {
@@ -334,7 +333,7 @@ body.rs-home {
 
 .rs-pcard__name {
   font-family: var(--rs-font-display);
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.25;
   color: var(--rs-seashell);
   min-width: 0;
@@ -344,8 +343,8 @@ body.rs-home {
 
 .rs-pcard__price {
   font-family: var(--rs-font-display);
-  font-size: 16px;
-  color: var(--rs-text-soft);
+  font-size: 18px;
+  color: #9a7228;
   margin: 0;
 }
 
@@ -361,23 +360,29 @@ body.rs-home {
   border-radius: 0;
   background: transparent;
   box-shadow: none;
-  color: var(--rs-gold);
+  color: #8b6534;
   font-family: var(--rs-font-ui);
-  font-size: 15px;
+  font-size: 16px;
   letter-spacing: 0.06em;
   line-height: 1.2;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: #8b6534;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  transition: color var(--rs-dur-fast) ease;
+  transition:
+    color var(--rs-dur-fast) ease,
+    text-decoration-color var(--rs-dur-fast) ease;
 }
 
 .rs-pcard__buy:hover,
 .rs-pcard__buy:focus-visible {
-  color: var(--rs-gold-hover);
+  color: #a07840;
+  text-decoration-color: #a07840;
 }
 
 .rs-pcard__buy:focus-visible {
-  outline: 1px solid var(--rs-gold);
+  outline: 1px solid #8b6534;
   outline-offset: 3px;
 }
