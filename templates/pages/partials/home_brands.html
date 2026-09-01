@@ -1,11 +1,4 @@
 <section class="rs-section rs-home-brands" id="home-brands" aria-label="Бренди" data-brands-craft>
-  <div class="rs-container rs-brands-craft__head">
-    <div class="rs-section__head">
-      <h2 class="rs-section__title">Бренди</h2>
-      <a class="rs-link-gold rs-hover-underline" href="{% url 'catalog:list' %}?view=brands">Усі бренди</a>
-    </div>
-  </div>
-
   <div class="rs-brands-snaps" data-brands-snaps style="--brand-count: {{ brand_craft|length|default:4 }}">
     {% for item in brand_craft %}
       <article

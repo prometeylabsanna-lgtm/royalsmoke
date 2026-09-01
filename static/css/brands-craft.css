@@ -11,13 +11,13 @@
   --rs-brand-brown-mid: #32241c;
   --rs-brand-snap-h: calc(100vh - var(--rs-header-h, 60px));
   --rs-brand-snap-h: calc(100dvh - var(--rs-header-h, 60px) - env(safe-area-inset-top, 0px));
-  padding-top: var(--rs-space-5);
+  padding-top: 0;
   padding-bottom: 0;
   margin-top: 0;
 }
 
 .rs-home .rs-home-brands {
-  padding-top: var(--rs-space-5);
+  padding-top: 0;
 }
 
 .rs-brands-craft__head {

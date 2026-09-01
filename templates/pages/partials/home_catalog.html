@@ -1,56 +1,87 @@
 {% load static %}
-<section class="rs-section rs-home-catalog" id="home-catalog">
+<section class="rs-section rs-home-catalog" id="home-catalog" data-catalog-slider>
   <div class="rs-container">
     <div class="rs-section__head" data-rs-reveal>
       <h2 class="rs-section__title">Каталог</h2>
-      <a class="rs-link-gold rs-hover-underline" href="{% url 'catalog:list' %}">Увесь каталог</a>
     </div>
-    <div class="rs-grid-3">
-      {% for product in home_products %}
-        <article class="rs-pcard" data-rs-reveal data-reveal-delay="{% widthratio forloop.counter0 1 50 %}">
-          <a class="rs-pcard__media" href="{{ product.get_absolute_url }}">
-            {% with img=product.images.all.0 %}
-              {% if img %}
-                <img class="rs-pcard__img" data-parallax-media data-depth="0.12" src="{{ img.image.url }}" alt="{{ img.alt_text|default:product.name }}" loading="lazy" width="480" height="640">
-              {% else %}
-                {% if forloop.counter == 1 %}
-                  <img class="rs-pcard__img" data-parallax-media data-depth="0.12" src="{% static 'img/products/pack-01.png' %}" alt="{{ product.name }}" loading="lazy" width="600" height="800">
-                {% elif forloop.counter == 2 %}
-                  <img class="rs-pcard__img" data-parallax-media data-depth="0.1" src="{% static 'img/products/pack-02.png' %}" alt="{{ product.name }}" loading="lazy" width="600" height="800">
-                {% elif forloop.counter == 3 %}
-                  <img class="rs-pcard__img" data-parallax-media data-depth="0.14" src="{% static 'img/products/pack-03.png' %}" alt="{{ product.name }}" loading="lazy" width="600" height="800">
-                {% elif forloop.counter == 4 %}
-                  <img class="rs-pcard__img" data-parallax-media data-depth="0.11" src="{% static 'img/products/guillotine.png' %}" alt="{{ product.name }}" loading="lazy" width="600" height="800">
-                {% elif forloop.counter == 5 %}
-                  <img class="rs-pcard__img" data-parallax-media data-depth="0.13" src="{% static 'img/products/lighter.png' %}" alt="{{ product.name }}" loading="lazy" width="600" height="800">
+
+    <div class="rs-home-catalog__stage">
+      <button
+        type="button"
+        class="rs-home-catalog__nav rs-home-catalog__nav--prev"
+        data-catalog-prev
+        aria-label="Попередні товари"
+      >
+        <svg width="22" height="10" viewBox="0 0 26 8" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M26 4H2M5 1L2 4l3 3"/></svg>
+      </button>
+
+      <div
+        class="rs-home-catalog__track"
+        data-catalog-track
+        tabindex="0"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Товари каталогу"
+      >
+        {% for product in home_products %}
+          <article class="rs-pcard" data-rs-reveal data-reveal-delay="{% widthratio forloop.counter0 1 50 %}" data-catalog-slide>
+            <a class="rs-pcard__media" href="{{ product.get_absolute_url }}">
+              {% with img=product.images.all.0 %}
+                {% if img %}
+                  <img class="rs-pcard__img" data-parallax-media data-depth="0.12" src="{{ img.image.url }}" alt="{{ img.alt_text|default:product.name }}" loading="lazy" width="480" height="640">
                 {% else %}
-                  <img class="rs-pcard__img" data-parallax-media data-depth="0.09" src="{% static 'img/products/ashtray.png' %}" alt="{{ product.name }}" loading="lazy" width="600" height="800">
+                  {% if forloop.counter == 1 %}
+                    <img class="rs-pcard__img" data-parallax-media data-depth="0.12" src="{% static 'img/products/pack-01.png' %}" alt="{{ product.name }}" loading="lazy" width="600" height="800">
+                  {% elif forloop.counter == 2 %}
+                    <img class="rs-pcard__img" data-parallax-media data-depth="0.1" src="{% static 'img/products/pack-02.png' %}" alt="{{ product.name }}" loading="lazy" width="600" height="800">
+                  {% elif forloop.counter == 3 %}
+                    <img class="rs-pcard__img" data-parallax-media data-depth="0.14" src="{% static 'img/products/pack-03.png' %}" alt="{{ product.name }}" loading="lazy" width="600" height="800">
+                  {% elif forloop.counter == 4 %}
+                    <img class="rs-pcard__img" data-parallax-media data-depth="0.11" src="{% static 'img/products/guillotine.png' %}" alt="{{ product.name }}" loading="lazy" width="600" height="800">
+                  {% elif forloop.counter == 5 %}
+                    <img class="rs-pcard__img" data-parallax-media data-depth="0.13" src="{% static 'img/products/lighter.png' %}" alt="{{ product.name }}" loading="lazy" width="600" height="800">
+                  {% else %}
+                    <img class="rs-pcard__img" data-parallax-media data-depth="0.09" src="{% static 'img/products/ashtray.png' %}" alt="{{ product.name }}" loading="lazy" width="600" height="800">
+                  {% endif %}
                 {% endif %}
-              {% endif %}
-            {% endwith %}
-          </a>
-          <div class="rs-pcard__row">
-            <a class="rs-pcard__name" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-            <form class="rs-pcard__cart"
-                  method="post"
-                  action="{% url 'cart:add' %}"
-                  hx-post="{% url 'cart:add' %}"
-                  hx-target="#cart-badge"
-                  hx-swap="outerHTML">
-              {% csrf_token %}
-              <input type="hidden" name="product_id" value="{{ product.id }}">
-              <input type="hidden" name="quantity" value="1">
-              {% with v=product.variants.all.0 %}
-                {% if v %}<input type="hidden" name="variant_id" value="{{ v.id }}">{% endif %}
               {% endwith %}
-              <button type="submit" class="rs-pcard__buy">У кошик</button>
-            </form>
-          </div>
-          <p class="rs-pcard__price">{{ product.display_price }} ₴</p>
-        </article>
-      {% empty %}
-        <p class="rs-empty">Каталог наповнюється.</p>
-      {% endfor %}
+            </a>
+            <div class="rs-pcard__row">
+              <a class="rs-pcard__name" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+              <form class="rs-pcard__cart"
+                    method="post"
+                    action="{% url 'cart:add' %}"
+                    hx-post="{% url 'cart:add' %}"
+                    hx-target="#cart-badge"
+                    hx-swap="outerHTML">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <input type="hidden" name="quantity" value="1">
+                {% with v=product.variants.all.0 %}
+                  {% if v %}<input type="hidden" name="variant_id" value="{{ v.id }}">{% endif %}
+                {% endwith %}
+                <button type="submit" class="rs-pcard__buy">У кошик</button>
+              </form>
+            </div>
+            <p class="rs-pcard__price">{{ product.display_price }} ₴</p>
+          </article>
+        {% empty %}
+          <p class="rs-empty">Каталог наповнюється.</p>
+        {% endfor %}
+      </div>
+
+      <button
+        type="button"
+        class="rs-home-catalog__nav rs-home-catalog__nav--next"
+        data-catalog-next
+        aria-label="Наступні товари"
+      >
+        <svg width="22" height="10" viewBox="0 0 26 8" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 4h24M21 1l3 3-3 3"/></svg>
+      </button>
+    </div>
+
+    <div class="rs-home-catalog__foot" data-rs-reveal>
+      <a class="rs-link-gold rs-hover-underline" href="{% url 'catalog:list' %}">Увесь каталог</a>
     </div>
   </div>
 </section>

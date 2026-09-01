@@ -217,7 +217,7 @@
       thumb.style.pointerEvents = '';
     }
 
-    /* New thumb slides in from the right while the old one grows into the hero */
+    /* New preview rides in from beyond the right edge of the viewport */
     function enterThumbFromRight(previewIndex) {
       if (!thumb) return;
       showThumbForIndex(previewIndex);
@@ -225,11 +225,20 @@
       thumb.style.visibility = 'visible';
       thumb.style.opacity = '1';
       thumb.style.pointerEvents = 'none';
-      thumb.style.transform = 'translate3d(120%, 0, 0)';
+      thumb.style.transform = 'translate3d(0, 0, 0)';
       void thumb.offsetWidth;
+
+      var rect = thumb.getBoundingClientRect();
+      var dx = Math.max(
+        Math.ceil(window.innerWidth - rect.left + 40),
+        Math.ceil(rect.width + 80)
+      );
+      thumb.style.transform = 'translate3d(' + dx + 'px, 0, 0)';
+      void thumb.offsetWidth;
+
       thumb.style.transition =
         'transform ' + DURATION + 'ms ' + EASE;
-      thumb.style.transform = 'translate3d(var(--rs-thumb-peek), 0, 0)';
+      thumb.style.transform = 'translate3d(0, 0, 0)';
     }
 
     function crossfadeTo(target) {
@@ -276,6 +285,7 @@
       var stageRect = stage.getBoundingClientRect();
       var thumbRect = thumb.getBoundingClientRect();
       var radius = window.getComputedStyle(thumb).borderRadius || '50%';
+      if (!radius || radius === '0px') radius = '50%';
       var nextSlideImg = slideImgEl(next);
       var nextPos = nextSlideImg
         ? window.getComputedStyle(nextSlideImg).objectPosition
@@ -304,8 +314,8 @@
       expandImg.style.margin = '0';
 
       expandVeil.style.transition = 'none';
-      expandVeil.style.opacity = '0';
-      expandVeil.style.display = 'none';
+      expandVeil.style.opacity = '1';
+      expandVeil.style.display = 'block';
 
       expandEl.style.transition = 'none';
       expandEl.style.opacity = '1';
@@ -339,10 +349,10 @@
       expandEl.style.height = '100%';
       expandEl.style.borderRadius = '0';
 
-      /* Meanwhile the next preview slides in from the right edge */
-      window.requestAnimationFrame(function () {
+      /* Next preview rides in from the right while the circle expands */
+      window.setTimeout(function () {
         enterThumbFromRight(nextIndex(next));
-      });
+      }, 90);
 
       window.setTimeout(function () {
         slides.forEach(function (s) {

@@ -13,6 +13,7 @@
 {% block extra_js %}
 <script src="{% static 'js/hero-slider.js' %}" defer></script>
 <script src="{% static 'js/history-slider.js' %}" defer></script>
+<script src="{% static 'js/catalog-slider.js' %}" defer></script>
 <script src="{% static 'js/brands-craft.js' %}" defer></script>
 <script src="{% static 'js/home-calculator.js' %}" defer></script>
 {% endblock %}
@@ -123,7 +124,13 @@
 {% include "pages/partials/home_catalog.html" %}
 {% include "pages/partials/home_history.html" %}
 {% include "pages/partials/home_calculator.html" %}
-{% include "pages/partials/home_booking.html" %}
-{% include "pages/partials/home_b2b.html" %}
+<section class="rs-section rs-svc-duo" aria-label="Бронювання та B2B">
+  <div class="rs-container">
+    <div class="rs-svc-duo__grid">
+      {% include "pages/partials/home_booking.html" %}
+      {% include "pages/partials/home_b2b.html" %}
+    </div>
+  </div>
+</section>
 {% include "pages/partials/home_delivery.html" %}
 {% endblock %}

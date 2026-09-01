@@ -1,10 +1,6 @@
 /* Royal Smoke — history journey responsive / motion / iOS */
 @media (hover: none), (pointer: coarse) {
-  .rs-history-journey__track {
-    cursor: auto;
-  }
-
-  .rs-history-journey__nav:active:not(:disabled) {
+  .rs-history-journey__nav:active {
     color: var(--rs-gold);
     border-color: var(--rs-gold);
     background: rgba(40, 32, 28, 0.95);
@@ -37,17 +33,9 @@
     padding-inline: max(var(--rs-pad-x-lg), var(--rs-safe-l)) max(var(--rs-pad-x-lg), var(--rs-safe-r));
   }
 
-  .rs-history-journey__track {
-    margin-inline: calc(-1 * max(var(--rs-pad-x-lg), var(--rs-safe-l)));
-    padding-inline: max(var(--rs-pad-x-lg), var(--rs-safe-l)) max(var(--rs-pad-x-lg), var(--rs-safe-r));
-  }
-
-  .rs-history-journey__nav--prev {
-    left: max(8px, calc(var(--rs-safe-l) + 4px));
-  }
-
-  .rs-history-journey__nav--next {
-    right: max(8px, calc(var(--rs-safe-r) + 4px));
+  .rs-history-journey__stage {
+    --rs-history-nav-size: 44px;
+    --rs-history-nav-gap: 14px;
   }
 
   .rs-history-journey__year {
@@ -55,9 +43,14 @@
     letter-spacing: 0.16em;
   }
 
+  .rs-history-journey__kicker {
+    font-size: clamp(32px, 4vw, 42px);
+    letter-spacing: 0.3em;
+    text-indent: 0.3em;
+  }
+
   .rs-history-journey__text {
     font-size: 15px;
-    -webkit-line-clamp: 8;
   }
 
   .rs-history-journey__tick {
@@ -73,22 +66,13 @@
     min-height: min(64vh, 620px);
   }
 
-  .rs-history-journey__track {
-    margin-inline: 0;
-    padding-inline: 0;
-  }
-
-  .rs-history-journey__nav--prev {
-    left: -8px;
-  }
-
-  .rs-history-journey__nav--next {
-    right: -8px;
-  }
-
   .rs-history-journey__slide {
     flex-basis: var(--rs-history-card-w);
     width: var(--rs-history-card-w);
+  }
+
+  .rs-history-journey__kicker {
+    font-size: 42px;
   }
 
   .rs-history-journey__text {
@@ -108,13 +92,13 @@
   }
 
   .rs-history-journey__nav {
-    top: calc(var(--rs-history-card-w) * 0.28);
+    margin-top: calc(var(--rs-history-card-w) * 0.34 - (var(--rs-history-nav-size) / 2));
   }
 }
 
 @media (max-width: 767px) {
   .rs-history-journey {
-    --rs-history-card-w: min(78vw, 290px);
+    --rs-history-card-w: min(72vw, 280px);
     min-height: min(72svh, 560px);
   }
 
@@ -123,23 +107,31 @@
     gap: var(--rs-space-4);
   }
 
+  .rs-history-journey__stage {
+    --rs-history-nav-size: 36px;
+    --rs-history-nav-gap: 6px;
+  }
+
   .rs-history-journey__photo {
     aspect-ratio: 16 / 10;
   }
 
   .rs-history-journey__text {
     font-size: 13.5px;
-    -webkit-line-clamp: 4;
   }
 
   .rs-history-journey__tick-label {
     font-size: 13px;
   }
 
+  .rs-history-journey__kicker {
+    font-size: clamp(28px, 5vw, 36px);
+    letter-spacing: 0.24em;
+    text-indent: 0.24em;
+  }
+
   .rs-history-journey__nav {
-    width: 40px;
-    height: 40px;
-    top: calc(var(--rs-history-card-w) * 0.28);
+    margin-top: calc(var(--rs-history-card-w) * 0.3 - (var(--rs-history-nav-size) / 2));
   }
 }
 
@@ -156,10 +148,10 @@
 
   .rs-history-journey__track {
     -webkit-overflow-scrolling: touch;
+    cursor: default;
   }
 
   .rs-history-journey__nav {
-    /* iOS: avoid 300ms / sticky hover */
     cursor: pointer;
   }
 }

@@ -1,27 +1,25 @@
 {% load static %}
-<section class="rs-section rs-home-calc" id="home-calculator" data-home-calc>
+<section class="rs-section rs-home-calc" id="home-calculator" data-home-calc data-calc-step="0">
   <div class="rs-container">
-    <div class="rs-home-calc__split">
-      <aside class="rs-home-calc__visual">
-        <figure class="rs-home-calc__figure">
-          <img
-            class="rs-home-calc__img"
-            src="{% static 'img/service/calculator.jpg' %}"
-            alt=""
-            width="720"
-            height="960"
-            loading="lazy"
-            decoding="async"
-          >
-        </figure>
-      </aside>
+    <nav class="rs-home-calc__progress" aria-label="Кроки підбору">
+      <ol class="rs-home-calc__progress-list">
+        <li class="rs-home-calc__progress-item is-active" data-calc-progress="0">
+          <button type="button" class="rs-home-calc__progress-btn" data-calc-goto="0">Міцність</button>
+        </li>
+        <li class="rs-home-calc__progress-item" data-calc-progress="1">
+          <button type="button" class="rs-home-calc__progress-btn" data-calc-goto="1">Формат</button>
+        </li>
+        <li class="rs-home-calc__progress-item" data-calc-progress="2">
+          <button type="button" class="rs-home-calc__progress-btn" data-calc-goto="2">Країна</button>
+        </li>
+        <li class="rs-home-calc__progress-item" data-calc-progress="3">
+          <button type="button" class="rs-home-calc__progress-btn" data-calc-goto="3">Бюджет</button>
+        </li>
+      </ol>
+    </nav>
 
-      <div class="rs-home-calc__panel">
-        <header class="rs-home-calc__head">
-          <h2 class="rs-home-calc__title">Калькулятор підбору</h2>
-          <p class="rs-home-calc__lead">Оберіть параметри — три рекомендації з поясненням вибору.</p>
-        </header>
-
+    <div class="rs-home-calc__layout">
+      <div class="rs-home-calc__main">
         <form
           class="rs-home-calc__form"
           id="home-calc-form"
@@ -32,104 +30,183 @@
           hx-swap="innerHTML"
           hx-push-url="false"
         >
-          <fieldset class="rs-home-calc__group">
-            <legend class="rs-home-calc__label">Міцність</legend>
-            <div class="rs-home-calc__chips" role="radiogroup" aria-label="Міцність">
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="strength" value="mild" data-calc-chip>
-                <span>Легка</span>
-              </label>
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="strength" value="medium" data-calc-chip checked>
-                <span>Середня</span>
-              </label>
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="strength" value="medium_full" data-calc-chip>
-                <span>Середньо-повна</span>
-              </label>
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="strength" value="full" data-calc-chip>
-                <span>Повна</span>
-              </label>
-            </div>
-          </fieldset>
+          <div class="rs-home-calc__panels">
+            <fieldset class="rs-home-calc__step is-active" data-calc-panel="0">
+              <p class="rs-home-calc__meta" aria-hidden="true">
+                <span class="rs-home-calc__meta-label">Крок</span>
+                <span class="rs-home-calc__meta-nums">
+                  <span class="is-current">1</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span>4</span>
+                </span>
+              </p>
+              <legend class="rs-home-calc__question">Яку міцність шукаєте?</legend>
+              <p class="rs-home-calc__desc">
+                Light — до ранкової кави. Medium — універсальний щоденний вибір.
+                Full — для вечірнього ритуалу.
+              </p>
+              <div class="rs-home-calc__chips" role="radiogroup" aria-label="Міцність">
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="strength" value="mild" data-calc-chip>
+                  <span>Легка</span>
+                </label>
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="strength" value="medium" data-calc-chip checked>
+                  <span>Середня</span>
+                </label>
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="strength" value="medium_full" data-calc-chip>
+                  <span>Середньо-повна</span>
+                </label>
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="strength" value="full" data-calc-chip>
+                  <span>Повна</span>
+                </label>
+              </div>
+            </fieldset>
 
-          <fieldset class="rs-home-calc__group">
-            <legend class="rs-home-calc__label">Формат</legend>
-            <div class="rs-home-calc__chips" role="radiogroup" aria-label="Формат">
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="format" value="petit" data-calc-chip>
-                <span>Petit Robusto</span>
-              </label>
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="format" value="robusto" data-calc-chip checked>
-                <span>Robusto</span>
-              </label>
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="format" value="toro" data-calc-chip>
-                <span>Toro</span>
-              </label>
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="format" value="churchill" data-calc-chip>
-                <span>Churchill</span>
-              </label>
-            </div>
-          </fieldset>
+            <fieldset class="rs-home-calc__step" data-calc-panel="1" hidden>
+              <p class="rs-home-calc__meta" aria-hidden="true">
+                <span class="rs-home-calc__meta-label">Крок</span>
+                <span class="rs-home-calc__meta-nums">
+                  <span>1</span>
+                  <span class="is-current">2</span>
+                  <span>3</span>
+                  <span>4</span>
+                </span>
+              </p>
+              <legend class="rs-home-calc__question">Який формат зручніший?</legend>
+              <p class="rs-home-calc__desc">
+                Petit — короткі перерви. Robusto — класика на 45–60 хв.
+                Churchill — довгий вечір без поспіху.
+              </p>
+              <div class="rs-home-calc__chips" role="radiogroup" aria-label="Формат">
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="format" value="petit" data-calc-chip>
+                  <span>Petit Robusto</span>
+                </label>
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="format" value="robusto" data-calc-chip checked>
+                  <span>Robusto</span>
+                </label>
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="format" value="toro" data-calc-chip>
+                  <span>Toro</span>
+                </label>
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="format" value="churchill" data-calc-chip>
+                  <span>Churchill</span>
+                </label>
+              </div>
+            </fieldset>
 
-          <fieldset class="rs-home-calc__group">
-            <legend class="rs-home-calc__label">Країна</legend>
-            <div class="rs-home-calc__chips" role="radiogroup" aria-label="Країна">
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="country" value="cuba" data-calc-chip>
-                <span>Куба</span>
-              </label>
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="country" value="nicaragua" data-calc-chip>
-                <span>Нікарагуа</span>
-              </label>
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="country" value="dominican" data-calc-chip>
-                <span>Домінікана</span>
-              </label>
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="country" value="" data-calc-chip checked>
-                <span>Будь-яка</span>
-              </label>
-            </div>
-          </fieldset>
+            <fieldset class="rs-home-calc__step" data-calc-panel="2" hidden>
+              <p class="rs-home-calc__meta" aria-hidden="true">
+                <span class="rs-home-calc__meta-label">Крок</span>
+                <span class="rs-home-calc__meta-nums">
+                  <span>1</span>
+                  <span>2</span>
+                  <span class="is-current">3</span>
+                  <span>4</span>
+                </span>
+              </p>
+              <legend class="rs-home-calc__question">Яку країну обираєте?</legend>
+              <p class="rs-home-calc__desc">
+                Куба — класика й елегантність. Нікарагуа — сила й спеції.
+                Домінікана — м’якість і баланс. Або без обмежень.
+              </p>
+              <div class="rs-home-calc__chips" role="radiogroup" aria-label="Країна">
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="country" value="cuba" data-calc-chip>
+                  <span>Куба</span>
+                </label>
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="country" value="nicaragua" data-calc-chip>
+                  <span>Нікарагуа</span>
+                </label>
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="country" value="dominican" data-calc-chip>
+                  <span>Домінікана</span>
+                </label>
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="country" value="" data-calc-chip checked>
+                  <span>Будь-яка</span>
+                </label>
+              </div>
+            </fieldset>
 
-          <fieldset class="rs-home-calc__group">
-            <legend class="rs-home-calc__label">Бюджет</legend>
-            <div class="rs-home-calc__chips" role="radiogroup" aria-label="Бюджет">
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="budget" value="0-1000" data-calc-chip checked>
-                <span>до 1000 ₴</span>
-              </label>
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="budget" value="1000-2000" data-calc-chip>
-                <span>1000—2000 ₴</span>
-              </label>
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="budget" value="2000-3500" data-calc-chip>
-                <span>2000—3500 ₴</span>
-              </label>
-              <label class="rs-home-calc__chip">
-                <input type="radio" name="budget" value="any" data-calc-chip>
-                <span>без обмежень</span>
-              </label>
-            </div>
-          </fieldset>
+            <fieldset class="rs-home-calc__step" data-calc-panel="3" hidden>
+              <p class="rs-home-calc__meta" aria-hidden="true">
+                <span class="rs-home-calc__meta-label">Крок</span>
+                <span class="rs-home-calc__meta-nums">
+                  <span>1</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span class="is-current">4</span>
+                </span>
+              </p>
+              <legend class="rs-home-calc__question">Який бюджет на сигару?</legend>
+              <p class="rs-home-calc__desc">
+                Оберіть комфортний діапазон — підберемо варіанти
+                в межах ціни або покажемо найкраще без обмежень.
+              </p>
+              <div class="rs-home-calc__chips" role="radiogroup" aria-label="Бюджет">
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="budget" value="0-1000" data-calc-chip checked>
+                  <span>до 1000 ₴</span>
+                </label>
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="budget" value="1000-2000" data-calc-chip>
+                  <span>1000—2000 ₴</span>
+                </label>
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="budget" value="2000-3500" data-calc-chip>
+                  <span>2000—3500 ₴</span>
+                </label>
+                <label class="rs-home-calc__chip">
+                  <input type="radio" name="budget" value="any" data-calc-chip>
+                  <span>без обмежень</span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
 
-          <div class="rs-home-calc__footer">
-            <p class="rs-home-calc__summary" data-calc-summary aria-live="polite">
-              Середня · Robusto · Будь-яка · до 1000 ₴
-            </p>
-            <button type="submit" class="rs-btn rs-btn--gold rs-home-calc__submit">
+          <div class="rs-home-calc__actions">
+            <button type="button" class="rs-btn rs-btn--gold rs-home-calc__next" data-calc-next>
+              Далі
+            </button>
+            <button type="submit" class="rs-btn rs-btn--gold rs-home-calc__submit" data-calc-submit hidden>
               Показати підбір
+            </button>
+            <button type="button" class="rs-home-calc__back" data-calc-prev hidden>
+              Назад
             </button>
           </div>
         </form>
       </div>
+
+      <aside class="rs-home-calc__aside" aria-label="Підсумок вибору">
+        <h3 class="rs-home-calc__aside-title">Ваш вибір</h3>
+        <dl class="rs-home-calc__picks">
+          <div class="rs-home-calc__pick">
+            <dt>Міцність</dt>
+            <dd data-calc-pick="strength">—</dd>
+          </div>
+          <div class="rs-home-calc__pick">
+            <dt>Формат</dt>
+            <dd data-calc-pick="format">—</dd>
+          </div>
+          <div class="rs-home-calc__pick">
+            <dt>Країна</dt>
+            <dd data-calc-pick="country">—</dd>
+          </div>
+          <div class="rs-home-calc__pick">
+            <dt>Бюджет</dt>
+            <dd data-calc-pick="budget">—</dd>
+          </div>
+        </dl>
+      </aside>
     </div>
 
     <div id="home-calc-results" class="rs-home-calc__results" aria-live="polite"></div>

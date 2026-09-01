@@ -221,13 +221,13 @@
 
 @media (max-width: 767px) {
   .rs-hero__thumb {
-    --rs-thumb-size: 76px;
-    --rs-thumb-peek: 0%;
+    --rs-thumb-size: 96px;
+    --rs-thumb-peek: 0px;
     width: var(--rs-thumb-size);
     height: var(--rs-thumb-size);
-    right: calc(12px + 52px + 10px + var(--rs-safe-r, 0px));
+    right: calc(12px + 52px + 12px + var(--rs-safe-r, 0px));
     /* Higher above float stack — avoids covering hero CTA */
-    bottom: calc(16px + 52px + 10px + 52px + 36px + var(--rs-safe-b, 0px));
+    bottom: calc(16px + 52px + 10px + 52px + 40px + var(--rs-safe-b, 0px));
     border-width: 1.5px;
     box-shadow:
       0 8px 20px rgba(0, 0, 0, 0.38),
@@ -243,11 +243,11 @@
   }
 
   .rs-hero__thumb {
-    --rs-thumb-size: 130px;
+    --rs-thumb-size: 168px;
     width: var(--rs-thumb-size);
     height: var(--rs-thumb-size);
     right: calc(16px + 52px + 18px + var(--rs-safe-r, 0px));
-    bottom: calc(16px + 52px + 10px + 52px + 12px + var(--rs-safe-b, 0px));
+    bottom: calc(16px + 52px + 10px + 52px + 16px + var(--rs-safe-b, 0px));
   }
 
   .rs-catalog {
@@ -321,13 +321,13 @@
   }
 
   .rs-hero__thumb {
-    --rs-thumb-peek: 0%;
-    --rs-thumb-size: 136px;
+    --rs-thumb-peek: 0px;
+    --rs-thumb-size: 200px;
     width: var(--rs-thumb-size);
     height: var(--rs-thumb-size);
-    right: calc(16px + 52px + 20px + var(--rs-safe-r, 0px));
-    bottom: calc(16px + 52px + 10px + 52px + 14px + var(--rs-safe-b, 0px));
-    transform: translateX(var(--rs-thumb-peek));
+    right: calc(16px + 52px + 24px + var(--rs-safe-r, 0px));
+    bottom: calc(16px + 52px + 10px + 52px + 18px + var(--rs-safe-b, 0px));
+    transform: translate3d(var(--rs-thumb-peek), 0, 0);
     border-radius: 50%;
   }
 

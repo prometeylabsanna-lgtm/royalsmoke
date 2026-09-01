@@ -1,4 +1,3 @@
-from django.contrib.staticfiles.storage import staticfiles_storage
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
@@ -41,7 +40,10 @@ def _enrich_history_slides(slides):
 _BRAND_CRAFT_TONES = (
     {
         'tone': 'amber',
-        'image_static': 'img/brands/01-aj.jpg',
+        'image': (
+            'https://images.unsplash.com/photo-1741306444151-ec7f9ac433ef'
+            '?auto=format&fit=crop&w=1400&q=80'
+        ),
         'fallback': (
             'Нікарагуанська школа майстерності: насичений смак, щільна скрутка '
             'та характерний maduro. Сигари AJ Fernandez — для тих, хто цінує '
@@ -50,7 +52,10 @@ _BRAND_CRAFT_TONES = (
     },
     {
         'tone': 'burgundy',
-        'image_static': 'img/brands/02-oliva.jpg',
+        'image': (
+            'https://images.unsplash.com/photo-1631227852854-7c0fac3c9aeb'
+            '?auto=format&fit=crop&w=1400&q=80'
+        ),
         'fallback': (
             'Глибокі профілі з нотами какао, шкіри та кедру — Oliva створює '
             'сигари для довгого вечірнього ритуалу. Баланс сили й елегантності, '
@@ -59,7 +64,10 @@ _BRAND_CRAFT_TONES = (
     },
     {
         'tone': 'green',
-        'image_static': 'img/brands/03-perdomo.jpg',
+        'image': (
+            'https://images.unsplash.com/photo-1749842839766-8b71630a627d'
+            '?auto=format&fit=crop&w=1400&q=80'
+        ),
         'fallback': (
             'Свіжі ноти тютюнового листа, акуратна ферментація та чистий фініш. '
             'Perdomo — сімейна традиція, де кожна сигара проходить відбір '
@@ -68,7 +76,10 @@ _BRAND_CRAFT_TONES = (
     },
     {
         'tone': 'brown',
-        'image_static': 'img/brands/04-turrent.jpg',
+        'image': (
+            'https://images.unsplash.com/photo-1686704176261-a77939eb0f7c'
+            '?auto=format&fit=crop&w=1400&q=80'
+        ),
         'fallback': (
             'Земляні тони мексиканського terroir, деревʼяна коробка та аксесуари '
             'для повільного ритуалу. Casa Turrent поєднує історію родини '
@@ -93,7 +104,7 @@ def _enrich_brand_craft(brands):
         enriched.append({
             'brand': brand,
             'tone': meta['tone'],
-            'image': staticfiles_storage.url(meta['image_static']),
+            'image': meta['image'],
             'description': desc,
             'flip': i % 2 == 1,
         })
