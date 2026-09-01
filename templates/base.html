@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#241D1B">
+  <title>{% block title %}{{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}{{ site_settings.meta_description|default:'Сигари та аксесуари Royal Smoke' }}{% endblock %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
+  <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components1.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components2.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animations.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages1.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages2.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages3.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages4.css' %}">
+  <link rel="stylesheet" href="{% static 'css/brands-craft.css' %}">
+  <link rel="stylesheet" href="{% static 'css/history-journey.css' %}">
+  <link rel="stylesheet" href="{% static 'css/history-journey2.css' %}">
+  {% block extra_css %}{% endblock %}
+  <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
+</head>
+<body class="{% block body_class %}{% endblock %}"
+      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  {% csrf_token %}
+
+  {% if request.show_age_gate or request.age_denied %}
+    {% include "partials/age_gate.html" %}
+  {% endif %}
+
+  <div class="rs-site">
+    {% include "partials/header.html" %}
+    <main id="main" class="rs-main">
+      {% if messages %}
+        <div class="rs-flash" role="status">
+          {% for message in messages %}
+            <p class="rs-flash__item">{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% block content %}{% endblock %}
+    </main>
+    {% include "partials/footer.html" %}
+  </div>
+
+  <div class="rs-float" data-float aria-label="Швидкі дії">
+    <button type="button" class="rs-float__btn rs-float__btn--fill" data-callback-open aria-label="Замовити дзвінок">
+      <svg width="19" height="19" viewBox="0 0 19 19" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M6.5 1.5l2.5 4-2 2a11 11 0 004.5 4.5l2-2 4 2.5v3c0 .8-.7 1.5-1.5 1.5C8.4 17 2 10.6 2 3 2 2.2 2.7 1.5 3.5 1.5h3z"/></svg>
+    </button>
+    <a href="{% url 'leads:contact' %}" class="rs-float__btn" aria-label="Чат / контакти">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M3 4.5h14v9H8l-3.5 3v-3H3v-9z"/></svg>
+    </a>
+  </div>
+
+  <div class="rs-search" data-search role="dialog" aria-modal="true" aria-label="Пошук">
+    <form class="rs-search__form" action="{% url 'catalog:list' %}" method="get" role="search">
+      <label class="sr-only" for="rs-search-input">Пошук</label>
+      <input id="rs-search-input" class="rs-search__input" type="search" name="q" data-search-input
+             placeholder="Пошук сигар, брендів, аксесуарів…" autocomplete="off">
+      <button type="submit" class="rs-btn rs-btn--gold">Шукати</button>
+      <button type="button" class="rs-icon-btn" data-search-close aria-label="Закрити пошук">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 2l12 12M14 2L2 14"/></svg>
+      </button>
+    </form>
+  </div>
+
+  <div class="rs-callback" data-callback-panel hidden role="dialog" aria-modal="true" aria-labelledby="cb-title">
+    <div class="rs-callback__dialog">
+      <h2 id="cb-title" class="rs-callback__title">Зворотний дзвінок</h2>
+      <p class="rs-callback__text">Залиште номер — передзвонимо протягом робочого дня.</p>
+      <form class="rs-form" action="{% url 'leads:callback' %}" method="post">
+        {% csrf_token %}
+        <div class="rs-field">
+          <label for="cb-name">Імʼя</label>
+          <input id="cb-name" name="name" type="text" required autocomplete="name">
+        </div>
+        <div class="rs-field">
+          <label for="cb-phone">Телефон</label>
+          <input id="cb-phone" name="phone" type="tel" required autocomplete="tel">
+        </div>
+        <div class="rs-form__actions">
+          <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">Надіслати</button>
+          <button type="button" class="rs-btn rs-btn--ghost rs-btn--block" data-callback-close>Скасувати</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="{% static 'js/main.js' %}" defer></script>
+  <script src="{% static 'js/home-parallax.js' %}" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

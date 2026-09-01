@@ -1,0 +1,13 @@
+{% for product in products %}
+  <a class="rs-card" href="{{ product.get_absolute_url }}" data-rs-reveal data-reveal-delay="{% widthratio forloop.counter0 1 50 %}">
+    <span class="rs-card__brand">{{ product.brand.name }}</span>
+    <span class="rs-card__name">{{ product.name }}</span>
+    <span class="rs-card__meta">
+      {% if product.strength %}{{ product.get_strength_display }}{% endif %}
+      {% if product.country %} · {{ product.country }}{% endif %}
+    </span>
+    <span class="rs-card__price">{{ product.display_price }} ₴</span>
+  </a>
+{% empty %}
+  <p class="rs-empty" data-rs-reveal>Нічого не знайдено. Змініть фільтри.</p>
+{% endfor %}

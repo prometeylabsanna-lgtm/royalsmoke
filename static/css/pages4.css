@@ -1,0 +1,206 @@
+/* Royal Smoke — home blocks part 2: forms, results, responsive */
+
+/* ——— Home forms ——— */
+.rs-form--home {
+  max-width: 880px;
+}
+
+.rs-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.rs-field--full {
+  grid-column: 1 / -1;
+}
+
+.rs-home-cta .rs-form {
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+/* ——— Delivery info ——— */
+.rs-delivery-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding-block: 8px 8px;
+  margin-bottom: 0;
+  border-top: 1px solid var(--rs-hairline);
+}
+
+.rs-home-delivery {
+  padding-bottom: var(--rs-space-5);
+}
+
+.rs-delivery-info__text {
+  margin: 0;
+  max-width: 48ch;
+  color: var(--rs-text-muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ——— Calculator results ——— */
+.rs-calc-results__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 20px;
+  border-top: 1px solid var(--rs-hairline);
+}
+
+.rs-calc-hit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rs-hairline);
+}
+
+.rs-calc-hit__brand {
+  margin: 0 0 4px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rs-text-muted);
+}
+
+.rs-calc-hit__name {
+  font-family: var(--rs-font-display);
+  font-size: 20px;
+  color: var(--rs-seashell);
+}
+
+.rs-calc-hit__meta {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--rs-text-muted);
+}
+
+.rs-calc-hit__aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.rs-calc-hit__price {
+  font-family: var(--rs-font-display);
+  font-size: 18px;
+}
+
+/* ——— Drawer groups ——— */
+.rs-drawer__group {
+  margin: 18px 0 8px;
+  padding: 0;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rs-gold);
+}
+
+.rs-drawer__group:first-child {
+  margin-top: 0;
+}
+
+.rs-flash {
+  position: fixed;
+  z-index: var(--rs-z-float);
+  left: 50%;
+  bottom: calc(24px + var(--rs-safe-b));
+  transform: translateX(-50%);
+  width: min(520px, calc(100% - 32px));
+  padding: 0;
+  margin: 0;
+}
+
+.rs-flash__item {
+  margin: 0 0 8px;
+  padding: 14px 18px;
+  border: 1px solid var(--rs-gold);
+  color: var(--rs-seashell);
+  font-size: 14px;
+  background: rgba(36, 29, 27, 0.94);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+@media (min-width: 768px) {
+  .rs-grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 36px 28px;
+  }
+
+  .rs-pcard__media {
+    aspect-ratio: 4 / 3;
+    max-height: 240px;
+  }
+
+  .rs-pcard__img {
+    max-height: 230px;
+  }
+
+  .rs-form-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 20px;
+  }
+
+  .rs-home-stretch {
+    height: min(42vh, 320px);
+    margin-top: -1px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rs-pcard__name {
+    font-size: 20px;
+  }
+
+  .rs-pcard__media {
+    max-height: 260px;
+  }
+
+  .rs-pcard__img {
+    max-height: 250px;
+  }
+
+}
+
+@media (max-width: 767px) {
+  .rs-grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 12px;
+  }
+
+  .rs-pcard__media {
+    max-height: 150px;
+    aspect-ratio: 1 / 1;
+  }
+
+  .rs-pcard__img {
+    max-height: 140px;
+  }
+
+  .rs-pcard__name {
+    font-size: 15px;
+  }
+
+  .rs-pcard__price {
+    font-size: 14px;
+  }
+
+  .rs-pcard__buy {
+    font-size: 12px;
+  }
+
+  .rs-pcard__row {
+    flex-wrap: wrap;
+  }
+}

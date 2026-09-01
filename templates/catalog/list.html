@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Каталог — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+
+{% block content %}
+<header class="rs-page-head" data-rs-reveal>
+  <h1>{% if category %}{{ category.name }}{% elif brand %}{{ brand.name }}{% else %}Каталог{% endif %}</h1>
+  {% if category.description or brand.description %}
+    <p>{{ category.description|default:brand.description }}</p>
+  {% else %}
+    <p>Сигари, аксесуари та бренди — відбір для ритуалу.</p>
+  {% endif %}
+</header>
+
+<div class="rs-container rs-catalog">
+  <aside class="rs-filters" aria-label="Фільтри" data-rs-reveal data-reveal-delay="60">
+    <form method="get"
+          hx-get="{% if category %}{% url 'catalog:category' slug=category.slug %}{% else %}{% url 'catalog:list' %}{% endif %}"
+          hx-target="#product-grid"
+          hx-swap="innerHTML"
+          hx-push-url="true"
+          hx-trigger="change from:select, submit"
+          class="rs-filters">
+      <div class="rs-field">
+        <label for="f-q">Пошук</label>
+        <input id="f-q" type="search" name="q" value="{{ request.GET.q }}" placeholder="Назва, бренд…">
+      </div>
+      <div class="rs-field">
+        <label for="f-strength">Міцність</label>
+        <select id="f-strength" name="strength" class="rs-filters__select" hx-trigger="change">
+          <option value="">Усі</option>
+          <option value="mild" {% if request.GET.strength == "mild" %}selected{% endif %}>Легка</option>
+          <option value="medium" {% if request.GET.strength == "medium" %}selected{% endif %}>Середня</option>
+          <option value="medium_full" {% if request.GET.strength == "medium_full" %}selected{% endif %}>Середньо-повна</option>
+          <option value="full" {% if request.GET.strength == "full" %}selected{% endif %}>Повна</option>
+        </select>
+      </div>
+      <div class="rs-field">
+        <label for="f-sort">Сортування</label>
+        <select id="f-sort" name="sort" class="rs-filters__select" hx-trigger="change">
+          <option value="">За замовчуванням</option>
+          <option value="price" {% if request.GET.sort == "price" %}selected{% endif %}>Ціна ↑</option>
+          <option value="-price" {% if request.GET.sort == "-price" %}selected{% endif %}>Ціна ↓</option>
+          <option value="name" {% if request.GET.sort == "name" %}selected{% endif %}>Назва</option>
+        </select>
+      </div>
+      <div class="rs-filters__row">
+        <a class="rs-tag{% if request.GET.tag == 'top' %} is-active{% endif %}" href="?tag=top">Топ</a>
+        <a class="rs-tag{% if request.GET.tag == 'new' %} is-active{% endif %}" href="?tag=new">Новинки</a>
+        <a class="rs-tag{% if request.GET.tag == 'sale' %} is-active{% endif %}" href="?tag=sale">Акції</a>
+      </div>
+      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">Застосувати</button>
+    </form>
+  </aside>
+
+  <div>
+    <div id="product-grid" class="rs-grid-2">
+      {% include "catalog/partials/product_grid.html" with products=products %}
+    </div>
+    {% if page_obj and page_obj.has_other_pages %}
+      <nav class="rs-filters__row" style="margin-top:28px" aria-label="Пагінація">
+        {% if page_obj.has_previous %}
+          <a class="rs-btn rs-btn--ghost" href="?page={{ page_obj.previous_page_number }}">Назад</a>
+        {% endif %}
+        <span class="rs-meta">Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+          <a class="rs-btn rs-btn--ghost" href="?page={{ page_obj.next_page_number }}">Далі</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

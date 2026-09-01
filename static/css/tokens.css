@@ -1,0 +1,241 @@
+/* Royal Smoke — design tokens, reset, base typography */
+
+:root {
+  --rs-bark: #241d1b;
+  --rs-bark-light: #2b2321;
+  --rs-slot: #322a26;
+  --rs-seashell: #fcf2ee;
+  --rs-gold: #c99a44;
+  --rs-gold-hover: #d8ac5c;
+  --rs-coffee: #1c1715;
+
+  --rs-text: var(--rs-seashell);
+  --rs-text-muted: rgba(252, 242, 238, 0.6);
+  --rs-text-soft: rgba(252, 242, 238, 0.85);
+  --rs-hairline: rgba(252, 242, 238, 0.14);
+  --rs-border: rgba(252, 242, 238, 0.4);
+  --rs-border-soft: rgba(252, 242, 238, 0.25);
+  --rs-shadow: rgba(26, 20, 18, 0.35);
+  --rs-overlay: rgba(36, 29, 27, 0.55);
+
+  --rs-font-display: "Bodoni Moda", "Times New Roman", serif;
+  --rs-font-ui: "Archivo", "Helvetica Neue", sans-serif;
+
+  --rs-space-1: 4px;
+  --rs-space-2: 8px;
+  --rs-space-3: 12px;
+  --rs-space-4: 16px;
+  --rs-space-5: 24px;
+  --rs-space-6: 40px;
+  --rs-space-7: 56px;
+  --rs-space-8: 104px;
+
+  --rs-pad-x: 24px;
+  --rs-pad-x-sm: 20px;
+  --rs-pad-x-lg: 64px;
+  --rs-container: 1440px;
+
+  --rs-header-h: 60px;
+  --rs-nav-h: 58px;
+  --rs-radius-pill: 150px;
+  --rs-tap: 44px;
+  --rs-btn-h: 48px;
+  --rs-btn-h-lg: 52px;
+  --rs-z-header: 100;
+  --rs-z-drawer: 200;
+  --rs-z-overlay: 250;
+  --rs-z-gate: 300;
+  --rs-z-float: 80;
+
+  --rs-ease: cubic-bezier(0.2, 0.8, 0.25, 1);
+  --rs-ease-hero: cubic-bezier(0.6, 0, 0.2, 1);
+  --rs-ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --rs-dur-fast: 200ms;
+  --rs-dur: 280ms;
+  --rs-dur-slow: 480ms;
+  --rs-dur-hero: 820ms;
+
+  /* Scroll reveal — restrained tobacco pace */
+  --rs-reveal-duration: 560ms;
+  --rs-reveal-easing: var(--rs-ease-out);
+  --rs-reveal-delay: 0ms;
+  --rs-reveal-y: 20px;
+  --rs-reveal-x: 14px;
+  --rs-reveal-scale: 0.97;
+  --rs-hover-lift: -3px;
+  --rs-hover-zoom: 1.035;
+
+  --rs-safe-t: env(safe-area-inset-top, 0px);
+  --rs-safe-r: env(safe-area-inset-right, 0px);
+  --rs-safe-b: env(safe-area-inset-bottom, 0px);
+  --rs-safe-l: env(safe-area-inset-left, 0px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--rs-bark);
+  color: var(--rs-text);
+  font-family: var(--rs-font-ui);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.is-locked {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+
+img,
+picture,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--rs-gold);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.rs-display {
+  font-family: var(--rs-font-display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  text-wrap: pretty;
+}
+
+.rs-kicker {
+  font-family: var(--rs-font-ui);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--rs-text-soft);
+  padding-left: 0.36em;
+}
+
+.rs-meta {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rs-text-muted);
+}
+
+.rs-link-gold {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rs-text-muted);
+  border-bottom: 1px solid var(--rs-gold);
+  padding-bottom: 3px;
+  transition: color var(--rs-dur-fast) ease;
+}
+
+.rs-link-gold.rs-hover-underline {
+  border-bottom-color: transparent;
+}
+
+.rs-link-gold:hover {
+  color: var(--rs-seashell);
+}
+
+@media (max-width: 359px) {
+  :root {
+    --rs-pad-x: var(--rs-pad-x-sm);
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 16px;
+  }
+
+  :root {
+    --rs-btn-h: var(--rs-btn-h-lg);
+  }
+}

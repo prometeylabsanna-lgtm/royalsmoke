@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}rs-home{% endblock %}
+
+{% block title %}{{ site_settings.site_name|default:"Royal Smoke" }} — Tobacco Atelier{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home-calculator.css' %}">
+<link rel="stylesheet" href="{% static 'css/home-booking.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/hero-slider.js' %}" defer></script>
+<script src="{% static 'js/history-slider.js' %}" defer></script>
+<script src="{% static 'js/brands-craft.js' %}" defer></script>
+<script src="{% static 'js/home-calculator.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<div class="rs-home-bg" aria-hidden="true">
+  <div class="rs-home-bg__base"></div>
+  <div class="rs-home-bg__glow"></div>
+  <div class="rs-home-bg__glow rs-home-bg__glow--soft"></div>
+  <div class="rs-home-bg__rim"></div>
+</div>
+
+<section class="rs-hero" data-hero aria-roledescription="carousel" aria-label="Головний банер">
+  <div class="rs-hero__stage" data-hero-stage>
+    {% for slide in hero_slides %}
+      <div class="rs-hero__slide{% if forloop.first %} is-active{% endif %}"
+           data-hero-slide
+           data-cta-primary-url="{{ slide.cta_primary_url|default:'/catalog/' }}"
+           data-cta-primary-label="{{ slide.cta_primary_label|default:'До каталогу' }}"
+           data-cta-secondary-url="{{ slide.cta_secondary_url|default:'/catalog/cigars/' }}"
+           data-cta-secondary-label="{{ slide.cta_secondary_label|default:'Сигари' }}"
+           {% if forloop.first %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %}>
+        {% if slide.image %}
+          <img src="{{ slide.image.url }}" alt="{{ slide.title|default:'Royal Smoke' }}" data-hero-parallax>
+        {% elif forloop.counter == 1 %}
+          <img src="{% static 'img/hero/02.jpg' %}" alt="{{ slide.title|default:'Royal Smoke' }}" data-hero-parallax width="2560" height="1440">
+        {% elif forloop.counter == 2 %}
+          <img src="{% static 'img/hero/05.jpg' %}" alt="{{ slide.title|default:'Royal Smoke' }}" data-hero-parallax width="2560" height="1440">
+        {% elif forloop.counter == 3 %}
+          <img src="{% static 'img/hero/01.jpg' %}" alt="{{ slide.title|default:'Royal Smoke' }}" data-hero-parallax width="2560" height="1440">
+        {% else %}
+          <img src="{% static 'img/hero/02.jpg' %}" alt="{{ slide.title|default:'Royal Smoke' }}" data-hero-parallax width="2560" height="1440">
+        {% endif %}
+      </div>
+    {% empty %}
+      <div class="rs-hero__slide is-active" data-hero-slide
+           data-cta-primary-url="{% url 'catalog:list' %}"
+           data-cta-primary-label="До каталогу"
+           data-cta-secondary-url="{% url 'catalog:category' slug='cigars' %}"
+           data-cta-secondary-label="Сигари"
+           aria-hidden="false">
+        <img src="{% static 'img/hero/02.jpg' %}" alt="Royal Smoke — cigar ritual" data-hero-parallax width="2560" height="1440">
+      </div>
+      <div class="rs-hero__slide" data-hero-slide
+           data-cta-primary-url="{% url 'catalog:list' %}"
+           data-cta-primary-label="До каталогу"
+           data-cta-secondary-url="{% url 'catalog:category' slug='cigars' %}"
+           data-cta-secondary-label="Сигари"
+           aria-hidden="true">
+        <img src="{% static 'img/hero/05.jpg' %}" alt="Royal Smoke — premium cigars" data-hero-parallax width="2560" height="1440">
+      </div>
+      <div class="rs-hero__slide" data-hero-slide
+           data-cta-primary-url="{% url 'catalog:list' %}"
+           data-cta-primary-label="До каталогу"
+           data-cta-secondary-url="{% url 'catalog:category' slug='cigars' %}"
+           data-cta-secondary-label="Сигари"
+           aria-hidden="true">
+        <img src="{% static 'img/hero/01.jpg' %}" alt="Royal Smoke — lighting a cigar" data-hero-parallax width="2560" height="1440">
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="rs-hero__veil" aria-hidden="true"></div>
+
+  <button type="button" class="rs-hero__thumb" data-hero-thumb aria-label="Наступний слайд">
+    {% if hero_slides|length > 1 and hero_slides.1.image %}
+      <img src="{{ hero_slides.1.image.url }}" alt="">
+    {% else %}
+      <img src="{% static 'img/hero/05.jpg' %}" alt="" width="320" height="400">
+    {% endif %}
+  </button>
+
+  <div class="rs-hero__content">
+    <p class="rs-hero__brand">{{ site_settings.site_name|default:"Royal Smoke" }}</p>
+    <div class="rs-hero__cta" data-hero-cta>
+      {% if hero_slides %}
+        {% with s=hero_slides.0 %}
+          <a class="rs-btn rs-btn--primary" data-hero-cta-primary href="{{ s.cta_primary_url|default:'/catalog/' }}">{{ s.cta_primary_label|default:"До каталогу" }}</a>
+          <a class="rs-btn rs-btn--gold" data-hero-cta-secondary href="{{ s.cta_secondary_url|default:'/catalog/cigars/' }}">{{ s.cta_secondary_label|default:"Сигари" }}</a>
+        {% endwith %}
+      {% else %}
+        <a class="rs-btn rs-btn--primary" data-hero-cta-primary href="{% url 'catalog:list' %}">До каталогу</a>
+        <a class="rs-btn rs-btn--gold" data-hero-cta-secondary href="{% url 'catalog:category' slug='cigars' %}">Сигари</a>
+      {% endif %}
+    </div>
+
+    <div class="rs-hero__controls">
+      <div class="rs-hero__dots" role="tablist" aria-label="Слайди">
+        {% for slide in hero_slides %}
+          <button type="button" class="rs-hero__dot{% if forloop.first %} is-active{% endif %}" data-hero-dot aria-label="Слайд {{ forloop.counter }}" {% if forloop.first %}aria-current="true"{% endif %}><span></span></button>
+        {% empty %}
+          <button type="button" class="rs-hero__dot is-active" data-hero-dot aria-current="true"><span></span></button>
+          <button type="button" class="rs-hero__dot" data-hero-dot><span></span></button>
+          <button type="button" class="rs-hero__dot" data-hero-dot><span></span></button>
+        {% endfor %}
+      </div>
+      <button type="button" class="rs-hero__next" data-hero-next aria-label="Наступний">
+        <svg width="26" height="8" viewBox="0 0 26 8" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 4h24M21 1l3 3-3 3"/></svg>
+      </button>
+      <span class="rs-hero__counter" data-hero-counter>{% if hero_slides %}01 / {{ hero_slides|length|stringformat:"02d" }}{% else %}01 / 03{% endif %}</span>
+    </div>
+  </div>
+</section>
+
+<div class="rs-home-stretch" aria-hidden="true"></div>
+
+{% include "pages/partials/home_brands.html" %}
+{% include "pages/partials/home_catalog.html" %}
+{% include "pages/partials/home_history.html" %}
+{% include "pages/partials/home_calculator.html" %}
+{% include "pages/partials/home_booking.html" %}
+{% include "pages/partials/home_b2b.html" %}
+{% include "pages/partials/home_delivery.html" %}
+{% endblock %}

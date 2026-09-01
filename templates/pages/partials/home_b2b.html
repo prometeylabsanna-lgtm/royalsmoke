@@ -1,0 +1,38 @@
+<section class="rs-section rs-home-cta" id="home-b2b">
+  <div class="rs-container">
+    <div class="rs-section__head">
+      <h2 class="rs-section__title">B2B</h2>
+    </div>
+    <p class="rs-home-lead">Прайс і умови для барів, готелів і корпоративних подарунків.</p>
+
+    <form class="rs-form rs-form--home" method="post" action="{% url 'leads:b2b' %}">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="/#home-b2b">
+      <div class="rs-form-grid">
+        <div class="rs-field">
+          <label for="home_b2b_company">Компанія</label>
+          <input id="home_b2b_company" type="text" name="company" required>
+        </div>
+        <div class="rs-field">
+          <label for="home_b2b_name">Контактна особа</label>
+          <input id="home_b2b_name" type="text" name="name" required autocomplete="name">
+        </div>
+        <div class="rs-field">
+          <label for="home_b2b_phone">Телефон</label>
+          <input id="home_b2b_phone" type="tel" name="phone" required autocomplete="tel">
+        </div>
+        <div class="rs-field">
+          <label for="home_b2b_email">Email</label>
+          <input id="home_b2b_email" type="email" name="email" required autocomplete="email">
+        </div>
+        <div class="rs-field rs-field--full">
+          <label for="home_b2b_message">Що цікавить</label>
+          <textarea id="home_b2b_message" name="message" rows="4" required placeholder="Прайс, гравіювання, корпоративні набори…"></textarea>
+        </div>
+      </div>
+      <div class="rs-form__actions">
+        <button type="submit" class="rs-btn rs-btn--gold">Запросити прайс</button>
+      </div>
+    </form>
+  </div>
+</section>

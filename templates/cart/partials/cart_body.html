@@ -1,0 +1,70 @@
+{% if cart.items %}
+  <div class="rs-cart__lines">
+    {% for item in cart.items %}
+      <article class="rs-cart-line">
+        <div class="rs-cart-line__media">
+          {% with img=item.product.images.all.0 %}
+            {% if img %}<img src="{{ img.image.url }}" alt="{{ item.product.name }}" loading="lazy">{% endif %}
+          {% endwith %}
+        </div>
+        <div>
+          <h2 class="rs-cart-line__title">
+            <a href="{{ item.product.get_absolute_url }}">{{ item.product.name }}</a>
+          </h2>
+          <p class="rs-cart-line__meta">
+            {% if item.product.brand %}{{ item.product.brand.name }}{% endif %}
+            {% if item.variant %} · {{ item.variant.name }}{% endif %}
+          </p>
+          <p class="rs-cart-line__meta">{{ item.unit_price }} ₴ × {{ item.quantity }} = {{ item.line_total }} ₴</p>
+
+          <form class="rs-qty"
+                method="post"
+                action="{% url 'cart:update' %}"
+                hx-post="{% url 'cart:update' %}"
+                hx-target="#cart-body"
+                hx-swap="innerHTML">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ item.product.id }}">
+            {% if item.variant %}<input type="hidden" name="variant_id" value="{{ item.variant.id }}">{% endif %}
+            <button type="submit" name="quantity" value="{{ item.quantity|add:'-1' }}" aria-label="Зменшити">−</button>
+            <span>{{ item.quantity }}</span>
+            <button type="submit" name="quantity" value="{{ item.quantity|add:'1' }}" aria-label="Збільшити">+</button>
+          </form>
+
+          <form method="post"
+                action="{% url 'cart:remove' %}"
+                hx-post="{% url 'cart:remove' %}"
+                hx-target="#cart-body"
+                hx-swap="innerHTML"
+                style="margin-top:10px">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ item.product.id }}">
+            {% if item.variant %}<input type="hidden" name="variant_id" value="{{ item.variant.id }}">{% endif %}
+            <button type="submit" class="rs-btn rs-btn--underline">Видалити</button>
+          </form>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+
+  <aside class="rs-cart__summary">
+    <div class="rs-cart__row">
+      <span>Підсумок</span>
+      <span>{{ cart.subtotal }} ₴</span>
+    </div>
+    {% if site_settings.free_delivery_from %}
+      <p class="rs-form__hint">Безкоштовна доставка від {{ site_settings.free_delivery_from }} ₴</p>
+    {% endif %}
+    <div class="rs-cart__row rs-cart__row--total">
+      <span>Разом</span>
+      <span>{{ cart.total }} ₴</span>
+    </div>
+    <a class="rs-btn rs-btn--gold rs-btn--block" href="{% url 'orders:checkout' %}">Оформити замовлення</a>
+    <a class="rs-btn rs-btn--ghost rs-btn--block" href="{% url 'catalog:list' %}">Продовжити покупки</a>
+  </aside>
+{% else %}
+  <div class="rs-empty">
+    <p>Кошик порожній.</p>
+    <a class="rs-btn rs-btn--gold" href="{% url 'catalog:list' %}" style="margin-top:20px">До каталогу</a>
+  </div>
+{% endif %}

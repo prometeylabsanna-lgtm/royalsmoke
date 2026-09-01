@@ -1,0 +1,44 @@
+<section class="rs-section rs-home-brands" id="home-brands" aria-label="Бренди" data-brands-craft>
+  <div class="rs-container rs-brands-craft__head">
+    <div class="rs-section__head">
+      <h2 class="rs-section__title">Бренди</h2>
+      <a class="rs-link-gold rs-hover-underline" href="{% url 'catalog:list' %}?view=brands">Усі бренди</a>
+    </div>
+  </div>
+
+  <div class="rs-brands-snaps" data-brands-snaps style="--brand-count: {{ brand_craft|length|default:4 }}">
+    {% for item in brand_craft %}
+      <article
+        class="rs-brand-snap rs-brand-snap--{{ item.tone }}{% if item.flip %} rs-brand-snap--flip{% endif %}"
+        data-brand-snap
+        data-index="{{ forloop.counter0 }}"
+        id="brand-snap-{{ item.brand.slug }}"
+      >
+        <div class="rs-brand-snap__asset" data-snap-asset>
+          <img
+            src="{{ item.image }}"
+            alt="{{ item.brand.name }}"
+            width="1400"
+            height="1600"
+            loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+            decoding="async"
+          >
+        </div>
+        <div class="rs-brand-snap__content" data-snap-content>
+          <div class="rs-brand-snap__wrap">
+            <p class="rs-brand-snap__country">{% if item.brand.country %}{{ item.brand.country }}{% else %}Premium{% endif %}</p>
+            <h3 class="rs-brand-snap__title">{{ item.brand.name }}</h3>
+            <p class="rs-brand-snap__desc">{{ item.description }}</p>
+            <a class="rs-link-gold rs-hover-underline rs-brand-snap__cta" href="{{ item.brand.get_absolute_url }}">
+              До бренду
+            </a>
+          </div>
+        </div>
+      </article>
+    {% empty %}
+      <div class="rs-container">
+        <p class="rs-brand-snap__empty">Незабаром з’являться featured-бренди.</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Кабінет — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+
+{% block content %}
+<header class="rs-page-head" data-rs-reveal>
+  <h1>Особистий кабінет</h1>
+  <p>{% if user.is_authenticated %}Вітаємо, {{ user.get_full_name|default:user.username }}{% else %}Увійдіть, щоб бачити замовлення{% endif %}</p>
+</header>
+
+<div class="rs-container rs-auth" style="padding-bottom:72px" data-rs-reveal data-reveal-delay="80">
+  {% if not user.is_authenticated %}
+    <div class="rs-btn-row" style="max-width:420px">
+      <a class="rs-btn rs-btn--gold" href="{% url 'accounts:login' %}">Увійти</a>
+      <a class="rs-btn rs-btn--ghost" href="{% url 'accounts:register' %}">Реєстрація</a>
+    </div>
+  {% else %}
+    <div class="rs-cabinet__grid">
+      <section class="rs-cabinet__item">
+        <h3>Профіль</h3>
+        <p class="rs-form__hint">{{ user.email|default:"—" }}</p>
+        {% if user.phone %}<p class="rs-form__hint">{{ user.phone }}</p>{% endif %}
+      </section>
+      <section class="rs-cabinet__item">
+        <h3>Замовлення</h3>
+        {% for order in orders %}
+          <p class="rs-form__hint">#{{ order.number|default:order.id }} — {{ order.status|default:"в обробці" }} — {{ order.total }} ₴</p>
+        {% empty %}
+          <p class="rs-form__hint">Замовлень ще немає.</p>
+        {% endfor %}
+      </section>
+      <section class="rs-cabinet__item">
+        <h3>Швидкі дії</h3>
+        <p><a class="rs-link-gold" href="{% url 'cart:detail' %}">Кошик</a></p>
+        <p style="margin-top:10px"><a class="rs-link-gold" href="{% url 'booking:page' %}">Бронювання</a></p>
+        <p style="margin-top:10px"><a class="rs-link-gold" href="{% url 'leads:contact' %}">Підтримка</a></p>
+      </section>
+      <section class="rs-cabinet__item">
+        <h3>Каталог</h3>
+        <a class="rs-btn rs-btn--ghost" href="{% url 'catalog:list' %}">Перейти до каталогу</a>
+      </section>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Історія сигар — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+
+{% block content %}
+<header class="rs-page-head" data-rs-reveal>
+  <h1>Історія сигар</h1>
+  <p>Від карибського ритуалу до сучасного tobacco atelier.</p>
+</header>
+
+<div class="rs-container rs-service-page rs-legal rs-history-page" data-rs-reveal data-reveal-delay="80">
+  <p>
+    Сигара народилась як частина культури народів Карибів. Скручений листок тютюну
+    супроводжував обряди, переговори й відпочинок задовго до європейської моди на вітоли.
+  </p>
+  <h2>Фабрики й вітоли</h2>
+  <p>
+    У XIX столітті Куба зробила сигару символом майстерності: сорти листів, формат,
+    витримка й ручна скрутка визначили мову, якою досі говорять сомельє.
+  </p>
+  <h2>Новий світ</h2>
+  <p>
+    Нікарагуа, Домінікана й Гондурас відкрили нову главу — міцніші бленди, експерименти
+    з wrapper і лінії, що конкурують з класикою. Саме цей діалог старого й нового
+    ми збираємо в Royal Smoke.
+  </p>
+  <h2>Наш підхід</h2>
+  <p>
+    Власні хумідори, ручний відбір і консультація замість випадкової полиці.
+    Ритуал важливіший за поспіх.
+  </p>
+  <p style="margin-top:28px">
+    <a class="rs-btn rs-btn--gold" href="{% url 'catalog:category' slug='cigars' %}">До сигар</a>
+    <a class="rs-btn rs-btn--ghost" href="{% url 'leads:contact' %}">Написати нам</a>
+  </p>
+</div>
+{% endblock %}

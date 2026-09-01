@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Кошик — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+
+{% block content %}
+<header class="rs-page-head" data-rs-reveal>
+  <h1>Кошик</h1>
+  <p>{% if cart.count %}{{ cart.count }} позиц.{% else %}Порожній кошик{% endif %}</p>
+</header>
+
+<div class="rs-container rs-cart" data-rs-reveal data-reveal-delay="80">
+  <div id="cart-body">
+    {% include "cart/partials/cart_body.html" %}
+  </div>
+</div>
+{% endblock %}

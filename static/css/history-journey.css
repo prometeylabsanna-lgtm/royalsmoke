@@ -1,0 +1,318 @@
+/* Royal Smoke — history journey dark theme + horizontal track */
+.rs-history-journey {
+  --rs-history-fade: 0.45s;
+  --rs-history-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --rs-history-gap: 20px;
+  --rs-history-card-w: min(78vw, 280px);
+  position: relative;
+  isolation: isolate;
+  min-height: min(68svh, 560px);
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  color: var(--rs-seashell);
+  -webkit-tap-highlight-color: transparent;
+  background: var(--rs-coffee);
+}
+
+.rs-history-journey__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--rs-container);
+  margin-inline: auto;
+  padding:
+    calc(var(--rs-space-7) + var(--rs-safe-t))
+    max(var(--rs-pad-x), var(--rs-safe-r))
+    calc(var(--rs-space-6) + var(--rs-safe-b))
+    max(var(--rs-pad-x), var(--rs-safe-l));
+  display: flex;
+  flex-direction: column;
+  gap: var(--rs-space-5);
+  min-height: inherit;
+  box-sizing: border-box;
+}
+
+.rs-history-journey__kicker {
+  margin: 0;
+  text-align: center;
+  font-family: var(--rs-font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(252, 242, 238, 0.72);
+}
+
+.rs-history-journey__stage {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  min-width: 0;
+}
+
+.rs-history-journey__nav {
+  appearance: none;
+  -webkit-appearance: none;
+  position: absolute;
+  top: calc(var(--rs-history-card-w) * 0.32);
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(252, 242, 238, 0.28);
+  border-radius: 0;
+  background: rgba(28, 23, 21, 0.88);
+  color: var(--rs-seashell);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    color 0.28s var(--rs-history-ease),
+    border-color 0.28s var(--rs-history-ease),
+    background 0.28s var(--rs-history-ease),
+    opacity 0.28s var(--rs-history-ease);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.rs-history-journey__nav--prev {
+  left: max(2px, var(--rs-safe-l));
+}
+
+.rs-history-journey__nav--next {
+  right: max(2px, var(--rs-safe-r));
+}
+
+.rs-history-journey__nav:hover:not(:disabled) {
+  color: var(--rs-gold);
+  border-color: var(--rs-gold);
+}
+
+.rs-history-journey__nav:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.rs-history-journey__nav:focus-visible {
+  outline: 1px solid var(--rs-gold);
+  outline-offset: 3px;
+}
+
+.rs-history-journey__track {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: var(--rs-history-gap);
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  padding: 4px 2px 12px;
+  margin-inline: calc(-1 * max(var(--rs-pad-x), var(--rs-safe-l)));
+  padding-inline: max(var(--rs-pad-x), var(--rs-safe-l)) max(var(--rs-pad-x), var(--rs-safe-r));
+  outline: none;
+  cursor: grab;
+  touch-action: pan-x;
+}
+
+.rs-history-journey__track::-webkit-scrollbar {
+  display: none;
+}
+
+.rs-history-journey__track.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.rs-history-journey__slide {
+  flex: 0 0 var(--rs-history-card-w);
+  width: var(--rs-history-card-w);
+  max-width: 100%;
+  margin: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  text-align: left;
+  background: transparent;
+  opacity: 0.42;
+  transform: translate3d(0, 6px, 0) scale(0.985);
+  transition:
+    opacity var(--rs-history-fade) var(--rs-history-ease),
+    transform var(--rs-history-fade) var(--rs-history-ease),
+    filter var(--rs-history-fade) var(--rs-history-ease);
+  -webkit-filter: saturate(0.82);
+  filter: saturate(0.82);
+}
+
+.rs-history-journey__slide.is-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  -webkit-filter: saturate(1);
+  filter: saturate(1);
+}
+
+.rs-history-journey__photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: rgba(50, 42, 38, 0.55);
+  border: 1px solid rgba(252, 242, 238, 0.08);
+  box-shadow: 0 12px 32px rgba(12, 8, 6, 0.28);
+}
+
+.rs-history-journey__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 0.7s var(--rs-history-ease);
+}
+
+.rs-history-journey__slide.is-active .rs-history-journey__photo img {
+  transform: scale(1);
+}
+
+.rs-history-journey__year {
+  margin: 2px 0 0;
+  font-family: var(--rs-font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rs-gold);
+  line-height: 1.3;
+}
+
+.rs-history-journey__text {
+  margin: 0;
+  font-family: var(--rs-font-ui);
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(252, 242, 238, 0.82);
+  max-width: 36ch;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  overflow: hidden;
+}
+
+.rs-history-journey__timeline {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  margin-top: auto;
+  padding-top: var(--rs-space-5);
+  padding-bottom: 2px;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(28, 23, 21, 0) 0%,
+    rgba(28, 23, 21, 0.85) 32%,
+    var(--rs-coffee) 100%
+  );
+}
+
+.rs-history-journey__rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--rs-space-5) + 10px);
+  height: 1px;
+  background: rgba(252, 242, 238, 0.28);
+  pointer-events: none;
+}
+
+.rs-history-journey__years {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+
+.rs-history-journey__years::-webkit-scrollbar {
+  display: none;
+}
+
+.rs-history-journey__tick {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: transparent;
+  color: rgba(252, 242, 238, 0.55);
+  cursor: pointer;
+  padding: 0;
+  min-width: 56px;
+  min-height: var(--rs-tap);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex: 1 1 0;
+  font-family: var(--rs-font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  transition:
+    color 0.45s ease,
+    text-shadow 0.45s ease;
+}
+
+.rs-history-journey__tick-mark {
+  width: 2px;
+  height: 18px;
+  margin-top: 2px;
+  background: rgba(252, 242, 238, 0.28);
+  border-radius: 1px;
+  transition:
+    height 0.45s ease,
+    background 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.rs-history-journey__tick-label {
+  color: inherit;
+  transition: color 0.45s ease;
+}
+
+.rs-history-journey__tick.is-active {
+  color: var(--rs-seashell);
+  text-shadow: 0 0 18px rgba(201, 154, 68, 0.35);
+}
+
+.rs-history-journey__tick.is-active .rs-history-journey__tick-mark {
+  height: 24px;
+  background: var(--rs-gold);
+  box-shadow:
+    0 0 10px rgba(201, 154, 68, 0.55),
+    0 0 22px rgba(201, 154, 68, 0.28);
+}
+
+.rs-history-journey__tick.is-active .rs-history-journey__tick-label {
+  color: var(--rs-gold-hover);
+}
+
+.rs-history-journey__tick:focus-visible,
+.rs-history-journey__track:focus-visible {
+  outline: 1px solid var(--rs-gold);
+  outline-offset: 4px;
+}

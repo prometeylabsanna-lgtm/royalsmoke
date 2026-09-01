@@ -1,0 +1,110 @@
+{% load static %}
+<section
+  class="rs-history-journey"
+  id="home-history"
+  data-history-journey
+  aria-label="{{ history_kicker|default:'Історія' }}"
+>
+  <div class="rs-history-journey__inner">
+    <p class="rs-history-journey__kicker">{{ history_kicker|default:"Історія" }}</p>
+
+    <div class="rs-history-journey__stage">
+      <button
+        type="button"
+        class="rs-history-journey__nav rs-history-journey__nav--prev"
+        data-history-prev
+        aria-label="Попередній етап"
+      >
+        <svg width="22" height="10" viewBox="0 0 26 8" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M26 4H2M5 1L2 4l3 3"/></svg>
+      </button>
+
+      <div
+        class="rs-history-journey__track"
+        data-history-track
+        tabindex="0"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Етапи історії"
+      >
+        {% for slide in history_slides %}
+          <article
+            class="rs-history-journey__slide{% if forloop.first %} is-active{% endif %}"
+            data-history-slide
+            data-index="{{ forloop.counter0 }}"
+            {% if forloop.first %}aria-current="true"{% endif %}
+          >
+            <div class="rs-history-journey__photo">
+              {% if slide.image %}
+                <img
+                  src="{{ slide.image.url }}"
+                  alt=""
+                  width="640"
+                  height="420"
+                  loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                  decoding="async"
+                >
+              {% else %}
+                <img
+                  src="{% static slide.image_static|default:'img/history/01-intro.jpg' %}"
+                  alt=""
+                  width="640"
+                  height="420"
+                  loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                  decoding="async"
+                >
+              {% endif %}
+            </div>
+            <p class="rs-history-journey__year">{{ slide.year_label }}</p>
+            {% if slide.text %}
+              <div class="rs-history-journey__text">{{ slide.text|linebreaksbr }}</div>
+            {% endif %}
+          </article>
+        {% empty %}
+          <article class="rs-history-journey__slide is-active" data-history-slide data-index="0" aria-current="true">
+            <div class="rs-history-journey__photo">
+              <img src="{% static 'img/history/01-intro.jpg' %}" alt="" width="640" height="420" loading="eager" decoding="async">
+            </div>
+            <p class="rs-history-journey__year">Intro</p>
+            <div class="rs-history-journey__text">
+              Від майя та таїно до кубинських фабрик і сучасних мануфактур —
+              сигара як ритуал часу, який ми зберігаємо в Royal Smoke.
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      <button
+        type="button"
+        class="rs-history-journey__nav rs-history-journey__nav--next"
+        data-history-next
+        aria-label="Наступний етап"
+      >
+        <svg width="22" height="10" viewBox="0 0 26 8" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 4h24M21 1l3 3-3 3"/></svg>
+      </button>
+    </div>
+
+    <nav class="rs-history-journey__timeline" aria-label="Роки історії" data-history-timeline>
+      <div class="rs-history-journey__rail" aria-hidden="true"></div>
+      <div class="rs-history-journey__years">
+        {% for slide in history_slides %}
+          <button
+            type="button"
+            class="rs-history-journey__tick{% if forloop.first %} is-active{% endif %}"
+            data-history-tick
+            data-index="{{ forloop.counter0 }}"
+            aria-label="{{ slide.year_label }}"
+            {% if forloop.first %}aria-current="true"{% endif %}
+          >
+            <span class="rs-history-journey__tick-mark" aria-hidden="true"></span>
+            <span class="rs-history-journey__tick-label">{{ slide.year_label }}</span>
+          </button>
+        {% empty %}
+          <button type="button" class="rs-history-journey__tick is-active" data-history-tick data-index="0" aria-current="true">
+            <span class="rs-history-journey__tick-mark" aria-hidden="true"></span>
+            <span class="rs-history-journey__tick-label">Intro</span>
+          </button>
+        {% endfor %}
+      </div>
+    </nav>
+  </div>
+</section>

@@ -1,0 +1,7 @@
+<ul class="rs-search-results">
+  {% for p in products %}
+    <li><a href="{{ p.get_absolute_url }}">{{ p.brand.name }} — {{ p.name }}</a></li>
+  {% empty %}
+    {% if q %}<li>Нічого не знайдено</li>{% endif %}
+  {% endfor %}
+</ul>

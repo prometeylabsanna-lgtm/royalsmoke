@@ -1,0 +1,67 @@
+<footer class="rs-footer">
+  <div class="rs-footer__inner">
+    <div>
+      <div class="rs-footer__brand">{{ site_settings.site_name|default:"Royal Smoke" }}</div>
+      <p class="rs-footer__tagline">Сигари, відібрані вручну для тих, хто знає різницю.</p>
+      <div class="rs-footer__contacts" style="margin-top:18px">
+        {% if site_settings.phone %}
+        <a href="tel:{{ site_settings.phone|cut:' '|cut:'-' }}">{{ site_settings.phone }}</a>
+        {% endif %}
+        {% if site_settings.email %}
+        <a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a>
+        {% endif %}
+        {% if site_settings.address %}<span>{{ site_settings.address }}</span>{% endif %}
+        {% if site_settings.work_hours %}<span>{{ site_settings.work_hours }}</span>{% endif %}
+      </div>
+      <div class="rs-footer__social">
+        {% if site_settings.instagram_url %}<a href="{{ site_settings.instagram_url }}" rel="noopener"
+          target="_blank">Instagram</a>{% endif %}
+        {% if site_settings.telegram_url %}<a href="{{ site_settings.telegram_url }}" rel="noopener"
+          target="_blank">Telegram</a>{% endif %}
+        {% if site_settings.facebook_url %}<a href="{{ site_settings.facebook_url }}" rel="noopener"
+          target="_blank">Facebook</a>{% endif %}
+      </div>
+    </div>
+
+    <div class="rs-footer__grid">
+      <div class="rs-footer__col">
+        <h3>Каталог</h3>
+        <a href="{% url 'pages:home' %}#home-catalog">Каталог</a>
+        <a href="{% url 'pages:home' %}#home-catalog">Сигари</a>
+        <a href="{% url 'catalog:list' %}?view=lines">Лінії</a>
+        <a href="{% url 'catalog:list' %}?tag=sale">Акції</a>
+      </div>
+      <div class="rs-footer__col">
+        <h3>Покупка</h3>
+        <a href="{% url 'cart:detail' %}">Кошик</a>
+        <a href="{% url 'orders:checkout' %}">Оформлення</a>
+        <a href="{% url 'accounts:cabinet' %}">Особистий кабінет</a>
+        <a href="{% url 'leads:delivery' %}">Доставка</a>
+      </div>
+      <div class="rs-footer__col">
+        <h3>На головній</h3>
+        <a href="{% url 'pages:home' %}#home-brands">Бренди</a>
+        <a href="{% url 'pages:home' %}#home-booking">Бронювання</a>
+        <a href="{% url 'pages:home' %}#home-calculator">Калькулятор</a>
+        <a href="{% url 'pages:home' %}#home-b2b">B2B</a>
+      </div>
+      <div class="rs-footer__col">
+        <h3>Інфо</h3>
+        <a href="{% url 'pages:home' %}#home-history">Історія</a>
+        <a href="{% url 'leads:contact' %}">Контакти</a>
+        <a href="{% url 'pages:faq' %}">FAQ</a>
+        <a href="{% url 'pages:legal' slug='privacy' %}">Legal</a>
+      </div>
+    </div>
+
+    <div class="rs-footer__bottom">
+      <div>
+        <a href="{% url 'pages:legal' slug='privacy' %}">Privacy</a> ·
+        <a href="{% url 'pages:legal' slug='terms' %}">Terms</a> ·
+        <a href="{% url 'pages:legal' slug='age' %}">Age policy</a> ·
+        <a href="{% url 'pages:legal' slug='cookies' %}">Cookies</a>
+      </div>
+      <div>© {% now "Y" %} {{ site_settings.site_name|default:"Royal Smoke" }}</div>
+    </div>
+  </div>
+</footer>

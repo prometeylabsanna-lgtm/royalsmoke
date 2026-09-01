@@ -1,0 +1,73 @@
+{% load static %}
+<header class="rs-header" data-header>
+  <div class="rs-header__bar">
+    <div class="rs-header__left">
+      <button type="button" class="rs-icon-btn" data-drawer-open aria-expanded="false" aria-controls="rs-drawer" aria-label="Відкрити меню">
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 1h20M0 7h20M0 13h14"/></svg>
+      </button>
+      <button type="button" class="rs-icon-btn" data-search-open aria-label="Пошук">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="8" cy="8" r="5.5"/><path d="M12.5 12.5L16 16"/></svg>
+      </button>
+    </div>
+
+    <a class="rs-header__brand" href="{% url 'pages:home' %}">{{ site_settings.site_name|default:"Royal Smoke" }}</a>
+
+    <div class="rs-header__right">
+      <div class="rs-lang" aria-label="Мова">
+        <span>EN</span>
+        <span aria-current="true">UA</span>
+        <span>ZH</span>
+      </div>
+      <a class="rs-icon-btn" href="{% url 'accounts:cabinet' %}" aria-label="Кабінет">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="9" cy="6" r="3"/><path d="M3 15c1.5-3 10.5-3 12 0"/></svg>
+      </a>
+      <a class="rs-icon-btn" href="{% url 'cart:detail' %}" aria-label="Кошик">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 4h12l-1 10H4L3 4z"/><path d="M6 4V3.5a3 3 0 016 0V4"/></svg>
+        {% include "cart/partials/badge.html" %}
+      </a>
+    </div>
+  </div>
+
+  <nav class="rs-header__nav" aria-label="Основна навігація">
+    <div class="rs-header__nav-inner">
+      <a href="{% url 'catalog:list' %}?view=lines">Лінії</a>
+      <a href="{% url 'catalog:list' %}?tag=sale">Акції</a>
+      <a href="{% url 'leads:delivery' %}">Доставка</a>
+      <a href="{% url 'leads:contact' %}">Контакти</a>
+      <a href="{% url 'pages:faq' %}">FAQ</a>
+    </div>
+  </nav>
+</header>
+
+<div class="rs-drawer-backdrop" data-drawer-backdrop data-drawer-close></div>
+<aside id="rs-drawer" class="rs-drawer" data-drawer aria-hidden="true" aria-label="Меню">
+  <div class="rs-drawer__top">
+    <div class="rs-drawer__brand">{{ site_settings.site_name|default:"Royal Smoke" }}</div>
+    <button type="button" class="rs-drawer__close" data-drawer-close aria-label="Закрити меню">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 2l12 12M14 2L2 14"/></svg>
+    </button>
+  </div>
+  <hr class="rs-drawer__line">
+  <nav class="rs-drawer__nav">
+    <p class="rs-drawer__group">Покупка</p>
+    <a href="{% url 'catalog:list' %}?view=lines">Лінії</a>
+    <a href="{% url 'catalog:list' %}?tag=sale">Акції</a>
+    <a href="{% url 'cart:detail' %}">Кошик</a>
+    <a href="{% url 'orders:checkout' %}">Checkout</a>
+    <a href="{% url 'accounts:cabinet' %}">Кабінет</a>
+
+    <p class="rs-drawer__group">Інфо</p>
+    <a href="{% url 'leads:delivery' %}">Доставка</a>
+    <a href="{% url 'leads:contact' %}">Контакти</a>
+    <a href="{% url 'pages:faq' %}">FAQ</a>
+    <a href="{% url 'pages:legal' slug='privacy' %}">Legal</a>
+  </nav>
+  <div class="rs-drawer__meta">
+    <div class="rs-lang" style="display:flex">
+      <span>EN</span>
+      <span aria-current="true">UA</span>
+      <span>ZH</span>
+    </div>
+    <button type="button" class="rs-drawer__callback" data-callback-open>Замовити дзвінок</button>
+  </div>
+</aside>

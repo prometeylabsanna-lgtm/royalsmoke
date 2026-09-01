@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Контакти — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+
+{% block content %}
+<header class="rs-page-head" data-rs-reveal>
+  <h1>Контакти</h1>
+  <p>Напишіть нам або замовте дзвінок.</p>
+</header>
+
+<div class="rs-container rs-service-page">
+  <div class="rs-cabinet__grid" style="margin-bottom:40px" data-rs-reveal data-reveal-delay="60">
+    <div class="rs-cabinet__item">
+      <h3>Телефон</h3>
+      <p><a href="tel:{{ site_settings.phone|cut:' '|cut:'-' }}">{{ site_settings.phone|default:"+380" }}</a></p>
+    </div>
+    <div class="rs-cabinet__item">
+      <h3>Email</h3>
+      <p><a href="mailto:{{ site_settings.email }}">{{ site_settings.email|default:"hello@royalsmoke.ua" }}</a></p>
+    </div>
+    <div class="rs-cabinet__item">
+      <h3>Адреса</h3>
+      <p class="rs-form__hint">{{ site_settings.address|default:"Київ, Україна" }}</p>
+    </div>
+    <div class="rs-cabinet__item">
+      <h3>Години</h3>
+      <p class="rs-form__hint">{{ site_settings.work_hours|default:"Пн–Нд: 11:00–21:00" }}</p>
+    </div>
+  </div>
+
+  <form class="rs-form" method="post" action="{% url 'leads:contact' %}" data-rs-reveal data-reveal-delay="120">
+    {% csrf_token %}
+    <div class="rs-field">
+      <label for="id_name">Імʼя</label>
+      <input id="id_name" type="text" name="name" required autocomplete="name">
+    </div>
+    <div class="rs-field">
+      <label for="id_email">Email</label>
+      <input id="id_email" type="email" name="email" required autocomplete="email">
+    </div>
+    <div class="rs-field">
+      <label for="id_phone">Телефон</label>
+      <input id="id_phone" type="tel" name="phone" autocomplete="tel">
+    </div>
+    <div class="rs-field">
+      <label for="id_message">Повідомлення</label>
+      <textarea id="id_message" name="message" rows="5" required></textarea>
+    </div>
+    <div class="rs-form__actions">
+      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">Надіслати</button>
+      <button type="button" class="rs-btn rs-btn--ghost rs-btn--block" data-callback-open>Замовити дзвінок</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

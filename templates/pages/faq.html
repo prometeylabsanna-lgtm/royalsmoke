@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}FAQ — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+
+{% block content %}
+<header class="rs-page-head" data-rs-reveal>
+  <h1>FAQ</h1>
+  <p>Короткі відповіді про замовлення, зберігання та доставку.</p>
+</header>
+
+<div class="rs-container rs-service-page rs-faq">
+  <details open data-rs-reveal data-reveal-delay="0">
+    <summary>Як зберігати сигари?</summary>
+    <p>У хумідорі при 68–72% вологості та 16–20°C. Ми відправляємо в термобоксі.</p>
+  </details>
+  <details data-rs-reveal data-reveal-delay="50">
+    <summary>Чи потрібна реєстрація для покупки?</summary>
+    <p>Ні, гостьове оформлення доступне. Кабінет зручний для повторних замовлень.</p>
+  </details>
+  <details data-rs-reveal data-reveal-delay="100">
+    <summary>Які терміни доставки?</summary>
+    <p>Київ — часто того ж дня, Україна — 1–2 дні. Деталі на сторінці «Доставка».</p>
+  </details>
+  <details data-rs-reveal data-reveal-delay="150">
+    <summary>Чи можна повернути товар?</summary>
+    <p>Тютюнові вироби належної якості не підлягають поверненню. Брак розглядаємо індивідуально.</p>
+  </details>
+  <details data-rs-reveal data-reveal-delay="200">
+    <summary>Як працює бронювання?</summary>
+    <p>Оберіть слот на сторінці «Бронювання» — підтвердження прийде на email і в Telegram.</p>
+  </details>
+</div>
+{% endblock %}

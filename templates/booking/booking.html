@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Бронювання — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home-booking.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="rs-section rs-home-booking" aria-label="Бронювання">
+  <div class="rs-container">
+    <div class="rs-home-booking__panel">
+      <header class="rs-home-booking__head">
+        <div class="rs-home-booking__intro">
+          <p class="rs-home-booking__kicker">Сервіс</p>
+          <h2 class="rs-home-booking__title">Бронювання</h2>
+        </div>
+        <div class="rs-home-booking__media">
+          <img
+            src="{% static 'img/booking/lounge.jpg' %}"
+            alt="Панорама лаунжу Royal Smoke"
+            width="1600"
+            height="900"
+            loading="eager"
+            decoding="async"
+          >
+        </div>
+      </header>
+
+      <form class="rs-home-booking__form" method="post" action="{% url 'booking:page' %}">
+        {% csrf_token %}
+        <div class="rs-home-booking__fields">
+          <div class="rs-home-booking__field">
+            <label class="sr-only" for="id_name">Імʼя</label>
+            <input
+              id="id_name"
+              type="text"
+              name="name"
+              required
+              autocomplete="name"
+              maxlength="120"
+              placeholder="Імʼя"
+              value="{{ form.name.value|default:'' }}"
+            >
+          </div>
+          <div class="rs-home-booking__field">
+            <label class="sr-only" for="id_phone">Телефон</label>
+            <input
+              id="id_phone"
+              type="tel"
+              name="phone"
+              required
+              autocomplete="tel"
+              maxlength="30"
+              placeholder="Телефон"
+              value="{{ form.phone.value|default:'' }}"
+            >
+          </div>
+          <div class="rs-home-booking__field rs-home-booking__field--wish">
+            <label class="sr-only" for="id_comment">Побажання</label>
+            <input
+              id="id_comment"
+              type="text"
+              name="comment"
+              maxlength="500"
+              placeholder="Побажання (необовʼязково)"
+              value="{{ form.comment.value|default:'' }}"
+            >
+          </div>
+          <button type="submit" class="rs-home-booking__submit">Забронювати</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

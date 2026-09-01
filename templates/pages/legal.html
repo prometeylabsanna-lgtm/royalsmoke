@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Legal — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+
+{% block content %}
+<header class="rs-page-head" data-rs-reveal>
+  <h1>Правова інформація</h1>
+  <p>Privacy, Terms, Age policy, Cookies.</p>
+</header>
+
+<div class="rs-container rs-service-page rs-legal" data-rs-reveal data-reveal-delay="80">
+  <h2 id="privacy">Privacy</h2>
+  <p>
+    Ми обробляємо персональні дані (імʼя, телефон, email, адресу доставки)
+    лише для виконання замовлень і зворотного звʼязку. Дані не продаємо третім сторонам.
+  </p>
+
+  <h2 id="terms">Terms</h2>
+  <p>
+    Сайт {{ site_settings.site_name|default:"Royal Smoke" }} пропонує тютюнові вироби та аксесуари
+    повнолітнім відвідувачам. Оформлюючи замовлення, ви підтверджуєте вік 21+ та згоду з умовами продажу.
+  </p>
+
+  <h2 id="age">Age policy</h2>
+  <p>
+    Доступ до вітрини можливий лише після підтвердження віку (cookie age_ok).
+    Особам молодше 21 року продаж заборонено.
+  </p>
+
+  <h2 id="cookies">Cookies</h2>
+  <p>
+    Використовуємо необхідні cookies для сесії кошика, age gate та мови.
+    Аналітичні cookies — лише за згодою, якщо увімкнено на проєкті.
+  </p>
+</div>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block meta_description %}{{ product.meta_description|default:product.short_story }}{% endblock %}
+
+{% block content %}
+<article class="rs-container rs-product">
+  <div class="rs-product__gallery" data-rs-reveal="scale">
+    {% with img=product.images.all.0 %}
+      {% if img %}
+        <img src="{{ img.image.url }}" alt="{{ img.alt_text|default:product.name }}" data-parallax-media data-depth="0.06">
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <div data-rs-reveal data-reveal-delay="80">
+    {% if product.brand %}
+      <a class="rs-product__brand" href="{% url 'catalog:brand' slug=product.brand.slug %}">{{ product.brand.name }}</a>
+    {% endif %}
+    <h1 class="rs-product__title">{{ product.name }}</h1>
+    <p class="rs-product__price">
+      {% if product.old_price %}<del style="color:var(--rs-text-muted);font-size:0.7em;margin-right:8px">{{ product.old_price }} ₴</del>{% endif %}
+      <span id="product-price">{{ product.display_price }}</span> ₴
+    </p>
+
+    {% if product.short_story %}
+      <p class="rs-product__story">{{ product.short_story }}</p>
+    {% endif %}
+
+    <form method="post"
+          action="{% url 'cart:add' %}"
+          hx-post="{% url 'cart:add' %}"
+          hx-target="#cart-badge"
+          hx-swap="outerHTML">
+      {% csrf_token %}
+      <input type="hidden" name="product_id" value="{{ product.id }}">
+
+      {% if product.variants.all %}
+        <fieldset class="rs-variants">
+          <legend class="sr-only">Формат / вітола</legend>
+          {% for v in product.variants.all %}
+            {% if v.is_active %}
+              <label>
+                <input type="radio" name="variant_id" value="{{ v.id }}" {% if forloop.first %}checked{% endif %}>
+                <span>{{ v.name }} — {{ v.price }} ₴</span>
+              </label>
+            {% endif %}
+          {% endfor %}
+        </fieldset>
+      {% endif %}
+
+      <div class="rs-field" style="max-width:120px;margin-bottom:16px">
+        <label for="qty">Кількість</label>
+        <input id="qty" type="number" name="quantity" value="1" min="1" max="99">
+      </div>
+
+      <div class="rs-btn-row" style="max-width:420px">
+        <button type="submit" class="rs-btn rs-btn--gold">У кошик</button>
+        <a class="rs-btn rs-btn--ghost" href="{% url 'pages:home' %}#home-calculator">Підібрати</a>
+      </div>
+    </form>
+
+    <dl class="rs-product__specs">
+      {% if product.strength %}<div><dt>Міцність</dt><dd>{{ product.get_strength_display }}</dd></div>{% endif %}
+      {% if product.country %}<div><dt>Країна</dt><dd>{{ product.country }}</dd></div>{% endif %}
+      {% if product.wrapper %}<div><dt>Wrapper</dt><dd>{{ product.wrapper }}</dd></div>{% endif %}
+      {% if product.smoke_time %}<div><dt>Час куріння</dt><dd>{{ product.smoke_time }}</dd></div>{% endif %}
+      {% if product.binder %}<div><dt>Binder</dt><dd>{{ product.binder }}</dd></div>{% endif %}
+      {% if product.filler %}<div><dt>Filler</dt><dd>{{ product.filler }}</dd></div>{% endif %}
+    </dl>
+
+    {% if product.tasting_notes %}
+      <h2 class="rs-section__title" style="font-size:22px;margin-top:32px">Смакові нотки</h2>
+      <p class="rs-product__story">{{ product.tasting_notes }}</p>
+    {% endif %}
+
+    {% if product.description %}
+      <h2 class="rs-section__title" style="font-size:22px;margin-top:32px">Опис</h2>
+      <div class="rs-product__story">{{ product.description|linebreaks }}</div>
+    {% endif %}
+  </div>
+</article>
+{% endblock %}

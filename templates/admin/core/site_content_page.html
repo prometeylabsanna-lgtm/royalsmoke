@@ -1,0 +1,81 @@
+{% extends "admin/base.html" %}
+{% load i18n unfold %}
+
+{% block title %}{{ title }} | {{ site_title|default:_("Django site admin") }}{% endblock %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <style>
+    .rs-cms { max-width: 920px; }
+    .rs-cms__hero { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--color-base-200, #e5e5e5); }
+    .rs-cms__hero h2 { font-size: 1.1rem; margin-bottom: 1rem; }
+    .rs-cms__row { display: grid; gap: 1rem; margin-bottom: 1.25rem; padding: 1rem; border: 1px solid var(--color-base-200, #e5e5e5); border-radius: 0.5rem; }
+    .rs-cms__actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+  </style>
+{% endblock %}
+
+{% block content %}
+<div class="rs-cms">
+  <form method="post" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <ul class="errorlist">{{ form.non_field_errors }}</ul>
+    {% endif %}
+
+    {% for field in form %}
+      <div class="form-row field-{{ field.name }}">
+        {{ field.errors }}
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.help_text %}<div class="help">{{ field.help_text }}</div>{% endif %}
+      </div>
+    {% endfor %}
+
+    {% if hero_formset %}
+      <div class="rs-cms__hero">
+        <h2>Слайди Hero</h2>
+        {{ hero_formset.management_form }}
+        {% for f in hero_formset %}
+          <div class="rs-cms__row">
+            {% for hidden in f.hidden_fields %}{{ hidden }}{% endfor %}
+            {% if f.instance.pk %}<p class="help">Слайд #{{ f.instance.pk }}</p>{% endif %}
+            {% for field in f.visible_fields %}
+              <div class="form-row">
+                {{ field.errors }}
+                {{ field.label_tag }}
+                {{ field }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if history_formset %}
+      <div class="rs-cms__hero">
+        <h2>Слайди історії (timeline)</h2>
+        {{ history_formset.management_form }}
+        {% for f in history_formset %}
+          <div class="rs-cms__row">
+            {% for hidden in f.hidden_fields %}{{ hidden }}{% endfor %}
+            {% if f.instance.pk %}<p class="help">Слайд #{{ f.instance.pk }} — {{ f.instance.year_label }}</p>{% endif %}
+            {% for field in f.visible_fields %}
+              <div class="form-row">
+                {{ field.errors }}
+                {{ field.label_tag }}
+                {{ field }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="rs-cms__actions submit-row">
+      <button type="submit" class="default" name="_save">Зберегти</button>
+      <a href="{% url 'admin:index' %}">Скасувати</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

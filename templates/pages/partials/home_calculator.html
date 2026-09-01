@@ -1,0 +1,137 @@
+{% load static %}
+<section class="rs-section rs-home-calc" id="home-calculator" data-home-calc>
+  <div class="rs-container">
+    <div class="rs-home-calc__split">
+      <aside class="rs-home-calc__visual">
+        <figure class="rs-home-calc__figure">
+          <img
+            class="rs-home-calc__img"
+            src="{% static 'img/service/calculator.jpg' %}"
+            alt=""
+            width="720"
+            height="960"
+            loading="lazy"
+            decoding="async"
+          >
+        </figure>
+      </aside>
+
+      <div class="rs-home-calc__panel">
+        <header class="rs-home-calc__head">
+          <h2 class="rs-home-calc__title">Калькулятор підбору</h2>
+          <p class="rs-home-calc__lead">Оберіть параметри — три рекомендації з поясненням вибору.</p>
+        </header>
+
+        <form
+          class="rs-home-calc__form"
+          id="home-calc-form"
+          method="get"
+          action="{% url 'calculator:results' %}"
+          hx-get="{% url 'calculator:results' %}"
+          hx-target="#home-calc-results"
+          hx-swap="innerHTML"
+          hx-push-url="false"
+        >
+          <fieldset class="rs-home-calc__group">
+            <legend class="rs-home-calc__label">Міцність</legend>
+            <div class="rs-home-calc__chips" role="radiogroup" aria-label="Міцність">
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="strength" value="mild" data-calc-chip>
+                <span>Легка</span>
+              </label>
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="strength" value="medium" data-calc-chip checked>
+                <span>Середня</span>
+              </label>
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="strength" value="medium_full" data-calc-chip>
+                <span>Середньо-повна</span>
+              </label>
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="strength" value="full" data-calc-chip>
+                <span>Повна</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="rs-home-calc__group">
+            <legend class="rs-home-calc__label">Формат</legend>
+            <div class="rs-home-calc__chips" role="radiogroup" aria-label="Формат">
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="format" value="petit" data-calc-chip>
+                <span>Petit Robusto</span>
+              </label>
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="format" value="robusto" data-calc-chip checked>
+                <span>Robusto</span>
+              </label>
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="format" value="toro" data-calc-chip>
+                <span>Toro</span>
+              </label>
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="format" value="churchill" data-calc-chip>
+                <span>Churchill</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="rs-home-calc__group">
+            <legend class="rs-home-calc__label">Країна</legend>
+            <div class="rs-home-calc__chips" role="radiogroup" aria-label="Країна">
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="country" value="cuba" data-calc-chip>
+                <span>Куба</span>
+              </label>
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="country" value="nicaragua" data-calc-chip>
+                <span>Нікарагуа</span>
+              </label>
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="country" value="dominican" data-calc-chip>
+                <span>Домінікана</span>
+              </label>
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="country" value="" data-calc-chip checked>
+                <span>Будь-яка</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="rs-home-calc__group">
+            <legend class="rs-home-calc__label">Бюджет</legend>
+            <div class="rs-home-calc__chips" role="radiogroup" aria-label="Бюджет">
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="budget" value="0-1000" data-calc-chip checked>
+                <span>до 1000 ₴</span>
+              </label>
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="budget" value="1000-2000" data-calc-chip>
+                <span>1000—2000 ₴</span>
+              </label>
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="budget" value="2000-3500" data-calc-chip>
+                <span>2000—3500 ₴</span>
+              </label>
+              <label class="rs-home-calc__chip">
+                <input type="radio" name="budget" value="any" data-calc-chip>
+                <span>без обмежень</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="rs-home-calc__footer">
+            <p class="rs-home-calc__summary" data-calc-summary aria-live="polite">
+              Середня · Robusto · Будь-яка · до 1000 ₴
+            </p>
+            <button type="submit" class="rs-btn rs-btn--gold rs-home-calc__submit">
+              Показати підбір
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="home-calc-results" class="rs-home-calc__results" aria-live="polite"></div>
+  </div>
+</section>
