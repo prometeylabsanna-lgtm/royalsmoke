@@ -20,9 +20,8 @@
   overflow: hidden;
   min-height: 0;
   transition:
-    transform var(--rs-dur) var(--rs-ease-out),
-    border-color var(--rs-dur-fast) ease,
-    box-shadow var(--rs-dur) var(--rs-ease-out);
+    transform var(--motion-soft) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out);
 }
 
 .rs-svc-card__media {
@@ -40,7 +39,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform var(--rs-dur-slow) var(--rs-ease-out);
+  transition: transform var(--motion-soft) var(--ease-out);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
@@ -51,7 +50,7 @@
   z-index: 1;
   pointer-events: none;
   background: rgba(0, 0, 0, 0.4);
-  transition: background var(--rs-dur) var(--rs-ease-out);
+  transition: background var(--motion-soft) var(--ease-out);
 }
 
 .rs-svc-card__body {
@@ -65,12 +64,14 @@
 
 .rs-svc-card__title {
   margin: 0;
-  font-family: var(--rs-font-display);
-  font-size: clamp(28px, 5vw, 42px);
-  font-weight: 400;
+  font-family: var(--rs-font-ui);
+  font-size: clamp(22px, 4vw, 34px);
+  font-weight: var(--rs-weight-sub);
   line-height: 1.12;
-  letter-spacing: 0.01em;
-  color: var(--rs-seashell);
+  letter-spacing: 0.12em;
+  text-indent: 0.12em;
+  text-transform: uppercase;
+  color: rgba(252, 242, 238, 0.92);
 }
 
 .rs-svc-card__lead {
@@ -134,11 +135,11 @@
   color: #1c1715;
   font-family: var(--rs-font-ui);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: var(--rs-weight-sub);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.25s var(--rs-ease);
+  transition: background var(--t-fast) var(--ease-out);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -213,7 +214,9 @@
   }
 
   .rs-svc-card__title {
-    font-size: clamp(28px, 4vw, 42px);
+    font-size: clamp(26px, 3.2vw, 34px);
+    letter-spacing: 0.14em;
+    text-indent: 0.14em;
   }
 
   .rs-svc-card__lead {
@@ -261,7 +264,9 @@
   }
 
   .rs-svc-card__title {
-    font-size: 42px;
+    font-size: 34px;
+    letter-spacing: 0.14em;
+    text-indent: 0.14em;
   }
 
   .rs-svc-card__lead {

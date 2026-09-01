@@ -1,7 +1,7 @@
 /* Royal Smoke — history journey dark theme + horizontal track */
 .rs-history-journey {
-  --rs-history-fade: 0.45s;
-  --rs-history-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --rs-history-fade: var(--motion-reveal);
+  --rs-history-ease: var(--ease-out);
   --rs-history-gap: 20px;
   --rs-history-card-w: min(78vw, 280px);
   position: relative;
@@ -43,7 +43,7 @@
   text-align: center;
   font-family: var(--rs-font-ui);
   font-size: clamp(28px, 5vw, 42px);
-  font-weight: 500;
+  font-weight: var(--rs-weight-sub);
   letter-spacing: 0.28em;
   text-indent: 0.28em;
   text-transform: uppercase;
@@ -82,9 +82,9 @@
   cursor: pointer;
   flex-shrink: 0;
   transition:
-    color 0.28s var(--rs-history-ease),
-    border-color 0.28s var(--rs-history-ease),
-    background 0.28s var(--rs-history-ease);
+    color var(--t-base) var(--rs-history-ease),
+    border-color var(--t-base) var(--rs-history-ease),
+    background var(--t-base) var(--rs-history-ease);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -146,8 +146,7 @@
   transform: translate3d(0, 6px, 0) scale(0.985);
   transition:
     opacity var(--rs-history-fade) var(--rs-history-ease),
-    transform var(--rs-history-fade) var(--rs-history-ease),
-    filter var(--rs-history-fade) var(--rs-history-ease);
+    transform var(--rs-history-fade) var(--rs-history-ease);
   -webkit-filter: saturate(0.82);
   filter: saturate(0.82);
 }
@@ -176,7 +175,7 @@
   object-position: center;
   display: block;
   transform: scale(1.02);
-  transition: transform 0.7s var(--rs-history-ease);
+  transition: transform var(--motion-soft) var(--rs-history-ease);
 }
 
 .rs-history-journey__slide.is-active .rs-history-journey__photo img {
@@ -187,7 +186,7 @@
   margin: 2px 0 0;
   font-family: var(--rs-font-ui);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: var(--rs-weight-sub);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--rs-gold);
@@ -264,11 +263,11 @@
   flex: 1 1 0;
   font-family: var(--rs-font-ui);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: var(--rs-weight-ui);
   letter-spacing: 0.06em;
   transition:
-    color 0.45s ease,
-    text-shadow 0.45s ease;
+    color var(--motion-soft) var(--ease-out),
+    text-shadow var(--motion-soft) var(--ease-out);
 }
 
 .rs-history-journey__tick-mark {
@@ -277,15 +276,17 @@
   margin-top: 2px;
   background: rgba(252, 242, 238, 0.28);
   border-radius: 1px;
+  transform: scaleY(1);
+  transform-origin: top center;
   transition:
-    height 0.45s ease,
-    background 0.45s ease,
-    box-shadow 0.45s ease;
+    transform var(--motion-soft) var(--ease-out),
+    background var(--motion-soft) var(--ease-out),
+    box-shadow var(--motion-soft) var(--ease-out);
 }
 
 .rs-history-journey__tick-label {
   color: inherit;
-  transition: color 0.45s ease;
+  transition: color var(--motion-soft) var(--ease-out);
 }
 
 .rs-history-journey__tick.is-active {
@@ -294,7 +295,7 @@
 }
 
 .rs-history-journey__tick.is-active .rs-history-journey__tick-mark {
-  height: 24px;
+  transform: scaleY(1.333);
   background: var(--rs-gold);
   box-shadow:
     0 0 10px rgba(201, 154, 68, 0.55),
@@ -309,4 +310,29 @@
 .rs-history-journey__track:focus-visible {
   outline: 1px solid var(--rs-gold);
   outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rs-history-journey__slide,
+  .rs-history-journey__photo img,
+  .rs-history-journey__nav,
+  .rs-history-journey__tick,
+  .rs-history-journey__tick-mark,
+  .rs-history-journey__tick-label {
+    transition: none;
+  }
+
+  .rs-history-journey__slide {
+    transform: none;
+  }
+
+  .rs-history-journey__photo img,
+  .rs-history-journey__slide.is-active .rs-history-journey__photo img {
+    transform: none;
+  }
+
+  .rs-history-journey__tick-mark,
+  .rs-history-journey__tick.is-active .rs-history-journey__tick-mark {
+    transform: none;
+  }
 }

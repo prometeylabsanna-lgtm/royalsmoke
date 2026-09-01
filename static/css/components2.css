@@ -28,6 +28,7 @@
 
 .rs-age-gate__brand {
   font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-display);
   font-size: 34px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -37,7 +38,7 @@
 .rs-age-gate__title {
   margin: 44px 0 14px;
   font-family: var(--rs-font-display);
-  font-weight: 400;
+  font-weight: var(--rs-weight-sub);
   font-size: 27px;
   line-height: 1.25;
   color: var(--rs-seashell);
@@ -136,7 +137,7 @@
 .rs-callback__title {
   margin: 0 0 12px;
   font-family: var(--rs-font-display);
-  font-weight: 400;
+  font-weight: var(--rs-weight-sub);
   font-size: 24px;
   line-height: 1.25;
   color: var(--rs-seashell);
@@ -213,6 +214,7 @@
 
 .rs-cart-line__title {
   font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-sub);
   font-size: 18px;
 }
 

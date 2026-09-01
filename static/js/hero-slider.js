@@ -1,12 +1,14 @@
-/* Royal Smoke — hero slider with next-thumb expand animation */
+/* Royal Smoke — hero slider: thumb-expand on click, calm auto crossfade */
 (function () {
   'use strict';
 
-  var DURATION = 980;
-  var FADE_MS = 360;
+  var EXPAND_MS = 800;
+  var FADE_MS = 700;
   var HANDOFF_MS = 280;
-  var AUTO_MS = 4000;
-  var EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
+  /* New preview enters when expand is ~75% done */
+  var THUMB_IN_AT = 600;
+  var AUTO_MS = 4200;
+  var EASE = 'cubic-bezier(0.23, 1, 0.32, 1)';
   var SWIPE_THRESHOLD = 40;
 
   function initHeroSlider(root) {
@@ -56,7 +58,7 @@
       autoTimer = window.setTimeout(function () {
         autoTimer = null;
         if (busy || autoPaused || document.hidden) return;
-        expandThenAdvance();
+        crossfadeTo(nextIndex(index));
       }, AUTO_MS);
     }
 
@@ -81,9 +83,20 @@
       return Array.prototype.slice.call(root.querySelectorAll('[data-hero-parallax]'));
     }
 
+    function mobileHeroScale() {
+      return window.matchMedia('(max-width: 767px)').matches ? 1.16 : 1;
+    }
+
+    function parallaxTransform(shift) {
+      var scale = mobileHeroScale();
+      var t = shift ? 'translate3d(0,' + shift.toFixed(2) + 'px,0)' : 'translate3d(0,0,0)';
+      if (scale !== 1) return t + ' scale(' + scale + ')';
+      return shift ? t : 'none';
+    }
+
     function clearParallax() {
       parallaxLayers().forEach(function (el) {
-        el.style.transform = 'none';
+        el.style.transform = parallaxTransform(0);
       });
       if (expandImg) expandImg.style.transform = 'none';
     }
@@ -91,7 +104,7 @@
     function applyParallax() {
       if (reduce || busy) return;
       var shift = currentParallaxY();
-      var value = shift ? 'translate3d(0,' + shift.toFixed(2) + 'px,0)' : 'none';
+      var value = parallaxTransform(shift);
       parallaxLayers().forEach(function (el) {
         el.style.transform = value;
       });
@@ -188,17 +201,6 @@
       if (expandVeil) expandVeil.style.cssText = '';
     }
 
-    function setThumbRestHidden(hidden) {
-      if (!thumb) return;
-      if (hidden) {
-        thumb.style.visibility = 'hidden';
-        thumb.style.pointerEvents = 'none';
-      } else {
-        thumb.style.visibility = '';
-        thumb.style.pointerEvents = '';
-      }
-    }
-
     function showThumbForIndex(i) {
       if (!thumb) return;
       var src = slideImage(i);
@@ -210,6 +212,7 @@
 
     function resetThumbMotion() {
       if (!thumb) return;
+      thumb.classList.remove('is-away');
       thumb.style.transition = '';
       thumb.style.transform = '';
       thumb.style.opacity = '';
@@ -217,10 +220,11 @@
       thumb.style.pointerEvents = '';
     }
 
-    /* New preview rides in from beyond the right edge of the viewport */
+    /* New preview rides in from beyond the right edge — late in expand */
     function enterThumbFromRight(previewIndex) {
       if (!thumb) return;
       showThumbForIndex(previewIndex);
+      thumb.classList.remove('is-away');
       thumb.style.transition = 'none';
       thumb.style.visibility = 'visible';
       thumb.style.opacity = '1';
@@ -237,7 +241,7 @@
       void thumb.offsetWidth;
 
       thumb.style.transition =
-        'transform ' + DURATION + 'ms ' + EASE;
+        'transform ' + Math.max(EXPAND_MS - THUMB_IN_AT, 280) + 'ms ' + EASE;
       thumb.style.transform = 'translate3d(0, 0, 0)';
     }
 
@@ -256,7 +260,7 @@
       window.setTimeout(function () {
         busy = false;
         startAuto();
-      }, reduce ? 0 : 520);
+      }, reduce ? 0 : FADE_MS);
     }
 
     function expandThenAdvance() {
@@ -290,17 +294,16 @@
       var nextPos = nextSlideImg
         ? window.getComputedStyle(nextSlideImg).objectPosition
         : 'center 58%';
+      var thumbPos = 'center center';
 
-      /* Integer start — avoids subpixel drift into the full frame */
       var x0 = Math.round(thumbRect.left - stageRect.left);
       var y0 = Math.round(thumbRect.top - stageRect.top);
       var w0 = Math.round(thumbRect.width);
       var h0 = Math.round(thumbRect.height);
 
-      /* Freeze parallax for the whole expand → handoff window */
       clearParallax();
 
-      /* Clone of the thumb — crop already matches the destination slide */
+      /* Same crop as the resting thumb — then morph into full slide */
       expandImg.src = src;
       expandImg.style.cssText = '';
       expandImg.style.transition = 'none';
@@ -309,12 +312,12 @@
       expandImg.style.width = '100%';
       expandImg.style.height = '100%';
       expandImg.style.objectFit = 'cover';
-      expandImg.style.objectPosition = nextPos;
+      expandImg.style.objectPosition = thumbPos;
       expandImg.style.transform = 'none';
       expandImg.style.margin = '0';
 
       expandVeil.style.transition = 'none';
-      expandVeil.style.opacity = '1';
+      expandVeil.style.opacity = '0';
       expandVeil.style.display = 'block';
 
       expandEl.style.transition = 'none';
@@ -328,38 +331,45 @@
       expandEl.style.borderRadius = radius;
       expandEl.classList.add('is-on');
 
-      /* Hide the resting thumb — expand is now that thumb growing */
+      /* Hide resting thumb — expand IS that thumb growing */
+      thumb.classList.add('is-away');
       thumb.style.transition = 'none';
       thumb.style.visibility = 'hidden';
       thumb.style.pointerEvents = 'none';
+      thumb.style.opacity = '0';
 
       void expandEl.offsetWidth;
 
       expandEl.style.transition =
-        'left ' + DURATION + 'ms ' + EASE + ',' +
-        'top ' + DURATION + 'ms ' + EASE + ',' +
-        'width ' + DURATION + 'ms ' + EASE + ',' +
-        'height ' + DURATION + 'ms ' + EASE + ',' +
-        'border-radius ' + DURATION + 'ms ' + EASE;
+        'left ' + EXPAND_MS + 'ms ' + EASE + ',' +
+        'top ' + EXPAND_MS + 'ms ' + EASE + ',' +
+        'width ' + EXPAND_MS + 'ms ' + EASE + ',' +
+        'height ' + EXPAND_MS + 'ms ' + EASE + ',' +
+        'border-radius ' + EXPAND_MS + 'ms ' + EASE;
 
-      /* End on CSS box of the stage — not fractional getBoundingClientRect px */
+      expandImg.style.transition =
+        'object-position ' + EXPAND_MS + 'ms ' + EASE;
+      expandImg.style.objectPosition = nextPos;
+
+      expandVeil.style.transition = 'opacity ' + EXPAND_MS + 'ms ' + EASE;
+      expandVeil.style.opacity = '1';
+
       expandEl.style.left = '0';
       expandEl.style.top = '0';
       expandEl.style.width = '100%';
       expandEl.style.height = '100%';
       expandEl.style.borderRadius = '0';
 
-      /* Next preview rides in from the right while the circle expands */
+      /* New preview only when circle is almost full */
       window.setTimeout(function () {
         enterThumbFromRight(nextIndex(next));
-      }, 90);
+      }, THUMB_IN_AT);
 
       window.setTimeout(function () {
         slides.forEach(function (s) {
           s.style.transition = 'none';
         });
 
-        /* Pixel-lock expand to stage before revealing the real slide */
         expandEl.style.transition = 'none';
         expandEl.style.left = '0';
         expandEl.style.top = '0';
@@ -406,13 +416,13 @@
             }, HANDOFF_MS);
           });
         });
-      }, DURATION);
+      }, EXPAND_MS);
     }
 
     if (nextBtn) {
       nextBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        expandThenAdvance();
+        crossfadeTo(nextIndex(index));
       });
     }
 
@@ -436,7 +446,7 @@
     root.addEventListener('touchend', function (e) {
       var dx = e.changedTouches[0].screenX - touchX;
       if (Math.abs(dx) < SWIPE_THRESHOLD) return;
-      if (dx < 0) expandThenAdvance();
+      if (dx < 0) crossfadeTo(nextIndex(index));
       else crossfadeTo(index - 1);
     }, { passive: true });
 

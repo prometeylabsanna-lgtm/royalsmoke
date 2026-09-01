@@ -6,7 +6,7 @@
   aria-label="{{ history_kicker|default:'Історія' }}"
 >
   <div class="rs-history-journey__inner">
-    <p class="rs-history-journey__kicker">{{ history_kicker|default:"Історія" }}</p>
+    <p class="rs-history-journey__kicker" data-rs-reveal>{{ history_kicker|default:"Історія" }}</p>
 
     <div class="rs-history-journey__stage">
       <button
@@ -83,7 +83,7 @@
       </button>
     </div>
 
-    <nav class="rs-history-journey__timeline" aria-label="Роки історії" data-history-timeline>
+    <nav class="rs-history-journey__timeline" aria-label="Роки історії" data-history-timeline data-rs-reveal data-reveal-delay="120">
       <div class="rs-history-journey__rail" aria-hidden="true"></div>
       <div class="rs-history-journey__years">
         {% for slide in history_slides %}

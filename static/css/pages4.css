@@ -51,8 +51,13 @@
 
 .rs-calc-hit__name {
   font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-sub);
   font-size: 20px;
-  color: var(--rs-seashell);
+  color: var(--rs-gold);
+}
+
+.rs-calc-hit__name:hover {
+  color: var(--rs-gold-hover);
 }
 
 .rs-calc-hit__meta {
@@ -68,8 +73,17 @@
   gap: 10px;
 }
 
+.rs-calc-hit__aside .rs-btn--ghost {
+  border-color: var(--rs-gold);
+}
+
+.rs-calc-hit__aside .rs-btn--ghost:hover {
+  border-color: var(--rs-gold-hover);
+}
+
 .rs-calc-hit__price {
   font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-sub);
   font-size: 18px;
 }
 
@@ -116,12 +130,7 @@
   }
 
   .rs-pcard__media {
-    aspect-ratio: 4 / 3;
-    max-height: 300px;
-  }
-
-  .rs-pcard__img {
-    max-height: 290px;
+    aspect-ratio: 1 / 1;
   }
 
   .rs-form-grid {
@@ -142,30 +151,30 @@
   }
 
   .rs-pcard__name {
-    font-size: 22px;
+    font-size: 20px;
+    height: calc(1.4em * 2);
+    min-height: calc(1.4em * 2);
   }
 
   .rs-pcard__price {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .rs-pcard__buy {
-    font-size: 17px;
+    min-height: 42px;
+    font-size: 12px;
   }
 
   .rs-pcard__media {
-    max-height: 340px;
-  }
-
-  .rs-pcard__img {
-    max-height: 330px;
+    aspect-ratio: 1 / 1;
   }
 }
 
 @media (max-width: 767px) {
   .rs-home-catalog {
     --rs-catalog-gap: 14px;
-    --rs-catalog-cols: 1.45;
+    /* 1.6 cols ⇒ ~60% peek of next card */
+    --rs-catalog-cols: 1.6;
     --rs-catalog-nav: 34px;
     --rs-catalog-nav-gap: 6px;
   }
@@ -178,30 +187,33 @@
     margin-top: calc(120px - (var(--rs-catalog-nav) / 2));
   }
 
+  .rs-pcard {
+    gap: 14px;
+  }
+
   .rs-pcard__media {
-    max-height: 210px;
     aspect-ratio: 1 / 1;
   }
 
-  .rs-pcard__img {
-    max-height: 200px;
+  .rs-pcard__body {
+    gap: 10px;
   }
 
   .rs-pcard__name {
-    font-size: 17px;
-    max-width: none;
+    font-size: 16px;
+    letter-spacing: 0.025em;
+    height: calc(1.4em * 2);
+    min-height: calc(1.4em * 2);
   }
 
   .rs-pcard__price {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .rs-pcard__buy {
-    font-size: 15px;
-  }
-
-  .rs-pcard__row {
-    gap: 10px 14px;
+    min-height: 38px;
+    padding: 0 14px;
+    font-size: 11px;
   }
 
   .rs-home-catalog__foot {

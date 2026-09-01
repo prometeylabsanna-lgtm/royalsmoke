@@ -24,7 +24,7 @@
         aria-label="Товари каталогу"
       >
         {% for product in home_products %}
-          <article class="rs-pcard" data-rs-reveal data-reveal-delay="{% widthratio forloop.counter0 1 50 %}" data-catalog-slide>
+          <article class="rs-pcard" data-rs-reveal data-reveal-delay="{% cycle 0 120 240 360 480 %}" data-catalog-slide>
             <a class="rs-pcard__media" href="{{ product.get_absolute_url }}">
               {% with img=product.images.all.0 %}
                 {% if img %}
@@ -46,8 +46,12 @@
                 {% endif %}
               {% endwith %}
             </a>
-            <div class="rs-pcard__row">
+            <div class="rs-pcard__body">
               <a class="rs-pcard__name" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+              <p class="rs-pcard__price">
+                <span class="rs-pcard__amount">{{ product.display_price }}</span>
+                <span class="rs-pcard__currency">₴</span>
+              </p>
               <form class="rs-pcard__cart"
                     method="post"
                     action="{% url 'cart:add' %}"
@@ -63,7 +67,6 @@
                 <button type="submit" class="rs-pcard__buy">У кошик</button>
               </form>
             </div>
-            <p class="rs-pcard__price">{{ product.display_price }} ₴</p>
           </article>
         {% empty %}
           <p class="rs-empty">Каталог наповнюється.</p>

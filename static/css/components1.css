@@ -10,7 +10,7 @@
   padding: 0 26px;
   font-family: var(--rs-font-ui);
   font-size: 13px;
-  font-weight: 500;
+  font-weight: var(--rs-weight-ui);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: center;
@@ -140,6 +140,7 @@
 
 .rs-card__title {
   font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-sub);
   font-size: 17px;
   line-height: 1.25;
   color: var(--rs-seashell);
@@ -147,6 +148,7 @@
 
 .rs-card__price {
   font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-sub);
   font-size: 17px;
   color: var(--rs-seashell);
   margin-top: 4px;
@@ -198,6 +200,7 @@
 
 .rs-cat__name {
   font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-sub);
   font-size: 20px;
   color: var(--rs-seashell);
 }
@@ -222,7 +225,7 @@
   background: var(--rs-seashell);
   color: var(--rs-bark);
   font-size: 9px;
-  font-weight: 600;
+  font-weight: var(--rs-weight-sub);
   display: flex;
   align-items: center;
   justify-content: center;

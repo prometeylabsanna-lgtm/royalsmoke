@@ -1,5 +1,45 @@
 /* Royal Smoke — design tokens, reset, base typography */
 
+@font-face {
+  font-family: "Fixel Display";
+  src: url("../fonts/fixel-display/FixelDisplay-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel Display";
+  src: url("../fonts/fixel-display/FixelDisplay-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel Display";
+  src: url("../fonts/fixel-display/FixelDisplay-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel Display";
+  src: url("../fonts/fixel-display/FixelDisplay-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fixel Display";
+  src: url("../fonts/fixel-display/FixelDisplay-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --rs-bark: #241d1b;
   --rs-bark-light: #2b2321;
@@ -18,8 +58,11 @@
   --rs-shadow: rgba(26, 20, 18, 0.35);
   --rs-overlay: rgba(36, 29, 27, 0.55);
 
-  --rs-font-display: "Bodoni Moda", "Times New Roman", serif;
-  --rs-font-ui: "Archivo", "Helvetica Neue", sans-serif;
+  --rs-font-display: "Fixel Display", "Helvetica Neue", sans-serif;
+  --rs-font-ui: "Fixel Display", "Helvetica Neue", sans-serif;
+  --rs-weight-display: 700;
+  --rs-weight-sub: 600;
+  --rs-weight-ui: 500;
 
   --rs-space-1: 4px;
   --rs-space-2: 8px;
@@ -47,21 +90,41 @@
   --rs-z-gate: 300;
   --rs-z-float: 80;
 
-  --rs-ease: cubic-bezier(0.2, 0.8, 0.25, 1);
-  --rs-ease-hero: cubic-bezier(0.6, 0, 0.2, 1);
-  --rs-ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --rs-dur-fast: 200ms;
-  --rs-dur: 280ms;
-  --rs-dur-slow: 480ms;
-  --rs-dur-hero: 820ms;
+  /* ——— Motion: Emil UI (<300ms) + Luxury (500–2500ms) ——— */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drift: ease;
+  --ease-reveal: var(--ease-out);
+  --ease-ui: cubic-bezier(0.2, 0.8, 0.25, 1);
 
-  /* Scroll reveal — restrained tobacco pace */
-  --rs-reveal-duration: 560ms;
-  --rs-reveal-easing: var(--rs-ease-out);
+  --t-fast: 160ms;
+  --t-base: 250ms;
+  --t-modal: 300ms;
+  --motion-soft: 500ms;
+  --motion-reveal: 1000ms;
+  --motion-slide: 1500ms;
+  --motion-drift: 2500ms;
+  --stagger-ui: 60ms;
+  --stagger-reveal: 120ms;
+
+  /* RS aliases → canonical tokens */
+  --rs-ease: var(--ease-ui);
+  --rs-ease-hero: var(--ease-out);
+  --rs-ease-out: var(--ease-out);
+  --rs-ease-drift: var(--ease-drift);
+  --rs-dur-fast: var(--t-fast);
+  --rs-dur: var(--t-base);
+  --rs-dur-slow: var(--motion-soft);
+  --rs-dur-hero: var(--motion-drift);
+
+  /* Scroll reveal — luxury pace */
+  --rs-reveal-duration: var(--motion-reveal);
+  --rs-reveal-easing: var(--ease-reveal);
   --rs-reveal-delay: 0ms;
-  --rs-reveal-y: 20px;
+  --rs-reveal-y: 24px;
   --rs-reveal-x: 14px;
   --rs-reveal-scale: 0.97;
+  --rs-stagger-reveal: var(--stagger-reveal);
   --rs-hover-lift: -3px;
   --rs-hover-zoom: 1.035;
 
@@ -95,7 +158,7 @@ body {
   background: var(--rs-bark);
   color: var(--rs-text);
   font-family: var(--rs-font-ui);
-  font-weight: 400;
+  font-weight: var(--rs-weight-ui);
   font-size: 14px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -154,6 +217,18 @@ p {
   margin: 0;
 }
 
+h1,
+h2 {
+  font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-display);
+}
+
+h3,
+h4 {
+  font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-sub);
+}
+
 :focus {
   outline: none;
 }
@@ -177,7 +252,7 @@ p {
 
 .rs-display {
   font-family: var(--rs-font-display);
-  font-weight: 400;
+  font-weight: var(--rs-weight-display);
   letter-spacing: 0.02em;
   line-height: 1.2;
   text-wrap: pretty;
@@ -186,7 +261,7 @@ p {
 .rs-kicker {
   font-family: var(--rs-font-ui);
   font-size: 12px;
-  font-weight: 400;
+  font-weight: var(--rs-weight-sub);
   letter-spacing: 0.36em;
   text-transform: uppercase;
   color: var(--rs-text-soft);
@@ -207,7 +282,7 @@ p {
   color: var(--rs-text-muted);
   border-bottom: 1px solid var(--rs-gold);
   padding-bottom: 3px;
-  transition: color var(--rs-dur-fast) ease;
+  transition: color var(--t-fast) var(--ease-out);
 }
 
 .rs-link-gold.rs-hover-underline {
