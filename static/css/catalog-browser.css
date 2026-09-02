@@ -11,6 +11,19 @@ body.rs-catalog-page {
   --rs-cb-ink-soft: rgba(252, 242, 238, 0.88);
   --rs-cb-muted: rgba(252, 242, 238, 0.55);
   --rs-cb-faint: rgba(252, 242, 238, 0.42);
+  --rs-cb-champagne: #e8d5a8;
+  --rs-cb-gold-ink: #1a1410;
+  --rs-cb-radius: 0;
+  --rs-cb-gold-grad: linear-gradient(90deg, #ead7a6 0%, #d4b06a 42%, #b8893a 100%);
+  --rs-cb-gold-glass: linear-gradient(
+    90deg,
+    rgba(232, 213, 168, 0.92) 0%,
+    rgba(201, 154, 68, 0.88) 55%,
+    rgba(168, 120, 48, 0.9) 100%
+  );
+  --rs-cb-accent-border: linear-gradient(135deg, #f0e0b8 0%, #c9a044 42%, #8a6a2e 100%);
+  --rs-cb-accent: var(--rs-cb-champagne);
+  --rs-cb-accent-hover: #c9a044;
   width: 100%;
   background: var(--rs-cb-bg);
   padding-bottom: calc(40px + var(--rs-safe-b, 0px));
@@ -135,7 +148,7 @@ body.rs-catalog-page {
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--rs-gold);
+  color: var(--rs-cb-accent);
 }
 
 .rs-cb__chips {
@@ -168,7 +181,7 @@ body.rs-catalog-page {
 }
 
 .rs-cb__chip.is-active {
-  border-color: var(--rs-gold);
+  border-color: var(--rs-cb-accent);
   background: transparent;
   color: var(--rs-seashell);
 }
@@ -248,7 +261,7 @@ body.rs-catalog-page {
 }
 
 .rs-cb__sort.is-active {
-  border-color: var(--rs-gold);
+  border-color: var(--rs-cb-accent);
   background: transparent;
   color: var(--rs-seashell);
 }

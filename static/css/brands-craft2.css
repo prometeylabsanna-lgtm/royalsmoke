@@ -1,31 +1,5 @@
 /* Royal Smoke — brand panel ROYAL watermark pattern */
 
-.rs-brand-snap {
-  --rs-pattern-ink: color-mix(in srgb, #fcf2ee 16%, transparent);
-  --rs-pattern-gold: color-mix(in srgb, var(--rs-gold) 58%, transparent);
-}
-
-.rs-brand-snap--amber {
-  --rs-pattern-ink: color-mix(in srgb, #d2b48c 22%, transparent);
-}
-
-.rs-brand-snap--burgundy {
-  --rs-pattern-ink: color-mix(in srgb, #c4a0a8 20%, transparent);
-}
-
-.rs-brand-snap--green {
-  --rs-pattern-ink: color-mix(in srgb, #a8c4b0 20%, transparent);
-}
-
-.rs-brand-snap--brown {
-  --rs-pattern-ink: color-mix(in srgb, #c4b4a0 20%, transparent);
-}
-
-.rs-brand-snap__content {
-  overflow: hidden;
-  isolation: isolate;
-}
-
 .rs-brand-snap__pattern {
   position: absolute;
   inset: -2% -6%;

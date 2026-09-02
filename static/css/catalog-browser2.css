@@ -134,7 +134,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .rs-cb__sort:hover {
-    border-color: var(--rs-gold);
+    border-color: var(--rs-cb-accent);
     color: var(--rs-seashell);
   }
 

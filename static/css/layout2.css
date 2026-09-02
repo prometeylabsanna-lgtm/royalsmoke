@@ -1,0 +1,48 @@
+/* Royal Smoke — layout part 2: search overlay */
+
+/* ——— Search overlay ——— */
+.rs-search {
+  position: fixed;
+  inset: 0;
+  z-index: var(--rs-z-overlay);
+  background: rgba(36, 29, 27, 0.96);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: calc(24px + var(--rs-safe-t)) var(--rs-pad-x) var(--rs-pad-x);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--rs-dur) ease, visibility var(--rs-dur) ease;
+}
+
+.rs-search.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.rs-search__form {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border-bottom: 1px solid var(--rs-gold);
+  padding-bottom: 12px;
+  margin-top: 48px;
+}
+
+.rs-search__input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  color: var(--rs-seashell);
+  font-size: 18px;
+  font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-sub);
+  min-height: var(--rs-tap);
+}
+
+.rs-search__input::placeholder {
+  color: var(--rs-text-muted);
+}
+

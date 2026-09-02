@@ -1,5 +1,63 @@
 /* Royal Smoke — home blocks part 2: forms, results, responsive */
 
+/* ——— Product card CTA (from pages3 split) ——— */
+.rs-pcard__cart {
+  margin: 0;
+  margin-top: auto;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.rs-pcard__buy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid rgba(201, 154, 68, 0.7);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--rs-gold);
+  font-family: var(--rs-font-ui);
+  font-size: 12px;
+  font-weight: var(--rs-weight-ui);
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    opacity var(--t-base, var(--rs-dur)) var(--ease-out),
+    color var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out);
+}
+
+.rs-pcard__buy:focus-visible {
+  outline: 1px solid var(--rs-gold);
+  outline-offset: 3px;
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rs-pcard__buy {
+    opacity: 0.42;
+  }
+
+  .rs-pcard:hover .rs-pcard__buy,
+  .rs-pcard:focus-within .rs-pcard__buy {
+    opacity: 1;
+  }
+
+  .rs-pcard__buy:hover {
+    color: var(--rs-gold-hover);
+    border-color: var(--rs-gold-hover);
+    background: transparent;
+  }
+}
+
+
 /* ——— Home forms ——— */
 .rs-form--home {
   max-width: 880px;
@@ -129,10 +187,6 @@
     --rs-catalog-cols: 2.5;
   }
 
-  .rs-pcard__media {
-    aspect-ratio: 1 / 1;
-  }
-
   .rs-form-grid {
     grid-template-columns: 1fr 1fr;
     gap: 18px 20px;
@@ -164,10 +218,6 @@
     min-height: 42px;
     font-size: 11px;
   }
-
-  .rs-pcard__media {
-    aspect-ratio: 1 / 1;
-  }
 }
 
 @media (max-width: 767px) {
@@ -189,10 +239,6 @@
 
   .rs-pcard {
     gap: 14px;
-  }
-
-  .rs-pcard__media {
-    aspect-ratio: 1 / 1;
   }
 
   .rs-pcard__body {

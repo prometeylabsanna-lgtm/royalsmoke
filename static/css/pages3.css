@@ -243,10 +243,6 @@ body.rs-home {
 }
 
 @media (min-width: 1024px) {
-  .rs-home .rs-hero__content {
-    padding-bottom: calc(48px + env(safe-area-inset-bottom, 0px));
-  }
-
   .rs-home .rs-hero__brand {
     font-size: 70px;
     letter-spacing: 0.16em;
@@ -477,60 +473,4 @@ body.rs-home {
   font-size: 0.72em;
   font-weight: var(--rs-weight-ui);
   color: rgba(252, 242, 238, 0.55);
-}
-
-.rs-pcard__cart {
-  margin: 0;
-  margin-top: auto;
-  width: 100%;
-  flex: 0 0 auto;
-}
-
-.rs-pcard__buy {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  padding: 0 16px;
-  border: 1px solid rgba(201, 154, 68, 0.7);
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  color: var(--rs-gold);
-  font-family: var(--rs-font-ui);
-  font-size: 12px;
-  font-weight: var(--rs-weight-ui);
-  letter-spacing: 0.12em;
-  line-height: 1.2;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  transition:
-    opacity var(--t-base, var(--rs-dur)) var(--ease-out),
-    color var(--t-fast) var(--ease-out),
-    border-color var(--t-fast) var(--ease-out);
-}
-
-.rs-pcard__buy:focus-visible {
-  outline: 1px solid var(--rs-gold);
-  outline-offset: 3px;
-  opacity: 1;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .rs-pcard__buy {
-    opacity: 0.42;
-  }
-
-  .rs-pcard:hover .rs-pcard__buy,
-  .rs-pcard:focus-within .rs-pcard__buy {
-    opacity: 1;
-  }
-
-  .rs-pcard__buy:hover {
-    color: var(--rs-gold-hover);
-    border-color: var(--rs-gold-hover);
-    background: transparent;
-  }
 }

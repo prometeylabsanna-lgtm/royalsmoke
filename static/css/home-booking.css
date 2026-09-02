@@ -227,10 +227,6 @@
     gap: 8px;
   }
 
-  .rs-svc-card__fields--b2b {
-    grid-template-columns: 1fr;
-  }
-
   .rs-svc-card__field input {
     min-height: 40px;
     padding: 8px 10px;
@@ -309,7 +305,7 @@
   }
 }
 
-/* iOS Safari */
+/* iOS Safari — 16px inputs avoid zoom-on-focus */
 @supports (-webkit-touch-callout: none) {
   .rs-svc-card__field input {
     font-size: 16px;
@@ -323,13 +319,5 @@
   .rs-svc-card {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
-  }
-}
-
-@media (min-width: 768px) {
-  @supports (-webkit-touch-callout: none) {
-    .rs-svc-card__field input {
-      font-size: 16px;
-    }
   }
 }

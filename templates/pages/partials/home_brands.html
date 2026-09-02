@@ -1,5 +1,5 @@
 <section class="rs-section rs-home-brands" id="home-brands" aria-label="Бренди" data-brands-craft>
-  <div class="rs-brands-snaps" data-brands-snaps style="--brand-count: {{ brand_craft|length|default:4 }}">
+  <div class="rs-brands-snaps" data-brands-snaps style="--rs-brand-count: {{ brand_craft|length|default:4 }}">
     {% for item in brand_craft %}
       <article
         class="rs-brand-snap rs-brand-snap--{{ item.tone }}{% if item.flip %} rs-brand-snap--flip{% endif %}"

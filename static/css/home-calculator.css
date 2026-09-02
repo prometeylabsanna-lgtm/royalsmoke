@@ -1,6 +1,8 @@
 /* Royal Smoke — home calculator wizard */
 
 .rs-home-calc {
+  --rs-calc-btn-gold: linear-gradient(90deg, #ead7a6 0%, #d4b06a 42%, #b8893a 100%);
+  --rs-calc-btn-ink: #1a1410;
   position: relative;
   isolation: isolate;
   overflow: hidden;

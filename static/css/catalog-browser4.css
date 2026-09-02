@@ -148,7 +148,7 @@
   min-width: 0;
   min-height: 34px;
   padding: 0 12px;
-  border: 1px solid var(--rs-gold);
+  border: 1px solid var(--rs-cb-accent);
   border-radius: var(--rs-cb-radius, 0);
   background: #14110f;
   background-clip: padding-box;
@@ -176,7 +176,7 @@
 }
 
 .rs-cb-row .rs-pcard__buy:focus-visible {
-  outline: 1px solid var(--rs-gold);
+  outline: 1px solid var(--rs-cb-accent);
   outline-offset: 3px;
 }
 
