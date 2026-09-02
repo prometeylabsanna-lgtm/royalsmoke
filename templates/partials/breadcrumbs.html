@@ -1,0 +1,18 @@
+{% if breadcrumbs %}
+<nav class="rs-crumbs" aria-label="Навігаційний шлях">
+  <ol class="rs-crumbs__list">
+    {% for crumb in breadcrumbs %}
+      <li class="rs-crumbs__item">
+        {% if crumb.url and not forloop.last %}
+          <a class="rs-crumbs__link" href="{{ crumb.url }}">{{ crumb.title }}</a>
+        {% else %}
+          <span class="rs-crumbs__current" {% if forloop.last %}aria-current="page"{% endif %}>{{ crumb.title }}</span>
+        {% endif %}
+        {% if not forloop.last %}
+          <span class="rs-crumbs__sep" aria-hidden="true">›</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</nav>
+{% endif %}

@@ -2,6 +2,7 @@ from django.core.cache import cache
 from django.utils.translation import get_language
 
 from apps.core.block_defaults import BLOCK_DEFAULTS
+from apps.core.breadcrumbs import build_breadcrumbs
 from apps.core.models import HeroSlide, HistorySlide, SiteBlock, SiteSettings
 
 
@@ -40,4 +41,5 @@ def site_globals(request):
         'history_slides': history_slides,
         'current_language': get_language() or 'uk',
         'age_gate_cookie': 'age_ok',
+        'breadcrumbs': build_breadcrumbs(request),
     }
