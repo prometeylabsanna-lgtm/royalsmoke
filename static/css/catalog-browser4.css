@@ -13,9 +13,10 @@
   justify-content: center;
   min-height: 44px;
   padding: 0 14px;
-  border: 0;
-  border-radius: var(--rs-cb-radius, 12px);
+  border: 1px solid #b8893a;
+  border-radius: var(--rs-cb-radius, 0);
   background: var(--rs-cb-gold-grad);
+  background-clip: padding-box;
   color: var(--rs-cb-gold-ink, #1a1410);
   font-family: var(--rs-font-ui);
   font-size: 12px;
@@ -23,7 +24,6 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   box-shadow: none;
-  background-clip: padding-box;
   overflow: hidden;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -42,7 +42,7 @@
   margin-top: 0;
   padding: 0 14px;
   border: 1px solid transparent;
-  border-radius: var(--rs-cb-radius, 12px);
+  border-radius: var(--rs-cb-radius, 0);
   background:
     linear-gradient(#14110f, #14110f) padding-box,
     linear-gradient(135deg, #f0e0b8 0%, #c9a044 42%, #8a6a2e 100%) border-box;
@@ -138,6 +138,120 @@
 @media (prefers-reduced-motion: reduce) {
   .rs-cb__apply,
   .rs-cb__reset {
+    transition: none;
+  }
+}
+
+/* Catalog list — «У кошик»: reset surface → apply gold on hover/active */
+.rs-cb-row .rs-pcard__buy {
+  width: auto;
+  min-width: 0;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--rs-gold);
+  border-radius: var(--rs-cb-radius, 0);
+  background: #14110f;
+  background-clip: padding-box;
+  box-shadow: none;
+  color: rgba(252, 242, 238, 0.92);
+  font-family: var(--rs-font-ui);
+  font-size: 10px;
+  font-weight: var(--rs-weight-ui);
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-decoration: none;
+  opacity: 1;
+  cursor: pointer;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  touch-action: manipulation;
+  transition:
+    color var(--t-fast) var(--ease-out),
+    background var(--t-fast) var(--ease-out),
+    box-shadow var(--t-fast) var(--ease-out),
+    filter var(--t-fast) var(--ease-out);
+}
+
+.rs-cb-row .rs-pcard__buy:focus-visible {
+  outline: 1px solid var(--rs-gold);
+  outline-offset: 3px;
+}
+
+.rs-cb-row .rs-pcard__buy:active {
+  border-color: #b8893a;
+  background: linear-gradient(90deg, #ead7a6 0%, #d4b06a 42%, #b8893a 100%);
+  background-clip: padding-box;
+  color: var(--rs-cb-gold-ink, #1a1410);
+  box-shadow: none;
+  filter: brightness(0.96);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rs-cb-row .rs-pcard__buy {
+    opacity: 1;
+  }
+
+  .rs-cb-row .rs-pcard__buy:hover {
+    border-color: #b8893a;
+    background: linear-gradient(90deg, #ead7a6 0%, #d4b06a 42%, #b8893a 100%);
+    background-clip: padding-box;
+    color: var(--rs-cb-gold-ink, #1a1410);
+    box-shadow: none;
+    filter: brightness(1.04);
+  }
+}
+
+@media (min-width: 768px) {
+  .rs-cb-row__buy {
+    display: inline-grid;
+    grid-template-columns: max-content;
+    justify-items: stretch;
+    justify-self: end;
+    align-content: start;
+    gap: 13px;
+    width: auto;
+    max-width: 100%;
+  }
+
+  .rs-cb-row__price {
+    white-space: nowrap;
+  }
+
+  .rs-cb-row__cart-form {
+    display: grid;
+    width: 100%;
+    margin: 0;
+  }
+
+  .rs-cb-row .rs-pcard__buy {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    min-height: 38px;
+    padding: 0 14px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 767px) {
+  .rs-cb-row .rs-pcard__buy {
+    min-height: 32px;
+    padding: 0 10px;
+    font-size: 10px;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .rs-cb-row .rs-pcard__buy {
+    cursor: default;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rs-cb-row .rs-pcard__buy {
     transition: none;
   }
 }

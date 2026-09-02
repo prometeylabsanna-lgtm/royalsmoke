@@ -9,15 +9,6 @@ from django.urls import reverse
 
 from apps.catalog.models import Brand, Category, Product
 
-DEFAULT_LEAD = 'Відбір з мануфактур\nКуби, Нікарагуа та Домінікани'
-
-CATEGORY_LEADS = {
-    Category.Kind.CIGARS: 'Відбір з мануфактур\nКуби, Нікарагуа та Домінікани',
-    Category.Kind.ACCESSORIES: 'Хумідори, гільйотини,\nпопільниці, футляри',
-    Category.Kind.CIGARETTES: 'Відбір сигарет\nдля щоденного ритуалу',
-    Category.Kind.OTHER: 'Сигари, аксесуари та бренди\n— відбір для ритуалу',
-}
-
 SORT_OPTIONS = (
     ('top', 'Топ'),
     ('new', 'Новинки'),
@@ -237,23 +228,14 @@ def build_browser_context(request, *, products, category=None, brand=None):
 
     if brand:
         crumb = brand.name
-        lead = brand.short_description or brand.description or f'Товари {brand.name}'
     elif category:
         crumb = category.name
-        lead = category.description or CATEGORY_LEADS.get(category.kind, DEFAULT_LEAD)
     elif len(selected_categories) == 1:
         slug = next(iter(selected_categories))
         match = next((c for c in categories if c.slug == slug), None)
         crumb = match.name if match else 'Усі'
-        lead = (
-            match.description
-            or CATEGORY_LEADS.get(match.kind, DEFAULT_LEAD)
-            if match
-            else DEFAULT_LEAD
-        )
     else:
         crumb = 'Усі'
-        lead = DEFAULT_LEAD
 
     has_filters = any([
         selected_strength,
@@ -278,7 +260,6 @@ def build_browser_context(request, *, products, category=None, brand=None):
         'country_chips': country_chips,
         'sort_chips': sort_chips,
         'catalog_crumb': crumb,
-        'catalog_lead': lead,
         'reset_url': base_path if brand or category else list_path,
         'has_filters': has_filters,
         'filter_base_path': base_path,

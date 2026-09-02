@@ -6,10 +6,10 @@
 {% block body_class %}rs-catalog-page{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/catalog-browser.css' %}?v=19">
-<link rel="stylesheet" href="{% static 'css/catalog-browser2.css' %}?v=19">
-<link rel="stylesheet" href="{% static 'css/catalog-browser3.css' %}?v=9">
-<link rel="stylesheet" href="{% static 'css/catalog-browser4.css' %}?v=3">
+<link rel="stylesheet" href="{% static 'css/catalog-browser.css' %}?v=21">
+<link rel="stylesheet" href="{% static 'css/catalog-browser2.css' %}?v=25">
+<link rel="stylesheet" href="{% static 'css/catalog-browser3.css' %}?v=10">
+<link rel="stylesheet" href="{% static 'css/catalog-browser4.css' %}?v=10">
 {% endblock %}
 
 {% block content %}
@@ -149,9 +149,6 @@
 
     <div class="rs-cb__main">
       <header class="rs-cb__head">
-        <div class="rs-cb__intro">
-          <h1 class="rs-cb__title" data-cb-title>{{ catalog_lead|linebreaksbr }}</h1>
-        </div>
         <div class="rs-cb__sorts" role="group" aria-label="Сортування" data-cb-sorts>
           {% for chip in sort_chips %}
             <button type="button"

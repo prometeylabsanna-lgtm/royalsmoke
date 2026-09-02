@@ -3,7 +3,7 @@
 .rs-cb {
   --rs-cb-champagne: #e8d5a8;
   --rs-cb-gold-ink: #1a1410;
-  --rs-cb-radius: 12px;
+  --rs-cb-radius: 0;
   --rs-cb-gold-grad: linear-gradient(90deg, #ead7a6 0%, #d4b06a 42%, #b8893a 100%);
   --rs-cb-gold-glass: linear-gradient(
     90deg,

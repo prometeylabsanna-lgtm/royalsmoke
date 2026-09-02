@@ -204,8 +204,8 @@ body.rs-catalog-page {
 .rs-cb__main {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 28px max(var(--rs-pad-x-sm), var(--rs-safe-r, 0px)) 32px max(var(--rs-pad-x-sm), var(--rs-safe-l, 0px));
+  gap: 18px;
+  padding: 16px max(var(--rs-pad-x-sm), var(--rs-safe-r, 0px)) 32px max(var(--rs-pad-x-sm), var(--rs-safe-l, 0px));
   min-width: 0;
   background: transparent;
 }
@@ -213,38 +213,17 @@ body.rs-catalog-page {
 .rs-cb__head {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  gap: 18px;
-}
-
-.rs-cb__intro {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-width: 0;
-}
-
-.rs-cb__title {
-  margin: 0;
-  padding: 0;
-  font-family: var(--rs-font-ui);
-  font-weight: var(--rs-weight-sub);
-  font-size: clamp(22px, 3.2vw, 34px);
-  line-height: 1.28;
-  letter-spacing: 0.22em;
-  text-indent: 0;
-  text-align: left;
-  text-transform: uppercase;
-  color: rgba(252, 242, 238, 0.92);
-  max-width: 22em;
-  text-wrap: balance;
+  align-items: flex-end;
+  gap: 0;
 }
 
 .rs-cb__sorts {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   gap: 8px;
+  width: 100%;
 }
 
 .rs-cb__sort {

@@ -159,6 +159,10 @@ body:not(.rs-home) .rs-main {
   text-align: center;
   padding-left: 0.3em;
   white-space: nowrap;
+  transform: translateZ(0);
+  transition:
+    color var(--rs-dur-fast) ease,
+    transform var(--rs-dur-fast) ease;
 }
 
 .rs-icon-btn {
@@ -206,13 +210,21 @@ body:not(.rs-home) .rs-main {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--rs-text-soft);
-  transition: color var(--rs-dur-fast) ease;
   white-space: nowrap;
   flex-shrink: 0;
+  display: inline-block;
+  transform: translateZ(0);
+  transition:
+    color var(--rs-dur-fast) ease,
+    transform var(--rs-dur-fast) ease;
 }
 
-.rs-header__nav a:hover {
-  color: var(--rs-gold);
+@media (hover: hover) and (pointer: fine) {
+  .rs-header__brand:hover,
+  .rs-header__nav a:hover {
+    color: var(--rs-gold);
+    transform: scale(1.06);
+  }
 }
 
 .rs-lang {
