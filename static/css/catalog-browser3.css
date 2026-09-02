@@ -15,17 +15,17 @@
 
 /* ——— Category nav ——— */
 .rs-cb__nav {
-  gap: 10px;
+  gap: 6px;
 }
 
 .rs-cb__nav-item {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
-  min-height: 60px;
-  padding: 0 16px;
+  min-height: 46px;
+  padding: 0 12px;
   border: 1px solid transparent;
   border-radius: var(--rs-cb-radius);
   background: transparent;
@@ -44,17 +44,17 @@
 .rs-cb__nav-text {
   flex: 1;
   min-width: 0;
-  padding: 12px 0;
+  padding: 8px 0;
 }
 
 .rs-cb__nav-label {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: var(--rs-weight-sub);
   color: var(--rs-cb-champagne);
 }
 
 .rs-cb__nav-count {
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.14em;
   color: rgba(201, 154, 68, 0.48);
 }
@@ -92,8 +92,8 @@
 .rs-cb__slider {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding-top: 4px;
+  gap: 6px;
+  padding-top: 2px;
 }
 
 .rs-cb__slider-track {
@@ -218,7 +218,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   font-family: var(--rs-font-ui);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.02em;
   color: var(--rs-cb-champagne);
 }
@@ -235,8 +235,8 @@
 .rs-cb__range {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding-top: 2px;
+  gap: 4px;
+  padding-top: 0;
 }
 
 .rs-cb__range-bounds {
@@ -244,7 +244,7 @@
   justify-content: space-between;
   gap: 8px;
   font-family: var(--rs-font-ui);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.04em;
   color: rgba(252, 242, 238, 0.62);
   font-variant-numeric: tabular-nums;
@@ -252,13 +252,13 @@
 
 .rs-cb__range-track {
   position: relative;
-  height: 36px;
+  height: 30px;
   display: flex;
   align-items: center;
   touch-action: none;
   -webkit-user-select: none;
   user-select: none;
-  margin-top: 14px;
+  margin-top: 10px;
 }
 
 .rs-cb__range-track::before {
@@ -309,7 +309,7 @@
   left: 0;
   right: 0;
   width: 100%;
-  height: 36px;
+  height: 30px;
   margin: 0;
   padding: 0;
   background: transparent;
@@ -334,13 +334,14 @@
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
-  min-height: 36px;
-  padding: 0 12px;
+  min-height: 30px;
+  padding: 0 10px;
   border: 1px solid rgba(252, 242, 238, 0.28);
   border-radius: var(--rs-cb-radius);
   background: transparent;
   color: rgba(252, 242, 238, 0.72);
   letter-spacing: 0.1em;
+  font-size: 9px;
 }
 
 .rs-cb__chip.is-active {
@@ -379,20 +380,20 @@
 
 @media (min-width: 768px) {
   .rs-cb__nav-item {
-    min-height: 64px;
+    min-height: 48px;
   }
 
   .rs-cb__nav-label {
-    font-size: 21px;
+    font-size: 16px;
   }
 
   .rs-cb__range-bounds,
   .rs-cb__slider-labels {
-    font-size: 13px;
+    font-size: 11px;
   }
 
   .rs-cb__slider-track {
-    height: 30px;
+    height: 26px;
   }
 }
 

@@ -3,23 +3,23 @@
 .rs-cb__actions {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 4px;
+  gap: 6px;
+  margin-top: 2px;
 }
 
 .rs-cb__apply {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 0 14px;
+  min-height: 40px;
+  padding: 0 12px;
   border: 1px solid #b8893a;
   border-radius: var(--rs-cb-radius, 0);
   background: var(--rs-cb-gold-grad);
   background-clip: padding-box;
   color: var(--rs-cb-gold-ink, #1a1410);
   font-family: var(--rs-font-ui);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: var(--rs-weight-sub);
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -38,9 +38,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
+  min-height: 40px;
   margin-top: 0;
-  padding: 0 14px;
+  padding: 0 12px;
   border: 1px solid transparent;
   border-radius: var(--rs-cb-radius, 0);
   background:
@@ -48,7 +48,7 @@
     linear-gradient(135deg, #f0e0b8 0%, #c9a044 42%, #8a6a2e 100%) border-box;
   color: rgba(252, 242, 238, 0.92);
   font-family: var(--rs-font-ui);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: var(--rs-weight-ui);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -118,13 +118,13 @@
 
 @media (min-width: 1024px) {
   .rs-cb__actions {
-    margin-top: auto;
-    gap: 10px;
+    margin-top: 8px;
+    gap: 6px;
   }
 
   .rs-cb__apply,
   .rs-cb__reset {
-    min-height: 46px;
+    min-height: 40px;
   }
 }
 

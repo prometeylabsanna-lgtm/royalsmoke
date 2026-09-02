@@ -150,8 +150,8 @@
 
 @media (min-width: 768px) {
   .rs-cb__aside {
-    padding: 22px 20px;
-    gap: 20px;
+    padding: 16px 16px;
+    gap: 14px;
   }
 
   .rs-cb__main {
@@ -207,12 +207,14 @@
     top: calc(var(--rs-header-h) + var(--rs-safe-t, 0px) + 8px);
     align-self: start;
     width: 100%;
-    min-height: calc(100dvh - var(--rs-header-h) - var(--rs-safe-t, 0px) - 16px);
-    justify-content: space-between;
-    gap: 22px;
-    padding: 24px 22px;
+    max-height: calc(100dvh - var(--rs-header-h) - var(--rs-safe-t, 0px) - 16px);
+    min-height: 0;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
     border-right: 0;
     border-bottom: 0;
+    overflow: visible;
   }
 
   .rs-cb__main {
@@ -220,38 +222,38 @@
   }
 
   .rs-cb__nav {
-    gap: 10px;
+    gap: 6px;
   }
 
   .rs-cb__nav-label {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .rs-cb__nav-item {
-    min-height: 60px;
-    padding-inline: 16px;
+    min-height: 46px;
+    padding-inline: 12px;
   }
 
   .rs-cb__nav-text {
-    padding: 13px 0;
+    padding: 7px 0;
   }
 
   .rs-cb__filters {
-    gap: 22px;
-    flex: 1 1 auto;
+    gap: 12px;
+    flex: 0 0 auto;
   }
 
   .rs-cb__facet {
-    gap: 10px;
+    gap: 6px;
   }
 
   .rs-cb__chip {
-    min-height: 32px;
-    padding: 0 11px;
+    min-height: 30px;
+    padding: 0 10px;
   }
 
   .rs-cb__reset {
-    min-height: 44px;
+    min-height: 40px;
   }
 
   .rs-cb__main {
@@ -284,12 +286,12 @@
   }
 
   .rs-cb__aside {
-    padding: 28px 26px;
-    gap: 24px;
+    padding: 16px 18px;
+    gap: 14px;
   }
 
   .rs-cb__filters {
-    gap: 24px;
+    gap: 14px;
   }
 
   .rs-cb__main {

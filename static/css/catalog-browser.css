@@ -34,8 +34,8 @@ body.rs-catalog-page {
   --rs-cb-glass-border: rgba(201, 154, 68, 0.28);
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding: 18px max(var(--rs-pad-x-sm), var(--rs-safe-l, 0px)) 18px max(var(--rs-pad-x-sm), var(--rs-safe-r, 0px));
+  gap: 12px;
+  padding: 14px max(var(--rs-pad-x-sm), var(--rs-safe-l, 0px)) 14px max(var(--rs-pad-x-sm), var(--rs-safe-r, 0px));
   background: transparent;
   border: 0;
 }
@@ -121,13 +121,13 @@ body.rs-catalog-page {
 .rs-cb__filters {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 12px;
 }
 
 .rs-cb__facet {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .rs-cb__facet-title {
