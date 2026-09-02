@@ -5,6 +5,10 @@
       <h2 class="rs-section__title">Каталог</h2>
     </div>
 
+    <div class="rs-home-catalog__tools" data-rs-reveal>
+      <a class="rs-link-gold rs-hover-underline" href="{% url 'catalog:list' %}">Увесь каталог</a>
+    </div>
+
     <div class="rs-home-catalog__stage">
       <button
         type="button"
@@ -81,10 +85,6 @@
       >
         <svg width="22" height="10" viewBox="0 0 26 8" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 4h24M21 1l3 3-3 3"/></svg>
       </button>
-    </div>
-
-    <div class="rs-home-catalog__foot" data-rs-reveal>
-      <a class="rs-link-gold rs-hover-underline" href="{% url 'catalog:list' %}">Увесь каталог</a>
     </div>
   </div>
 </section>

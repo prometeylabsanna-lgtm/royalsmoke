@@ -1,0 +1,300 @@
+/* Royal Smoke — catalog browser (variant 3c), home-aligned tokens */
+
+body.rs-catalog-page {
+  background-color: #100d0c;
+}
+
+.rs-cb {
+  --rs-cb-bg: #100d0c;
+  --rs-cb-panel: transparent;
+  --rs-cb-ink: rgba(252, 242, 238, 0.92);
+  --rs-cb-ink-soft: rgba(252, 242, 238, 0.88);
+  --rs-cb-muted: rgba(252, 242, 238, 0.55);
+  --rs-cb-faint: rgba(252, 242, 238, 0.42);
+  width: 100%;
+  background: var(--rs-cb-bg);
+  padding-bottom: calc(40px + var(--rs-safe-b, 0px));
+  color: var(--rs-seashell);
+  font-family: var(--rs-font-ui);
+  font-weight: var(--rs-weight-ui);
+}
+
+.rs-cb__shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  max-width: var(--rs-container);
+  margin-inline: auto;
+  min-height: min(880px, calc(100dvh - var(--rs-header-h) - var(--rs-safe-t, 0px)));
+}
+
+.rs-cb__aside {
+  --rs-cb-glass: rgba(201, 154, 68, 0.1);
+  --rs-cb-glass-strong: rgba(201, 154, 68, 0.16);
+  --rs-cb-glass-border: rgba(201, 154, 68, 0.28);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 18px max(var(--rs-pad-x-sm), var(--rs-safe-l, 0px)) 18px max(var(--rs-pad-x-sm), var(--rs-safe-r, 0px));
+  background: transparent;
+  border: 0;
+}
+
+.rs-cb__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rs-cb__nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 4px 0 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-decoration: none;
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--t-fast) var(--ease-out);
+}
+
+.rs-cb__nav-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  flex: 1;
+  padding: 10px 0;
+  min-width: 0;
+}
+
+.rs-cb__nav-label {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--rs-font-ui);
+  font-size: 17px;
+  font-weight: var(--rs-weight-sub);
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+  text-indent: 0;
+  text-align: left;
+  color: rgba(252, 242, 238, 0.9);
+}
+
+.rs-cb__nav-count {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-indent: 0;
+  text-align: left;
+  text-transform: uppercase;
+  color: rgba(252, 242, 238, 0.42);
+}
+
+.rs-cb__nav-item.is-active {
+  background: transparent;
+}
+
+.rs-cb__nav-item.is-active .rs-cb__nav-label {
+  color: var(--rs-cb-champagne, #e8d5a8);
+}
+
+.rs-cb__nav-item.is-active .rs-cb__nav-count {
+  color: rgba(232, 213, 168, 0.58);
+}
+
+.rs-cb__rule {
+  height: 1px;
+  margin-block: 2px;
+  background: rgba(252, 242, 238, 0.1);
+}
+
+.rs-cb__filters {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.rs-cb__facet {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rs-cb__facet-title {
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rs-gold);
+}
+
+.rs-cb__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.rs-cb__chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--rs-border-soft);
+  background: transparent;
+  color: var(--rs-text-muted);
+  font-family: var(--rs-font-ui);
+  font-size: 10px;
+  font-weight: var(--rs-weight-ui);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out),
+    background var(--t-fast) var(--ease-out);
+}
+
+.rs-cb__chip.is-active {
+  border-color: var(--rs-gold);
+  background: transparent;
+  color: var(--rs-seashell);
+}
+
+.rs-cb__reset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  margin-top: 0;
+  padding: 0 12px;
+  border: 1px solid var(--rs-border-soft);
+  background: transparent;
+  color: var(--rs-text-muted);
+  font-family: var(--rs-font-ui);
+  font-size: 11px;
+  font-weight: var(--rs-weight-ui);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out);
+}
+
+.rs-cb__reset.is-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.rs-cb__main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 28px max(var(--rs-pad-x-sm), var(--rs-safe-r, 0px)) 32px max(var(--rs-pad-x-sm), var(--rs-safe-l, 0px));
+  min-width: 0;
+  background: transparent;
+}
+
+.rs-cb__head {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 18px;
+}
+
+.rs-cb__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.rs-cb__title {
+  margin: 0;
+  padding: 0;
+  font-family: var(--rs-font-ui);
+  font-weight: var(--rs-weight-sub);
+  font-size: clamp(22px, 3.2vw, 34px);
+  line-height: 1.28;
+  letter-spacing: 0.22em;
+  text-indent: 0;
+  text-align: left;
+  text-transform: uppercase;
+  color: rgba(252, 242, 238, 0.92);
+  max-width: 22em;
+  text-wrap: balance;
+}
+
+.rs-cb__sorts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.rs-cb__sort {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--rs-border-soft);
+  background: transparent;
+  color: var(--rs-text-muted);
+  font-family: var(--rs-font-ui);
+  font-size: 11px;
+  font-weight: var(--rs-weight-ui);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out);
+}
+
+.rs-cb__sort.is-active {
+  border-color: var(--rs-gold);
+  background: transparent;
+  color: var(--rs-seashell);
+}
+
+.rs-cb__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.rs-cb__empty {
+  margin: 0;
+  padding: 48px 0;
+  text-align: center;
+  color: var(--rs-text-muted);
+}
+
+.rs-cb__pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.rs-cb__pager-meta {
+  font-size: 13px;
+  color: var(--rs-text-muted);
+}

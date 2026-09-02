@@ -2,45 +2,12 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_GET
 
-from apps.catalog.models import Brand, Category, Product, ProductVariant
-
-
-def _apply_filters(qs, params):
-    strength = params.getlist('strength') or ([params.get('strength')] if params.get('strength') else [])
-    country = params.getlist('country')
-    brand = params.getlist('brand')
-    tag = (params.get('tag') or '').strip()
-    q = (params.get('q') or '').strip()
-    sort = params.get('sort') or 'default'
-
-    strength = [s for s in strength if s]
-    if strength:
-        qs = qs.filter(strength__in=strength)
-    if country:
-        qs = qs.filter(country__in=country)
-    if brand:
-        qs = qs.filter(brand__slug__in=brand)
-    if tag:
-        qs = qs.filter(tags__slug=tag).distinct()
-    if q:
-        qs = qs.filter(
-            Q(name__icontains=q)
-            | Q(brand__name__icontains=q)
-            | Q(description__icontains=q)
-            | Q(short_story__icontains=q)
-        )
-
-    if sort in ('price_asc', 'price'):
-        qs = qs.order_by('base_price', 'name')
-    elif sort in ('price_desc', '-price'):
-        qs = qs.order_by('-base_price', 'name')
-    elif sort == 'name':
-        qs = qs.order_by('name')
-    elif sort == 'new':
-        qs = qs.order_by('-created_at')
-    else:
-        qs = qs.order_by('sort_order', 'name')
-    return qs
+from apps.catalog.browser_filters import (
+    apply_category_params,
+    apply_filters,
+    build_browser_context,
+)
+from apps.catalog.models import Brand, Category, Product
 
 
 def catalog_list(request, slug=None):
@@ -48,28 +15,10 @@ def catalog_list(request, slug=None):
     category = None
     if slug:
         category = get_object_or_404(Category, slug=slug, is_active=True)
-        qs = qs.filter(Q(category=category) | Q(category__parent=category))
-    qs = _apply_filters(qs, request.GET)
+    qs = apply_category_params(qs, request.GET, path_category=category)
+    qs = apply_filters(qs, request.GET)
     products = list(qs[:48])
-
-    facets = {
-        'strengths': Product.Strength.choices,
-        'countries': (
-            Product.objects.on_storefront()
-            .exclude(country='')
-            .order_by('country')
-            .values_list('country', flat=True)
-            .distinct()
-        ),
-        'brands': Brand.objects.filter(is_active=True).order_by('name'),
-        'categories': Category.objects.filter(is_active=True, parent__isnull=True),
-    }
-    ctx = {
-        'products': products,
-        'category': category,
-        'facets': facets,
-        'current_filters': request.GET,
-    }
+    ctx = build_browser_context(request, products=products, category=category)
     if request.htmx:
         return render(request, 'catalog/partials/product_grid.html', ctx)
     return render(request, 'catalog/list.html', ctx)
@@ -77,18 +26,14 @@ def catalog_list(request, slug=None):
 
 def brand_detail(request, slug):
     brand = get_object_or_404(Brand, slug=slug, is_active=True)
-    products = Product.objects.on_storefront().with_relations().filter(brand=brand)[:48]
-    return render(request, 'catalog/list.html', {
-        'products': products,
-        'brand': brand,
-        'facets': {
-            'strengths': Product.Strength.choices,
-            'countries': [],
-            'brands': Brand.objects.filter(is_active=True),
-            'categories': Category.objects.filter(is_active=True, parent__isnull=True),
-        },
-        'current_filters': request.GET,
-    })
+    qs = Product.objects.on_storefront().with_relations().filter(brand=brand)
+    qs = apply_category_params(qs, request.GET, path_category=None)
+    qs = apply_filters(qs, request.GET)
+    products = list(qs[:48])
+    ctx = build_browser_context(request, products=products, brand=brand)
+    if request.htmx:
+        return render(request, 'catalog/partials/product_grid.html', ctx)
+    return render(request, 'catalog/list.html', ctx)
 
 
 def product_detail(request, slug):
@@ -131,7 +76,12 @@ def search_suggest(request):
     if len(q) >= 2:
         products = list(
             Product.objects.on_storefront()
-            .filter(Q(name__icontains=q) | Q(brand__name__icontains=q))
+            .filter(
+                Q(name__icontains=q) | Q(brand__name__icontains=q)
+            )
             .select_related('brand')[:8]
         )
-    return render(request, 'catalog/partials/search_results.html', {'products': products, 'q': q})
+    return render(request, 'catalog/partials/search_suggest.html', {
+        'products': products,
+        'q': q,
+    })

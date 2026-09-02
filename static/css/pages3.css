@@ -367,7 +367,7 @@ body.rs-home {
   display: none;
 }
 
-.rs-home-catalog__foot {
+.rs-home-catalog__tools {
   display: flex;
   justify-content: flex-end;
   margin-top: 8px;

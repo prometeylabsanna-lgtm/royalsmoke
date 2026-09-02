@@ -1,73 +1,175 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Каталог — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% if category %}{{ category.name }}{% elif brand %}{{ brand.name }}{% else %}Каталог{% endif %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+
+{% block body_class %}rs-catalog-page{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/catalog-browser.css' %}?v=19">
+<link rel="stylesheet" href="{% static 'css/catalog-browser2.css' %}?v=19">
+<link rel="stylesheet" href="{% static 'css/catalog-browser3.css' %}?v=9">
+<link rel="stylesheet" href="{% static 'css/catalog-browser4.css' %}?v=3">
+{% endblock %}
 
 {% block content %}
-<header class="rs-page-head" data-rs-reveal>
-  <h1>{% if category %}{{ category.name }}{% elif brand %}{{ brand.name }}{% else %}Каталог{% endif %}</h1>
-  {% if category.description or brand.description %}
-    <p>{{ category.description|default:brand.description }}</p>
-  {% else %}
-    <p>Сигари, аксесуари та бренди — відбір для ритуалу.</p>
-  {% endif %}
-</header>
-
-<div class="rs-container rs-catalog">
-  <aside class="rs-filters" aria-label="Фільтри" data-rs-reveal data-reveal-delay="60">
-    <form method="get"
-          hx-get="{% if category %}{% url 'catalog:category' slug=category.slug %}{% else %}{% url 'catalog:list' %}{% endif %}"
-          hx-target="#product-grid"
-          hx-swap="innerHTML"
-          hx-push-url="true"
-          hx-trigger="change from:select, submit"
-          class="rs-filters">
-      <div class="rs-field">
-        <label for="f-q">Пошук</label>
-        <input id="f-q" type="search" name="q" value="{{ request.GET.q }}" placeholder="Назва, бренд…">
-      </div>
-      <div class="rs-field">
-        <label for="f-strength">Міцність</label>
-        <select id="f-strength" name="strength" class="rs-filters__select" hx-trigger="change">
-          <option value="">Усі</option>
-          <option value="mild" {% if request.GET.strength == "mild" %}selected{% endif %}>Легка</option>
-          <option value="medium" {% if request.GET.strength == "medium" %}selected{% endif %}>Середня</option>
-          <option value="medium_full" {% if request.GET.strength == "medium_full" %}selected{% endif %}>Середньо-повна</option>
-          <option value="full" {% if request.GET.strength == "full" %}selected{% endif %}>Повна</option>
-        </select>
-      </div>
-      <div class="rs-field">
-        <label for="f-sort">Сортування</label>
-        <select id="f-sort" name="sort" class="rs-filters__select" hx-trigger="change">
-          <option value="">За замовчуванням</option>
-          <option value="price" {% if request.GET.sort == "price" %}selected{% endif %}>Ціна ↑</option>
-          <option value="-price" {% if request.GET.sort == "-price" %}selected{% endif %}>Ціна ↓</option>
-          <option value="name" {% if request.GET.sort == "name" %}selected{% endif %}>Назва</option>
-        </select>
-      </div>
-      <div class="rs-filters__row">
-        <a class="rs-tag{% if request.GET.tag == 'top' %} is-active{% endif %}" href="?tag=top">Топ</a>
-        <a class="rs-tag{% if request.GET.tag == 'new' %} is-active{% endif %}" href="?tag=new">Новинки</a>
-        <a class="rs-tag{% if request.GET.tag == 'sale' %} is-active{% endif %}" href="?tag=sale">Акції</a>
-      </div>
-      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">Застосувати</button>
-    </form>
-  </aside>
-
-  <div>
-    <div id="product-grid" class="rs-grid-2">
-      {% include "catalog/partials/product_grid.html" with products=products %}
-    </div>
-    {% if page_obj and page_obj.has_other_pages %}
-      <nav class="rs-filters__row" style="margin-top:28px" aria-label="Пагінація">
-        {% if page_obj.has_previous %}
-          <a class="rs-btn rs-btn--ghost" href="?page={{ page_obj.previous_page_number }}">Назад</a>
-        {% endif %}
-        <span class="rs-meta">Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}</span>
-        {% if page_obj.has_next %}
-          <a class="rs-btn rs-btn--ghost" href="?page={{ page_obj.next_page_number }}">Далі</a>
-        {% endif %}
+<section class="rs-cb" aria-label="Каталог"
+         data-cb-root
+         data-cb-base="{{ filter_base_path }}"
+         data-cb-list="{{ filter_list_path }}"
+         data-cb-brand="{% if brand %}1{% else %}0{% endif %}"
+         data-cb-bound-min="{{ price_bound_min }}"
+         data-cb-bound-max="{{ price_bound_max }}"
+         data-cb-price-min="{{ price_min }}"
+         data-cb-price-max="{{ price_max }}"
+         data-cb-sort="{{ current_sort }}"
+         data-cb-categories="{{ selected_categories|join:',' }}"
+         data-cb-strength="{{ selected_strength|join:',' }}"
+         data-cb-strength-map="{{ strength_slider_map|join:',' }}"
+         data-cb-country="{{ selected_country|join:',' }}">
+  <div class="rs-cb__shell">
+    <aside class="rs-cb__aside" aria-label="Категорії та фільтри">
+      <nav class="rs-cb__nav" aria-label="Категорії" data-cb-nav>
+        <button type="button"
+                class="rs-cb__nav-item{% if all_categories_active %} is-active{% endif %}"
+                data-cb-cat="all"
+                aria-pressed="{{ all_categories_active|yesno:'true,false' }}">
+          <span class="rs-cb__nav-text">
+            <span class="rs-cb__nav-label">Усі</span>
+            <span class="rs-cb__nav-count">каталог</span>
+          </span>
+        </button>
+        {% for cat in nav_categories %}
+          <button type="button"
+                  class="rs-cb__nav-item{% if cat.is_active %} is-active{% endif %}"
+                  data-cb-cat="{{ cat.slug }}"
+                  aria-pressed="{{ cat.is_active|yesno:'true,false' }}">
+            <span class="rs-cb__nav-text">
+              <span class="rs-cb__nav-label">{{ cat.name }}</span>
+              <span class="rs-cb__nav-count">
+                {{ cat.count }}
+                {% if cat.count == 1 %}позиція{% elif cat.count >= 2 and cat.count <= 4 %}позиції{% else %}позицій{% endif %}
+              </span>
+            </span>
+          </button>
+        {% endfor %}
       </nav>
-    {% endif %}
+
+      <div class="rs-cb__rule" aria-hidden="true"></div>
+
+      <div class="rs-cb__filters">
+        <div class="rs-cb__facet">
+          <p class="rs-cb__facet-title rs-cb__facet-title--gold">Міцність</p>
+          <div class="rs-cb__slider" data-cb-strength-wrap>
+            <div class="rs-cb__slider-track">
+              <div class="rs-cb__slider-steps" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="rs-cb__slider-fill" data-cb-strength-fill></div>
+              <input class="rs-cb__slider-input"
+                     type="range"
+                     min="0"
+                     max="2"
+                     step="1"
+                     value="{{ strength_slider_value }}"
+                     data-cb-strength-range
+                     aria-label="Міцність"
+                     list="rs-cb-strength-steps">
+            </div>
+            <datalist id="rs-cb-strength-steps">
+              <option value="0" label="Легка"></option>
+              <option value="1" label="Середня"></option>
+              <option value="2" label="Повна"></option>
+            </datalist>
+            <div class="rs-cb__slider-labels">
+              <span>Легка</span>
+              <span aria-hidden="true"></span>
+              <span>Повна</span>
+            </div>
+          </div>
+        </div>
+
+        {% if country_chips %}
+          <div class="rs-cb__facet">
+            <p class="rs-cb__facet-title">Країна</p>
+            <div class="rs-cb__chips rs-cb__chips--country" role="group" aria-label="Країна">
+              {% for chip in country_chips %}
+                <button type="button"
+                        class="rs-cb__chip{% if chip.is_active %} is-active{% endif %}"
+                        data-cb-chip="country"
+                        data-cb-value="{{ chip.value }}"
+                        aria-pressed="{{ chip.is_active|yesno:'true,false' }}">{{ chip.label }}</button>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="rs-cb__facet">
+          <p class="rs-cb__facet-title">Ціна</p>
+          <div class="rs-cb__range" data-cb-range>
+            <div class="rs-cb__range-track" data-cb-range-track>
+              <div class="rs-cb__range-fill" data-cb-range-fill></div>
+              <span class="rs-cb__range-tip rs-cb__range-tip--min is-hidden"
+                    data-cb-tip-min
+                    aria-hidden="true"></span>
+              <span class="rs-cb__range-tip rs-cb__range-tip--max is-hidden"
+                    data-cb-tip-max
+                    aria-hidden="true"></span>
+              <input class="rs-cb__range-input rs-cb__range-input--min"
+                     type="range"
+                     data-cb-range-min
+                     min="{{ price_bound_min }}"
+                     max="{{ price_bound_max }}"
+                     step="1"
+                     value="{{ price_min }}"
+                     aria-label="Мінімальна ціна">
+              <input class="rs-cb__range-input rs-cb__range-input--max"
+                     type="range"
+                     data-cb-range-max
+                     min="{{ price_bound_min }}"
+                     max="{{ price_bound_max }}"
+                     step="1"
+                     value="{{ price_max }}"
+                     aria-label="Максимальна ціна">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rs-cb__actions">
+        <button type="button" class="rs-cb__apply" data-cb-apply>Застосувати</button>
+        <button type="button"
+                class="rs-cb__reset{% if not has_filters %} is-disabled{% endif %}"
+                data-cb-reset
+                {% if not has_filters %}aria-disabled="true" disabled{% endif %}>
+          Скинути фільтри
+        </button>
+      </div>
+    </aside>
+
+    <div class="rs-cb__main">
+      <header class="rs-cb__head">
+        <div class="rs-cb__intro">
+          <h1 class="rs-cb__title" data-cb-title>{{ catalog_lead|linebreaksbr }}</h1>
+        </div>
+        <div class="rs-cb__sorts" role="group" aria-label="Сортування" data-cb-sorts>
+          {% for chip in sort_chips %}
+            <button type="button"
+                    class="rs-cb__sort{% if chip.is_active %} is-active{% endif %}"
+                    data-cb-sort-btn="{{ chip.value }}"
+                    aria-pressed="{{ chip.is_active|yesno:'true,false' }}">{{ chip.label }}</button>
+          {% endfor %}
+        </div>
+      </header>
+
+      <div id="product-grid" class="rs-cb__list">
+        {% include "catalog/partials/product_grid.html" with products=products %}
+      </div>
+    </div>
   </div>
-</div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/catalog-browser.js' %}?v=4" defer></script>
 {% endblock %}

@@ -343,11 +343,13 @@
   .rs-footer__meta {
     padding-top: 22px;
     padding-bottom: calc(24px + var(--rs-safe-b));
+    border-top-color: rgba(252, 242, 238, 0.08);
   }
 
   .rs-footer__copy {
-    font-size: 13px;
+    font-size: 11px;
     letter-spacing: 0.12em;
+    color: rgba(252, 242, 238, 0.32);
   }
 }
 

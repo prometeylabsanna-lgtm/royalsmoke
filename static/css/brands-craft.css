@@ -322,6 +322,8 @@ html.rs-brands-snap-on.rs-brands-snap-off {
 @media (max-width: 767px) {
   .rs-home-brands {
     padding-top: 0;
+    --rs-brand-snap-h: 75vh;
+    --rs-brand-snap-h: 75dvh;
   }
 
   .rs-brand-snap {
@@ -444,6 +446,12 @@ html.rs-brands-snap-on.rs-brands-snap-off {
 @supports (-webkit-touch-callout: none) {
   .rs-home-brands {
     --rs-brand-snap-h: calc(100dvh - var(--rs-header-h, 60px) - env(safe-area-inset-top, 0px));
+  }
+
+  @media (max-width: 767px) {
+    .rs-home-brands {
+      --rs-brand-snap-h: 75dvh;
+    }
   }
 }
 

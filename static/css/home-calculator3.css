@@ -1,0 +1,142 @@
+/* Royal Smoke — calculator nav actions (Далі / Назад / submit) */
+
+.rs-home-calc {
+  --rs-calc-btn-gold: linear-gradient(90deg, #ead7a6 0%, #d4b06a 42%, #b8893a 100%);
+  --rs-calc-btn-ink: #1a1410;
+}
+
+.rs-home-calc__next,
+.rs-home-calc__submit,
+.rs-home-calc .rs-btn.rs-btn--gold.rs-home-calc__next,
+.rs-home-calc .rs-btn.rs-btn--gold.rs-home-calc__submit {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 148px;
+  min-height: 46px;
+  padding: 0 28px;
+  border: 1px solid var(--rs-gold);
+  border-radius: 0;
+  background: #14110f;
+  color: rgba(252, 242, 238, 0.92);
+  font-family: var(--rs-font-ui);
+  font-size: 12px;
+  font-weight: var(--rs-weight-sub);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition:
+    color var(--t-fast) var(--ease-out),
+    background var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out),
+    filter var(--t-fast) var(--ease-out);
+}
+
+.rs-home-calc__next:active,
+.rs-home-calc__submit:active,
+.rs-home-calc .rs-btn.rs-btn--gold.rs-home-calc__next:active,
+.rs-home-calc .rs-btn.rs-btn--gold.rs-home-calc__submit:active {
+  border-color: transparent;
+  background: var(--rs-calc-btn-gold);
+  color: var(--rs-calc-btn-ink);
+  filter: brightness(0.96);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rs-home-calc__next:hover,
+  .rs-home-calc__submit:hover,
+  .rs-home-calc .rs-btn.rs-btn--gold.rs-home-calc__next:hover,
+  .rs-home-calc .rs-btn.rs-btn--gold.rs-home-calc__submit:hover {
+    border-color: transparent;
+    background: var(--rs-calc-btn-gold);
+    color: var(--rs-calc-btn-ink);
+    filter: brightness(1.04);
+  }
+}
+
+.rs-home-calc__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 132px;
+  min-height: 46px;
+  margin: 0;
+  padding: 0 22px;
+  border: 1px solid var(--rs-gold);
+  border-radius: 0;
+  background: #14110f;
+  color: rgba(252, 242, 238, 0.92);
+  font-family: var(--rs-font-ui);
+  font-size: 12px;
+  font-weight: var(--rs-weight-ui);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition:
+    color var(--t-fast) var(--ease-out),
+    background var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out),
+    filter var(--t-fast) var(--ease-out);
+}
+
+.rs-home-calc__back:active {
+  border-color: transparent;
+  background: var(--rs-calc-btn-gold);
+  color: var(--rs-calc-btn-ink);
+  filter: brightness(0.96);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rs-home-calc__back:hover {
+    border-color: transparent;
+    background: var(--rs-calc-btn-gold);
+    color: var(--rs-calc-btn-ink);
+    filter: brightness(1.04);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .rs-home-calc__next,
+  .rs-home-calc__submit,
+  .rs-home-calc__back {
+    min-height: 44px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 767px) {
+  .rs-home-calc__next,
+  .rs-home-calc__submit,
+  .rs-home-calc__back {
+    min-height: 44px;
+    border-radius: 0;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .rs-home-calc__next,
+  .rs-home-calc__submit,
+  .rs-home-calc__back {
+    cursor: default;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rs-home-calc__next,
+  .rs-home-calc__submit,
+  .rs-home-calc__back {
+    transition: none;
+  }
+}

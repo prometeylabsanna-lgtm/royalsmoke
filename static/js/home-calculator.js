@@ -44,7 +44,8 @@
       syncChipState();
     }
 
-    function setStep(next) {
+    function setStep(next, opts) {
+      var options = opts || {};
       step = Math.max(0, Math.min(TOTAL - 1, next));
       root.dataset.calcStep = String(step);
 
@@ -70,6 +71,8 @@
       if (submitBtn) submitBtn.hidden = step !== TOTAL - 1;
 
       updatePicks();
+
+      if (options.focus === false) return;
 
       var activePanel = panels[step];
       if (activePanel) {
@@ -128,7 +131,7 @@
       }
     });
 
-    setStep(0);
+    setStep(0, { focus: false });
   }
 
   function boot() {

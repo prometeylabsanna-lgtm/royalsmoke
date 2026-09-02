@@ -39,9 +39,9 @@
   }
 
   .rs-home-calc__chip {
-    min-height: 56px;
+    min-height: 46px;
     font-size: 16px;
-    padding: 16px 10px;
+    padding: 10px 10px;
   }
 
   .rs-home-calc__aside { padding: 26px 24px; }
@@ -214,8 +214,8 @@
 
   .rs-home-calc__chip {
     font-size: 14px;
-    min-height: 48px;
-    padding: 12px 8px;
+    min-height: 44px;
+    padding: 8px 8px;
   }
 
   .rs-home-calc__next,
@@ -232,8 +232,9 @@
 
   .rs-home-calc__back {
     order: 2;
-    align-self: flex-start;
-    padding: 4px 0;
+    align-self: stretch;
+    width: 100%;
+    min-width: 0;
   }
 
   .rs-home-calc__bg-img { object-position: 55% 70%; }
@@ -263,9 +264,6 @@
     filter: none;
   }
 
-  .rs-home-calc__chip,
-  .rs-home-calc__chip.is-active,
-  .rs-home-calc__chip:has(input:checked),
   .rs-home-calc__main,
   .rs-home-calc__aside {
     -webkit-backdrop-filter: none;
@@ -273,9 +271,22 @@
     background: var(--rs-slot);
   }
 
+  .rs-home-calc__chip,
   .rs-home-calc__chip.is-active,
   .rs-home-calc__chip:has(input:checked) {
-    background: rgba(201, 154, 68, 0.28);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .rs-home-calc__chip {
+    background: #14110f;
+  }
+
+  .rs-home-calc__chip.is-active,
+  .rs-home-calc__chip:has(input:checked) {
+    background: linear-gradient(90deg, #ead7a6 0%, #d4b06a 42%, #b8893a 100%);
+    color: #1a1410;
+    box-shadow: none;
   }
 }
 
