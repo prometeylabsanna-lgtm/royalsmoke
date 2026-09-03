@@ -1,0 +1,57 @@
+<section class="rs-cab__wish" id="cabinet-wishlist" aria-label="Вибране">
+  <div class="rs-cab__wish-head">
+    <h2 class="rs-cab__block-title">Вибране</h2>
+    {% if wishlist_items %}
+      <a class="rs-cab__wish-all" href="{% url 'accounts:wishlist' %}">Усі</a>
+    {% endif %}
+  </div>
+
+  {% if wishlist_items %}
+    <ul class="rs-cab__wish-list">
+      {% for product in wishlist_items %}
+        <li class="rs-cab__wish-item">
+          <a class="rs-cab__wish-media" href="{{ product.get_absolute_url }}" tabindex="-1" aria-hidden="true">
+            {% with img=product.images.all.0 %}
+              {% if img %}
+                <img src="{{ img.image.url }}" alt="" loading="lazy" width="64" height="64">
+              {% endif %}
+            {% endwith %}
+          </a>
+          <div class="rs-cab__wish-info">
+            <a class="rs-cab__wish-name" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+            <p class="rs-cab__wish-meta">
+              {% if product.brand %}{{ product.brand.name }} · {% endif %}{{ product.display_price }} ₴
+            </p>
+          </div>
+          <div class="rs-cab__wish-actions">
+            <form method="post"
+                  action="{% url 'cart:add' %}"
+                  hx-post="{% url 'cart:add' %}"
+                  hx-target="#cart-badge"
+                  hx-swap="outerHTML">
+              {% csrf_token %}
+              <input type="hidden" name="product_id" value="{{ product.id }}">
+              <input type="hidden" name="quantity" value="1">
+              {% with v=product.variants.all.0 %}
+                {% if v %}<input type="hidden" name="variant_id" value="{{ v.id }}">{% endif %}
+              {% endwith %}
+              <button type="submit" class="rs-cab__wish-cart" aria-label="У кошик">У кошик</button>
+            </form>
+            <form method="post"
+                  action="{% url 'accounts:wishlist_toggle' %}"
+                  hx-post="{% url 'accounts:wishlist_toggle' %}"
+                  hx-target="#cabinet-wishlist"
+                  hx-swap="outerHTML">
+              {% csrf_token %}
+              <input type="hidden" name="product_id" value="{{ product.id }}">
+              <button type="submit" class="rs-cab__wish-remove" aria-label="Прибрати з вибраного">×</button>
+            </form>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="rs-cab__meta">Поки порожньо. Додайте товари сердечком у каталозі.</p>
+    <a class="rs-cab__wish-link" href="{% url 'catalog:list' %}">До каталогу</a>
+  {% endif %}
+</section>

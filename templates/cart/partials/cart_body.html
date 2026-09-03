@@ -1,3 +1,4 @@
+{% load i18n %}
 {% if cart.items %}
   <div class="rs-cart__main">
     <div class="rs-cart__lines">
@@ -26,7 +27,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="product_id" value="{{ item.product.id }}">
                 {% if item.variant %}<input type="hidden" name="variant_id" value="{{ item.variant.id }}">{% endif %}
-                <button type="submit" class="rs-btn rs-btn--underline">Видалити</button>
+                <button type="submit" class="rs-btn rs-btn--underline">{% trans "Видалити" %}</button>
               </form>
             </div>
             <form class="rs-qty rs-cart-line__qty"
@@ -38,9 +39,9 @@
               {% csrf_token %}
               <input type="hidden" name="product_id" value="{{ item.product.id }}">
               {% if item.variant %}<input type="hidden" name="variant_id" value="{{ item.variant.id }}">{% endif %}
-              <button type="submit" name="quantity" value="{{ item.quantity|add:'-1' }}" aria-label="Зменшити">−</button>
+              <button type="submit" name="quantity" value="{{ item.quantity|add:'-1' }}" aria-label="{% trans "Зменшити" %}">−</button>
               <span>{{ item.quantity }}</span>
-              <button type="submit" name="quantity" value="{{ item.quantity|add:'1' }}" aria-label="Збільшити">+</button>
+              <button type="submit" name="quantity" value="{{ item.quantity|add:'1' }}" aria-label="{% trans "Збільшити" %}">+</button>
             </form>
             <span class="rs-cart-line__total">{{ item.line_total }} ₴</span>
           </div>
@@ -48,20 +49,20 @@
       {% endfor %}
     </div>
 
-    <a class="rs-cart__continue" href="{% url 'catalog:list' %}">Продовжити покупки</a>
+    <a class="rs-cart__continue" href="{% url 'catalog:list' %}">{% trans "Продовжити покупки" %}</a>
 
     {% if site_settings.free_delivery_from %}
-      <p class="rs-cart__hint">Безкоштовна доставка від {{ site_settings.free_delivery_from }} ₴</p>
+      <p class="rs-cart__hint">{% blocktrans with amount=site_settings.free_delivery_from %}Безкоштовна доставка від {{ amount }} ₴{% endblocktrans %}</p>
     {% endif %}
   </div>
 
-  <aside class="rs-cart__bar" aria-label="Підсумок кошика">
-    <span class="rs-cart__bar-total">Разом {{ cart.total }} ₴</span>
-    <a class="rs-cart__checkout" href="{% url 'orders:checkout' %}">Оформити замовлення</a>
+  <aside class="rs-cart__bar" aria-label="{% trans "Підсумок кошика" %}">
+    <span class="rs-cart__bar-total">{% blocktrans with total=cart.total %}Разом {{ total }} ₴{% endblocktrans %}</span>
+    <a class="rs-cart__checkout" href="{% url 'orders:checkout' %}">{% trans "Оформити замовлення" %}</a>
   </aside>
 {% else %}
   <div class="rs-cart__empty">
-    <p class="rs-cart__empty-text">Кошик порожній.</p>
-    <a class="rs-cart__empty-cta" href="{% url 'catalog:list' %}">До каталогу</a>
+    <p class="rs-cart__empty-text">{% trans "Кошик порожній." %}</p>
+    <a class="rs-cart__empty-cta" href="{% url 'catalog:list' %}">{% trans "До каталогу" %}</a>
   </div>
 {% endif %}

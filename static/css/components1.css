@@ -356,10 +356,21 @@
 
 .rs-check {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 10px;
   font-size: 13px;
   color: var(--rs-text-soft);
+}
+
+.rs-check > label {
+  cursor: pointer;
+}
+
+.rs-check .rs-field__error {
+  flex: 1 0 100%;
+  margin: 0;
+  padding-left: 28px;
 }
 
 .rs-check input {

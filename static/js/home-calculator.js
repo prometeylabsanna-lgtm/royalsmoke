@@ -79,7 +79,11 @@
         var focusTarget = activePanel.querySelector('.rs-home-calc__question') || activePanel;
         if (focusTarget && typeof focusTarget.focus === 'function') {
           focusTarget.setAttribute('tabindex', '-1');
-          focusTarget.focus({ preventScroll: true });
+          try {
+            focusTarget.focus({ preventScroll: true });
+          } catch (err) {
+            focusTarget.focus();
+          }
         }
       }
     }

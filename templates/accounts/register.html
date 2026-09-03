@@ -1,35 +1,41 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Реєстрація — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% trans "Реєстрація" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 {% block body_class %}rs-auth-page{% endblock %}
 {% block breadcrumbs %}{% endblock %}
 
 {% block content %}
+{% trans "Імʼя" as label_first_name %}
+{% trans "Email" as label_email %}
+{% trans "Телефон" as label_phone %}
+{% trans "Пароль" as label_password %}
+{% trans "Повторіть пароль" as label_password2 %}
 <section class="rs-gate" data-rs-reveal>
   <div class="rs-gate__main">
     <div class="rs-gate__inner">
-      <h1 class="rs-gate__title">Реєстрація</h1>
-      <p class="rs-gate__lead">Створіть кабінет для швидкого оформлення.</p>
+      <h1 class="rs-gate__title">{% trans "Реєстрація" %}</h1>
+      <p class="rs-gate__lead">{% trans "Створіть кабінет для швидкого оформлення." %}</p>
       <form class="rs-form" method="post" action="{% url 'accounts:register' %}" data-rs-validate novalidate>
         {% csrf_token %}
         {% if form.non_field_errors %}
           <div class="rs-field__error">{{ form.non_field_errors }}</div>
         {% endif %}
-        {% include "partials/form_field.html" with name="first_name" id="id_first_name" label="Імʼя" rule="name" type="text" autocomplete="given-name" placeholder="Імʼя" value=form.first_name.value optional=1 sr_only_label=1 %}
-        {% include "partials/form_field.html" with name="email" id="id_email" label="Email" rule="email" type="email" autocomplete="email" placeholder="Email" value=form.email.value sr_only_label=1 %}
-        {% include "partials/form_field.html" with name="phone" id="id_phone" label="Телефон" rule="phone" type="tel" autocomplete="tel" placeholder="Телефон" value=form.phone.value optional=1 sr_only_label=1 %}
-        {% include "partials/form_field.html" with name="password1" id="id_password1" label="Пароль" rule="password" type="password" autocomplete="new-password" placeholder="Пароль" sr_only_label=1 %}
-        {% include "partials/form_field.html" with name="password2" id="id_password2" label="Повторіть пароль" rule="password" type="password" autocomplete="new-password" placeholder="Повторіть пароль" sr_only_label=1 %}
-        <label class="rs-check">
-          <input type="checkbox" name="age_confirm" required data-rs-rule="required" data-rs-checkbox="1">
-          <span>Мені є 21 рік</span>
-          <p class="rs-field__error" data-rs-error hidden></p>
-        </label>
+        {% include "partials/form_field.html" with name="first_name" id="id_first_name" label=label_first_name rule="name" type="text" autocomplete="given-name" placeholder=label_first_name value=form.first_name.value error=form.first_name.errors.0 optional=1 sr_only_label=1 %}
+        {% include "partials/form_field.html" with name="email" id="id_email" label=label_email rule="email" type="email" autocomplete="email" placeholder=label_email value=form.email.value error=form.email.errors.0 sr_only_label=1 %}
+        {% include "partials/form_field.html" with name="phone" id="id_phone" label=label_phone rule="phone" type="tel" autocomplete="tel" placeholder=label_phone value=form.phone.value error=form.phone.errors.0 optional=1 sr_only_label=1 %}
+        {% include "partials/form_field.html" with name="password1" id="id_password1" label=label_password rule="password" type="password" autocomplete="new-password" placeholder=label_password error=form.password1.errors.0 sr_only_label=1 %}
+        {% include "partials/form_field.html" with name="password2" id="id_password2" label=label_password2 rule="password" type="password" autocomplete="new-password" placeholder=label_password2 error=form.password2.errors.0 sr_only_label=1 %}
+        <div class="rs-check">
+          <input type="checkbox" id="id_age_confirm" name="age_confirm" required data-rs-rule="required" data-rs-checkbox="1" aria-describedby="id_age_confirm-error">
+          <label for="id_age_confirm">{% trans "Мені є 21 рік" %}</label>
+          <p class="rs-field__error" id="id_age_confirm-error" data-rs-error hidden></p>
+        </div>
         <div class="rs-form__actions">
-          <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">Створити акаунт</button>
+          <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% trans "Створити акаунт" %}</button>
         </div>
       </form>
-      <p class="rs-auth__switch">Вже є акаунт? <a href="{% url 'accounts:login' %}">Увійти</a></p>
+      <p class="rs-auth__switch">{% trans "Вже є акаунт?" %} <a href="{% url 'accounts:login' %}">{% trans "Увійти" %}</a></p>
     </div>
   </div>
 </section>

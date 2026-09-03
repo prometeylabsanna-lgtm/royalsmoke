@@ -12,7 +12,8 @@
   var SWIPE_THRESHOLD = 40;
 
   function initHeroSlider(root) {
-    if (!root) return;
+    if (!root || root.dataset.heroReady === '1') return;
+    root.dataset.heroReady = '1';
 
     var stage = root.querySelector('[data-hero-stage]');
     var slides = Array.prototype.slice.call(root.querySelectorAll('[data-hero-slide]'));
@@ -34,8 +35,20 @@
     var expandVeil = null;
     var autoTimer = null;
     var autoPaused = false;
+    var expandTimers = [];
     var isIOS = /iP(hone|od|ad)/.test(navigator.userAgent);
     var parallaxFactor = reduce ? 0 : (isIOS ? 0.07 : 0.16);
+
+    function clearExpandTimers() {
+      expandTimers.forEach(function (id) { window.clearTimeout(id); });
+      expandTimers = [];
+    }
+
+    function later(fn, ms) {
+      var id = window.setTimeout(fn, ms);
+      expandTimers.push(id);
+      return id;
+    }
 
     function pad(n) {
       return (n < 10 ? '0' : '') + n;
@@ -119,11 +132,11 @@
       if (!src) return;
       if (existing) {
         if (existing.getAttribute('src') !== src) existing.setAttribute('src', src);
-        existing.alt = 'Наступний кадр';
+        existing.alt = 'Next frame';
       } else if (ph) {
         var img = document.createElement('img');
         img.src = src;
-        img.alt = 'Наступний кадр';
+        img.alt = 'Next frame';
         ph.replaceWith(img);
       }
     }
@@ -207,7 +220,7 @@
       var existing = thumb.querySelector('img');
       if (!src || !existing) return;
       if (existing.getAttribute('src') !== src) existing.setAttribute('src', src);
-      existing.alt = 'Наступний кадр';
+      existing.alt = 'Next frame';
     }
 
     function resetThumbMotion() {
@@ -268,6 +281,7 @@
       var next = nextIndex(index);
       busy = true;
       stopAuto();
+      clearExpandTimers();
 
       if (reduce || !thumb) {
         setActive(next, false);
@@ -361,11 +375,11 @@
       expandEl.style.borderRadius = '0';
 
       /* New preview only when circle is almost full */
-      window.setTimeout(function () {
+      later(function () {
         enterThumbFromRight(nextIndex(next));
       }, THUMB_IN_AT);
 
-      window.setTimeout(function () {
+      later(function () {
         slides.forEach(function (s) {
           s.style.transition = 'none';
         });
@@ -397,7 +411,7 @@
             expandEl.style.transition = 'opacity ' + HANDOFF_MS + 'ms linear';
             expandEl.style.opacity = '0';
 
-            window.setTimeout(function () {
+            later(function () {
               hideExpandLayer();
 
               slides.forEach(function (s) {
@@ -440,10 +454,12 @@
     });
 
     root.addEventListener('touchstart', function (e) {
+      if (!e.changedTouches || !e.changedTouches.length) return;
       touchX = e.changedTouches[0].screenX;
     }, { passive: true });
 
     root.addEventListener('touchend', function (e) {
+      if (!e.changedTouches || !e.changedTouches.length) return;
       var dx = e.changedTouches[0].screenX - touchX;
       if (Math.abs(dx) < SWIPE_THRESHOLD) return;
       if (dx < 0) crossfadeTo(nextIndex(index));

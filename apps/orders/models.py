@@ -4,6 +4,7 @@ from decimal import Decimal
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 
 class Order(models.Model):
@@ -15,31 +16,31 @@ class Order(models.Model):
     STATUS_DONE = 'done'
     STATUS_CANCELLED = 'cancelled'
     STATUS_CHOICES = [
-        (STATUS_PENDING, 'Нове'),
-        (STATUS_AWAITING_PAYMENT, 'Очікує оплату'),
-        (STATUS_PAID, 'Оплачено'),
-        (STATUS_PROCESSING, 'В обробці'),
-        (STATUS_SHIPPED, 'Відправлено'),
-        (STATUS_DONE, 'Виконано'),
-        (STATUS_CANCELLED, 'Скасовано'),
+        (STATUS_PENDING, _('Нове')),
+        (STATUS_AWAITING_PAYMENT, _('Очікує оплату')),
+        (STATUS_PAID, _('Оплачено')),
+        (STATUS_PROCESSING, _('В обробці')),
+        (STATUS_SHIPPED, _('Відправлено')),
+        (STATUS_DONE, _('Виконано')),
+        (STATUS_CANCELLED, _('Скасовано')),
     ]
 
     PAYMENT_ONLINE = 'online'
     PAYMENT_COD = 'cod'
     PAYMENT_BANK = 'bank_transfer'
     PAYMENT_CHOICES = [
-        (PAYMENT_ONLINE, 'Онлайн оплата'),
-        (PAYMENT_COD, 'Оплата при отриманні'),
-        (PAYMENT_BANK, 'Безготівковий розрахунок'),
+        (PAYMENT_ONLINE, _('Онлайн оплата')),
+        (PAYMENT_COD, _('Оплата при отриманні')),
+        (PAYMENT_BANK, _('Безготівковий розрахунок')),
     ]
 
     DELIVERY_NP = 'nova_poshta'
     DELIVERY_COURIER = 'courier'
     DELIVERY_PICKUP = 'pickup'
     DELIVERY_CHOICES = [
-        (DELIVERY_NP, 'Нова Пошта'),
-        (DELIVERY_COURIER, 'Курʼєр'),
-        (DELIVERY_PICKUP, 'Самовивіз'),
+        (DELIVERY_NP, _('Нова Пошта')),
+        (DELIVERY_COURIER, _('Курʼєр')),
+        (DELIVERY_PICKUP, _('Самовивіз')),
     ]
 
     order_number = models.CharField('Номер', max_length=24, unique=True, editable=False)

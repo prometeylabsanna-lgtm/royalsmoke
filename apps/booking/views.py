@@ -3,6 +3,8 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import redirect
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _lazy
 from django.views.decorators.http import require_POST
 
 from apps.booking.models import Booking
@@ -12,9 +14,9 @@ from apps.core.validation import NameField, PhoneField
 class BookingRequestForm(forms.Form):
     """Simplified contact booking: name + phone + wishes."""
 
-    name = NameField(label='Імʼя')
-    phone = PhoneField(label='Телефон')
-    comment = forms.CharField(label='Побажання', required=False, max_length=500)
+    name = NameField(label=_lazy('Імʼя'))
+    phone = PhoneField(label=_lazy('Телефон'))
+    comment = forms.CharField(label=_lazy('Побажання'), required=False, max_length=500)
 
 
 def _notify_booking(booking: Booking) -> None:
@@ -55,7 +57,7 @@ def booking_request(request):
             status=Booking.STATUS_NEW,
         )
         _notify_booking(booking)
-        messages.success(request, 'Заявку прийнято. Менеджер звʼяжеться з вами.')
+        messages.success(request, _('Заявку прийнято. Менеджер звʼяжеться з вами.'))
     else:
-        messages.error(request, 'Перевірте імʼя та телефон.')
+        messages.error(request, _('Перевірте імʼя та телефон.'))
     return _redirect_next(request)

@@ -1,29 +1,31 @@
 from __future__ import annotations
 
+from django.utils.translation import gettext_lazy as _
+
 BLOCK_DEFAULTS: dict[tuple[str, str], str] = {
     ('home', 'hero_section_visible'): '1',
     ('home', 'hero_eyebrow'): 'Tobacco Atelier',
     ('home', 'categories_section_visible'): '1',
-    ('home', 'categories_title'): 'Ключові категорії',
+    ('home', 'categories_title'): _('Ключові категорії'),
     ('home', 'top_section_visible'): '1',
-    ('home', 'top_title'): 'Топ продажів',
+    ('home', 'top_title'): _('Топ продажів'),
     ('home', 'new_section_visible'): '1',
-    ('home', 'new_title'): 'Новинки',
+    ('home', 'new_title'): _('Новинки'),
     ('home', 'about_section_visible'): '1',
-    ('home', 'about_kicker'): 'Історія',
+    ('home', 'about_kicker'): _('Історія'),
     ('home', 'about_bg'): '',
     ('home', 'service_section_visible'): '1',
-    ('home', 'service_kicker'): 'Сервіс',
-    ('site', 'header_search_placeholder'): 'Пошук сигар, брендів, аксесуарів…',
-    ('site', 'footer_tagline'): 'Сигари, відібрані вручну для тих, хто знає різницю.',
-    ('service', 'booking_title'): 'Бронювання',
-    ('service', 'booking_lead'): 'Залиште контакти — менеджер узгодить зручний час візиту.',
-    ('service', 'calculator_title'): 'Калькулятор підбору',
-    ('service', 'calculator_lead'): 'Чотири кроки — три рекомендації з поясненням.',
+    ('home', 'service_kicker'): _('Сервіс'),
+    ('site', 'header_search_placeholder'): _('Пошук сигар, брендів, аксесуарів…'),
+    ('site', 'footer_tagline'): _('Сигари, відібрані вручну для тих, хто знає різницю.'),
+    ('service', 'booking_title'): _('Бронювання'),
+    ('service', 'booking_lead'): _('Залиште контакти — менеджер узгодить зручний час візиту.'),
+    ('service', 'calculator_title'): _('Калькулятор підбору'),
+    ('service', 'calculator_lead'): _('Чотири кроки — три рекомендації з поясненням.'),
     ('service', 'b2b_title'): 'B2B',
-    ('service', 'b2b_lead'): 'Прайс і умови для барів, готелів і корпоративних подарунків.',
-    ('service', 'delivery_title'): 'Доставка',
-    ('service', 'delivery_lead'): 'Київ — того ж дня, Україна — 1–2 дні. Термобокси для сигар.',
+    ('service', 'b2b_lead'): _('Прайс і умови для барів, готелів і корпоративних подарунків.'),
+    ('service', 'delivery_title'): _('Доставка'),
+    ('service', 'delivery_lead'): _('Київ — того ж дня, Україна — 1–2 дні. Термобокси для сигар.'),
 }
 
 BLOCK_FIELD_LABELS: dict[tuple[str, str], str] = {

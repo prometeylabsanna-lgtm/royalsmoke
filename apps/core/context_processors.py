@@ -23,10 +23,10 @@ def site_globals(request):
         b = blocks.get(f'{page}.{key}')
         if b and b.text_html:
             return b.text_html
-        return BLOCK_DEFAULTS.get((page, key), default)
+        return str(BLOCK_DEFAULTS.get((page, key), default))
 
     def block_visible(page: str, key: str, default: bool = True) -> bool:
-        raw = block_text(page, key, '1' if default else '0')
+        raw = str(block_text(page, key, '1' if default else '0'))
         return raw.strip() in {'1', 'true', 'True', ''}
 
     hero_slides = list(HeroSlide.objects.filter(is_active=True))

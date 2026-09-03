@@ -34,12 +34,16 @@
   }
 
   function init(root) {
+    if (!root || root.dataset.cbReady === '1') return;
+    root.dataset.cbReady = '1';
+
     var boundMin = Number(root.getAttribute('data-cb-bound-min')) || 0;
     var boundMax = Number(root.getAttribute('data-cb-bound-max')) || 1;
     var isBrand = root.getAttribute('data-cb-brand') === '1';
     var basePath = root.getAttribute('data-cb-base') || '/catalog/';
     var listPath = root.getAttribute('data-cb-list') || '/catalog/';
     var strengthMap = parseList(root.getAttribute('data-cb-strength-map'));
+    var reqSeq = 0;
 
     var state = {
       categories: parseList(root.getAttribute('data-cb-categories')),
@@ -189,6 +193,41 @@
       return qs;
     }
 
+    function hydrateFromUrl() {
+      var u = new URL(window.location.href);
+      state.strength = u.searchParams.getAll('strength');
+      state.country = u.searchParams.getAll('country');
+      state.sort = u.searchParams.get('sort') || '';
+      var pmin = Number(u.searchParams.get('price_min'));
+      var pmax = Number(u.searchParams.get('price_max'));
+      state.priceMin = Number.isFinite(pmin) ? pmin : boundMin;
+      state.priceMax = Number.isFinite(pmax) ? pmax : boundMax;
+      state.priceMin = Math.max(boundMin, Math.min(state.priceMin, boundMax));
+      state.priceMax = Math.max(boundMin, Math.min(state.priceMax, boundMax));
+      state.strengthTouched = state.strength.length > 0;
+
+      if (isBrand) {
+        state.categories = parseList(root.getAttribute('data-cb-categories'));
+        if (!state.categories.length) state.categories = ['all'];
+        return;
+      }
+
+      var cats = u.searchParams.getAll('category');
+      if (cats.length) {
+        state.categories = unique(cats);
+        return;
+      }
+
+      var base = listPath.replace(/\/?$/, '/');
+      var path = u.pathname.replace(/\/?$/, '/');
+      if (path.indexOf(base) === 0 && path.length > base.length) {
+        var slug = path.slice(base.length).replace(/\/$/, '');
+        state.categories = slug ? [slug] : ['all'];
+      } else {
+        state.categories = ['all'];
+      }
+    }
+
     function applyFilters(shouldPush) {
       var path = resolvePath();
       var qs = buildQuery();
@@ -199,12 +238,14 @@
         return;
       }
 
+      var seq = ++reqSeq;
       var req = htmx.ajax('GET', url, {
         target: '#product-grid',
         swap: 'innerHTML',
       });
 
       function afterSwap() {
+        if (seq !== reqSeq) return;
         if (shouldPush !== false) {
           try {
             history.pushState({ rsCb: 1 }, '', url);
@@ -213,6 +254,30 @@
         syncResetUi();
       }
 
+      if (req && typeof req.then === 'function') {
+        req.then(afterSwap);
+      } else {
+        afterSwap();
+      }
+    }
+
+    function applyFromHistory() {
+      hydrateFromUrl();
+      syncAll();
+      var url = window.location.pathname + window.location.search;
+      if (typeof htmx === 'undefined') {
+        window.location.reload();
+        return;
+      }
+      var seq = ++reqSeq;
+      var req = htmx.ajax('GET', url, {
+        target: '#product-grid',
+        swap: 'innerHTML',
+      });
+      function afterSwap() {
+        if (seq !== reqSeq) return;
+        syncResetUi();
+      }
       if (req && typeof req.then === 'function') {
         req.then(afterSwap);
       } else {
@@ -313,6 +378,10 @@
       strengthInput.addEventListener('input', onStrengthInput);
       strengthInput.addEventListener('change', onStrengthInput);
     }
+
+    window.addEventListener('popstate', function () {
+      applyFromHistory();
+    });
 
     syncAll();
   }

@@ -6,14 +6,15 @@ from decimal import Decimal, InvalidOperation
 
 from django.db.models import Count, Max, Min, Q
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 from apps.catalog.models import Brand, Category, Product
 
 SORT_OPTIONS = (
-    ('top', 'Топ'),
-    ('new', 'Новинки'),
-    ('price_asc', 'Ціна ↑'),
-    ('price_desc', 'Ціна ↓'),
+    ('top', _('Топ')),
+    ('new', _('Новинки')),
+    ('price_asc', _('Ціна ↑')),
+    ('price_desc', _('Ціна ↓')),
 )
 
 

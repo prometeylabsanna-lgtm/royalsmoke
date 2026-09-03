@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from django.urls import reverse
+from django.utils.translation import gettext as _
 
 from apps.catalog.models import Brand, Category, Product
 
@@ -29,29 +30,29 @@ def _category_chain(category: Category) -> list[dict]:
 def _static_label(namespace: str | None, url_name: str | None, kwargs: dict) -> str | None:
     key = f'{namespace}:{url_name}' if namespace else url_name
     labels = {
-        'catalog:list': 'Каталог',
-        'cart:detail': 'Кошик',
-        'orders:checkout': 'Оформлення',
-        'orders:thank_you': 'Дякуємо',
-        'accounts:login': 'Вхід',
-        'accounts:register': 'Реєстрація',
-        'accounts:cabinet': 'Кабінет',
-        'pages:about': 'Про нас',
-        'pages:faq': 'FAQ',
-        'pages:legal': 'Правова інформація',
-        'leads:b2b': 'B2B',
-        'leads:delivery': 'Доставка і оплата',
-        'leads:contact': 'Контакти',
+        'catalog:list': _('Каталог'),
+        'cart:detail': _('Кошик'),
+        'orders:checkout': _('Оформлення'),
+        'orders:thank_you': _('Дякуємо'),
+        'accounts:login': _('Вхід'),
+        'accounts:register': _('Реєстрація'),
+        'accounts:cabinet': _('Кабінет'),
+        'pages:about': _('Про нас'),
+        'pages:faq': _('FAQ'),
+        'pages:legal': _('Правова інформація'),
+        'leads:b2b': _('B2B'),
+        'leads:delivery': _('Доставка і оплата'),
+        'leads:contact': _('Контакти'),
     }
     if key == 'pages:legal':
         slug = kwargs.get('slug') or 'privacy'
         legal_map = {
-            'privacy': 'Політика конфіденційності',
-            'terms': 'Умови користування',
-            'age': 'Вікова політика',
-            'cookies': 'Файли cookie',
+            'privacy': _('Політика конфіденційності'),
+            'terms': _('Умови користування'),
+            'age': _('Вікова політика'),
+            'cookies': _('Файли cookie'),
         }
-        return legal_map.get(slug, 'Правова інформація')
+        return legal_map.get(slug, _('Правова інформація'))
     return labels.get(key)
 
 
@@ -71,15 +72,15 @@ def build_breadcrumbs(request) -> list[dict]:
     if namespace == 'catalog' and url_name == 'search':
         return []
 
-    home = _crumb('Головна', reverse('pages:home'))
+    home = _crumb(_('Головна'), reverse('pages:home'))
     crumbs: list[dict] = [home]
 
     if namespace == 'catalog' and url_name == 'list':
-        crumbs.append(_crumb('Каталог'))
+        crumbs.append(_crumb(_('Каталог')))
         return crumbs
 
     if namespace == 'catalog' and url_name == 'category':
-        crumbs.append(_crumb('Каталог', reverse('catalog:list')))
+        crumbs.append(_crumb(_('Каталог'), reverse('catalog:list')))
         category = Category.objects.filter(
             slug=kwargs.get('slug'), is_active=True,
         ).select_related('parent').first()
@@ -90,17 +91,17 @@ def build_breadcrumbs(request) -> list[dict]:
             if chain:
                 crumbs.append(_crumb(chain[-1]['title']))
         else:
-            crumbs.append(_crumb('Каталог'))
+            crumbs.append(_crumb(_('Каталог')))
         return crumbs
 
     if namespace == 'catalog' and url_name == 'brand':
-        crumbs.append(_crumb('Каталог', reverse('catalog:list')))
+        crumbs.append(_crumb(_('Каталог'), reverse('catalog:list')))
         brand = Brand.objects.filter(slug=kwargs.get('slug'), is_active=True).first()
-        crumbs.append(_crumb(brand.name if brand else 'Бренд'))
+        crumbs.append(_crumb(brand.name if brand else _('Бренд')))
         return crumbs
 
     if namespace == 'catalog' and url_name == 'product':
-        crumbs.append(_crumb('Каталог', reverse('catalog:list')))
+        crumbs.append(_crumb(_('Каталог'), reverse('catalog:list')))
         product = (
             Product.objects.on_storefront()
             .select_related('brand', 'category', 'category__parent')
@@ -117,7 +118,7 @@ def build_breadcrumbs(request) -> list[dict]:
                 ))
             crumbs.append(_crumb(product.name))
         else:
-            crumbs.append(_crumb('Товар'))
+            crumbs.append(_crumb(_('Товар')))
         return crumbs
 
     label = _static_label(namespace, url_name, kwargs)

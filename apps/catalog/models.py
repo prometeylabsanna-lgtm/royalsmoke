@@ -5,6 +5,7 @@ from decimal import Decimal
 from django.db import models
 from django.db.models import Min, Q
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 from slugify import slugify
 
 from .models_base import Brand, Category, ProductLine, Tag, TimeStampedModel
@@ -28,10 +29,10 @@ class ProductQuerySet(models.QuerySet):
 
 class Product(TimeStampedModel):
     class Strength(models.TextChoices):
-        MILD = 'mild', 'Легка'
-        MEDIUM = 'medium', 'Середня'
-        MEDIUM_FULL = 'medium_full', 'Середньо-повна'
-        FULL = 'full', 'Повна'
+        MILD = 'mild', _('Легка')
+        MEDIUM = 'medium', _('Середня')
+        MEDIUM_FULL = 'medium_full', _('Середньо-повна')
+        FULL = 'full', _('Повна')
 
     brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name='products')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products')

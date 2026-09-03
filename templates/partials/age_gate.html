@@ -1,32 +1,31 @@
+{% load i18n %}
 <div class="rs-age-gate{% if request.age_denied %} is-denied{% endif %}"
      data-age-gate
      data-denied="{% if request.age_denied %}1{% else %}0{% endif %}"
      role="dialog"
      aria-modal="true"
-     aria-labelledby="age-gate-title">
+     aria-labelledby="{% if request.age_denied %}age-gate-denied-title{% else %}age-gate-title{% endif %}">
   <div class="rs-age-gate__inner rs-age-ask">
     <div class="rs-age-gate__brand">{{ site_settings.site_name|default:"Royal Smoke" }}</div>
-    <h2 id="age-gate-title" class="rs-age-gate__title">Вам виповнилося<br>21 рік?</h2>
+    <h2 id="age-gate-title" class="rs-age-gate__title">{% trans "Вам виповнилося" %}<br>{% trans "21 рік?" %}</h2>
     <p class="rs-age-gate__text">
-      Сайт містить інформацію про тютюнові вироби. Підтвердіть вік, щоб продовжити.
+      {% trans "Сайт містить інформацію про тютюнові вироби. Підтвердіть вік, щоб продовжити." %}
     </p>
     <div class="rs-age-gate__actions">
-      <button type="button" class="rs-btn rs-btn--primary" data-age-yes>Мені є 21 рік</button>
-      <button type="button" class="rs-btn rs-btn--ghost" data-age-no>Мені немає 21 року</button>
+      <button type="button" class="rs-btn rs-btn--primary" data-age-yes>{% trans "Мені є 21 рік" %}</button>
+      <button type="button" class="rs-btn rs-btn--ghost" data-age-no>{% trans "Мені немає 21 року" %}</button>
     </div>
-    <div class="rs-age-gate__langs" aria-hidden="true">
-      <span>EN</span>
-      <span data-active>UA</span>
-      <span>ZH</span>
+    <div class="rs-age-gate__langs">
+      {% include "partials/lang_switcher.html" with compact=1 %}
     </div>
   </div>
 
   <div class="rs-age-gate__inner rs-age-denied">
     <div class="rs-age-gate__brand" style="font-size:22px;color:var(--rs-text-muted)">{{ site_settings.site_name|default:"Royal Smoke" }}</div>
-    <h2 class="rs-age-gate__title">Доступ обмежено</h2>
+    <h2 id="age-gate-denied-title" class="rs-age-gate__title">{% trans "Доступ обмежено" %}</h2>
     <p class="rs-age-gate__text">
-      Цей сайт призначений лише для повнолітніх відвідувачів 21+.
+      {% trans "Цей сайт призначений лише для повнолітніх відвідувачів 21+." %}
     </p>
-    <button type="button" class="rs-btn rs-btn--ghost" data-age-reset>Повернутися</button>
+    <button type="button" class="rs-btn rs-btn--ghost" data-age-reset>{% trans "Повернутися" %}</button>
   </div>
 </div>

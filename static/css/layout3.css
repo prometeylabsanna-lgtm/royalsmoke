@@ -167,6 +167,15 @@
   margin-top: auto;
 }
 
+.rs-drawer__meta .rs-lang {
+  display: flex;
+  justify-content: flex-start;
+  gap: 14px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: rgba(252, 242, 238, 0.62);
+}
+
 .rs-drawer__callback {
   height: 52px;
   border: 1px solid var(--rs-border);

@@ -1,0 +1,4 @@
+<span id="wishlist-badge"
+      class="rs-badge"
+      data-count="{{ wishlist_count|default:0 }}"
+      {% if oob %}hx-swap-oob="outerHTML"{% endif %}>{% if wishlist_count %}{{ wishlist_count }}{% endif %}</span>

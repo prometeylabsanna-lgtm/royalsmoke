@@ -1,9 +1,9 @@
-{% load static %}
-<article class="rs-svc-card" id="home-booking" aria-label="Бронювання" data-rs-reveal>
+{% load static i18n %}
+<article class="rs-svc-card" id="home-booking" aria-label="{% trans 'Бронювання' %}" data-rs-reveal>
   <div class="rs-svc-card__media">
     <img
       src="{% static 'img/booking/lounge.jpg' %}"
-      alt="Лаунж Royal Smoke"
+      alt="{% trans 'Лаунж Royal Smoke' %}"
       width="800"
       height="1000"
       loading="lazy"
@@ -13,8 +13,8 @@
   </div>
 
   <div class="rs-svc-card__body">
-    <h2 class="rs-svc-card__title">Бронювання</h2>
-    <p class="rs-svc-card__lead">Дегустація, консультація або візит у шоурум.</p>
+    <h2 class="rs-svc-card__title">{% trans "Бронювання" %}</h2>
+    <p class="rs-svc-card__lead">{% trans "Дегустація, консультація або візит у шоурум." %}</p>
 
     <form
       class="rs-svc-card__form"
@@ -28,7 +28,7 @@
 
       <div class="rs-svc-card__fields">
         <div class="rs-svc-card__field">
-          <label class="sr-only" for="home_booking_name">Імʼя</label>
+          <label class="sr-only" for="home_booking_name">{% trans "Імʼя" %}</label>
           <input
             id="home_booking_name"
             type="text"
@@ -37,12 +37,12 @@
             data-rs-rule="name"
             autocomplete="name"
             maxlength="120"
-            placeholder="Імʼя"
+            placeholder="{% trans 'Імʼя' %}"
           >
           <p class="rs-field__error" data-rs-error hidden></p>
         </div>
         <div class="rs-svc-card__field">
-          <label class="sr-only" for="home_booking_phone">Телефон</label>
+          <label class="sr-only" for="home_booking_phone">{% trans "Телефон" %}</label>
           <input
             id="home_booking_phone"
             type="tel"
@@ -51,21 +51,21 @@
             data-rs-rule="phone"
             autocomplete="tel"
             maxlength="30"
-            placeholder="Телефон"
+            placeholder="{% trans 'Телефон' %}"
           >
           <p class="rs-field__error" data-rs-error hidden></p>
         </div>
         <div class="rs-svc-card__field rs-svc-card__field--full">
-          <label class="sr-only" for="home_booking_comment">Побажання</label>
+          <label class="sr-only" for="home_booking_comment">{% trans "Побажання" %}</label>
           <input
             id="home_booking_comment"
             type="text"
             name="comment"
             maxlength="500"
-            placeholder="Побажання (необовʼязково)"
+            placeholder="{% trans 'Побажання (необовʼязково)' %}"
           >
         </div>
-        <button type="submit" class="rs-svc-card__submit">Забронювати</button>
+        <button type="submit" class="rs-svc-card__submit">{% trans "Забронювати" %}</button>
       </div>
     </form>
   </div>

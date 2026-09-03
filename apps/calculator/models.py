@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class CalculatorQuestion(models.Model):
@@ -9,10 +10,10 @@ class CalculatorQuestion(models.Model):
     STEP_COUNTRY = 'country'
     STEP_BUDGET = 'budget'
     STEP_CHOICES = [
-        (STEP_STRENGTH, 'Міцність'),
-        (STEP_FORMAT, 'Формат'),
-        (STEP_COUNTRY, 'Країна'),
-        (STEP_BUDGET, 'Бюджет'),
+        (STEP_STRENGTH, _('Міцність')),
+        (STEP_FORMAT, _('Формат')),
+        (STEP_COUNTRY, _('Країна')),
+        (STEP_BUDGET, _('Бюджет')),
     ]
 
     step_key = models.CharField('Крок', max_length=32, choices=STEP_CHOICES, unique=True)

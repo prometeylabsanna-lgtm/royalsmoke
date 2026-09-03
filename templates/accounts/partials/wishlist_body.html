@@ -1,0 +1,62 @@
+{% load i18n %}
+{% if products %}
+  <div class="rs-wish-page__list">
+    {% for product in products %}
+      <article class="rs-wish-line">
+        <a class="rs-wish-line__media" href="{{ product.get_absolute_url }}" tabindex="-1" aria-hidden="true">
+          {% with img=product.images.all.0 %}
+            {% if img %}
+              <img src="{{ img.image.url }}" alt="" loading="lazy" width="88" height="88">
+            {% endif %}
+          {% endwith %}
+        </a>
+        <div class="rs-wish-line__body">
+          <div class="rs-wish-line__info">
+            <p class="rs-wish-line__brand">
+              {{ product.brand.name }}{% if product.line %} · {{ product.line.name }}{% endif %}
+            </p>
+            <h2 class="rs-wish-line__title">
+              <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+            </h2>
+            <p class="rs-wish-line__price">
+              <span>{{ product.display_price }}</span>
+              <span class="rs-wish-line__currency">₴</span>
+            </p>
+          </div>
+          <div class="rs-wish-line__actions">
+            <form method="post"
+                  action="{% url 'cart:add' %}"
+                  hx-post="{% url 'cart:add' %}"
+                  hx-target="#cart-badge"
+                  hx-swap="outerHTML"
+                  class="rs-wish-line__cart">
+              {% csrf_token %}
+              <input type="hidden" name="product_id" value="{{ product.id }}">
+              <input type="hidden" name="quantity" value="1">
+              {% with v=product.variants.all.0 %}
+                {% if v %}<input type="hidden" name="variant_id" value="{{ v.id }}">{% endif %}
+              {% endwith %}
+              <button type="submit" class="rs-pcard__buy">{% trans "У кошик" %}</button>
+            </form>
+            <form method="post"
+                  action="{% url 'accounts:wishlist_toggle' %}"
+                  hx-post="{% url 'accounts:wishlist_toggle' %}"
+                  hx-target="#wishlist-body"
+                  hx-swap="innerHTML"
+                  class="rs-wish-line__remove">
+              {% csrf_token %}
+              <input type="hidden" name="product_id" value="{{ product.id }}">
+              <button type="submit" class="rs-btn rs-btn--underline">{% trans "Прибрати" %}</button>
+            </form>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+  <a class="rs-wish-page__continue" href="{% url 'catalog:list' %}">{% trans "До каталогу" %}</a>
+{% else %}
+  <div class="rs-wish-page__empty">
+    <p class="rs-wish-page__empty-text">{% trans "Вибране порожнє." %}</p>
+    <a class="rs-wish-page__empty-cta" href="{% url 'catalog:list' %}">{% trans "До каталогу" %}</a>
+  </div>
+{% endif %}

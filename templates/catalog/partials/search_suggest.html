@@ -1,3 +1,4 @@
+{% load i18n %}
 {% if q|length >= 2 %}
 <ul class="rs-search__list">
   {% for p in products %}
@@ -19,7 +20,7 @@
       </a>
     </li>
   {% empty %}
-    <li class="rs-search__empty">Нічого не знайдено</li>
+    <li class="rs-search__empty">{% trans "Нічого не знайдено" %}</li>
   {% endfor %}
 </ul>
 {% endif %}

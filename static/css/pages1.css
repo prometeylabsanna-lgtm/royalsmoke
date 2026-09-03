@@ -321,42 +321,7 @@
     );
 }
 
-/* ——— About / service ——— */
-.rs-about {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-
-.rs-about__title {
-  font-family: var(--rs-font-display);
-  font-weight: var(--rs-weight-display);
-  font-size: 28px;
-  line-height: 1.25;
-}
-
-.rs-about__lead {
-  color: var(--rs-text-muted);
-  font-size: 15px;
-  line-height: 1.6;
-  max-width: 52ch;
-}
-
-.rs-about__brands {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 20px;
-  margin-top: 8px;
-}
-
-.rs-about__brands span {
-  font-family: var(--rs-font-display);
-  font-weight: var(--rs-weight-sub);
-  font-size: 14px;
-  letter-spacing: 0.1em;
-  color: var(--rs-text-muted);
-}
-
+/* ——— Service ——— */
 .rs-service {
   display: flex;
   flex-direction: column;

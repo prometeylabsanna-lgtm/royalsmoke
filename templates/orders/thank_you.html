@@ -1,21 +1,21 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Дякуємо — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% trans "Дякуємо" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 
 {% block content %}
 <div class="rs-thank" data-rs-reveal>
-  <h1>Дякуємо за замовлення</h1>
+  <h1>{% trans "Дякуємо за замовлення" %}</h1>
   <p>
     {% if order %}
-      Номер замовлення <strong>{{ order.number|default:order.id }}</strong>.
-      Ми надіслали підтвердження на вашу пошту.
+      {% blocktrans with num=order.number|default:order.id %}Номер замовлення <strong>{{ num }}</strong>. Ми надіслали підтвердження на вашу пошту.{% endblocktrans %}
     {% else %}
-      Ми отримали ваше замовлення і скоро звʼяжемося з вами.
+      {% trans "Ми отримали ваше замовлення і скоро звʼяжемося з вами." %}
     {% endif %}
   </p>
   <div class="rs-btn-row" style="max-width:420px;margin-inline:auto">
-    <a class="rs-btn rs-btn--gold" href="{% url 'catalog:list' %}">До каталогу</a>
-    <a class="rs-btn rs-btn--ghost" href="{% url 'accounts:cabinet' %}">Кабінет</a>
+    <a class="rs-btn rs-btn--gold" href="{% url 'catalog:list' %}">{% trans "До каталогу" %}</a>
+    <a class="rs-btn rs-btn--ghost" href="{% url 'accounts:cabinet' %}">{% trans "Кабінет" %}</a>
   </div>
 </div>
 {% endblock %}

@@ -1,27 +1,33 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}B2B — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 
 {% block content %}
+{% trans "Контактна особа" as label_name %}
+{% trans "Телефон" as label_phone %}
+{% trans "Email" as label_email %}
+{% trans "Що цікавить" as label_message %}
+{% trans "Прайс, гравіювання, корпоративні набори…" as placeholder_message %}
 <header class="rs-page-head" data-rs-reveal>
   <h1>B2B</h1>
-  <p>Прайс і умови для барів, готелів і корпоративних подарунків.</p>
+  <p>{% trans "Прайс і умови для барів, готелів і корпоративних подарунків." %}</p>
 </header>
 
 <div class="rs-container rs-service-page" data-rs-reveal data-reveal-delay="80">
   <form class="rs-form" method="post" action="{% url 'leads:b2b' %}" data-rs-validate novalidate>
     {% csrf_token %}
     <div class="rs-field">
-      <label for="id_company">Компанія</label>
+      <label for="id_company">{% trans "Компанія" %}</label>
       <input id="id_company" type="text" name="company" required data-rs-rule="required">
       <p class="rs-field__error" data-rs-error hidden></p>
     </div>
-    {% include "partials/form_field.html" with name="name" id="id_name" label="Контактна особа" rule="name" type="text" autocomplete="name" %}
-    {% include "partials/form_field.html" with name="phone" id="id_phone" label="Телефон" rule="phone" type="tel" autocomplete="tel" %}
-    {% include "partials/form_field.html" with name="email" id="id_email" label="Email" rule="email" type="email" autocomplete="email" %}
-    {% include "partials/form_field.html" with name="message" id="id_message" label="Що цікавить" rule="required" type="textarea" placeholder="Прайс, гравіювання, корпоративні набори…" rows=4 %}
+    {% include "partials/form_field.html" with name="name" id="id_name" label=label_name rule="name" type="text" autocomplete="name" %}
+    {% include "partials/form_field.html" with name="phone" id="id_phone" label=label_phone rule="phone" type="tel" autocomplete="tel" %}
+    {% include "partials/form_field.html" with name="email" id="id_email" label=label_email rule="email" type="email" autocomplete="email" %}
+    {% include "partials/form_field.html" with name="message" id="id_message" label=label_message rule="required" type="textarea" placeholder=placeholder_message rows=4 %}
     <div class="rs-form__actions">
-      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">Запросити прайс</button>
+      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% trans "Запросити прайс" %}</button>
     </div>
   </form>
 </div>

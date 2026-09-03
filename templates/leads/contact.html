@@ -1,23 +1,28 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 
-{% block title %}Контакти — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% trans "Контакти" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 {% block body_class %}rs-contact-page{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/pages10.css' %}?v=3">
+<link rel="stylesheet" href="{% static 'css/pages10.css' %}?v=4">
 {% endblock %}
 
 {% block content %}
+{% trans "Імʼя" as label_name %}
+{% trans "Email" as label_email %}
+{% trans "Телефон" as label_phone %}
+{% trans "Повідомлення" as label_message %}
+{% trans "Пн–Нд: 11:00–21:00" as default_hours %}
 <div class="rs-container rs-contact">
   <div class="rs-contact__split" data-rs-reveal>
-    <aside class="rs-contact__aside" aria-label="Контактна інформація">
+    <aside class="rs-contact__aside" aria-label="{% trans "Контактна інформація" %}">
       <div class="rs-contact__map" aria-hidden="true">
-        <span class="rs-contact__map-label">Карта — Хрещатик 1</span>
+        <span class="rs-contact__map-label">{% trans "Карта — Хрещатик 1" %}</span>
       </div>
       <dl class="rs-contact__info">
         <div class="rs-contact__info-row">
-          <dt>Телефон</dt>
+          <dt>{% trans "Телефон" %}</dt>
           <dd>
             <a href="tel:{{ site_settings.phone|cut:' '|cut:'-' }}">{{ site_settings.phone|default:"+380" }}</a>
           </dd>
@@ -29,30 +34,30 @@
           </dd>
         </div>
         <div class="rs-contact__info-row">
-          <dt>Адреса</dt>
-          <dd>Київ, вул. Хрещатик, 1</dd>
+          <dt>{% trans "Адреса" %}</dt>
+          <dd>{% trans "Київ, вул. Хрещатик, 1" %}</dd>
         </div>
         <div class="rs-contact__info-row">
-          <dt>Години</dt>
-          <dd>{{ site_settings.work_hours|default:"Пн–Нд: 11:00–21:00" }}</dd>
+          <dt>{% trans "Години" %}</dt>
+          <dd>{{ site_settings.work_hours|default:default_hours }}</dd>
         </div>
       </dl>
     </aside>
 
     <section class="rs-contact__panel" aria-labelledby="contact-heading">
-      <p class="rs-contact__kicker">Контакти</p>
-      <h1 id="contact-heading" class="rs-contact__title">Напишіть нам</h1>
-      <p class="rs-contact__lead">Відповідаємо протягом робочого дня.</p>
+      <p class="rs-contact__kicker">{% trans "Контакти" %}</p>
+      <h1 id="contact-heading" class="rs-contact__title">{% trans "Напишіть нам" %}</h1>
+      <p class="rs-contact__lead">{% trans "Відповідаємо протягом робочого дня." %}</p>
 
       <form class="rs-form rs-contact__form" method="post" action="{% url 'leads:contact' %}" data-rs-validate novalidate data-rs-reveal data-reveal-delay="80">
         {% csrf_token %}
-        {% include "partials/form_field.html" with name="name" id="id_name" label="Імʼя" rule="name" type="text" autocomplete="name" placeholder="Імʼя" value=form.name.value error=form.name.errors.0 sr_only_label=1 %}
-        {% include "partials/form_field.html" with name="email" id="id_email" label="Email" rule="email" type="email" autocomplete="email" placeholder="Email" value=form.email.value error=form.email.errors.0 optional=1 sr_only_label=1 %}
-        {% include "partials/form_field.html" with name="phone" id="id_phone" label="Телефон" rule="phone" type="tel" autocomplete="tel" placeholder="Телефон" value=form.phone.value error=form.phone.errors.0 optional=1 sr_only_label=1 %}
-        {% include "partials/form_field.html" with name="message" id="id_message" label="Повідомлення" rule="required" type="textarea" placeholder="Повідомлення" value=form.message.value error=form.message.errors.0 rows=5 sr_only_label=1 %}
+        {% include "partials/form_field.html" with name="name" id="id_name" label=label_name rule="name" type="text" autocomplete="name" placeholder=label_name value=form.name.value error=form.name.errors.0 sr_only_label=1 %}
+        {% include "partials/form_field.html" with name="email" id="id_email" label=label_email rule="email" type="email" autocomplete="email" placeholder=label_email value=form.email.value error=form.email.errors.0 optional=1 sr_only_label=1 %}
+        {% include "partials/form_field.html" with name="phone" id="id_phone" label=label_phone rule="phone" type="tel" autocomplete="tel" placeholder=label_phone value=form.phone.value error=form.phone.errors.0 optional=1 sr_only_label=1 %}
+        {% include "partials/form_field.html" with name="message" id="id_message" label=label_message rule="required" type="textarea" placeholder=label_message value=form.message.value error=form.message.errors.0 rows=5 sr_only_label=1 %}
         <div class="rs-form__actions rs-contact__actions">
-          <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">Надіслати</button>
-          <button type="button" class="rs-btn rs-btn--ghost rs-btn--block" data-callback-open>Замовити дзвінок</button>
+          <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% trans "Надіслати" %}</button>
+          <button type="button" class="rs-btn rs-btn--ghost rs-btn--block" data-callback-open>{% trans "Замовити дзвінок" %}</button>
         </div>
       </form>
     </section>

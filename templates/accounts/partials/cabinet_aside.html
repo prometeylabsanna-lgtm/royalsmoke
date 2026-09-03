@@ -1,10 +1,11 @@
-<aside class="rs-gate__aside" aria-label="Можливості кабінету">
+{% load i18n %}
+<aside class="rs-gate__aside" aria-label="{% trans "Можливості кабінету" %}">
   <div class="rs-gate__card">
-    <p class="rs-gate__eyebrow">Швидкі дії</p>
-    <nav class="rs-gate__menu" aria-label="Швидкі дії кабінету">
-      <a class="rs-gate__menu-btn" href="{% url 'catalog:list' %}">Каталог</a>
-      <a class="rs-gate__menu-btn" href="{% url 'cart:detail' %}">Кошик</a>
-      <a class="rs-gate__menu-btn" href="{% url 'leads:contact' %}">Підтримка</a>
+    <p class="rs-gate__eyebrow">{% trans "Швидкі дії" %}</p>
+    <nav class="rs-gate__menu" aria-label="{% trans "Швидкі дії кабінету" %}">
+      <a class="rs-gate__menu-btn" href="{% url 'catalog:list' %}">{% trans "Каталог" %}</a>
+      <a class="rs-gate__menu-btn" href="{% url 'cart:detail' %}">{% trans "Кошик" %}</a>
+      <a class="rs-gate__menu-btn" href="{% url 'leads:contact' %}">{% trans "Підтримка" %}</a>
     </nav>
   </div>
 </aside>

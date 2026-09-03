@@ -50,6 +50,7 @@
       noBtn.addEventListener('click', function () {
         setCookie(COOKIE, '0', COOKIE_DAYS);
         gate.classList.add('is-denied');
+        gate.setAttribute('aria-labelledby', 'age-gate-denied-title');
       });
     }
 
@@ -57,24 +58,33 @@
       resetBtn.addEventListener('click', function () {
         setCookie(COOKIE, '', -1);
         gate.classList.remove('is-denied');
+        gate.setAttribute('aria-labelledby', 'age-gate-title');
       });
     }
 
     if (gate.getAttribute('data-denied') === '1') {
       gate.classList.add('is-denied');
+      gate.setAttribute('aria-labelledby', 'age-gate-denied-title');
     }
   }
 
   /* ——— iOS scroll lock ——— */
   var lockY = 0;
+  var lockCount = 0;
 
   function lockScroll() {
-    lockY = window.scrollY || window.pageYOffset || 0;
-    document.body.classList.add('is-locked');
-    document.body.style.top = '-' + lockY + 'px';
+    if (lockCount === 0) {
+      lockY = window.scrollY || window.pageYOffset || 0;
+      document.body.classList.add('is-locked');
+      document.body.style.top = '-' + lockY + 'px';
+    }
+    lockCount += 1;
   }
 
   function unlockScroll() {
+    if (lockCount === 0) return;
+    lockCount -= 1;
+    if (lockCount > 0) return;
     document.body.classList.remove('is-locked');
     document.body.style.top = '';
     window.scrollTo(0, lockY);
@@ -101,6 +111,7 @@
     function openDrawer() {
       drawer.classList.add('is-open');
       drawer.setAttribute('aria-hidden', 'false');
+      drawer.removeAttribute('inert');
       if (backdrop) backdrop.classList.add('is-open');
       setExpanded(true);
       lockScroll();
@@ -111,6 +122,7 @@
     function closeDrawer() {
       drawer.classList.remove('is-open');
       drawer.setAttribute('aria-hidden', 'true');
+      drawer.setAttribute('inert', '');
       if (backdrop) backdrop.classList.remove('is-open');
       setExpanded(false);
       unlockScroll();
@@ -144,10 +156,12 @@
     });
 
     drawer.addEventListener('touchstart', function (e) {
+      if (!e.changedTouches || !e.changedTouches.length) return;
       touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
 
     drawer.addEventListener('touchend', function (e) {
+      if (!e.changedTouches || !e.changedTouches.length) return;
       var dx = e.changedTouches[0].screenX - touchStartX;
       if (dx > 60) closeDrawer();
     }, { passive: true });
@@ -379,7 +393,10 @@
     initCallback();
   });
 
-  document.body.addEventListener('htmx:afterSwap', function () {
+  document.body.addEventListener('htmx:afterSwap', function (e) {
     initReveal();
+    if (window.RsValidate && typeof window.RsValidate.init === 'function') {
+      window.RsValidate.init(e && e.detail && e.detail.target ? e.detail.target : document);
+    }
   });
 })();

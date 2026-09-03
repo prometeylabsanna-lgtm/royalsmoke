@@ -1,9 +1,9 @@
-{% load static %}
-<article class="rs-svc-card" id="home-b2b" aria-label="B2B" data-rs-reveal data-reveal-delay="120">
+{% load static i18n %}
+<article class="rs-svc-card" id="home-b2b" aria-label="{% trans 'B2B' %}" data-rs-reveal data-reveal-delay="120">
   <div class="rs-svc-card__media">
     <img
       src="{% static 'img/service/b2b.jpg' %}"
-      alt="Корпоративні набори Royal Smoke"
+      alt="{% trans 'Корпоративні набори Royal Smoke' %}"
       width="800"
       height="1000"
       loading="lazy"
@@ -13,8 +13,8 @@
   </div>
 
   <div class="rs-svc-card__body">
-    <h2 class="rs-svc-card__title">B2B</h2>
-    <p class="rs-svc-card__lead">Прайс для барів, готелів і корпоративних подарунків.</p>
+    <h2 class="rs-svc-card__title">{% trans "B2B" %}</h2>
+    <p class="rs-svc-card__lead">{% trans "Прайс для барів, готелів і корпоративних подарунків." %}</p>
 
     <form
       class="rs-svc-card__form"
@@ -28,7 +28,7 @@
 
       <div class="rs-svc-card__fields rs-svc-card__fields--b2b">
         <div class="rs-svc-card__field">
-          <label class="sr-only" for="home_b2b_company">Компанія</label>
+          <label class="sr-only" for="home_b2b_company">{% trans "Компанія" %}</label>
           <input
             id="home_b2b_company"
             type="text"
@@ -36,12 +36,12 @@
             required
             data-rs-rule="required"
             maxlength="160"
-            placeholder="Компанія"
+            placeholder="{% trans 'Компанія' %}"
           >
           <p class="rs-field__error" data-rs-error hidden></p>
         </div>
         <div class="rs-svc-card__field">
-          <label class="sr-only" for="home_b2b_name">Контактна особа</label>
+          <label class="sr-only" for="home_b2b_name">{% trans "Контактна особа" %}</label>
           <input
             id="home_b2b_name"
             type="text"
@@ -50,12 +50,12 @@
             data-rs-rule="name"
             autocomplete="name"
             maxlength="120"
-            placeholder="Контакт"
+            placeholder="{% trans 'Контакт' %}"
           >
           <p class="rs-field__error" data-rs-error hidden></p>
         </div>
         <div class="rs-svc-card__field">
-          <label class="sr-only" for="home_b2b_phone">Телефон</label>
+          <label class="sr-only" for="home_b2b_phone">{% trans "Телефон" %}</label>
           <input
             id="home_b2b_phone"
             type="tel"
@@ -64,12 +64,12 @@
             data-rs-rule="phone"
             autocomplete="tel"
             maxlength="30"
-            placeholder="Телефон"
+            placeholder="{% trans 'Телефон' %}"
           >
           <p class="rs-field__error" data-rs-error hidden></p>
         </div>
         <div class="rs-svc-card__field">
-          <label class="sr-only" for="home_b2b_email">Email</label>
+          <label class="sr-only" for="home_b2b_email">{% trans "Email" %}</label>
           <input
             id="home_b2b_email"
             type="email"
@@ -77,12 +77,12 @@
             required
             data-rs-rule="email"
             autocomplete="email"
-            placeholder="Email"
+            placeholder="{% trans 'Email' %}"
           >
           <p class="rs-field__error" data-rs-error hidden></p>
         </div>
         <div class="rs-svc-card__field rs-svc-card__field--full">
-          <label class="sr-only" for="home_b2b_message">Що цікавить</label>
+          <label class="sr-only" for="home_b2b_message">{% trans "Що цікавить" %}</label>
           <input
             id="home_b2b_message"
             type="text"
@@ -90,11 +90,11 @@
             required
             data-rs-rule="required"
             maxlength="500"
-            placeholder="Прайс, гравіювання…"
+            placeholder="{% trans 'Прайс, гравіювання…' %}"
           >
           <p class="rs-field__error" data-rs-error hidden></p>
         </div>
-        <button type="submit" class="rs-svc-card__submit">Запросити прайс</button>
+        <button type="submit" class="rs-svc-card__submit">{% trans "Запросити прайс" %}</button>
       </div>
     </form>
   </div>

@@ -1,22 +1,22 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="{{ LANGUAGE_CODE|default:'uk' }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#100d0c">
   <title>{% block title %}{{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}</title>
-  <meta name="description" content="{% block meta_description %}{{ site_settings.meta_description|default:'Сигари та аксесуари Royal Smoke' }}{% endblock %}">
+  <meta name="description" content="{% block meta_description %}{% if site_settings.meta_description %}{{ site_settings.meta_description }}{% else %}{% trans 'Сигари та аксесуари Royal Smoke' %}{% endif %}{% endblock %}">
   <link rel="stylesheet" href="{% static 'css/tokens.css' %}?v=4">
   <link rel="stylesheet" href="{% static 'css/layout.css' %}?v=9">
   <link rel="stylesheet" href="{% static 'css/layout2.css' %}?v=4">
   <link rel="stylesheet" href="{% static 'css/layout3.css' %}?v=1">
   <link rel="stylesheet" href="{% static 'css/footer.css' %}?v=16">
-  <link rel="stylesheet" href="{% static 'css/components1.css' %}">
-  <link rel="stylesheet" href="{% static 'css/components2.css' %}">
-  <link rel="stylesheet" href="{% static 'css/animations.css' %}">
-  <link rel="stylesheet" href="{% static 'css/pages1.css' %}?v=4">
-  <link rel="stylesheet" href="{% static 'css/pages2.css' %}?v=6">
+  <link rel="stylesheet" href="{% static 'css/components1.css' %}?v=2">
+  <link rel="stylesheet" href="{% static 'css/components2.css' %}?v=1">
+  <link rel="stylesheet" href="{% static 'css/animations.css' %}?v=1">
+  <link rel="stylesheet" href="{% static 'css/pages1.css' %}?v=5">
+  <link rel="stylesheet" href="{% static 'css/pages2.css' %}?v=7">
   <link rel="stylesheet" href="{% static 'css/pages3.css' %}?v=2">
   <link rel="stylesheet" href="{% static 'css/pages4.css' %}?v=6">
   <link rel="stylesheet" href="{% static 'css/pages5.css' %}?v=16">
@@ -25,12 +25,24 @@
   <link rel="stylesheet" href="{% static 'css/history-journey.css' %}?v=2">
   <link rel="stylesheet" href="{% static 'css/history-journey2.css' %}?v=2">
   <link rel="stylesheet" href="{% static 'css/breadcrumbs.css' %}?v=2">
+  <link rel="stylesheet" href="{% static 'css/wishlist.css' %}?v=1">
   {% block extra_css %}{% endblock %}
   <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
 </head>
 <body class="{% block body_class %}{% endblock %}"
       hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  <script>try{localStorage.setItem('rs_lang','{{ LANGUAGE_CODE|default:"uk" }}');}catch(e){}</script>
   {% csrf_token %}
+
+  <svg class="rs-wish-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="rs-wish-gold" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#ead7a6"/>
+        <stop offset="42%" stop-color="#d4b06a"/>
+        <stop offset="100%" stop-color="#b8893a"/>
+      </linearGradient>
+    </defs>
+  </svg>
 
   {% if request.show_age_gate or request.age_denied %}
     {% include "partials/age_gate.html" %}
@@ -60,34 +72,39 @@
     {% include "partials/footer.html" %}
   </div>
 
-  <div class="rs-float" data-float aria-label="Швидкі дії">
-    <button type="button" class="rs-float__btn rs-float__btn--fill" data-callback-open aria-label="Замовити дзвінок">
+  <div class="rs-float" data-float aria-label="{% trans 'Швидкі дії' %}">
+    <button type="button" class="rs-float__btn rs-float__btn--fill" data-callback-open aria-label="{% trans 'Замовити дзвінок' %}">
       <svg width="19" height="19" viewBox="0 0 19 19" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M6.5 1.5l2.5 4-2 2a11 11 0 004.5 4.5l2-2 4 2.5v3c0 .8-.7 1.5-1.5 1.5C8.4 17 2 10.6 2 3 2 2.2 2.7 1.5 3.5 1.5h3z"/></svg>
     </button>
-    <a href="{% url 'leads:contact' %}" class="rs-float__btn" aria-label="Чат / контакти">
+    <a href="{% url 'leads:contact' %}" class="rs-float__btn" aria-label="{% trans 'Чат / контакти' %}">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M3 4.5h14v9H8l-3.5 3v-3H3v-9z"/></svg>
     </a>
   </div>
 
   <div class="rs-callback" data-callback-panel hidden role="dialog" aria-modal="true" aria-labelledby="cb-title">
     <div class="rs-callback__dialog">
-      <h2 id="cb-title" class="rs-callback__title">Зворотний дзвінок</h2>
-      <p class="rs-callback__text">Залиште номер — передзвонимо протягом робочого дня.</p>
+      <h2 id="cb-title" class="rs-callback__title">{% trans "Зворотний дзвінок" %}</h2>
+      <p class="rs-callback__text">{% trans "Залиште номер — передзвонимо протягом робочого дня." %}</p>
       <form class="rs-form" action="{% url 'leads:callback' %}" method="post" data-rs-validate novalidate>
         {% csrf_token %}
-        {% include "partials/form_field.html" with name="name" id="cb-name" label="Імʼя" rule="name" type="text" autocomplete="name" optional=1 %}
-        {% include "partials/form_field.html" with name="phone" id="cb-phone" label="Телефон" rule="phone" type="tel" autocomplete="tel" %}
+        {% trans "Імʼя" as cb_name_label %}
+        {% trans "Телефон" as cb_phone_label %}
+        {% include "partials/form_field.html" with name="name" id="cb-name" label=cb_name_label rule="name" type="text" autocomplete="name" optional=1 %}
+        {% include "partials/form_field.html" with name="phone" id="cb-phone" label=cb_phone_label rule="phone" type="tel" autocomplete="tel" %}
         <div class="rs-form__actions">
-          <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">Надіслати</button>
-          <button type="button" class="rs-btn rs-btn--ghost rs-btn--block" data-callback-close>Скасувати</button>
+          <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% trans "Надіслати" %}</button>
+          <button type="button" class="rs-btn rs-btn--ghost rs-btn--block" data-callback-close>{% trans "Скасувати" %}</button>
         </div>
       </form>
     </div>
   </div>
 
-  <script src="{% static 'js/rs-validate.js' %}?v=1" defer></script>
-  <script src="{% static 'js/main.js' %}?v=2" defer></script>
-  <script src="{% static 'js/home-parallax.js' %}" defer></script>
+  <script type="application/json" id="rs-i18n-validate">
+  {"required":"{% trans 'Це поле обовʼязкове' %}","requiredCheckbox":"{% trans 'Підтвердіть цю опцію' %}","whitespace":"{% trans 'Поле не може складатися лише з пробілів' %}","nameMin":"{% trans 'Імʼя має містити мінімум 2 символи' %}","nameChars":"{% trans 'Імʼя може містити лише літери, пробіли, дефіс і апостроф' %}","email":"{% trans 'Введіть коректну електронну пошту' %}","passwordMin":"{% trans 'Пароль має містити мінімум 8 символів' %}","passwordUpper":"{% trans 'Пароль має містити хоча б одну велику літеру' %}","passwordLower":"{% trans 'Пароль має містити хоча б одну малу літеру' %}","passwordDigit":"{% trans 'Пароль має містити хоча б одну цифру' %}","passwordSpecial":"{% trans 'Пароль має містити хоча б один спеціальний символ' %}","phone":"{% trans 'Введіть коректний номер телефону' %}","url":"{% trans 'Введіть коректну URL-адресу' %}"}
+  </script>
+  <script src="{% static 'js/rs-validate.js' %}?v=2" defer></script>
+  <script src="{% static 'js/main.js' %}?v=3" defer></script>
+  <script src="{% static 'js/home-parallax.js' %}?v=1" defer></script>
   {% block extra_js %}{% endblock %}
 </body>
 </html>

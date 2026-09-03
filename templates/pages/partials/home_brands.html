@@ -1,4 +1,6 @@
-<section class="rs-section rs-home-brands" id="home-brands" aria-label="Бренди" data-brands-craft>
+{% load i18n %}
+{% trans "Premium" as premium_fallback %}
+<section class="rs-section rs-home-brands" id="home-brands" aria-label="{% trans 'Бренди' %}" data-brands-craft>
   <div class="rs-brands-snaps" data-brands-snaps style="--rs-brand-count: {{ brand_craft|length|default:4 }}">
     {% for item in brand_craft %}
       <article
@@ -39,18 +41,18 @@
             <p class="rs-brand-snap__pattern-row">ROYALROYALROYALROYALROYALROYALROYALROYAL</p>
           </div>
           <div class="rs-brand-snap__wrap">
-            <p class="rs-brand-snap__country">{% if item.brand.country %}{{ item.brand.country }}{% else %}Premium{% endif %}</p>
+            <p class="rs-brand-snap__country">{% if item.brand.country %}{{ item.brand.country }}{% else %}{{ premium_fallback }}{% endif %}</p>
             <h3 class="rs-brand-snap__title">{{ item.brand.name }}</h3>
             <p class="rs-brand-snap__desc">{{ item.description }}</p>
             <a class="rs-link-gold rs-hover-underline rs-brand-snap__cta" href="{{ item.brand.get_absolute_url }}">
-              До бренду
+              {% trans "До бренду" %}
             </a>
           </div>
         </div>
       </article>
     {% empty %}
       <div class="rs-container">
-        <p class="rs-brand-snap__empty">Незабаром з’являться featured-бренди.</p>
+        <p class="rs-brand-snap__empty">{% trans "Незабаром з’являться featured-бренди." %}</p>
       </div>
     {% endfor %}
   </div>

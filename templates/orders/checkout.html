@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Оформлення замовлення — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% trans "Оформлення замовлення" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 
 {% block content %}
 <header class="rs-page-head" data-rs-reveal>
-  <h1>Оформлення</h1>
-  <p>Заповніть контакти та спосіб доставки.</p>
+  <h1>{% trans "Оформлення" %}</h1>
+  <p>{% trans "Заповніть контакти та спосіб доставки." %}</p>
 </header>
 
 <div class="rs-container rs-checkout" data-rs-reveal data-reveal-delay="80">
@@ -15,70 +16,79 @@
       <div class="rs-field__error">{{ form.non_field_errors }}</div>
     {% endif %}
 
-    <div class="rs-field">
-      <label for="id_name">Імʼя та прізвище</label>
-      <input id="id_name" type="text" name="name" required autocomplete="name" data-rs-rule="name" value="{{ form.name.value|default:'' }}">
-      <p class="rs-field__error" data-rs-error {% if not form.name.errors %}hidden{% endif %}>{% if form.name.errors %}{{ form.name.errors.0 }}{% endif %}</p>
+    <div class="rs-field{% if form.name.errors %} is-invalid{% endif %}">
+      <label for="id_name">{% trans "Імʼя та прізвище" %}</label>
+      <input id="id_name" type="text" name="name" required autocomplete="name" data-rs-rule="name"
+             value="{{ form.name.value|default:'' }}"
+             aria-describedby="id_name-error"
+             {% if form.name.errors %}aria-invalid="true" data-rs-server-error="1"{% endif %}>
+      <p class="rs-field__error" id="id_name-error" data-rs-error {% if not form.name.errors %}hidden{% endif %}>{% if form.name.errors %}{{ form.name.errors.0 }}{% endif %}</p>
     </div>
-    <div class="rs-field">
-      <label for="id_phone">Телефон</label>
-      <input id="id_phone" type="tel" name="phone" required autocomplete="tel" data-rs-rule="phone" value="{{ form.phone.value|default:'' }}">
-      <p class="rs-field__error" data-rs-error hidden></p>
+    <div class="rs-field{% if form.phone.errors %} is-invalid{% endif %}">
+      <label for="id_phone">{% trans "Телефон" %}</label>
+      <input id="id_phone" type="tel" name="phone" required autocomplete="tel" data-rs-rule="phone"
+             value="{{ form.phone.value|default:'' }}"
+             aria-describedby="id_phone-error"
+             {% if form.phone.errors %}aria-invalid="true" data-rs-server-error="1"{% endif %}>
+      <p class="rs-field__error" id="id_phone-error" data-rs-error {% if not form.phone.errors %}hidden{% endif %}>{% if form.phone.errors %}{{ form.phone.errors.0 }}{% endif %}</p>
     </div>
-    <div class="rs-field">
+    <div class="rs-field{% if form.email.errors %} is-invalid{% endif %}">
       <label for="id_email">Email</label>
-      <input id="id_email" type="email" name="email" required autocomplete="email" data-rs-rule="email" value="{{ form.email.value|default:'' }}">
-      <p class="rs-field__error" data-rs-error hidden></p>
+      <input id="id_email" type="email" name="email" required autocomplete="email" data-rs-rule="email"
+             value="{{ form.email.value|default:'' }}"
+             aria-describedby="id_email-error"
+             {% if form.email.errors %}aria-invalid="true" data-rs-server-error="1"{% endif %}>
+      <p class="rs-field__error" id="id_email-error" data-rs-error {% if not form.email.errors %}hidden{% endif %}>{% if form.email.errors %}{{ form.email.errors.0 }}{% endif %}</p>
     </div>
     <div class="rs-field">
-      <label for="id_delivery">Спосіб доставки</label>
-      <select id="id_delivery" name="delivery_method" data-rs-rule="required" required>
-        <option value="courier">Курʼєр Київ</option>
-        <option value="np">Нова Пошта</option>
-        <option value="pickup">Самовивіз зі шоуруму</option>
+      <label for="id_delivery">{% trans "Спосіб доставки" %}</label>
+      <select id="id_delivery" name="delivery_method" data-rs-rule="required" required aria-describedby="id_delivery-error">
+        <option value="courier">{% trans "Курʼєр Київ" %}</option>
+        <option value="np">{% trans "Нова Пошта" %}</option>
+        <option value="pickup">{% trans "Самовивіз зі шоуруму" %}</option>
       </select>
-      <p class="rs-field__error" data-rs-error hidden></p>
+      <p class="rs-field__error" id="id_delivery-error" data-rs-error hidden></p>
     </div>
     <div class="rs-field">
-      <label for="id_address">Адреса / відділення</label>
-      <textarea id="id_address" name="address" rows="3" data-rs-rule="required" required>{{ form.address.value|default:'' }}</textarea>
-      <p class="rs-field__error" data-rs-error hidden></p>
+      <label for="id_address">{% trans "Адреса / відділення" %}</label>
+      <textarea id="id_address" name="address" rows="3" data-rs-rule="required" required aria-describedby="id_address-error">{{ form.address.value|default:'' }}</textarea>
+      <p class="rs-field__error" id="id_address-error" data-rs-error hidden></p>
     </div>
     <div class="rs-field">
-      <label for="id_payment">Оплата</label>
-      <select id="id_payment" name="payment_method" data-rs-rule="required" required>
-        <option value="card">Картка онлайн</option>
-        <option value="cod">При отриманні</option>
-        <option value="invoice">Рахунок (B2B)</option>
+      <label for="id_payment">{% trans "Оплата" %}</label>
+      <select id="id_payment" name="payment_method" data-rs-rule="required" required aria-describedby="id_payment-error">
+        <option value="card">{% trans "Картка онлайн" %}</option>
+        <option value="cod">{% trans "При отриманні" %}</option>
+        <option value="invoice">{% trans "Рахунок (B2B)" %}</option>
       </select>
-      <p class="rs-field__error" data-rs-error hidden></p>
+      <p class="rs-field__error" id="id_payment-error" data-rs-error hidden></p>
     </div>
     <div class="rs-field">
-      <label for="id_comment">Коментар</label>
+      <label for="id_comment">{% trans "Коментар" %}</label>
       <textarea id="id_comment" name="comment" rows="3">{{ form.comment.value|default:'' }}</textarea>
     </div>
-    <label class="rs-check">
-      <input type="checkbox" name="age_confirm" required data-rs-rule="required" data-rs-checkbox="1">
-      <span>Підтверджую, що мені є 21 рік</span>
-      <p class="rs-field__error" data-rs-error hidden></p>
-    </label>
+    <div class="rs-check">
+      <input type="checkbox" id="id_age_confirm" name="age_confirm" required data-rs-rule="required" data-rs-checkbox="1" aria-describedby="id_age_confirm-error">
+      <label for="id_age_confirm">{% trans "Підтверджую, що мені є 21 рік" %}</label>
+      <p class="rs-field__error" id="id_age_confirm-error" data-rs-error hidden></p>
+    </div>
     <div class="rs-form__actions">
-      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">Підтвердити замовлення</button>
+      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% trans "Підтвердити замовлення" %}</button>
     </div>
   </form>
 
   <aside class="rs-checkout__summary">
-    <h2 class="rs-section__title" style="font-size:22px">Ваше замовлення</h2>
+    <h2 class="rs-section__title" style="font-size:22px">{% trans "Ваше замовлення" %}</h2>
     {% for item in cart.items %}
       <div class="rs-cart__row">
         <span>{{ item.product.name }} × {{ item.quantity }}</span>
         <span>{{ item.line_total }} ₴</span>
       </div>
     {% empty %}
-      <p class="rs-form__hint">Кошик порожній.</p>
+      <p class="rs-form__hint">{% trans "Кошик порожній." %}</p>
     {% endfor %}
     <div class="rs-cart__row rs-cart__row--total">
-      <span>Разом</span>
+      <span>{% trans "Разом" %}</span>
       <span>{{ cart.total|default:"0" }} ₴</span>
     </div>
   </aside>

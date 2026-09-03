@@ -12,11 +12,12 @@ value, optional (1), rows (textarea), sr_only_label (1), error
     name="{{ name }}"
     rows="{{ rows|default:4 }}"
     data-rs-rule="{{ rule }}"
+    aria-describedby="{{ field_id }}-error"
     {% if optional %}data-rs-optional="1"{% endif %}
     {% if autocomplete %}autocomplete="{{ autocomplete }}"{% endif %}
     {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
     {% if not optional %}required{% endif %}
-    {% if error %}aria-invalid="true"{% endif %}
+    {% if error %}aria-invalid="true" data-rs-server-error="1"{% endif %}
   >{{ value|default:"" }}</textarea>
   {% else %}
   <input
@@ -24,14 +25,15 @@ value, optional (1), rows (textarea), sr_only_label (1), error
     type="{{ field_type }}"
     name="{{ name }}"
     data-rs-rule="{{ rule }}"
+    aria-describedby="{{ field_id }}-error"
     {% if optional %}data-rs-optional="1"{% endif %}
     {% if autocomplete %}autocomplete="{{ autocomplete }}"{% endif %}
     {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
     {% if value %}value="{{ value }}"{% endif %}
     {% if not optional %}required{% endif %}
-    {% if error %}aria-invalid="true"{% endif %}
+    {% if error %}aria-invalid="true" data-rs-server-error="1"{% endif %}
   >
   {% endif %}
-  <p class="rs-field__error" data-rs-error {% if not error %}hidden{% endif %}>{{ error }}</p>
+  <p class="rs-field__error" id="{{ field_id }}-error" data-rs-error {% if not error %}hidden{% endif %}>{{ error }}</p>
 </div>
 {% endwith %}

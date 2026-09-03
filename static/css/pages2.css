@@ -104,7 +104,7 @@
 }
 
 .rs-legal h2 {
-  color: #e8d5a8;
+  color: var(--rs-gold);
 }
 
 .rs-legal h3 {

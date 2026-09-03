@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 from slugify import slugify
 
 
@@ -15,10 +16,10 @@ class TimeStampedModel(models.Model):
 
 class Category(TimeStampedModel):
     class Kind(models.TextChoices):
-        CIGARS = 'cigars', 'Сигари'
-        CIGARETTES = 'cigarettes', 'Сигарети'
-        ACCESSORIES = 'accessories', 'Аксесуари'
-        OTHER = 'other', 'Інше'
+        CIGARS = 'cigars', _('Сигари')
+        CIGARETTES = 'cigarettes', _('Сигарети')
+        ACCESSORIES = 'accessories', _('Аксесуари')
+        OTHER = 'other', _('Інше')
 
     name = models.CharField('Назва', max_length=200)
     slug = models.SlugField('Slug', max_length=220, unique=True)

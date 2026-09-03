@@ -253,7 +253,7 @@ body.rs-contact-page .rs-crumbs-bar {
 }
 
 /* ——— Tablet ——— */
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .rs-contact {
     --rs-contact-gap-b: 24px;
     min-height: 480px;
@@ -278,7 +278,7 @@ body.rs-contact-page .rs-crumbs-bar {
 }
 
 /* ——— Mobile + iOS Safari ——— */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   body.rs-contact-page {
     --rs-contact-gap-b: 32px;
   }
@@ -348,7 +348,7 @@ body.rs-contact-page .rs-crumbs-bar {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   .rs-contact__panel {
     padding-top: 20px;
   }

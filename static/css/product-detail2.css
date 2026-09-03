@@ -150,7 +150,7 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .rs-pd-bg__video {
     left: -12%;
     width: 130%;
@@ -158,7 +158,7 @@
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 767px) {
   .rs-pd-bg__video {
     left: -6%;
     width: 120%;

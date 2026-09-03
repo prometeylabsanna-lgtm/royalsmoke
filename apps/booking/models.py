@@ -1,14 +1,15 @@
-from django.conf import settings
 from django.db import models
+from django.conf import settings
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 
 class BookingService(models.Model):
     class Kind(models.TextChoices):
-        TASTING = 'tasting', 'Дегустація'
-        CONSULTATION = 'consultation', 'Консультація сомельє'
-        SHOWROOM = 'showroom', 'Візит у шоурум'
-        PICKUP = 'pickup', 'Самовивіз'
+        TASTING = 'tasting', _('Дегустація')
+        CONSULTATION = 'consultation', _('Консультація сомельє')
+        SHOWROOM = 'showroom', _('Візит у шоурум')
+        PICKUP = 'pickup', _('Самовивіз')
 
     kind = models.CharField('Тип', max_length=32, choices=Kind.choices, unique=True)
     title = models.CharField('Назва', max_length=160)

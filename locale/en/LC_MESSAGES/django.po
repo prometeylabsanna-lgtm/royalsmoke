@@ -1,0 +1,1615 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creat"
+"ion-Date: 2026-09-03 16:05+0300\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZO"
+"NE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAG"
+"E <LL@li.org>\nLanguage: en\nMIME-Version: 1.0\nContent-Type: text/pla"
+"in; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplu"
+"rals=2; plural=(n != 1);\n"
+
+#: apps/accounts/forms.py:12 apps/accounts/forms.py:16
+#: templates/accounts/register.html:10 templates/leads/b2b.html:9
+#: templates/leads/contact.html:13 templates/pages/partials/home_b2b.html:72
+#: templates/pages/partials/home_b2b.html:80
+msgid "Email"
+msgstr "Email"
+
+#: apps/accounts/forms.py:17 templates/accounts/register.html:9
+#: templates/base.html:90 templates/leads/contact.html:12
+#: templates/pages/partials/home_booking.html:31
+#: templates/pages/partials/home_booking.html:40
+msgid "Імʼя"
+msgstr "First name"
+
+#: apps/accounts/forms.py:18
+msgid "Прізвище"
+msgstr "Last name"
+
+#: apps/accounts/forms.py:19 templates/accounts/register.html:11
+#: templates/base.html:91 templates/leads/b2b.html:8
+#: templates/leads/contact.html:14 templates/leads/contact.html:25
+#: templates/orders/checkout.html:28 templates/pages/partials/home_b2b.html:58
+#: templates/pages/partials/home_b2b.html:67
+#: templates/pages/partials/home_booking.html:45
+#: templates/pages/partials/home_booking.html:54
+msgid "Телефон"
+msgstr "Phone"
+
+#: apps/accounts/forms.py:27 templates/accounts/login.html:32
+#: templates/accounts/login.html:34 templates/accounts/register.html:12
+msgid "Пароль"
+msgstr "Password"
+
+#: apps/accounts/forms.py:29 templates/accounts/register.html:13
+msgid "Повторіть пароль"
+msgstr "Confirm password"
+
+#: apps/accounts/forms.py:38
+msgid "Паролі не збігаються"
+msgstr "Passwords do not match"
+
+#: apps/booking/models.py:9
+msgid "Дегустація"
+msgstr "Tasting"
+
+#: apps/booking/models.py:10
+msgid "Консультація сомельє"
+msgstr "Sommelier consultation"
+
+#: apps/booking/models.py:11
+msgid "Візит у шоурум"
+msgstr "Showroom visit"
+
+#: apps/booking/models.py:12 apps/orders/models.py:43
+msgid "Самовивіз"
+msgstr "Pickup"
+
+#: apps/booking/views.py:60
+msgid "Заявку прийнято. Менеджер звʼяжеться з вами."
+msgstr "Request received. A manager will contact you."
+
+#: apps/booking/views.py:62
+msgid "Перевірте імʼя та телефон."
+msgstr "Please check your name and phone number."
+
+#: apps/calculator/models.py:13 templates/catalog/list.html:62
+#: templates/catalog/list.html:76 templates/catalog/product_detail.html:147
+#: templates/pages/partials/home_calculator.html:21
+#: templates/pages/partials/home_calculator.html:62
+#: templates/pages/partials/home_calculator.html:207
+msgid "Міцність"
+msgstr "Strength"
+
+#: apps/calculator/models.py:14
+#: templates/pages/partials/home_calculator.html:24
+#: templates/pages/partials/home_calculator.html:97
+#: templates/pages/partials/home_calculator.html:211
+msgid "Формат"
+msgstr "Format"
+
+#: apps/calculator/models.py:15 templates/catalog/list.html:94
+#: templates/catalog/list.html:95 templates/catalog/product_detail.html:124
+#: templates/pages/partials/home_calculator.html:27
+#: templates/pages/partials/home_calculator.html:132
+#: templates/pages/partials/home_calculator.html:215
+msgid "Країна"
+msgstr "Country"
+
+#: apps/calculator/models.py:16
+#: templates/pages/partials/home_calculator.html:30
+#: templates/pages/partials/home_calculator.html:167
+#: templates/pages/partials/home_calculator.html:219
+msgid "Бюджет"
+msgstr "Budget"
+
+#: apps/catalog/browser_filters.py:14
+msgid "Топ"
+msgstr "Top"
+
+#: apps/catalog/browser_filters.py:15 apps/core/block_defaults.py:13
+msgid "Новинки"
+msgstr "New arrivals"
+
+#: apps/catalog/browser_filters.py:16
+msgid "Ціна ↑"
+msgstr "Price ↑"
+
+#: apps/catalog/browser_filters.py:17
+msgid "Ціна ↓"
+msgstr "Price ↓"
+
+#: apps/catalog/models.py:32 templates/catalog/list.html:80
+#: templates/catalog/list.html:85
+#: templates/pages/partials/home_calculator.html:65
+msgid "Легка"
+msgstr "Mild"
+
+#: apps/catalog/models.py:33 templates/catalog/list.html:81
+#: templates/pages/partials/home_calculator.html:69
+msgid "Середня"
+msgstr "Medium"
+
+#: apps/catalog/models.py:34 templates/pages/partials/home_calculator.html:73
+msgid "Середньо-повна"
+msgstr "Medium-full"
+
+#: apps/catalog/models.py:35 templates/catalog/list.html:82
+#: templates/catalog/list.html:87
+#: templates/pages/partials/home_calculator.html:77
+msgid "Повна"
+msgstr "Full"
+
+#: apps/catalog/models_base.py:19 templates/pages/home.html:25
+#: templates/partials/footer.html:20
+msgid "Сигари"
+msgstr "Cigars"
+
+#: apps/catalog/models_base.py:20
+msgid "Сигарети"
+msgstr "Cigarettes"
+
+#: apps/catalog/models_base.py:21 templates/partials/footer.html:21
+msgid "Аксесуари"
+msgstr "Accessories"
+
+#: apps/catalog/models_base.py:22
+msgid "Інше"
+msgstr "Other"
+
+#: apps/core/admin_nav.py:20
+msgid "Вміст сторінок"
+msgstr "Page content"
+
+#: apps/core/admin_nav.py:25 apps/core/breadcrumbs.py:33
+#: apps/core/breadcrumbs.py:79 apps/core/breadcrumbs.py:83
+#: apps/core/breadcrumbs.py:94 apps/core/breadcrumbs.py:98
+#: apps/core/breadcrumbs.py:104 templates/accounts/cabinet.html:92
+#: templates/accounts/partials/cabinet_aside.html:6
+#: templates/catalog/list.html:4 templates/catalog/list.html:16
+#: templates/pages/partials/home_catalog.html:5
+#: templates/partials/footer.html:19 templates/partials/footer.html:54
+#: templates/partials/header.html:8 templates/partials/header.html:79
+msgid "Каталог"
+msgstr "Catalog"
+
+#: apps/core/admin_nav.py:28
+msgid "Товари"
+msgstr "Products"
+
+#: apps/core/admin_nav.py:29 templates/catalog/list.html:32
+msgid "Категорії"
+msgstr "Categories"
+
+#: apps/core/admin_nav.py:30 templates/pages/partials/home_brands.html:3
+#: templates/partials/footer.html:22
+msgid "Бренди"
+msgstr "Brands"
+
+#: apps/core/admin_nav.py:31
+msgid "Лінії"
+msgstr "Lines"
+
+#: apps/core/admin_nav.py:32
+msgid "Теги"
+msgstr "Tags"
+
+#: apps/core/admin_nav.py:36
+msgid "Продажі"
+msgstr "Sales"
+
+#: apps/core/admin_nav.py:39 templates/accounts/cabinet.html:28
+msgid "Замовлення"
+msgstr "Orders"
+
+#: apps/core/admin_nav.py:40
+msgid "Ліди"
+msgstr "Leads"
+
+#: apps/core/admin_nav.py:41 apps/core/block_defaults.py:21
+#: templates/pages/partials/home_booking.html:2
+#: templates/pages/partials/home_booking.html:16
+msgid "Бронювання"
+msgstr "Booking"
+
+#: apps/core/admin_nav.py:42 templates/pages/partials/home_calculator.html:15
+#: templates/partials/footer.html:23
+msgid "Калькулятор"
+msgstr "Calculator"
+
+#: apps/core/admin_nav.py:46
+msgid "Користувачі"
+msgstr "Users"
+
+#: apps/core/admin_nav.py:49
+msgid "Акаунти"
+msgstr "Accounts"
+
+#: apps/core/admin_nav.py:50
+msgid "Налаштування сайту"
+msgstr "Site settings"
+
+#: apps/core/block_defaults.py:9
+msgid "Ключові категорії"
+msgstr "Key categories"
+
+#: apps/core/block_defaults.py:11
+msgid "Топ продажів"
+msgstr "Best sellers"
+
+#: apps/core/block_defaults.py:15 templates/pages/partials/home_history.html:2
+msgid "Історія"
+msgstr "History"
+
+#: apps/core/block_defaults.py:18
+msgid "Сервіс"
+msgstr "Service"
+
+#: apps/core/block_defaults.py:19
+msgid "Пошук сигар, брендів, аксесуарів…"
+msgstr "Search cigars, brands, accessories…"
+
+#: apps/core/block_defaults.py:20
+msgid "Сигари, відібрані вручну для тих, хто знає різницю."
+msgstr "Cigars handpicked for those who know the difference."
+
+#: apps/core/block_defaults.py:22
+msgid "Залиште контакти — менеджер узгодить зручний час візиту."
+msgstr ""
+"Leave your contact details — a manager will arrange a convenient visit"
+" time."
+
+#: apps/core/block_defaults.py:23
+msgid "Калькулятор підбору"
+msgstr "Selection calculator"
+
+#: apps/core/block_defaults.py:24
+msgid "Чотири кроки — три рекомендації з поясненням."
+msgstr "Four steps — three recommendations with explanations."
+
+#: apps/core/block_defaults.py:26 templates/leads/b2b.html:14
+msgid "Прайс і умови для барів, готелів і корпоративних подарунків."
+msgstr "Pricing and terms for bars, hotels, and corporate gifts."
+
+#: apps/core/block_defaults.py:27 templates/leads/delivery.html:31
+#: templates/partials/footer.html:29
+msgid "Доставка"
+msgstr "Delivery"
+
+#: apps/core/block_defaults.py:28
+msgid "Київ — того ж дня, Україна — 1–2 дні. Термобокси для сигар."
+msgstr "Kyiv — same day, Ukraine — 1–2 days. Insulated boxes for cigars."
+
+#: apps/core/breadcrumbs.py:34 templates/accounts/cabinet.html:91
+#: templates/accounts/partials/cabinet_aside.html:7 templates/cart/cart.html:4
+#: templates/cart/cart.html:13 templates/partials/footer.html:27
+#: templates/partials/header.html:51 templates/partials/header.html:81
+msgid "Кошик"
+msgstr "Cart"
+
+#: apps/core/breadcrumbs.py:35 templates/orders/checkout.html:8
+msgid "Оформлення"
+msgstr "Checkout"
+
+#: apps/core/breadcrumbs.py:36 templates/orders/thank_you.html:4
+msgid "Дякуємо"
+msgstr "Thank you"
+
+#: apps/core/breadcrumbs.py:37 templates/accounts/login.html:4
+#: templates/accounts/login.html:16
+msgid "Вхід"
+msgstr "Sign in"
+
+#: apps/core/breadcrumbs.py:38 templates/accounts/register.html:4
+#: templates/accounts/register.html:17
+msgid "Реєстрація"
+msgstr "Registration"
+
+#: apps/core/breadcrumbs.py:39 templates/accounts/cabinet.html:4
+#: templates/accounts/cabinet.html:16 templates/orders/thank_you.html:18
+#: templates/partials/footer.html:28 templates/partials/header.html:42
+#: templates/partials/header.html:83
+msgid "Кабінет"
+msgstr "Account"
+
+#: apps/core/breadcrumbs.py:40 templates/pages/about.html:6
+#: templates/pages/about.html:44 templates/partials/footer.html:35
+#: templates/partials/header.html:16
+msgid "Про нас"
+msgstr "About us"
+
+#: apps/core/breadcrumbs.py:41 templates/pages/faq.html:4
+#: templates/pages/faq.html:24 templates/partials/footer.html:34
+#: templates/partials/header.html:15 templates/partials/header.html:88
+msgid "FAQ"
+msgstr "FAQ"
+
+#: apps/core/breadcrumbs.py:42 apps/core/breadcrumbs.py:55
+msgid "Правова інформація"
+msgstr "Legal information"
+
+#: apps/core/breadcrumbs.py:43 templates/pages/partials/home_b2b.html:2
+#: templates/pages/partials/home_b2b.html:16
+msgid "B2B"
+msgstr "B2B"
+
+#: apps/core/breadcrumbs.py:44 templates/leads/delivery.html:4
+#: templates/leads/delivery.html:25 templates/partials/header.html:18
+#: templates/partials/header.html:86
+msgid "Доставка і оплата"
+msgstr "Delivery & payment"
+
+#: apps/core/breadcrumbs.py:45 templates/leads/contact.html:4
+#: templates/leads/contact.html:48 templates/partials/footer.html:33
+#: templates/partials/footer.html:70 templates/partials/header.html:17
+#: templates/partials/header.html:87
+msgid "Контакти"
+msgstr "Contacts"
+
+#: apps/core/breadcrumbs.py:50 templates/pages/legal.html:4
+#: templates/pages/legal.html:29 templates/partials/header.html:89
+msgid "Політика конфіденційності"
+msgstr "Privacy policy"
+
+#: apps/core/breadcrumbs.py:51 templates/pages/legal.html:35
+msgid "Умови користування"
+msgstr "Terms of use"
+
+#: apps/core/breadcrumbs.py:52 templates/pages/legal.html:41
+msgid "Вікова політика"
+msgstr "Age policy"
+
+#: apps/core/breadcrumbs.py:53 templates/pages/legal.html:47
+msgid "Файли cookie"
+msgstr "Cookies"
+
+#: apps/core/breadcrumbs.py:75 templates/partials/header.html:13
+#: templates/partials/header.html:78
+msgid "Головна"
+msgstr "Home"
+
+#: apps/core/breadcrumbs.py:100
+msgid "Бренд"
+msgstr "Brand"
+
+#: apps/core/breadcrumbs.py:121
+msgid "Товар"
+msgstr "Product"
+
+#: apps/core/validation/messages.py:5 templates/base.html:103
+msgid "Це поле обовʼязкове"
+msgstr "This field is required"
+
+#: apps/core/validation/messages.py:6 templates/base.html:103
+msgid "Підтвердіть цю опцію"
+msgstr "Please confirm this option"
+
+#: apps/core/validation/messages.py:7 templates/base.html:103
+msgid "Поле не може складатися лише з пробілів"
+msgstr "Field cannot contain only spaces"
+
+#: apps/core/validation/messages.py:9 templates/base.html:103
+msgid "Імʼя має містити мінімум 2 символи"
+msgstr "Name must be at least 2 characters"
+
+#: apps/core/validation/messages.py:10 templates/base.html:103
+msgid "Імʼя може містити лише літери, пробіли, дефіс і апостроф"
+msgstr "Name may only contain letters, spaces, hyphens, and apostrophes"
+
+#: apps/core/validation/messages.py:12 templates/base.html:103
+msgid "Введіть коректну електронну пошту"
+msgstr "Enter a valid email address"
+
+#: apps/core/validation/messages.py:14 templates/base.html:103
+msgid "Пароль має містити мінімум 8 символів"
+msgstr "Password must be at least 8 characters"
+
+#: apps/core/validation/messages.py:15 templates/base.html:103
+msgid "Пароль має містити хоча б одну велику літеру"
+msgstr "Password must contain at least one uppercase letter"
+
+#: apps/core/validation/messages.py:16 templates/base.html:103
+msgid "Пароль має містити хоча б одну малу літеру"
+msgstr "Password must contain at least one lowercase letter"
+
+#: apps/core/validation/messages.py:17 templates/base.html:103
+msgid "Пароль має містити хоча б одну цифру"
+msgstr "Password must contain at least one digit"
+
+#: apps/core/validation/messages.py:18 templates/base.html:103
+msgid "Пароль має містити хоча б один спеціальний символ"
+msgstr "Password must contain at least one special character"
+
+#: apps/core/validation/messages.py:20 templates/base.html:103
+msgid "Введіть коректний номер телефону"
+msgstr "Enter a valid phone number"
+
+#: apps/core/validation/messages.py:21 templates/base.html:103
+msgid "Введіть коректну URL-адресу"
+msgstr "Enter a valid URL"
+
+#: apps/core/validation/password.py:21
+msgid ""
+"Пароль має містити мінімум 8 символів, велику та малу літери, цифру та"
+" спеціальний символ."
+msgstr ""
+"Password must be at least 8 characters and include uppercase, lowercas"
+"e, a digit, and a special character."
+
+#: apps/leads/views.py:60
+msgid "Запит надіслано. Менеджер звʼяжеться з вами."
+msgstr "Request sent. A manager will contact you."
+
+#: apps/leads/views.py:87
+msgid "Повідомлення надіслано."
+msgstr "Message sent."
+
+#: apps/leads/views.py:105
+msgid "Дякуємо! Передзвонимо найближчим часом."
+msgstr "Thank you! We will call you back shortly."
+
+#: apps/leads/views.py:107
+msgid "Заявку прийнято"
+msgstr "Request received"
+
+#: apps/leads/views.py:110
+msgid "Перевірте номер телефону."
+msgstr "Please check your phone number."
+
+#: apps/orders/models.py:19
+msgid "Нове"
+msgstr "New"
+
+#: apps/orders/models.py:20
+msgid "Очікує оплату"
+msgstr "Awaiting payment"
+
+#: apps/orders/models.py:21
+msgid "Оплачено"
+msgstr "Paid"
+
+#: apps/orders/models.py:22
+msgid "В обробці"
+msgstr "Processing"
+
+#: apps/orders/models.py:23
+msgid "Відправлено"
+msgstr "Shipped"
+
+#: apps/orders/models.py:24
+msgid "Виконано"
+msgstr "Completed"
+
+#: apps/orders/models.py:25
+msgid "Скасовано"
+msgstr "Cancelled"
+
+#: apps/orders/models.py:32 templates/leads/delivery.html:69
+msgid "Онлайн оплата"
+msgstr "Online payment"
+
+#: apps/orders/models.py:33 templates/leads/delivery.html:73
+msgid "Оплата при отриманні"
+msgstr "Payment on delivery"
+
+#: apps/orders/models.py:34 templates/leads/delivery.html:77
+msgid "Безготівковий розрахунок"
+msgstr "Bank transfer"
+
+#: apps/orders/models.py:41 templates/orders/checkout.html:47
+msgid "Нова Пошта"
+msgstr "Nova Poshta"
+
+#: apps/orders/models.py:42
+msgid "Курʼєр"
+msgstr "Courier"
+
+#: apps/orders/views.py:35
+msgid "Кошик порожній"
+msgstr "Cart is empty"
+
+#: templates/accounts/cabinet.html:17
+#, python-format
+msgid "Вітаємо, %(name)s"
+msgstr "Welcome, %(name)s"
+
+#: templates/accounts/cabinet.html:20 templates/accounts/cabinet.html:44
+msgid "Профіль"
+msgstr "Profile"
+
+#: templates/accounts/cabinet.html:30
+#, python-format
+msgid "Останнє: #%(num)s — %(total)s ₴"
+msgstr "Latest: #%(num)s — %(total)s ₴"
+
+#: templates/accounts/cabinet.html:32 templates/accounts/cabinet.html:58
+msgid "Останнє замовлення"
+msgstr "Latest order"
+
+#: templates/accounts/cabinet.html:64
+msgid "Замовлень ще немає"
+msgstr "No orders yet"
+
+#: templates/accounts/cabinet.html:66
+msgid "Динаміка замовлень за останні тижні"
+msgstr "Order activity over recent weeks"
+
+#: templates/accounts/cabinet.html:88 templates/accounts/cabinet.html:89
+#: templates/accounts/partials/cabinet_aside.html:4 templates/base.html:75
+msgid "Швидкі дії"
+msgstr "Quick actions"
+
+#: templates/accounts/cabinet.html:93
+#: templates/accounts/partials/cabinet_aside.html:8
+msgid "Підтримка"
+msgstr "Support"
+
+#: templates/accounts/cabinet.html:94 templates/accounts/wishlist.html:4
+#: templates/accounts/wishlist.html:14 templates/partials/header.html:45
+#: templates/partials/header.html:82
+msgid "Вибране"
+msgstr "Wishlist"
+
+#: templates/accounts/cabinet.html:97
+msgid "Вийти"
+msgstr "Sign out"
+
+#: templates/accounts/login.html:17
+msgid "Увійдіть, щоб бачити замовлення та обране."
+msgstr "Sign in to view orders and wishlist."
+
+#: templates/accounts/login.html:41 templates/accounts/register.html:38
+msgid "Увійти"
+msgstr "Sign in"
+
+#: templates/accounts/login.html:44
+msgid "Немає акаунту?"
+msgstr "Don't have an account?"
+
+#: templates/accounts/login.html:44
+msgid "Зареєструватися"
+msgstr "Register"
+
+#: templates/accounts/partials/cabinet_aside.html:2
+msgid "Можливості кабінету"
+msgstr "Account features"
+
+#: templates/accounts/partials/cabinet_aside.html:5
+msgid "Швидкі дії кабінету"
+msgstr "Account quick actions"
+
+#: templates/accounts/partials/wish_btn.html:12
+msgid "Прибрати з вибраного"
+msgstr "Remove from wishlist"
+
+#: templates/accounts/partials/wish_btn.html:12
+msgid "Додати до вибраного"
+msgstr "Add to wishlist"
+
+#: templates/accounts/partials/wishlist_body.html:39
+#: templates/catalog/partials/product_grid.html:48
+#: templates/catalog/product_detail.html:245
+#: templates/pages/partials/home_catalog.html:72
+msgid "У кошик"
+msgstr "Add to cart"
+
+#: templates/accounts/partials/wishlist_body.html:49
+msgid "Прибрати"
+msgstr "Remove"
+
+#: templates/accounts/partials/wishlist_body.html:56
+#: templates/accounts/partials/wishlist_body.html:60
+#: templates/cart/partials/cart_body.html:66 templates/orders/thank_you.html:17
+#: templates/pages/home.html:24
+msgid "До каталогу"
+msgstr "To catalog"
+
+#: templates/accounts/partials/wishlist_body.html:59
+msgid "Вибране порожнє."
+msgstr "Wishlist is empty."
+
+#: templates/accounts/register.html:18
+msgid "Створіть кабінет для швидкого оформлення."
+msgstr "Create an account for faster checkout."
+
+#: templates/accounts/register.html:31 templates/partials/age_gate.html:15
+msgid "Мені є 21 рік"
+msgstr "I am 21 years old"
+
+#: templates/accounts/register.html:35
+msgid "Створити акаунт"
+msgstr "Create account"
+
+#: templates/accounts/register.html:38
+msgid "Вже є акаунт?"
+msgstr "Already have an account?"
+
+#: templates/accounts/wishlist.html:17
+#, python-format
+msgid "%(counter)s товар"
+msgid_plural "%(counter)s товари"
+msgstr[0] "%(counter)s item"
+msgstr[1] "%(counter)s items"
+
+#: templates/accounts/wishlist.html:19
+msgid "Порожній список"
+msgstr "Empty list"
+
+#: templates/admin/core/site_content_page.html:4
+msgid "Django site admin"
+msgstr "Django site admin"
+
+#: templates/base.html:9
+msgid "Сигари та аксесуари Royal Smoke"
+msgstr "Royal Smoke cigars and accessories"
+
+#: templates/base.html:76 templates/leads/contact.html:60
+#: templates/partials/header.html:93
+msgid "Замовити дзвінок"
+msgstr "Request a call"
+
+#: templates/base.html:79
+msgid "Чат / контакти"
+msgstr "Chat / contacts"
+
+#: templates/base.html:86
+msgid "Зворотний дзвінок"
+msgstr "Callback"
+
+#: templates/base.html:87
+msgid "Залиште номер — передзвонимо протягом робочого дня."
+msgstr "Leave your number — we will call back within business hours."
+
+#: templates/base.html:95 templates/leads/contact.html:59
+msgid "Надіслати"
+msgstr "Send"
+
+#: templates/base.html:96
+msgid "Скасувати"
+msgstr "Cancel"
+
+#: templates/calculator/partials/results.html:3
+msgid "Ваші рекомендації"
+msgstr "Your recommendations"
+
+#: templates/calculator/partials/results.html:15
+#, python-format
+msgid "Чому підходить: %(reasons)s."
+msgstr "Why it fits: %(reasons)s."
+
+#: templates/calculator/partials/results.html:20
+msgid "Переглянути"
+msgstr "View"
+
+#: templates/calculator/partials/results.html:24
+msgid "Немає точних збігів — спробуйте інші параметри."
+msgstr "No exact matches — try different parameters."
+
+#: templates/cart/cart.html:14 templates/catalog/list.html:51
+msgid "позиція"
+msgid_plural "позиції"
+msgstr[0] "item"
+msgstr[1] "items"
+
+#: templates/cart/cart.html:14
+msgid "Порожній кошик"
+msgstr "Empty cart"
+
+#: templates/cart/partials/cart_body.html:30
+msgid "Видалити"
+msgstr "Remove"
+
+#: templates/cart/partials/cart_body.html:42
+msgid "Зменшити"
+msgstr "Decrease"
+
+#: templates/cart/partials/cart_body.html:44
+msgid "Збільшити"
+msgstr "Increase"
+
+#: templates/cart/partials/cart_body.html:52
+msgid "Продовжити покупки"
+msgstr "Continue shopping"
+
+#: templates/cart/partials/cart_body.html:55
+#, python-format
+msgid "Безкоштовна доставка від %(amount)s ₴"
+msgstr "Free delivery from %(amount)s ₴"
+
+#: templates/cart/partials/cart_body.html:59
+msgid "Підсумок кошика"
+msgstr "Cart summary"
+
+#: templates/cart/partials/cart_body.html:60
+#, python-format
+msgid "Разом %(total)s ₴"
+msgstr "Total %(total)s ₴"
+
+#: templates/cart/partials/cart_body.html:61
+msgid "Оформити замовлення"
+msgstr "Place order"
+
+#: templates/cart/partials/cart_body.html:65 templates/orders/checkout.html:88
+msgid "Кошик порожній."
+msgstr "Your cart is empty."
+
+#: templates/catalog/list.html:31
+msgid "Категорії та фільтри"
+msgstr "Categories and filters"
+
+#: templates/catalog/list.html:38
+msgid "Усі"
+msgstr "All"
+
+#: templates/catalog/list.html:39
+msgid "каталог"
+msgstr "catalog"
+
+#: templates/catalog/list.html:108
+msgid "Ціна"
+msgstr "Price"
+
+#: templates/catalog/list.html:125
+msgid "Мінімальна ціна"
+msgstr "Minimum price"
+
+#: templates/catalog/list.html:133
+msgid "Максимальна ціна"
+msgstr "Maximum price"
+
+#: templates/catalog/list.html:140
+msgid "Застосувати"
+msgstr "Apply"
+
+#: templates/catalog/list.html:145
+msgid "Скинути фільтри"
+msgstr "Reset filters"
+
+#: templates/catalog/list.html:152
+msgid "Сортування"
+msgstr "Sort by"
+
+#: templates/catalog/partials/product_grid.html:55
+msgid "Нічого не знайдено. Змініть фільтри."
+msgstr "Nothing found. Adjust your filters."
+
+#: templates/catalog/partials/search_results.html:6
+#: templates/catalog/partials/search_suggest.html:23
+msgid "Нічого не знайдено"
+msgstr "Nothing found"
+
+#: templates/catalog/product_detail.html:38
+msgid "Попереднє фото"
+msgstr "Previous photo"
+
+#: templates/catalog/product_detail.html:59
+msgid "Немає фото"
+msgstr "No photo"
+
+#: templates/catalog/product_detail.html:64
+msgid "Наступне фото"
+msgstr "Next photo"
+
+#: templates/catalog/product_detail.html:71
+msgid "Мініатюри"
+msgstr "Thumbnails"
+
+#: templates/catalog/product_detail.html:81
+#, python-format
+msgid "Фото %(n)s"
+msgstr "Photo %(n)s"
+
+#: templates/catalog/product_detail.html:92
+msgid "Фото 1"
+msgstr "Photo 1"
+
+#: templates/catalog/product_detail.html:118
+msgid "Виробник"
+msgstr "Manufacturer"
+
+#: templates/catalog/product_detail.html:135
+msgid "Довжина"
+msgstr "Length"
+
+#: templates/catalog/product_detail.html:136
+#, python-format
+msgid "%(mm)s мм"
+msgstr "%(mm)s mm"
+
+#: templates/catalog/product_detail.html:153
+msgid "Час куріння"
+msgstr "Smoking time"
+
+#: templates/catalog/product_detail.html:180
+msgid "Наявність"
+msgstr "Availability"
+
+#: templates/catalog/product_detail.html:181
+msgid "В наявності"
+msgstr "In stock"
+
+#: templates/catalog/product_detail.html:181
+msgid "Під замовлення"
+msgstr "Made to order"
+
+#: templates/catalog/product_detail.html:185
+#: templates/catalog/product_detail.html:190
+msgid "Код"
+msgstr "SKU"
+
+#: templates/catalog/product_detail.html:199
+msgid "Смакові нотки"
+msgstr "Flavor notes"
+
+#: templates/catalog/product_detail.html:229
+msgid "Менше"
+msgstr "Less"
+
+#: templates/catalog/product_detail.html:238
+msgid "Кількість"
+msgstr "Quantity"
+
+#: templates/catalog/product_detail.html:239
+msgid "Більше"
+msgstr "More"
+
+#: templates/catalog/product_detail.html:247
+msgid "Підібрати"
+msgstr "Find match"
+
+#: templates/catalog/product_detail.html:252
+msgid "Опис"
+msgstr "Description"
+
+#: templates/leads/b2b.html:7 templates/pages/partials/home_b2b.html:44
+msgid "Контактна особа"
+msgstr "Contact person"
+
+#: templates/leads/b2b.html:10 templates/pages/partials/home_b2b.html:85
+msgid "Що цікавить"
+msgstr "What are you interested in"
+
+#: templates/leads/b2b.html:11
+msgid "Прайс, гравіювання, корпоративні набори…"
+msgstr "Pricing, engraving, corporate sets…"
+
+#: templates/leads/b2b.html:21 templates/pages/partials/home_b2b.html:31
+#: templates/pages/partials/home_b2b.html:39
+msgid "Компанія"
+msgstr "Company"
+
+#: templates/leads/b2b.html:30 templates/pages/partials/home_b2b.html:97
+msgid "Запросити прайс"
+msgstr "Request pricing"
+
+#: templates/leads/contact.html:15
+msgid "Повідомлення"
+msgstr "Message"
+
+#: templates/leads/contact.html:16
+msgid "Пн–Нд: 11:00–21:00"
+msgstr "Mon–Sun: 11:00–21:00"
+
+#: templates/leads/contact.html:19
+msgid "Контактна інформація"
+msgstr "Contact information"
+
+#: templates/leads/contact.html:21
+msgid "Карта — Хрещатик 1"
+msgstr "Map — Khreshchatyk 1"
+
+#: templates/leads/contact.html:37
+msgid "Адреса"
+msgstr "Address"
+
+#: templates/leads/contact.html:38
+msgid "Київ, вул. Хрещатик, 1"
+msgstr "Kyiv, 1 Khreshchatyk St."
+
+#: templates/leads/contact.html:41
+msgid "Години"
+msgstr "Hours"
+
+#: templates/leads/contact.html:49
+msgid "Напишіть нам"
+msgstr "Write to us"
+
+#: templates/leads/contact.html:50
+msgid "Відповідаємо протягом робочого дня."
+msgstr "We respond within one business day."
+
+#: templates/leads/delivery.html:12 templates/leads/delivery.html:35
+msgid "Київ"
+msgstr "Kyiv"
+
+#: templates/leads/delivery.html:26
+msgid "Київ — того ж дня · Україна — 1–2 дні · ЄС — 3–5 днів."
+msgstr "Kyiv — same day · Ukraine — 1–2 days · EU — 3–5 days."
+
+#: templates/leads/delivery.html:36
+#, python-format
+msgid ""
+"Курʼєрська доставка того ж дня при замовленні до 15:00. Самовивіз зі ш"
+"оуруму за адресою %(address)s."
+msgstr ""
+"Same-day courier delivery for orders placed before 3:00 PM. Showroom p"
+"ickup at %(address)s."
+
+#: templates/leads/delivery.html:40
+msgid "Україна"
+msgstr "Ukraine"
+
+#: templates/leads/delivery.html:41
+msgid ""
+"Нова Пошта — 1–2 дні. Сигари пакуємо в термобокси зі страхуванням відп"
+"равлення."
+msgstr ""
+"Nova Poshta — 1–2 days. Cigars are packed in insulated boxes with ship"
+"ment insurance."
+
+#: templates/leads/delivery.html:45
+msgid "ЄС"
+msgstr "EU"
+
+#: templates/leads/delivery.html:46
+msgid ""
+"Міжнародна доставка — 3–5 робочих днів. Умови та вартість уточнюйте у "
+"менеджера."
+msgstr ""
+"International delivery — 3–5 business days. Contact a manager for term"
+"s and pricing."
+
+#: templates/leads/delivery.html:50
+msgid "Способи доставки"
+msgstr "Delivery methods"
+
+#: templates/leads/delivery.html:51
+msgid ""
+"Нова Пошта, курʼєр або самовивіз — обираєте під час оформлення замовле"
+"ння."
+msgstr "Nova Poshta, courier, or pickup — choose during checkout."
+
+#: templates/leads/delivery.html:56
+msgid "Безкоштовна доставка"
+msgstr "Free delivery"
+
+#: templates/leads/delivery.html:57
+#, python-format
+msgid "Від %(amount)s ₴ по Україні (окрім віддалених регіонів)."
+msgstr "From %(amount)s ₴ across Ukraine (excluding remote regions)."
+
+#: templates/leads/delivery.html:64 templates/orders/checkout.html:58
+msgid "Оплата"
+msgstr "Payment"
+
+#: templates/leads/delivery.html:65
+msgid "Доступні способи оплати під час оформлення замовлення:"
+msgstr "Available payment methods during checkout:"
+
+#: templates/leads/delivery.html:70
+msgid "банківською карткою через платіжний сервіс."
+msgstr "by bank card via payment service."
+
+#: templates/leads/delivery.html:74
+msgid "готівкою або карткою курʼєру / у відділенні."
+msgstr "cash or card to courier / at branch."
+
+#: templates/leads/delivery.html:78
+msgid "для юридичних осіб та B2B-замовлень за рахунком."
+msgstr "for legal entities and B2B orders by invoice."
+
+#: templates/leads/delivery.html:82
+msgid ""
+"Деталі рахунку або підтвердження онлайн-платежу надсилаємо на email пі"
+"сля оформлення замовлення."
+msgstr ""
+"Invoice details or online payment confirmation are sent by email after"
+" placing your order."
+
+#: templates/orders/checkout.html:4
+msgid "Оформлення замовлення"
+msgstr "Checkout"
+
+#: templates/orders/checkout.html:9
+msgid "Заповніть контакти та спосіб доставки."
+msgstr "Fill in contact details and delivery method."
+
+#: templates/orders/checkout.html:20
+msgid "Імʼя та прізвище"
+msgstr "Full name"
+
+#: templates/orders/checkout.html:44
+msgid "Спосіб доставки"
+msgstr "Delivery method"
+
+#: templates/orders/checkout.html:46
+msgid "Курʼєр Київ"
+msgstr "Courier Kyiv"
+
+#: templates/orders/checkout.html:48
+msgid "Самовивіз зі шоуруму"
+msgstr "Showroom pickup"
+
+#: templates/orders/checkout.html:53
+msgid "Адреса / відділення"
+msgstr "Address / branch"
+
+#: templates/orders/checkout.html:60
+msgid "Картка онлайн"
+msgstr "Card online"
+
+#: templates/orders/checkout.html:61
+msgid "При отриманні"
+msgstr "On delivery"
+
+#: templates/orders/checkout.html:62
+msgid "Рахунок (B2B)"
+msgstr "Invoice (B2B)"
+
+#: templates/orders/checkout.html:67
+msgid "Коментар"
+msgstr "Comment"
+
+#: templates/orders/checkout.html:72
+msgid "Підтверджую, що мені є 21 рік"
+msgstr "I confirm that I am 21 years old"
+
+#: templates/orders/checkout.html:76
+msgid "Підтвердити замовлення"
+msgstr "Confirm order"
+
+#: templates/orders/checkout.html:81
+msgid "Ваше замовлення"
+msgstr "Your order"
+
+#: templates/orders/checkout.html:91
+msgid "Разом"
+msgstr "Total"
+
+#: templates/orders/thank_you.html:8
+msgid "Дякуємо за замовлення"
+msgstr "Thank you for your order"
+
+#: templates/orders/thank_you.html:11
+#, python-format
+msgid ""
+"Номер замовлення <strong>%(num)s</strong>. Ми надіслали підтвердження "
+"на вашу пошту."
+msgstr ""
+"Order number <strong>%(num)s</strong>. We sent a confirmation to your "
+"email."
+
+#: templates/orders/thank_you.html:13
+msgid "Ми отримали ваше замовлення і скоро звʼяжемося з вами."
+msgstr "We received your order and will contact you shortly."
+
+#: templates/pages/about.html:28
+msgid "Команда Royal Smoke у сигарному бутіку"
+msgstr "Royal Smoke team at the cigar boutique"
+
+#: templates/pages/about.html:37
+msgid "років на ринку"
+msgstr "years on the market"
+
+#: templates/pages/about.html:45
+msgid "Хроніка одного рішення"
+msgstr "The story of one decision"
+
+#: templates/pages/about.html:47
+msgid ""
+"Royal Smoke — tobacco atelier, зібраний навколо простого правила: прод"
+"авати лише те, що самі готові курити."
+msgstr ""
+"Royal Smoke — a tobacco atelier built on a simple rule: sell only what"
+" we would smoke ourselves."
+
+#: templates/pages/about.html:55
+msgid "Перший кабінет"
+msgstr "First cabinet"
+
+#: templates/pages/about.html:57
+msgid ""
+"Почали з невеликого простору в Києві: кілька полиць, ручний відбір і р"
+"озмова з кожним гостем замість випадкової вітрини."
+msgstr ""
+"We started with a small space in Kyiv: a few shelves, hand selection, "
+"and conversation with every guest instead of a random display."
+
+#: templates/pages/about.html:63
+msgid "Прямі мануфактури"
+msgstr "Direct manufacturers"
+
+#: templates/pages/about.html:65
+msgid ""
+"Налагодили прямі поставки з Нікарагуа, Домінікани та Куби — без зайвих"
+" посередників, з чесною ціною і стабільною якістю партій."
+msgstr ""
+"We established direct supply from Nicaragua, the Dominican Republic, a"
+"nd Cuba — no unnecessary middlemen, fair pricing, and consistent batch"
+" quality."
+
+#: templates/pages/about.html:71
+msgid "Власний хумідор"
+msgstr "Own humidor"
+
+#: templates/pages/about.html:73
+msgid ""
+"Збудували сховище зі стабільною вологістю й зібрали команду сомельє, я"
+"ка супроводжує замовлення від першої консультації до доставки."
+msgstr ""
+"We built climate-controlled storage and assembled a sommelier team gui"
+"ding orders from first consultation to delivery."
+
+#: templates/pages/about.html:78
+msgid "Сьогодні"
+msgstr "Today"
+
+#: templates/pages/about.html:79
+msgid "Бутік, каталог, сервіс"
+msgstr "Boutique, catalog, service"
+
+#: templates/pages/about.html:81
+msgid ""
+"Каталог, консультації, бронювання дегустацій і доставка — в одному міс"
+"ці. Сім років — одна колекція й те саме правило без компромісів."
+msgstr ""
+"Catalog, consultations, tasting bookings, and delivery — all in one pl"
+"ace. Seven years — one collection and the same rule without compromise"
+"."
+
+#: templates/pages/about.html:88
+msgid "До сигар"
+msgstr "Browse cigars"
+
+#: templates/pages/about.html:89
+msgid "Написати нам"
+msgstr "Contact us"
+
+#: templates/pages/faq.html:25
+msgid "Короткі відповіді про замовлення, зберігання та доставку."
+msgstr "Quick answers about orders, storage, and delivery."
+
+#: templates/pages/faq.html:31
+msgid "Як зберігати сигари?"
+msgstr "How to store cigars?"
+
+#: templates/pages/faq.html:35
+#, python-format
+msgid ""
+"У хумідорі при 68–72%% вологості та 16–20°C. Ми відправляємо в термобо"
+"ксі."
+msgstr ""
+"In a humidor at 68–72%% humidity and 16–20°C. We ship in insulated box"
+"es."
+
+#: templates/pages/faq.html:40
+msgid "Чи потрібна реєстрація для покупки?"
+msgstr "Do I need to register to buy?"
+
+#: templates/pages/faq.html:44
+msgid ""
+"Ні, гостьове оформлення доступне. Кабінет зручний для повторних замовл"
+"ень."
+msgstr ""
+"No, guest checkout is available. An account is convenient for repeat o"
+"rders."
+
+#: templates/pages/faq.html:49
+msgid "Які терміни доставки?"
+msgstr "What are the delivery times?"
+
+#: templates/pages/faq.html:53
+msgid ""
+"Київ — часто того ж дня, Україна — 1–2 дні. Деталі на сторінці «Достав"
+"ка і оплата»."
+msgstr ""
+"Kyiv — often same day, Ukraine — 1–2 days. Details on the Delivery & p"
+"ayment page."
+
+#: templates/pages/faq.html:58
+msgid "Чи можна повернути товар?"
+msgstr "Can I return a product?"
+
+#: templates/pages/faq.html:62
+msgid ""
+"Тютюнові вироби належної якості не підлягають поверненню. Брак розгляд"
+"аємо індивідуально."
+msgstr ""
+"Tobacco products of proper quality are non-returnable. Defects are rev"
+"iewed individually."
+
+#: templates/pages/faq.html:67
+msgid "Як працює бронювання?"
+msgstr "How does booking work?"
+
+#: templates/pages/faq.html:71
+msgid ""
+"Залиште імʼя та телефон у блоці «Бронювання» на головній — менеджер уз"
+"годить зручний час візиту."
+msgstr ""
+"Leave your name and phone in the Booking block on the homepage — a man"
+"ager will arrange a convenient visit time."
+
+#: templates/pages/home.html:6
+msgid "Tobacco Atelier"
+msgstr "Tobacco Atelier"
+
+#: templates/pages/home.html:33
+msgid "Головний банер"
+msgstr "Main banner"
+
+#: templates/pages/home.html:62
+msgid "Royal Smoke — cigar ritual"
+msgstr "Royal Smoke — cigar ritual"
+
+#: templates/pages/home.html:68
+msgid "Royal Smoke — premium cigars"
+msgstr "Royal Smoke — premium cigars"
+
+#: templates/pages/home.html:74
+msgid "Royal Smoke — lighting a cigar"
+msgstr "Royal Smoke — lighting a cigar"
+
+#: templates/pages/home.html:82
+msgid "Наступний слайд"
+msgstr "Next slide"
+
+#: templates/pages/home.html:118
+msgid "Бронювання та B2B"
+msgstr "Booking & B2B"
+
+#: templates/pages/legal.html:24
+msgid "Політика<br>конфіденційності"
+msgstr "Privacy<br>policy"
+
+#: templates/pages/legal.html:25
+msgid "Конфіденційність, умови користування, вікова політика та файли cookie."
+msgstr "Privacy, terms of use, age policy, and cookies."
+
+#: templates/pages/legal.html:31
+msgid ""
+"Ми обробляємо персональні дані (імʼя, телефон, email, адресу доставки)"
+" лише для виконання замовлень і зворотного звʼязку. Дані не продаємо т"
+"ретім сторонам."
+msgstr ""
+"We process personal data (name, phone, email, delivery address) only t"
+"o fulfill orders and respond to inquiries. We do not sell data to thir"
+"d parties."
+
+#: templates/pages/legal.html:37
+#, python-format
+msgid ""
+"Сайт %(site_name)s пропонує тютюнові вироби та аксесуари повнолітнім в"
+"ідвідувачам. Оформлюючи замовлення, ви підтверджуєте вік 21+ та згоду "
+"з умовами продажу."
+msgstr ""
+"The %(site_name)s website offers tobacco products and accessories to a"
+"dults. By placing an order, you confirm you are 21+ and agree to the t"
+"erms of sale."
+
+#: templates/pages/legal.html:43
+msgid ""
+"Доступ до вітрини можливий лише після підтвердження віку (cookie age_o"
+"k). Особам молодше 21 року продаж заборонено."
+msgstr ""
+"Access to the storefront is available only after age confirmation (age"
+"_ok cookie). Sales to persons under 21 are prohibited."
+
+#: templates/pages/legal.html:49
+msgid ""
+"Використовуємо необхідні cookies для сесії кошика, age gate та мови. А"
+"налітичні cookies — лише за згодою, якщо увімкнено на проєкті."
+msgstr ""
+"We use essential cookies for cart session, age gate, and language. Ana"
+"lytics cookies — only with consent, if enabled on the project."
+
+#: templates/pages/partials/home_b2b.html:6
+msgid "Корпоративні набори Royal Smoke"
+msgstr "Royal Smoke corporate sets"
+
+#: templates/pages/partials/home_b2b.html:17
+msgid "Прайс для барів, готелів і корпоративних подарунків."
+msgstr "Pricing for bars, hotels, and corporate gifts."
+
+#: templates/pages/partials/home_b2b.html:53
+msgid "Контакт"
+msgstr "Contact"
+
+#: templates/pages/partials/home_b2b.html:93
+msgid "Прайс, гравіювання…"
+msgstr "Pricing, engraving…"
+
+#: templates/pages/partials/home_booking.html:6
+msgid "Лаунж Royal Smoke"
+msgstr "Royal Smoke lounge"
+
+#: templates/pages/partials/home_booking.html:17
+msgid "Дегустація, консультація або візит у шоурум."
+msgstr "Tasting, consultation, or showroom visit."
+
+#: templates/pages/partials/home_booking.html:59
+msgid "Побажання"
+msgstr "Notes"
+
+#: templates/pages/partials/home_booking.html:65
+msgid "Побажання (необовʼязково)"
+msgstr "Notes (optional)"
+
+#: templates/pages/partials/home_booking.html:68
+msgid "Забронювати"
+msgstr "Book"
+
+#: templates/pages/partials/home_brands.html:2
+msgid "Premium"
+msgstr "Premium"
+
+#: templates/pages/partials/home_brands.html:48
+msgid "До бренду"
+msgstr "View brand"
+
+#: templates/pages/partials/home_brands.html:55
+msgid "Незабаром з’являться featured-бренди."
+msgstr "Featured brands coming soon."
+
+#: templates/pages/partials/home_calculator.html:18
+msgid "Кроки підбору"
+msgstr "Selection steps"
+
+#: templates/pages/partials/home_calculator.html:48
+msgid "Яку міцність шукаєте?"
+msgstr "What strength are you looking for?"
+
+#: templates/pages/partials/home_calculator.html:50
+#: templates/pages/partials/home_calculator.html:85
+#: templates/pages/partials/home_calculator.html:120
+#: templates/pages/partials/home_calculator.html:155
+msgid "Крок"
+msgstr "Step"
+
+#: templates/pages/partials/home_calculator.html:59
+msgid ""
+"Light — до ранкової кави. Medium — універсальний щоденний вибір. Full "
+"— для вечірнього ритуалу."
+msgstr ""
+"Light — for morning coffee. Medium — a versatile daily choice. Full — "
+"for an evening ritual."
+
+#: templates/pages/partials/home_calculator.html:83
+msgid "Який формат зручніший?"
+msgstr "Which format suits you best?"
+
+#: templates/pages/partials/home_calculator.html:94
+msgid ""
+"Petit — короткі перерви. Robusto — класика на 45–60 хв. Churchill — до"
+"вгий вечір без поспіху."
+msgstr ""
+"Petit — short breaks. Robusto — a 45–60 min classic. Churchill — a lon"
+"g unhurried evening."
+
+#: templates/pages/partials/home_calculator.html:118
+msgid "Яку країну обираєте?"
+msgstr "Which country do you prefer?"
+
+#: templates/pages/partials/home_calculator.html:129
+msgid ""
+"Куба — класика й елегантність. Нікарагуа — сила й спеції. Домінікана —"
+" м’якість і баланс. Або без обмежень."
+msgstr ""
+"Cuba — classic and elegant. Nicaragua — strength and spice. Dominican "
+"Republic — smoothness and balance. Or no preference."
+
+#: templates/pages/partials/home_calculator.html:135
+msgid "Куба"
+msgstr "Cuba"
+
+#: templates/pages/partials/home_calculator.html:139
+msgid "Нікарагуа"
+msgstr "Nicaragua"
+
+#: templates/pages/partials/home_calculator.html:143
+msgid "Домінікана"
+msgstr "Dominican Republic"
+
+#: templates/pages/partials/home_calculator.html:147
+msgid "Будь-яка"
+msgstr "Any"
+
+#: templates/pages/partials/home_calculator.html:153
+msgid "Який бюджет на сигару?"
+msgstr "What is your budget per cigar?"
+
+#: templates/pages/partials/home_calculator.html:164
+msgid ""
+"Оберіть комфортний діапазон — підберемо варіанти в межах ціни або пока"
+"жемо найкраще без обмежень."
+msgstr ""
+"Choose a comfortable range — we will match options within your price o"
+"r show the best without limits."
+
+#: templates/pages/partials/home_calculator.html:170
+msgid "до 1000 ₴"
+msgstr "up to 1000 ₴"
+
+#: templates/pages/partials/home_calculator.html:174
+msgid "1000—2000 ₴"
+msgstr "1000—2000 ₴"
+
+#: templates/pages/partials/home_calculator.html:178
+msgid "2000—3500 ₴"
+msgstr "2000—3500 ₴"
+
+#: templates/pages/partials/home_calculator.html:182
+msgid "без обмежень"
+msgstr "no limit"
+
+#: templates/pages/partials/home_calculator.html:190
+msgid "Далі"
+msgstr "Next"
+
+#: templates/pages/partials/home_calculator.html:193
+msgid "Показати підбір"
+msgstr "Show matches"
+
+#: templates/pages/partials/home_calculator.html:196
+msgid "Назад"
+msgstr "Back"
+
+#: templates/pages/partials/home_calculator.html:203
+msgid "Підсумок вибору"
+msgstr "Selection summary"
+
+#: templates/pages/partials/home_calculator.html:204
+msgid "Ваш вибір"
+msgstr "Your choices"
+
+#: templates/pages/partials/home_catalog.html:9
+msgid "Увесь каталог"
+msgstr "Full catalog"
+
+#: templates/pages/partials/home_catalog.html:17
+msgid "Попередні товари"
+msgstr "Previous products"
+
+#: templates/pages/partials/home_catalog.html:28
+msgid "Товари каталогу"
+msgstr "Catalog products"
+
+#: templates/pages/partials/home_catalog.html:79
+msgid "Каталог наповнюється."
+msgstr "Catalog is being updated."
+
+#: templates/pages/partials/home_catalog.html:87
+msgid "Наступні товари"
+msgstr "Next products"
+
+#: templates/pages/partials/home_history.html:17
+msgid "Попередній етап"
+msgstr "Previous stage"
+
+#: templates/pages/partials/home_history.html:28
+msgid "Етапи історії"
+msgstr "History stages"
+
+#: templates/pages/partials/home_history.html:70
+msgid ""
+"Від майя та таїно до кубинських фабрик і сучасних мануфактур — сигара "
+"як ритуал часу, який ми зберігаємо в Royal Smoke."
+msgstr ""
+"From Maya and Taíno traditions to Cuban factories and modern manufactu"
+"rers — the cigar as a ritual of time we preserve at Royal Smoke."
+
+#: templates/pages/partials/home_history.html:81
+msgid "Наступний етап"
+msgstr "Next stage"
+
+#: templates/pages/partials/home_history.html:87
+msgid "Роки історії"
+msgstr "Years of history"
+
+#: templates/partials/age_gate.html:10
+msgid "Вам виповнилося"
+msgstr "Are you"
+
+#: templates/partials/age_gate.html:10
+msgid "21 рік?"
+msgstr "21 years old?"
+
+#: templates/partials/age_gate.html:12
+msgid ""
+"Сайт містить інформацію про тютюнові вироби. Підтвердіть вік, щоб прод"
+"овжити."
+msgstr ""
+"This site contains information about tobacco products. Confirm your ag"
+"e to continue."
+
+#: templates/partials/age_gate.html:16
+msgid "Мені немає 21 року"
+msgstr "I am under 21"
+
+#: templates/partials/age_gate.html:25
+msgid "Доступ обмежено"
+msgstr "Access restricted"
+
+#: templates/partials/age_gate.html:27
+msgid "Цей сайт призначений лише для повнолітніх відвідувачів 21+."
+msgstr "This site is intended for adult visitors aged 21+ only."
+
+#: templates/partials/age_gate.html:29
+msgid "Повернутися"
+msgstr "Go back"
+
+#: templates/partials/breadcrumbs.html:3
+msgid "Навігаційний шлях"
+msgstr "Breadcrumb trail"
+
+#: templates/partials/footer.html:17
+msgid "Навігація футера"
+msgstr "Footer navigation"
+
+#: templates/partials/footer.html:26 templates/partials/header.html:77
+msgid "Покупка"
+msgstr "Shopping"
+
+#: templates/partials/footer.html:29
+msgid "і оплата"
+msgstr "& payment"
+
+#: templates/partials/footer.html:32 templates/partials/header.html:85
+msgid "Інфо"
+msgstr "Info"
+
+#: templates/partials/footer.html:36
+msgid "Приватність"
+msgstr "Privacy"
+
+#: templates/partials/footer.html:45
+msgid "Instagram"
+msgstr "Instagram"
+
+#: templates/partials/footer.html:50
+msgid "Telegram"
+msgstr "Telegram"
+
+#: templates/partials/footer.html:66
+msgid "Facebook"
+msgstr "Facebook"
+
+#: templates/partials/header.html:11
+msgid "Основна навігація"
+msgstr "Main navigation"
+
+#: templates/partials/header.html:14 templates/partials/header.html:80
+msgid "Акції"
+msgstr "Sale"
+
+#: templates/partials/header.html:25 templates/partials/header.html:30
+msgid "Пошук"
+msgstr "Search"
+
+#: templates/partials/header.html:28
+msgid "Пошук товарів"
+msgstr "Product search"
+
+#: templates/partials/header.html:32
+msgid "Назва товару…"
+msgstr "Product name…"
+
+#: templates/partials/header.html:55
+msgid "Відкрити меню"
+msgstr "Open menu"
+
+#: templates/partials/header.html:63
+msgid "Меню"
+msgstr "Menu"
+
+#: templates/partials/header.html:71
+msgid "Закрити меню"
+msgstr "Close menu"
+
+#: templates/partials/lang_switcher.html:3
+msgid "Мова"
+msgstr "Language"

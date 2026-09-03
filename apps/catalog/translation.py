@@ -1,6 +1,6 @@
 from modeltranslation.translator import TranslationOptions, register
 
-from .models import Product, ProductReview
+from .models import Product, ProductImage, ProductReview, ProductVariant
 from .models_base import Brand, Category, ProductLine, Tag
 
 
@@ -31,6 +31,16 @@ class ProductTranslation(TranslationOptions):
         'wrapper', 'binder', 'filler', 'country', 'smoke_time',
         'meta_title', 'meta_description',
     )
+
+
+@register(ProductVariant)
+class ProductVariantTranslation(TranslationOptions):
+    fields = ('name', 'shape')
+
+
+@register(ProductImage)
+class ProductImageTranslation(TranslationOptions):
+    fields = ('alt_text',)
 
 
 @register(ProductReview)

@@ -5,6 +5,8 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _lazy
 from django.views.decorators.http import require_http_methods
 
 from apps.cart import services as cart_services
@@ -13,22 +15,24 @@ from apps.orders.models import Order, OrderItem
 
 
 class CheckoutForm(forms.Form):
-    first_name = NameField(label='Імʼя', max_length=100)
-    last_name = NameField(label='Прізвище', max_length=100)
-    phone = PhoneField(label='Телефон')
-    email = EmailField(label='Email')
-    delivery_service = forms.ChoiceField(label='Доставка', choices=Order.DELIVERY_CHOICES)
-    delivery_city = forms.CharField(label='Місто', max_length=150)
-    delivery_address = forms.CharField(label='Адреса / відділення', max_length=255)
-    payment_method = forms.ChoiceField(label='Оплата', choices=Order.PAYMENT_CHOICES)
-    comment = forms.CharField(label='Коментар', required=False, widget=forms.Textarea(attrs={'rows': 3}))
+    first_name = NameField(label=_lazy('Імʼя'), max_length=100)
+    last_name = NameField(label=_lazy('Прізвище'), max_length=100)
+    phone = PhoneField(label=_lazy('Телефон'))
+    email = EmailField(label=_lazy('Email'))
+    delivery_service = forms.ChoiceField(label=_lazy('Доставка'), choices=Order.DELIVERY_CHOICES)
+    delivery_city = forms.CharField(label=_lazy('Місто'), max_length=150)
+    delivery_address = forms.CharField(label=_lazy('Адреса / відділення'), max_length=255)
+    payment_method = forms.ChoiceField(label=_lazy('Оплата'), choices=Order.PAYMENT_CHOICES)
+    comment = forms.CharField(
+        label=_lazy('Коментар'), required=False, widget=forms.Textarea(attrs={'rows': 3}),
+    )
 
 
 @require_http_methods(['GET', 'POST'])
 def checkout(request):
     totals = cart_services.cart_totals(request.session)
     if not totals['items']:
-        messages.warning(request, 'Кошик порожній')
+        messages.warning(request, _('Кошик порожній'))
         return redirect('cart:detail')
 
     initial = {}

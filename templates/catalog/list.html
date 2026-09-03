@@ -1,19 +1,19 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 
-{% block title %}{% if category %}{{ category.name }}{% elif brand %}{{ brand.name }}{% else %}Каталог{% endif %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% if category %}{{ category.name }}{% elif brand %}{{ brand.name }}{% else %}{% trans "Каталог" %}{% endif %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 
 {% block body_class %}rs-catalog-page{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/catalog-browser.css' %}?v=23">
+<link rel="stylesheet" href="{% static 'css/catalog-browser.css' %}?v=24">
 <link rel="stylesheet" href="{% static 'css/catalog-browser2.css' %}?v=27">
-<link rel="stylesheet" href="{% static 'css/catalog-browser3.css' %}?v=11">
-<link rel="stylesheet" href="{% static 'css/catalog-browser4.css' %}?v=11">
+<link rel="stylesheet" href="{% static 'css/catalog-browser3.css' %}?v=12">
+<link rel="stylesheet" href="{% static 'css/catalog-browser4.css' %}?v=12">
 {% endblock %}
 
 {% block content %}
-<section class="rs-cb" aria-label="Каталог"
+<section class="rs-cb" aria-label="{% trans "Каталог" %}"
          data-cb-root
          data-cb-base="{{ filter_base_path }}"
          data-cb-list="{{ filter_list_path }}"
@@ -28,15 +28,15 @@
          data-cb-strength-map="{{ strength_slider_map|join:',' }}"
          data-cb-country="{{ selected_country|join:',' }}">
   <div class="rs-cb__shell">
-    <aside class="rs-cb__aside" aria-label="Категорії та фільтри">
-      <nav class="rs-cb__nav" aria-label="Категорії" data-cb-nav>
+    <aside class="rs-cb__aside" aria-label="{% trans "Категорії та фільтри" %}">
+      <nav class="rs-cb__nav" aria-label="{% trans "Категорії" %}" data-cb-nav>
         <button type="button"
                 class="rs-cb__nav-item{% if all_categories_active %} is-active{% endif %}"
                 data-cb-cat="all"
                 aria-pressed="{{ all_categories_active|yesno:'true,false' }}">
           <span class="rs-cb__nav-text">
-            <span class="rs-cb__nav-label">Усі</span>
-            <span class="rs-cb__nav-count">каталог</span>
+            <span class="rs-cb__nav-label">{% trans "Усі" %}</span>
+            <span class="rs-cb__nav-count">{% trans "каталог" %}</span>
           </span>
         </button>
         {% for cat in nav_categories %}
@@ -48,7 +48,7 @@
               <span class="rs-cb__nav-label">{{ cat.name }}</span>
               <span class="rs-cb__nav-count">
                 {{ cat.count }}
-                {% if cat.count == 1 %}позиція{% elif cat.count >= 2 and cat.count <= 4 %}позиції{% else %}позицій{% endif %}
+                {% blocktrans count counter=cat.count %}позиція{% plural %}позиції{% endblocktrans %}
               </span>
             </span>
           </button>
@@ -59,7 +59,7 @@
 
       <div class="rs-cb__filters">
         <div class="rs-cb__facet">
-          <p class="rs-cb__facet-title rs-cb__facet-title--gold">Міцність</p>
+          <p class="rs-cb__facet-title rs-cb__facet-title--gold">{% trans "Міцність" %}</p>
           <div class="rs-cb__slider" data-cb-strength-wrap>
             <div class="rs-cb__slider-track">
               <div class="rs-cb__slider-steps" aria-hidden="true">
@@ -73,26 +73,26 @@
                      step="1"
                      value="{{ strength_slider_value }}"
                      data-cb-strength-range
-                     aria-label="Міцність"
+                     aria-label="{% trans "Міцність" %}"
                      list="rs-cb-strength-steps">
             </div>
             <datalist id="rs-cb-strength-steps">
-              <option value="0" label="Легка"></option>
-              <option value="1" label="Середня"></option>
-              <option value="2" label="Повна"></option>
+              <option value="0" label="{% trans "Легка" %}"></option>
+              <option value="1" label="{% trans "Середня" %}"></option>
+              <option value="2" label="{% trans "Повна" %}"></option>
             </datalist>
             <div class="rs-cb__slider-labels">
-              <span>Легка</span>
+              <span>{% trans "Легка" %}</span>
               <span aria-hidden="true"></span>
-              <span>Повна</span>
+              <span>{% trans "Повна" %}</span>
             </div>
           </div>
         </div>
 
         {% if country_chips %}
           <div class="rs-cb__facet">
-            <p class="rs-cb__facet-title">Країна</p>
-            <div class="rs-cb__chips rs-cb__chips--country" role="group" aria-label="Країна">
+            <p class="rs-cb__facet-title">{% trans "Країна" %}</p>
+            <div class="rs-cb__chips rs-cb__chips--country" role="group" aria-label="{% trans "Країна" %}">
               {% for chip in country_chips %}
                 <button type="button"
                         class="rs-cb__chip{% if chip.is_active %} is-active{% endif %}"
@@ -105,7 +105,7 @@
         {% endif %}
 
         <div class="rs-cb__facet">
-          <p class="rs-cb__facet-title">Ціна</p>
+          <p class="rs-cb__facet-title">{% trans "Ціна" %}</p>
           <div class="rs-cb__range" data-cb-range>
             <div class="rs-cb__range-track" data-cb-range-track>
               <div class="rs-cb__range-fill" data-cb-range-fill></div>
@@ -122,7 +122,7 @@
                      max="{{ price_bound_max }}"
                      step="1"
                      value="{{ price_min }}"
-                     aria-label="Мінімальна ціна">
+                     aria-label="{% trans "Мінімальна ціна" %}">
               <input class="rs-cb__range-input rs-cb__range-input--max"
                      type="range"
                      data-cb-range-max
@@ -130,26 +130,26 @@
                      max="{{ price_bound_max }}"
                      step="1"
                      value="{{ price_max }}"
-                     aria-label="Максимальна ціна">
+                     aria-label="{% trans "Максимальна ціна" %}">
             </div>
           </div>
         </div>
       </div>
 
       <div class="rs-cb__actions">
-        <button type="button" class="rs-cb__apply" data-cb-apply>Застосувати</button>
+        <button type="button" class="rs-cb__apply" data-cb-apply>{% trans "Застосувати" %}</button>
         <button type="button"
                 class="rs-cb__reset{% if not has_filters %} is-disabled{% endif %}"
                 data-cb-reset
                 {% if not has_filters %}aria-disabled="true" disabled{% endif %}>
-          Скинути фільтри
+          {% trans "Скинути фільтри" %}
         </button>
       </div>
     </aside>
 
     <div class="rs-cb__main">
       <header class="rs-cb__head">
-        <div class="rs-cb__sorts" role="group" aria-label="Сортування" data-cb-sorts>
+        <div class="rs-cb__sorts" role="group" aria-label="{% trans "Сортування" %}" data-cb-sorts>
           {% for chip in sort_chips %}
             <button type="button"
                     class="rs-cb__sort{% if chip.is_active %} is-active{% endif %}"
@@ -168,5 +168,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/catalog-browser.js' %}?v=4" defer></script>
+<script src="{% static 'js/catalog-browser.js' %}?v=5" defer></script>
 {% endblock %}

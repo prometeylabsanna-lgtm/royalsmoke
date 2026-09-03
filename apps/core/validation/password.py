@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext as _
 
 from apps.core.validation.rules import validate_password
 
@@ -16,7 +17,7 @@ class StrongPasswordValidator:
             raise ValidationError(err, code='password_too_weak')
 
     def get_help_text(self):
-        return (
+        return _(
             'Пароль має містити мінімум 8 символів, велику та малу літери, '
             'цифру та спеціальний символ.'
         )

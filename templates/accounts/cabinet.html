@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 
-{% block title %}Кабінет — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% trans "Кабінет" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 {% block body_class %}rs-auth-page rs-cab-page{% endblock %}
 {% block breadcrumbs %}{% endblock %}
 
@@ -13,11 +13,11 @@
 <section class="rs-cab" data-rs-reveal>
   <div class="rs-cab__top">
     <div class="rs-cab__summary">
-      <h1 class="rs-cab__title">Кабінет</h1>
-      <p class="rs-cab__lead">Вітаємо, {{ display_name }}</p>
+      <h1 class="rs-cab__title">{% trans "Кабінет" %}</h1>
+      <p class="rs-cab__lead">{% blocktrans with name=display_name %}Вітаємо, {{ name }}{% endblocktrans %}</p>
 
       <section class="rs-cab__block">
-        <h2 class="rs-cab__block-title">Профіль</h2>
+        <h2 class="rs-cab__block-title">{% trans "Профіль" %}</h2>
         <p class="rs-cab__meta">{{ user.email|default:"—" }}</p>
         {% if user.phone %}
           <p class="rs-cab__meta">{{ user.phone }}</p>
@@ -25,11 +25,11 @@
       </section>
 
       <section class="rs-cab__block">
-        <h2 class="rs-cab__block-title">Замовлення</h2>
+        <h2 class="rs-cab__block-title">{% trans "Замовлення" %}</h2>
         {% if recent_order %}
-          <p class="rs-cab__meta">Останнє: #{{ recent_order.order_number }} — {{ recent_order.total }} ₴</p>
+          <p class="rs-cab__meta">{% blocktrans with num=recent_order.order_number total=recent_order.total %}Останнє: #{{ num }} — {{ total }} ₴{% endblocktrans %}</p>
         {% else %}
-          <p class="rs-cab__meta">Останнє замовлення</p>
+          <p class="rs-cab__meta">{% trans "Останнє замовлення" %}</p>
         {% endif %}
         <div class="rs-cab__spark" aria-hidden="true">
           {% for bar in chart_series %}
@@ -41,7 +41,7 @@
 
     <div class="rs-cab__cards">
       <article class="rs-cab__card rs-cab__card--profile">
-        <p class="rs-cab__card-label">Профіль</p>
+        <p class="rs-cab__card-label">{% trans "Профіль" %}</p>
         <div class="rs-cab__profile">
           <div class="rs-cab__avatar" aria-hidden="true">{{ avatar_initial }}</div>
           <div class="rs-cab__profile-body">
@@ -55,15 +55,15 @@
       </article>
 
       <article class="rs-cab__card rs-cab__card--chart">
-        <p class="rs-cab__card-label">Останнє замовлення</p>
+        <p class="rs-cab__card-label">{% trans "Останнє замовлення" %}</p>
         {% if recent_order %}
           <p class="rs-cab__chart-caption">
             #{{ recent_order.order_number }} · {{ recent_order.get_status_display }} · {{ recent_order.total }} ₴
           </p>
         {% else %}
-          <p class="rs-cab__chart-caption">Замовлень ще немає</p>
+          <p class="rs-cab__chart-caption">{% trans "Замовлень ще немає" %}</p>
         {% endif %}
-        <div class="rs-cab__chart" role="img" aria-label="Динаміка замовлень за останні тижні">
+        <div class="rs-cab__chart" role="img" aria-label="{% trans "Динаміка замовлень за останні тижні" %}">
           <div class="rs-cab__chart-y" aria-hidden="true">
             <span>10</span>
             <span>8</span>
@@ -85,16 +85,16 @@
     </div>
   </div>
 
-  <section class="rs-cab__actions" aria-label="Швидкі дії">
-    <h2 class="rs-cab__actions-title">Швидкі дії</h2>
+  <section class="rs-cab__actions" aria-label="{% trans "Швидкі дії" %}">
+    <h2 class="rs-cab__actions-title">{% trans "Швидкі дії" %}</h2>
     <nav class="rs-cab__actions-row">
-      <a class="rs-cab__btn" href="{% url 'cart:detail' %}">Кошик</a>
-      <a class="rs-cab__btn" href="{% url 'catalog:list' %}">Каталог</a>
-      <a class="rs-cab__btn" href="{% url 'leads:contact' %}">Підтримка</a>
-      <a class="rs-cab__btn" href="{% url 'accounts:cabinet' %}">Вибране</a>
+      <a class="rs-cab__btn" href="{% url 'cart:detail' %}">{% trans "Кошик" %}</a>
+      <a class="rs-cab__btn" href="{% url 'catalog:list' %}">{% trans "Каталог" %}</a>
+      <a class="rs-cab__btn" href="{% url 'leads:contact' %}">{% trans "Підтримка" %}</a>
+      <a class="rs-cab__btn" href="{% url 'accounts:cabinet' %}">{% trans "Вибране" %}</a>
       <form method="post" action="{% url 'accounts:logout' %}" class="rs-cab__logout">
         {% csrf_token %}
-        <button class="rs-cab__btn" type="submit">Вийти</button>
+        <button class="rs-cab__btn" type="submit">{% trans "Вийти" %}</button>
       </form>
     </nav>
   </section>

@@ -1,0 +1,23 @@
+{% load i18n %}
+{# Language codes: uk→UA, en→EN, zh-hans→CN. Persists via Django session/cookie (set_language). #}
+<div class="rs-lang" aria-label="{% trans 'Мова' %}" data-lang-switcher>
+  {% get_current_language as LANGUAGE_CODE %}
+  {% get_available_languages as LANGUAGES %}
+  {% get_language_info_list for LANGUAGES as languages %}
+  {% for lang in languages %}
+    {% if lang.code == LANGUAGE_CODE %}
+      <span aria-current="true"{% if compact %} data-active{% endif %}>
+        {% if lang.code == 'uk' %}UA{% elif lang.code == 'zh-hans' %}CN{% else %}EN{% endif %}
+      </span>
+    {% else %}
+      <form action="{% url 'set_language' %}" method="post" class="rs-lang__form">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        <input type="hidden" name="language" value="{{ lang.code }}">
+        <button type="submit" class="rs-lang__btn" lang="{{ lang.code }}">
+          {% if lang.code == 'uk' %}UA{% elif lang.code == 'zh-hans' %}CN{% else %}EN{% endif %}
+        </button>
+      </form>
+    {% endif %}
+  {% endfor %}
+</div>

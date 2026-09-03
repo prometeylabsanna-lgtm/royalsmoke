@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _lazy
 from django.views.decorators.http import require_http_methods
 
 from apps.core.validation import EmailField, NameField, PhoneField
@@ -11,23 +13,23 @@ from apps.leads.models import Lead
 
 
 class B2BForm(forms.Form):
-    name = NameField(label='Контактна особа')
-    company = forms.CharField(label='Компанія', max_length=160)
-    phone = PhoneField(label='Телефон')
-    email = EmailField(label='Email')
-    message = forms.CharField(label='Запит', widget=forms.Textarea(attrs={'rows': 4}))
+    name = NameField(label=_lazy('Контактна особа'))
+    company = forms.CharField(label=_lazy('Компанія'), max_length=160)
+    phone = PhoneField(label=_lazy('Телефон'))
+    email = EmailField(label=_lazy('Email'))
+    message = forms.CharField(label=_lazy('Запит'), widget=forms.Textarea(attrs={'rows': 4}))
 
 
 class ContactForm(forms.Form):
-    name = NameField(label='Імʼя')
-    phone = PhoneField(label='Телефон', optional=True)
-    email = EmailField(label='Email', optional=True)
-    message = forms.CharField(label='Повідомлення', widget=forms.Textarea(attrs={'rows': 4}))
+    name = NameField(label=_lazy('Імʼя'))
+    phone = PhoneField(label=_lazy('Телефон'), optional=True)
+    email = EmailField(label=_lazy('Email'), optional=True)
+    message = forms.CharField(label=_lazy('Повідомлення'), widget=forms.Textarea(attrs={'rows': 4}))
 
 
 class CallbackForm(forms.Form):
-    name = NameField(label='Імʼя', optional=True)
-    phone = PhoneField(label='Телефон')
+    name = NameField(label=_lazy('Імʼя'), optional=True)
+    phone = PhoneField(label=_lazy('Телефон'))
 
 
 def _notify(lead: Lead) -> None:
@@ -55,7 +57,7 @@ def b2b_page(request):
             source_url=request.path,
         )
         _notify(lead)
-        messages.success(request, 'Запит надіслано. Менеджер звʼяжеться з вами.')
+        messages.success(request, _('Запит надіслано. Менеджер звʼяжеться з вами.'))
         next_url = request.POST.get('next') or ''
         if next_url.startswith('/'):
             return redirect(next_url)
@@ -82,7 +84,7 @@ def contact_page(request):
             source_url=request.path,
         )
         _notify(lead)
-        messages.success(request, 'Повідомлення надіслано.')
+        messages.success(request, _('Повідомлення надіслано.'))
         return redirect('leads:contact')
     return render(request, 'leads/contact.html', {'form': form})
 
@@ -100,9 +102,12 @@ def callback(request):
         _notify(lead)
         if request.htmx:
             return HttpResponse(
-                '<p class="form-success">Дякуємо! Передзвонимо найближчим часом.</p>'
+                f'<p class="form-success">{_("Дякуємо! Передзвонимо найближчим часом.")}</p>'
             )
-        messages.success(request, 'Заявку прийнято')
+        messages.success(request, _('Заявку прийнято'))
     elif request.htmx:
-        return HttpResponse('<p class="form-error">Перевірте номер телефону.</p>', status=400)
+        return HttpResponse(
+            f'<p class="form-error">{_("Перевірте номер телефону.")}</p>',
+            status=400,
+        )
     return redirect(request.META.get('HTTP_REFERER') or '/')

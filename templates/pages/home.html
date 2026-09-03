@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n rs_i18n %}
 
 {% block body_class %}rs-home{% endblock %}
 
-{% block title %}{{ site_settings.site_name|default:"Royal Smoke" }} — Tobacco Atelier{% endblock %}
+{% block title %}{{ site_settings.site_name|default:"Royal Smoke" }} — {% trans "Tobacco Atelier" %}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/home-calculator.css' %}?v=8">
@@ -13,14 +13,16 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/hero-slider.js' %}?v=2" defer></script>
-<script src="{% static 'js/history-slider.js' %}" defer></script>
+<script src="{% static 'js/hero-slider.js' %}?v=3" defer></script>
+<script src="{% static 'js/history-slider.js' %}?v=1" defer></script>
 <script src="{% static 'js/catalog-slider.js' %}" defer></script>
 <script src="{% static 'js/brands-craft.js' %}?v=2" defer></script>
-<script src="{% static 'js/home-calculator.js' %}?v=3" defer></script>
+<script src="{% static 'js/home-calculator.js' %}?v=4" defer></script>
 {% endblock %}
 
 {% block content %}
+{% trans "До каталогу" as cta_catalog_label %}
+{% trans "Сигари" as cta_cigars_label %}
 <div class="rs-home-bg" aria-hidden="true">
   <div class="rs-home-bg__base"></div>
   <div class="rs-home-bg__glow"></div>
@@ -28,14 +30,14 @@
   <div class="rs-home-bg__rim"></div>
 </div>
 
-<section class="rs-hero" data-hero aria-roledescription="carousel" aria-label="Головний банер">
+<section class="rs-hero" data-hero aria-roledescription="carousel" aria-label="{% trans 'Головний банер' %}">
   <div class="rs-hero__stage" data-hero-stage>
     {% for slide in hero_slides %}
     <div class="rs-hero__slide{% if forloop.first %} is-active{% endif %}" data-hero-slide
-      data-cta-primary-url="{{ slide.cta_primary_url|default:'/catalog/' }}"
-      data-cta-primary-label="{{ slide.cta_primary_label|default:'До каталогу' }}"
-      data-cta-secondary-url="{{ slide.cta_secondary_url|default:'/catalog/cigars/' }}"
-      data-cta-secondary-label="{{ slide.cta_secondary_label|default:'Сигари' }}"
+      data-cta-primary-url="{{ slide.cta_primary_url|default:'/catalog/'|localize_path }}"
+      data-cta-primary-label="{{ slide.cta_primary_label|default:cta_catalog_label }}"
+      data-cta-secondary-url="{{ slide.cta_secondary_url|default:'/catalog/cigars/'|localize_path }}"
+      data-cta-secondary-label="{{ slide.cta_secondary_label|default:cta_cigars_label }}"
       {% if forloop.first %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %}>
       {% if slide.image %}
       <img src="{{ slide.image.url }}" alt="{{ slide.title|default:'Royal Smoke' }}" data-hero-parallax>
@@ -55,21 +57,21 @@
     </div>
     {% empty %}
     <div class="rs-hero__slide is-active" data-hero-slide data-cta-primary-url="{% url 'catalog:list' %}"
-      data-cta-primary-label="До каталогу" data-cta-secondary-url="{% url 'catalog:category' slug='cigars' %}"
-      data-cta-secondary-label="Сигари" aria-hidden="false">
-      <img src="{% static 'img/hero/02.jpg' %}" alt="Royal Smoke — cigar ritual" data-hero-parallax width="2560"
+      data-cta-primary-label="{{ cta_catalog_label }}" data-cta-secondary-url="{% url 'catalog:category' slug='cigars' %}"
+      data-cta-secondary-label="{{ cta_cigars_label }}" aria-hidden="false">
+      <img src="{% static 'img/hero/02.jpg' %}" alt="{% trans 'Royal Smoke — cigar ritual' %}" data-hero-parallax width="2560"
         height="1440">
     </div>
     <div class="rs-hero__slide" data-hero-slide data-cta-primary-url="{% url 'catalog:list' %}"
-      data-cta-primary-label="До каталогу" data-cta-secondary-url="{% url 'catalog:category' slug='cigars' %}"
-      data-cta-secondary-label="Сигари" aria-hidden="true">
-      <img src="{% static 'img/hero/05.jpg' %}" alt="Royal Smoke — premium cigars" data-hero-parallax width="2560"
+      data-cta-primary-label="{{ cta_catalog_label }}" data-cta-secondary-url="{% url 'catalog:category' slug='cigars' %}"
+      data-cta-secondary-label="{{ cta_cigars_label }}" aria-hidden="true">
+      <img src="{% static 'img/hero/05.jpg' %}" alt="{% trans 'Royal Smoke — premium cigars' %}" data-hero-parallax width="2560"
         height="1440">
     </div>
     <div class="rs-hero__slide" data-hero-slide data-cta-primary-url="{% url 'catalog:list' %}"
-      data-cta-primary-label="До каталогу" data-cta-secondary-url="{% url 'catalog:category' slug='cigars' %}"
-      data-cta-secondary-label="Сигари" aria-hidden="true">
-      <img src="{% static 'img/hero/01.jpg' %}" alt="Royal Smoke — lighting a cigar" data-hero-parallax width="2560"
+      data-cta-primary-label="{{ cta_catalog_label }}" data-cta-secondary-url="{% url 'catalog:category' slug='cigars' %}"
+      data-cta-secondary-label="{{ cta_cigars_label }}" aria-hidden="true">
+      <img src="{% static 'img/hero/01.jpg' %}" alt="{% trans 'Royal Smoke — lighting a cigar' %}" data-hero-parallax width="2560"
         height="1440">
     </div>
     {% endfor %}
@@ -77,7 +79,7 @@
 
   <div class="rs-hero__veil" aria-hidden="true"></div>
 
-  <button type="button" class="rs-hero__thumb" data-hero-thumb aria-label="Наступний слайд">
+  <button type="button" class="rs-hero__thumb" data-hero-thumb aria-label="{% trans 'Наступний слайд' %}">
     {% if hero_slides|length > 1 and hero_slides.1.image %}
     <img src="{{ hero_slides.1.image.url }}" alt="">
     {% else %}
@@ -93,15 +95,15 @@
     <div class="rs-hero__cta" data-hero-cta>
       {% if hero_slides %}
       {% with s=hero_slides.0 %}
-      <a class="rs-btn rs-btn--primary" data-hero-cta-primary href="{{ s.cta_primary_url|default:'/catalog/' }}">{{
-        s.cta_primary_label|default:"До каталогу" }}</a>
+      <a class="rs-btn rs-btn--primary" data-hero-cta-primary href="{{ s.cta_primary_url|default:'/catalog/'|localize_path }}">{{
+        s.cta_primary_label|default:cta_catalog_label }}</a>
       <a class="rs-btn rs-btn--gold" data-hero-cta-secondary
-        href="{{ s.cta_secondary_url|default:'/catalog/cigars/' }}">{{ s.cta_secondary_label|default:"Сигари" }}</a>
+        href="{{ s.cta_secondary_url|default:'/catalog/cigars/'|localize_path }}">{{ s.cta_secondary_label|default:cta_cigars_label }}</a>
       {% endwith %}
       {% else %}
-      <a class="rs-btn rs-btn--primary" data-hero-cta-primary href="{% url 'catalog:list' %}">До каталогу</a>
+      <a class="rs-btn rs-btn--primary" data-hero-cta-primary href="{% url 'catalog:list' %}">{{ cta_catalog_label }}</a>
       <a class="rs-btn rs-btn--gold" data-hero-cta-secondary
-        href="{% url 'catalog:category' slug='cigars' %}">Сигари</a>
+        href="{% url 'catalog:category' slug='cigars' %}">{{ cta_cigars_label }}</a>
       {% endif %}
     </div>
   </div>
@@ -113,7 +115,7 @@
 {% include "pages/partials/home_catalog.html" %}
 {% include "pages/partials/home_history.html" %}
 {% include "pages/partials/home_calculator.html" %}
-<section class="rs-section rs-svc-duo" aria-label="Бронювання та B2B">
+<section class="rs-section rs-svc-duo" aria-label="{% trans 'Бронювання та B2B' %}">
   <div class="rs-container">
     <div class="rs-svc-duo__grid">
       {% include "pages/partials/home_booking.html" %}

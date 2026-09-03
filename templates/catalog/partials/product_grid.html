@@ -1,3 +1,4 @@
+{% load i18n %}
 {% for product in products %}
   <article class="rs-cb-row" data-rs-reveal data-reveal-delay="{% widthratio forloop.counter0 1 40 %}">
     <a class="rs-cb-row__media" href="{{ product.get_absolute_url }}" tabindex="-1" aria-hidden="true">
@@ -31,22 +32,25 @@
         <span class="rs-pcard__amount">{{ product.display_price }}</span>
         <span class="rs-pcard__currency">₴</span>
       </p>
-      <form class="rs-cb-row__cart-form"
-            method="post"
-            action="{% url 'cart:add' %}"
-            hx-post="{% url 'cart:add' %}"
-            hx-target="#cart-badge"
-            hx-swap="outerHTML">
-        {% csrf_token %}
-        <input type="hidden" name="product_id" value="{{ product.id }}">
-        <input type="hidden" name="quantity" value="1">
-        {% with v=product.variants.all.0 %}
-          {% if v %}<input type="hidden" name="variant_id" value="{{ v.id }}">{% endif %}
-        {% endwith %}
-        <button type="submit" class="rs-pcard__buy">У кошик</button>
-      </form>
+      <div class="rs-cb-row__cart-wrap">
+        <form class="rs-cb-row__cart-form"
+              method="post"
+              action="{% url 'cart:add' %}"
+              hx-post="{% url 'cart:add' %}"
+              hx-target="#cart-badge"
+              hx-swap="outerHTML">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value="{{ product.id }}">
+          <input type="hidden" name="quantity" value="1">
+          {% with v=product.variants.all.0 %}
+            {% if v %}<input type="hidden" name="variant_id" value="{{ v.id }}">{% endif %}
+          {% endwith %}
+          <button type="submit" class="rs-pcard__buy">{% trans "У кошик" %}</button>
+        </form>
+        {% include "accounts/partials/wish_btn.html" with product=product %}
+      </div>
     </div>
   </article>
 {% empty %}
-  <p class="rs-cb__empty" data-rs-reveal>Нічого не знайдено. Змініть фільтри.</p>
+  <p class="rs-cb__empty" data-rs-reveal>{% trans "Нічого не знайдено. Змініть фільтри." %}</p>
 {% endfor %}

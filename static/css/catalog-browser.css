@@ -113,18 +113,6 @@ body.rs-catalog-page {
   color: rgba(252, 242, 238, 0.42);
 }
 
-.rs-cb__nav-item.is-active {
-  background: transparent;
-}
-
-.rs-cb__nav-item.is-active .rs-cb__nav-label {
-  color: var(--rs-cb-champagne, #e8d5a8);
-}
-
-.rs-cb__nav-item.is-active .rs-cb__nav-count {
-  color: rgba(232, 213, 168, 0.58);
-}
-
 .rs-cb__rule {
   height: 1px;
   margin-block: 2px;
@@ -178,12 +166,6 @@ body.rs-catalog-page {
     color var(--t-fast) var(--ease-out),
     border-color var(--t-fast) var(--ease-out),
     background var(--t-fast) var(--ease-out);
-}
-
-.rs-cb__chip.is-active {
-  border-color: var(--rs-cb-accent);
-  background: transparent;
-  color: var(--rs-seashell);
 }
 
 .rs-cb__reset {

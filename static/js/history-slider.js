@@ -1,4 +1,4 @@
-/* Royal Smoke — history journey: loop arrows + tick highlight (no scroll highlight) */
+/* Royal Smoke — history journey: loop arrows + tick highlight + scroll sync */
 (function () {
   'use strict';
 
@@ -19,6 +19,8 @@
     if (!track || !total) return;
 
     var index = 0;
+    var ignoreScroll = false;
+    var scrollTimer = null;
 
     function updateActive(activeIndex) {
       ticks.forEach(function (tick, i) {
@@ -35,11 +37,28 @@
       });
     }
 
+    function nearestIndex() {
+      var best = 0;
+      var bestDist = Infinity;
+      var left = track.scrollLeft;
+      slides.forEach(function (slide, i) {
+        var d = Math.abs(slide.offsetLeft - left);
+        if (d < bestDist) {
+          bestDist = d;
+          best = i;
+        }
+      });
+      return best;
+    }
+
     function goToIndex(next, smooth) {
       if (total <= 0) return;
       var reduce = prefersReducedMotion();
       index = ((next % total) + total) % total;
       updateActive(index);
+
+      ignoreScroll = true;
+      if (scrollTimer) window.clearTimeout(scrollTimer);
 
       var left = slides[index].offsetLeft;
       if (typeof track.scrollTo === 'function') {
@@ -50,6 +69,11 @@
       } else {
         track.scrollLeft = left;
       }
+
+      scrollTimer = window.setTimeout(function () {
+        ignoreScroll = false;
+        scrollTimer = null;
+      }, smooth && !reduce ? 450 : 80);
     }
 
     function step(delta) {
@@ -89,6 +113,15 @@
         goToIndex(total - 1, true);
       }
     });
+
+    track.addEventListener('scroll', function () {
+      if (ignoreScroll) return;
+      var nearest = nearestIndex();
+      if (nearest !== index) {
+        index = nearest;
+        updateActive(index);
+      }
+    }, { passive: true });
 
     window.addEventListener(
       'resize',

@@ -1,5 +1,6 @@
+{% load i18n %}
 {% if breadcrumbs %}
-<nav class="rs-crumbs" aria-label="Навігаційний шлях">
+<nav class="rs-crumbs" aria-label="{% trans 'Навігаційний шлях' %}">
   <ol class="rs-crumbs__list">
     {% for crumb in breadcrumbs %}
       <li class="rs-crumbs__item">

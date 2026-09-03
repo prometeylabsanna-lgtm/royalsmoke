@@ -12,6 +12,8 @@
     var wrap = document.querySelector('.rs-pd-bg');
     var primary = document.querySelector('[data-pd-bg-video]');
     if (!wrap || !primary) return;
+    if (wrap.dataset.pdBgReady === '1') return;
+    wrap.dataset.pdBgReady = '1';
 
     if (reduceMotion) {
       primary.removeAttribute('autoplay');
@@ -111,6 +113,9 @@
   }
 
   function initGallery(root) {
+    if (!root || root.dataset.pdReady === '1') return;
+    root.dataset.pdReady = '1';
+
     var gallery = root.querySelector('[data-pd-gallery]');
     if (!gallery) return;
 

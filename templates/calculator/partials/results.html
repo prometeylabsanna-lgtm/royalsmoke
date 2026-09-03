@@ -1,5 +1,6 @@
+{% load i18n %}
 <div class="rs-calc-results" id="calc-results">
-  <h3 class="rs-section__title" style="font-size:22px" data-rs-reveal>Ваші рекомендації</h3>
+  <h3 class="rs-section__title" style="font-size:22px" data-rs-reveal>{% trans "Ваші рекомендації" %}</h3>
   <div class="rs-calc-results__list">
     {% for hit in hits %}
       <article class="rs-calc-hit" data-rs-reveal data-reveal-delay="{% widthratio forloop.counter0 1 50 %}">
@@ -11,16 +12,16 @@
             {% if hit.product.country %} · {{ hit.product.country }}{% endif %}
           </p>
           {% if hit.reasons %}
-            <p class="rs-calc-hit__why">Чому підходить: {{ hit.reasons|join:", " }}.</p>
+            <p class="rs-calc-hit__why">{% blocktrans with reasons=hit.reasons|join:", " %}Чому підходить: {{ reasons }}.{% endblocktrans %}</p>
           {% endif %}
         </div>
         <div class="rs-calc-hit__aside">
           <span class="rs-calc-hit__price">{{ hit.product.display_price }} ₴</span>
-          <a class="rs-btn rs-btn--ghost" href="{{ hit.product.get_absolute_url }}">Переглянути</a>
+          <a class="rs-btn rs-btn--ghost" href="{{ hit.product.get_absolute_url }}">{% trans "Переглянути" %}</a>
         </div>
       </article>
     {% empty %}
-      <p class="rs-empty">Немає точних збігів — спробуйте інші параметри.</p>
+      <p class="rs-empty">{% trans "Немає точних збігів — спробуйте інші параметри." %}</p>
     {% endfor %}
   </div>
 </div>
