@@ -8,7 +8,7 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/product-detail.css' %}?v=26">
 <link rel="stylesheet" href="{% static 'css/product-detail2.css' %}?v=27">
-<link rel="stylesheet" href="{% static 'css/product-detail3.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'css/product-detail3.css' %}?v=3">
 {% endblock %}
 
 {% block breadcrumbs %}{% endblock %}
@@ -43,8 +43,8 @@
     {% include "catalog/partials/pd_blend.html" %}
     {% include "catalog/partials/pd_vitolas.html" %}
     {% include "catalog/partials/pd_specs.html" %}
-    {% include "catalog/partials/pd_reviews.html" %}
     {% include "catalog/partials/pd_cta.html" %}
+    {% include "catalog/partials/pd_reviews.html" %}
   </div>
 
   {% include "catalog/partials/pd_related.html" %}

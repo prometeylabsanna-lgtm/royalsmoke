@@ -289,6 +289,24 @@ body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn--labeled.is-active .rs-
   background: rgba(0, 0, 0, 0.28);
 }
 
+.rs-pd__video-mask {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .rs-pd__video-mask {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 3;
+    width: 72px;
+    height: 72px;
+    background: #100d0c;
+    pointer-events: none;
+  }
+}
+
 .rs-pd__video-frame,
 .rs-pd__video-el {
   width: 100%;
