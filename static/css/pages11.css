@@ -1,0 +1,181 @@
+/* Royal Smoke — Legal / Privacy page (FAQ-matched bg) */
+
+body.rs-legal-page {
+  --rs-legal-bg: #100d0c;
+  --rs-legal-content-w: 720px;
+  background-color: var(--rs-legal-bg);
+}
+
+body.rs-legal-page .rs-main {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  background: transparent;
+  padding-bottom: calc(
+    clamp(140px, 32vh, 360px) + env(safe-area-inset-bottom, 0px)
+  );
+  z-index: 1;
+}
+
+/* ——— Background (calculator lounge + overlay) ——— */
+.rs-legal-page__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 28px,
+    #000 96px,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 28px,
+    #000 96px,
+    #000 100%
+  );
+}
+
+.rs-legal-page__bg-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 52% 58%;
+  -webkit-filter: blur(8px);
+  filter: blur(8px);
+  -webkit-transform: translateZ(0) scale(1.1);
+  transform: translateZ(0) scale(1.1);
+}
+
+.rs-legal-page__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      #100d0c 0%,
+      rgba(16, 13, 12, 0.88) 12%,
+      rgba(20, 16, 14, 0.72) 28%,
+      rgba(20, 16, 14, 0.58) 52%,
+      rgba(20, 16, 14, 0.75) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(20, 16, 14, 0.38) 0%,
+      transparent 30%,
+      transparent 70%,
+      rgba(20, 16, 14, 0.34) 100%
+    );
+}
+
+body.rs-legal-page .rs-footer {
+  position: relative;
+  z-index: 2;
+}
+
+body.rs-legal-page .rs-crumbs-bar,
+body.rs-legal-page .rs-page-head,
+body.rs-legal-page .rs-legal {
+  position: relative;
+  z-index: 1;
+}
+
+body.rs-legal-page .rs-page-head {
+  max-width: var(--rs-legal-content-w);
+  padding-top: clamp(20px, 4vh, 48px);
+  padding-bottom: clamp(8px, 1.5vh, 16px);
+}
+
+body.rs-legal-page .rs-page-head h1 {
+  display: block;
+  margin-inline: auto;
+  letter-spacing: var(--rs-heading-page-tracking, 0.28em);
+  padding-inline-start: var(--rs-heading-page-tracking, 0.28em);
+  line-height: 1.18;
+  max-width: 14ch;
+}
+
+body.rs-legal-page .rs-page-head p {
+  margin-top: 14px;
+  max-width: 42ch;
+}
+
+body.rs-legal-page .rs-legal {
+  max-width: var(--rs-legal-content-w);
+  margin-inline: auto;
+  padding-block: 8px 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ——— Tablet ——— */
+@media (max-width: 1023px) {
+  body.rs-legal-page .rs-main {
+    padding-bottom: calc(
+      clamp(120px, 28vh, 300px) + env(safe-area-inset-bottom, 0px)
+    );
+  }
+
+  body.rs-legal-page .rs-legal {
+    padding-inline: 0;
+    max-width: 100%;
+  }
+}
+
+/* ——— Mobile + iOS Safari ——— */
+@media (max-width: 767px) {
+  body.rs-legal-page .rs-main {
+    padding-bottom: calc(
+      clamp(100px, 24vh, 240px) + env(safe-area-inset-bottom, 0px)
+    );
+    overflow-x: clip;
+  }
+
+  body.rs-legal-page .rs-page-head {
+    padding-top: 16px;
+    padding-inline: max(var(--rs-pad-x-sm, 20px), var(--rs-safe-l, 0px))
+      max(var(--rs-pad-x-sm, 20px), var(--rs-safe-r, 0px));
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  body.rs-legal-page .rs-page-head h1 {
+    letter-spacing: 0.18em;
+    padding-inline-start: 0.18em;
+    max-width: 12ch;
+    font-size: clamp(26px, 7.2vw, 34px);
+  }
+
+  body.rs-legal-page .rs-page-head p {
+    max-width: 100%;
+    padding-inline: 0;
+    font-size: 14px;
+  }
+
+  body.rs-legal-page .rs-legal.rs-container {
+    padding-inline: max(var(--rs-pad-x-sm, 20px), var(--rs-safe-l, 0px))
+      max(var(--rs-pad-x-sm, 20px), var(--rs-safe-r, 0px));
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  body.rs-legal-page .rs-legal h2 {
+    font-size: 20px;
+  }
+
+  body.rs-legal-page .rs-legal p {
+    font-size: 14px;
+  }
+}

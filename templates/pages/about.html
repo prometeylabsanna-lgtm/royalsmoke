@@ -1,37 +1,94 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Історія сигар — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block body_class %}rs-about-page{% endblock %}
+
+{% block title %}Про нас — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages12.css' %}?v=3">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/about-page.js' %}?v=1" defer></script>
+{% endblock %}
 
 {% block content %}
-<header class="rs-page-head" data-rs-reveal>
-  <h1>Історія сигар</h1>
-  <p>Від карибського ритуалу до сучасного tobacco atelier.</p>
-</header>
-
-<div class="rs-container rs-service-page rs-legal rs-history-page" data-rs-reveal data-reveal-delay="80">
-  <p>
-    Сигара народилась як частина культури народів Карибів. Скручений листок тютюну
-    супроводжував обряди, переговори й відпочинок задовго до європейської моди на вітоли.
-  </p>
-  <h2>Фабрики й вітоли</h2>
-  <p>
-    У XIX столітті Куба зробила сигару символом майстерності: сорти листів, формат,
-    витримка й ручна скрутка визначили мову, якою досі говорять сомельє.
-  </p>
-  <h2>Новий світ</h2>
-  <p>
-    Нікарагуа, Домінікана й Гондурас відкрили нову главу — міцніші бленди, експерименти
-    з wrapper і лінії, що конкурують з класикою. Саме цей діалог старого й нового
-    ми збираємо в Royal Smoke.
-  </p>
-  <h2>Наш підхід</h2>
-  <p>
-    Власні хумідори, ручний відбір і консультація замість випадкової полиці.
-    Ритуал важливіший за поспіх.
-  </p>
-  <p style="margin-top:28px">
-    <a class="rs-btn rs-btn--gold" href="{% url 'catalog:category' slug='cigars' %}">До сигар</a>
-    <a class="rs-btn rs-btn--ghost" href="{% url 'leads:contact' %}">Написати нам</a>
-  </p>
+<div class="rs-home-bg" aria-hidden="true">
+  <div class="rs-home-bg__base"></div>
 </div>
+
+<section class="rs-about" aria-labelledby="about-heading">
+  <div class="rs-about__grid">
+    <aside class="rs-about__media" data-rs-reveal="left">
+      <div class="rs-about__media-frame">
+        <img
+          class="rs-about__img"
+          src="{% static 'img/about/team-boutique.jpg' %}"
+          alt="Команда Royal Smoke у сигарному бутіку"
+          width="1024"
+          height="1536"
+          decoding="async"
+          fetchpriority="high"
+        >
+        <div class="rs-about__media-veil" aria-hidden="true"></div>
+        <div class="rs-about__years">
+          <span class="rs-about__years-num" data-rs-counter="7">0</span>
+          <span class="rs-about__years-label">років на ринку</span>
+        </div>
+      </div>
+    </aside>
+
+    <div class="rs-about__body">
+      <header class="rs-about__head" data-rs-reveal>
+        <span class="rs-about__kicker">Про нас</span>
+        <h1 id="about-heading" class="rs-about__title">Хроніка одного рішення</h1>
+        <p class="rs-about__lead">
+          Royal Smoke — tobacco atelier, зібраний навколо простого правила:
+          продавати лише те, що самі готові курити.
+        </p>
+      </header>
+
+      <ol class="rs-about__timeline">
+        <li class="rs-about__era" data-rs-reveal data-reveal-delay="40">
+          <span class="rs-about__era-year">2019</span>
+          <h2 class="rs-about__era-title">Перший кабінет</h2>
+          <p class="rs-about__era-text">
+            Почали з невеликого простору в Києві: кілька полиць, ручний відбір
+            і розмова з кожним гостем замість випадкової вітрини.
+          </p>
+        </li>
+        <li class="rs-about__era" data-rs-reveal data-reveal-delay="80">
+          <span class="rs-about__era-year">2021</span>
+          <h2 class="rs-about__era-title">Прямі мануфактури</h2>
+          <p class="rs-about__era-text">
+            Налагодили прямі поставки з Нікарагуа, Домінікани та Куби —
+            без зайвих посередників, з чесною ціною і стабільною якістю партій.
+          </p>
+        </li>
+        <li class="rs-about__era" data-rs-reveal data-reveal-delay="120">
+          <span class="rs-about__era-year">2023</span>
+          <h2 class="rs-about__era-title">Власний хумідор</h2>
+          <p class="rs-about__era-text">
+            Збудували сховище зі стабільною вологістю й зібрали команду сомельє,
+            яка супроводжує замовлення від першої консультації до доставки.
+          </p>
+        </li>
+        <li class="rs-about__era" data-rs-reveal data-reveal-delay="160">
+          <span class="rs-about__era-year">Сьогодні</span>
+          <h2 class="rs-about__era-title">Бутік, каталог, сервіс</h2>
+          <p class="rs-about__era-text">
+            Каталог, консультації, бронювання дегустацій і доставка — в одному місці.
+            Сім років — одна колекція й те саме правило без компромісів.
+          </p>
+        </li>
+      </ol>
+
+      <div class="rs-about__actions" data-rs-reveal data-reveal-delay="200">
+        <a class="rs-btn rs-btn--gold" href="{% url 'catalog:category' slug='cigars' %}">До сигар</a>
+        <a class="rs-btn rs-btn--ghost" href="{% url 'leads:contact' %}">Написати нам</a>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}

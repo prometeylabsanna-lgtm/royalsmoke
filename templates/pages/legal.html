@@ -1,10 +1,27 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Політика конфіденційності — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block body_class %}rs-legal-page{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages11.css' %}?v=1">
+{% endblock %}
 
 {% block content %}
+<div class="rs-legal-page__bg" aria-hidden="true">
+  <img
+    class="rs-legal-page__bg-img"
+    src="{% static 'img/calculator/lounge-bg.jpg' %}"
+    alt=""
+    width="1536"
+    height="1024"
+    decoding="async"
+  >
+</div>
+
 <header class="rs-page-head" data-rs-reveal>
-  <h1>Політика конфіденційності</h1>
+  <h1>Політика<br>конфіденційності</h1>
   <p>Конфіденційність, умови користування, вікова політика та файли cookie.</p>
 </header>
 

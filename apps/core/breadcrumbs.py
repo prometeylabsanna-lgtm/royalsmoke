@@ -36,7 +36,7 @@ def _static_label(namespace: str | None, url_name: str | None, kwargs: dict) -> 
         'accounts:login': 'Вхід',
         'accounts:register': 'Реєстрація',
         'accounts:cabinet': 'Кабінет',
-        'pages:about': 'Історія сигар',
+        'pages:about': 'Про нас',
         'pages:faq': 'FAQ',
         'pages:legal': 'Правова інформація',
         'leads:b2b': 'B2B',

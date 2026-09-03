@@ -18,16 +18,11 @@ body.rs-delivery-page .rs-main {
   z-index: 1;
 }
 
-/* ——— Background (same lounge treatment as FAQ / calculator) ——— */
+/* ——— Background: full main (delivery + payment), stronger blur ——— */
 .rs-delivery-page__bg {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
   width: 100%;
-  height: 100vh;
-  height: 100svh;
-  height: 100dvh;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
@@ -52,11 +47,11 @@ body.rs-delivery-page .rs-main {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 52% 58%;
-  -webkit-filter: blur(8px);
-  filter: blur(8px);
-  -webkit-transform: translateZ(0) scale(1.1);
-  transform: translateZ(0) scale(1.1);
+  object-position: 52% 40%;
+  -webkit-filter: blur(16px);
+  filter: blur(16px);
+  -webkit-transform: translateZ(0) scale(1.18);
+  transform: translateZ(0) scale(1.18);
 }
 
 .rs-delivery-page__bg::after {
@@ -96,64 +91,52 @@ body.rs-delivery-page .rs-delivery {
 /* ——— Page head ——— */
 body.rs-delivery-page .rs-page-head {
   max-width: var(--rs-delivery-content-w);
-  padding-top: clamp(20px, 4vh, 48px);
-  padding-bottom: clamp(12px, 2vh, 24px);
+  padding-top: clamp(16px, 3vh, 32px);
+  padding-bottom: clamp(8px, 1.5vh, 16px);
 }
 
 body.rs-delivery-page .rs-page-head h1 {
   letter-spacing: var(--rs-heading-page-tracking, 0.28em);
   color: var(--rs-heading-page-color, rgba(252, 242, 238, 0.92));
-}
-
-.rs-delivery__kicker {
-  margin: 0 0 18px;
-  margin-inline: auto;
-  max-width: 42ch;
-  font-family: var(--rs-font-ui);
-  font-weight: var(--rs-weight-ui);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  line-height: 1.45;
-  color: var(--rs-delivery-gold);
+  white-space: nowrap;
 }
 
 .rs-delivery__lead {
-  margin-top: 14px;
+  margin-top: 10px;
   max-width: 42ch;
   color: var(--rs-text-muted);
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.55;
 }
 
 /* ——— Content column ——— */
 body.rs-delivery-page .rs-delivery {
   max-width: var(--rs-delivery-content-w);
   margin-inline: auto;
-  padding-block: 8px 24px;
+  padding-block: 4px 16px;
   width: 100%;
   box-sizing: border-box;
 }
 
 body.rs-delivery-page .rs-delivery.rs-service-page {
-  padding-block: 8px 24px;
+  padding-block: 4px 16px;
 }
 
 .rs-delivery__section + .rs-delivery__section {
-  margin-top: clamp(40px, 6vh, 64px);
-  padding-top: clamp(32px, 5vh, 48px);
+  margin-top: clamp(24px, 4vh, 40px);
+  padding-top: clamp(20px, 3vh, 32px);
   border-top: 1px solid var(--rs-hairline);
 }
 
 body.rs-delivery-page .rs-delivery h2 {
-  margin: 0 0 clamp(20px, 3vh, 28px);
+  margin: 0 0 clamp(14px, 2vh, 20px);
   font-family: var(--rs-font-display);
   font-weight: var(--rs-weight-sub);
   font-size: clamp(22px, 3.2vw, 28px);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   line-height: 1.2;
-  color: var(--rs-seashell);
+  color: var(--rs-delivery-gold);
   text-align: center;
 }
 
@@ -165,7 +148,7 @@ body.rs-delivery-page .rs-delivery h2 {
 }
 
 .rs-delivery__region {
-  padding: 18px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--rs-hairline);
 }
 
@@ -179,7 +162,7 @@ body.rs-delivery-page .rs-delivery h2 {
 }
 
 body.rs-delivery-page .rs-delivery__region h3 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   font-family: var(--rs-font-display);
   font-weight: var(--rs-weight-sub);
   font-size: clamp(16px, 2.4vw, 18px);
@@ -193,15 +176,15 @@ body.rs-delivery-page .rs-delivery__region p {
   max-width: 52ch;
   color: var(--rs-text-muted);
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.55;
 }
 
 /* ——— Payment ——— */
 .rs-delivery__intro {
-  margin: 0 0 20px;
+  margin: 0 0 14px;
   color: var(--rs-text-soft);
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.55;
   text-align: center;
 }
 
@@ -217,7 +200,7 @@ body.rs-delivery-page .rs-delivery__region p {
   align-items: baseline;
   column-gap: 10px;
   row-gap: 4px;
-  padding: 16px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--rs-hairline);
 }
 
@@ -254,12 +237,12 @@ body.rs-delivery-page .rs-delivery__region p {
 }
 
 .rs-delivery__note {
-  margin: 24px 0 0;
-  padding-top: 20px;
+  margin: 16px 0 0;
+  padding-top: 14px;
   border-top: 1px solid var(--rs-hairline);
   color: var(--rs-text-muted);
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.55;
   max-width: 52ch;
 }
 
@@ -298,14 +281,9 @@ body.rs-delivery-page .rs-delivery__region p {
   }
 
   body.rs-delivery-page .rs-page-head h1 {
-    letter-spacing: 0.18em;
-  }
-
-  .rs-delivery__kicker {
-    font-size: 11px;
     letter-spacing: 0.1em;
-    max-width: 100%;
-    margin-bottom: 14px;
+    padding-inline-start: 0.1em;
+    font-size: clamp(22px, 7.2vw, 32px);
   }
 
   .rs-delivery__lead {

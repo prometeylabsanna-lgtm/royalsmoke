@@ -103,6 +103,10 @@
   margin: 28px 0 12px;
 }
 
+.rs-legal h2 {
+  color: #e8d5a8;
+}
+
 .rs-legal h3 {
   font-family: var(--rs-font-display);
   font-size: 18px;

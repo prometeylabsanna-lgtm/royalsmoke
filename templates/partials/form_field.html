@@ -1,6 +1,8 @@
-{# Базове поле форми з data-rs-* для RsValidate.
-   Параметри: name, id, label, rule, type, autocomplete, placeholder,
-   value, optional (1), rows (textarea), sr_only_label (1), error #}
+{% comment %}
+Базове поле форми з data-rs-* для RsValidate.
+Параметри: name, id, label, rule, type, autocomplete, placeholder,
+value, optional (1), rows (textarea), sr_only_label (1), error
+{% endcomment %}
 {% with field_id=id|default:name field_type=type|default:"text" %}
 <div class="rs-field{% if optional %} rs-field--optional{% endif %}{% if error %} is-invalid{% endif %}">
   <label for="{{ field_id }}"{% if sr_only_label %} class="sr-only"{% endif %}>{{ label }}</label>
