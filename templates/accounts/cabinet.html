@@ -1,45 +1,102 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Кабінет — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block body_class %}rs-auth-page rs-cab-page{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages6.css' %}?v=3">
+{% endblock %}
 
 {% block content %}
-<header class="rs-page-head" data-rs-reveal>
-  <h1>Особистий кабінет</h1>
-  <p>{% if user.is_authenticated %}Вітаємо, {{ user.get_full_name|default:user.username }}{% else %}Увійдіть, щоб бачити замовлення{% endif %}</p>
-</header>
+<section class="rs-cab" data-rs-reveal>
+  <div class="rs-cab__top">
+    <div class="rs-cab__summary">
+      <h1 class="rs-cab__title">Кабінет</h1>
+      <p class="rs-cab__lead">Вітаємо, {{ display_name }}</p>
 
-<div class="rs-container rs-auth" style="padding-bottom:72px" data-rs-reveal data-reveal-delay="80">
-  {% if not user.is_authenticated %}
-    <div class="rs-btn-row" style="max-width:420px">
-      <a class="rs-btn rs-btn--gold" href="{% url 'accounts:login' %}">Увійти</a>
-      <a class="rs-btn rs-btn--ghost" href="{% url 'accounts:register' %}">Реєстрація</a>
-    </div>
-  {% else %}
-    <div class="rs-cabinet__grid">
-      <section class="rs-cabinet__item">
-        <h3>Профіль</h3>
-        <p class="rs-form__hint">{{ user.email|default:"—" }}</p>
-        {% if user.phone %}<p class="rs-form__hint">{{ user.phone }}</p>{% endif %}
+      <section class="rs-cab__block">
+        <h2 class="rs-cab__block-title">Профіль</h2>
+        <p class="rs-cab__meta">{{ user.email|default:"—" }}</p>
+        {% if user.phone %}
+          <p class="rs-cab__meta">{{ user.phone }}</p>
+        {% endif %}
       </section>
-      <section class="rs-cabinet__item">
-        <h3>Замовлення</h3>
-        {% for order in orders %}
-          <p class="rs-form__hint">#{{ order.number|default:order.id }} — {{ order.status|default:"в обробці" }} — {{ order.total }} ₴</p>
-        {% empty %}
-          <p class="rs-form__hint">Замовлень ще немає.</p>
-        {% endfor %}
-      </section>
-      <section class="rs-cabinet__item">
-        <h3>Швидкі дії</h3>
-        <p><a class="rs-link-gold" href="{% url 'cart:detail' %}">Кошик</a></p>
-        <p style="margin-top:10px"><a class="rs-link-gold" href="{% url 'pages:home' %}#home-booking">Бронювання</a></p>
-        <p style="margin-top:10px"><a class="rs-link-gold" href="{% url 'leads:contact' %}">Підтримка</a></p>
-      </section>
-      <section class="rs-cabinet__item">
-        <h3>Каталог</h3>
-        <a class="rs-btn rs-btn--ghost" href="{% url 'catalog:list' %}">Перейти до каталогу</a>
+
+      <section class="rs-cab__block">
+        <h2 class="rs-cab__block-title">Замовлення</h2>
+        {% if recent_order %}
+          <p class="rs-cab__meta">Останнє: #{{ recent_order.order_number }} — {{ recent_order.total }} ₴</p>
+        {% else %}
+          <p class="rs-cab__meta">Останнє замовлення</p>
+        {% endif %}
+        <div class="rs-cab__spark" aria-hidden="true">
+          {% for bar in chart_series %}
+            <span class="rs-cab__spark-bar" style="--rs-cab-h: {{ bar.height }}%"></span>
+          {% endfor %}
+        </div>
       </section>
     </div>
-  {% endif %}
-</div>
+
+    <div class="rs-cab__cards">
+      <article class="rs-cab__card rs-cab__card--profile">
+        <p class="rs-cab__card-label">Профіль</p>
+        <div class="rs-cab__profile">
+          <div class="rs-cab__avatar" aria-hidden="true">{{ avatar_initial }}</div>
+          <div class="rs-cab__profile-body">
+            <p class="rs-cab__profile-name">{{ display_name }}</p>
+            <p class="rs-cab__meta">{{ user.email|default:"—" }}</p>
+            {% if user.phone %}
+              <p class="rs-cab__meta">{{ user.phone }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+
+      <article class="rs-cab__card rs-cab__card--chart">
+        <p class="rs-cab__card-label">Останнє замовлення</p>
+        {% if recent_order %}
+          <p class="rs-cab__chart-caption">
+            #{{ recent_order.order_number }} · {{ recent_order.get_status_display }} · {{ recent_order.total }} ₴
+          </p>
+        {% else %}
+          <p class="rs-cab__chart-caption">Замовлень ще немає</p>
+        {% endif %}
+        <div class="rs-cab__chart" role="img" aria-label="Динаміка замовлень за останні тижні">
+          <div class="rs-cab__chart-y" aria-hidden="true">
+            <span>10</span>
+            <span>8</span>
+            <span>5</span>
+            <span>2</span>
+            <span>0</span>
+          </div>
+          <div class="rs-cab__chart-bars">
+            {% for bar in chart_series %}
+              <span
+                class="rs-cab__chart-bar rs-cab__chart-bar--{% cycle 'a' 'b' 'c' 'd' %}"
+                style="--rs-cab-h: {{ bar.height }}%"
+                title="{{ bar.total }} ₴"
+              ></span>
+            {% endfor %}
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <section class="rs-cab__actions" aria-label="Швидкі дії">
+    <h2 class="rs-cab__actions-title">Швидкі дії</h2>
+    <nav class="rs-cab__actions-row">
+      <a class="rs-cab__btn" href="{% url 'cart:detail' %}">Кошик</a>
+      <a class="rs-cab__btn" href="{% url 'catalog:list' %}">Каталог</a>
+      <a class="rs-cab__btn" href="{% url 'leads:contact' %}">Підтримка</a>
+      <a class="rs-cab__btn" href="{% url 'accounts:cabinet' %}">Вибране</a>
+      <form method="post" action="{% url 'accounts:logout' %}" class="rs-cab__logout">
+        {% csrf_token %}
+        <button class="rs-cab__btn" type="submit">Вийти</button>
+      </form>
+    </nav>
+  </section>
+</section>
 {% endblock %}
