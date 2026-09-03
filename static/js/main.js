@@ -184,42 +184,68 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  /* ——— Search overlay ——— */
+  /* ——— Search popover ——— */
   function initSearch() {
-    var overlay = qs('[data-search]');
-    if (!overlay) return;
-    var openBtns = qsa('[data-search-open]');
-    var closeBtns = qsa('[data-search-close]');
-    var input = qs('[data-search-input]', overlay);
+    var root = qs('[data-search]');
+    if (!root) return;
+
+    var panel = qs('[data-search-panel]', root);
+    var openBtn = qs('[data-search-open]', root);
+    var input = qs('[data-search-input]', root);
+    var results = qs('[data-search-results]', root);
+    if (!panel || !openBtn) return;
+
+    function isOpen() {
+      return panel.classList.contains('is-open');
+    }
 
     function openSearch() {
-      overlay.classList.add('is-open');
-      lockScroll();
+      panel.hidden = false;
+      panel.classList.add('is-open');
+      openBtn.setAttribute('aria-expanded', 'true');
       window.setTimeout(function () {
         if (input) input.focus();
-      }, 50);
+      }, 30);
     }
 
     function closeSearch() {
-      overlay.classList.remove('is-open');
-      unlockScroll();
+      panel.classList.remove('is-open');
+      panel.hidden = true;
+      openBtn.setAttribute('aria-expanded', 'false');
+      if (results) results.innerHTML = '';
+      if (input) input.value = '';
     }
 
-    openBtns.forEach(function (btn) {
-      btn.addEventListener('click', openSearch);
-    });
-    closeBtns.forEach(function (btn) {
-      btn.addEventListener('click', closeSearch);
+    openBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (isOpen()) closeSearch();
+      else openSearch();
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
+      if (e.key === 'Escape' && isOpen()) {
         closeSearch();
+        openBtn.focus();
       }
     });
 
-    overlay.addEventListener('click', function (e) {
-      if (e.target === overlay) closeSearch();
+    document.addEventListener('click', function (e) {
+      if (!isOpen()) return;
+      if (root.contains(e.target)) return;
+      closeSearch();
+    });
+
+    panel.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+
+    document.body.addEventListener('htmx:beforeRequest', function (e) {
+      var elt = e.detail && e.detail.elt;
+      if (!elt || elt !== input) return;
+      if ((elt.value || '').trim().length < 2) {
+        e.preventDefault();
+        if (results) results.innerHTML = '';
+      }
     });
   }
 

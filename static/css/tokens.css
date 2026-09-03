@@ -64,6 +64,14 @@
   --rs-weight-sub: 600;
   --rs-weight-ui: 500;
 
+  /* Page / section display headings (Калькулятор reference) */
+  --rs-heading-page-font: var(--rs-font-ui);
+  --rs-heading-page-weight: var(--rs-weight-sub);
+  --rs-heading-page-size: clamp(28px, 5vw, 42px);
+  --rs-heading-page-tracking: 0.28em;
+  --rs-heading-page-lh: 1.12;
+  --rs-heading-page-color: rgba(252, 242, 238, 0.92);
+
   --rs-space-1: 4px;
   --rs-space-2: 8px;
   --rs-space-3: 12px;
@@ -227,6 +235,56 @@ h3,
 h4 {
   font-family: var(--rs-font-display);
   font-weight: var(--rs-weight-sub);
+}
+
+/* ——— Page / section headings ——— */
+.rs-heading-page,
+.rs-page-head h1,
+.rs-section__title,
+.rs-gate__title,
+.rs-cab__title,
+.rs-svc-card__title,
+.rs-home-calc__kicker,
+.rs-history-journey__kicker,
+.rs-service-block__title {
+  font-family: var(--rs-heading-page-font);
+  font-weight: var(--rs-heading-page-weight);
+  font-size: var(--rs-heading-page-size);
+  line-height: var(--rs-heading-page-lh);
+  letter-spacing: var(--rs-heading-page-tracking);
+  text-indent: var(--rs-heading-page-tracking);
+  text-transform: uppercase;
+  color: var(--rs-heading-page-color);
+}
+
+/* Centered titles: cancel trailing letter-spacing (text-indent breaks center) */
+.rs-page-head h1,
+.rs-gate__title {
+  display: inline-block;
+  max-width: 100%;
+  box-sizing: border-box;
+  text-indent: 0;
+  padding-inline-start: var(--rs-heading-page-tracking);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --rs-heading-page-size: clamp(32px, 4vw, 42px);
+    --rs-heading-page-tracking: 0.3em;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --rs-heading-page-size: 42px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --rs-heading-page-size: clamp(28px, 5vw, 36px);
+    --rs-heading-page-tracking: 0.24em;
+  }
 }
 
 :focus {

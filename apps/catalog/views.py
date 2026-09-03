@@ -79,7 +79,8 @@ def search_suggest(request):
             .filter(
                 Q(name__icontains=q) | Q(brand__name__icontains=q)
             )
-            .select_related('brand')[:8]
+            .select_related('brand')
+            .prefetch_related('images')[:8]
         )
     return render(request, 'catalog/partials/search_suggest.html', {
         'products': products,

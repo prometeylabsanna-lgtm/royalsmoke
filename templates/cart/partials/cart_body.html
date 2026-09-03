@@ -57,11 +57,11 @@
 
   <aside class="rs-cart__bar" aria-label="Підсумок кошика">
     <span class="rs-cart__bar-total">Разом {{ cart.total }} ₴</span>
-    <a class="rs-btn rs-btn--gold rs-cart__checkout" href="{% url 'orders:checkout' %}">Оформити замовлення</a>
+    <a class="rs-cart__checkout" href="{% url 'orders:checkout' %}">Оформити замовлення</a>
   </aside>
 {% else %}
   <div class="rs-cart__empty">
     <p class="rs-cart__empty-text">Кошик порожній.</p>
-    <a class="rs-btn rs-btn--gold rs-cart__empty-cta" href="{% url 'catalog:list' %}">До каталогу</a>
+    <a class="rs-cart__empty-cta" href="{% url 'catalog:list' %}">До каталогу</a>
   </div>
 {% endif %}

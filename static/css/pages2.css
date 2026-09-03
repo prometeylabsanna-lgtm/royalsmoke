@@ -260,14 +260,6 @@
     padding-inline: var(--rs-pad-x-lg);
   }
 
-  .rs-page-head h1 {
-    font-size: 48px;
-  }
-
-  .rs-service-block__title {
-    font-size: 46px;
-  }
-
   .rs-service-block__media {
     max-height: 560px;
   }

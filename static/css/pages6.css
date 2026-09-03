@@ -44,13 +44,6 @@ body.rs-cab-page .rs-main {
 
 .rs-cab__title {
   margin: 0 0 10px;
-  font-family: var(--rs-font-ui);
-  font-weight: var(--rs-weight-sub);
-  font-size: clamp(28px, 5vw, 40px);
-  line-height: 1.1;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(252, 242, 238, 0.94);
 }
 
 .rs-cab__lead {
@@ -404,11 +397,6 @@ body.rs-cab-page .rs-main {
 @media (min-width: 1024px) {
   .rs-cab {
     padding-inline: clamp(32px, 5vw, 64px);
-  }
-
-  .rs-cab__title {
-    font-size: 40px;
-    letter-spacing: 0.26em;
   }
 
   .rs-cab__block-title {

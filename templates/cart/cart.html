@@ -5,13 +5,13 @@
 {% block body_class %}rs-cart-page{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/pages7.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'css/pages7.css' %}?v=11">
 {% endblock %}
 
 {% block content %}
 <header class="rs-page-head" data-rs-reveal>
   <h1>Кошик</h1>
-  <p>{% if cart.count %}{{ cart.count }} позиц.{% else %}Порожній кошик{% endif %}</p>
+  <p>{% if cart.count %}{{ cart.count }} {% if cart.count == 1 %}позиція{% elif cart.count >= 2 and cart.count <= 4 %}позиції{% else %}позицій{% endif %}{% else %}Порожній кошик{% endif %}</p>
 </header>
 
 <div class="rs-container rs-cart" data-rs-reveal data-reveal-delay="80">

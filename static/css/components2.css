@@ -202,8 +202,10 @@
 
 .rs-cart-line__media {
   aspect-ratio: 3 / 4;
-  background: var(--rs-slot);
+  background: transparent;
+  border: 1px solid var(--rs-hairline);
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .rs-cart-line__media img {

@@ -1,0 +1,25 @@
+{% if q|length >= 2 %}
+<ul class="rs-search__list">
+  {% for p in products %}
+    <li>
+      <a class="rs-search__item" href="{{ p.get_absolute_url }}">
+        {% with img=p.images.all.0 %}
+          {% if img %}
+            <img class="rs-search__thumb" src="{{ img.image.url }}" alt="" width="44" height="44" loading="lazy">
+          {% else %}
+            <span class="rs-search__thumb rs-search__thumb--empty" aria-hidden="true"></span>
+          {% endif %}
+        {% endwith %}
+        <span class="rs-search__item-text">
+          <span class="rs-search__item-name">{{ p.name }}</span>
+          {% if p.brand %}
+            <span class="rs-search__item-brand">{{ p.brand.name }}</span>
+          {% endif %}
+        </span>
+      </a>
+    </li>
+  {% empty %}
+    <li class="rs-search__empty">Нічого не знайдено</li>
+  {% endfor %}
+</ul>
+{% endif %}

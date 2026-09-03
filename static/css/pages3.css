@@ -187,31 +187,7 @@ body.rs-home {
   text-align: center;
 }
 
-/* Home section titles — match Історія kicker (size + letter-spacing) */
-.rs-home .rs-home-catalog .rs-section__title,
-.rs-home .rs-home-calc__kicker {
-  font-family: var(--rs-font-ui);
-  font-weight: var(--rs-weight-sub);
-  font-size: clamp(28px, 5vw, 42px);
-  line-height: 1.12;
-  letter-spacing: 0.28em;
-  text-indent: 0.28em;
-  text-transform: uppercase;
-  color: rgba(252, 242, 238, 0.92);
-}
-
-/* Booking / B2B — tighter so «Бронювання» fits the card */
-.rs-home .rs-svc-card__title {
-  font-family: var(--rs-font-ui);
-  font-weight: var(--rs-weight-sub);
-  font-size: clamp(22px, 4vw, 34px);
-  line-height: 1.12;
-  letter-spacing: 0.12em;
-  text-indent: 0.12em;
-  text-transform: uppercase;
-  color: rgba(252, 242, 238, 0.92);
-}
-
+/* Home section titles — typography from tokens.css */
 .rs-home-catalog .rs-section__title {
   text-align: center;
   width: 100%;
@@ -227,36 +203,12 @@ body.rs-home {
     letter-spacing: 0.16em;
     margin-bottom: 56px;
   }
-
-  .rs-home .rs-home-catalog .rs-section__title,
-  .rs-home .rs-home-calc__kicker {
-    font-size: clamp(32px, 4vw, 42px);
-    letter-spacing: 0.3em;
-    text-indent: 0.3em;
-  }
-
-  .rs-home .rs-svc-card__title {
-    font-size: clamp(26px, 3.2vw, 34px);
-    letter-spacing: 0.14em;
-    text-indent: 0.14em;
-  }
 }
 
 @media (min-width: 1024px) {
   .rs-home .rs-hero__brand {
     font-size: 70px;
     letter-spacing: 0.16em;
-  }
-
-  .rs-home .rs-home-catalog .rs-section__title,
-  .rs-home .rs-home-calc__kicker {
-    font-size: 42px;
-  }
-
-  .rs-home .rs-svc-card__title {
-    font-size: 34px;
-    letter-spacing: 0.14em;
-    text-indent: 0.14em;
   }
 }
 
@@ -274,19 +226,6 @@ body.rs-home {
 
   .rs-home .rs-hero__cta {
     max-width: 300px;
-  }
-
-  .rs-home .rs-home-catalog .rs-section__title,
-  .rs-home .rs-home-calc__kicker {
-    font-size: clamp(28px, 5vw, 36px);
-    letter-spacing: 0.24em;
-    text-indent: 0.24em;
-  }
-
-  .rs-home .rs-svc-card__title {
-    font-size: clamp(22px, 5vw, 28px);
-    letter-spacing: 0.1em;
-    text-indent: 0.1em;
   }
 }
 

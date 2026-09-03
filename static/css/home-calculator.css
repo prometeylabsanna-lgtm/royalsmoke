@@ -73,14 +73,6 @@
   margin: 0 auto var(--rs-space-5);
   padding: 0;
   text-align: center;
-  font-family: var(--rs-font-ui);
-  font-size: clamp(28px, 5vw, 42px);
-  font-weight: var(--rs-weight-sub);
-  letter-spacing: 0.28em;
-  text-indent: 0.28em;
-  text-transform: uppercase;
-  color: rgba(252, 242, 238, 0.92);
-  line-height: 1.12;
 }
 
 /* —— Progress (vertical left) —— */

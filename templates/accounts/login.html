@@ -1,8 +1,13 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Вхід — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
-{% block body_class %}rs-auth-page{% endblock %}
+{% block body_class %}rs-auth-page rs-login-page{% endblock %}
 {% block breadcrumbs %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages5b.css' %}?v=3">
+{% endblock %}
 
 {% block content %}
 <section class="rs-gate" data-rs-reveal>

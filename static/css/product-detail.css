@@ -232,7 +232,7 @@ body.rs-pd-page:not(.rs-home) .rs-header::after {
   height: 64px;
   padding: 0;
   border: 1px solid var(--rs-hairline);
-  background: rgba(50, 42, 38, 0.45);
+  background: transparent;
   overflow: hidden;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;

@@ -1,0 +1,57 @@
+/* Royal Smoke — login page spacing (lower block + airier type) */
+
+body.rs-auth-page.rs-login-page {
+  --rs-login-drop: 138px;
+}
+
+body.rs-auth-page.rs-login-page .rs-gate__main {
+  padding-top: calc(clamp(32px, 6vw, 72px) + var(--rs-login-drop));
+  padding-bottom: calc(clamp(32px, 6vw, 72px) + var(--rs-safe-b, 0px));
+}
+
+body.rs-auth-page.rs-login-page .rs-gate__title {
+  margin-bottom: 18px;
+  line-height: 1.28;
+}
+
+body.rs-auth-page.rs-login-page .rs-gate__lead {
+  margin-bottom: 44px;
+  line-height: 1.7;
+}
+
+body.rs-auth-page.rs-login-page .rs-gate .rs-form {
+  gap: 18px;
+}
+
+body.rs-auth-page.rs-login-page .rs-gate .rs-field input {
+  line-height: 1.45;
+}
+
+body.rs-auth-page.rs-login-page .rs-gate .rs-auth__switch {
+  margin-top: 28px;
+  line-height: 1.65;
+}
+
+@media (min-width: 768px) {
+  body.rs-auth-page.rs-login-page .rs-gate__main {
+    padding-block:
+      calc(clamp(28px, 4vh, 56px) + var(--rs-login-drop))
+      calc(clamp(28px, 4vh, 48px) + var(--rs-safe-b, 0px));
+  }
+}
+
+@media (max-width: 767px) {
+  body.rs-auth-page.rs-login-page {
+    --rs-login-drop: 120px;
+  }
+
+  body.rs-auth-page.rs-login-page .rs-gate__main {
+    padding-top: calc(clamp(16px, 4vw, 28px) + var(--rs-login-drop));
+    padding-bottom: calc(clamp(20px, 4vw, 32px) + var(--rs-safe-b, 0px));
+  }
+
+  body.rs-auth-page.rs-login-page .rs-gate__lead {
+    margin-bottom: 36px;
+    line-height: 1.65;
+  }
+}

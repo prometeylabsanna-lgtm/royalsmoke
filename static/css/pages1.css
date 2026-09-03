@@ -395,13 +395,6 @@
   gap: 14px;
 }
 
-.rs-service-block__title {
-  font-family: var(--rs-font-display);
-  font-weight: var(--rs-weight-sub);
-  font-size: 27px;
-  line-height: 1.15;
-}
-
 .rs-service-block__text {
   color: var(--rs-text-muted);
   font-size: 14px;
@@ -449,18 +442,19 @@
   padding: 28px var(--rs-pad-x) 8px;
   max-width: var(--rs-container);
   margin-inline: auto;
+  text-align: center;
 }
 
 .rs-page-head h1 {
-  font-family: var(--rs-font-display);
-  font-size: 32px;
-  font-weight: var(--rs-weight-display);
+  text-align: center;
 }
 
 .rs-page-head p {
   margin-top: 10px;
+  margin-inline: auto;
   color: var(--rs-text-muted);
   max-width: 48ch;
+  text-align: center;
 }
 
 .rs-catalog {

@@ -4,14 +4,20 @@
   padding-block: 14px 0;
 }
 
+.rs-crumbs-bar .rs-container {
+  text-align: left;
+}
+
 .rs-crumbs {
   padding-block: 4px;
+  text-align: left;
 }
 
 .rs-crumbs__list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-start;
   gap: 0;
   margin: 0;
   padding: 0;

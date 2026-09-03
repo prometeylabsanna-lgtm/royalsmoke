@@ -43,12 +43,6 @@
     letter-spacing: 0.16em;
   }
 
-  .rs-history-journey__kicker {
-    font-size: clamp(32px, 4vw, 42px);
-    letter-spacing: 0.3em;
-    text-indent: 0.3em;
-  }
-
   .rs-history-journey__text {
     font-size: 15px;
   }
@@ -69,10 +63,6 @@
   .rs-history-journey__slide {
     flex-basis: var(--rs-history-card-w);
     width: var(--rs-history-card-w);
-  }
-
-  .rs-history-journey__kicker {
-    font-size: 42px;
   }
 
   .rs-history-journey__text {
@@ -121,12 +111,6 @@
 
   .rs-history-journey__tick-label {
     font-size: 13px;
-  }
-
-  .rs-history-journey__kicker {
-    font-size: clamp(28px, 5vw, 36px);
-    letter-spacing: 0.24em;
-    text-indent: 0.24em;
   }
 
   .rs-history-journey__nav {
