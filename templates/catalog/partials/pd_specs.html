@@ -1,0 +1,59 @@
+{% load i18n %}
+<section class="rs-pd__section" id="pd-specs" aria-labelledby="pd-specs-title">
+  <h2 class="rs-pd__section-title" id="pd-specs-title">{% trans "Специфікації" %}</h2>
+  <dl class="rs-pd__specs">
+    <div class="rs-pd__spec-group">
+      {% if product.brand %}
+        <div class="rs-pd__spec">
+          <dt>{% trans "Виробник" %}</dt>
+          <dd>{{ product.brand.name }}</dd>
+        </div>
+      {% endif %}
+      {% if product.country %}
+        <div class="rs-pd__spec">
+          <dt>{% trans "Країна" %}</dt>
+          <dd>{{ product.country }}</dd>
+        </div>
+      {% endif %}
+      {% if product.strength %}
+        <div class="rs-pd__spec">
+          <dt>{% trans "Міцність" %}</dt>
+          <dd>{{ product.get_strength_display }}</dd>
+        </div>
+      {% endif %}
+      {% if product.smoke_time %}
+        <div class="rs-pd__spec">
+          <dt>{% trans "Час куріння" %}</dt>
+          <dd>{{ product.smoke_time }}</dd>
+        </div>
+      {% endif %}
+      {% if active_variant and active_variant.length_mm %}
+        <div class="rs-pd__spec">
+          <dt>{% trans "Довжина" %}</dt>
+          <dd>{% blocktrans with mm=active_variant.length_mm %}{{ mm }} мм{% endblocktrans %}</dd>
+        </div>
+      {% endif %}
+      {% if active_variant and active_variant.ring_gauge %}
+        <div class="rs-pd__spec">
+          <dt>Ring</dt>
+          <dd>{{ active_variant.ring_gauge }}</dd>
+        </div>
+      {% endif %}
+      <div class="rs-pd__spec">
+        <dt>{% trans "Наявність" %}</dt>
+        <dd>{% if product.available_stock %}{% trans "В наявності" %}{% else %}{% trans "Під замовлення" %}{% endif %}</dd>
+      </div>
+      {% if active_variant and active_variant.sku %}
+        <div class="rs-pd__spec">
+          <dt>{% trans "Код" %}</dt>
+          <dd>{{ active_variant.sku }}</dd>
+        </div>
+      {% elif product.sku %}
+        <div class="rs-pd__spec">
+          <dt>{% trans "Код" %}</dt>
+          <dd>{{ product.sku }}</dd>
+        </div>
+      {% endif %}
+    </div>
+  </dl>
+</section>

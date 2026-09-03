@@ -45,6 +45,7 @@ class Product(TimeStampedModel):
     short_story = models.TextField('Коротка історія', blank=True)
     description = models.TextField('Опис', blank=True)
     tasting_notes = models.TextField('Смакові нотки', blank=True)
+    recommendations = models.TextField('Рекомендації', blank=True)
     wrapper = models.CharField('Wrapper', max_length=120, blank=True)
     binder = models.CharField('Binder', max_length=120, blank=True)
     filler = models.CharField('Filler', max_length=120, blank=True)

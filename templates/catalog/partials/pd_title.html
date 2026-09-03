@@ -1,0 +1,11 @@
+{% load i18n %}
+<header class="rs-pd__head" id="pd-title">
+  <p class="rs-pd__eyebrow">
+    <a href="{% url 'catalog:brand' product.brand.slug %}">{{ product.brand.name }}</a>
+    {% if product.line %}
+      <span aria-hidden="true">·</span>
+      <span>{{ product.line.name }}</span>
+    {% endif %}
+  </p>
+  <h1 class="rs-pd__title">{{ product.name }}</h1>
+</header>

@@ -1,0 +1,26 @@
+{% load i18n %}
+<section class="rs-pd__section" id="pd-reviews" aria-labelledby="pd-reviews-title">
+  <h2 class="rs-pd__section-title" id="pd-reviews-title">{% trans "Відгуки / рейтинг" %}</h2>
+
+  {% if reviews %}
+    <ul class="rs-pd__reviews">
+      {% for review in reviews %}
+        <li class="rs-pd__review">
+          <div class="rs-pd__review-top">
+            <span class="rs-pd__review-author">{{ review.author_name }}</span>
+            <span class="rs-pd__review-rating" aria-label="{% blocktrans with n=review.rating %}Оцінка {{ n }} з 5{% endblocktrans %}">
+              {% for i in "12345" %}
+                <span class="rs-pd__star{% if forloop.counter <= review.rating %} is-on{% endif %}" aria-hidden="true">★</span>
+              {% endfor %}
+            </span>
+          </div>
+          {% if review.text %}
+            <p class="rs-pd__review-text">{{ review.text }}</p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="rs-pd__reviews-empty">{% trans "Поки немає відгуків — станьте першим, хто оцінить цей товар." %}</p>
+  {% endif %}
+</section>

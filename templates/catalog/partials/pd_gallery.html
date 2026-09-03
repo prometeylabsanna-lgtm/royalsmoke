@@ -1,0 +1,120 @@
+{% load i18n static %}
+{% with images=product.images.all %}
+{% with slide_count=images|length %}
+<div class="rs-pd__gallery" data-pd-gallery>
+  <div class="rs-pd__stage">
+    <button type="button" class="rs-pd__nav rs-pd__nav--prev" data-pd-prev aria-label="{% trans "Попереднє фото" %}">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M12.5 4.5L7 10l5.5 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    {% if images %}
+      {% for img in images %}
+        <figure class="rs-pd__slide{% if forloop.first %} is-active{% endif %}"
+                data-pd-slide
+                {% if forloop.first %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %}>
+          <img src="{{ img.image.url }}"
+               alt="{{ img.alt_text|default:product.name }}"
+               width="900"
+               height="1200"
+               {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+        </figure>
+      {% endfor %}
+    {% else %}
+      <figure class="rs-pd__slide is-active rs-pd__slide--empty" data-pd-slide aria-hidden="false">
+        <span class="rs-pd__placeholder">{% trans "Немає фото" %}</span>
+      </figure>
+    {% endif %}
+
+    {% if video_embed_url or video_direct %}
+      <figure class="rs-pd__slide rs-pd__slide--video" data-pd-slide aria-hidden="true">
+        {% if video_embed_url %}
+          <iframe class="rs-pd__video-frame"
+                  data-src="{{ video_embed_url }}"
+                  title="{% trans 'Відео товару' %}"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                  playsinline></iframe>
+        {% else %}
+          <video class="rs-pd__video-el"
+                 controls
+                 playsinline
+                 webkit-playsinline
+                 preload="metadata"
+                 {% if primary_image %}poster="{{ primary_image.image.url }}"{% endif %}>
+            <source src="{{ video_direct }}" type="video/mp4">
+          </video>
+        {% endif %}
+      </figure>
+    {% endif %}
+
+    <figure class="rs-pd__slide rs-pd__slide--360" data-pd-slide aria-hidden="true">
+      <div class="rs-pd__360" data-pd-360>
+        {% if primary_image %}
+          <img class="rs-pd__360-img" src="{{ primary_image.image.url }}" alt="" width="640" height="640">
+        {% elif images %}
+          <img class="rs-pd__360-img" src="{{ images.0.image.url }}" alt="" width="640" height="640">
+        {% endif %}
+        <span class="rs-pd__360-badge">360°</span>
+        <p class="rs-pd__360-hint">{% trans "Інтерактивний огляд незабаром" %}</p>
+      </div>
+    </figure>
+
+    <button type="button" class="rs-pd__nav rs-pd__nav--next" data-pd-next aria-label="{% trans "Наступне фото" %}">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M7.5 4.5L13 10l-5.5 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="rs-pd__thumbs" data-pd-thumbs role="tablist" aria-label="{% trans "Мініатюри" %}">
+    {% if images %}
+      {% for img in images %}
+        <button type="button"
+                class="rs-pd__thumb{% if forloop.first %} is-active{% endif %}"
+                data-pd-thumb
+                data-index="{{ forloop.counter0 }}"
+                role="tab"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                aria-label="{% blocktrans with n=forloop.counter %}Фото {{ n }}{% endblocktrans %}">
+          <img src="{{ img.image.url }}" alt="" loading="lazy" width="96" height="96">
+        </button>
+      {% endfor %}
+    {% else %}
+      <button type="button"
+              class="rs-pd__thumb is-active rs-pd__thumb--empty"
+              data-pd-thumb
+              data-index="0"
+              role="tab"
+              aria-selected="true"
+              aria-label="{% trans "Фото 1" %}"
+              disabled></button>
+    {% endif %}
+
+    {% if video_embed_url or video_direct %}
+      <button type="button"
+              class="rs-pd__thumb rs-pd__thumb--tag"
+              data-pd-thumb
+              data-index="{% if images %}{{ images|length }}{% else %}1{% endif %}"
+              role="tab"
+              aria-selected="false"
+              aria-label="{% trans "Відео" %}">
+        <span>Video</span>
+      </button>
+    {% endif %}
+
+    <button type="button"
+            class="rs-pd__thumb rs-pd__thumb--tag"
+            data-pd-thumb
+            data-index="{% if video_embed_url or video_direct %}{% if images %}{{ images|length|add:1 }}{% else %}2{% endif %}{% else %}{% if images %}{{ images|length }}{% else %}1{% endif %}{% endif %}"
+            role="tab"
+            aria-selected="false"
+            aria-label="{% trans "360° огляд" %}">
+      <span>360°</span>
+    </button>
+  </div>
+</div>
+{% endwith %}
+{% endwith %}

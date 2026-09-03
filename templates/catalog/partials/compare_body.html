@@ -1,0 +1,91 @@
+{% load i18n %}
+{% if products %}
+  <div class="rs-compare-table-wrap">
+    <table class="rs-compare-table">
+      <thead>
+        <tr>
+          <th scope="col">{% trans "Параметр" %}</th>
+          {% for product in products %}
+            <th scope="col">
+              <div class="rs-compare-head">
+                <a class="rs-compare-head__media" href="{{ product.get_absolute_url }}">
+                  {% with img=product.images.first %}
+                    {% if img %}
+                      <img src="{{ img.image.url }}" alt="" width="120" height="120" loading="lazy">
+                    {% endif %}
+                  {% endwith %}
+                </a>
+                <a class="rs-compare-head__name" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                <p class="rs-compare-head__brand">{{ product.brand.name }}</p>
+                <form method="post"
+                      action="{% url 'catalog:compare_toggle' %}"
+                      hx-post="{% url 'catalog:compare_toggle' %}"
+                      hx-target="#compare-body"
+                      hx-swap="innerHTML">
+                  {% csrf_token %}
+                  <input type="hidden" name="product_id" value="{{ product.id }}">
+                  <button type="submit" class="rs-compare-remove">{% trans "Прибрати" %}</button>
+                </form>
+              </div>
+            </th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{% trans "Ціна" %}</th>
+          {% for product in products %}
+            <td>{{ product.display_price }} ₴</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Країна" %}</th>
+          {% for product in products %}
+            <td>{{ product.country|default:"—" }}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Міцність" %}</th>
+          {% for product in products %}
+            <td>{% if product.strength %}{{ product.get_strength_display }}{% else %}—{% endif %}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Час куріння" %}</th>
+          {% for product in products %}
+            <td>{{ product.smoke_time|default:"—" }}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <th scope="row">Wrapper</th>
+          {% for product in products %}
+            <td>{{ product.wrapper|default:"—" }}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <th scope="row">Binder</th>
+          {% for product in products %}
+            <td>{{ product.binder|default:"—" }}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <th scope="row">Filler</th>
+          {% for product in products %}
+            <td>{{ product.filler|default:"—" }}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Смакові нотки" %}</th>
+          {% for product in products %}
+            <td>{{ product.tasting_notes|default:"—" }}</td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <div class="rs-compare-empty">
+    <p>{% trans "Список порівняння порожній." %}</p>
+    <a class="rs-btn rs-btn--gold" href="{% url 'catalog:list' %}">{% trans "До каталогу" %}</a>
+  </div>
+{% endif %}

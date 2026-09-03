@@ -1,0 +1,49 @@
+{% load i18n %}
+<section class="rs-pd__section rs-pd__cta" id="pd-cta" aria-label="{% trans "Купити" %}">
+  <form class="rs-pd__form"
+        method="post"
+        action="{% url 'cart:add' %}"
+        hx-post="{% url 'cart:add' %}"
+        hx-target="#cart-badge"
+        hx-swap="outerHTML"
+        id="rs-pd-cart-form">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value="{{ product.id }}">
+    {% if active_variant %}
+      <input type="hidden" name="variant_id" value="{{ active_variant.id }}">
+    {% endif %}
+
+    <div class="rs-pd__buy-row">
+      <p class="rs-pd__price">
+        {% if active_variant %}
+          {% if active_variant.old_price %}<del class="rs-pd__old">{{ active_variant.old_price }} ₴</del>{% endif %}
+          <span id="product-price">{{ active_variant.price }}</span> ₴
+        {% else %}
+          {% if product.old_price %}<del class="rs-pd__old">{{ product.old_price }} ₴</del>{% endif %}
+          <span id="product-price">{{ product.display_price }}</span> ₴
+        {% endif %}
+      </p>
+
+      <div class="rs-pd__qty" data-pd-qty>
+        <button type="button" class="rs-pd__qty-btn" data-pd-qty-minus aria-label="{% trans "Менше" %}">−</button>
+        <input id="qty"
+               class="rs-pd__qty-input"
+               type="number"
+               name="quantity"
+               value="1"
+               min="1"
+               max="99"
+               inputmode="numeric"
+               aria-label="{% trans "Кількість" %}">
+        <button type="button" class="rs-pd__qty-btn" data-pd-qty-plus aria-label="{% trans "Більше" %}">+</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="rs-pd__actions">
+    <button type="submit" form="rs-pd-cart-form" class="rs-btn rs-btn--gold rs-pd__buy">{% trans "У кошик" %}</button>
+    <a class="rs-btn rs-btn--ghost rs-pd__pick" href="{% url 'pages:home' %}#home-calculator">{% trans "Розрахунок" %}</a>
+    {% include "catalog/partials/compare_btn.html" with product=product %}
+    {% include "accounts/partials/wish_btn.html" with product=product %}
+  </div>
+</section>

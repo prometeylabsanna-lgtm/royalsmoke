@@ -1,4 +1,4 @@
-from django.db.models import Q
+from django.db.models import Prefetch, Q
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_GET
 
@@ -7,7 +7,23 @@ from apps.catalog.browser_filters import (
     apply_filters,
     build_browser_context,
 )
-from apps.catalog.models import Brand, Category, Product
+from apps.catalog.models import Brand, Category, Product, ProductReview
+from apps.catalog.views_compare import (
+    compare_detail,
+    compare_toggle,
+    is_direct_video,
+    related_products,
+    youtube_embed_url,
+)
+
+__all__ = [
+    'brand_detail',
+    'catalog_list',
+    'compare_detail',
+    'compare_toggle',
+    'product_detail',
+    'search_suggest',
+]
 
 
 def catalog_list(request, slug=None):
@@ -38,7 +54,15 @@ def brand_detail(request, slug):
 
 def product_detail(request, slug):
     product = get_object_or_404(
-        Product.objects.on_storefront().with_relations(),
+        Product.objects.on_storefront()
+        .with_relations()
+        .prefetch_related(
+            Prefetch(
+                'reviews',
+                queryset=ProductReview.objects.filter(is_published=True).order_by('-created_at'),
+                to_attr='published_reviews',
+            ),
+        ),
         slug=slug,
     )
     product.views_count = models_f_add(product)
@@ -50,17 +74,16 @@ def product_detail(request, slug):
     if active_variant is None and variants:
         active_variant = variants[0]
 
-    related = (
-        Product.objects.on_storefront()
-        .with_relations()
-        .filter(brand=product.brand)
-        .exclude(pk=product.pk)[:4]
-    )
+    video_url = (product.video_url or '').strip()
     return render(request, 'catalog/product_detail.html', {
         'product': product,
         'variants': variants,
         'active_variant': active_variant,
-        'related': related,
+        'related': related_products(product),
+        'reviews': getattr(product, 'published_reviews', []),
+        'video_embed_url': youtube_embed_url(video_url),
+        'video_direct': video_url if is_direct_video(video_url) else '',
+        'primary_image': product.images.first(),
     })
 
 

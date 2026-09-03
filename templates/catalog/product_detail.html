@@ -6,14 +6,15 @@
 {% block body_class %}rs-pd-page{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/product-detail.css' %}?v=25">
-<link rel="stylesheet" href="{% static 'css/product-detail2.css' %}?v=26">
+<link rel="stylesheet" href="{% static 'css/product-detail.css' %}?v=26">
+<link rel="stylesheet" href="{% static 'css/product-detail2.css' %}?v=27">
+<link rel="stylesheet" href="{% static 'css/product-detail3.css' %}?v=1">
 {% endblock %}
 
 {% block breadcrumbs %}{% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/product-gallery.js' %}?v=10" defer></script>
+<script src="{% static 'js/product-gallery.js' %}?v=11" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -32,227 +33,20 @@
 <article class="rs-pd rs-container" data-pd>
   <div class="rs-pd__media" data-rs-reveal="scale">
     {% include "partials/breadcrumbs.html" %}
-
-    <div class="rs-pd__gallery" data-pd-gallery>
-      <div class="rs-pd__stage">
-        <button type="button" class="rs-pd__nav rs-pd__nav--prev" data-pd-prev aria-label="{% trans "Попереднє фото" %}">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M12.5 4.5L7 10l5.5 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-
-        {% with images=product.images.all %}
-          {% if images %}
-            {% for img in images %}
-              <figure class="rs-pd__slide{% if forloop.first %} is-active{% endif %}"
-                      data-pd-slide
-                      {% if forloop.first %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %}>
-                <img src="{{ img.image.url }}"
-                     alt="{{ img.alt_text|default:product.name }}"
-                     width="900"
-                     height="1200"
-                     {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>
-              </figure>
-            {% endfor %}
-          {% else %}
-            <figure class="rs-pd__slide is-active rs-pd__slide--empty" data-pd-slide aria-hidden="false">
-              <span class="rs-pd__placeholder">{% trans "Немає фото" %}</span>
-            </figure>
-          {% endif %}
-        {% endwith %}
-
-        <button type="button" class="rs-pd__nav rs-pd__nav--next" data-pd-next aria-label="{% trans "Наступне фото" %}">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M7.5 4.5L13 10l-5.5 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-
-      <div class="rs-pd__thumbs" data-pd-thumbs role="tablist" aria-label="{% trans "Мініатюри" %}">
-        {% with images=product.images.all %}
-          {% if images %}
-            {% for img in images %}
-              <button type="button"
-                      class="rs-pd__thumb{% if forloop.first %} is-active{% endif %}"
-                      data-pd-thumb
-                      data-index="{{ forloop.counter0 }}"
-                      role="tab"
-                      aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
-                      aria-label="{% blocktrans with n=forloop.counter %}Фото {{ n }}{% endblocktrans %}">
-                <img src="{{ img.image.url }}" alt="" loading="lazy" width="96" height="96">
-              </button>
-            {% endfor %}
-          {% else %}
-            <button type="button"
-                    class="rs-pd__thumb is-active rs-pd__thumb--empty"
-                    data-pd-thumb
-                    data-index="0"
-                    role="tab"
-                    aria-selected="true"
-                    aria-label="{% trans "Фото 1" %}"
-                    disabled></button>
-          {% endif %}
-        {% endwith %}
-      </div>
-    </div>
+    {% include "catalog/partials/pd_gallery.html" %}
   </div>
 
   <div class="rs-pd__info" data-rs-reveal data-reveal-delay="80">
-    <h1 class="rs-pd__title">{{ product.name }}</h1>
-
-    {% if product.short_story or product.description %}
-      <div class="rs-pd__desc">
-        {% if product.short_story %}
-          <p>{{ product.short_story }}</p>
-        {% else %}
-          {{ product.description|linebreaks }}
-        {% endif %}
-      </div>
-    {% endif %}
-
-    <dl class="rs-pd__specs">
-      {% if product.brand or product.country %}
-      <div class="rs-pd__spec-group">
-        {% if product.brand %}
-          <div class="rs-pd__spec">
-            <dt>{% trans "Виробник" %}</dt>
-            <dd>{{ product.brand.name }}</dd>
-          </div>
-        {% endif %}
-        {% if product.country %}
-          <div class="rs-pd__spec">
-            <dt>{% trans "Країна" %}</dt>
-            <dd>{{ product.country }}</dd>
-          </div>
-        {% endif %}
-      </div>
-      {% endif %}
-
-      {% if active_variant and active_variant.length_mm or active_variant and active_variant.ring_gauge or product.strength or product.smoke_time or product.wrapper or product.binder or product.filler %}
-      <div class="rs-pd__spec-group">
-        {% if active_variant and active_variant.length_mm %}
-          <div class="rs-pd__spec">
-            <dt>{% trans "Довжина" %}</dt>
-            <dd>{% blocktrans with mm=active_variant.length_mm %}{{ mm }} мм{% endblocktrans %}</dd>
-          </div>
-        {% endif %}
-        {% if active_variant and active_variant.ring_gauge %}
-          <div class="rs-pd__spec">
-            <dt>Ring</dt>
-            <dd>{{ active_variant.ring_gauge }}</dd>
-          </div>
-        {% endif %}
-        {% if product.strength %}
-          <div class="rs-pd__spec">
-            <dt>{% trans "Міцність" %}</dt>
-            <dd>{{ product.get_strength_display }}</dd>
-          </div>
-        {% endif %}
-        {% if product.smoke_time %}
-          <div class="rs-pd__spec">
-            <dt>{% trans "Час куріння" %}</dt>
-            <dd>{{ product.smoke_time }}</dd>
-          </div>
-        {% endif %}
-        {% if product.wrapper %}
-          <div class="rs-pd__spec">
-            <dt>Wrapper</dt>
-            <dd>{{ product.wrapper }}</dd>
-          </div>
-        {% endif %}
-        {% if product.binder %}
-          <div class="rs-pd__spec">
-            <dt>Binder</dt>
-            <dd>{{ product.binder }}</dd>
-          </div>
-        {% endif %}
-        {% if product.filler %}
-          <div class="rs-pd__spec">
-            <dt>Filler</dt>
-            <dd>{{ product.filler }}</dd>
-          </div>
-        {% endif %}
-      </div>
-      {% endif %}
-
-      <div class="rs-pd__spec-group">
-        <div class="rs-pd__spec">
-          <dt>{% trans "Наявність" %}</dt>
-          <dd>{% if product.available_stock %}{% trans "В наявності" %}{% else %}{% trans "Під замовлення" %}{% endif %}</dd>
-        </div>
-        {% if active_variant and active_variant.sku %}
-          <div class="rs-pd__spec">
-            <dt>{% trans "Код" %}</dt>
-            <dd>{{ active_variant.sku }}</dd>
-          </div>
-        {% elif product.sku %}
-          <div class="rs-pd__spec">
-            <dt>{% trans "Код" %}</dt>
-            <dd>{{ product.sku }}</dd>
-          </div>
-        {% endif %}
-      </div>
-    </dl>
-
-    {% if product.tasting_notes %}
-      <div class="rs-pd__notes">
-        <h2 class="rs-pd__notes-title">{% trans "Смакові нотки" %}</h2>
-        <p>{{ product.tasting_notes }}</p>
-      </div>
-    {% endif %}
-
-    <form class="rs-pd__form"
-          method="post"
-          action="{% url 'cart:add' %}"
-          hx-post="{% url 'cart:add' %}"
-          hx-target="#cart-badge"
-          hx-swap="outerHTML"
-          id="rs-pd-cart-form">
-      {% csrf_token %}
-      <input type="hidden" name="product_id" value="{{ product.id }}">
-      {% if active_variant %}
-        <input type="hidden" name="variant_id" value="{{ active_variant.id }}">
-      {% endif %}
-
-      <div class="rs-pd__buy-row">
-        <p class="rs-pd__price">
-          {% if active_variant %}
-            {% if active_variant.old_price %}<del class="rs-pd__old">{{ active_variant.old_price }} ₴</del>{% endif %}
-            <span id="product-price">{{ active_variant.price }}</span> ₴
-          {% else %}
-            {% if product.old_price %}<del class="rs-pd__old">{{ product.old_price }} ₴</del>{% endif %}
-            <span id="product-price">{{ product.display_price }}</span> ₴
-          {% endif %}
-        </p>
-
-        <div class="rs-pd__qty" data-pd-qty>
-          <button type="button" class="rs-pd__qty-btn" data-pd-qty-minus aria-label="{% trans "Менше" %}">−</button>
-          <input id="qty"
-                 class="rs-pd__qty-input"
-                 type="number"
-                 name="quantity"
-                 value="1"
-                 min="1"
-                 max="99"
-                 inputmode="numeric"
-                 aria-label="{% trans "Кількість" %}">
-          <button type="button" class="rs-pd__qty-btn" data-pd-qty-plus aria-label="{% trans "Більше" %}">+</button>
-        </div>
-      </div>
-    </form>
-
-    <div class="rs-pd__actions">
-      <button type="submit" form="rs-pd-cart-form" class="rs-btn rs-btn--gold rs-pd__buy">{% trans "У кошик" %}</button>
-      {% include "accounts/partials/wish_btn.html" with product=product %}
-      <a class="rs-btn rs-btn--ghost rs-pd__pick" href="{% url 'pages:home' %}#home-calculator">{% trans "Підібрати" %}</a>
-    </div>
-
-    {% if product.description and product.short_story %}
-      <div class="rs-pd__long">
-        <h2 class="rs-pd__notes-title">{% trans "Опис" %}</h2>
-        <div class="rs-pd__desc">{{ product.description|linebreaks }}</div>
-      </div>
-    {% endif %}
+    {% include "catalog/partials/pd_title.html" %}
+    {% include "catalog/partials/pd_history.html" %}
+    {% include "catalog/partials/pd_description.html" %}
+    {% include "catalog/partials/pd_blend.html" %}
+    {% include "catalog/partials/pd_vitolas.html" %}
+    {% include "catalog/partials/pd_specs.html" %}
+    {% include "catalog/partials/pd_reviews.html" %}
+    {% include "catalog/partials/pd_cta.html" %}
   </div>
+
+  {% include "catalog/partials/pd_related.html" %}
 </article>
 {% endblock %}

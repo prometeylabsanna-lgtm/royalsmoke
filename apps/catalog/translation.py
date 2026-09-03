@@ -27,7 +27,7 @@ class TagTranslation(TranslationOptions):
 @register(Product)
 class ProductTranslation(TranslationOptions):
     fields = (
-        'name', 'short_story', 'description', 'tasting_notes',
+        'name', 'short_story', 'description', 'tasting_notes', 'recommendations',
         'wrapper', 'binder', 'filler', 'country', 'smoke_time',
         'meta_title', 'meta_description',
     )

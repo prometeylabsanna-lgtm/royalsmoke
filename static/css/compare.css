@@ -1,0 +1,180 @@
+/* Royal Smoke — compare button, badge page, table */
+
+.rs-compare-toggle {
+  display: inline-flex;
+  margin: 0;
+}
+
+.rs-compare-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid rgba(201, 154, 68, 0.42);
+  background: transparent;
+  color: rgba(252, 242, 238, 0.88);
+  font-family: var(--rs-font-ui);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition:
+    border-color var(--rs-dur-fast) var(--rs-ease),
+    color var(--rs-dur-fast) var(--rs-ease),
+    background var(--rs-dur-fast) var(--rs-ease);
+}
+
+.rs-compare-btn:hover,
+.rs-compare-btn:focus-visible {
+  border-color: var(--rs-gold);
+  color: var(--rs-seashell);
+  outline: none;
+}
+
+.rs-compare-btn.is-active {
+  border-color: var(--rs-gold);
+  color: var(--rs-gold);
+  background: rgba(201, 154, 68, 0.1);
+}
+
+.rs-compare-btn__icon {
+  flex: 0 0 auto;
+}
+
+.rs-compare-btn__label {
+  white-space: nowrap;
+}
+
+body.rs-compare-page {
+  background: #100d0c;
+  color: var(--rs-seashell);
+}
+
+.rs-compare-page__wrap {
+  padding-bottom: calc(48px + env(safe-area-inset-bottom, 0px));
+}
+
+.rs-compare-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 28px 0 48px;
+  color: var(--rs-text-soft);
+}
+
+.rs-compare-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 calc(-1 * var(--rs-pad-x, 16px));
+  padding: 0 var(--rs-pad-x, 16px) 32px;
+}
+
+.rs-compare-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  color: var(--rs-seashell);
+}
+
+.rs-compare-table th,
+.rs-compare-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(252, 242, 238, 0.12);
+  text-align: left;
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.rs-compare-table thead th {
+  border-bottom-color: rgba(201, 154, 68, 0.35);
+}
+
+.rs-compare-table tbody th[scope="row"] {
+  width: 140px;
+  color: var(--rs-text-muted);
+  font-weight: var(--rs-weight-ui);
+  white-space: nowrap;
+}
+
+.rs-compare-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 140px;
+  max-width: 180px;
+}
+
+.rs-compare-head__media {
+  display: block;
+  width: 96px;
+  height: 96px;
+  overflow: hidden;
+  background: rgba(252, 242, 238, 0.04);
+}
+
+.rs-compare-head__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.rs-compare-head__name {
+  color: #e8d5a8;
+  text-decoration: none;
+  font-family: var(--rs-font-display);
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.rs-compare-head__brand {
+  margin: 0;
+  color: var(--rs-text-muted);
+  font-size: 12px;
+}
+
+.rs-compare-remove {
+  align-self: flex-start;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: rgba(252, 242, 238, 0.55);
+  font-size: 12px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.rs-compare-remove:hover,
+.rs-compare-remove:focus-visible {
+  color: var(--rs-gold);
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  .rs-compare-table-wrap {
+    margin: 0;
+    padding-inline: 0;
+  }
+
+  .rs-compare-head {
+    min-width: 160px;
+    max-width: 220px;
+  }
+
+  .rs-compare-head__media {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rs-compare-table th,
+  .rs-compare-table td {
+    padding: 16px 20px;
+    font-size: 15px;
+  }
+}

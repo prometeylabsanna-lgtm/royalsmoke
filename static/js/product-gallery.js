@@ -131,12 +131,37 @@
     function goTo(next) {
       var target = ((next % total) + total) % total;
       if (target === index && slides[index].classList.contains('is-active')) return;
+
+      var prevSlide = slides[index];
+      if (prevSlide) {
+        var prevVideo = prevSlide.querySelector('video');
+        if (prevVideo) {
+          try { prevVideo.pause(); } catch (e) {}
+        }
+        var prevIframe = prevSlide.querySelector('iframe');
+        if (prevIframe && prevIframe.dataset.src) {
+          prevIframe.src = '';
+        } else if (prevIframe) {
+          var src = prevIframe.getAttribute('src');
+          if (src) {
+            prevIframe.dataset.src = src;
+            prevIframe.removeAttribute('src');
+          }
+        }
+      }
+
       index = target;
 
       slides.forEach(function (slide, i) {
         var on = i === index;
         slide.classList.toggle('is-active', on);
         slide.setAttribute('aria-hidden', on ? 'false' : 'true');
+        if (on) {
+          var iframe = slide.querySelector('iframe');
+          if (iframe && iframe.dataset.src && !iframe.getAttribute('src')) {
+            iframe.setAttribute('src', iframe.dataset.src);
+          }
+        }
       });
 
       thumbs.forEach(function (thumb, i) {

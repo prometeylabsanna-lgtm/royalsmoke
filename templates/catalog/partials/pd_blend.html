@@ -1,0 +1,26 @@
+{% load i18n %}
+{% if product.wrapper or product.binder or product.filler %}
+<section class="rs-pd__section" id="pd-blend" aria-labelledby="pd-blend-title">
+  <h2 class="rs-pd__section-title" id="pd-blend-title">Blend</h2>
+  <dl class="rs-pd__blend">
+    {% if product.wrapper %}
+      <div class="rs-pd__blend-item">
+        <dt>Wrapper</dt>
+        <dd>{{ product.wrapper }}</dd>
+      </div>
+    {% endif %}
+    {% if product.binder %}
+      <div class="rs-pd__blend-item">
+        <dt>Binder</dt>
+        <dd>{{ product.binder }}</dd>
+      </div>
+    {% endif %}
+    {% if product.filler %}
+      <div class="rs-pd__blend-item">
+        <dt>Filler</dt>
+        <dd>{{ product.filler }}</dd>
+      </div>
+    {% endif %}
+  </dl>
+</section>
+{% endif %}

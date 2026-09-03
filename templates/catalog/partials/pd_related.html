@@ -1,0 +1,30 @@
+{% load i18n %}
+{% if related %}
+<section class="rs-pd__related" id="pd-related" aria-labelledby="pd-related-title" data-rs-reveal>
+  <h2 class="rs-pd__section-title" id="pd-related-title">
+    {% if product.line %}
+      {% blocktrans with line=product.line.name %}Схожі з лінії {{ line }}{% endblocktrans %}
+    {% else %}
+      {% blocktrans with brand=product.brand.name %}Схожі від {{ brand }}{% endblocktrans %}
+    {% endif %}
+  </h2>
+  <ul class="rs-pd__related-grid">
+    {% for item in related %}
+      <li class="rs-pd__related-card">
+        <a class="rs-pd__related-link" href="{{ item.get_absolute_url }}">
+          <span class="rs-pd__related-media">
+            {% with img=item.images.first %}
+              {% if img %}
+                <img src="{{ img.image.url }}" alt="" width="280" height="280" loading="lazy">
+              {% endif %}
+            {% endwith %}
+          </span>
+          <span class="rs-pd__related-brand">{{ item.brand.name }}</span>
+          <span class="rs-pd__related-name">{{ item.name }}</span>
+          <span class="rs-pd__related-price">{{ item.display_price }} ₴</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

@@ -81,6 +81,7 @@ TEMPLATES = [
                 'apps.core.context_processors.site_globals',
                 'apps.cart.context_processors.cart_context',
                 'apps.accounts.context_processors.wishlist_context',
+                'apps.catalog.context_processors.compare_context',
             ],
         },
     },

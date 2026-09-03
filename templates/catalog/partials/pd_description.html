@@ -1,0 +1,21 @@
+{% load i18n %}
+{% if product.description or product.tasting_notes or product.recommendations %}
+<section class="rs-pd__section" id="pd-description" aria-labelledby="pd-description-title">
+  <h2 class="rs-pd__section-title" id="pd-description-title">{% trans "Опис" %}</h2>
+  {% if product.description %}
+    <div class="rs-pd__desc">{{ product.description|linebreaks }}</div>
+  {% endif %}
+  {% if product.tasting_notes %}
+    <div class="rs-pd__notes">
+      <h3 class="rs-pd__notes-title">{% trans "Смакові нотки" %}</h3>
+      <p>{{ product.tasting_notes }}</p>
+    </div>
+  {% endif %}
+  {% if product.recommendations %}
+    <div class="rs-pd__notes">
+      <h3 class="rs-pd__notes-title">{% trans "Рекомендації" %}</h3>
+      <p>{{ product.recommendations }}</p>
+    </div>
+  {% endif %}
+</section>
+{% endif %}

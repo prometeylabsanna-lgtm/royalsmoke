@@ -239,9 +239,10 @@
   }
 
   .rs-cb-row__cart-wrap .rs-wish-btn {
-    width: 38px;
+    width: 44px;
     height: 38px;
     min-height: 38px;
+    border: 0;
   }
 
   .rs-cb-row .rs-pcard__buy {

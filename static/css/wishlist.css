@@ -25,10 +25,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   padding: 0;
-  border: 1px solid rgba(201, 154, 68, 0.45);
+  border: 0;
   border-radius: 0;
   background: transparent;
   color: rgba(252, 242, 238, 0.72);
@@ -37,28 +37,25 @@
   appearance: none;
   -webkit-appearance: none;
   touch-action: manipulation;
-  transition:
-    color var(--t-fast, 160ms) var(--ease-out, ease),
-    border-color var(--t-fast, 160ms) var(--ease-out, ease),
-    background var(--t-fast, 160ms) var(--ease-out, ease);
+  transition: color var(--t-fast, 160ms) var(--ease-out, ease);
 }
 
 .rs-wish-btn__icon {
   display: block;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
 }
 
 .rs-wish-btn__path {
   fill: none;
   stroke: currentColor;
   stroke-width: 1.5;
+  stroke-linecap: round;
   stroke-linejoin: round;
   transition: fill var(--t-fast, 160ms) var(--ease-out, ease);
 }
 
 .rs-wish-btn.is-active {
-  border-color: #b8893a;
   background: transparent;
   color: #d4b06a;
 }
@@ -76,7 +73,6 @@
 @media (hover: hover) and (pointer: fine) {
   .rs-wish-btn:hover {
     color: var(--rs-gold, #c99a44);
-    border-color: var(--rs-gold, #c99a44);
   }
 
   .rs-wish-btn.is-active:hover .rs-wish-btn__path {

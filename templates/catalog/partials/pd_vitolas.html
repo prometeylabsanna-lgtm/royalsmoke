@@ -1,0 +1,27 @@
+{% load i18n %}
+{% if variants %}
+<section class="rs-pd__section" id="pd-vitolas" aria-labelledby="pd-vitolas-title">
+  <h2 class="rs-pd__section-title" id="pd-vitolas-title">{% trans "Vitolas" %}</h2>
+  <ul class="rs-pd__vitolas">
+    {% for v in variants %}
+      <li>
+        <a class="rs-pd__vitola{% if active_variant and active_variant.id == v.id %} is-active{% endif %}"
+           href="?vitola={{ v.slug }}"
+           {% if active_variant and active_variant.id == v.id %}aria-current="true"{% endif %}>
+          <span class="rs-pd__vitola-name">{{ v.name }}</span>
+          <span class="rs-pd__vitola-meta">
+            {% if v.length_mm %}{{ v.length_mm }} мм{% endif %}
+            {% if v.length_mm and v.ring_gauge %} · {% endif %}
+            {% if v.ring_gauge %}⌀ {{ v.ring_gauge }}{% endif %}
+            {% if v.shape %} · {{ v.shape }}{% endif %}
+          </span>
+          <span class="rs-pd__vitola-price">
+            {% if v.old_price %}<del>{{ v.old_price }} ₴</del>{% endif %}
+            {{ v.price }} ₴
+          </span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

@@ -1,0 +1,9 @@
+{% load i18n %}
+{% if product.short_story %}
+<section class="rs-pd__section" id="pd-history" aria-labelledby="pd-history-title">
+  <h2 class="rs-pd__section-title" id="pd-history-title">{% trans "Історія сигари" %}</h2>
+  <div class="rs-pd__desc">
+    <p>{{ product.short_story }}</p>
+  </div>
+</section>
+{% endif %}
