@@ -1,0 +1,221 @@
+/* Royal Smoke — layout part 3: mobile drawer (frosted glass) */
+
+.rs-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--rs-z-drawer) - 1);
+  background: var(--rs-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--rs-dur-fast) ease, visibility var(--rs-dur-fast) ease;
+}
+
+.rs-drawer-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.rs-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--rs-z-drawer);
+  width: min(320px, 100%);
+  background: var(--rs-bark);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -20px 0 50px var(--rs-shadow);
+  transform: translateX(100%);
+  transition: transform var(--rs-dur) var(--rs-ease);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.rs-drawer.is-open {
+  transform: translateX(0);
+}
+
+.rs-drawer__atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.rs-drawer__photo {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  top: -4%;
+  bottom: -12%;
+  background:
+    url("../img/drawer/menu-bg.jpg") center 72% / cover no-repeat;
+  -webkit-filter: blur(28px) saturate(1.05);
+  filter: blur(28px) saturate(1.05);
+  -webkit-transform: scale(1.14);
+  transform: scale(1.14);
+  opacity: 0.72;
+  will-change: filter, transform;
+}
+
+.rs-drawer__frost {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16, 13, 12, 0.97) 0%,
+      rgba(16, 13, 12, 0.88) 22%,
+      rgba(16, 13, 12, 0.62) 52%,
+      rgba(16, 13, 12, 0.42) 78%,
+      rgba(16, 13, 12, 0.55) 100%
+    ),
+    linear-gradient(
+      165deg,
+      rgba(252, 242, 238, 0.07) 0%,
+      rgba(252, 242, 238, 0.02) 28%,
+      transparent 55%
+    );
+  -webkit-backdrop-filter: blur(18px) saturate(1.12);
+  backdrop-filter: blur(18px) saturate(1.12);
+  border-left: 1px solid rgba(252, 242, 238, 0.08);
+  box-shadow: inset 0 1px 0 rgba(252, 242, 238, 0.06);
+}
+
+.rs-drawer__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: calc(54px + var(--rs-safe-t)) 24px calc(32px + var(--rs-safe-b));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.rs-drawer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rs-drawer__brand {
+  font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-sub);
+  font-size: 17px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.rs-drawer__close {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: rgba(16, 13, 12, 0.55);
+  color: var(--rs-seashell);
+  border: 1px solid var(--rs-gold);
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background var(--rs-dur-fast) ease,
+    border-color var(--rs-dur-fast) ease,
+    color var(--rs-dur-fast) ease;
+}
+
+.rs-drawer__close:hover {
+  background: rgba(16, 13, 12, 0.75);
+  border-color: var(--rs-gold-hover);
+}
+
+.rs-drawer__line {
+  height: 1px;
+  background: var(--rs-gold);
+  opacity: 0.7;
+  border: 0;
+  margin: 0;
+}
+
+.rs-drawer__nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.rs-drawer__nav a {
+  font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-sub);
+  font-size: 21px;
+  color: var(--rs-seashell);
+  padding: 13px 0;
+  border-bottom: 1px solid var(--rs-hairline);
+  transition: color var(--rs-dur-fast) ease;
+}
+
+.rs-drawer__nav a:hover {
+  color: var(--rs-text-muted);
+}
+
+.rs-drawer__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: auto;
+}
+
+.rs-drawer__callback {
+  height: 52px;
+  border: 1px solid var(--rs-border);
+  color: var(--rs-seashell);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(16, 13, 12, 0.35);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: background var(--rs-dur-fast) ease, border-color var(--rs-dur-fast) ease;
+}
+
+.rs-drawer__callback:hover {
+  background: var(--rs-bark-light);
+  border-color: var(--rs-seashell);
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .rs-drawer__frost {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(16, 13, 12, 0.98) 0%,
+        rgba(16, 13, 12, 0.9) 24%,
+        rgba(16, 13, 12, 0.72) 55%,
+        rgba(16, 13, 12, 0.62) 100%
+      );
+  }
+}
+
+@media (max-width: 767px) {
+  .rs-drawer__photo {
+    -webkit-filter: blur(24px) saturate(1.05);
+    filter: blur(24px) saturate(1.05);
+  }
+
+  .rs-drawer__nav a {
+    font-size: 19px;
+    padding: 12px 0;
+  }
+
+  .rs-drawer__content {
+    padding-inline: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rs-drawer__photo {
+    will-change: auto;
+  }
+}

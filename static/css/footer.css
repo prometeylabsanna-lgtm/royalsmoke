@@ -3,7 +3,7 @@
 .rs-footer {
   --rs-footer-top-bg: var(--rs-seashell);
   --rs-footer-top-ink: var(--rs-bark);
-  --rs-footer-top-muted: rgba(36, 29, 27, 0.55);
+  --rs-footer-top-muted: rgba(16, 13, 12, 0.55);
   --rs-footer-bottom-bg: var(--rs-coffee);
   --rs-footer-seal: 112px;
   position: relative;
@@ -66,8 +66,18 @@
 
 .rs-footer__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px 18px;
+  grid-template-columns: repeat(3, max-content);
+  justify-content: space-evenly;
+  justify-items: start;
+  align-items: start;
+  column-gap: 0;
+  row-gap: 28px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rs-footer__col {
+  min-width: 0;
 }
 
 .rs-footer__col h3 {
@@ -87,10 +97,24 @@
   font-weight: var(--rs-weight-ui);
   color: var(--rs-footer-top-muted);
   transition: color var(--rs-dur-fast) ease;
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
 }
 
 .rs-footer__col a:hover {
   color: var(--rs-gold);
+}
+
+.rs-footer__col a.rs-footer__link--stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.35;
+}
+
+.rs-footer__col a.rs-footer__link--stack span {
+  display: block;
 }
 
 /* ——— Bridge: seal + social on the color split ——— */
@@ -173,7 +197,7 @@
   border-radius: 50%;
   background: var(--rs-seashell);
   color: var(--rs-bark);
-  border: 1px solid rgba(36, 29, 27, 0.12);
+  border: 1px solid rgba(16, 13, 12, 0.12);
   transition:
     background var(--rs-dur-fast) ease,
     color var(--rs-dur-fast) ease,
@@ -264,8 +288,12 @@
 
   .rs-footer__grid {
     flex: 1 1 auto;
-    max-width: 640px;
-    gap: 32px 40px;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    justify-content: space-evenly;
+    column-gap: 0;
+    row-gap: 32px;
   }
 
   .rs-footer__bridge {
@@ -306,8 +334,9 @@
   }
 
   .rs-footer__grid {
-    max-width: 720px;
-    gap: 40px 56px;
+    justify-content: space-evenly;
+    column-gap: 0;
+    row-gap: 40px;
   }
 
   .rs-footer__col h3 {
@@ -367,24 +396,52 @@
   }
 }
 
-/* ——— Narrow phones: stack seal cleanly ——— */
+/* ——— Narrow phones: even 3-col gutters + equal side insets ——— */
+@media (max-width: 767px) {
+  .rs-footer__top {
+    padding-inline: max(var(--rs-pad-x-sm, 20px), var(--rs-safe-l, 0px))
+      max(var(--rs-pad-x-sm, 20px), var(--rs-safe-r, 0px));
+  }
+
+  .rs-footer__grid {
+    grid-template-columns: repeat(3, max-content);
+    justify-content: space-evenly;
+    width: 100%;
+    column-gap: 0;
+    row-gap: 24px;
+  }
+
+  .rs-footer__col a.rs-footer__link--stack {
+    gap: 8px;
+  }
+
+  .rs-footer__col h3 {
+    letter-spacing: 0.06em;
+    margin-bottom: 14px;
+  }
+}
+
 @media (max-width: 479px) {
   .rs-footer {
     --rs-footer-seal: 96px;
   }
 
   .rs-footer__grid {
-    gap: 24px 12px;
+    justify-content: space-evenly;
+    column-gap: 0;
+    row-gap: 20px;
   }
 
   .rs-footer__col h3 {
     font-size: 11px;
-    margin-bottom: 14px;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
   }
 
   .rs-footer__col a {
     font-size: 13px;
     padding: 7px 0;
+    line-height: 1.35;
   }
 
   .rs-footer__bridge {

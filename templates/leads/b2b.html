@@ -9,28 +9,17 @@
 </header>
 
 <div class="rs-container rs-service-page" data-rs-reveal data-reveal-delay="80">
-  <form class="rs-form" method="post" action="{% url 'leads:b2b' %}">
+  <form class="rs-form" method="post" action="{% url 'leads:b2b' %}" data-rs-validate novalidate>
     {% csrf_token %}
     <div class="rs-field">
       <label for="id_company">Компанія</label>
-      <input id="id_company" type="text" name="company" required>
+      <input id="id_company" type="text" name="company" required data-rs-rule="required">
+      <p class="rs-field__error" data-rs-error hidden></p>
     </div>
-    <div class="rs-field">
-      <label for="id_name">Контактна особа</label>
-      <input id="id_name" type="text" name="name" required autocomplete="name">
-    </div>
-    <div class="rs-field">
-      <label for="id_phone">Телефон</label>
-      <input id="id_phone" type="tel" name="phone" required autocomplete="tel">
-    </div>
-    <div class="rs-field">
-      <label for="id_email">Email</label>
-      <input id="id_email" type="email" name="email" required autocomplete="email">
-    </div>
-    <div class="rs-field">
-      <label for="id_message">Що цікавить</label>
-      <textarea id="id_message" name="message" rows="4" placeholder="Прайс, гравіювання, корпоративні набори…"></textarea>
-    </div>
+    {% include "partials/form_field.html" with name="name" id="id_name" label="Контактна особа" rule="name" type="text" autocomplete="name" %}
+    {% include "partials/form_field.html" with name="phone" id="id_phone" label="Телефон" rule="phone" type="tel" autocomplete="tel" %}
+    {% include "partials/form_field.html" with name="email" id="id_email" label="Email" rule="email" type="email" autocomplete="email" %}
+    {% include "partials/form_field.html" with name="message" id="id_message" label="Що цікавить" rule="required" type="textarea" placeholder="Прайс, гравіювання, корпоративні набори…" rows=4 %}
     <div class="rs-form__actions">
       <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">Запросити прайс</button>
     </div>

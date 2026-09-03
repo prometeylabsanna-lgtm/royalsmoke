@@ -184,7 +184,7 @@
 .rs-cat__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(36, 29, 27, 0.85) 100%);
+  background: linear-gradient(180deg, transparent 40%, rgba(16, 13, 12, 0.85) 100%);
 }
 
 .rs-cat__content {
@@ -301,9 +301,45 @@
   border-color: var(--rs-gold);
 }
 
+.rs-field.is-invalid input,
+.rs-field.is-invalid select,
+.rs-field.is-invalid textarea {
+  border-color: #c45c4a;
+}
+
+.rs-field.is-invalid input:focus,
+.rs-field.is-invalid select:focus,
+.rs-field.is-invalid textarea:focus {
+  border-color: #c45c4a;
+  outline-color: #c45c4a;
+}
+
 .rs-field__error {
   font-size: 12px;
   color: #e8a090;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.rs-field.is-invalid .rs-field__error,
+.rs-check.is-invalid .rs-field__error {
+  display: block;
+}
+
+.rs-field__error[hidden] {
+  display: none;
+}
+
+.rs-check.is-invalid {
+  color: #e8a090;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .rs-field input,
+  .rs-field select,
+  .rs-field textarea {
+    font-size: 16px;
+  }
 }
 
 .rs-form__hint {

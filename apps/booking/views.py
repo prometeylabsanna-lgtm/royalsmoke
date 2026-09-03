@@ -6,13 +6,14 @@ from django.shortcuts import redirect
 from django.views.decorators.http import require_POST
 
 from apps.booking.models import Booking
+from apps.core.validation import NameField, PhoneField
 
 
 class BookingRequestForm(forms.Form):
     """Simplified contact booking: name + phone + wishes."""
 
-    name = forms.CharField(label='Імʼя', max_length=120)
-    phone = forms.CharField(label='Телефон', max_length=30)
+    name = NameField(label='Імʼя')
+    phone = PhoneField(label='Телефон')
     comment = forms.CharField(label='Побажання', required=False, max_length=500)
 
 

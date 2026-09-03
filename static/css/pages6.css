@@ -353,6 +353,47 @@ body.rs-cab-page .rs-main {
   }
 }
 
+@media (max-width: 1023px) {
+  .rs-cab__title {
+    text-align: center;
+    text-indent: 0;
+    padding-inline-start: var(--rs-heading-page-tracking);
+  }
+
+  .rs-cab__lead {
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .rs-cab__block {
+    text-align: left;
+  }
+
+  .rs-cab__block-title {
+    font-size: clamp(18px, 3.8vw, 22px);
+  }
+
+  .rs-cab__block .rs-cab__meta {
+    font-size: 16px;
+  }
+
+  .rs-cab__card-label {
+    font-size: 13px;
+  }
+
+  .rs-cab__profile-name {
+    font-size: 20px;
+  }
+
+  .rs-cab__card .rs-cab__meta {
+    font-size: 15px;
+  }
+
+  .rs-cab__chart-caption {
+    font-size: 15px;
+  }
+}
+
 @media (min-width: 768px) {
   .rs-cab__top {
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);

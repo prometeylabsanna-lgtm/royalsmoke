@@ -339,10 +339,10 @@ body.rs-cart-page .rs-page-head p {
 .rs-cart__empty {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 22px;
   padding: 28px 0 64px;
-  text-align: left;
+  text-align: center;
 }
 
 .rs-cart__empty-text {
@@ -419,7 +419,9 @@ body.rs-cart-page .rs-page-head p {
   }
 
   .rs-cart__empty {
+    align-items: flex-start;
     padding: 48px 0 88px;
+    text-align: left;
   }
 
   .rs-cart__empty-text {

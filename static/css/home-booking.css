@@ -115,6 +115,27 @@
   border-color: var(--rs-gold);
 }
 
+.rs-svc-card__field.is-invalid input {
+  border-color: #c45c4a;
+}
+
+.rs-svc-card__field .rs-field__error {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #e8a090;
+  line-height: 1.35;
+}
+
+.rs-svc-card__field .rs-field__error[hidden] {
+  display: none;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .rs-svc-card__field input {
+    font-size: 16px;
+  }
+}
+
 .rs-svc-card__submit {
   appearance: none;
   -webkit-appearance: none;

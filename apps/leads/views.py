@@ -6,27 +6,28 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
 
+from apps.core.validation import EmailField, NameField, PhoneField
 from apps.leads.models import Lead
 
 
 class B2BForm(forms.Form):
-    name = forms.CharField(label='Контактна особа', max_length=120)
+    name = NameField(label='Контактна особа')
     company = forms.CharField(label='Компанія', max_length=160)
-    phone = forms.CharField(label='Телефон', max_length=30)
-    email = forms.EmailField(label='Email')
+    phone = PhoneField(label='Телефон')
+    email = EmailField(label='Email')
     message = forms.CharField(label='Запит', widget=forms.Textarea(attrs={'rows': 4}))
 
 
 class ContactForm(forms.Form):
-    name = forms.CharField(label='Імʼя', max_length=120)
-    phone = forms.CharField(label='Телефон', max_length=30, required=False)
-    email = forms.EmailField(label='Email', required=False)
+    name = NameField(label='Імʼя')
+    phone = PhoneField(label='Телефон', optional=True)
+    email = EmailField(label='Email', optional=True)
     message = forms.CharField(label='Повідомлення', widget=forms.Textarea(attrs={'rows': 4}))
 
 
 class CallbackForm(forms.Form):
-    name = forms.CharField(label='Імʼя', max_length=120, required=False)
-    phone = forms.CharField(label='Телефон', max_length=30)
+    name = NameField(label='Імʼя', optional=True)
+    phone = PhoneField(label='Телефон')
 
 
 def _notify(lead: Lead) -> None:

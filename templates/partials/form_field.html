@@ -1,0 +1,35 @@
+{# Базове поле форми з data-rs-* для RsValidate.
+   Параметри: name, id, label, rule, type, autocomplete, placeholder,
+   value, optional (1), rows (textarea), sr_only_label (1), error #}
+{% with field_id=id|default:name field_type=type|default:"text" %}
+<div class="rs-field{% if optional %} rs-field--optional{% endif %}{% if error %} is-invalid{% endif %}">
+  <label for="{{ field_id }}"{% if sr_only_label %} class="sr-only"{% endif %}>{{ label }}</label>
+  {% if field_type == "textarea" %}
+  <textarea
+    id="{{ field_id }}"
+    name="{{ name }}"
+    rows="{{ rows|default:4 }}"
+    data-rs-rule="{{ rule }}"
+    {% if optional %}data-rs-optional="1"{% endif %}
+    {% if autocomplete %}autocomplete="{{ autocomplete }}"{% endif %}
+    {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+    {% if not optional %}required{% endif %}
+    {% if error %}aria-invalid="true"{% endif %}
+  >{{ value|default:"" }}</textarea>
+  {% else %}
+  <input
+    id="{{ field_id }}"
+    type="{{ field_type }}"
+    name="{{ name }}"
+    data-rs-rule="{{ rule }}"
+    {% if optional %}data-rs-optional="1"{% endif %}
+    {% if autocomplete %}autocomplete="{{ autocomplete }}"{% endif %}
+    {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+    {% if value %}value="{{ value }}"{% endif %}
+    {% if not optional %}required{% endif %}
+    {% if error %}aria-invalid="true"{% endif %}
+  >
+  {% endif %}
+  <p class="rs-field__error" data-rs-error {% if not error %}hidden{% endif %}>{{ error }}</p>
+</div>
+{% endwith %}

@@ -147,6 +147,14 @@ class HeroSlideForm(forms.ModelForm):
             'sort_order', 'is_active',
         )
 
+    def clean_cta_primary_url(self):
+        from apps.core.validation.admin_forms import clean_optional_url
+        return clean_optional_url(self.cleaned_data.get('cta_primary_url', ''))
+
+    def clean_cta_secondary_url(self):
+        from apps.core.validation.admin_forms import clean_optional_url
+        return clean_optional_url(self.cleaned_data.get('cta_secondary_url', ''))
+
 
 HeroSlideFormSet = forms.modelformset_factory(
     HeroSlide, form=HeroSlideForm, extra=1, can_delete=True,
@@ -168,6 +176,10 @@ class HistorySlideForm(forms.ModelForm):
             'cta_label': CmsAdminTextInputWidget(),
             'cta_url': CmsAdminTextInputWidget(),
         }
+
+    def clean_cta_url(self):
+        from apps.core.validation.admin_forms import clean_optional_url
+        return clean_optional_url(self.cleaned_data.get('cta_url', ''))
 
 
 HistorySlideFormSet = forms.modelformset_factory(

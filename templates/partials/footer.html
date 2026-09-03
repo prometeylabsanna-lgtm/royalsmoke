@@ -20,21 +20,20 @@
           <a href="{% url 'catalog:list' %}">Сигари</a>
           <a href="{% url 'catalog:list' %}">Аксесуари</a>
           <a href="{% url 'catalog:list' %}">Бренди</a>
-          <a href="{% url 'catalog:list' %}?tag=sale">Акції</a>
+          <a href="{% url 'pages:home' %}#home-calculator">Калькулятор</a>
         </div>
         <div class="rs-footer__col">
           <h3>Покупка</h3>
           <a href="{% url 'cart:detail' %}">Кошик</a>
-          <a href="{% url 'orders:checkout' %}">Оформлення</a>
           <a href="{% url 'accounts:cabinet' %}">Кабінет</a>
-          <a href="{% url 'leads:delivery' %}">Доставка</a>
+          <a class="rs-footer__link--stack" href="{% url 'leads:delivery' %}"><span>Доставка</span><span>і оплата</span></a>
         </div>
         <div class="rs-footer__col">
           <h3>Інфо</h3>
           <a href="{% url 'leads:contact' %}">Контакти</a>
           <a href="{% url 'pages:faq' %}">FAQ</a>
           <a href="{% url 'pages:about' %}">Про нас</a>
-          <a href="{% url 'pages:legal' slug='privacy' %}">Політика конфіденційності</a>
+          <a href="{% url 'pages:legal' slug='privacy' %}">Приватність</a>
         </div>
       </nav>
     </div>

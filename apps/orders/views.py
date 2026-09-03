@@ -8,14 +8,15 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_http_methods
 
 from apps.cart import services as cart_services
+from apps.core.validation import EmailField, NameField, PhoneField
 from apps.orders.models import Order, OrderItem
 
 
 class CheckoutForm(forms.Form):
-    first_name = forms.CharField(label='Імʼя', max_length=100)
-    last_name = forms.CharField(label='Прізвище', max_length=100)
-    phone = forms.CharField(label='Телефон', max_length=30)
-    email = forms.EmailField(label='Email')
+    first_name = NameField(label='Імʼя', max_length=100)
+    last_name = NameField(label='Прізвище', max_length=100)
+    phone = PhoneField(label='Телефон')
+    email = EmailField(label='Email')
     delivery_service = forms.ChoiceField(label='Доставка', choices=Order.DELIVERY_CHOICES)
     delivery_city = forms.CharField(label='Місто', max_length=150)
     delivery_address = forms.CharField(label='Адреса / відділення', max_length=255)

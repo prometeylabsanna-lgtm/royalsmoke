@@ -1,8 +1,25 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}FAQ — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block body_class %}rs-faq-page{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages8.css' %}?v=6">
+{% endblock %}
 
 {% block content %}
+<div class="rs-faq-page__bg" aria-hidden="true">
+  <img
+    class="rs-faq-page__bg-img"
+    src="{% static 'img/calculator/lounge-bg.jpg' %}"
+    alt=""
+    width="1536"
+    height="1024"
+    decoding="async"
+  >
+</div>
+
 <header class="rs-page-head" data-rs-reveal>
   <h1>FAQ</h1>
   <p>Короткі відповіді про замовлення, зберігання та доставку.</p>
@@ -10,24 +27,49 @@
 
 <div class="rs-container rs-service-page rs-faq">
   <details open data-rs-reveal data-reveal-delay="0">
-    <summary>Як зберігати сигари?</summary>
-    <p>У хумідорі при 68–72% вологості та 16–20°C. Ми відправляємо в термобоксі.</p>
+    <summary>
+      <span class="rs-faq__q">Як зберігати сигари?</span>
+      <span class="rs-faq__chev" aria-hidden="true"></span>
+    </summary>
+    <div class="rs-faq__a">
+      <p>У хумідорі при 68–72% вологості та 16–20°C. Ми відправляємо в термобоксі.</p>
+    </div>
   </details>
   <details data-rs-reveal data-reveal-delay="50">
-    <summary>Чи потрібна реєстрація для покупки?</summary>
-    <p>Ні, гостьове оформлення доступне. Кабінет зручний для повторних замовлень.</p>
+    <summary>
+      <span class="rs-faq__q">Чи потрібна реєстрація для покупки?</span>
+      <span class="rs-faq__chev" aria-hidden="true"></span>
+    </summary>
+    <div class="rs-faq__a">
+      <p>Ні, гостьове оформлення доступне. Кабінет зручний для повторних замовлень.</p>
+    </div>
   </details>
   <details data-rs-reveal data-reveal-delay="100">
-    <summary>Які терміни доставки?</summary>
-    <p>Київ — часто того ж дня, Україна — 1–2 дні. Деталі на сторінці «Доставка і оплата».</p>
+    <summary>
+      <span class="rs-faq__q">Які терміни доставки?</span>
+      <span class="rs-faq__chev" aria-hidden="true"></span>
+    </summary>
+    <div class="rs-faq__a">
+      <p>Київ — часто того ж дня, Україна — 1–2 дні. Деталі на сторінці «Доставка і оплата».</p>
+    </div>
   </details>
   <details data-rs-reveal data-reveal-delay="150">
-    <summary>Чи можна повернути товар?</summary>
-    <p>Тютюнові вироби належної якості не підлягають поверненню. Брак розглядаємо індивідуально.</p>
+    <summary>
+      <span class="rs-faq__q">Чи можна повернути товар?</span>
+      <span class="rs-faq__chev" aria-hidden="true"></span>
+    </summary>
+    <div class="rs-faq__a">
+      <p>Тютюнові вироби належної якості не підлягають поверненню. Брак розглядаємо індивідуально.</p>
+    </div>
   </details>
   <details data-rs-reveal data-reveal-delay="200">
-    <summary>Як працює бронювання?</summary>
-    <p>Залиште імʼя та телефон у блоці «Бронювання» на головній — менеджер узгодить зручний час візиту.</p>
+    <summary>
+      <span class="rs-faq__q">Як працює бронювання?</span>
+      <span class="rs-faq__chev" aria-hidden="true"></span>
+    </summary>
+    <div class="rs-faq__a">
+      <p>Залиште імʼя та телефон у блоці «Бронювання» на головній — менеджер узгодить зручний час візиту.</p>
+    </div>
   </details>
 </div>
 {% endblock %}

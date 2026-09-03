@@ -41,8 +41,8 @@
 }
 
 :root {
-  --rs-bark: #241d1b;
-  --rs-bark-light: #2b2321;
+  --rs-bark: #100d0c;
+  --rs-bark-light: #181412;
   --rs-slot: #322a26;
   --rs-seashell: #fcf2ee;
   --rs-gold: #c99a44;
@@ -55,8 +55,8 @@
   --rs-hairline: rgba(252, 242, 238, 0.14);
   --rs-border: rgba(252, 242, 238, 0.4);
   --rs-border-soft: rgba(252, 242, 238, 0.25);
-  --rs-shadow: rgba(26, 20, 18, 0.35);
-  --rs-overlay: rgba(36, 29, 27, 0.55);
+  --rs-shadow: rgba(16, 13, 12, 0.45);
+  --rs-overlay: rgba(16, 13, 12, 0.55);
 
   --rs-font-display: "Fixel Display", "Helvetica Neue", sans-serif;
   --rs-font-ui: "Fixel Display", "Helvetica Neue", sans-serif;

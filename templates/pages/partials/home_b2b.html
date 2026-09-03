@@ -20,6 +20,7 @@
       class="rs-svc-card__form"
       method="post"
       action="{% url 'leads:b2b' %}"
+      data-rs-validate
       novalidate
     >
       {% csrf_token %}
@@ -33,9 +34,11 @@
             type="text"
             name="company"
             required
+            data-rs-rule="required"
             maxlength="160"
             placeholder="Компанія"
           >
+          <p class="rs-field__error" data-rs-error hidden></p>
         </div>
         <div class="rs-svc-card__field">
           <label class="sr-only" for="home_b2b_name">Контактна особа</label>
@@ -44,10 +47,12 @@
             type="text"
             name="name"
             required
+            data-rs-rule="name"
             autocomplete="name"
             maxlength="120"
             placeholder="Контакт"
           >
+          <p class="rs-field__error" data-rs-error hidden></p>
         </div>
         <div class="rs-svc-card__field">
           <label class="sr-only" for="home_b2b_phone">Телефон</label>
@@ -56,10 +61,12 @@
             type="tel"
             name="phone"
             required
+            data-rs-rule="phone"
             autocomplete="tel"
             maxlength="30"
             placeholder="Телефон"
           >
+          <p class="rs-field__error" data-rs-error hidden></p>
         </div>
         <div class="rs-svc-card__field">
           <label class="sr-only" for="home_b2b_email">Email</label>
@@ -68,9 +75,11 @@
             type="email"
             name="email"
             required
+            data-rs-rule="email"
             autocomplete="email"
             placeholder="Email"
           >
+          <p class="rs-field__error" data-rs-error hidden></p>
         </div>
         <div class="rs-svc-card__field rs-svc-card__field--full">
           <label class="sr-only" for="home_b2b_message">Що цікавить</label>
@@ -79,9 +88,11 @@
             type="text"
             name="message"
             required
+            data-rs-rule="required"
             maxlength="500"
             placeholder="Прайс, гравіювання…"
           >
+          <p class="rs-field__error" data-rs-error hidden></p>
         </div>
         <button type="submit" class="rs-svc-card__submit">Запросити прайс</button>
       </div>

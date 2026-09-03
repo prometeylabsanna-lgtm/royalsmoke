@@ -3,10 +3,12 @@ from unfold.admin import ModelAdmin, TabularInline
 
 from apps.core.admin_site_content_proxies import register_site_content_section_admins  # noqa: F401
 from apps.core.models import HeroSlide, SiteSettings
+from apps.core.validation.admin_forms import SiteSettingsAdminForm
 
 
 @admin.register(SiteSettings)
 class SiteSettingsAdmin(ModelAdmin):
+    form = SiteSettingsAdminForm
     list_display = ('site_name', 'phone', 'email')
 
     def has_add_permission(self, request):

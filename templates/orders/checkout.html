@@ -9,7 +9,7 @@
 </header>
 
 <div class="rs-container rs-checkout" data-rs-reveal data-reveal-delay="80">
-  <form class="rs-form" method="post" action="{% url 'orders:checkout' %}" style="max-width:none">
+  <form class="rs-form" method="post" action="{% url 'orders:checkout' %}" style="max-width:none" data-rs-validate novalidate>
     {% csrf_token %}
     {% if form.non_field_errors %}
       <div class="rs-field__error">{{ form.non_field_errors }}</div>
@@ -17,44 +17,50 @@
 
     <div class="rs-field">
       <label for="id_name">Імʼя та прізвище</label>
-      <input id="id_name" type="text" name="name" required autocomplete="name" value="{{ form.name.value|default:'' }}">
-      {% if form.name.errors %}<span class="rs-field__error">{{ form.name.errors.0 }}</span>{% endif %}
+      <input id="id_name" type="text" name="name" required autocomplete="name" data-rs-rule="name" value="{{ form.name.value|default:'' }}">
+      <p class="rs-field__error" data-rs-error {% if not form.name.errors %}hidden{% endif %}>{% if form.name.errors %}{{ form.name.errors.0 }}{% endif %}</p>
     </div>
     <div class="rs-field">
       <label for="id_phone">Телефон</label>
-      <input id="id_phone" type="tel" name="phone" required autocomplete="tel" value="{{ form.phone.value|default:'' }}">
+      <input id="id_phone" type="tel" name="phone" required autocomplete="tel" data-rs-rule="phone" value="{{ form.phone.value|default:'' }}">
+      <p class="rs-field__error" data-rs-error hidden></p>
     </div>
     <div class="rs-field">
       <label for="id_email">Email</label>
-      <input id="id_email" type="email" name="email" required autocomplete="email" value="{{ form.email.value|default:'' }}">
+      <input id="id_email" type="email" name="email" required autocomplete="email" data-rs-rule="email" value="{{ form.email.value|default:'' }}">
+      <p class="rs-field__error" data-rs-error hidden></p>
     </div>
     <div class="rs-field">
       <label for="id_delivery">Спосіб доставки</label>
-      <select id="id_delivery" name="delivery_method">
+      <select id="id_delivery" name="delivery_method" data-rs-rule="required" required>
         <option value="courier">Курʼєр Київ</option>
         <option value="np">Нова Пошта</option>
         <option value="pickup">Самовивіз зі шоуруму</option>
       </select>
+      <p class="rs-field__error" data-rs-error hidden></p>
     </div>
     <div class="rs-field">
       <label for="id_address">Адреса / відділення</label>
-      <textarea id="id_address" name="address" rows="3">{{ form.address.value|default:'' }}</textarea>
+      <textarea id="id_address" name="address" rows="3" data-rs-rule="required" required>{{ form.address.value|default:'' }}</textarea>
+      <p class="rs-field__error" data-rs-error hidden></p>
     </div>
     <div class="rs-field">
       <label for="id_payment">Оплата</label>
-      <select id="id_payment" name="payment_method">
+      <select id="id_payment" name="payment_method" data-rs-rule="required" required>
         <option value="card">Картка онлайн</option>
         <option value="cod">При отриманні</option>
         <option value="invoice">Рахунок (B2B)</option>
       </select>
+      <p class="rs-field__error" data-rs-error hidden></p>
     </div>
     <div class="rs-field">
       <label for="id_comment">Коментар</label>
       <textarea id="id_comment" name="comment" rows="3">{{ form.comment.value|default:'' }}</textarea>
     </div>
     <label class="rs-check">
-      <input type="checkbox" name="age_confirm" required>
+      <input type="checkbox" name="age_confirm" required data-rs-rule="required" data-rs-checkbox="1">
       <span>Підтверджую, що мені є 21 рік</span>
+      <p class="rs-field__error" data-rs-error hidden></p>
     </label>
     <div class="rs-form__actions">
       <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">Підтвердити замовлення</button>

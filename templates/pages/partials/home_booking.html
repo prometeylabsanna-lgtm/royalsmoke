@@ -20,6 +20,7 @@
       class="rs-svc-card__form"
       method="post"
       action="{% url 'booking:request' %}"
+      data-rs-validate
       novalidate
     >
       {% csrf_token %}
@@ -33,10 +34,12 @@
             type="text"
             name="name"
             required
+            data-rs-rule="name"
             autocomplete="name"
             maxlength="120"
             placeholder="Імʼя"
           >
+          <p class="rs-field__error" data-rs-error hidden></p>
         </div>
         <div class="rs-svc-card__field">
           <label class="sr-only" for="home_booking_phone">Телефон</label>
@@ -45,10 +48,12 @@
             type="tel"
             name="phone"
             required
+            data-rs-rule="phone"
             autocomplete="tel"
             maxlength="30"
             placeholder="Телефон"
           >
+          <p class="rs-field__error" data-rs-error hidden></p>
         </div>
         <div class="rs-svc-card__field rs-svc-card__field--full">
           <label class="sr-only" for="home_booking_comment">Побажання</label>
