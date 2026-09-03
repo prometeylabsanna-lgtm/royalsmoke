@@ -145,9 +145,14 @@ def wishlist_toggle(request):
 
     product = Product.objects.filter(pk=product_id).first()
     if product:
+        show_label = request.POST.get('wish_context') == 'pd'
         btn = render_to_string(
             'accounts/partials/wish_btn.html',
-            {'product': product, 'wishlist_ids': ids},
+            {
+                'product': product,
+                'wishlist_ids': ids,
+                'show_label': show_label,
+            },
             request=request,
         )
         return HttpResponse(btn + _badge_oob(request))

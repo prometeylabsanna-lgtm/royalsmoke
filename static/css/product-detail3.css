@@ -193,30 +193,94 @@
   border-top-color: rgba(201, 154, 68, 0.4);
 }
 
-.rs-pd__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  gap: 10px;
+body.rs-pd-page .rs-pd__cta .rs-pd__actions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
   margin-top: 14px;
+  align-items: stretch;
 }
 
-.rs-pd__actions .rs-wish,
-.rs-pd__actions .rs-compare-toggle {
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish,
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-compare-toggle {
+  display: flex;
+  min-width: 0;
+  margin: 0;
+}
+
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-btn,
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-compare-btn,
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn--labeled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  text-align: center;
+}
+
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-compare-btn,
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn--labeled {
+  gap: 6px;
+  flex-direction: column;
+}
+
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn--labeled {
+  border: 1px solid rgba(201, 154, 68, 0.42);
+  background: transparent;
+  color: rgba(252, 242, 238, 0.88);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition:
+    border-color var(--rs-dur-fast) var(--rs-ease),
+    color var(--rs-dur-fast) var(--rs-ease),
+    background var(--rs-dur-fast) var(--rs-ease);
+}
+
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn--labeled:hover,
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn--labeled:focus-visible {
+  border-color: var(--rs-gold);
+  color: var(--rs-seashell);
+  outline: none;
+}
+
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn--labeled.is-active {
+  border-color: var(--rs-gold);
+  color: var(--rs-gold);
+  background: rgba(201, 154, 68, 0.1);
+}
+
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn__label,
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-compare-btn__label {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn__icon,
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-compare-btn__icon {
   flex: 0 0 auto;
 }
 
-.rs-pd__actions .rs-wish-btn {
-  min-height: 48px;
-  min-width: 48px;
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn__path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.rs-pd__actions .rs-pd__buy {
-  flex: 1 1 140px;
-}
-
-.rs-pd__actions .rs-pd__pick {
-  flex: 1 1 120px;
+body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn--labeled.is-active .rs-wish-btn__path {
+  fill: url(#rs-wish-gold);
+  stroke: url(#rs-wish-gold);
 }
 
 /* Gallery: video + 360 */
@@ -380,18 +444,37 @@
     font-size: 20px;
   }
 
-  .rs-pd__actions .rs-compare-btn__label {
-    display: inline;
+  body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-btn,
+  body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-compare-btn,
+  body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn--labeled {
+    font-size: 12px;
+    padding: 0 10px;
+  }
+
+  body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-compare-btn,
+  body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn--labeled {
+    flex-direction: row;
+    gap: 8px;
   }
 }
 
 @media (max-width: 767px) {
-  .rs-pd__actions .rs-compare-btn {
-    padding: 0 12px;
+  body.rs-pd-page .rs-pd__cta .rs-pd__actions {
+    gap: 6px;
   }
 
-  .rs-pd__actions .rs-compare-btn__label {
-    display: none;
+  body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-btn,
+  body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-compare-btn,
+  body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn--labeled {
+    font-size: 10px;
+    padding: 0 4px;
+    min-height: 48px;
+  }
+
+  body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-compare-btn__icon,
+  body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn__icon {
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -409,9 +492,9 @@
 /* iOS Safari: avoid 100vh jump, keep tap targets */
 @supports (-webkit-touch-callout: none) {
   .rs-pd__vitola,
-  .rs-pd__actions .rs-btn,
-  .rs-pd__actions .rs-compare-btn,
-  .rs-pd__actions .rs-wish-btn {
+  body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-btn,
+  body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-compare-btn,
+  body.rs-pd-page .rs-pd__cta .rs-pd__actions .rs-wish-btn--labeled {
     min-height: 48px;
   }
 

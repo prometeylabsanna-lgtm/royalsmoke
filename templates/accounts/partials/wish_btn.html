@@ -1,5 +1,5 @@
 {% load i18n %}
-<form class="rs-wish"
+<form class="rs-wish{% if show_label %} rs-wish--labeled{% endif %}"
       method="post"
       action="{% url 'accounts:wishlist_toggle' %}"
       hx-post="{% url 'accounts:wishlist_toggle' %}"
@@ -7,13 +7,21 @@
       hx-swap="outerHTML">
   {% csrf_token %}
   <input type="hidden" name="product_id" value="{{ product.id }}">
+  {% if show_label %}
+    <input type="hidden" name="wish_context" value="pd">
+  {% endif %}
   <button type="submit"
-          class="rs-wish-btn{% if product.id in wishlist_ids %} is-active{% endif %}"
+          class="rs-wish-btn{% if show_label %} rs-wish-btn--labeled{% endif %}{% if product.id in wishlist_ids %} is-active{% endif %}"
           aria-label="{% if product.id in wishlist_ids %}{% trans 'Прибрати з вибраного' %}{% else %}{% trans 'Додати до вибраного' %}{% endif %}"
           aria-pressed="{% if product.id in wishlist_ids %}true{% else %}false{% endif %}">
-    <svg class="rs-wish-btn__icon" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+    <svg class="rs-wish-btn__icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
       <path class="rs-wish-btn__path"
             d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
     </svg>
+    {% if show_label %}
+      <span class="rs-wish-btn__label">
+        {% if product.id in wishlist_ids %}{% trans "У обраному" %}{% else %}{% trans "Обране" %}{% endif %}
+      </span>
+    {% endif %}
   </button>
 </form>

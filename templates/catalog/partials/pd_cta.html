@@ -44,6 +44,6 @@
     <button type="submit" form="rs-pd-cart-form" class="rs-btn rs-btn--gold rs-pd__buy">{% trans "У кошик" %}</button>
     <a class="rs-btn rs-btn--ghost rs-pd__pick" href="{% url 'pages:home' %}#home-calculator">{% trans "Розрахунок" %}</a>
     {% include "catalog/partials/compare_btn.html" with product=product %}
-    {% include "accounts/partials/wish_btn.html" with product=product %}
+    {% include "accounts/partials/wish_btn.html" with product=product show_label=True %}
   </div>
 </section>
