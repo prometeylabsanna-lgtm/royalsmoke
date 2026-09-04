@@ -79,22 +79,27 @@ body.rs-pd-page:not(.rs-home) .rs-header::after {
 
 .rs-pd-bg__video {
   position: absolute;
-  top: -8%;
-  left: -18%;
+  top: -4%;
+  left: -12%;
   display: block;
-  width: 140%;
-  height: 116%;
+  width: 118%;
+  height: 108%;
   object-fit: cover;
-  object-position: 48% 48%;
+  object-position: 34% 48%;
   opacity: 0;
-  mix-blend-mode: screen;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  transition: opacity 0.9s ease-in-out;
+  background: #100d0c;
+  filter: brightness(0.72) contrast(0.94);
+  -webkit-filter: brightness(0.72) contrast(0.94);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: opacity;
+  transition: opacity 1.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .rs-pd-bg__video.is-on {
-  opacity: 0.28;
+  opacity: 0.18;
 }
 
 .rs-pd {

@@ -141,29 +141,11 @@
 
 @supports (-webkit-touch-callout: none) {
   .rs-pd-bg__video.is-on {
-    opacity: 0.26;
+    opacity: 0.16;
   }
 
   body.rs-pd-page:not(.rs-home) .rs-header {
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
-  }
-}
-
-@media (max-width: 1023px) {
-  .rs-pd-bg__video {
-    left: -12%;
-    width: 130%;
-    object-position: 50% 48%;
-  }
-}
-
-@media (max-width: 767px) {
-  .rs-pd-bg__video {
-    left: -6%;
-    width: 120%;
-    height: 112%;
-    top: -4%;
-    object-position: 52% 50%;
   }
 }

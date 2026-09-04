@@ -1,6 +1,5 @@
 {% load i18n static %}
 {% with images=product.images.all %}
-{% with slide_count=images|length %}
 <div class="rs-pd__gallery" data-pd-gallery>
   <div class="rs-pd__stage">
     <button type="button" class="rs-pd__nav rs-pd__nav--prev" data-pd-prev aria-label="{% trans "Попереднє фото" %}">
@@ -27,40 +26,18 @@
       </figure>
     {% endif %}
 
-    {% if video_embed_url or video_direct %}
-      <figure class="rs-pd__slide rs-pd__slide--video" data-pd-slide aria-hidden="true">
-        {% if video_embed_url %}
-          <iframe class="rs-pd__video-frame"
-                  data-src="{{ video_embed_url }}"
-                  title="{% trans 'Відео товару' %}"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                  playsinline></iframe>
-        {% else %}
-          <video class="rs-pd__video-el"
-                 controls
-                 playsinline
-                 webkit-playsinline
-                 preload="metadata"
-                 {% if primary_image %}poster="{{ primary_image.image.url }}"{% endif %}>
-            <source src="{{ video_direct }}" type="video/mp4">
-          </video>
-        {% endif %}
-        <span class="rs-pd__video-mask" aria-hidden="true"></span>
-      </figure>
-    {% endif %}
-
-    <figure class="rs-pd__slide rs-pd__slide--360" data-pd-slide aria-hidden="true">
-      <div class="rs-pd__360" data-pd-360>
-        {% if primary_image %}
-          <img class="rs-pd__360-img" src="{{ primary_image.image.url }}" alt="" width="640" height="640">
-        {% elif images %}
-          <img class="rs-pd__360-img" src="{{ images.0.image.url }}" alt="" width="640" height="640">
-        {% endif %}
-        <span class="rs-pd__360-badge">360°</span>
-        <p class="rs-pd__360-hint">{% trans "Інтерактивний огляд незабаром" %}</p>
-      </div>
+    <figure class="rs-pd__slide rs-pd__slide--video" data-pd-slide aria-hidden="true">
+      <video class="rs-pd__video-el"
+             data-pd-card-video
+             muted
+             defaultMuted
+             loop
+             playsinline
+             webkit-playsinline
+             preload="auto"
+             disablepictureinpicture>
+        <source src="{% static 'video/product-card.mp4' %}?v=1" type="video/mp4">
+      </video>
     </figure>
 
     <button type="button" class="rs-pd__nav rs-pd__nav--next" data-pd-next aria-label="{% trans "Наступне фото" %}">
@@ -94,28 +71,23 @@
               disabled></button>
     {% endif %}
 
-    {% if video_embed_url or video_direct %}
-      <button type="button"
-              class="rs-pd__thumb rs-pd__thumb--tag"
-              data-pd-thumb
-              data-index="{% if images %}{{ images|length }}{% else %}1{% endif %}"
-              role="tab"
-              aria-selected="false"
-              aria-label="{% trans "Відео" %}">
-        <span>Video</span>
-      </button>
-    {% endif %}
-
     <button type="button"
-            class="rs-pd__thumb rs-pd__thumb--tag"
+            class="rs-pd__thumb rs-pd__thumb--video"
             data-pd-thumb
-            data-index="{% if video_embed_url or video_direct %}{% if images %}{{ images|length|add:1 }}{% else %}2{% endif %}{% else %}{% if images %}{{ images|length }}{% else %}1{% endif %}{% endif %}"
+            data-index="{% if images %}{{ images|length }}{% else %}1{% endif %}"
             role="tab"
             aria-selected="false"
-            aria-label="{% trans "360° огляд" %}">
-      <span>360°</span>
+            aria-label="{% trans "Відео" %}">
+      <video class="rs-pd__thumb-video"
+             muted
+             playsinline
+             webkit-playsinline
+             preload="metadata"
+             aria-hidden="true">
+        <source src="{% static 'video/product-card.mp4' %}?v=1" type="video/mp4">
+      </video>
+      <span class="rs-pd__thumb-label">Video</span>
     </button>
   </div>
 </div>
-{% endwith %}
 {% endwith %}

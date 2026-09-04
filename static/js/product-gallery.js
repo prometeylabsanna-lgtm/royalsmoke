@@ -22,13 +22,18 @@
       return;
     }
 
-    var FADE_S = 0.9;
+    var FADE_S = 1.45;
     var secondary = primary.cloneNode(true);
     secondary.removeAttribute('id');
     secondary.removeAttribute('data-pd-bg-video');
     secondary.removeAttribute('autoplay');
     secondary.classList.remove('is-on');
-    wrap.appendChild(secondary);
+    /* Keep clone under ::after cover; insert next to primary, not after late DOM nodes */
+    if (primary.nextSibling) {
+      wrap.insertBefore(secondary, primary.nextSibling);
+    } else {
+      wrap.appendChild(secondary);
+    }
 
     var layers = [primary, secondary];
     layers.forEach(function (v) {
@@ -130,7 +135,9 @@
 
     function goTo(next) {
       var target = ((next % total) + total) % total;
-      if (target === index && slides[index].classList.contains('is-active')) return;
+      if (target === index && slides[index] && slides[index].classList.contains('is-active')) {
+        return;
+      }
 
       var prevSlide = slides[index];
       if (prevSlide) {
@@ -160,6 +167,17 @@
           var iframe = slide.querySelector('iframe');
           if (iframe && iframe.dataset.src && !iframe.getAttribute('src')) {
             iframe.setAttribute('src', iframe.dataset.src);
+          }
+          var cardVideo = slide.querySelector('[data-pd-card-video]');
+          if (cardVideo) {
+            cardVideo.muted = true;
+            cardVideo.defaultMuted = true;
+            cardVideo.volume = 0;
+            try { cardVideo.currentTime = 0; } catch (err) {}
+            var playPromise = cardVideo.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+              playPromise.catch(function () {});
+            }
           }
         }
       });

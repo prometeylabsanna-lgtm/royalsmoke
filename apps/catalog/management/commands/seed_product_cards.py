@@ -190,7 +190,7 @@ class Command(BaseCommand):
                 changed = True
 
             if force or not product.video_url.strip():
-                product.video_url = '/static/video/product-ambient.mp4'
+                product.video_url = '/static/video/product-card.mp4'
                 changed = True
 
             if changed:
