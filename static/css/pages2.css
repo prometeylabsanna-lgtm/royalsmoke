@@ -280,3 +280,54 @@
     transition: none;
   }
 }
+
+/* NP autocomplete + booking */
+.rs-np-results {
+  margin-top: 8px;
+}
+
+.rs-np-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--rs-hairline);
+  background: var(--rs-bg, #fff);
+  max-height: 220px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.rs-np-list__item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 16px;
+  cursor: pointer;
+  color: inherit;
+}
+
+.rs-np-list__item:hover,
+.rs-np-list__item:focus-visible {
+  background: var(--rs-bark-light);
+}
+
+.rs-booking {
+  padding-block: 28px 72px;
+  max-width: 560px;
+}
+
+.rs-booking__form .rs-field input,
+.rs-booking__form .rs-field select,
+.rs-booking__form .rs-field textarea {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  .rs-booking {
+    padding-inline: var(--rs-pad-x-lg, 24px);
+  }
+}

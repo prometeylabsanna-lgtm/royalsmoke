@@ -1,0 +1,7 @@
+Нове бронювання #{{ booking.pk }}
+
+{{ booking.name }}
+{{ booking.phone }}
+{{ booking.email|default:"—" }}
+{% if booking.slot %}{{ booking.slot }}{% else %}без слоту{% endif %}
+{{ booking.comment }}

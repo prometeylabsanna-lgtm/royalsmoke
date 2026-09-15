@@ -10,19 +10,27 @@
 </header>
 
 <div class="rs-container rs-checkout" data-rs-reveal data-reveal-delay="80">
-  <form class="rs-form" method="post" action="{% url 'orders:checkout' %}" style="max-width:none" data-rs-validate novalidate>
+  <form class="rs-form" method="post" action="{% url 'orders:checkout' %}" style="max-width:none" data-rs-validate novalidate id="rs-checkout-form">
     {% csrf_token %}
     {% if form.non_field_errors %}
       <div class="rs-field__error">{{ form.non_field_errors }}</div>
     {% endif %}
 
-    <div class="rs-field{% if form.name.errors %} is-invalid{% endif %}">
-      <label for="id_name">{% trans "Імʼя та прізвище" %}</label>
-      <input id="id_name" type="text" name="name" required autocomplete="name" data-rs-rule="name"
-             value="{{ form.name.value|default:'' }}"
-             aria-describedby="id_name-error"
-             {% if form.name.errors %}aria-invalid="true" data-rs-server-error="1"{% endif %}>
-      <p class="rs-field__error" id="id_name-error" data-rs-error {% if not form.name.errors %}hidden{% endif %}>{% if form.name.errors %}{{ form.name.errors.0 }}{% endif %}</p>
+    <div class="rs-field{% if form.first_name.errors %} is-invalid{% endif %}">
+      <label for="id_first_name">{% trans "Імʼя" %}</label>
+      <input id="id_first_name" type="text" name="first_name" required autocomplete="given-name" data-rs-rule="name"
+             value="{{ form.first_name.value|default:'' }}"
+             aria-describedby="id_first_name-error"
+             {% if form.first_name.errors %}aria-invalid="true" data-rs-server-error="1"{% endif %}>
+      <p class="rs-field__error" id="id_first_name-error" data-rs-error {% if not form.first_name.errors %}hidden{% endif %}>{% if form.first_name.errors %}{{ form.first_name.errors.0 }}{% endif %}</p>
+    </div>
+    <div class="rs-field{% if form.last_name.errors %} is-invalid{% endif %}">
+      <label for="id_last_name">{% trans "Прізвище" %}</label>
+      <input id="id_last_name" type="text" name="last_name" required autocomplete="family-name" data-rs-rule="name"
+             value="{{ form.last_name.value|default:'' }}"
+             aria-describedby="id_last_name-error"
+             {% if form.last_name.errors %}aria-invalid="true" data-rs-server-error="1"{% endif %}>
+      <p class="rs-field__error" id="id_last_name-error" data-rs-error {% if not form.last_name.errors %}hidden{% endif %}>{% if form.last_name.errors %}{{ form.last_name.errors.0 }}{% endif %}</p>
     </div>
     <div class="rs-field{% if form.phone.errors %} is-invalid{% endif %}">
       <label for="id_phone">{% trans "Телефон" %}</label>
@@ -40,44 +48,78 @@
              {% if form.email.errors %}aria-invalid="true" data-rs-server-error="1"{% endif %}>
       <p class="rs-field__error" id="id_email-error" data-rs-error {% if not form.email.errors %}hidden{% endif %}>{% if form.email.errors %}{{ form.email.errors.0 }}{% endif %}</p>
     </div>
-    <div class="rs-field">
-      <label for="id_delivery">{% trans "Спосіб доставки" %}</label>
-      <select id="id_delivery" name="delivery_method" data-rs-rule="required" required aria-describedby="id_delivery-error">
-        <option value="courier">{% trans "Курʼєр Київ" %}</option>
-        <option value="np">{% trans "Нова Пошта" %}</option>
-        <option value="pickup">{% trans "Самовивіз зі шоуруму" %}</option>
+    <div class="rs-field{% if form.delivery_service.errors %} is-invalid{% endif %}">
+      <label for="id_delivery_service">{% trans "Спосіб доставки" %}</label>
+      <select id="id_delivery_service" name="delivery_service" data-rs-rule="required" required
+              aria-describedby="id_delivery_service-error"
+              hx-post="{% url 'orders:np_cost' %}"
+              hx-trigger="change"
+              hx-include="#rs-checkout-form"
+              hx-target="#rs-checkout-summary-costs">
+        {% for value, label in form.fields.delivery_service.choices %}
+          <option value="{{ value }}" {% if form.delivery_service.value == value %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
       </select>
-      <p class="rs-field__error" id="id_delivery-error" data-rs-error hidden></p>
+      <p class="rs-field__error" id="id_delivery_service-error" data-rs-error {% if not form.delivery_service.errors %}hidden{% endif %}>{% if form.delivery_service.errors %}{{ form.delivery_service.errors.0 }}{% endif %}</p>
     </div>
-    <div class="rs-field">
-      <label for="id_address">{% trans "Адреса / відділення" %}</label>
-      <textarea id="id_address" name="address" rows="3" data-rs-rule="required" required aria-describedby="id_address-error">{{ form.address.value|default:'' }}</textarea>
-      <p class="rs-field__error" id="id_address-error" data-rs-error hidden></p>
+
+    <div class="rs-field{% if form.delivery_city.errors %} is-invalid{% endif %}">
+      <label for="id_delivery_city">{% trans "Місто" %}</label>
+      <input id="id_delivery_city" type="text" name="delivery_city" required autocomplete="address-level2"
+             value="{{ form.delivery_city.value|default:'' }}"
+             hx-get="{% url 'orders:np_cities' %}"
+             hx-trigger="keyup changed delay:300ms"
+             hx-target="#np-cities-results"
+             hx-vals='js:{q: document.getElementById("id_delivery_city").value}'
+             aria-describedby="id_delivery_city-error"
+             {% if form.delivery_city.errors %}aria-invalid="true" data-rs-server-error="1"{% endif %}>
+      <input type="hidden" name="np_city_ref" id="id_np_city_ref" value="{{ form.np_city_ref.value|default:'' }}">
+      <div id="np-cities-results" class="rs-np-results"></div>
+      <p class="rs-field__error" id="id_delivery_city-error" data-rs-error {% if not form.delivery_city.errors %}hidden{% endif %}>{% if form.delivery_city.errors %}{{ form.delivery_city.errors.0 }}{% endif %}</p>
     </div>
-    <div class="rs-field">
-      <label for="id_payment">{% trans "Оплата" %}</label>
-      <select id="id_payment" name="payment_method" data-rs-rule="required" required aria-describedby="id_payment-error">
-        <option value="card">{% trans "Картка онлайн" %}</option>
-        <option value="cod">{% trans "При отриманні" %}</option>
-        <option value="invoice">{% trans "Рахунок (B2B)" %}</option>
+
+    <div class="rs-field{% if form.delivery_address.errors %} is-invalid{% endif %}">
+      <label for="id_delivery_address">{% trans "Адреса / відділення" %}</label>
+      <input id="id_delivery_address" type="text" name="delivery_address" required
+             value="{{ form.delivery_address.value|default:'' }}"
+             hx-get="{% url 'orders:np_warehouses' %}"
+             hx-trigger="keyup changed delay:300ms"
+             hx-target="#np-warehouses-results"
+             hx-vals='js:{city_ref: document.getElementById("id_np_city_ref").value, q: document.getElementById("id_delivery_address").value}'
+             aria-describedby="id_delivery_address-error"
+             {% if form.delivery_address.errors %}aria-invalid="true" data-rs-server-error="1"{% endif %}>
+      <input type="hidden" name="np_warehouse_ref" id="id_np_warehouse_ref" value="{{ form.np_warehouse_ref.value|default:'' }}">
+      <div id="np-warehouses-results" class="rs-np-results"></div>
+      <p class="rs-field__error" id="id_delivery_address-error" data-rs-error {% if not form.delivery_address.errors %}hidden{% endif %}>{% if form.delivery_address.errors %}{{ form.delivery_address.errors.0 }}{% endif %}</p>
+    </div>
+
+    <div class="rs-field{% if form.payment_method.errors %} is-invalid{% endif %}">
+      <label for="id_payment_method">{% trans "Оплата" %}</label>
+      <select id="id_payment_method" name="payment_method" data-rs-rule="required" required aria-describedby="id_payment_method-error">
+        {% for value, label in form.fields.payment_method.choices %}
+          <option value="{{ value }}" {% if form.payment_method.value == value %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
       </select>
-      <p class="rs-field__error" id="id_payment-error" data-rs-error hidden></p>
+      <p class="rs-field__error" id="id_payment_method-error" data-rs-error {% if not form.payment_method.errors %}hidden{% endif %}>{% if form.payment_method.errors %}{{ form.payment_method.errors.0 }}{% endif %}</p>
     </div>
     <div class="rs-field">
       <label for="id_comment">{% trans "Коментар" %}</label>
       <textarea id="id_comment" name="comment" rows="3">{{ form.comment.value|default:'' }}</textarea>
     </div>
-    <div class="rs-check">
-      <input type="checkbox" id="id_age_confirm" name="age_confirm" required data-rs-rule="required" data-rs-checkbox="1" aria-describedby="id_age_confirm-error">
+    <div class="rs-check{% if form.age_confirm.errors %} is-invalid{% endif %}">
+      <input type="checkbox" id="id_age_confirm" name="age_confirm" value="1" required data-rs-rule="required" data-rs-checkbox="1"
+             aria-describedby="id_age_confirm-error"
+             {% if form.age_confirm.value %}checked{% endif %}>
       <label for="id_age_confirm">{% trans "Підтверджую, що мені є 21 рік" %}</label>
-      <p class="rs-field__error" id="id_age_confirm-error" data-rs-error hidden></p>
+      <p class="rs-field__error" id="id_age_confirm-error" data-rs-error {% if not form.age_confirm.errors %}hidden{% endif %}>{% if form.age_confirm.errors %}{{ form.age_confirm.errors.0 }}{% endif %}</p>
     </div>
+    <input type="hidden" name="delivery_cost" id="id_delivery_cost" value="{{ form.delivery_cost.value|default:'0' }}">
     <div class="rs-form__actions">
       <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% trans "Підтвердити замовлення" %}</button>
     </div>
   </form>
 
-  <aside class="rs-checkout__summary">
+  <aside class="rs-checkout__summary" id="rs-checkout-summary">
     <h2 class="rs-section__title" style="font-size:22px">{% trans "Ваше замовлення" %}</h2>
     {% for item in cart.items %}
       <div class="rs-cart__row">
@@ -87,9 +129,8 @@
     {% empty %}
       <p class="rs-form__hint">{% trans "Кошик порожній." %}</p>
     {% endfor %}
-    <div class="rs-cart__row rs-cart__row--total">
-      <span>{% trans "Разом" %}</span>
-      <span>{{ cart.total|default:"0" }} ₴</span>
+    <div id="rs-checkout-summary-costs">
+      {% include "orders/partials/checkout_costs.html" %}
     </div>
   </aside>
 </div>

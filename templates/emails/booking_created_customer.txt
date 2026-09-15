@@ -1,0 +1,7 @@
+Ваше бронювання прийнято.
+
+{% if booking.slot %}Слот: {{ booking.slot }}{% endif %}
+Імʼя: {{ booking.name }}
+Телефон: {{ booking.phone }}
+
+Ми звʼяжемося для підтвердження. Royal Smoke.

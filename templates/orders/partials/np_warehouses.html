@@ -1,0 +1,15 @@
+{% load i18n %}
+{% if warehouses %}
+<ul class="rs-np-list" role="listbox">
+  {% for w in warehouses %}
+  <li>
+    <button type="button" class="rs-np-list__item"
+            data-np-wh-ref="{{ w.ref }}"
+            data-np-wh-name="{{ w.name }}"
+            onclick="document.getElementById('id_np_warehouse_ref').value=this.dataset.npWhRef;document.getElementById('id_delivery_address').value=this.dataset.npWhName;document.getElementById('np-warehouses-results').innerHTML='';document.getElementById('id_delivery_service').dispatchEvent(new Event('change'));">
+      {{ w.name }}
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}

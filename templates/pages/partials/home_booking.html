@@ -15,58 +15,6 @@
   <div class="rs-svc-card__body">
     <h2 class="rs-svc-card__title">{% trans "Бронювання" %}</h2>
     <p class="rs-svc-card__lead">{% trans "Дегустація, консультація або візит у шоурум." %}</p>
-
-    <form
-      class="rs-svc-card__form"
-      method="post"
-      action="{% url 'booking:request' %}"
-      data-rs-validate
-      novalidate
-    >
-      {% csrf_token %}
-      <input type="hidden" name="next" value="/#home-booking">
-
-      <div class="rs-svc-card__fields">
-        <div class="rs-svc-card__field">
-          <label class="sr-only" for="home_booking_name">{% trans "Імʼя" %}</label>
-          <input
-            id="home_booking_name"
-            type="text"
-            name="name"
-            required
-            data-rs-rule="name"
-            autocomplete="name"
-            maxlength="120"
-            placeholder="{% trans 'Імʼя' %}"
-          >
-          <p class="rs-field__error" data-rs-error hidden></p>
-        </div>
-        <div class="rs-svc-card__field">
-          <label class="sr-only" for="home_booking_phone">{% trans "Телефон" %}</label>
-          <input
-            id="home_booking_phone"
-            type="tel"
-            name="phone"
-            required
-            data-rs-rule="phone"
-            autocomplete="tel"
-            maxlength="30"
-            placeholder="{% trans 'Телефон' %}"
-          >
-          <p class="rs-field__error" data-rs-error hidden></p>
-        </div>
-        <div class="rs-svc-card__field rs-svc-card__field--full">
-          <label class="sr-only" for="home_booking_comment">{% trans "Побажання" %}</label>
-          <input
-            id="home_booking_comment"
-            type="text"
-            name="comment"
-            maxlength="500"
-            placeholder="{% trans 'Побажання (необовʼязково)' %}"
-          >
-        </div>
-        <button type="submit" class="rs-svc-card__submit">{% trans "Забронювати" %}</button>
-      </div>
-    </form>
+    <a class="rs-btn rs-btn--gold rs-svc-card__submit" href="{% url 'booking:page' %}">{% trans "Обрати час" %}</a>
   </div>
 </article>

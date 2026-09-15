@@ -1,0 +1,18 @@
+{% load i18n %}
+<label for="id_slot">{% trans "Час" %}</label>
+{% if slots %}
+<select id="id_slot" name="slot" required>
+  <option value="">{% trans "Оберіть час" %}</option>
+  {% for slot in slots %}
+    <option value="{{ slot.pk }}">
+      {{ slot.starts_at|date:"d.m H:i" }} — {{ slot.ends_at|date:"H:i" }}
+      ({% blocktrans with n=slot.seats_left %}вільно: {{ n }}{% endblocktrans %})
+    </option>
+  {% endfor %}
+</select>
+{% else %}
+<p class="rs-form__hint">{% trans "Оберіть послугу та дату, щоб побачити вільні слоти." %}</p>
+<select id="id_slot" name="slot" required disabled>
+  <option value="">{% trans "Немає слотів" %}</option>
+</select>
+{% endif %}

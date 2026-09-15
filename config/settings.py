@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django_htmx',
     'rest_framework',
+    'rest_framework.authtoken',
     'django_filters',
     'csp',
     'apps.accounts',
@@ -170,6 +171,7 @@ AGE_GATE_DAYS = 30
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
@@ -182,6 +184,9 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 24,
+    'DEFAULT_THROTTLE_RATES': {
+        'anon_checkout': '20/hour',
+    },
 }
 
 from csp.constants import NONCE, SELF  # noqa: E402
@@ -198,9 +203,41 @@ CONTENT_SECURITY_POLICY = {
     }
 }
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = os.environ.get('EMAIL_HOST', '').strip()
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '587') or 587)
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', 'True').lower() in ('1', 'true', 'yes')
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'noreply@royalsmoke.ua')
 NOTIFY_EMAIL = os.environ.get('NOTIFY_EMAIL', 'admin@royalsmoke.ua')
+if EMAIL_HOST:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+TELEGRAM_BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
+
+LIQPAY_PUBLIC_KEY = os.environ.get('LIQPAY_PUBLIC_KEY', '')
+LIQPAY_PRIVATE_KEY = os.environ.get('LIQPAY_PRIVATE_KEY', '')
+LIQPAY_SANDBOX = os.environ.get('LIQPAY_SANDBOX', '1').lower() in ('1', 'true', 'yes')
+
+NOVA_POSHTA_API_KEY = os.environ.get('NOVA_POSHTA_API_KEY', '')
+NP_SENDER_CITY_REF = os.environ.get('NP_SENDER_CITY_REF', '')
+NP_SENDER_WAREHOUSE_REF = os.environ.get('NP_SENDER_WAREHOUSE_REF', '')
+NP_SENDER_CONTACT = os.environ.get('NP_SENDER_CONTACT', '')
+NP_SENDER_PHONE = os.environ.get('NP_SENDER_PHONE', '')
+NP_SENDER_REF = os.environ.get('NP_SENDER_REF', '')
+NP_CONTACT_SENDER = os.environ.get('NP_CONTACT_SENDER', '')
+NP_SENDER_COUNTERPARTY_REF = os.environ.get('NP_SENDER_COUNTERPARTY_REF', '')
+
+if not DEBUG:
+    SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', 'True').lower() in ('1', 'true', 'yes')
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = int(os.environ.get('SECURE_HSTS_SECONDS', '31536000') or 0)
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 UNFOLD = {
     'SITE_TITLE': 'Royal Smoke',
@@ -220,3 +257,16 @@ CSRF_TRUSTED_ORIGINS = [
     for o in os.environ.get('CSRF_TRUSTED_ORIGINS', 'http://127.0.0.1:8000,http://localhost:8000').split(',')
     if o.strip()
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {'class': 'logging.StreamHandler'},
+    },
+    'loggers': {
+        'apps': {'handlers': ['console'], 'level': 'INFO'},
+        'apps.orders.services': {'handlers': ['console'], 'level': 'INFO'},
+        'apps.core.services': {'handlers': ['console'], 'level': 'INFO'},
+    },
+}

@@ -1,0 +1,7 @@
+[{{ lead.get_kind_display }}] новий лід
+
+{{ lead.name }}
+{{ lead.phone }}
+{{ lead.email }}
+{{ lead.company }}
+{{ lead.message }}

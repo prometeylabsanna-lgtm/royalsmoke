@@ -47,6 +47,8 @@ class DeliveryAddress(models.Model):
     label = models.CharField('Назва', max_length=80, default='Основна')
     city = models.CharField('Місто', max_length=150)
     address = models.CharField('Адреса', max_length=255)
+    np_city_ref = models.CharField('НП CityRef', max_length=64, blank=True)
+    np_warehouse_ref = models.CharField('НП WarehouseRef', max_length=64, blank=True)
     is_default = models.BooleanField('За замовчуванням', default=False)
 
     class Meta:

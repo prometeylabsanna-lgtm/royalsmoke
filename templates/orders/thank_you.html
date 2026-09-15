@@ -8,7 +8,10 @@
   <h1>{% trans "Дякуємо за замовлення" %}</h1>
   <p>
     {% if order %}
-      {% blocktrans with num=order.number|default:order.id %}Номер замовлення <strong>{{ num }}</strong>. Ми надіслали підтвердження на вашу пошту.{% endblocktrans %}
+      {% blocktrans with num=order.order_number %}Номер замовлення <strong>{{ num }}</strong>. Ми надіслали підтвердження на вашу пошту.{% endblocktrans %}
+      {% if order.status == 'awaiting_payment' %}
+        <br>{% trans "Очікуємо підтвердження оплати." %}
+      {% endif %}
     {% else %}
       {% trans "Ми отримали ваше замовлення і скоро звʼяжемося з вами." %}
     {% endif %}

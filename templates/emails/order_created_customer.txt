@@ -1,0 +1,7 @@
+Ваше замовлення {{ order.order_number }} прийнято.
+
+Сума: {{ order.total }} {{ order.currency }}
+Доставка: {{ order.get_delivery_service_display }} — {{ order.delivery_city }}, {{ order.delivery_address }}
+Оплата: {{ order.get_payment_method_display }}
+
+Дякуємо, що обрали Royal Smoke.

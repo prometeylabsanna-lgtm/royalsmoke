@@ -24,5 +24,7 @@ class BookingSlotAdmin(ModelAdmin):
 @admin.register(Booking)
 class BookingAdmin(ModelAdmin):
     list_display = ('name', 'phone', 'slot', 'status', 'created_at')
-    list_filter = ('status',)
+    list_filter = ('status', 'slot__service')
+    list_editable = ('status',)
     search_fields = ('name', 'phone', 'email')
+    date_hierarchy = 'created_at'

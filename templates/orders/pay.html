@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Оплата" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+
+{% block content %}
+<div class="rs-thank" data-rs-reveal>
+  <h1>{% trans "Перехід до оплати" %}</h1>
+  <p>{% blocktrans with num=order.order_number %}Замовлення {{ num }}. Зараз відкриється LiqPay.{% endblocktrans %}</p>
+  <form id="liqpay-form" method="post" action="{{ checkout_url }}">
+    <input type="hidden" name="data" value="{{ data }}">
+    <input type="hidden" name="signature" value="{{ signature }}">
+    <button type="submit" class="rs-btn rs-btn--gold">{% trans "Сплатити зараз" %}</button>
+  </form>
+</div>
+<script>
+  document.getElementById('liqpay-form').submit();
+</script>
+{% endblock %}

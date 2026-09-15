@@ -1,0 +1,4 @@
+Оплату замовлення {{ order.order_number }} підтверджено.
+
+Сума: {{ order.total }} {{ order.currency }}
+Статус: {{ order.get_status_display }}

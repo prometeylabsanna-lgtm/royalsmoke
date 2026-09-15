@@ -7,6 +7,8 @@ from django.urls import include, path
 from django.views.generic import TemplateView
 
 from apps.catalog.models import Product
+from apps.core.views import health
+from apps.orders import views as order_views
 from django.contrib.sitemaps import GenericSitemap
 
 info_dict = {
@@ -18,6 +20,9 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
     path('api/v1/', include('apps.api.urls')),
+    path('health/', health, name='health'),
+    path('orders/liqpay/callback/', order_views.liqpay_callback, name='orders_liqpay_callback'),
+    path('orders/liqpay/result/', order_views.liqpay_result, name='orders_liqpay_result'),
     path(
         'robots.txt',
         TemplateView.as_view(template_name='robots.txt', content_type='text/plain'),

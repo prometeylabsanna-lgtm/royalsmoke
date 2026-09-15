@@ -1,0 +1,9 @@
+Нове замовлення {{ order.order_number }}
+
+Сума: {{ order.total }} {{ order.currency }}
+Клієнт: {{ order.first_name }} {{ order.last_name }}
+Телефон: {{ order.phone }}
+Email: {{ order.email }}
+Доставка: {{ order.get_delivery_service_display }} — {{ order.delivery_city }}, {{ order.delivery_address }}
+Оплата: {{ order.get_payment_method_display }}
+Статус: {{ order.get_status_display }}

@@ -56,6 +56,10 @@ class Order(models.Model):
     delivery_service = models.CharField('Доставка', max_length=20, choices=DELIVERY_CHOICES)
     delivery_city = models.CharField('Місто', max_length=150)
     delivery_address = models.CharField('Адреса / відділення', max_length=255)
+    np_city_ref = models.CharField('НП CityRef', max_length=64, blank=True)
+    np_warehouse_ref = models.CharField('НП WarehouseRef', max_length=64, blank=True)
+    np_ttn = models.CharField('ТТН', max_length=32, blank=True)
+    np_ttn_ref = models.CharField('НП TTN Ref', max_length=64, blank=True)
     payment_method = models.CharField(
         'Оплата', max_length=20, choices=PAYMENT_CHOICES, default=PAYMENT_COD,
     )
@@ -108,3 +112,42 @@ class OrderItem(models.Model):
 
     def __str__(self) -> str:
         return self.product_name
+
+
+class Payment(models.Model):
+    PROVIDER_LIQPAY = 'liqpay'
+    PROVIDER_CHOICES = [
+        (PROVIDER_LIQPAY, 'LiqPay'),
+    ]
+
+    STATUS_CREATED = 'created'
+    STATUS_PENDING = 'pending'
+    STATUS_SUCCESS = 'success'
+    STATUS_FAILURE = 'failure'
+    STATUS_REVERSED = 'reversed'
+    STATUS_CHOICES = [
+        (STATUS_CREATED, 'Створено'),
+        (STATUS_PENDING, 'В очікуванні'),
+        (STATUS_SUCCESS, 'Успішно'),
+        (STATUS_FAILURE, 'Помилка'),
+        (STATUS_REVERSED, 'Повернено'),
+    ]
+
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='payments')
+    provider = models.CharField(max_length=20, choices=PROVIDER_CHOICES, default=PROVIDER_LIQPAY)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=STATUS_CREATED)
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+    currency = models.CharField(max_length=3, default='UAH')
+    liqpay_order_id = models.CharField(max_length=64, unique=True)
+    transaction_id = models.CharField(max_length=64, blank=True)
+    raw_callback = models.JSONField(default=dict, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Платіж'
+        verbose_name_plural = 'Платежі'
+        ordering = ['-created_at']
+
+    def __str__(self) -> str:
+        return f'{self.liqpay_order_id} ({self.status})'

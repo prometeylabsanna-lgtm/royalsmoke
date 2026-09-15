@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Бронювання" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+
+{% block content %}
+<header class="rs-page-head" data-rs-reveal>
+  <h1>{% trans "Бронювання" %}</h1>
+  <p>{% trans "Оберіть послугу, дату та вільний слот." %}</p>
+</header>
+
+<section class="rs-container rs-booking" data-rs-reveal>
+  <form class="rs-form rs-booking__form" method="post" action="{% url 'booking:page' %}" data-rs-validate novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="rs-field__error">{{ form.non_field_errors }}</div>{% endif %}
+
+    <div class="rs-field">
+      <label for="id_service">{% trans "Послуга" %}</label>
+      <select id="id_service" name="service" required
+              hx-get="{% url 'booking:slots' %}"
+              hx-target="#booking-slots"
+              hx-include="[name='date']"
+              hx-trigger="change">
+        <option value="">{% trans "Оберіть послугу" %}</option>
+        {% for s in services %}
+          <option value="{{ s.pk }}" {% if form.service.value|stringformat:"s" == s.pk|stringformat:"s" %}selected{% endif %}>{{ s.title }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="rs-field">
+      <label for="id_date">{% trans "Дата" %}</label>
+      <input id="id_date" type="date" name="date"
+             hx-get="{% url 'booking:slots' %}"
+             hx-target="#booking-slots"
+             hx-include="#id_service"
+             hx-trigger="change">
+    </div>
+
+    <div class="rs-field" id="booking-slots">
+      {% include "booking/partials/slots.html" with slots=None %}
+    </div>
+
+    <div class="rs-field">
+      <label for="id_name">{% trans "Імʼя" %}</label>
+      <input id="id_name" type="text" name="name" required data-rs-rule="name" autocomplete="name"
+             value="{{ form.name.value|default:'' }}" style="font-size:16px">
+    </div>
+    <div class="rs-field">
+      <label for="id_phone">{% trans "Телефон" %}</label>
+      <input id="id_phone" type="tel" name="phone" required data-rs-rule="phone" autocomplete="tel"
+             value="{{ form.phone.value|default:'' }}" style="font-size:16px">
+    </div>
+    <div class="rs-field">
+      <label for="id_email">Email</label>
+      <input id="id_email" type="email" name="email" autocomplete="email"
+             value="{{ form.email.value|default:'' }}" style="font-size:16px">
+    </div>
+    <div class="rs-field">
+      <label for="id_comment">{% trans "Побажання" %}</label>
+      <textarea id="id_comment" name="comment" rows="3" maxlength="500">{{ form.comment.value|default:'' }}</textarea>
+    </div>
+    <div class="rs-form__actions">
+      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% trans "Забронювати" %}</button>
+    </div>
+  </form>
+</section>
+{% endblock %}
