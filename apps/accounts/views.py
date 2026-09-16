@@ -3,6 +3,7 @@ from decimal import Decimal
 
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
@@ -16,6 +17,8 @@ from apps.accounts.forms import EmailAuthenticationForm, RegisterForm
 from apps.catalog.models import Product
 from apps.orders.models import Order
 
+_AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
+
 
 def _safe_next(request, fallback: str = 'accounts:cabinet'):
     next_url = request.POST.get('next') or request.GET.get('next') or ''
@@ -28,6 +31,10 @@ def _safe_next(request, fallback: str = 'accounts:cabinet'):
     return fallback
 
 
+def _login_user(request, user) -> None:
+    login(request, user, backend=_AUTH_BACKEND)
+
+
 @require_http_methods(['GET', 'POST'])
 def login_view(request):
     if request.user.is_authenticated:
@@ -35,7 +42,7 @@ def login_view(request):
     next_url = request.POST.get('next') or request.GET.get('next') or ''
     form = EmailAuthenticationForm(request, data=request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        login(request, form.get_user())
+        _login_user(request, form.get_user())
         wishlist_services.merge_session_to_user(request)
         return redirect(_safe_next(request))
     return render(request, 'accounts/login.html', {'form': form, 'next': next_url})
@@ -47,10 +54,14 @@ def register_view(request):
         return redirect('accounts:cabinet')
     form = RegisterForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        user = form.save()
-        login(request, user)
-        wishlist_services.merge_session_to_user(request)
-        return redirect('accounts:cabinet')
+        try:
+            user = form.save()
+        except IntegrityError:
+            form.add_error('email', _('Користувач з таким email уже існує'))
+        else:
+            _login_user(request, user)
+            wishlist_services.merge_session_to_user(request)
+            return redirect('accounts:cabinet')
     return render(request, 'accounts/register.html', {'form': form})
 
 
