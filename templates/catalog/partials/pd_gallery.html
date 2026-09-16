@@ -1,5 +1,6 @@
 {% load i18n static %}
 {% with images=product.images.all %}
+{% with has_video=video_direct|default:video_embed_url %}
 <div class="rs-pd__gallery" data-pd-gallery>
   <div class="rs-pd__stage">
     <button type="button" class="rs-pd__nav rs-pd__nav--prev" data-pd-prev aria-label="{% trans "Попереднє фото" %}">
@@ -26,19 +27,30 @@
       </figure>
     {% endif %}
 
-    <figure class="rs-pd__slide rs-pd__slide--video" data-pd-slide aria-hidden="true">
-      <video class="rs-pd__video-el"
-             data-pd-card-video
-             muted
-             defaultMuted
-             loop
-             playsinline
-             webkit-playsinline
-             preload="auto"
-             disablepictureinpicture>
-        <source src="{% static 'video/product-card.mp4' %}?v=1" type="video/mp4">
-      </video>
-    </figure>
+    {% if has_video %}
+      <figure class="rs-pd__slide rs-pd__slide--video" data-pd-slide aria-hidden="true">
+        {% if video_direct %}
+          <video class="rs-pd__video-el"
+                 data-pd-card-video
+                 muted
+                 defaultMuted
+                 loop
+                 playsinline
+                 webkit-playsinline
+                 preload="metadata"
+                 disablepictureinpicture>
+            <source src="{{ video_direct }}" type="video/mp4">
+          </video>
+        {% else %}
+          <iframe class="rs-pd__video-el"
+                  src="{{ video_embed_url }}"
+                  title="{% trans 'Відео' %}"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"></iframe>
+        {% endif %}
+      </figure>
+    {% endif %}
 
     <button type="button" class="rs-pd__nav rs-pd__nav--next" data-pd-next aria-label="{% trans "Наступне фото" %}">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -71,23 +83,28 @@
               disabled></button>
     {% endif %}
 
-    <button type="button"
-            class="rs-pd__thumb rs-pd__thumb--video"
-            data-pd-thumb
-            data-index="{% if images %}{{ images|length }}{% else %}1{% endif %}"
-            role="tab"
-            aria-selected="false"
-            aria-label="{% trans "Відео" %}">
-      <video class="rs-pd__thumb-video"
-             muted
-             playsinline
-             webkit-playsinline
-             preload="metadata"
-             aria-hidden="true">
-        <source src="{% static 'video/product-card.mp4' %}?v=1" type="video/mp4">
-      </video>
-      <span class="rs-pd__thumb-label">Video</span>
-    </button>
+    {% if has_video %}
+      <button type="button"
+              class="rs-pd__thumb rs-pd__thumb--video"
+              data-pd-thumb
+              data-index="{% if images %}{{ images|length }}{% else %}1{% endif %}"
+              role="tab"
+              aria-selected="false"
+              aria-label="{% trans "Відео" %}">
+        {% if video_direct %}
+          <video class="rs-pd__thumb-video"
+                 muted
+                 playsinline
+                 webkit-playsinline
+                 preload="metadata"
+                 aria-hidden="true">
+            <source src="{{ video_direct }}" type="video/mp4">
+          </video>
+        {% endif %}
+        <span class="rs-pd__thumb-label">Video</span>
+      </button>
+    {% endif %}
   </div>
 </div>
+{% endwith %}
 {% endwith %}

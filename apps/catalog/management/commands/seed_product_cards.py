@@ -204,8 +204,10 @@ class Command(BaseCommand):
                 product.smoke_time = SMOKE_TIMES[seed % len(SMOKE_TIMES)]
                 changed = True
 
-            if force or not product.video_url.strip():
-                product.video_url = '/static/video/product-card.mp4'
+            # Do not auto-attach the ambient demo reel to product cards.
+            demo = (product.video_url or '').strip()
+            if demo.endswith('product-card.mp4') or demo == '/static/video/product-card.mp4':
+                product.video_url = ''
                 changed = True
 
             if changed:

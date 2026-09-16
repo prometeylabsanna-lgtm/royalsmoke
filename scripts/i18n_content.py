@@ -82,6 +82,10 @@ EXACT: dict[str, tuple[str, str]] = {
         'Choose a slot for a tasting, consultation, or showroom visit.',
         '选择品鉴、咨询或展厅参观的时段。',
     ),
+    'Залиште контакти — менеджер узгодить зручний час візиту.': (
+        'Leave your contacts — a manager will arrange a convenient visit time.',
+        '留下联系方式——经理将安排方便的参观时间。',
+    ),
     'Прайс і умови для барів, готелів і корпоративних подарунків.': (
         'Pricing and terms for bars, hotels, and corporate gifts.',
         '酒吧、酒店及企业礼赠的价格与条款。',
