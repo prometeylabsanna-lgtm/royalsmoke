@@ -107,7 +107,16 @@ class Command(BaseCommand):
                         for lang, val in (('en', en), ('zh_hans', zh)):
                             attr = f'{field}_{lang}'
                             current = (getattr(obj, attr, None) or '').strip()
-                            if current and current != uk and not force:
+                            stale_short = (
+                                field == 'body'
+                                and obj.__class__.__name__ == 'LegalDocument'
+                                and getattr(obj, 'slug', '') == 'privacy'
+                                and current
+                                and 'General provisions' not in current
+                                and '总则' not in current
+                                and len(current) < 500
+                            )
+                            if current and current != uk and not force and not stale_short:
                                 continue
                             if current == val:
                                 continue

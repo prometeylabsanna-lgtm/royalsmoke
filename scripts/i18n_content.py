@@ -247,6 +247,14 @@ def translate_uk(text: str | None) -> tuple[str, str] | None:
 
         if raw == PRIVACY_BODY_UK.strip():
             return PRIVACY_BODY_EN, PRIVACY_BODY_ZH
+        # Legacy short privacy blurbs → full policy
+        short_uk = (
+            '<p>Ми обробляємо персональні дані (імʼя, телефон, email, адресу доставки) '
+            'лише для виконання замовлень і зворотного звʼязку. Дані не продаємо третім сторонам.</p>'
+        )
+        short_uk_alt = short_uk.replace("ʼ", "'")
+        if raw in {short_uk, short_uk_alt, short_uk.replace("'", "ʼ")}:
+            return PRIVACY_BODY_EN, PRIVACY_BODY_ZH
     except ImportError:
         pass
     hit = _lookup(raw)

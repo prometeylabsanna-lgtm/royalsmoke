@@ -394,7 +394,13 @@ class Command(BaseCommand):
             )
 
     def _seed_legal(self):
+        from apps.core.legal_privacy_body import (
+            PRIVACY_BODY_EN,
+            PRIVACY_BODY_UK,
+            PRIVACY_BODY_ZH,
+        )
         from apps.pages.models import LegalDocument
+
         for i, item in enumerate(LEGAL_DOC_DEFAULTS):
             doc, created = LegalDocument.objects.get_or_create(
                 slug=item['slug'],
@@ -405,8 +411,6 @@ class Command(BaseCommand):
                     'is_active': True,
                 },
             )
-            if created:
-                continue
             updates: list[str] = []
             if not doc.is_active:
                 doc.is_active = True
@@ -414,14 +418,27 @@ class Command(BaseCommand):
             if not (doc.title or '').strip():
                 doc.title = item['title']
                 updates.append('title')
-            if not (doc.body or '').strip():
-                doc.body = item['body']
-                updates.append('body')
-            elif item['slug'] == 'privacy' and len((doc.body or '').strip()) < 400:
-                doc.body = item['body']
-                updates.append('body')
             if doc.sort_order != i:
                 doc.sort_order = i
                 updates.append('sort_order')
+
+            if item['slug'] == 'privacy':
+                doc.title = item['title']
+                doc.title_uk = item['title']
+                doc.title_en = 'Privacy policy'
+                doc.title_zh_hans = '隐私政策'
+                doc.body = PRIVACY_BODY_UK
+                doc.body_uk = PRIVACY_BODY_UK
+                doc.body_en = PRIVACY_BODY_EN
+                doc.body_zh_hans = PRIVACY_BODY_ZH
+                updates.extend([
+                    'title', 'title_uk', 'title_en', 'title_zh_hans',
+                    'body', 'body_uk', 'body_en', 'body_zh_hans',
+                ])
+            elif not (doc.body or '').strip():
+                doc.body = item['body']
+                updates.append('body')
+
             if updates:
-                doc.save(update_fields=updates)
+                doc.save(update_fields=list(dict.fromkeys(updates)))
+
