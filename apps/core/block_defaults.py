@@ -39,6 +39,41 @@ HISTORY_IMAGE_FALLBACKS: tuple[str, ...] = (
     'img/history/04-today.jpg',
 )
 
+BRAND_IMAGE_FALLBACKS: dict[str, str] = {
+    'aj-fernandez': 'img/brands/01-aj.jpg',
+    'oliva': 'img/brands/02-oliva.jpg',
+    'perdomo': 'img/brands/03-perdomo.jpg',
+    'casa-turrent': 'img/brands/04-turrent.jpg',
+}
+
+BRAND_CARD_TEXT_DEFAULTS: dict[str, str] = {
+    'aj-fernandez': (
+        'Нікарагуанський характер: насичений дим, чітка структура та вітоли '
+        'для вечірнього ритуалу.'
+    ),
+    'oliva': (
+        'Сімейна мануфактура з глибокими blend і стабільним горінням — '
+        'від Serie V до класичних ліній.'
+    ),
+    'perdomo': (
+        'Витримка та точність скрутки: епікюри й торо з теплими нотами '
+        'дерева та кави.'
+    ),
+    'casa-turrent': (
+        'Мексиканське походження й насичений wrapper — сигари з характером '
+        'і довгим післясмаком.'
+    ),
+}
+
+PAGE_BG_IMAGE_FALLBACKS: dict[tuple[str, str], str] = {
+    ('faq', 'bg'): 'img/calculator/lounge-bg.jpg',
+    ('delivery', 'bg'): 'img/calculator/lounge-bg.jpg',
+    ('home', 'calculator_bg'): 'img/calculator/lounge-bg.jpg',
+    ('home', 'about_bg'): 'img/history/bg.jpg',
+    ('service', 'booking_image'): 'img/booking/lounge.jpg',
+    ('service', 'b2b_image'): 'img/service/b2b.jpg',
+}
+
 HISTORY_SLIDE_DEFAULTS: tuple[dict[str, str | int], ...] = (
     {
         'year_label': 'Intro',

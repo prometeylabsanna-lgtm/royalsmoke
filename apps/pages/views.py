@@ -41,6 +41,12 @@ def _enrich_history_slides(slides):
 _BRAND_CRAFT_TONES = ('amber', 'burgundy', 'green', 'brown')
 
 
+def _brand_static_image(brand) -> str:
+    from apps.core.block_defaults import BRAND_IMAGE_FALLBACKS
+
+    return BRAND_IMAGE_FALLBACKS.get(getattr(brand, 'slug', '') or '', '')
+
+
 def _enrich_brand_craft(brands):
     enriched = []
     for i, brand in enumerate(brands[:4]):
@@ -55,6 +61,7 @@ def _enrich_brand_craft(brands):
             'brand': brand,
             'tone': _BRAND_CRAFT_TONES[i % len(_BRAND_CRAFT_TONES)],
             'image': logo,
+            'image_static': '' if logo else _brand_static_image(brand),
             'description': desc,
             'flip': i % 2 == 1,
         })
@@ -62,6 +69,8 @@ def _enrich_brand_craft(brands):
 
 
 def _home_brand_cards():
+    from apps.core.block_defaults import BRAND_CARD_TEXT_DEFAULTS
+
     cards = list(
         HomeBrandCard.objects.filter(is_active=True, brand__is_active=True)
         .select_related('brand')
@@ -83,10 +92,13 @@ def _home_brand_cards():
             except ValueError:
                 image = ''
         desc = (card.text or card.brand.short_description or card.brand.description or '').strip()
+        if not desc:
+            desc = BRAND_CARD_TEXT_DEFAULTS.get(card.brand.slug, '')
         enriched.append({
             'brand': card.brand,
             'tone': _BRAND_CRAFT_TONES[i % len(_BRAND_CRAFT_TONES)],
             'image': image,
+            'image_static': '' if image else _brand_static_image(card.brand),
             'description': desc,
             'flip': i % 2 == 1,
         })

@@ -4,9 +4,12 @@ from __future__ import annotations
 
 import re
 
+from i18n_content_pages import PAGES_EXACT
+
 CYRILLIC_RE = re.compile(r'[а-яА-ЯёЁіІїЇєЄґҐ]')
 
 EXACT: dict[str, tuple[str, str]] = {
+    **PAGES_EXACT,
     'Історія': ('History', '历史'),
     'Про Royal Smoke': ('About Royal Smoke', '关于 Royal Smoke'),
     'Ключові категорії': ('Key categories', '重点分类'),

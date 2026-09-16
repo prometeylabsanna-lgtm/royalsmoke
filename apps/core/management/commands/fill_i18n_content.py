@@ -13,8 +13,8 @@ from apps.calculator.models import CalculatorOption, CalculatorQuestion
 from apps.catalog.models import Product, ProductImage, ProductReview, ProductVariant
 from apps.catalog.models_base import Brand, Category, ProductLine, Tag
 from apps.core.block_defaults import is_visibility_key
-from apps.core.models import HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings
-from apps.pages.models import FAQItem, LegalDocument, clear_site_content_cache
+from apps.core.models import HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings, clear_site_content_cache
+from apps.pages.models import FAQItem, LegalDocument
 
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'scripts'))

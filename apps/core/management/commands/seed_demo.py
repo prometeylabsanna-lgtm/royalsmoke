@@ -31,6 +31,7 @@ class Command(BaseCommand):
         self._seed_history()
         self._seed_catalog()
         self._seed_brand_cards()
+        self._seed_page_bg_images()
         self._seed_faq()
         self._seed_legal()
         self._seed_calculator()
@@ -311,11 +312,82 @@ class Command(BaseCommand):
                     )
 
     def _seed_brand_cards(self):
-        if HomeBrandCard.objects.exists():
-            return
+        from pathlib import Path
+
+        from django.conf import settings
+        from django.core.files import File
+
         from apps.catalog.models_base import Brand
-        for i, brand in enumerate(Brand.objects.filter(is_featured=True).order_by('sort_order')[:4]):
-            HomeBrandCard.objects.create(brand=brand, sort_order=i, is_active=True)
+        from apps.core.block_defaults import BRAND_CARD_TEXT_DEFAULTS, BRAND_IMAGE_FALLBACKS
+
+        brands = list(Brand.objects.filter(is_featured=True).order_by('sort_order', 'id')[:4])
+        if not brands:
+            brands = list(Brand.objects.filter(is_active=True).order_by('sort_order', 'id')[:4])
+        static_root = Path(settings.BASE_DIR) / 'static'
+        for i, brand in enumerate(brands):
+            text = BRAND_CARD_TEXT_DEFAULTS.get(brand.slug, '')
+            if not (brand.short_description or '').strip() and text:
+                brand.short_description = text
+                brand.save(update_fields=['short_description'])
+            card, _ = HomeBrandCard.objects.get_or_create(
+                brand=brand,
+                defaults={'sort_order': i, 'is_active': True, 'text': text},
+            )
+            changed = False
+            if not (card.text or '').strip() and text:
+                card.text = text
+                changed = True
+            if card.sort_order != i:
+                card.sort_order = i
+                changed = True
+            if not card.is_active:
+                card.is_active = True
+                changed = True
+            if changed:
+                card.save(update_fields=['text', 'sort_order', 'is_active'])
+            has_file = False
+            if card.image:
+                try:
+                    has_file = Path(card.image.path).is_file()
+                except (ValueError, FileNotFoundError, OSError):
+                    has_file = False
+            if has_file:
+                continue
+            rel = BRAND_IMAGE_FALLBACKS.get(brand.slug)
+            if not rel:
+                continue
+            path = static_root / rel
+            if not path.is_file():
+                continue
+            with path.open('rb') as fh:
+                card.image.save(path.name, File(fh), save=True)
+
+    def _seed_page_bg_images(self):
+        from pathlib import Path
+
+        from django.conf import settings
+        from django.core.files import File
+
+        from apps.core.block_defaults import PAGE_BG_IMAGE_FALLBACKS
+
+        static_root = Path(settings.BASE_DIR) / 'static'
+        for (page, key), rel in PAGE_BG_IMAGE_FALLBACKS.items():
+            block = SiteBlock.objects.filter(page=page, key=key).first()
+            if not block:
+                continue
+            has_file = False
+            if block.image:
+                try:
+                    has_file = Path(block.image.path).is_file()
+                except (ValueError, FileNotFoundError, OSError):
+                    has_file = False
+            if has_file:
+                continue
+            path = static_root / rel
+            if not path.is_file():
+                continue
+            with path.open('rb') as fh:
+                block.image.save(path.name, File(fh), save=True)
 
     def _seed_faq(self):
         from apps.pages.models import FAQItem
@@ -332,7 +404,7 @@ class Command(BaseCommand):
     def _seed_legal(self):
         from apps.pages.models import LegalDocument
         for i, item in enumerate(LEGAL_DOC_DEFAULTS):
-            LegalDocument.objects.get_or_create(
+            doc, created = LegalDocument.objects.get_or_create(
                 slug=item['slug'],
                 defaults={
                     'title': item['title'],
@@ -341,3 +413,20 @@ class Command(BaseCommand):
                     'is_active': True,
                 },
             )
+            if created:
+                continue
+            updates: list[str] = []
+            if not doc.is_active:
+                doc.is_active = True
+                updates.append('is_active')
+            if not (doc.title or '').strip():
+                doc.title = item['title']
+                updates.append('title')
+            if not (doc.body or '').strip():
+                doc.body = item['body']
+                updates.append('body')
+            if doc.sort_order != i:
+                doc.sort_order = i
+                updates.append('sort_order')
+            if updates:
+                doc.save(update_fields=updates)

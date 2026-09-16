@@ -64,6 +64,15 @@
 
 .rs-svc-card__title {
   margin: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  font-size: clamp(20px, 2.6vw, 28px);
+  letter-spacing: 0.1em;
+  text-indent: 0.1em;
+  line-height: 1.15;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .rs-svc-card__lead {
@@ -226,6 +235,12 @@
     gap: 8px;
   }
 
+  .rs-svc-card__title {
+    font-size: clamp(22px, 2.2vw, 28px);
+    letter-spacing: 0.1em;
+    text-indent: 0.1em;
+  }
+
   .rs-svc-card__lead {
     font-size: 12px;
   }
@@ -264,6 +279,12 @@
   .rs-svc-card__body {
     padding: 22px 20px;
     gap: 10px;
+  }
+
+  .rs-svc-card__title {
+    font-size: 28px;
+    letter-spacing: 0.12em;
+    text-indent: 0.12em;
   }
 
   .rs-svc-card__lead {

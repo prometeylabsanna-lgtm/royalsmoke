@@ -1,4 +1,4 @@
-{% load i18n rs_content %}
+{% load static i18n rs_content %}
 {% trans "Premium" as premium_fallback %}
 <section class="rs-section rs-home-brands" id="home-brands" aria-label="{% trans 'Бренди' %}" data-brands-craft>
   <div class="rs-brands-snaps" data-brands-snaps style="--rs-brand-count: {{ brand_craft|length|default:4 }}">
@@ -13,6 +13,15 @@
           {% if item.image %}
           <img
             src="{{ item.image }}"
+            alt="{{ item.brand.name }}"
+            width="1400"
+            height="1600"
+            loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+            decoding="async"
+          >
+          {% elif item.image_static %}
+          <img
+            src="{% static item.image_static %}"
             alt="{{ item.brand.name }}"
             width="1400"
             height="1600"
@@ -47,7 +56,9 @@
           <div class="rs-brand-snap__wrap">
             <p class="rs-brand-snap__country">{% if item.brand.country %}{{ item.brand.country }}{% else %}{{ premium_fallback }}{% endif %}</p>
             <h3 class="rs-brand-snap__title">{{ item.brand.name }}</h3>
+            {% if item.description %}
             <p class="rs-brand-snap__desc">{{ item.description }}</p>
+            {% endif %}
             <a class="rs-link-gold rs-hover-underline rs-brand-snap__cta" href="{{ item.brand.get_absolute_url }}">
               {% trans "До бренду" %}
             </a>
