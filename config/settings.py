@@ -254,6 +254,10 @@ NP_SENDER_COUNTERPARTY_REF = os.environ.get('NP_SENDER_COUNTERPARTY_REF', '')
 
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# Унікальні cookie на спільному IP з іншими сайтами (інакше sessionid від
+# чужого проєкту блокує /rs-admin/ повідомленням про admin@…).
+SESSION_COOKIE_NAME = os.environ.get('SESSION_COOKIE_NAME', 'rs_sessionid')
+CSRF_COOKIE_NAME = os.environ.get('CSRF_COOKIE_NAME', 'rs_csrftoken')
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Lax'
 if DEBUG:
