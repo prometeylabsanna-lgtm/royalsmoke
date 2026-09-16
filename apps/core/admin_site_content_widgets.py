@@ -7,27 +7,9 @@ from django.forms.widgets import ClearableFileInput
 from unfold.widgets import INPUT_CLASSES, TEXTAREA_CLASSES
 
 
-_SKIP_CLASSES = frozenset({
-    'bg-white',
-    'text-font-default-light',
-    'border-base-200',
-    'dark:bg-base-900',
-    'dark:border-base-700',
-    'dark:text-font-default-dark',
-})
-_FORCE_CLASSES = (
-    'bg-base-900',
-    'text-base-100',
-    'border-base-700',
-    'placeholder-base-400',
-)
-
-
 def cms_control_classes(base_classes: list[str], extra_class: str = '') -> str:
-    classes = [token for token in base_classes if token not in _SKIP_CLASSES]
-    for token in _FORCE_CLASSES:
-        if token not in classes:
-            classes.append(token)
+    """Keep Unfold theme-aware classes (light + dark:), only append extras."""
+    classes = list(base_classes)
     if extra_class:
         for token in extra_class.split():
             if token and token not in classes:
@@ -62,7 +44,10 @@ class CmsAdminImageWidget(ClearableFileInput):
         merged = dict(attrs or {})
         extra_class = merged.pop('class', '')
         merged.setdefault('accept', 'image/*')
-        classes = cms_control_classes(['rs-cms-image-input'], extra_class)
+        classes = cms_control_classes(
+            [c for c in INPUT_CLASSES if c != 'max-w-2xl'] + ['rs-cms-image-input'],
+            extra_class,
+        )
         super().__init__(attrs={**merged, 'class': classes})
 
     def get_context(self, name, value, attrs):
