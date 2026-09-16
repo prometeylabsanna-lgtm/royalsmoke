@@ -7,7 +7,7 @@ from django import forms
 from django.conf import settings
 from django.contrib import messages
 from django.db import transaction
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.translation import gettext as _
@@ -18,9 +18,10 @@ from django.views.decorators.http import require_GET, require_http_methods, requ
 from apps.cart import services as cart_services
 from apps.core.validation import EmailField, NameField, PhoneField
 from apps.orders.models import Order, OrderItem, Payment
-from apps.orders.services import notify_order_created, notify_order_paid
+from apps.orders.services import notify_order_created
 from apps.orders.services import liqpay as liqpay_svc
 from apps.orders.services import nova_poshta as np_svc
+from apps.orders.services import payments as pay_svc
 
 logger = logging.getLogger(__name__)
 
@@ -133,6 +134,7 @@ def checkout(request):
         'cart': totals,
         'delivery_cost': form['delivery_cost'].value() or 0,
         'grand_total': totals['total'],
+        'demo_payments': pay_svc.demo_payments_enabled(),
     })
 
 
@@ -148,6 +150,12 @@ def pay(request, order_number):
         return redirect(order.get_absolute_url())
     if order.status == Order.STATUS_PAID:
         return redirect(order.get_absolute_url())
+    if pay_svc.demo_payments_enabled():
+        pay_svc.ensure_pending_payment(order, provider=Payment.PROVIDER_DEMO)
+        return render(request, 'orders/pay.html', {
+            'order': order,
+            'demo': True,
+        })
     try:
         payload = liqpay_svc.create_checkout_payload(
             order,
@@ -159,21 +167,39 @@ def pay(request, order_number):
     except ValueError:
         messages.error(request, _('Онлайн-оплата тимчасово недоступна'))
         return redirect(order.get_absolute_url())
-    Payment.objects.get_or_create(
-        liqpay_order_id=order.order_number,
-        defaults={
-            'order': order,
-            'amount': order.total,
-            'currency': order.currency,
-            'status': Payment.STATUS_PENDING,
-        },
-    )
+    pay_svc.ensure_pending_payment(order, provider=Payment.PROVIDER_LIQPAY)
     return render(request, 'orders/pay.html', {
         'order': order,
+        'demo': False,
         'data': payload['data'],
         'signature': payload['signature'],
         'checkout_url': payload['checkout_url'],
     })
+
+
+@require_POST
+def demo_pay(request, order_number):
+    if not pay_svc.demo_payments_enabled():
+        return HttpResponseForbidden('demo payments disabled')
+    order = get_object_or_404(Order, order_number=order_number)
+    if order.payment_method != Order.PAYMENT_ONLINE:
+        return redirect(order.get_absolute_url())
+    if order.status == Order.STATUS_PAID:
+        return redirect(order.get_absolute_url())
+    outcome = (request.POST.get('outcome') or 'success').lower()
+    status = 'success' if outcome == 'success' else 'failure'
+    pay_svc.settle_payment(
+        order,
+        status=status,
+        payload={'demo': True, 'status': status, 'order_id': order.order_number},
+        provider=Payment.PROVIDER_DEMO,
+        transaction_id=f'demo-{order.order_number}',
+    )
+    if status == 'success':
+        messages.success(request, _('Демо-оплату підтверджено.'))
+    else:
+        messages.error(request, _('Демо-оплату відхилено. Можна спробувати ще раз.'))
+    return redirect(order.get_absolute_url())
 
 
 @csrf_exempt
@@ -187,44 +213,18 @@ def liqpay_callback(request):
         return HttpResponseBadRequest('invalid signature')
     order_id = payload.get('order_id') or ''
     status = (payload.get('status') or '').lower()
-    with transaction.atomic():
-        try:
-            order = Order.objects.select_for_update().get(order_number=order_id)
-        except Order.DoesNotExist:
-            logger.warning('LiqPay callback for unknown order %s', order_id)
-            return HttpResponse('ok')
-        payment, _ = Payment.objects.select_for_update().get_or_create(
-            liqpay_order_id=order.order_number,
-            defaults={
-                'order': order,
-                'amount': order.total,
-                'currency': order.currency,
-            },
-        )
-        if payment.status == Payment.STATUS_SUCCESS and order.status == Order.STATUS_PAID:
-            return HttpResponse('ok')
-        payment.raw_callback = payload
-        payment.transaction_id = str(payload.get('transaction_id') or payload.get('payment_id') or '')
-        paid_now = False
-        if status in ('success', 'sandbox', 'wait_accept'):
-            payment.status = Payment.STATUS_SUCCESS
-            order.status = Order.STATUS_PAID
-            order.save(update_fields=['status', 'updated_at'])
-            payment.save()
-            paid_now = True
-        elif status in ('failure', 'error', 'reversed'):
-            payment.status = (
-                Payment.STATUS_REVERSED if status == 'reversed' else Payment.STATUS_FAILURE
-            )
-            payment.save()
-        else:
-            payment.status = Payment.STATUS_PENDING
-            payment.save()
-        if paid_now:
-            order_pk = order.pk
-            transaction.on_commit(
-                lambda: notify_order_paid(Order.objects.get(pk=order_pk))
-            )
+    try:
+        order = Order.objects.get(order_number=order_id)
+    except Order.DoesNotExist:
+        logger.warning('LiqPay callback for unknown order %s', order_id)
+        return HttpResponse('ok')
+    pay_svc.settle_payment(
+        order,
+        status=status,
+        payload=payload,
+        provider=Payment.PROVIDER_LIQPAY,
+        transaction_id=str(payload.get('transaction_id') or payload.get('payment_id') or ''),
+    )
     return HttpResponse('ok')
 
 @require_GET

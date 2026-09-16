@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
@@ -52,3 +52,34 @@ class ApiAuthCartTests(TestCase):
         }, format='json')
         self.assertEqual(r.status_code, 201, r.content)
         self.assertEqual(r.json()['status'], 'pending')
+
+    @override_settings(DEMO_PAYMENTS=True)
+    def test_checkout_online_demo_url(self):
+        r = self.client.post('/api/v1/auth/register/', {
+            'email': 'pay@example.com',
+            'password': 'Secret123!',
+            'first_name': 'A',
+            'last_name': 'B',
+        }, format='json')
+        self.assertEqual(r.status_code, 201, r.content)
+        self.client.credentials(HTTP_AUTHORIZATION=f'Token {r.json()["token"]}')
+        self.client.post('/api/v1/cart/', {
+            'product_id': self.product.id,
+            'quantity': 1,
+        }, format='json')
+        r = self.client.post('/api/v1/checkout/', {
+            'first_name': 'A',
+            'last_name': 'B',
+            'phone': '+380501112233',
+            'email': 'pay@example.com',
+            'delivery_service': 'pickup',
+            'delivery_city': 'Kyiv',
+            'delivery_address': 'Showroom',
+            'payment_method': 'online',
+            'age_confirm': True,
+        }, format='json')
+        self.assertEqual(r.status_code, 201, r.content)
+        body = r.json()
+        self.assertEqual(body['status'], 'awaiting_payment')
+        self.assertTrue(body.get('demo'))
+        self.assertIn('/orders/pay/', body.get('demo_pay_url') or '')

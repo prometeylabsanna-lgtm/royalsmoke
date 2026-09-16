@@ -1,0 +1,97 @@
+/* Royal Smoke — demo / pay page (mobile, tablet, iOS Safari) */
+
+body.rs-pay-page .rs-main {
+  padding-bottom: calc(48px + var(--rs-safe-b, 0px));
+}
+
+.rs-pay {
+  width: min(520px, calc(100% - 32px));
+  margin: 32px auto 0;
+  padding: 28px 18px 40px;
+  text-align: center;
+}
+
+.rs-pay__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 6px 12px;
+  margin: 0 0 18px;
+  border: 1px solid var(--rs-gold);
+  color: var(--rs-gold);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.rs-pay h1 {
+  font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-display);
+  font-size: 32px;
+  margin: 0 0 10px;
+}
+
+.rs-pay__lead {
+  color: var(--rs-text-muted);
+  margin: 0 0 18px;
+  line-height: 1.5;
+}
+
+.rs-pay__sum {
+  font-family: var(--rs-font-display);
+  font-size: 28px;
+  margin: 0 0 28px;
+  color: var(--rs-seashell);
+}
+
+.rs-pay__form {
+  max-width: none;
+  text-align: left;
+}
+
+.rs-pay__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.rs-pay .rs-field input {
+  font-size: 16px;
+}
+
+.rs-pay__fail {
+  margin-top: 12px;
+}
+
+@media (min-width: 768px) {
+  .rs-pay {
+    margin-top: 48px;
+    padding: 36px 28px 56px;
+  }
+
+  .rs-pay h1 {
+    font-size: 40px;
+  }
+
+  .rs-pay__sum {
+    font-size: 34px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rs-pay {
+    margin-top: 56px;
+    padding-block: 40px 64px;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .rs-pay .rs-field input {
+    font-size: 16px;
+  }
+
+  .rs-pay {
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
+  }
+}

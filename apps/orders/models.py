@@ -116,8 +116,10 @@ class OrderItem(models.Model):
 
 class Payment(models.Model):
     PROVIDER_LIQPAY = 'liqpay'
+    PROVIDER_DEMO = 'demo'
     PROVIDER_CHOICES = [
         (PROVIDER_LIQPAY, 'LiqPay'),
+        (PROVIDER_DEMO, 'Demo'),
     ]
 
     STATUS_CREATED = 'created'

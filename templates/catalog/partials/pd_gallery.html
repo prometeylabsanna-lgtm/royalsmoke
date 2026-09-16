@@ -14,7 +14,7 @@
                 data-pd-slide
                 {% if forloop.first %}aria-hidden="false"{% else %}aria-hidden="true"{% endif %}>
           <img src="{{ img.image.url }}"
-               alt="{{ img.alt_text|default:product.name }}"
+               alt="{{ product.name }}"
                width="900"
                height="1200"
                {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>

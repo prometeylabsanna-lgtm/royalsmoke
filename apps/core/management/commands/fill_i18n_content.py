@@ -10,7 +10,7 @@ from django.utils.translation import override
 
 from apps.booking.models import BookingService
 from apps.calculator.models import CalculatorOption, CalculatorQuestion
-from apps.catalog.models import Product, ProductReview, ProductVariant
+from apps.catalog.models import Product, ProductImage, ProductReview, ProductVariant
 from apps.catalog.models_base import Brand, Category, ProductLine, Tag
 from apps.core.block_defaults import is_visibility_key
 from apps.core.models import HeroSlide, HistorySlide, SiteBlock, SiteSettings, clear_site_content_cache
@@ -74,6 +74,7 @@ class Command(BaseCommand):
                 None,
             ),
             (ProductVariant.objects.all(), ('name', 'shape'), None),
+            (ProductImage.objects.all(), ('alt_text',), None),
             (ProductReview.objects.all(), ('text',), None),
             (BookingService.objects.all(), ('title', 'description'), None),
             (CalculatorQuestion.objects.all(), ('title', 'help_text'), None),
@@ -112,6 +113,13 @@ class Command(BaseCommand):
                     if changed:
                         obj.save(update_fields=changed)
                         filled += len(changed)
+        # Reviewer names are not translated fields — store Latin for all locales.
+        for review in ProductReview.objects.all():
+            mapped = translate_uk(review.author_name)
+            if mapped and review.author_name != mapped[0]:
+                review.author_name = mapped[0]
+                review.save(update_fields=['author_name'])
+                filled += 1
         clear_site_content_cache()
         self.stdout.write(self.style.SUCCESS(
             f'fill_i18n_content: updated_fields={filled}, missing={missing}, skipped={skipped}'

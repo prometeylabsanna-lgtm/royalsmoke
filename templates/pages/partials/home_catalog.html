@@ -32,7 +32,7 @@
             <a class="rs-pcard__media" href="{{ product.get_absolute_url }}">
               {% with img=product.images.all.0 %}
                 {% if img %}
-                  <img class="rs-pcard__img" data-parallax-media data-depth="0.12" src="{{ img.image.url }}" alt="{{ img.alt_text|default:product.name }}" loading="lazy" width="480" height="640">
+                  <img class="rs-pcard__img" data-parallax-media data-depth="0.12" src="{{ img.image.url }}" alt="{{ product.name }}" loading="lazy" width="480" height="640">
                 {% else %}
                   {% if forloop.counter == 1 %}
                     <img class="rs-pcard__img" data-parallax-media data-depth="0.12" src="{% static 'img/products/pack-01.png' %}" alt="{{ product.name }}" loading="lazy" width="600" height="800">

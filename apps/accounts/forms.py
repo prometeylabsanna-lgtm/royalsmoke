@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from apps.accounts.models import User
-from apps.core.validation import EmailField, NameField, PasswordField, PhoneField
+from apps.core.validation import EmailField, NameField, PasswordField, PhoneField, RequiredCheckboxField
 from apps.core.validation.rules import validate_password
 
 
@@ -17,6 +17,7 @@ class RegisterForm(UserCreationForm):
     first_name = NameField(label=_('Імʼя'), optional=True)
     last_name = NameField(label=_('Прізвище'), optional=True)
     phone = PhoneField(label=_('Телефон'), optional=True)
+    age_confirm = RequiredCheckboxField(label=_('Підтвердження віку'))
 
     class Meta:
         model = User

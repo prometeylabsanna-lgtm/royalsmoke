@@ -1,9 +1,61 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load static i18n %}
 
 {% block title %}{% trans "Оплата" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block body_class %}rs-pay-page{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/pages13.css' %}?v=1">
+{% endblock %}
 
 {% block content %}
+{% if demo %}
+<div class="rs-pay" data-rs-reveal>
+  <p class="rs-pay__badge">{% trans "Демо-режим · гроші не списуються" %}</p>
+  <h1>{% trans "Оплата замовлення" %}</h1>
+  <p class="rs-pay__lead">
+    {% blocktrans with num=order.order_number %}Номер {{ num }}. Це тестова сторінка, щоб перевірити флоу після LiqPay.{% endblocktrans %}
+  </p>
+  <p class="rs-pay__sum">{{ order.total }} {{ order.currency }}</p>
+
+  <form class="rs-form rs-pay__form" method="post" action="{% url 'orders:demo_pay' order.order_number %}">
+    {% csrf_token %}
+    <input type="hidden" name="outcome" value="success">
+    <div class="rs-field">
+      <label for="id_card_name">{% trans "Імʼя на картці" %}</label>
+      <input id="id_card_name" type="text" name="card_name" autocomplete="cc-name"
+             placeholder="{% trans 'IVAN PETRENKO' %}" maxlength="80">
+    </div>
+    <div class="rs-field">
+      <label for="id_card_number">{% trans "Номер картки" %}</label>
+      <input id="id_card_number" type="text" name="card_number" inputmode="numeric"
+             autocomplete="cc-number" maxlength="19" placeholder="4242 4242 4242 4242">
+    </div>
+    <div class="rs-pay__row">
+      <div class="rs-field">
+        <label for="id_card_exp">{% trans "Термін" %}</label>
+        <input id="id_card_exp" type="text" name="card_exp" inputmode="numeric"
+               autocomplete="cc-exp" maxlength="5" placeholder="12/28">
+      </div>
+      <div class="rs-field">
+        <label for="id_card_cvc">CVC</label>
+        <input id="id_card_cvc" type="text" name="card_cvc" inputmode="numeric"
+               autocomplete="cc-csc" maxlength="4" placeholder="123">
+      </div>
+    </div>
+    <p class="rs-form__hint">{% trans "Будь-які дані підійдуть — це симуляція." %}</p>
+    <div class="rs-form__actions">
+      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% trans "Сплатити (демо)" %}</button>
+    </div>
+  </form>
+
+  <form class="rs-pay__fail" method="post" action="{% url 'orders:demo_pay' order.order_number %}">
+    {% csrf_token %}
+    <input type="hidden" name="outcome" value="failure">
+    <button type="submit" class="rs-btn rs-btn--ghost rs-btn--block">{% trans "Імітувати відмову" %}</button>
+  </form>
+</div>
+{% else %}
 <div class="rs-thank" data-rs-reveal>
   <h1>{% trans "Перехід до оплати" %}</h1>
   <p>{% blocktrans with num=order.order_number %}Замовлення {{ num }}. Зараз відкриється LiqPay.{% endblocktrans %}</p>
@@ -16,4 +68,5 @@
 <script>
   document.getElementById('liqpay-form').submit();
 </script>
+{% endif %}
 {% endblock %}

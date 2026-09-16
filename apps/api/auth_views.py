@@ -2,7 +2,6 @@ from decimal import Decimal
 
 from django.contrib.auth import authenticate, get_user_model
 from django.db import transaction
-from django.urls import reverse
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -19,9 +18,9 @@ from apps.api.serializers.auth_cart import (
 from apps.api.serializers.orders import CheckoutSerializer, OrderDetailSerializer
 from apps.cart import db_services as db_cart
 from apps.cart import services as session_cart
-from apps.orders.models import Order, OrderItem, Payment
+from apps.orders.models import Order, OrderItem
 from apps.orders.services import notify_order_created
-from apps.orders.services import liqpay as liqpay_svc
+from apps.orders.services import payments as pay_svc
 
 User = get_user_model()
 
@@ -222,28 +221,5 @@ class CheckoutView(APIView):
         notify_order_created(order)
         payload = OrderDetailSerializer(order).data
         if order.payment_method == Order.PAYMENT_ONLINE:
-            try:
-                liq = liqpay_svc.create_checkout_payload(
-                    order,
-                    result_url=request.build_absolute_uri(
-                        reverse('orders_liqpay_result') + f'?order={order.order_number}'
-                    ),
-                    server_url=request.build_absolute_uri(reverse('orders_liqpay_callback')),
-                )
-                Payment.objects.get_or_create(
-                    liqpay_order_id=order.order_number,
-                    defaults={
-                        'order': order,
-                        'amount': order.total,
-                        'currency': order.currency,
-                        'status': Payment.STATUS_PENDING,
-                    },
-                )
-                payload['liqpay'] = {
-                    'data': liq['data'],
-                    'signature': liq['signature'],
-                    'checkout_url': liq['checkout_url'],
-                }
-            except ValueError:
-                payload['liqpay'] = None
+            payload.update(pay_svc.online_payment_payload(request, order))
         return Response(payload, status=status.HTTP_201_CREATED)

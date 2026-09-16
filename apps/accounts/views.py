@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.utils import timezone
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext as _
 from django.views.decorators.http import require_http_methods, require_POST
 
@@ -16,16 +17,28 @@ from apps.catalog.models import Product
 from apps.orders.models import Order
 
 
+def _safe_next(request, fallback: str = 'accounts:cabinet'):
+    next_url = request.POST.get('next') or request.GET.get('next') or ''
+    if next_url and url_has_allowed_host_and_scheme(
+        next_url,
+        allowed_hosts={request.get_host()},
+        require_https=request.is_secure(),
+    ):
+        return next_url
+    return fallback
+
+
 @require_http_methods(['GET', 'POST'])
 def login_view(request):
     if request.user.is_authenticated:
         return redirect('accounts:cabinet')
+    next_url = request.POST.get('next') or request.GET.get('next') or ''
     form = EmailAuthenticationForm(request, data=request.POST or None)
     if request.method == 'POST' and form.is_valid():
         login(request, form.get_user())
         wishlist_services.merge_session_to_user(request)
-        return redirect(request.GET.get('next') or 'accounts:cabinet')
-    return render(request, 'accounts/login.html', {'form': form})
+        return redirect(_safe_next(request))
+    return render(request, 'accounts/login.html', {'form': form, 'next': next_url})
 
 
 @require_http_methods(['GET', 'POST'])

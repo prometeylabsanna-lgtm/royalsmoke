@@ -2,11 +2,26 @@ from __future__ import annotations
 
 from decimal import Decimal
 from hashlib import md5
+from pathlib import Path
 
+from django.conf import settings
+from django.core.files import File
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
 from apps.catalog.models import Product, ProductImage, ProductReview, ProductVariant
+
+# Demo photos live in static/; seed copies them into MEDIA for ProductImage.
+STATIC_PRODUCT_IMAGES = {
+    'maduro-robusto': 'pack-01.png',
+    'capa-oscura-toro': 'pack-02.png',
+    'serie-v-melanio': 'pack-03.png',
+    '1880-gran-toro': 'cigar-gran-toro.png',
+    '12-years-epicure': 'cigar-epicure.png',
+    'reserva-privada': 'cigar-belicoso.png',
+    'new-world-dorado': 'cigar-dorado.png',
+    'guillotine-classic': 'guillotine.png',
+}
 
 
 WRAPPERS = (
@@ -85,7 +100,7 @@ REVIEW_TEXTS = (
 )
 
 REVIEW_NAMES = (
-    'Олександр', 'Михайло', 'Ірина', 'Дмитро', 'Катерина', 'Андрій', 'Юлія',
+    'Alexander', 'Michael', 'Irene', 'Dmitry', 'Catherine', 'Andrew', 'Julia',
 )
 
 VITOLA_SHAPES = (
@@ -198,6 +213,7 @@ class Command(BaseCommand):
                 updated_products += 1
 
             created_variants += self._ensure_variants(product, seed, force)
+            created_images += self._ensure_primary_image(product)
             created_images += self._ensure_gallery(product, seed)
             created_reviews += self._ensure_reviews(product, seed, force)
 
@@ -249,6 +265,24 @@ class Command(BaseCommand):
 
         return created
 
+    def _ensure_primary_image(self, product: Product) -> int:
+        if product.images.exists():
+            return 0
+        filename = STATIC_PRODUCT_IMAGES.get(product.slug, 'pack-01.png')
+        path = Path(settings.BASE_DIR) / 'static' / 'img' / 'products' / filename
+        if not path.is_file():
+            self.stdout.write(self.style.WARNING(f'Немає фото для {product.slug}: {path}'))
+            return 0
+        img = ProductImage(
+            product=product,
+            alt_text=product.name,
+            sort_order=0,
+            is_primary=True,
+        )
+        with path.open('rb') as fh:
+            img.image.save(f'{product.slug}{path.suffix}', File(fh), save=True)
+        return 1
+
     def _ensure_gallery(self, product: Product, seed: int) -> int:
         images = list(product.images.order_by('sort_order', 'id'))
         if len(images) >= 3:
@@ -259,8 +293,8 @@ class Command(BaseCommand):
         primary = images[0]
         created = 0
         labels = (
-            f'{product.name} — ракурс 2',
-            f'{product.name} — деталі wrapper',
+            f'{product.name} — angle 2',
+            f'{product.name} — wrapper details',
             f'{product.name} — cap & band',
         )
         for i in range(3 - len(images)):

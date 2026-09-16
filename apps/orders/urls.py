@@ -8,6 +8,7 @@ urlpatterns = [
     path('checkout/', views.checkout, name='checkout'),
     path('thank-you/<str:order_number>/', views.thank_you, name='thank_you'),
     path('pay/<str:order_number>/', views.pay, name='pay'),
+    path('pay/<str:order_number>/demo/', views.demo_pay, name='demo_pay'),
     path('np/cities/', views.np_cities, name='np_cities'),
     path('np/warehouses/', views.np_warehouses, name='np_warehouses'),
     path('np/cost/', views.np_cost, name='np_cost'),

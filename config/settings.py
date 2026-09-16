@@ -237,6 +237,8 @@ TELEGRAM_BOT_TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN', '')
 LIQPAY_PUBLIC_KEY = os.environ.get('LIQPAY_PUBLIC_KEY', '')
 LIQPAY_PRIVATE_KEY = os.environ.get('LIQPAY_PRIVATE_KEY', '')
 LIQPAY_SANDBOX = os.environ.get('LIQPAY_SANDBOX', '1').lower() in ('1', 'true', 'yes')
+# Test checkout without LiqPay keys. Keep off in production.
+DEMO_PAYMENTS = _env_bool('DEMO_PAYMENTS', DEBUG)
 
 NOVA_POSHTA_API_KEY = os.environ.get('NOVA_POSHTA_API_KEY', '')
 NP_SENDER_CITY_REF = os.environ.get('NP_SENDER_CITY_REF', '')

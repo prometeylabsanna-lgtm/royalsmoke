@@ -9,7 +9,9 @@
   <p>
     {% if order %}
       {% blocktrans with num=order.order_number %}Номер замовлення <strong>{{ num }}</strong>. Ми надіслали підтвердження на вашу пошту.{% endblocktrans %}
-      {% if order.status == 'awaiting_payment' %}
+      {% if order.status == 'paid' %}
+        <br>{% trans "Оплату підтверджено." %}
+      {% elif order.status == 'awaiting_payment' %}
         <br>{% trans "Очікуємо підтвердження оплати." %}
       {% endif %}
     {% else %}
@@ -17,8 +19,13 @@
     {% endif %}
   </p>
   <div class="rs-btn-row" style="max-width:420px;margin-inline:auto">
-    <a class="rs-btn rs-btn--gold" href="{% url 'catalog:list' %}">{% trans "До каталогу" %}</a>
-    <a class="rs-btn rs-btn--ghost" href="{% url 'accounts:cabinet' %}">{% trans "Кабінет" %}</a>
+    {% if order and order.status == 'awaiting_payment' and order.payment_method == 'online' %}
+      <a class="rs-btn rs-btn--gold" href="{% url 'orders:pay' order.order_number %}">{% trans "Сплатити" %}</a>
+      <a class="rs-btn rs-btn--ghost" href="{% url 'catalog:list' %}">{% trans "До каталогу" %}</a>
+    {% else %}
+      <a class="rs-btn rs-btn--gold" href="{% url 'catalog:list' %}">{% trans "До каталогу" %}</a>
+      <a class="rs-btn rs-btn--ghost" href="{% url 'accounts:cabinet' %}">{% trans "Кабінет" %}</a>
+    {% endif %}
   </div>
 </div>
 {% endblock %}

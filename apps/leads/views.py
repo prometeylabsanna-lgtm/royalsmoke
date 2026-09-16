@@ -25,6 +25,14 @@ class ContactForm(forms.Form):
     email = EmailField(label=_lazy('Email'), optional=True)
     message = forms.CharField(label=_lazy('Повідомлення'), widget=forms.Textarea(attrs={'rows': 4}))
 
+    def clean(self):
+        cleaned = super().clean()
+        if not cleaned.get('phone') and not cleaned.get('email'):
+            msg = _('Вкажіть телефон або email')
+            self.add_error('phone', msg)
+            self.add_error('email', msg)
+        return cleaned
+
 
 class CallbackForm(forms.Form):
     name = NameField(label=_lazy('Імʼя'), optional=True)
@@ -112,4 +120,6 @@ def callback(request):
             f'<p class="form-error">{_("Перевірте номер телефону.")}</p>',
             status=400,
         )
+    else:
+        messages.error(request, _('Перевірте номер телефону.'))
     return redirect(request.META.get('HTTP_REFERER') or '/')

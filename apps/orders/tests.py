@@ -41,3 +41,98 @@ class HealthTests(TestCase):
         resp = self.client.get(reverse('healthz'))
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.content, b'ok')
+
+
+class CheckoutAndDemoPayTests(TestCase):
+    def setUp(self):
+        from apps.catalog.models import Brand, Category, Product
+
+        brand = Brand.objects.create(name='Oliva', slug='oliva')
+        cat = Category.objects.create(name='Cigars', slug='cigars', kind='cigars')
+        self.product = Product.objects.create(
+            name='Serie V',
+            slug='serie-v',
+            brand=brand,
+            category=cat,
+            base_price=1200,
+            is_active=True,
+        )
+
+    def _fill_cart(self):
+        self.client.post(reverse('cart:add'), {
+            'product_id': self.product.id,
+            'quantity': 1,
+        })
+
+    def _checkout(self, payment_method='online'):
+        return self.client.post(reverse('orders:checkout'), {
+            'first_name': 'Ivan',
+            'last_name': 'Petrenko',
+            'phone': '+380501112233',
+            'email': 'buyer@example.com',
+            'delivery_service': 'pickup',
+            'delivery_city': 'Kyiv',
+            'delivery_address': 'Showroom',
+            'payment_method': payment_method,
+            'age_confirm': '1',
+        })
+
+    def test_cod_checkout(self):
+        self._fill_cart()
+        resp = self._checkout('cod')
+        self.assertEqual(resp.status_code, 302)
+        from apps.orders.models import Order
+        order = Order.objects.get()
+        self.assertEqual(order.status, Order.STATUS_PENDING)
+        self.assertEqual(order.payment_method, Order.PAYMENT_COD)
+        self.assertEqual(resp.url, order.get_absolute_url())
+
+    @override_settings(DEMO_PAYMENTS=True)
+    def test_demo_pay_success_and_failure(self):
+        from apps.orders.models import Order, Payment
+
+        self._fill_cart()
+        resp = self._checkout('online')
+        self.assertEqual(resp.status_code, 302)
+        order = Order.objects.get()
+        self.assertEqual(order.status, Order.STATUS_AWAITING_PAYMENT)
+        self.assertIn(f'/orders/pay/{order.order_number}/', resp.url)
+
+        pay_page = self.client.get(reverse('orders:pay', args=[order.order_number]))
+        self.assertEqual(pay_page.status_code, 200)
+        self.assertContains(pay_page, 'Демо-режим')
+
+        fail = self.client.post(
+            reverse('orders:demo_pay', args=[order.order_number]),
+            {'outcome': 'failure'},
+        )
+        self.assertEqual(fail.status_code, 302)
+        order.refresh_from_db()
+        self.assertEqual(order.status, Order.STATUS_AWAITING_PAYMENT)
+        self.assertEqual(Payment.objects.get().status, Payment.STATUS_FAILURE)
+
+        ok = self.client.post(
+            reverse('orders:demo_pay', args=[order.order_number]),
+            {'outcome': 'success'},
+        )
+        self.assertEqual(ok.status_code, 302)
+        order.refresh_from_db()
+        self.assertEqual(order.status, Order.STATUS_PAID)
+        self.assertEqual(Payment.objects.get().status, Payment.STATUS_SUCCESS)
+
+        thank = self.client.get(order.get_absolute_url())
+        self.assertContains(thank, order.order_number)
+
+    @override_settings(DEMO_PAYMENTS=False)
+    def test_demo_pay_disabled(self):
+        self._fill_cart()
+        self._checkout('online')
+        from apps.orders.models import Order
+        order = Order.objects.get()
+        resp = self.client.post(
+            reverse('orders:demo_pay', args=[order.order_number]),
+            {'outcome': 'success'},
+        )
+        self.assertEqual(resp.status_code, 403)
+        order.refresh_from_db()
+        self.assertNotEqual(order.status, Order.STATUS_PAID)

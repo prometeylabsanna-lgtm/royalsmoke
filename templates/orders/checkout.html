@@ -101,6 +101,9 @@
         {% endfor %}
       </select>
       <p class="rs-field__error" id="id_payment_method-error" data-rs-error {% if not form.payment_method.errors %}hidden{% endif %}>{% if form.payment_method.errors %}{{ form.payment_method.errors.0 }}{% endif %}</p>
+      {% if demo_payments %}
+        <p class="rs-form__hint">{% trans "Онлайн-оплата зараз у демо-режимі: після підтвердження відкриється тестова сторінка без реального списання." %}</p>
+      {% endif %}
     </div>
     <div class="rs-field">
       <label for="id_comment">{% trans "Коментар" %}</label>
