@@ -393,6 +393,48 @@
     initCallback();
   });
 
+  /* Nova Poshta autocomplete selection (CSP-safe; no inline handlers) */
+  document.body.addEventListener('click', function (e) {
+    var cityBtn = e.target && e.target.closest
+      ? e.target.closest('[data-np-city-ref]')
+      : null;
+    if (cityBtn) {
+      var cityRef = document.getElementById('id_np_city_ref');
+      var cityInput = document.getElementById('id_delivery_city');
+      var whRef = document.getElementById('id_np_warehouse_ref');
+      var whInput = document.getElementById('id_delivery_address');
+      var citiesBox = document.getElementById('np-cities-results');
+      var whBox = document.getElementById('np-warehouses-results');
+      if (cityRef) cityRef.value = cityBtn.getAttribute('data-np-city-ref') || '';
+      if (cityInput) cityInput.value = cityBtn.getAttribute('data-np-city-name') || '';
+      if (whRef) whRef.value = '';
+      if (whInput) whInput.value = '';
+      if (citiesBox) citiesBox.innerHTML = '';
+      if (whBox) whBox.innerHTML = '';
+      return;
+    }
+
+    var whBtn = e.target && e.target.closest
+      ? e.target.closest('[data-np-wh-ref]')
+      : null;
+    if (whBtn) {
+      var warehouseRef = document.getElementById('id_np_warehouse_ref');
+      var addressInput = document.getElementById('id_delivery_address');
+      var warehousesBox = document.getElementById('np-warehouses-results');
+      var deliverySelect = document.getElementById('id_delivery_service');
+      if (warehouseRef) {
+        warehouseRef.value = whBtn.getAttribute('data-np-wh-ref') || '';
+      }
+      if (addressInput) {
+        addressInput.value = whBtn.getAttribute('data-np-wh-name') || '';
+      }
+      if (warehousesBox) warehousesBox.innerHTML = '';
+      if (deliverySelect) {
+        deliverySelect.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }
+  });
+
   document.body.addEventListener('htmx:afterSwap', function (e) {
     initReveal();
     if (window.RsValidate && typeof window.RsValidate.init === 'function') {

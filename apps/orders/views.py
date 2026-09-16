@@ -242,19 +242,30 @@ def np_cities(request):
         cities = np_svc.search_cities(q)
     except np_svc.NovaPoshtaError:
         logger.exception('NP cities search failed')
-    return render(request, 'orders/partials/np_cities.html', {'cities': cities})
+    return render(request, 'orders/partials/np_cities.html', {
+        'cities': cities,
+        'q': q,
+    })
 
 
 @require_GET
 def np_warehouses(request):
-    city_ref = request.GET.get('city_ref') or request.GET.get('np_city_ref') or ''
+    city_ref = (
+        request.GET.get('city_ref')
+        or request.GET.get('np_city_ref')
+        or ''
+    )
     q = request.GET.get('q') or request.GET.get('delivery_address') or ''
     warehouses = []
     try:
         warehouses = np_svc.get_warehouses(city_ref, q)
     except np_svc.NovaPoshtaError:
         logger.exception('NP warehouses search failed')
-    return render(request, 'orders/partials/np_warehouses.html', {'warehouses': warehouses})
+    return render(request, 'orders/partials/np_warehouses.html', {
+        'warehouses': warehouses,
+        'city_ref': city_ref,
+        'q': q,
+    })
 
 
 @require_http_methods(['GET', 'POST'])

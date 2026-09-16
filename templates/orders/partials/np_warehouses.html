@@ -5,11 +5,14 @@
   <li>
     <button type="button" class="rs-np-list__item"
             data-np-wh-ref="{{ w.ref }}"
-            data-np-wh-name="{{ w.name }}"
-            onclick="document.getElementById('id_np_warehouse_ref').value=this.dataset.npWhRef;document.getElementById('id_delivery_address').value=this.dataset.npWhName;document.getElementById('np-warehouses-results').innerHTML='';document.getElementById('id_delivery_service').dispatchEvent(new Event('change'));">
+            data-np-wh-name="{{ w.name }}">
       {{ w.name }}
     </button>
   </li>
   {% endfor %}
 </ul>
+{% elif not city_ref %}
+<p class="rs-np-empty">{% trans "Спочатку оберіть місто зі списку вище" %}</p>
+{% elif q %}
+<p class="rs-np-empty">{% trans "Відділень за запитом не знайдено" %}</p>
 {% endif %}

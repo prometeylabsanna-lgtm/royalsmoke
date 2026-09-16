@@ -65,31 +65,37 @@
 
     <div class="rs-field{% if form.delivery_city.errors %} is-invalid{% endif %}">
       <label for="id_delivery_city">{% trans "Місто" %}</label>
-      <input id="id_delivery_city" type="text" name="delivery_city" required autocomplete="address-level2"
+      <input id="id_delivery_city" type="text" name="delivery_city" required autocomplete="off"
              value="{{ form.delivery_city.value|default:'' }}"
              hx-get="{% url 'orders:np_cities' %}"
-             hx-trigger="keyup changed delay:300ms"
+             hx-trigger="keyup changed delay:250ms, focus"
              hx-target="#np-cities-results"
-             hx-vals='js:{q: document.getElementById("id_delivery_city").value}'
+             hx-include="this"
+             hx-swap="innerHTML"
+             aria-autocomplete="list"
+             aria-controls="np-cities-results"
              aria-describedby="id_delivery_city-error"
              {% if form.delivery_city.errors %}aria-invalid="true" data-rs-server-error="1"{% endif %}>
       <input type="hidden" name="np_city_ref" id="id_np_city_ref" value="{{ form.np_city_ref.value|default:'' }}">
-      <div id="np-cities-results" class="rs-np-results"></div>
+      <div id="np-cities-results" class="rs-np-results" role="listbox"></div>
       <p class="rs-field__error" id="id_delivery_city-error" data-rs-error {% if not form.delivery_city.errors %}hidden{% endif %}>{% if form.delivery_city.errors %}{{ form.delivery_city.errors.0 }}{% endif %}</p>
     </div>
 
     <div class="rs-field{% if form.delivery_address.errors %} is-invalid{% endif %}">
       <label for="id_delivery_address">{% trans "Адреса / відділення" %}</label>
-      <input id="id_delivery_address" type="text" name="delivery_address" required
+      <input id="id_delivery_address" type="text" name="delivery_address" required autocomplete="off"
              value="{{ form.delivery_address.value|default:'' }}"
              hx-get="{% url 'orders:np_warehouses' %}"
-             hx-trigger="keyup changed delay:300ms, focus"
+             hx-trigger="keyup changed delay:250ms, focus"
              hx-target="#np-warehouses-results"
-             hx-vals='js:{city_ref: document.getElementById("id_np_city_ref").value, q: document.getElementById("id_delivery_address").value}'
+             hx-include="#id_np_city_ref, this"
+             hx-swap="innerHTML"
+             aria-autocomplete="list"
+             aria-controls="np-warehouses-results"
              aria-describedby="id_delivery_address-error"
              {% if form.delivery_address.errors %}aria-invalid="true" data-rs-server-error="1"{% endif %}>
       <input type="hidden" name="np_warehouse_ref" id="id_np_warehouse_ref" value="{{ form.np_warehouse_ref.value|default:'' }}">
-      <div id="np-warehouses-results" class="rs-np-results"></div>
+      <div id="np-warehouses-results" class="rs-np-results" role="listbox"></div>
       <p class="rs-field__error" id="id_delivery_address-error" data-rs-error {% if not form.delivery_address.errors %}hidden{% endif %}>{% if form.delivery_address.errors %}{{ form.delivery_address.errors.0 }}{% endif %}</p>
     </div>
 
