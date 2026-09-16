@@ -273,6 +273,26 @@ UNFOLD = {
     'SITE_TITLE': 'Royal Smoke',
     'SITE_HEADER': 'Royal Smoke Admin',
     'SITE_SYMBOL': 'smoking_rooms',
+    'SITE_FAVICONS': [
+        {
+            'rel': 'icon',
+            'sizes': '16x16',
+            'type': 'image/png',
+            'href': lambda request: static('img/favicon-16.png') + '?v=5',
+        },
+        {
+            'rel': 'icon',
+            'sizes': '32x32',
+            'type': 'image/png',
+            'href': lambda request: static('img/favicon-32.png') + '?v=5',
+        },
+        {
+            'rel': 'apple-touch-icon',
+            'sizes': '180x180',
+            'type': 'image/png',
+            'href': lambda request: static('img/favicon-180.png') + '?v=5',
+        },
+    ],
     'SHOW_HISTORY': True,
     # Warm bark/coffee base + amber primary — під --rs-bark / --rs-gold сайту.
     # Кроки lightness як у дефолті Unfold, щоб не зламати контраст light/dark.
