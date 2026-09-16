@@ -158,6 +158,26 @@ PAGES_EXACT: dict[str, tuple[str, str]] = {
         'Mexican origins and a rich wrapper — cigars with character and a long finish.',
         '墨西哥血统与浓郁茄衣——个性鲜明、余韵悠长的雪茄。',
     ),
+    'Нікарагуанська школа майстерності: насичений смак, щільна скрутка та характерний maduro. Сигари AJ Fernandez — для тих, хто цінує глибину профілю, довгий фініш і ритуал повільного куріння.': (
+        'Nicaraguan school of craft: rich taste, dense roll, and a signature maduro. AJ Fernandez cigars — for those who value profile depth, a long finish, and a slow-smoking ritual.',
+        '尼加拉瓜工艺流派：浓郁风味、紧密卷制与标志性 maduro。AJ Fernandez——为珍视风味深度、悠长余韵与慢品仪式之人而备。',
+    ),
+    'Глибокі профілі з нотами какао, шкіри та кедру — Oliva створює сигари для довгого вечірнього ритуалу. Баланс сили й елегантності, витриманий тютюн і бездоганна скрутка.': (
+        'Deep profiles with cocoa, leather, and cedar notes — Oliva makes cigars for a long evening ritual. Balance of strength and elegance, aged tobacco, flawless roll.',
+        '带可可、皮革与雪松调的深厚风味——Oliva 为漫长晚间仪式而制。力量与优雅并存，陈化烟叶，卷制无瑕。',
+    ),
+    'Свіжі ноти тютюнового листа, акуратна ферментація та чистий фініш. Perdomo — сімейна традиція, де кожна сигара проходить відбір і контроль вологості для ідеального куріння.': (
+        'Fresh leaf notes, careful fermentation, and a clean finish. Perdomo is a family tradition where every cigar is selected and humidity-controlled for ideal smoking.',
+        '鲜叶香气、精心发酵与干净收尾。Perdomo 是家族传统：每支雪茄经甄选与湿度管控，以求理想品吸。',
+    ),
+    'Земляні тони мексиканського terroir, деревʼяна коробка та аксесуари для повільного ритуалу. Casa Turrent поєднує історію родини з сучасним характером преміальної сигари.': (
+        'Earthy Mexican terroir tones, a wooden box, and accessories for a slow ritual. Casa Turrent joins family history with the modern character of a premium cigar.',
+        '墨西哥风土的泥土调、木盒与慢品配件。Casa Turrent 将家族历史与高端雪茄的当代气质融为一体。',
+    ),
+    "Земляні тони мексиканського terroir, дерев'яна коробка та аксесуари для повільного ритуалу. Casa Turrent поєднує історію родини з сучасним характером преміальної сигари.": (
+        'Earthy Mexican terroir tones, a wooden box, and accessories for a slow ritual. Casa Turrent joins family history with the modern character of a premium cigar.',
+        '墨西哥风土的泥土调、木盒与慢品配件。Casa Turrent 将家族历史与高端雪茄的当代气质融为一体。',
+    ),
     'Приватність': ('Privacy', '隐私'),
     'Головна': ('Home', '首页'),
     'Про нас': ('About us', '关于我们'),

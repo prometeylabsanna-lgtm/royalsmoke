@@ -345,14 +345,6 @@ class Command(BaseCommand):
                 changed = True
             if changed:
                 card.save(update_fields=['text', 'sort_order', 'is_active'])
-            has_file = False
-            if card.image:
-                try:
-                    has_file = Path(card.image.path).is_file()
-                except (ValueError, FileNotFoundError, OSError):
-                    has_file = False
-            if has_file:
-                continue
             rel = BRAND_IMAGE_FALLBACKS.get(brand.slug)
             if not rel:
                 continue
