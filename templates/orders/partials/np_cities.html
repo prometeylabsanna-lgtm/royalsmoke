@@ -6,7 +6,7 @@
     <button type="button" class="rs-np-list__item"
             data-np-city-ref="{{ c.ref }}"
             data-np-city-name="{{ c.name }}"
-            onclick="document.getElementById('id_np_city_ref').value=this.dataset.npCityRef;document.getElementById('id_delivery_city').value=this.dataset.npCityName;document.getElementById('np-cities-results').innerHTML='';">
+            onclick="document.getElementById('id_np_city_ref').value=this.dataset.npCityRef;document.getElementById('id_delivery_city').value=this.dataset.npCityName;document.getElementById('id_np_warehouse_ref').value='';document.getElementById('id_delivery_address').value='';document.getElementById('np-warehouses-results').innerHTML='';document.getElementById('np-cities-results').innerHTML='';">
       {{ c.name }}{% if c.area %} <small>{{ c.area }}</small>{% endif %}
     </button>
   </li>

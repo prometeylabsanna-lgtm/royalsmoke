@@ -8,6 +8,29 @@ from django.urls import reverse
 from apps.orders.services import liqpay as liqpay_svc
 
 
+@override_settings(NOVA_POSHTA_API_KEY='')
+class NovaPoshtaDemoTests(SimpleTestCase):
+    def test_demo_cities_and_warehouses(self):
+        from apps.orders.services import nova_poshta as np_svc
+
+        cities = np_svc.search_cities('Ки')
+        self.assertTrue(any(c['ref'] == 'demo-kyiv' for c in cities))
+        warehouses = np_svc.get_warehouses('demo-kyiv')
+        self.assertGreaterEqual(len(warehouses), 1)
+        self.assertEqual(np_svc.calculate_delivery_cost('demo-kyiv'), np_svc.DEMO_DELIVERY_COST)
+
+
+@override_settings(NOVA_POSHTA_API_KEY='')
+class NovaPoshtaDemoEndpointTests(TestCase):
+    def test_demo_endpoints(self):
+        cities = self.client.get(reverse('orders:np_cities'), {'q': 'Львів'})
+        self.assertEqual(cities.status_code, 200)
+        self.assertContains(cities, 'demo-lviv')
+        wh = self.client.get(reverse('orders:np_warehouses'), {'city_ref': 'demo-lviv'})
+        self.assertEqual(wh.status_code, 200)
+        self.assertContains(wh, 'demo-lviv-1')
+
+
 @override_settings(LIQPAY_PUBLIC_KEY='pub', LIQPAY_PRIVATE_KEY='priv', LIQPAY_SANDBOX=True)
 class LiqPayServiceTests(SimpleTestCase):
     def test_sign_roundtrip(self):

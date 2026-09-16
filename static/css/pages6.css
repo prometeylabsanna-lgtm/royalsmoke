@@ -44,6 +44,8 @@ body.rs-cab-page .rs-main {
 
 .rs-cab__title {
   margin: 0 0 10px;
+  text-indent: 0;
+  padding-inline-start: 0;
 }
 
 .rs-cab__lead {
@@ -357,7 +359,7 @@ body.rs-cab-page .rs-main {
   .rs-cab__title {
     text-align: center;
     text-indent: 0;
-    padding-inline-start: var(--rs-heading-page-tracking);
+    padding-inline-start: 0;
   }
 
   .rs-cab__lead {

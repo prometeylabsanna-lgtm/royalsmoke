@@ -1,4 +1,4 @@
-"""Nova Poshta JSON API client."""
+"""Nova Poshta JSON API client (with local demo fallback when API key is empty)."""
 
 from __future__ import annotations
 
@@ -15,6 +15,84 @@ logger = logging.getLogger(__name__)
 
 API_URL = 'https://api.novaposhta.ua/v2.0/json/'
 
+# Local stand-in for checkout UX when NOVA_POSHTA_API_KEY is unset.
+DEMO_CITIES: list[dict[str, str]] = [
+    {'ref': 'demo-kyiv', 'name': 'Київ', 'area': 'м. Київ'},
+    {'ref': 'demo-lviv', 'name': 'Львів', 'area': 'Львівська'},
+    {'ref': 'demo-odesa', 'name': 'Одеса', 'area': 'Одеська'},
+    {'ref': 'demo-kharkiv', 'name': 'Харків', 'area': 'Харківська'},
+    {'ref': 'demo-dnipro', 'name': 'Дніпро', 'area': 'Дніпропетровська'},
+]
+
+DEMO_WAREHOUSES: dict[str, list[dict[str, str]]] = {
+    'demo-kyiv': [
+        {
+            'ref': 'demo-kyiv-1',
+            'name': 'Відділення №1: вул. Хрещатик, 22',
+            'number': '1',
+            'address': 'вул. Хрещатик, 22',
+        },
+        {
+            'ref': 'demo-kyiv-12',
+            'name': 'Відділення №12: вул. Велика Васильківська, 72',
+            'number': '12',
+            'address': 'вул. Велика Васильківська, 72',
+        },
+        {
+            'ref': 'demo-kyiv-45',
+            'name': 'Поштомат №45: ТРЦ Gulliver',
+            'number': '45',
+            'address': 'пл. Спортивна, 1',
+        },
+    ],
+    'demo-lviv': [
+        {
+            'ref': 'demo-lviv-1',
+            'name': 'Відділення №1: пр. Свободи, 27',
+            'number': '1',
+            'address': 'пр. Свободи, 27',
+        },
+        {
+            'ref': 'demo-lviv-7',
+            'name': 'Відділення №7: вул. Городоцька, 175',
+            'number': '7',
+            'address': 'вул. Городоцька, 175',
+        },
+    ],
+    'demo-odesa': [
+        {
+            'ref': 'demo-odesa-1',
+            'name': 'Відділення №1: вул. Дерибасівська, 14',
+            'number': '1',
+            'address': 'вул. Дерибасівська, 14',
+        },
+        {
+            'ref': 'demo-odesa-3',
+            'name': 'Відділення №3: пл. Грецька, 3',
+            'number': '3',
+            'address': 'пл. Грецька, 3',
+        },
+    ],
+    'demo-kharkiv': [
+        {
+            'ref': 'demo-kharkiv-2',
+            'name': 'Відділення №2: вул. Сумська, 72',
+            'number': '2',
+            'address': 'вул. Сумська, 72',
+        },
+    ],
+    'demo-dnipro': [
+        {
+            'ref': 'demo-dnipro-5',
+            'name': 'Відділення №5: пр. Дмитра Яворницького, 50',
+            'number': '5',
+            'address': 'пр. Дмитра Яворницького, 50',
+        },
+    ],
+}
+
+DEMO_DELIVERY_COST = Decimal('75')
+
 
 class NovaPoshtaError(Exception):
     pass
@@ -22,6 +100,30 @@ class NovaPoshtaError(Exception):
 
 def _api_key() -> str:
     return (getattr(settings, 'NOVA_POSHTA_API_KEY', '') or '').strip()
+
+
+def _use_demo() -> bool:
+    return not _api_key()
+
+
+def _match(haystack: str, needle: str) -> bool:
+    return (needle or '').casefold() in (haystack or '').casefold()
+
+
+def _demo_search_cities(query: str, limit: int = 20) -> list[dict[str, str]]:
+    q = (query or '').strip()
+    if len(q) < 2:
+        return []
+    hits = [c for c in DEMO_CITIES if _match(c['name'], q) or _match(c['area'], q)]
+    return hits[:limit]
+
+
+def _demo_warehouses(city_ref: str, query: str = '', limit: int = 50) -> list[dict[str, str]]:
+    rows = list(DEMO_WAREHOUSES.get(city_ref) or [])
+    q = (query or '').strip()
+    if q:
+        rows = [w for w in rows if _match(w['name'], q) or _match(w.get('address', ''), q)]
+    return rows[:limit]
 
 
 def call(model: str, method: str, properties: dict | None = None) -> list[dict]:
@@ -54,6 +156,8 @@ def call(model: str, method: str, properties: dict | None = None) -> list[dict]:
 
 
 def search_cities(query: str, limit: int = 20) -> list[dict[str, str]]:
+    if _use_demo():
+        return _demo_search_cities(query, limit)
     q = (query or '').strip()
     if len(q) < 2:
         return []
@@ -61,7 +165,6 @@ def search_cities(query: str, limit: int = 20) -> list[dict[str, str]]:
         'CityName': q,
         'Limit': str(limit),
     })
-    # searchSettlements wraps addresses
     out: list[dict[str, str]] = []
     for block in rows:
         for addr in block.get('Addresses') or []:
@@ -72,7 +175,6 @@ def search_cities(query: str, limit: int = 20) -> list[dict[str, str]]:
             })
     if out:
         return out
-    # fallback getCities
     rows = call('Address', 'getCities', {'FindByString': q, 'Limit': str(limit)})
     for row in rows:
         out.append({
@@ -84,6 +186,8 @@ def search_cities(query: str, limit: int = 20) -> list[dict[str, str]]:
 
 
 def get_warehouses(city_ref: str, query: str = '', limit: int = 50) -> list[dict[str, str]]:
+    if _use_demo():
+        return _demo_warehouses(city_ref, query, limit)
     if not city_ref:
         return []
     props: dict[str, Any] = {
@@ -110,6 +214,8 @@ def calculate_delivery_cost(
     weight_kg: Decimal | float = 1,
     cost: Decimal | float = 100,
 ) -> Decimal:
+    if _use_demo():
+        return DEMO_DELIVERY_COST if city_ref else Decimal('0')
     sender_city = getattr(settings, 'NP_SENDER_CITY_REF', '') or ''
     if not sender_city or not city_ref:
         return Decimal('0')
@@ -129,6 +235,8 @@ def calculate_delivery_cost(
 
 def create_ttn(order) -> dict[str, str]:
     """Create InternetDocument for order. Returns {ttn, ref}."""
+    if _use_demo():
+        raise NovaPoshtaError('Nova Poshta API key required to create TTN')
     props = {
         'PayerType': 'Sender',
         'PaymentMethod': 'Cash',
@@ -149,8 +257,6 @@ def create_ttn(order) -> dict[str, str]:
         'RecipientsPhone': order.phone,
         'RecipientName': f'{order.first_name} {order.last_name}'.strip(),
     }
-    # Recipient counterparty often created via NewAddress recipient flow;
-    # use simplified save for warehouse-warehouse with RecipientWarehouseIndex if needed.
     rows = call('InternetDocument', 'save', props)
     if not rows:
         raise NovaPoshtaError('Empty response from InternetDocument.save')

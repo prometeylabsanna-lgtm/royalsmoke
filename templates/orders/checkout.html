@@ -83,7 +83,7 @@
       <input id="id_delivery_address" type="text" name="delivery_address" required
              value="{{ form.delivery_address.value|default:'' }}"
              hx-get="{% url 'orders:np_warehouses' %}"
-             hx-trigger="keyup changed delay:300ms"
+             hx-trigger="keyup changed delay:300ms, focus"
              hx-target="#np-warehouses-results"
              hx-vals='js:{city_ref: document.getElementById("id_np_city_ref").value, q: document.getElementById("id_delivery_address").value}'
              aria-describedby="id_delivery_address-error"
