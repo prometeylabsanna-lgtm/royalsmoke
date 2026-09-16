@@ -1,21 +1,21 @@
-{% load static i18n %}
+{% load static i18n rs_content %}
 <header class="rs-header" data-header>
   <div class="rs-header__bar">
     <a class="rs-header__brand" href="{% url 'pages:home' %}">{{ site_settings.site_name|default:"Royal Smoke" }}</a>
 
     <div class="rs-header__primary">
       <a class="rs-header__catalog" href="{% url 'catalog:list' %}">
-        {% trans "Каталог" %}
+        {% cms_text 'site' 'nav_catalog' %}
         <span class="rs-header__catalog-chev" aria-hidden="true"></span>
       </a>
       <nav class="rs-header__nav" aria-label="{% trans 'Основна навігація' %}">
         <div class="rs-header__nav-inner">
-          <a href="{% url 'pages:home' %}">{% trans "Головна" %}</a>
-          <a href="{% url 'catalog:list' %}?tag=sale">{% trans "Акції" %}</a>
-          <a href="{% url 'pages:faq' %}">{% trans "FAQ" %}</a>
-          <a href="{% url 'pages:about' %}">{% trans "Про нас" %}</a>
-          <a href="{% url 'leads:contact' %}">{% trans "Контакти" %}</a>
-          <a href="{% url 'leads:delivery' %}">{% trans "Доставка і оплата" %}</a>
+          <a href="{% url 'pages:home' %}">{% cms_text 'site' 'nav_home' %}</a>
+          <a href="{% url 'catalog:list' %}?tag=sale">{% cms_text 'site' 'nav_sale' %}</a>
+          <a href="{% url 'pages:faq' %}">{% cms_text 'site' 'nav_faq' %}</a>
+          <a href="{% url 'pages:about' %}">{% cms_text 'site' 'nav_about' %}</a>
+          <a href="{% url 'leads:contact' %}">{% cms_text 'site' 'nav_contact' %}</a>
+          <a href="{% url 'leads:delivery' %}">{% cms_text 'site' 'nav_delivery' %}</a>
         </div>
       </nav>
     </div>
@@ -29,7 +29,7 @@
           <form class="rs-search__form" action="{% url 'catalog:list' %}" method="get" role="search">
             <label class="sr-only" for="rs-search-input">{% trans "Пошук" %}</label>
             <input id="rs-search-input" class="rs-search__input" type="search" name="q" data-search-input
-                   placeholder="{% trans 'Назва товару…' %}" autocomplete="off" enterkeyhint="search"
+                   placeholder="{% cms_text 'site' 'header_search_placeholder' %}" autocomplete="off" enterkeyhint="search"
                    hx-get="{% url 'catalog:search' %}"
                    hx-trigger="keyup changed delay:220ms, search"
                    hx-target="[data-search-results]"
@@ -81,24 +81,24 @@
     </div>
     <hr class="rs-drawer__line">
     <nav class="rs-drawer__nav">
-      <p class="rs-drawer__group">{% trans "Покупка" %}</p>
-      <a href="{% url 'pages:home' %}">{% trans "Головна" %}</a>
-      <a href="{% url 'catalog:list' %}">{% trans "Каталог" %}</a>
-      <a href="{% url 'catalog:list' %}?tag=sale">{% trans "Акції" %}</a>
-      <a href="{% url 'cart:detail' %}">{% trans "Кошик" %}</a>
+      <p class="rs-drawer__group">{% cms_text 'site' 'drawer_shop' %}</p>
+      <a href="{% url 'pages:home' %}">{% cms_text 'site' 'nav_home' %}</a>
+      <a href="{% url 'catalog:list' %}">{% cms_text 'site' 'nav_catalog' %}</a>
+      <a href="{% url 'catalog:list' %}?tag=sale">{% cms_text 'site' 'nav_sale' %}</a>
+      <a href="{% url 'cart:detail' %}">{% cms_text 'site' 'footer_link_cart' %}</a>
       <a href="{% url 'catalog:compare' %}">{% trans "Порівняння" %}</a>
       <a href="{% url 'accounts:wishlist' %}">{% trans "Вибране" %}</a>
-      <a href="{% url 'accounts:cabinet' %}">{% trans "Кабінет" %}</a>
+      <a href="{% url 'accounts:cabinet' %}">{% cms_text 'site' 'footer_link_cabinet' %}</a>
 
-      <p class="rs-drawer__group">{% trans "Інфо" %}</p>
-      <a href="{% url 'leads:delivery' %}">{% trans "Доставка і оплата" %}</a>
-      <a href="{% url 'leads:contact' %}">{% trans "Контакти" %}</a>
-      <a href="{% url 'pages:faq' %}">{% trans "FAQ" %}</a>
-      <a href="{% url 'pages:legal' slug='privacy' %}">{% trans "Політика конфіденційності" %}</a>
+      <p class="rs-drawer__group">{% cms_text 'site' 'drawer_info' %}</p>
+      <a href="{% url 'leads:delivery' %}">{% cms_text 'site' 'nav_delivery' %}</a>
+      <a href="{% url 'leads:contact' %}">{% cms_text 'site' 'nav_contact' %}</a>
+      <a href="{% url 'pages:faq' %}">{% cms_text 'site' 'nav_faq' %}</a>
+      <a href="{% url 'pages:legal' slug='privacy' %}">{% cms_text 'site' 'footer_link_privacy' %}</a>
     </nav>
     <div class="rs-drawer__meta">
       {% include "partials/lang_switcher.html" %}
-      <button type="button" class="rs-drawer__callback" data-callback-open>{% trans "Замовити дзвінок" %}</button>
+      <button type="button" class="rs-drawer__callback" data-callback-open>{% cms_text 'site' 'nav_callback' %}</button>
     </div>
   </div>
 </aside>

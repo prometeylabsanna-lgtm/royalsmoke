@@ -1,0 +1,19 @@
+{% if formset %}
+  <fieldset class="rs-cms__group rs-cms__hero">
+    <legend>{{ heading }}</legend>
+    {{ formset.management_form }}
+    {% for f in formset %}
+      <div class="rs-cms__slide">
+        {% for hidden in f.hidden_fields %}{{ hidden }}{% endfor %}
+        {% if f.instance.pk %}<p class="help">#{{ f.instance.pk }}</p>{% endif %}
+        {% for field in f.visible_fields %}
+          <div class="rs-cms-field">
+            {{ field.errors }}
+            {{ field.label_tag }}
+            {{ field }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </fieldset>
+{% endif %}

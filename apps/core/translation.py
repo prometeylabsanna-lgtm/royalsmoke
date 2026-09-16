@@ -1,6 +1,6 @@
 from modeltranslation.translator import TranslationOptions, register
 
-from .models import HeroSlide, HistorySlide, SiteBlock, SiteSettings
+from .models import HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings
 
 
 @register(SiteSettings)
@@ -24,3 +24,8 @@ class HeroSlideTranslation(TranslationOptions):
 @register(HistorySlide)
 class HistorySlideTranslation(TranslationOptions):
     fields = ('year_label', 'title', 'text', 'cta_label')
+
+
+@register(HomeBrandCard)
+class HomeBrandCardTranslation(TranslationOptions):
+    fields = ('text',)

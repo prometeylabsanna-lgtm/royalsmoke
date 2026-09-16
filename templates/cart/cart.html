@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n rs_content %}
 
-{% block title %}{% trans "Кошик" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% cms_text 'cart' 'title' %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 {% block body_class %}rs-cart-page{% endblock %}
 
 {% block extra_css %}
@@ -10,7 +10,7 @@
 
 {% block content %}
 <header class="rs-page-head" data-rs-reveal>
-  <h1>{% trans "Кошик" %}</h1>
+  <h1>{% cms_text 'cart' 'title' %}</h1>
   <p>{% if cart.count %}{{ cart.count }} {% blocktrans count counter=cart.count %}позиція{% plural %}позиції{% endblocktrans %}{% else %}{% trans "Порожній кошик" %}{% endif %}</p>
 </header>
 

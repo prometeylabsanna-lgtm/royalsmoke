@@ -1,76 +1,58 @@
 {% extends "admin/base.html" %}
-{% load i18n unfold %}
+{% load i18n static unfold %}
 
 {% block title %}{{ title }} | {{ site_title|default:_("Django site admin") }}{% endblock %}
 
-{% block extrastyle %}
+{% block extrahead %}
   {{ block.super }}
-  <style>
-    .rs-cms { max-width: 920px; }
-    .rs-cms__hero { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--color-base-200, #e5e5e5); }
-    .rs-cms__hero h2 { font-size: 1.1rem; margin-bottom: 1rem; }
-    .rs-cms__row { display: grid; gap: 1rem; margin-bottom: 1.25rem; padding: 1rem; border: 1px solid var(--color-base-200, #e5e5e5); border-radius: 0.5rem; }
-    .rs-cms__actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
-  </style>
+  <link rel="stylesheet" href="{% static 'css/admin/site_content.css' %}">
+  <script src="{% static 'js/admin/cms_lang_switch.js' %}" defer></script>
+  <script src="{% static 'js/admin/cms_image_preview.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
 <div class="rs-cms">
-  <form method="post" enctype="multipart/form-data" novalidate>
+  <div class="rs-cms__head">
+    <p class="rs-cms__desc">{{ section.description }}</p>
+    {% if section.preview_url %}
+      <a class="rs-cms__preview" href="{{ section.preview_url }}" target="_blank" rel="noopener">Переглянути на сайті</a>
+    {% endif %}
+  </div>
+
+  <div class="rs-cms-langs" data-cms-langs role="tablist" aria-label="Мова полів">
+    <button type="button" class="rs-cms-langs__btn is-active" data-cms-lang-btn="uk" role="tab" aria-selected="true">UA</button>
+    <button type="button" class="rs-cms-langs__btn" data-cms-lang-btn="en" role="tab" aria-selected="false">EN</button>
+    <button type="button" class="rs-cms-langs__btn" data-cms-lang-btn="zh-hans" role="tab" aria-selected="false">中文</button>
+  </div>
+
+  <form method="post" enctype="multipart/form-data" novalidate class="rs-cms__form">
     {% csrf_token %}
 
     {% if form.non_field_errors %}
       <ul class="errorlist">{{ form.non_field_errors }}</ul>
     {% endif %}
 
-    {% for field in form %}
-      <div class="form-row field-{{ field.name }}">
-        {{ field.errors }}
-        {{ field.label_tag }}
-        {{ field }}
-        {% if field.help_text %}<div class="help">{{ field.help_text }}</div>{% endif %}
-      </div>
+    {% for group in form.editor_groups %}
+      <fieldset class="rs-cms__group">
+        <legend>{{ group.title }}</legend>
+        {% for row in group.rows %}
+          <div class="rs-cms__row rs-cms__row--{{ row.kind }}">
+            {% for item in row.fields %}
+              <div class="rs-cms-field{% if row.kind == 'i18n' %} rs-cms-field--i18n{% endif %}" {% if item.lang %}data-cms-lang="{{ item.lang }}"{% endif %}>
+                {{ item.bound.errors }}
+                {{ item.bound.label_tag }}
+                {{ item.bound }}
+                {% if item.bound.help_text %}<div class="help">{{ item.bound.help_text }}</div>{% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </fieldset>
     {% endfor %}
 
-    {% if hero_formset %}
-      <div class="rs-cms__hero">
-        <h2>Слайди Hero</h2>
-        {{ hero_formset.management_form }}
-        {% for f in hero_formset %}
-          <div class="rs-cms__row">
-            {% for hidden in f.hidden_fields %}{{ hidden }}{% endfor %}
-            {% if f.instance.pk %}<p class="help">Слайд #{{ f.instance.pk }}</p>{% endif %}
-            {% for field in f.visible_fields %}
-              <div class="form-row">
-                {{ field.errors }}
-                {{ field.label_tag }}
-                {{ field }}
-              </div>
-            {% endfor %}
-          </div>
-        {% endfor %}
-      </div>
-    {% endif %}
-
-    {% if history_formset %}
-      <div class="rs-cms__hero">
-        <h2>Слайди історії (timeline)</h2>
-        {{ history_formset.management_form }}
-        {% for f in history_formset %}
-          <div class="rs-cms__row">
-            {% for hidden in f.hidden_fields %}{{ hidden }}{% endfor %}
-            {% if f.instance.pk %}<p class="help">Слайд #{{ f.instance.pk }} — {{ f.instance.year_label }}</p>{% endif %}
-            {% for field in f.visible_fields %}
-              <div class="form-row">
-                {{ field.errors }}
-                {{ field.label_tag }}
-                {{ field }}
-              </div>
-            {% endfor %}
-          </div>
-        {% endfor %}
-      </div>
-    {% endif %}
+    {% include "admin/core/cms_formset.html" with formset=hero_formset heading="Слайди банера" %}
+    {% include "admin/core/cms_formset.html" with formset=history_formset heading="Слайди історії" %}
+    {% include "admin/core/cms_formset.html" with formset=brand_formset heading="Картки брендів" %}
 
     <div class="rs-cms__actions submit-row">
       <button type="submit" class="default" name="_save">Зберегти</button>

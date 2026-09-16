@@ -34,7 +34,7 @@ class SiteSettings(models.Model):
     free_delivery_from = models.DecimalField(
         'Безкоштовна доставка від', max_digits=10, decimal_places=2, null=True, blank=True,
     )
-    meta_description = models.TextField('Meta description головної', blank=True)
+    meta_description = models.TextField('SEO-опис головної', blank=True)
 
     class Meta:
         verbose_name = 'Налаштування сайту'
@@ -67,6 +67,16 @@ class SiteBlock(models.Model):
         SITE = 'site', 'Сайт'
         CATALOG = 'catalog', 'Каталог'
         SERVICE = 'service', 'Сервіс'
+        ABOUT = 'about', 'Про нас'
+        FAQ = 'faq', 'FAQ'
+        CONTACT = 'contact', 'Контакти'
+        DELIVERY = 'delivery', 'Доставка'
+        B2B = 'b2b', 'B2B'
+        BOOKING = 'booking', 'Бронювання'
+        CART = 'cart', 'Кошик'
+        CHECKOUT = 'checkout', 'Оформлення'
+        CABINET = 'cabinet', 'Кабінет'
+        AGE = 'age', 'Age gate'
 
     page = models.CharField(max_length=32, choices=Page.choices, verbose_name='Сторінка')
     key = models.CharField(max_length=64, verbose_name='Ключ блоку')
@@ -99,17 +109,17 @@ class HeroSlide(models.Model):
     title = models.CharField('Заголовок', max_length=255, blank=True)
     subtitle = models.CharField('Підзаголовок', max_length=255, blank=True)
     image = models.ImageField('Фото', upload_to='hero/', blank=True)
-    cta_primary_label = models.CharField('CTA primary', max_length=80, blank=True, default='До каталогу')
-    cta_primary_url = models.CharField('CTA primary URL', max_length=255, blank=True, default='/catalog/')
-    cta_secondary_label = models.CharField('CTA secondary', max_length=80, blank=True, default='Сигари')
-    cta_secondary_url = models.CharField('CTA secondary URL', max_length=255, blank=True, default='/catalog/cigars/')
+    cta_primary_label = models.CharField('Основна кнопка', max_length=80, blank=True, default='До каталогу')
+    cta_primary_url = models.CharField('URL основної кнопки', max_length=255, blank=True, default='/catalog/')
+    cta_secondary_label = models.CharField('Другорядна кнопка', max_length=80, blank=True, default='Сигари')
+    cta_secondary_url = models.CharField('URL другорядної кнопки', max_length=255, blank=True, default='/catalog/cigars/')
     sort_order = models.PositiveIntegerField('Порядок', default=0)
     is_active = models.BooleanField('Активний', default=True)
 
     class Meta:
         ordering = ['sort_order', 'id']
-        verbose_name = 'Слайд hero'
-        verbose_name_plural = 'Слайди hero'
+        verbose_name = 'Слайд банера'
+        verbose_name_plural = 'Слайди банера'
 
     def __str__(self) -> str:
         return self.title or f'Слайд #{self.pk or "новий"}'
@@ -134,59 +144,25 @@ class HistorySlide(models.Model):
         return f'{self.year_label}: {self.title}' if self.title else self.year_label
 
 
-# --- CMS proxy sections (sidebar slots) ---
+class HomeBrandCard(models.Model):
+    brand = models.ForeignKey(
+        'catalog.Brand',
+        on_delete=models.CASCADE,
+        related_name='home_cards',
+        verbose_name='Бренд',
+    )
+    image = models.ImageField('Фото картки', upload_to='home_brands/', blank=True)
+    text = models.TextField('Текст на картці', blank=True)
+    sort_order = models.PositiveIntegerField('Порядок', default=0)
+    is_active = models.BooleanField('Активна', default=True)
 
-class HomeHeroSettings(SiteSettings):
     class Meta:
-        proxy = True
-        verbose_name = 'Головна — Hero'
-        verbose_name_plural = 'Головна — Hero'
+        ordering = ['sort_order', 'id']
+        verbose_name = 'Картка бренду на головній'
+        verbose_name_plural = 'Картки брендів на головній'
+
+    def __str__(self) -> str:
+        return str(self.brand_id and self.brand) or f'Картка #{self.pk or "нова"}'
 
 
-class HomeCategoriesSettings(SiteSettings):
-    class Meta:
-        proxy = True
-        verbose_name = 'Головна — Категорії'
-        verbose_name_plural = 'Головна — Категорії'
-
-
-class HomeTopSettings(SiteSettings):
-    class Meta:
-        proxy = True
-        verbose_name = 'Головна — Топ продажів'
-        verbose_name_plural = 'Головна — Топ продажів'
-
-
-class HomeNewSettings(SiteSettings):
-    class Meta:
-        proxy = True
-        verbose_name = 'Головна — Новинки'
-        verbose_name_plural = 'Головна — Новинки'
-
-
-class HomeAboutSettings(SiteSettings):
-    class Meta:
-        proxy = True
-        verbose_name = 'Головна — Історія сигар'
-        verbose_name_plural = 'Головна — Історія сигар'
-
-
-class HomeServiceSettings(SiteSettings):
-    class Meta:
-        proxy = True
-        verbose_name = 'Головна — Сервіс'
-        verbose_name_plural = 'Головна — Сервіс'
-
-
-class SiteHeaderSettings(SiteSettings):
-    class Meta:
-        proxy = True
-        verbose_name = 'Меню / Header'
-        verbose_name_plural = 'Меню / Header'
-
-
-class SiteFooterSettings(SiteSettings):
-    class Meta:
-        proxy = True
-        verbose_name = 'Footer'
-        verbose_name_plural = 'Footer'
+from apps.core.models_proxies import *  # noqa: E402,F401,F403

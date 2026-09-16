@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% load i18n static %}
+{% load i18n static rs_content %}
 
-{% block title %}{% trans "Бронювання" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% cms_text 'booking' 'title' %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 
 {% block content %}
 <header class="rs-page-head" data-rs-reveal>
-  <h1>{% trans "Бронювання" %}</h1>
-  <p>{% trans "Оберіть послугу, дату та вільний слот." %}</p>
+  <h1>{% cms_text 'booking' 'title' %}</h1>
+  <p>{% cms_text 'booking' 'lead' %}</p>
 </header>
 
 <section class="rs-container rs-booking" data-rs-reveal>
@@ -61,7 +61,7 @@
       <textarea id="id_comment" name="comment" rows="3" maxlength="500">{{ form.comment.value|default:'' }}</textarea>
     </div>
     <div class="rs-form__actions">
-      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% trans "Забронювати" %}</button>
+      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% cms_text 'booking' 'submit' %}</button>
     </div>
   </form>
 </section>

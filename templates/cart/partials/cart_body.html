@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n rs_content %}
 {% if cart.items %}
   <div class="rs-cart__main">
     <div class="rs-cart__lines">
@@ -27,7 +27,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="product_id" value="{{ item.product.id }}">
                 {% if item.variant %}<input type="hidden" name="variant_id" value="{{ item.variant.id }}">{% endif %}
-                <button type="submit" class="rs-btn rs-btn--underline">{% trans "Видалити" %}</button>
+                <button type="submit" class="rs-btn rs-btn--underline">{% cms_text 'cart' 'remove' %}</button>
               </form>
             </div>
             <form class="rs-qty rs-cart-line__qty"
@@ -49,7 +49,7 @@
       {% endfor %}
     </div>
 
-    <a class="rs-cart__continue" href="{% url 'catalog:list' %}">{% trans "Продовжити покупки" %}</a>
+    <a class="rs-cart__continue" href="{% url 'catalog:list' %}">{% cms_text 'cart' 'continue' %}</a>
 
     {% if site_settings.free_delivery_from %}
       <p class="rs-cart__hint">{% blocktrans with amount=site_settings.free_delivery_from %}Безкоштовна доставка від {{ amount }} ₴{% endblocktrans %}</p>
@@ -58,11 +58,11 @@
 
   <aside class="rs-cart__bar" aria-label="{% trans "Підсумок кошика" %}">
     <span class="rs-cart__bar-total">{% blocktrans with total=cart.total %}Разом {{ total }} ₴{% endblocktrans %}</span>
-    <a class="rs-cart__checkout" href="{% url 'orders:checkout' %}">{% trans "Оформити замовлення" %}</a>
+    <a class="rs-cart__checkout" href="{% url 'orders:checkout' %}">{% cms_text 'cart' 'checkout' %}</a>
   </aside>
 {% else %}
   <div class="rs-cart__empty">
-    <p class="rs-cart__empty-text">{% trans "Кошик порожній." %}</p>
-    <a class="rs-cart__empty-cta" href="{% url 'catalog:list' %}">{% trans "До каталогу" %}</a>
+    <p class="rs-cart__empty-text">{% cms_text 'cart' 'empty' %}</p>
+    <a class="rs-cart__empty-cta" href="{% url 'catalog:list' %}">{% cms_text 'cart' 'empty_cta' %}</a>
   </div>
 {% endif %}

@@ -13,7 +13,8 @@ from apps.calculator.models import CalculatorOption, CalculatorQuestion
 from apps.catalog.models import Product, ProductImage, ProductReview, ProductVariant
 from apps.catalog.models_base import Brand, Category, ProductLine, Tag
 from apps.core.block_defaults import is_visibility_key
-from apps.core.models import HeroSlide, HistorySlide, SiteBlock, SiteSettings, clear_site_content_cache
+from apps.core.models import HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings
+from apps.pages.models import FAQItem, LegalDocument, clear_site_content_cache
 
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'scripts'))
@@ -78,7 +79,9 @@ class Command(BaseCommand):
             (ProductReview.objects.all(), ('text',), None),
             (BookingService.objects.all(), ('title', 'description'), None),
             (CalculatorQuestion.objects.all(), ('title', 'help_text'), None),
-            (CalculatorOption.objects.all(), ('label', 'explanation'), None),
+            (HomeBrandCard.objects.all(), ('text',), None),
+            (FAQItem.objects.all(), ('question', 'answer'), None),
+            (LegalDocument.objects.all(), ('title', 'body'), None),
         )
         with override('uk'):
             for qs, fields, skipper in jobs:

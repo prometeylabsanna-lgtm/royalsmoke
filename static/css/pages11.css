@@ -112,6 +112,21 @@ body.rs-legal-page .rs-page-head p {
   max-width: 42ch;
 }
 
+.rs-legal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.rs-legal-nav a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+}
+
 body.rs-legal-page .rs-legal {
   max-width: var(--rs-legal-content-w);
   margin-inline: auto;

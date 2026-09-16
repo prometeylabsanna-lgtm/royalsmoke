@@ -34,10 +34,15 @@ class Product(TimeStampedModel):
         MEDIUM_FULL = 'medium_full', _('Середньо-повна')
         FULL = 'full', _('Повна')
 
-    brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name='products')
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='products')
+    brand = models.ForeignKey(
+        Brand, on_delete=models.PROTECT, related_name='products', verbose_name='Бренд',
+    )
+    category = models.ForeignKey(
+        Category, on_delete=models.PROTECT, related_name='products', verbose_name='Категорія',
+    )
     line = models.ForeignKey(
         ProductLine, null=True, blank=True, on_delete=models.SET_NULL, related_name='products',
+        verbose_name='Лінія',
     )
     name = models.CharField('Назва', max_length=255)
     slug = models.SlugField('Slug', max_length=280, unique=True)
@@ -46,9 +51,9 @@ class Product(TimeStampedModel):
     description = models.TextField('Опис', blank=True)
     tasting_notes = models.TextField('Смакові нотки', blank=True)
     recommendations = models.TextField('Рекомендації', blank=True)
-    wrapper = models.CharField('Wrapper', max_length=120, blank=True)
-    binder = models.CharField('Binder', max_length=120, blank=True)
-    filler = models.CharField('Filler', max_length=120, blank=True)
+    wrapper = models.CharField('Обгортка (wrapper)', max_length=120, blank=True)
+    binder = models.CharField('Звʼязка (binder)', max_length=120, blank=True)
+    filler = models.CharField('Начинка (filler)', max_length=120, blank=True)
     country = models.CharField('Країна виробника', max_length=80, blank=True)
     strength = models.CharField(
         'Міцність', max_length=32, choices=Strength.choices, blank=True,
@@ -65,10 +70,10 @@ class Product(TimeStampedModel):
     is_active = models.BooleanField('Активний', default=True)
     is_featured = models.BooleanField('Рекомендований', default=False)
     sort_order = models.PositiveIntegerField('Порядок', default=0)
-    video_url = models.URLField('Відео URL', blank=True)
-    tags = models.ManyToManyField(Tag, blank=True, related_name='products')
-    meta_title = models.CharField('SEO title', max_length=255, blank=True)
-    meta_description = models.TextField('SEO description', blank=True)
+    video_url = models.URLField('URL відео', blank=True)
+    tags = models.ManyToManyField(Tag, blank=True, related_name='products', verbose_name='Теги')
+    meta_title = models.CharField('SEO-заголовок', max_length=255, blank=True)
+    meta_description = models.TextField('SEO-опис', blank=True)
     views_count = models.PositiveIntegerField(default=0, editable=False)
 
     objects = ProductQuerySet.as_manager()

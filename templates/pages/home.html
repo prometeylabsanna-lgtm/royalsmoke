@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static i18n rs_i18n %}
+{% load static i18n rs_i18n rs_content %}
 
 {% block body_class %}rs-home{% endblock %}
 
@@ -30,6 +30,8 @@
   <div class="rs-home-bg__rim"></div>
 </div>
 
+{% cms_visible 'home' 'hero_section_visible' as show_hero %}
+{% if show_hero %}
 <section class="rs-hero" data-hero aria-roledescription="carousel" aria-label="{% trans 'Головний банер' %}">
   <div class="rs-hero__stage" data-hero-stage>
     {% for slide in hero_slides %}
@@ -108,13 +110,28 @@
     </div>
   </div>
 </section>
+{% endif %}
 
 <div class="rs-home-stretch" aria-hidden="true"></div>
 
+{% cms_visible 'home' 'brands_section_visible' as show_brands %}
+{% if show_brands %}
 {% include "pages/partials/home_brands.html" %}
+{% endif %}
+{% cms_visible 'home' 'catalog_section_visible' as show_catalog %}
+{% if show_catalog %}
 {% include "pages/partials/home_catalog.html" %}
+{% endif %}
+{% cms_visible 'home' 'about_section_visible' as show_history %}
+{% if show_history %}
 {% include "pages/partials/home_history.html" %}
+{% endif %}
+{% cms_visible 'home' 'calculator_section_visible' as show_calc %}
+{% if show_calc %}
 {% include "pages/partials/home_calculator.html" %}
+{% endif %}
+{% cms_visible 'home' 'service_section_visible' as show_service %}
+{% if show_service %}
 <section class="rs-section rs-svc-duo" aria-label="{% trans 'Бронювання та B2B' %}">
   <div class="rs-container">
     <div class="rs-svc-duo__grid">
@@ -123,4 +140,5 @@
     </div>
   </div>
 </section>
+{% endif %}
 {% endblock %}

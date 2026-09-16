@@ -10,8 +10,15 @@ from apps.booking.models import BookingService, BookingSlot
 from apps.calculator.models import CalculatorOption, CalculatorQuestion
 from apps.catalog.models import Product, ProductVariant
 from apps.catalog.models_base import Brand, Category, ProductLine, Tag
-from apps.core.block_defaults import BLOCK_CONTENT_TYPES, BLOCK_DEFAULTS, BLOCK_FIELD_LABELS, HISTORY_SLIDE_DEFAULTS
-from apps.core.models import HeroSlide, HistorySlide, SiteBlock, SiteSettings
+from apps.core.block_defaults import (
+    BLOCK_CONTENT_TYPES,
+    BLOCK_DEFAULTS,
+    BLOCK_FIELD_LABELS,
+    FAQ_ITEM_DEFAULTS,
+    HISTORY_SLIDE_DEFAULTS,
+    LEGAL_DOC_DEFAULTS,
+)
+from apps.core.models import HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings
 
 
 class Command(BaseCommand):
@@ -23,6 +30,9 @@ class Command(BaseCommand):
         self._seed_hero()
         self._seed_history()
         self._seed_catalog()
+        self._seed_brand_cards()
+        self._seed_faq()
+        self._seed_legal()
         self._seed_calculator()
         self._seed_booking()
         self.stdout.write(self.style.SUCCESS('Seed завершено'))
@@ -35,7 +45,7 @@ class Command(BaseCommand):
                 defaults={
                     'label': BLOCK_FIELD_LABELS.get((page, key), key),
                     'content_type': BLOCK_CONTENT_TYPES.get((page, key), 'text'),
-                    'text_html': text,
+                    'text_html': str(text),
                     'is_active': True,
                 },
             )
@@ -299,3 +309,35 @@ class Command(BaseCommand):
                             'is_active': True,
                         },
                     )
+
+    def _seed_brand_cards(self):
+        if HomeBrandCard.objects.exists():
+            return
+        from apps.catalog.models_base import Brand
+        for i, brand in enumerate(Brand.objects.filter(is_featured=True).order_by('sort_order')[:4]):
+            HomeBrandCard.objects.create(brand=brand, sort_order=i, is_active=True)
+
+    def _seed_faq(self):
+        from apps.pages.models import FAQItem
+        if FAQItem.objects.exists():
+            return
+        for i, item in enumerate(FAQ_ITEM_DEFAULTS):
+            FAQItem.objects.create(
+                question=item['question'],
+                answer=item['answer'],
+                sort_order=i,
+                is_active=True,
+            )
+
+    def _seed_legal(self):
+        from apps.pages.models import LegalDocument
+        for i, item in enumerate(LEGAL_DOC_DEFAULTS):
+            LegalDocument.objects.get_or_create(
+                slug=item['slug'],
+                defaults={
+                    'title': item['title'],
+                    'body': item['body'],
+                    'sort_order': i,
+                    'is_active': True,
+                },
+            )

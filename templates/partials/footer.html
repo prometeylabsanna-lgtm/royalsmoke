@@ -1,9 +1,10 @@
-{% load static i18n %}
+{% load static i18n rs_content %}
 <footer class="rs-footer">
   <div class="rs-footer__top">
     <div class="rs-footer__top-inner">
       <div class="rs-footer__intro">
         <div class="rs-footer__brand">{{ site_settings.site_name|default:"Royal Smoke" }}</div>
+        <p class="rs-footer__tagline">{% cms_text 'site' 'footer_tagline' %}</p>
         <div class="rs-footer__contacts">
           {% if site_settings.phone %}
           <a href="tel:{{ site_settings.phone|cut:' '|cut:'-' }}">{{ site_settings.phone }}</a>
@@ -16,24 +17,24 @@
 
       <nav class="rs-footer__grid" aria-label="{% trans 'Навігація футера' %}">
         <div class="rs-footer__col">
-          <h3>{% trans "Каталог" %}</h3>
-          <a href="{% url 'catalog:list' %}">{% trans "Сигари" %}</a>
-          <a href="{% url 'catalog:list' %}">{% trans "Аксесуари" %}</a>
-          <a href="{% url 'catalog:list' %}">{% trans "Бренди" %}</a>
-          <a href="{% url 'pages:home' %}#home-calculator">{% trans "Калькулятор" %}</a>
+          <h3>{% cms_text 'site' 'footer_col_catalog' %}</h3>
+          <a href="{% url 'catalog:list' %}">{% cms_text 'site' 'footer_link_cigars' %}</a>
+          <a href="{% url 'catalog:list' %}">{% cms_text 'site' 'footer_link_accessories' %}</a>
+          <a href="{% url 'catalog:list' %}">{% cms_text 'site' 'footer_link_brands' %}</a>
+          <a href="{% url 'pages:home' %}#home-calculator">{% cms_text 'site' 'footer_link_calculator' %}</a>
         </div>
         <div class="rs-footer__col">
-          <h3>{% trans "Покупка" %}</h3>
-          <a href="{% url 'cart:detail' %}">{% trans "Кошик" %}</a>
-          <a href="{% url 'accounts:cabinet' %}">{% trans "Кабінет" %}</a>
-          <a class="rs-footer__link--stack" href="{% url 'leads:delivery' %}"><span>{% trans "Доставка" %}</span><span>{% trans "і оплата" %}</span></a>
+          <h3>{% cms_text 'site' 'footer_col_shop' %}</h3>
+          <a href="{% url 'cart:detail' %}">{% cms_text 'site' 'footer_link_cart' %}</a>
+          <a href="{% url 'accounts:cabinet' %}">{% cms_text 'site' 'footer_link_cabinet' %}</a>
+          <a class="rs-footer__link--stack" href="{% url 'leads:delivery' %}"><span>{% cms_text 'site' 'nav_delivery' %}</span></a>
         </div>
         <div class="rs-footer__col">
-          <h3>{% trans "Інфо" %}</h3>
-          <a href="{% url 'leads:contact' %}">{% trans "Контакти" %}</a>
-          <a href="{% url 'pages:faq' %}">{% trans "FAQ" %}</a>
-          <a href="{% url 'pages:about' %}">{% trans "Про нас" %}</a>
-          <a href="{% url 'pages:legal' slug='privacy' %}">{% trans "Приватність" %}</a>
+          <h3>{% cms_text 'site' 'footer_col_info' %}</h3>
+          <a href="{% url 'leads:contact' %}">{% cms_text 'site' 'nav_contact' %}</a>
+          <a href="{% url 'pages:faq' %}">{% cms_text 'site' 'nav_faq' %}</a>
+          <a href="{% url 'pages:about' %}">{% cms_text 'site' 'nav_about' %}</a>
+          <a href="{% url 'pages:legal' slug='privacy' %}">{% cms_text 'site' 'footer_link_privacy' %}</a>
         </div>
       </nav>
     </div>

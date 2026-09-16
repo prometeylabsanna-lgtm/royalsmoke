@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n rs_content %}
 
 {% block body_class %}rs-about-page{% endblock %}
 
-{% block title %}{% trans "Про нас" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% cms_text 'about' 'title' %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/pages12.css' %}?v=3">
@@ -14,6 +14,7 @@
 {% endblock %}
 
 {% block content %}
+{% cms_image 'about' 'image' as about_img %}
 <div class="rs-home-bg" aria-hidden="true">
   <div class="rs-home-bg__base"></div>
 </div>
@@ -24,8 +25,8 @@
       <div class="rs-about__media-frame">
         <img
           class="rs-about__img"
-          src="{% static 'img/about/team-boutique.jpg' %}"
-          alt="{% trans 'Команда Royal Smoke у сигарному бутіку' %}"
+          src="{% if about_img %}{{ about_img }}{% else %}{% static 'img/about/team-boutique.jpg' %}{% endif %}"
+          alt="{% cms_text 'about' 'title' %}"
           width="1024"
           height="1536"
           decoding="async"
@@ -33,60 +34,45 @@
         >
         <div class="rs-about__media-veil" aria-hidden="true"></div>
         <div class="rs-about__years">
-          <span class="rs-about__years-num" data-rs-counter="7">0</span>
-          <span class="rs-about__years-label">{% trans "років на ринку" %}</span>
+          <span class="rs-about__years-num" data-rs-counter="{% cms_text 'about' 'years_num' %}">0</span>
+          <span class="rs-about__years-label">{% cms_text 'about' 'years_label' %}</span>
         </div>
       </div>
     </aside>
 
     <div class="rs-about__body">
       <header class="rs-about__head" data-rs-reveal>
-        <span class="rs-about__kicker">{% trans "Про нас" %}</span>
-        <h1 id="about-heading" class="rs-about__title">{% trans "Хроніка одного рішення" %}</h1>
-        <p class="rs-about__lead">
-          {% blocktrans trimmed %}Royal Smoke — tobacco atelier, зібраний навколо простого правила:
-          продавати лише те, що самі готові курити.{% endblocktrans %}
-        </p>
+        <span class="rs-about__kicker">{% cms_text 'about' 'kicker' %}</span>
+        <h1 id="about-heading" class="rs-about__title">{% cms_text 'about' 'title' %}</h1>
+        <p class="rs-about__lead">{% cms_text 'about' 'lead' %}</p>
       </header>
 
       <ol class="rs-about__timeline">
         <li class="rs-about__era" data-rs-reveal data-reveal-delay="40">
-          <span class="rs-about__era-year">2019</span>
-          <h2 class="rs-about__era-title">{% trans "Перший кабінет" %}</h2>
-          <p class="rs-about__era-text">
-            {% blocktrans trimmed %}Почали з невеликого простору в Києві: кілька полиць, ручний відбір
-            і розмова з кожним гостем замість випадкової вітрини.{% endblocktrans %}
-          </p>
+          <span class="rs-about__era-year">{% cms_text 'about' 'era1_year' %}</span>
+          <h2 class="rs-about__era-title">{% cms_text 'about' 'era1_title' %}</h2>
+          <p class="rs-about__era-text">{% cms_text 'about' 'era1_text' %}</p>
         </li>
         <li class="rs-about__era" data-rs-reveal data-reveal-delay="80">
-          <span class="rs-about__era-year">2021</span>
-          <h2 class="rs-about__era-title">{% trans "Прямі мануфактури" %}</h2>
-          <p class="rs-about__era-text">
-            {% blocktrans trimmed %}Налагодили прямі поставки з Нікарагуа, Домінікани та Куби —
-            без зайвих посередників, з чесною ціною і стабільною якістю партій.{% endblocktrans %}
-          </p>
+          <span class="rs-about__era-year">{% cms_text 'about' 'era2_year' %}</span>
+          <h2 class="rs-about__era-title">{% cms_text 'about' 'era2_title' %}</h2>
+          <p class="rs-about__era-text">{% cms_text 'about' 'era2_text' %}</p>
         </li>
         <li class="rs-about__era" data-rs-reveal data-reveal-delay="120">
-          <span class="rs-about__era-year">2023</span>
-          <h2 class="rs-about__era-title">{% trans "Власний хумідор" %}</h2>
-          <p class="rs-about__era-text">
-            {% blocktrans trimmed %}Збудували сховище зі стабільною вологістю й зібрали команду сомельє,
-            яка супроводжує замовлення від першої консультації до доставки.{% endblocktrans %}
-          </p>
+          <span class="rs-about__era-year">{% cms_text 'about' 'era3_year' %}</span>
+          <h2 class="rs-about__era-title">{% cms_text 'about' 'era3_title' %}</h2>
+          <p class="rs-about__era-text">{% cms_text 'about' 'era3_text' %}</p>
         </li>
         <li class="rs-about__era" data-rs-reveal data-reveal-delay="160">
-          <span class="rs-about__era-year">{% trans "Сьогодні" %}</span>
-          <h2 class="rs-about__era-title">{% trans "Бутік, каталог, сервіс" %}</h2>
-          <p class="rs-about__era-text">
-            {% blocktrans trimmed %}Каталог, консультації, бронювання дегустацій і доставка — в одному місці.
-            Сім років — одна колекція й те саме правило без компромісів.{% endblocktrans %}
-          </p>
+          <span class="rs-about__era-year">{% cms_text 'about' 'era4_year' %}</span>
+          <h2 class="rs-about__era-title">{% cms_text 'about' 'era4_title' %}</h2>
+          <p class="rs-about__era-text">{% cms_text 'about' 'era4_text' %}</p>
         </li>
       </ol>
 
       <div class="rs-about__actions" data-rs-reveal data-reveal-delay="200">
-        <a class="rs-btn rs-btn--gold" href="{% url 'catalog:category' slug='cigars' %}">{% trans "До сигар" %}</a>
-        <a class="rs-btn rs-btn--ghost" href="{% url 'leads:contact' %}">{% trans "Написати нам" %}</a>
+        <a class="rs-btn rs-btn--gold" href="{% url 'catalog:category' slug='cigars' %}">{% cms_text 'site' 'nav_catalog' %}</a>
+        <a class="rs-btn rs-btn--ghost" href="{% url 'leads:contact' %}">{% cms_text 'site' 'nav_contact' %}</a>
       </div>
     </div>
   </div>

@@ -33,8 +33,8 @@ class Category(TimeStampedModel):
     sort_order = models.PositiveIntegerField('Порядок', default=0)
     is_active = models.BooleanField('Активна', default=True)
     is_featured = models.BooleanField('На головній', default=False)
-    meta_title = models.CharField('SEO title', max_length=255, blank=True)
-    meta_description = models.TextField('SEO description', blank=True)
+    meta_title = models.CharField('SEO-заголовок', max_length=255, blank=True)
+    meta_description = models.TextField('SEO-опис', blank=True)
 
     class Meta:
         verbose_name = 'Категорія'
@@ -82,7 +82,9 @@ class Brand(TimeStampedModel):
 
 
 class ProductLine(TimeStampedModel):
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='lines')
+    brand = models.ForeignKey(
+        Brand, on_delete=models.CASCADE, related_name='lines', verbose_name='Бренд',
+    )
     name = models.CharField('Назва лінії', max_length=160)
     slug = models.SlugField('Slug', max_length=180, unique=True)
     description = models.TextField('Опис', blank=True)

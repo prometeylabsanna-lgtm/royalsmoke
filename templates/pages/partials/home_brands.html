@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n rs_content %}
 {% trans "Premium" as premium_fallback %}
 <section class="rs-section rs-home-brands" id="home-brands" aria-label="{% trans 'Бренди' %}" data-brands-craft>
   <div class="rs-brands-snaps" data-brands-snaps style="--rs-brand-count: {{ brand_craft|length|default:4 }}">
@@ -10,6 +10,7 @@
         id="brand-snap-{{ item.brand.slug }}"
       >
         <div class="rs-brand-snap__asset" data-snap-asset>
+          {% if item.image %}
           <img
             src="{{ item.image }}"
             alt="{{ item.brand.name }}"
@@ -18,6 +19,9 @@
             loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
             decoding="async"
           >
+          {% else %}
+          <span class="rs-brand-snap__placeholder" aria-hidden="true"></span>
+          {% endif %}
         </div>
         <div class="rs-brand-snap__content" data-snap-content>
           <div class="rs-brand-snap__pattern" aria-hidden="true">

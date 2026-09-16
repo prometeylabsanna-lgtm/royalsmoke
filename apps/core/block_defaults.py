@@ -1,61 +1,36 @@
 from __future__ import annotations
 
-from django.utils.translation import gettext_lazy as _
+from apps.core.block_defaults_home import (
+    HOME_DEFAULTS,
+    HOME_INLINE,
+    HOME_LABELS,
+    HOME_MULTILINE,
+    HOME_TYPES,
+)
+from apps.core.block_defaults_pages import (
+    PAGE_DEFAULTS,
+    PAGE_INLINE,
+    PAGE_LABELS,
+    PAGE_MULTILINE,
+    PAGE_TYPES,
+)
 
-BLOCK_DEFAULTS: dict[tuple[str, str], str] = {
-    ('home', 'hero_section_visible'): '1',
-    ('home', 'hero_eyebrow'): 'Tobacco Atelier',
-    ('home', 'categories_section_visible'): '1',
-    ('home', 'categories_title'): _('Ключові категорії'),
-    ('home', 'top_section_visible'): '1',
-    ('home', 'top_title'): _('Топ продажів'),
-    ('home', 'new_section_visible'): '1',
-    ('home', 'new_title'): _('Новинки'),
-    ('home', 'about_section_visible'): '1',
-    ('home', 'about_kicker'): _('Історія'),
-    ('home', 'about_bg'): '',
-    ('home', 'service_section_visible'): '1',
-    ('home', 'service_kicker'): _('Сервіс'),
-    ('site', 'header_search_placeholder'): _('Пошук сигар, брендів, аксесуарів…'),
-    ('site', 'footer_tagline'): _('Сигари, відібрані вручну для тих, хто знає різницю.'),
-    ('service', 'booking_title'): _('Бронювання'),
-    ('service', 'booking_lead'): _('Залиште контакти — менеджер узгодить зручний час візиту.'),
-    ('service', 'calculator_title'): _('Калькулятор підбору'),
-    ('service', 'calculator_lead'): _('Чотири кроки — три рекомендації з поясненням.'),
-    ('service', 'b2b_title'): 'B2B',
-    ('service', 'b2b_lead'): _('Прайс і умови для барів, готелів і корпоративних подарунків.'),
-    ('service', 'delivery_title'): _('Доставка'),
-    ('service', 'delivery_lead'): _('Київ — того ж дня, Україна — 1–2 дні. Термобокси для сигар.'),
-}
+BLOCK_DEFAULTS: dict[tuple[str, str], str] = {**HOME_DEFAULTS, **PAGE_DEFAULTS}
 
 BLOCK_FIELD_LABELS: dict[tuple[str, str], str] = {
-    key: key[1].replace('_', ' ').capitalize() for key in BLOCK_DEFAULTS
+    key: key[1].replace('_', ' ') for key in BLOCK_DEFAULTS
 }
-BLOCK_FIELD_LABELS.update({
-    ('home', 'hero_section_visible'): 'Показувати Hero',
-    ('home', 'hero_eyebrow'): 'Мітка над заголовком',
-    ('home', 'categories_title'): 'Заголовок категорій',
-    ('home', 'top_title'): 'Заголовок топу',
-    ('home', 'new_title'): 'Заголовок новинок',
-    ('home', 'about_kicker'): 'Мітка секції історії',
-    ('home', 'about_bg'): 'Фонове фото блоку історії',
-    ('site', 'header_search_placeholder'): 'Placeholder пошуку',
-    ('site', 'footer_tagline'): 'Слоган у футері',
-})
+BLOCK_FIELD_LABELS.update(HOME_LABELS)
+BLOCK_FIELD_LABELS.update(PAGE_LABELS)
 
 BLOCK_CONTENT_TYPES: dict[tuple[str, str], str] = {
     key: 'text' for key in BLOCK_DEFAULTS
 }
-BLOCK_CONTENT_TYPES[('home', 'about_bg')] = 'image'
+BLOCK_CONTENT_TYPES.update(HOME_TYPES)
+BLOCK_CONTENT_TYPES.update(PAGE_TYPES)
 
-INLINE_KEYS = {
-    'hero_eyebrow', 'categories_title', 'top_title', 'new_title', 'about_kicker',
-    'service_kicker', 'header_search_placeholder', 'footer_tagline',
-    'booking_title', 'calculator_title', 'b2b_title', 'delivery_title',
-}
-MULTILINE_KEYS = {
-    'booking_lead', 'calculator_lead', 'b2b_lead', 'delivery_lead',
-}
+INLINE_KEYS = HOME_INLINE | PAGE_INLINE
+MULTILINE_KEYS = HOME_MULTILINE | PAGE_MULTILINE
 
 HISTORY_IMAGE_FALLBACKS: tuple[str, ...] = (
     'img/history/01-intro.jpg',
@@ -113,6 +88,67 @@ HISTORY_SLIDE_DEFAULTS: tuple[dict[str, str | int], ...] = (
         'cta_label': '',
         'cta_url': '',
         'sort_order': 3,
+    },
+)
+
+FAQ_ITEM_DEFAULTS: tuple[dict[str, str], ...] = (
+    {
+        'question': 'Як зберігати сигари?',
+        'answer': 'У хумідорі при 68–72% вологості та 16–20°C. Ми відправляємо в термобоксі.',
+    },
+    {
+        'question': 'Чи потрібна реєстрація для покупки?',
+        'answer': 'Ні, гостьове оформлення доступне. Кабінет зручний для повторних замовлень.',
+    },
+    {
+        'question': 'Які терміни доставки?',
+        'answer': 'Київ — часто того ж дня, Україна — 1–2 дні. Деталі на сторінці «Доставка і оплата».',
+    },
+    {
+        'question': 'Чи можна повернути товар?',
+        'answer': 'Тютюнові вироби належної якості не підлягають поверненню. Брак розглядаємо індивідуально.',
+    },
+    {
+        'question': 'Як працює бронювання?',
+        'answer': (
+            'Залиште імʼя та телефон у блоці «Бронювання» на головній — '
+            'менеджер узгодить зручний час візиту.'
+        ),
+    },
+)
+
+LEGAL_DOC_DEFAULTS: tuple[dict[str, str], ...] = (
+    {
+        'slug': 'privacy',
+        'title': 'Політика конфіденційності',
+        'body': (
+            '<p>Ми обробляємо персональні дані (імʼя, телефон, email, адресу доставки) '
+            'лише для виконання замовлень і зворотного звʼязку. Дані не продаємо третім сторонам.</p>'
+        ),
+    },
+    {
+        'slug': 'terms',
+        'title': 'Умови користування',
+        'body': (
+            '<p>Сайт Royal Smoke пропонує тютюнові вироби та аксесуари повнолітнім відвідувачам. '
+            'Оформлюючи замовлення, ви підтверджуєте вік 21+ та згоду з умовами продажу.</p>'
+        ),
+    },
+    {
+        'slug': 'age',
+        'title': 'Вікова політика',
+        'body': (
+            '<p>Доступ до вітрини можливий лише після підтвердження віку (cookie age_ok). '
+            'Особам молодше 21 року продаж заборонено.</p>'
+        ),
+    },
+    {
+        'slug': 'cookies',
+        'title': 'Файли cookie',
+        'body': (
+            '<p>Використовуємо необхідні cookies для сесії кошика, age gate та мови. '
+            'Аналітичні cookies — лише за згодою, якщо увімкнено на проєкті.</p>'
+        ),
     },
 )
 

@@ -1,12 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.translation import gettext as _
-from django.utils.translation import gettext_lazy
 from django.views.decorators.http import require_POST
 
 from apps.catalog.models import Brand, Product
 from apps.core.block_defaults import BLOCK_DEFAULTS, HISTORY_SLIDE_DEFAULTS
-from apps.core.models import HeroSlide, HistorySlide, SiteBlock, SiteSettings
+from apps.core.models import HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings
 
 
 def _block(page: str, key: str) -> str:
@@ -39,74 +38,55 @@ def _enrich_history_slides(slides):
     return enriched
 
 
-_BRAND_CRAFT_TONES = (
-    {
-        'tone': 'amber',
-        'image': (
-            'https://images.unsplash.com/photo-1741306444151-ec7f9ac433ef'
-            '?auto=format&fit=crop&w=1400&q=80'
-        ),
-        'fallback': gettext_lazy(
-            'Нікарагуанська школа майстерності: насичений смак, щільна скрутка '
-            'та характерний maduro. Сигари AJ Fernandez — для тих, хто цінує '
-            'глибину профілю, довгий фініш і ритуал повільного куріння.'
-        ),
-    },
-    {
-        'tone': 'burgundy',
-        'image': (
-            'https://images.unsplash.com/photo-1631227852854-7c0fac3c9aeb'
-            '?auto=format&fit=crop&w=1400&q=80'
-        ),
-        'fallback': gettext_lazy(
-            'Глибокі профілі з нотами какао, шкіри та кедру — Oliva створює '
-            'сигари для довгого вечірнього ритуалу. Баланс сили й елегантності, '
-            'витриманий тютюн і бездоганна скрутка.'
-        ),
-    },
-    {
-        'tone': 'green',
-        'image': (
-            'https://images.unsplash.com/photo-1749842839766-8b71630a627d'
-            '?auto=format&fit=crop&w=1400&q=80'
-        ),
-        'fallback': gettext_lazy(
-            'Свіжі ноти тютюнового листа, акуратна ферментація та чистий фініш. '
-            'Perdomo — сімейна традиція, де кожна сигара проходить відбір '
-            'і контроль вологості для ідеального куріння.'
-        ),
-    },
-    {
-        'tone': 'brown',
-        'image': (
-            'https://images.unsplash.com/photo-1686704176261-a77939eb0f7c'
-            '?auto=format&fit=crop&w=1400&q=80'
-        ),
-        'fallback': gettext_lazy(
-            'Земляні тони мексиканського terroir, деревʼяна коробка та аксесуари '
-            'для повільного ритуалу. Casa Turrent поєднує історію родини '
-            'з сучасним характером преміальної сигари.'
-        ),
-    },
-)
+_BRAND_CRAFT_TONES = ('amber', 'burgundy', 'green', 'brown')
 
 
 def _enrich_brand_craft(brands):
-    """Attach tone / Unsplash image / copy for home craft section (max 4)."""
     enriched = []
     for i, brand in enumerate(brands[:4]):
-        meta = _BRAND_CRAFT_TONES[i % len(_BRAND_CRAFT_TONES)]
-        raw = (brand.short_description or brand.description or '').strip()
-        if len(raw) < 80:
-            desc = meta['fallback']
-            if raw:
-                desc = raw.rstrip('.') + '. ' + meta['fallback']
-        else:
-            desc = raw
+        logo = ''
+        if getattr(brand, 'logo', None):
+            try:
+                logo = brand.logo.url
+            except ValueError:
+                logo = ''
+        desc = (brand.short_description or brand.description or '').strip()
         enriched.append({
             'brand': brand,
-            'tone': meta['tone'],
-            'image': meta['image'],
+            'tone': _BRAND_CRAFT_TONES[i % len(_BRAND_CRAFT_TONES)],
+            'image': logo,
+            'description': desc,
+            'flip': i % 2 == 1,
+        })
+    return enriched
+
+
+def _home_brand_cards():
+    cards = list(
+        HomeBrandCard.objects.filter(is_active=True, brand__is_active=True)
+        .select_related('brand')
+        .order_by('sort_order', 'id')
+    )
+    if not cards:
+        return None
+    enriched = []
+    for i, card in enumerate(cards):
+        image = ''
+        if card.image:
+            try:
+                image = card.image.url
+            except ValueError:
+                image = ''
+        if not image and card.brand.logo:
+            try:
+                image = card.brand.logo.url
+            except ValueError:
+                image = ''
+        desc = (card.text or card.brand.short_description or card.brand.description or '').strip()
+        enriched.append({
+            'brand': card.brand,
+            'tone': _BRAND_CRAFT_TONES[i % len(_BRAND_CRAFT_TONES)],
+            'image': image,
             'description': desc,
             'flip': i % 2 == 1,
         })
@@ -116,14 +96,18 @@ def _enrich_brand_craft(brands):
 def home(request):
     SiteSettings.load()
     products = Product.objects.on_storefront().with_relations().order_by('sort_order', 'name')[:6]
-    brands = list(
-        Brand.objects.filter(is_active=True, is_featured=True).order_by('sort_order', 'name')[:4]
-    )
-    if not brands:
+    brand_craft = _home_brand_cards()
+    if brand_craft is None:
         brands = list(
-            Brand.objects.filter(is_active=True).order_by('sort_order', 'name')[:4]
+            Brand.objects.filter(is_active=True, is_featured=True).order_by('sort_order', 'name')[:4]
         )
-    brand_craft = _enrich_brand_craft(brands)
+        if not brands:
+            brands = list(
+                Brand.objects.filter(is_active=True).order_by('sort_order', 'name')[:4]
+            )
+        brand_craft = _enrich_brand_craft(brands)
+    else:
+        brands = [item['brand'] for item in brand_craft]
     slides = list(HeroSlide.objects.filter(is_active=True))
     history_slides = list(HistorySlide.objects.filter(is_active=True))
     if not history_slides:
@@ -145,11 +129,23 @@ def about(request):
 
 
 def faq(request):
-    return render(request, 'pages/faq.html')
+    from apps.pages.models import FAQItem
+    return render(request, 'pages/faq.html', {
+        'faq_items': FAQItem.objects.filter(is_active=True),
+    })
 
 
 def legal(request, slug='privacy'):
-    return render(request, 'pages/legal.html', {'slug': slug})
+    from django.shortcuts import get_object_or_404
+
+    from apps.pages.models import LegalDocument
+
+    doc = get_object_or_404(LegalDocument, slug=slug, is_active=True)
+    return render(request, 'pages/legal.html', {
+        'doc': doc,
+        'legal_docs': LegalDocument.objects.filter(is_active=True),
+        'slug': slug,
+    })
 
 
 @require_POST

@@ -2,6 +2,10 @@ from django.contrib import admin, messages
 from django.utils.translation import gettext_lazy as _
 from unfold.admin import ModelAdmin, TabularInline
 
+from apps.core.admin_filters import (
+    RsChoicesDropdownFilter,
+    dropdown_filter_options,
+)
 from apps.orders.services import nova_poshta as np_svc
 
 from .models import Order, OrderItem, Payment
@@ -31,7 +35,20 @@ class OrderAdmin(ModelAdmin):
         'order_number', 'status', 'first_name', 'last_name',
         'phone', 'total', 'np_ttn', 'created_at',
     )
-    list_filter = ('status', 'payment_method', 'delivery_service')
+    list_filter = (
+        ('status', RsChoicesDropdownFilter),
+        ('payment_method', RsChoicesDropdownFilter),
+        ('delivery_service', RsChoicesDropdownFilter),
+    )
+    list_filter_sheet = False
+    list_filter_options = dropdown_filter_options(
+        'status', 'payment_method', 'delivery_service',
+        labels={
+            'status': 'Статус',
+            'payment_method': 'Оплата',
+            'delivery_service': 'Доставка',
+        },
+    )
     search_fields = ('order_number', 'phone', 'email', 'first_name', 'last_name', 'np_ttn')
     inlines = [OrderItemInline, PaymentInline]
     readonly_fields = ('order_number', 'idempotency_key', 'created_at', 'updated_at', 'np_ttn', 'np_ttn_ref')
@@ -86,6 +103,14 @@ class OrderAdmin(ModelAdmin):
 @admin.register(Payment)
 class PaymentAdmin(ModelAdmin):
     list_display = ('liqpay_order_id', 'order', 'status', 'amount', 'currency', 'created_at')
-    list_filter = ('status', 'provider')
+    list_filter = (
+        ('status', RsChoicesDropdownFilter),
+        ('provider', RsChoicesDropdownFilter),
+    )
+    list_filter_sheet = False
+    list_filter_options = dropdown_filter_options(
+        'status', 'provider',
+        labels={'status': 'Статус', 'provider': 'Провайдер'},
+    )
     search_fields = ('liqpay_order_id', 'transaction_id', 'order__order_number')
     readonly_fields = ('raw_callback', 'created_at', 'updated_at')

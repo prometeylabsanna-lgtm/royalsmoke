@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n rs_content %}
 
-{% block title %}{% trans "Кабінет" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% cms_text 'cabinet' 'title' %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 {% block body_class %}rs-auth-page rs-cab-page{% endblock %}
 {% block breadcrumbs %}{% endblock %}
 
@@ -13,11 +13,12 @@
 <section class="rs-cab" data-rs-reveal>
   <div class="rs-cab__top">
     <div class="rs-cab__summary">
-      <h1 class="rs-cab__title">{% trans "Кабінет" %}</h1>
-      <p class="rs-cab__lead">{% blocktrans with name=display_name %}Вітаємо, {{ name }}{% endblocktrans %}</p>
+      <h1 class="rs-cab__title">{% cms_text 'cabinet' 'title' %}</h1>
+      {% cms_text 'cabinet' 'lead' as cab_lead %}
+      <p class="rs-cab__lead">{{ cab_lead|cms_format:display_name }}</p>
 
       <section class="rs-cab__block">
-        <h2 class="rs-cab__block-title">{% trans "Профіль" %}</h2>
+        <h2 class="rs-cab__block-title">{% cms_text 'cabinet' 'profile' %}</h2>
         <p class="rs-cab__meta">{{ user.email|default:"—" }}</p>
         {% if user.phone %}
           <p class="rs-cab__meta">{{ user.phone }}</p>
@@ -25,7 +26,7 @@
       </section>
 
       <section class="rs-cab__block">
-        <h2 class="rs-cab__block-title">{% trans "Замовлення" %}</h2>
+        <h2 class="rs-cab__block-title">{% cms_text 'cabinet' 'orders' %}</h2>
         {% if recent_order %}
           <p class="rs-cab__meta">{% blocktrans with num=recent_order.order_number total=recent_order.total %}Останнє: #{{ num }} — {{ total }} ₴{% endblocktrans %}</p>
         {% else %}
@@ -41,7 +42,7 @@
 
     <div class="rs-cab__cards">
       <article class="rs-cab__card rs-cab__card--profile">
-        <p class="rs-cab__card-label">{% trans "Профіль" %}</p>
+        <p class="rs-cab__card-label">{% cms_text 'cabinet' 'profile' %}</p>
         <div class="rs-cab__profile">
           <div class="rs-cab__avatar" aria-hidden="true">{{ avatar_initial }}</div>
           <div class="rs-cab__profile-body">
@@ -61,7 +62,7 @@
             #{{ recent_order.order_number }} · {{ recent_order.get_status_display }} · {{ recent_order.total }} ₴
           </p>
         {% else %}
-          <p class="rs-cab__chart-caption">{% trans "Замовлень ще немає" %}</p>
+          <p class="rs-cab__chart-caption">{% cms_text 'cabinet' 'empty' %}</p>
         {% endif %}
         <div class="rs-cab__chart" role="img" aria-label="{% trans "Динаміка замовлень за останні тижні" %}">
           <div class="rs-cab__chart-y" aria-hidden="true">

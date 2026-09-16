@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n rs_content %}
 
-{% block title %}{% trans "Доставка і оплата" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% cms_text 'delivery' 'title' %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 {% block body_class %}rs-delivery-page{% endblock %}
 
 {% block extra_css %}
@@ -9,11 +9,11 @@
 {% endblock %}
 
 {% block content %}
-{% trans "Київ" as default_city %}
+{% cms_image 'delivery' 'bg' as delivery_bg %}
 <div class="rs-delivery-page__bg" aria-hidden="true">
   <img
     class="rs-delivery-page__bg-img"
-    src="{% static 'img/calculator/lounge-bg.jpg' %}"
+    src="{% if delivery_bg %}{{ delivery_bg }}{% else %}{% static 'img/calculator/lounge-bg.jpg' %}{% endif %}"
     alt=""
     width="1536"
     height="1024"
@@ -22,35 +22,31 @@
 </div>
 
 <header class="rs-page-head" data-rs-reveal>
-  <h1>{% trans "Доставка і оплата" %}</h1>
-  <p class="rs-delivery__lead">{% trans "Київ — того ж дня · Україна — 1–2 дні · ЄС — 3–5 днів." %}</p>
+  <h1>{% cms_text 'delivery' 'title' %}</h1>
+  <p class="rs-delivery__lead">{% cms_text 'delivery' 'lead' %}</p>
 </header>
 
 <div class="rs-container rs-service-page rs-delivery">
   <section class="rs-delivery__section" aria-labelledby="delivery-heading" data-rs-reveal data-reveal-delay="60">
-    <h2 id="delivery-heading">{% trans "Доставка" %}</h2>
+    <h2 id="delivery-heading">{% cms_text 'delivery' 'h2' %}</h2>
 
     <div class="rs-delivery__regions">
       <article class="rs-delivery__region">
-        <h3>{% trans "Київ" %}</h3>
-        <p>{% blocktrans with address=site_settings.address|default:default_city %}Курʼєрська доставка того ж дня при замовленні до 15:00. Самовивіз зі шоуруму за адресою {{ address }}.{% endblocktrans %}</p>
+        <h3>{% cms_text 'delivery' 'kyiv_title' %}</h3>
+        <p>{% cms_text 'delivery' 'kyiv_text' %}</p>
       </article>
-
       <article class="rs-delivery__region">
-        <h3>{% trans "Україна" %}</h3>
-        <p>{% trans "Нова Пошта — 1–2 дні. Сигари пакуємо в термобокси зі страхуванням відправлення." %}</p>
+        <h3>{% cms_text 'delivery' 'ua_title' %}</h3>
+        <p>{% cms_text 'delivery' 'ua_text' %}</p>
       </article>
-
       <article class="rs-delivery__region">
-        <h3>{% trans "ЄС" %}</h3>
-        <p>{% trans "Міжнародна доставка — 3–5 робочих днів. Умови та вартість уточнюйте у менеджера." %}</p>
+        <h3>{% cms_text 'delivery' 'eu_title' %}</h3>
+        <p>{% cms_text 'delivery' 'eu_text' %}</p>
       </article>
-
       <article class="rs-delivery__region">
-        <h3>{% trans "Способи доставки" %}</h3>
-        <p>{% trans "Нова Пошта, курʼєр або самовивіз — обираєте під час оформлення замовлення." %}</p>
+        <h3>{% cms_text 'delivery' 'methods_title' %}</h3>
+        <p>{% cms_text 'delivery' 'methods_text' %}</p>
       </article>
-
       {% if site_settings.free_delivery_from %}
       <article class="rs-delivery__region">
         <h3>{% trans "Безкоштовна доставка" %}</h3>
@@ -61,25 +57,22 @@
   </section>
 
   <section class="rs-delivery__section" id="payment" aria-labelledby="payment-heading" data-rs-reveal data-reveal-delay="120">
-    <h2 id="payment-heading">{% trans "Оплата" %}</h2>
-    <p class="rs-delivery__intro">{% trans "Доступні способи оплати під час оформлення замовлення:" %}</p>
-
+    <h2 id="payment-heading">{% cms_text 'delivery' 'pay_h2' %}</h2>
+    <p class="rs-delivery__intro">{% cms_text 'delivery' 'pay_intro' %}</p>
     <ul class="rs-delivery__pay">
       <li>
-        <span class="rs-delivery__pay-title">{% trans "Онлайн оплата" %}</span>
-        <span class="rs-delivery__pay-text">{% trans "банківською карткою через платіжний сервіс." %}</span>
+        <span class="rs-delivery__pay-title">{% cms_text 'delivery' 'pay_online_title' %}</span>
+        <span class="rs-delivery__pay-text">{% cms_text 'delivery' 'pay_online_text' %}</span>
       </li>
       <li>
-        <span class="rs-delivery__pay-title">{% trans "Оплата при отриманні" %}</span>
-        <span class="rs-delivery__pay-text">{% trans "готівкою або карткою курʼєру / у відділенні." %}</span>
+        <span class="rs-delivery__pay-title">{% cms_text 'delivery' 'pay_cod_title' %}</span>
+        <span class="rs-delivery__pay-text">{% cms_text 'delivery' 'pay_cod_text' %}</span>
       </li>
       <li>
-        <span class="rs-delivery__pay-title">{% trans "Безготівковий розрахунок" %}</span>
-        <span class="rs-delivery__pay-text">{% trans "для юридичних осіб та B2B-замовлень за рахунком." %}</span>
+        <span class="rs-delivery__pay-title">{% cms_text 'delivery' 'pay_b2b_title' %}</span>
+        <span class="rs-delivery__pay-text">{% cms_text 'delivery' 'pay_b2b_text' %}</span>
       </li>
     </ul>
-
-    <p class="rs-delivery__note">{% trans "Деталі рахунку або підтвердження онлайн-платежу надсилаємо на email після оформлення замовлення." %}</p>
   </section>
 </div>
 {% endblock %}

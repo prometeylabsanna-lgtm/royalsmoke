@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n rs_content %}
 
-{% block title %}{% trans "Контакти" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% cms_text 'contact' 'title' %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 {% block body_class %}rs-contact-page{% endblock %}
 
 {% block extra_css %}
@@ -18,7 +18,7 @@
   <div class="rs-contact__split" data-rs-reveal>
     <aside class="rs-contact__aside" aria-label="{% trans "Контактна інформація" %}">
       <div class="rs-contact__map" aria-hidden="true">
-        <span class="rs-contact__map-label">{% trans "Карта — Хрещатик 1" %}</span>
+        <span class="rs-contact__map-label">{% cms_text 'contact' 'map_label' %}</span>
       </div>
       <dl class="rs-contact__info">
         <div class="rs-contact__info-row">
@@ -35,7 +35,7 @@
         </div>
         <div class="rs-contact__info-row">
           <dt>{% trans "Адреса" %}</dt>
-          <dd>{% trans "Київ, вул. Хрещатик, 1" %}</dd>
+          <dd>{{ site_settings.address|default:site_settings.site_name }}</dd>
         </div>
         <div class="rs-contact__info-row">
           <dt>{% trans "Години" %}</dt>
@@ -45,9 +45,9 @@
     </aside>
 
     <section class="rs-contact__panel" aria-labelledby="contact-heading">
-      <p class="rs-contact__kicker">{% trans "Контакти" %}</p>
-      <h1 id="contact-heading" class="rs-contact__title">{% trans "Напишіть нам" %}</h1>
-      <p class="rs-contact__lead">{% trans "Відповідаємо протягом робочого дня." %}</p>
+      <p class="rs-contact__kicker">{% cms_text 'contact' 'kicker' %}</p>
+      <h1 id="contact-heading" class="rs-contact__title">{% cms_text 'contact' 'title' %}</h1>
+      <p class="rs-contact__lead">{% cms_text 'contact' 'lead' %}</p>
 
       <form class="rs-form rs-contact__form" method="post" action="{% url 'leads:contact' %}" data-rs-validate novalidate data-rs-reveal data-reveal-delay="80">
         {% csrf_token %}
@@ -56,8 +56,8 @@
         {% include "partials/form_field.html" with name="phone" id="id_phone" label=label_phone rule="phone" type="tel" autocomplete="tel" placeholder=label_phone value=form.phone.value error=form.phone.errors.0 optional=1 sr_only_label=1 %}
         {% include "partials/form_field.html" with name="message" id="id_message" label=label_message rule="required" type="textarea" placeholder=label_message value=form.message.value error=form.message.errors.0 rows=5 sr_only_label=1 %}
         <div class="rs-form__actions rs-contact__actions">
-          <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% trans "Надіслати" %}</button>
-          <button type="button" class="rs-btn rs-btn--ghost rs-btn--block" data-callback-open>{% trans "Замовити дзвінок" %}</button>
+          <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% cms_text 'contact' 'submit' %}</button>
+          <button type="button" class="rs-btn rs-btn--ghost rs-btn--block" data-callback-open>{% cms_text 'contact' 'callback' %}</button>
         </div>
       </form>
     </section>

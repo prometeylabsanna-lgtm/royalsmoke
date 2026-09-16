@@ -1,9 +1,10 @@
-{% load static i18n %}
-<article class="rs-svc-card" id="home-booking" aria-label="{% trans 'Бронювання' %}" data-rs-reveal>
+{% load static i18n rs_content %}
+<article class="rs-svc-card" id="home-booking" aria-label="{% cms_text 'service' 'booking_title' %}" data-rs-reveal>
   <div class="rs-svc-card__media">
+    {% cms_image 'service' 'booking_image' as booking_img %}
     <img
-      src="{% static 'img/booking/lounge.jpg' %}"
-      alt="{% trans 'Лаунж Royal Smoke' %}"
+      src="{% if booking_img %}{{ booking_img }}{% else %}{% static 'img/booking/lounge.jpg' %}{% endif %}"
+      alt="{% cms_text 'service' 'booking_title' %}"
       width="800"
       height="1000"
       loading="lazy"
@@ -13,8 +14,8 @@
   </div>
 
   <div class="rs-svc-card__body">
-    <h2 class="rs-svc-card__title">{% trans "Бронювання" %}</h2>
-    <p class="rs-svc-card__lead">{% trans "Дегустація, консультація або візит у шоурум." %}</p>
-    <a class="rs-btn rs-btn--gold rs-svc-card__submit" href="{% url 'booking:page' %}">{% trans "Обрати час" %}</a>
+    <h2 class="rs-svc-card__title">{% cms_text 'service' 'booking_title' %}</h2>
+    <p class="rs-svc-card__lead">{% cms_text 'service' 'booking_lead' %}</p>
+    <a class="rs-btn rs-btn--gold rs-svc-card__submit" href="{% url 'booking:page' %}">{% cms_text 'service' 'booking_cta' %}</a>
   </div>
 </article>

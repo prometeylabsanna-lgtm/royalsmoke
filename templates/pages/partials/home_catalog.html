@@ -1,12 +1,12 @@
-{% load static i18n %}
+{% load static i18n rs_content %}
 <section class="rs-section rs-home-catalog" id="home-catalog" data-catalog-slider>
   <div class="rs-container">
     <div class="rs-section__head" data-rs-reveal>
-      <h2 class="rs-section__title">{% trans "Каталог" %}</h2>
+      <h2 class="rs-section__title">{% cms_text 'home' 'catalog_title' %}</h2>
     </div>
 
     <div class="rs-home-catalog__tools" data-rs-reveal>
-      <a class="rs-link-gold rs-hover-underline" href="{% url 'catalog:list' %}">{% trans "Увесь каталог" %}</a>
+      <a class="rs-link-gold rs-hover-underline" href="{% url 'catalog:list' %}">{% cms_text 'home' 'catalog_all' %}</a>
     </div>
 
     <div class="rs-home-catalog__stage">
@@ -76,7 +76,7 @@
             </div>
           </article>
         {% empty %}
-          <p class="rs-empty">{% trans "Каталог наповнюється." %}</p>
+          <p class="rs-empty">{% cms_text 'catalog' 'empty' %}</p>
         {% endfor %}
       </div>
 

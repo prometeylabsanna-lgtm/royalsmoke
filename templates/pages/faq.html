@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n rs_content %}
 
-{% block title %}{% trans "FAQ" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% cms_text 'faq' 'title' %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 {% block body_class %}rs-faq-page{% endblock %}
 
 {% block extra_css %}
@@ -9,10 +9,11 @@
 {% endblock %}
 
 {% block content %}
+{% cms_image 'faq' 'bg' as faq_bg %}
 <div class="rs-faq-page__bg" aria-hidden="true">
   <img
     class="rs-faq-page__bg-img"
-    src="{% static 'img/calculator/lounge-bg.jpg' %}"
+    src="{% if faq_bg %}{{ faq_bg }}{% else %}{% static 'img/calculator/lounge-bg.jpg' %}{% endif %}"
     alt=""
     width="1536"
     height="1024"
@@ -21,55 +22,23 @@
 </div>
 
 <header class="rs-page-head" data-rs-reveal>
-  <h1>{% trans "FAQ" %}</h1>
-  <p>{% trans "Короткі відповіді про замовлення, зберігання та доставку." %}</p>
+  <h1>{% cms_text 'faq' 'title' %}</h1>
+  <p>{% cms_text 'faq' 'lead' %}</p>
 </header>
 
 <div class="rs-container rs-service-page rs-faq">
-  <details open data-rs-reveal data-reveal-delay="0">
+  {% for item in faq_items %}
+  <details {% if forloop.first %}open{% endif %} data-rs-reveal>
     <summary>
-      <span class="rs-faq__q">{% trans "Як зберігати сигари?" %}</span>
+      <span class="rs-faq__q">{{ item.question }}</span>
       <span class="rs-faq__chev" aria-hidden="true"></span>
     </summary>
     <div class="rs-faq__a">
-      <p>{% trans "У хумідорі при 68–72% вологості та 16–20°C. Ми відправляємо в термобоксі." %}</p>
+      <p>{{ item.answer|cms_lines }}</p>
     </div>
   </details>
-  <details data-rs-reveal data-reveal-delay="50">
-    <summary>
-      <span class="rs-faq__q">{% trans "Чи потрібна реєстрація для покупки?" %}</span>
-      <span class="rs-faq__chev" aria-hidden="true"></span>
-    </summary>
-    <div class="rs-faq__a">
-      <p>{% trans "Ні, гостьове оформлення доступне. Кабінет зручний для повторних замовлень." %}</p>
-    </div>
-  </details>
-  <details data-rs-reveal data-reveal-delay="100">
-    <summary>
-      <span class="rs-faq__q">{% trans "Які терміни доставки?" %}</span>
-      <span class="rs-faq__chev" aria-hidden="true"></span>
-    </summary>
-    <div class="rs-faq__a">
-      <p>{% trans "Київ — часто того ж дня, Україна — 1–2 дні. Деталі на сторінці «Доставка і оплата»." %}</p>
-    </div>
-  </details>
-  <details data-rs-reveal data-reveal-delay="150">
-    <summary>
-      <span class="rs-faq__q">{% trans "Чи можна повернути товар?" %}</span>
-      <span class="rs-faq__chev" aria-hidden="true"></span>
-    </summary>
-    <div class="rs-faq__a">
-      <p>{% trans "Тютюнові вироби належної якості не підлягають поверненню. Брак розглядаємо індивідуально." %}</p>
-    </div>
-  </details>
-  <details data-rs-reveal data-reveal-delay="200">
-    <summary>
-      <span class="rs-faq__q">{% trans "Як працює бронювання?" %}</span>
-      <span class="rs-faq__chev" aria-hidden="true"></span>
-    </summary>
-    <div class="rs-faq__a">
-      <p>{% trans "Залиште імʼя та телефон у блоці «Бронювання» на головній — менеджер узгодить зручний час візиту." %}</p>
-    </div>
-  </details>
+  {% empty %}
+  <p>{% cms_text 'faq' 'lead' %}</p>
+  {% endfor %}
 </div>
 {% endblock %}

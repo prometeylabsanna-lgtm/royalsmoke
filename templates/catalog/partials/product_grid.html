@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n rs_content %}
 {% for product in products %}
   <article class="rs-cb-row" data-rs-reveal data-reveal-delay="{% widthratio forloop.counter0 1 40 %}">
     <a class="rs-cb-row__media" href="{{ product.get_absolute_url }}" tabindex="-1" aria-hidden="true">
@@ -52,5 +52,5 @@
     </div>
   </article>
 {% empty %}
-  <p class="rs-cb__empty" data-rs-reveal>{% trans "Нічого не знайдено. Змініть фільтри." %}</p>
+          <p class="rs-cb__empty" data-rs-reveal>{% cms_text 'catalog' 'empty' %}</p>
 {% endfor %}

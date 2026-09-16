@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n rs_content %}
 
-{% block title %}{% trans "Політика конфіденційності" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{{ doc.title }} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 {% block body_class %}rs-legal-page{% endblock %}
 
 {% block extra_css %}
@@ -21,33 +21,17 @@
 </div>
 
 <header class="rs-page-head" data-rs-reveal>
-  <h1>{% blocktrans %}Політика<br>конфіденційності{% endblocktrans %}</h1>
-  <p>{% trans "Конфіденційність, умови користування, вікова політика та файли cookie." %}</p>
+  <h1>{{ doc.title }}</h1>
+  {% if legal_docs %}
+  <nav class="rs-legal-nav" aria-label="Legal">
+    {% for item in legal_docs %}
+      <a href="{% url 'pages:legal' slug=item.slug %}">{{ item.title }}</a>
+    {% endfor %}
+  </nav>
+  {% endif %}
 </header>
 
 <div class="rs-container rs-service-page rs-legal" data-rs-reveal data-reveal-delay="80">
-  <h2 id="privacy">{% trans "Політика конфіденційності" %}</h2>
-  <p>
-    {% blocktrans trimmed %}Ми обробляємо персональні дані (імʼя, телефон, email, адресу доставки)
-    лише для виконання замовлень і зворотного звʼязку. Дані не продаємо третім сторонам.{% endblocktrans %}
-  </p>
-
-  <h2 id="terms">{% trans "Умови користування" %}</h2>
-  <p>
-    {% blocktrans trimmed with site_name=site_settings.site_name|default:"Royal Smoke" %}Сайт {{ site_name }} пропонує тютюнові вироби та аксесуари
-    повнолітнім відвідувачам. Оформлюючи замовлення, ви підтверджуєте вік 21+ та згоду з умовами продажу.{% endblocktrans %}
-  </p>
-
-  <h2 id="age">{% trans "Вікова політика" %}</h2>
-  <p>
-    {% blocktrans trimmed %}Доступ до вітрини можливий лише після підтвердження віку (cookie age_ok).
-    Особам молодше 21 року продаж заборонено.{% endblocktrans %}
-  </p>
-
-  <h2 id="cookies">{% trans "Файли cookie" %}</h2>
-  <p>
-    {% blocktrans trimmed %}Використовуємо необхідні cookies для сесії кошика, age gate та мови.
-    Аналітичні cookies — лише за згодою, якщо увімкнено на проєкті.{% endblocktrans %}
-  </p>
+  <div class="rs-legal__body">{{ doc.body|safe }}</div>
 </div>
 {% endblock %}

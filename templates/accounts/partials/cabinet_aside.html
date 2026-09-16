@@ -1,7 +1,7 @@
-{% load i18n %}
-<aside class="rs-gate__aside" aria-label="{% trans "Можливості кабінету" %}">
+{% load i18n rs_content %}
+<aside class="rs-gate__aside" aria-label="{% cms_text 'cabinet' 'quick' %}">
   <div class="rs-gate__card">
-    <p class="rs-gate__eyebrow">{% trans "Швидкі дії" %}</p>
+    <p class="rs-gate__eyebrow">{% cms_text 'cabinet' 'quick' %}</p>
     <nav class="rs-gate__menu" aria-label="{% trans "Швидкі дії кабінету" %}">
       <a class="rs-gate__menu-btn" href="{% url 'catalog:list' %}">{% trans "Каталог" %}</a>
       <a class="rs-gate__menu-btn" href="{% url 'cart:detail' %}">{% trans "Кошик" %}</a>

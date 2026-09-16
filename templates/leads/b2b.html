@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n rs_content %}
 
-{% block title %}B2B — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% cms_text 'b2b' 'title' %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 
 {% block content %}
 {% trans "Контактна особа" as label_name %}
@@ -10,8 +10,8 @@
 {% trans "Що цікавить" as label_message %}
 {% trans "Прайс, гравіювання, корпоративні набори…" as placeholder_message %}
 <header class="rs-page-head" data-rs-reveal>
-  <h1>B2B</h1>
-  <p>{% trans "Прайс і умови для барів, готелів і корпоративних подарунків." %}</p>
+  <h1>{% cms_text 'b2b' 'title' %}</h1>
+  <p>{% cms_text 'b2b' 'lead' %}</p>
 </header>
 
 <div class="rs-container rs-service-page" data-rs-reveal data-reveal-delay="80">
@@ -27,7 +27,7 @@
     {% include "partials/form_field.html" with name="email" id="id_email" label=label_email rule="email" type="email" autocomplete="email" %}
     {% include "partials/form_field.html" with name="message" id="id_message" label=label_message rule="required" type="textarea" placeholder=placeholder_message rows=4 %}
     <div class="rs-form__actions">
-      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% trans "Запросити прайс" %}</button>
+      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% cms_text 'b2b' 'submit' %}</button>
     </div>
   </form>
 </div>

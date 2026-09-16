@@ -1,9 +1,10 @@
-{% load static i18n %}
+{% load static i18n rs_content %}
 <section class="rs-section rs-home-calc" id="home-calculator" data-home-calc data-calc-step="0">
   <div class="rs-home-calc__bg" aria-hidden="true">
+    {% cms_image 'home' 'calculator_bg' as calc_bg %}
     <img
       class="rs-home-calc__bg-img"
-      src="{% static 'img/calculator/lounge-bg.jpg' %}"
+      src="{% if calc_bg %}{{ calc_bg }}{% else %}{% static 'img/calculator/lounge-bg.jpg' %}{% endif %}"
       alt=""
       width="1536"
       height="1024"
@@ -12,7 +13,7 @@
     >
   </div>
   <div class="rs-container rs-home-calc__inner">
-    <p class="rs-home-calc__kicker" data-rs-reveal>{% trans "Калькулятор" %}</p>
+    <p class="rs-home-calc__kicker" data-rs-reveal>{% cms_text 'home' 'calculator_kicker' %}</p>
     <div class="rs-home-calc__layout" data-rs-reveal>
       <div class="rs-home-calc__stage">
         <nav class="rs-home-calc__progress" aria-label="{% trans 'Кроки підбору' %}">

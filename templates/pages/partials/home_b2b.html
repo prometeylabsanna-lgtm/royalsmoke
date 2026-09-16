@@ -1,9 +1,10 @@
-{% load static i18n %}
-<article class="rs-svc-card" id="home-b2b" aria-label="{% trans 'B2B' %}" data-rs-reveal data-reveal-delay="120">
+{% load static i18n rs_content %}
+<article class="rs-svc-card" id="home-b2b" aria-label="{% cms_text 'service' 'b2b_title' %}" data-rs-reveal data-reveal-delay="120">
   <div class="rs-svc-card__media">
+    {% cms_image 'service' 'b2b_image' as b2b_img %}
     <img
-      src="{% static 'img/service/b2b.jpg' %}"
-      alt="{% trans 'Корпоративні набори Royal Smoke' %}"
+      src="{% if b2b_img %}{{ b2b_img }}{% else %}{% static 'img/service/b2b.jpg' %}{% endif %}"
+      alt="{% cms_text 'service' 'b2b_title' %}"
       width="800"
       height="1000"
       loading="lazy"
@@ -13,8 +14,8 @@
   </div>
 
   <div class="rs-svc-card__body">
-    <h2 class="rs-svc-card__title">{% trans "B2B" %}</h2>
-    <p class="rs-svc-card__lead">{% trans "Прайс для барів, готелів і корпоративних подарунків." %}</p>
+    <h2 class="rs-svc-card__title">{% cms_text 'service' 'b2b_title' %}</h2>
+    <p class="rs-svc-card__lead">{% cms_text 'service' 'b2b_lead' %}</p>
 
     <form
       class="rs-svc-card__form"
@@ -94,7 +95,7 @@
           >
           <p class="rs-field__error" data-rs-error hidden></p>
         </div>
-        <button type="submit" class="rs-svc-card__submit">{% trans "Запросити прайс" %}</button>
+        <button type="submit" class="rs-svc-card__submit">{% cms_text 'service' 'b2b_cta' %}</button>
       </div>
     </form>
   </div>

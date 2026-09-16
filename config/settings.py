@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 
 from django.core.exceptions import ImproperlyConfigured
+from django.templatetags.static import static
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -56,6 +57,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'csp',
+    'tinymce',
     'apps.accounts',
     'apps.core',
     'apps.catalog',
@@ -209,6 +211,7 @@ REST_FRAMEWORK = {
 from csp.constants import NONCE, SELF  # noqa: E402
 
 CONTENT_SECURITY_POLICY = {
+    'EXCLUDE_URL_PREFIXES': (f'/{ADMIN_URL}',),
     'DIRECTIVES': {
         'default-src': [SELF],
         'script-src': [SELF, NONCE, 'https://unpkg.com'],
@@ -271,11 +274,59 @@ UNFOLD = {
     'SITE_HEADER': 'Royal Smoke Admin',
     'SITE_SYMBOL': 'smoking_rooms',
     'SHOW_HISTORY': True,
+    # Warm bark/coffee base + amber primary — під --rs-bark / --rs-gold сайту.
+    # Кроки lightness як у дефолті Unfold, щоб не зламати контраст light/dark.
+    'COLORS': {
+        'base': {
+            '50': 'oklch(98.2% 0.006 55)',
+            '100': 'oklch(95.4% 0.009 50)',
+            '200': 'oklch(90.1% 0.012 48)',
+            '300': 'oklch(82.6% 0.014 46)',
+            '400': 'oklch(68.4% 0.016 45)',
+            '500': 'oklch(52.8% 0.018 44)',
+            '600': 'oklch(42.2% 0.016 43)',
+            '700': 'oklch(34.6% 0.014 42)',
+            '800': 'oklch(26.4% 0.012 42)',
+            '900': 'oklch(19.2% 0.010 40)',
+            '950': 'oklch(13.4% 0.008 38)',
+        },
+        'primary': {
+            '50': 'oklch(97.3% 0.018 75)',
+            '100': 'oklch(94.1% 0.038 75)',
+            '200': 'oklch(88.2% 0.068 72)',
+            '300': 'oklch(78.4% 0.098 68)',
+            '400': 'oklch(66.2% 0.118 62)',
+            '500': 'oklch(54.8% 0.122 58)',
+            '600': 'oklch(47.2% 0.112 55)',
+            '700': 'oklch(40.1% 0.096 52)',
+            '800': 'oklch(33.4% 0.078 50)',
+            '900': 'oklch(27.2% 0.058 48)',
+            '950': 'oklch(18.8% 0.038 46)',
+        },
+    },
+    'STYLES': [
+        lambda request: static('css/admin/site_content.css'),
+    ],
+    'SCRIPTS': [
+        lambda request: static('js/admin/cms_lang_switch.js'),
+        lambda request: static('js/admin/cms_image_preview.js'),
+    ],
     'SIDEBAR': {
         'show_search': True,
-        'show_all_applications': True,
+        'show_all_applications': False,
         'navigation': [],  # filled in apps.core.admin_nav
     },
+}
+
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 400,
+    'menubar': False,
+    'plugins': 'link lists image code',
+    'toolbar': 'undo redo | bold italic underline | bullist numlist | link image | code',
+    'content_css': False,
+    'skin': 'oxide',
+    'promotion': False,
+    'branding': False,
 }
 
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 30

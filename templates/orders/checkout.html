@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n rs_content %}
 
-{% block title %}{% trans "Оформлення замовлення" %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% cms_text 'checkout' 'title' %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 
 {% block content %}
 <header class="rs-page-head" data-rs-reveal>
-  <h1>{% trans "Оформлення" %}</h1>
-  <p>{% trans "Заповніть контакти та спосіб доставки." %}</p>
+  <h1>{% cms_text 'checkout' 'title' %}</h1>
+  <p>{% cms_text 'checkout' 'lead' %}</p>
 </header>
 
 <div class="rs-container rs-checkout" data-rs-reveal data-reveal-delay="80">
@@ -119,17 +119,17 @@
       <input type="checkbox" id="id_age_confirm" name="age_confirm" value="1" required data-rs-rule="required" data-rs-checkbox="1"
              aria-describedby="id_age_confirm-error"
              {% if form.age_confirm.value %}checked{% endif %}>
-      <label for="id_age_confirm">{% trans "Підтверджую, що мені є 21 рік" %}</label>
+      <label for="id_age_confirm">{% cms_text 'checkout' 'age' %}</label>
       <p class="rs-field__error" id="id_age_confirm-error" data-rs-error {% if not form.age_confirm.errors %}hidden{% endif %}>{% if form.age_confirm.errors %}{{ form.age_confirm.errors.0 }}{% endif %}</p>
     </div>
     <input type="hidden" name="delivery_cost" id="id_delivery_cost" value="{{ form.delivery_cost.value|default:'0' }}">
     <div class="rs-form__actions">
-      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% trans "Підтвердити замовлення" %}</button>
+      <button type="submit" class="rs-btn rs-btn--gold rs-btn--block">{% cms_text 'checkout' 'submit' %}</button>
     </div>
   </form>
 
   <aside class="rs-checkout__summary" id="rs-checkout-summary">
-    <h2 class="rs-section__title" style="font-size:22px">{% trans "Ваше замовлення" %}</h2>
+    <h2 class="rs-section__title" style="font-size:22px">{% cms_text 'checkout' 'summary' %}</h2>
     {% for item in cart.items %}
       <div class="rs-cart__row">
         <span>{{ item.product.name }} × {{ item.quantity }}</span>

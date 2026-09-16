@@ -1,8 +1,8 @@
 from django.contrib import admin
-from unfold.admin import ModelAdmin, TabularInline
+from unfold.admin import ModelAdmin
 
 from apps.core.admin_site_content_proxies import register_site_content_section_admins  # noqa: F401
-from apps.core.models import HeroSlide, SiteSettings
+from apps.core.models import SiteSettings
 from apps.core.validation.admin_forms import SiteSettingsAdminForm
 
 
@@ -23,11 +23,3 @@ class SiteSettingsAdmin(ModelAdmin):
 
         obj, _ = SiteSettings.objects.get_or_create(pk=1)
         return HttpResponseRedirect(reverse('admin:core_sitesettings_change', args=[obj.pk]))
-
-
-class HeroSlideInline(TabularInline):
-    model = HeroSlide
-    extra = 0
-
-
-# HeroSlide not registered as standalone ModelAdmin (managed via CMS hero section)
