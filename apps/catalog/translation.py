@@ -11,7 +11,7 @@ class CategoryTranslation(TranslationOptions):
 
 @register(Brand)
 class BrandTranslation(TranslationOptions):
-    fields = ('name', 'short_description', 'description')
+    fields = ('name', 'short_description', 'description', 'country')
 
 
 @register(ProductLine)

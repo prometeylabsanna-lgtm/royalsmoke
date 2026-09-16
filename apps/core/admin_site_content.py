@@ -16,7 +16,7 @@ from apps.core.block_defaults import (
     MULTILINE_KEYS,
     is_visibility_key,
 )
-from apps.core.models import HeroSlide, HistorySlide, SiteBlock, SiteSettings
+from apps.core.models import HeroSlide, HistorySlide, SiteBlock, SiteSettings, clear_site_content_cache
 from apps.core.site_content_registry import (
     ContentSection,
     get_block_field_label,
@@ -135,6 +135,7 @@ class SitePageContentForm(forms.Form):
                     block.image = uploaded
             block.save()
         cache.delete(SITE_BLOCKS_CACHE_KEY)
+        clear_site_content_cache()
 
 
 class HeroSlideForm(forms.ModelForm):

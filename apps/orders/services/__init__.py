@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from django.utils.translation import gettext as _
+
 from apps.core.services.notifications import notify_admins, notify_user, render_email
 
 
@@ -20,7 +22,7 @@ def notify_order_created(order) -> None:
     cust_text, cust_html = render_email('order_created_customer', ctx)
     notify_user(
         order.email,
-        f'Замовлення {order.order_number} прийнято',
+        _('Замовлення %(num)s прийнято') % {'num': order.order_number},
         cust_text,
         html=cust_html,
         user=order.user,
@@ -38,7 +40,7 @@ def notify_order_paid(order) -> None:
     )
     notify_user(
         order.email,
-        f'Оплату замовлення {order.order_number} підтверджено',
+        _('Оплату замовлення %(num)s підтверджено') % {'num': order.order_number},
         text,
         html=html,
         user=order.user,

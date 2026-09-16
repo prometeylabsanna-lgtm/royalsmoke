@@ -1,8 +1,9 @@
-<section class="rs-cab__wish" id="cabinet-wishlist" aria-label="Вибране">
+{% load i18n %}
+<section class="rs-cab__wish" id="cabinet-wishlist" aria-label="{% trans "Вибране" %}">
   <div class="rs-cab__wish-head">
-    <h2 class="rs-cab__block-title">Вибране</h2>
+    <h2 class="rs-cab__block-title">{% trans "Вибране" %}</h2>
     {% if wishlist_items %}
-      <a class="rs-cab__wish-all" href="{% url 'accounts:wishlist' %}">Усі</a>
+      <a class="rs-cab__wish-all" href="{% url 'accounts:wishlist' %}">{% trans "Усі" %}</a>
     {% endif %}
   </div>
 
@@ -35,7 +36,7 @@
               {% with v=product.variants.all.0 %}
                 {% if v %}<input type="hidden" name="variant_id" value="{{ v.id }}">{% endif %}
               {% endwith %}
-              <button type="submit" class="rs-cab__wish-cart" aria-label="У кошик">У кошик</button>
+              <button type="submit" class="rs-cab__wish-cart" aria-label="{% trans "У кошик" %}">{% trans "У кошик" %}</button>
             </form>
             <form method="post"
                   action="{% url 'accounts:wishlist_toggle' %}"
@@ -44,14 +45,14 @@
                   hx-swap="outerHTML">
               {% csrf_token %}
               <input type="hidden" name="product_id" value="{{ product.id }}">
-              <button type="submit" class="rs-cab__wish-remove" aria-label="Прибрати з вибраного">×</button>
+              <button type="submit" class="rs-cab__wish-remove" aria-label="{% trans "Прибрати з вибраного" %}">×</button>
             </form>
           </div>
         </li>
       {% endfor %}
     </ul>
   {% else %}
-    <p class="rs-cab__meta">Поки порожньо. Додайте товари сердечком у каталозі.</p>
-    <a class="rs-cab__wish-link" href="{% url 'catalog:list' %}">До каталогу</a>
+    <p class="rs-cab__meta">{% trans "Поки порожньо. Додайте товари сердечком у каталозі." %}</p>
+    <a class="rs-cab__wish-link" href="{% url 'catalog:list' %}">{% trans "До каталогу" %}</a>
   {% endif %}
 </section>

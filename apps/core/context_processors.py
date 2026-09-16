@@ -7,17 +7,21 @@ from apps.core.models import HeroSlide, HistorySlide, SiteBlock, SiteSettings
 
 
 def site_globals(request):
-    settings_obj = cache.get('site_settings')
+    lang = get_language() or 'uk'
+    settings_key = f'site_settings:{lang}'
+    blocks_key = f'site_blocks:{lang}'
+
+    settings_obj = cache.get(settings_key)
     if settings_obj is None:
         settings_obj = SiteSettings.load()
-        cache.set('site_settings', settings_obj, 300)
+        cache.set(settings_key, settings_obj, 300)
 
-    blocks = cache.get('site_blocks')
+    blocks = cache.get(blocks_key)
     if blocks is None:
         blocks = {}
         for b in SiteBlock.objects.filter(is_active=True):
             blocks[f'{b.page}.{b.key}'] = b
-        cache.set('site_blocks', blocks, 300)
+        cache.set(blocks_key, blocks, 300)
 
     def block_text(page: str, key: str, default: str = '') -> str:
         b = blocks.get(f'{page}.{key}')

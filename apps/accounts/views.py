@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.utils import timezone
+from django.utils.translation import gettext as _
 from django.views.decorators.http import require_http_methods, require_POST
 
 from apps.accounts import wishlist as wishlist_services
@@ -81,7 +82,7 @@ def cabinet(request):
     display_name = (
         request.user.get_full_name()
         or (request.user.first_name or '')
-        or (request.user.email.split('@')[0] if request.user.email else 'гість')
+        or (request.user.email.split('@')[0] if request.user.email else _('гість'))
     )
     initial = (display_name[:1] or '?').upper()
     wishlist_items = wishlist_services.items(request)

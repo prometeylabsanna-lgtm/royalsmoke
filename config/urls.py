@@ -7,6 +7,7 @@ from django.urls import include, path
 from django.views.generic import TemplateView
 
 from apps.catalog.models import Product
+from apps.core.i18n_views import set_language
 from apps.core.views import health, healthz
 from apps.orders import views as order_views
 from django.contrib.sitemaps import GenericSitemap
@@ -18,6 +19,7 @@ info_dict = {
 
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
+    path('i18n/setlang/', set_language, name='set_language'),
     path('i18n/', include('django.conf.urls.i18n')),
     path('api/v1/', include('apps.api.urls')),
     path('health/', health, name='health'),

@@ -1,4 +1,5 @@
-Оплату замовлення {{ order.order_number }} підтверджено.
+{% load i18n %}
+{% blocktrans with num=order.order_number %}Оплату замовлення {{ num }} підтверджено{% endblocktrans %}
 
-Сума: {{ order.total }} {{ order.currency }}
-Статус: {{ order.get_status_display }}
+{% trans "Сума" %}: {{ order.total }} {{ order.currency }}
+{% trans "Статус" %}: {{ order.get_status_display }}

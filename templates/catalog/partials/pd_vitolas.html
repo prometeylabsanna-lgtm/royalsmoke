@@ -10,7 +10,7 @@
            {% if active_variant and active_variant.id == v.id %}aria-current="true"{% endif %}>
           <span class="rs-pd__vitola-name">{{ v.name }}</span>
           <span class="rs-pd__vitola-meta">
-            {% if v.length_mm %}{{ v.length_mm }} мм{% endif %}
+            {% if v.length_mm %}{% blocktrans with mm=v.length_mm %}{{ mm }} мм{% endblocktrans %}{% endif %}
             {% if v.length_mm and v.ring_gauge %} · {% endif %}
             {% if v.ring_gauge %}⌀ {{ v.ring_gauge }}{% endif %}
             {% if v.shape %} · {{ v.shape }}{% endif %}

@@ -1,7 +1,8 @@
-Ваше замовлення {{ order.order_number }} прийнято.
+{% load i18n %}
+{% blocktrans with num=order.order_number %}Замовлення {{ num }} прийнято{% endblocktrans %}
 
-Сума: {{ order.total }} {{ order.currency }}
-Доставка: {{ order.get_delivery_service_display }} — {{ order.delivery_city }}, {{ order.delivery_address }}
-Оплата: {{ order.get_payment_method_display }}
+{% trans "Сума" %}: {{ order.total }} {{ order.currency }}
+{% trans "Доставка" %}: {{ order.get_delivery_service_display }} — {{ order.delivery_city }}, {{ order.delivery_address }}
+{% trans "Оплата" %}: {{ order.get_payment_method_display }}
 
-Дякуємо, що обрали Royal Smoke.
+{% trans "Дякуємо, що обрали Royal Smoke." %}

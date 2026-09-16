@@ -1,7 +1,8 @@
-Ваше бронювання прийнято.
+{% load i18n %}
+{% trans "Ваше бронювання прийнято." %}
 
-{% if booking.slot %}Слот: {{ booking.slot }}{% endif %}
-Імʼя: {{ booking.name }}
-Телефон: {{ booking.phone }}
+{% if booking.slot %}{% blocktrans with slot=booking.slot %}Слот: {{ slot }}{% endblocktrans %}{% endif %}
+{% trans "Імʼя" %}: {{ booking.name }}
+{% trans "Телефон" %}: {{ booking.phone }}
 
-Ми звʼяжемося для підтвердження. Royal Smoke.
+{% trans "Ми звʼяжемося для підтвердження. Royal Smoke." %}

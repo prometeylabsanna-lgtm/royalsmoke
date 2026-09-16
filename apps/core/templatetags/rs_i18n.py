@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from urllib.parse import urlsplit, urlunsplit
+
 from django import template
 from django.conf import settings
 from django.utils.translation import get_language
@@ -25,6 +27,29 @@ def _strip_lang_prefix(path: str) -> str:
     return f'/{rest}' if rest else '/'
 
 
+def _prefix_lang(clean_path: str, lang: str) -> str:
+    if lang == settings.LANGUAGE_CODE:
+        return clean_path
+    if clean_path == '/':
+        return f'/{lang}/'
+    return f'/{lang}{clean_path}'
+
+
+def localize_path_for(path: str | None, lang: str | None) -> str:
+    """Rewrite a storefront path (and optional query) for the target language."""
+    if not path:
+        return '/'
+    raw = str(path).strip()
+    if not raw:
+        return '/'
+    parsed = urlsplit(raw)
+    path_only = parsed.path or '/'
+    if not path_only.startswith('/'):
+        path_only = f'/{path_only}'
+    new_path = _prefix_lang(_strip_lang_prefix(path_only), lang or settings.LANGUAGE_CODE)
+    return urlunsplit((parsed.scheme, parsed.netloc, new_path, parsed.query, parsed.fragment))
+
+
 @register.filter(name='localize_path')
 def localize_path(path: str | None) -> str:
     """Prefix CMS absolute paths with active language (skip default uk)."""
@@ -35,11 +60,11 @@ def localize_path(path: str | None) -> str:
         return raw
     if not raw.startswith('/'):
         return raw
+    return localize_path_for(raw, get_language() or settings.LANGUAGE_CODE)
 
-    lang = get_language() or settings.LANGUAGE_CODE
-    clean = _strip_lang_prefix(raw)
-    if lang == settings.LANGUAGE_CODE:
-        return clean
-    if clean == '/':
-        return f'/{lang}/'
-    return f'/{lang}{clean}'
+
+@register.simple_tag(takes_context=True)
+def language_next(context, lang_code: str) -> str:
+    request = context.get('request')
+    current = request.get_full_path() if request is not None else '/'
+    return localize_path_for(current, lang_code)

@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy
 from django.views.decorators.http import require_POST
 
 from apps.catalog.models import Brand, Product
@@ -44,7 +46,7 @@ _BRAND_CRAFT_TONES = (
             'https://images.unsplash.com/photo-1741306444151-ec7f9ac433ef'
             '?auto=format&fit=crop&w=1400&q=80'
         ),
-        'fallback': (
+        'fallback': gettext_lazy(
             'Нікарагуанська школа майстерності: насичений смак, щільна скрутка '
             'та характерний maduro. Сигари AJ Fernandez — для тих, хто цінує '
             'глибину профілю, довгий фініш і ритуал повільного куріння.'
@@ -56,7 +58,7 @@ _BRAND_CRAFT_TONES = (
             'https://images.unsplash.com/photo-1631227852854-7c0fac3c9aeb'
             '?auto=format&fit=crop&w=1400&q=80'
         ),
-        'fallback': (
+        'fallback': gettext_lazy(
             'Глибокі профілі з нотами какао, шкіри та кедру — Oliva створює '
             'сигари для довгого вечірнього ритуалу. Баланс сили й елегантності, '
             'витриманий тютюн і бездоганна скрутка.'
@@ -68,7 +70,7 @@ _BRAND_CRAFT_TONES = (
             'https://images.unsplash.com/photo-1749842839766-8b71630a627d'
             '?auto=format&fit=crop&w=1400&q=80'
         ),
-        'fallback': (
+        'fallback': gettext_lazy(
             'Свіжі ноти тютюнового листа, акуратна ферментація та чистий фініш. '
             'Perdomo — сімейна традиція, де кожна сигара проходить відбір '
             'і контроль вологості для ідеального куріння.'
@@ -80,7 +82,7 @@ _BRAND_CRAFT_TONES = (
             'https://images.unsplash.com/photo-1686704176261-a77939eb0f7c'
             '?auto=format&fit=crop&w=1400&q=80'
         ),
-        'fallback': (
+        'fallback': gettext_lazy(
             'Земляні тони мексиканського terroir, деревʼяна коробка та аксесуари '
             'для повільного ритуалу. Casa Turrent поєднує історію родини '
             'з сучасним характером преміальної сигари.'
@@ -133,7 +135,7 @@ def home(request):
         'brand_craft': brand_craft,
         'hero_slides': slides,
         'history_slides': history_slides,
-        'history_kicker': _block('home', 'about_kicker') or 'Історія',
+        'history_kicker': _block('home', 'about_kicker') or _('Історія'),
         'history_bg': _block_image('home', 'about_bg'),
     })
 

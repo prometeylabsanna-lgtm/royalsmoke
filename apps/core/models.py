@@ -4,6 +4,16 @@ from django.core.cache import cache
 from django.db import models
 
 
+def clear_site_content_cache() -> None:
+    from django.conf import settings
+
+    cache.delete('site_settings')
+    cache.delete('site_blocks')
+    for code, _name in settings.LANGUAGES:
+        cache.delete(f'site_settings:{code}')
+        cache.delete(f'site_blocks:{code}')
+
+
 class SiteSettings(models.Model):
     """Singleton глобальних налаштувань (pk=1)."""
 
@@ -36,7 +46,7 @@ class SiteSettings(models.Model):
     def save(self, *args, **kwargs):
         self.pk = 1
         super().save(*args, **kwargs)
-        cache.delete('site_settings')
+        clear_site_content_cache()
 
     def delete(self, *args, **kwargs):
         return None
@@ -82,7 +92,7 @@ class SiteBlock(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        cache.delete('site_blocks')
+        clear_site_content_cache()
 
 
 class HeroSlide(models.Model):

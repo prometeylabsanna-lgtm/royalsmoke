@@ -1,10 +1,11 @@
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="{{ LANGUAGE_CODE }}">
 <body style="font-family:Georgia,serif;color:#1a1a1a;line-height:1.5">
-  <h1 style="font-size:20px">Замовлення {{ order.order_number }} прийнято</h1>
-  <p>Сума: <strong>{{ order.total }} {{ order.currency }}</strong></p>
+  <h1 style="font-size:20px">{% blocktrans with num=order.order_number %}Замовлення {{ num }} прийнято{% endblocktrans %}</h1>
+  <p>{% trans "Сума" %}: <strong>{{ order.total }} {{ order.currency }}</strong></p>
   <p>{{ order.get_delivery_service_display }} — {{ order.delivery_city }}, {{ order.delivery_address }}</p>
-  <p>Оплата: {{ order.get_payment_method_display }}</p>
-  <p>Дякуємо, що обрали Royal Smoke.</p>
+  <p>{% trans "Оплата" %}: {{ order.get_payment_method_display }}</p>
+  <p>{% trans "Дякуємо, що обрали Royal Smoke." %}</p>
 </body>
 </html>

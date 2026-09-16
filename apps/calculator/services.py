@@ -6,13 +6,16 @@ from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
 
 from django.db.models import Q
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _lazy
 
 from apps.catalog.models import Product
 
 COUNTRY_LABELS = {
-    'cuba': 'Куба',
-    'nicaragua': 'Нікарагуа',
-    'dominican': 'Домінікана',
+    'cuba': _lazy('Куба'),
+    'nicaragua': _lazy('Нікарагуа'),
+    'dominican': _lazy('Домінікана'),
+    'mexico': _lazy('Мексика'),
 }
 
 FORMAT_TERMS = {
@@ -91,7 +94,7 @@ def _score_product(
 
     if strength and product.strength == strength:
         score += 40
-        reasons.append(f'міцність {STRENGTH_LABELS.get(strength, strength).lower()}')
+        reasons.append(_('міцність %(s)s') % {'s': str(STRENGTH_LABELS.get(strength, strength)).lower()})
     elif strength and product.strength:
         # сусідні рівні — частковий збіг
         order = ['mild', 'medium', 'medium_full', 'full']
@@ -105,7 +108,7 @@ def _score_product(
     if country_label:
         if country_label.lower() in (product.country or '').lower():
             score += 30
-            reasons.append(f'країна {product.country}')
+            reasons.append(_('країна %(c)s') % {'c': product.country})
     else:
         score += 5
 
@@ -123,20 +126,20 @@ def _score_product(
                 'toro': 'Toro',
                 'churchill': 'Churchill',
             }.get(fmt, fmt)
-            reasons.append(f'формат {label}')
+            reasons.append(_('формат %(f)s') % {'f': label})
 
     if budget_lo is None and budget_hi is None:
         score += 5
     elif _price_in_range(price, budget_lo, budget_hi):
         score += 35
-        reasons.append(f'у бюджеті ({price} ₴)')
+        reasons.append(_('у бюджеті (%(p)s ₴)') % {'p': price})
     elif budget_hi is not None and price <= budget_hi * Decimal('1.15'):
         score -= 8
     else:
         score -= 40
 
     if not reasons:
-        reasons.append('близький за профілем асортименту')
+        reasons.append(_('близький за профілем асортименту'))
 
     return CalcHit(product=product, score=score, reasons=reasons)
 
@@ -145,7 +148,7 @@ def recommend_products(answers: dict, limit: int = 3) -> list[CalcHit]:
     strength = (answers.get('strength') or '').strip() or None
     fmt = (answers.get('format') or '').strip().lower() or None
     country_key = (answers.get('country') or '').strip().lower() or None
-    country_label = COUNTRY_LABELS.get(country_key) if country_key else None
+    country_label = str(COUNTRY_LABELS[country_key]) if country_key in COUNTRY_LABELS else None
     budget_lo, budget_hi = parse_budget(answers.get('budget'))
 
     qs = Product.objects.on_storefront().with_relations().filter(
