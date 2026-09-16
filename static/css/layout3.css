@@ -213,13 +213,27 @@
     filter: blur(24px) saturate(1.05);
   }
 
-  .rs-drawer__nav a {
-    font-size: 19px;
-    padding: 12px 0;
+  .rs-drawer__content {
+    gap: 10px;
+    padding: calc(10px + var(--rs-safe-t)) 20px calc(8px + var(--rs-safe-b));
   }
 
-  .rs-drawer__content {
-    padding-inline: 20px;
+  .rs-drawer__nav a {
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    font-size: 18px;
+    line-height: 1.2;
+    padding: 6px 0;
+  }
+
+  .rs-drawer__meta {
+    gap: 12px;
+  }
+
+  .rs-drawer__callback {
+    height: 48px;
+    flex-shrink: 0;
   }
 }
 

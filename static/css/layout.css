@@ -193,6 +193,16 @@ body:not(.rs-home) .rs-main {
   }
 }
 
+@media (max-width: 767px) {
+  .rs-header__brand {
+    display: none;
+  }
+
+  .rs-header__search {
+    margin-right: auto;
+  }
+}
+
 .rs-header__brand {
   position: relative;
   z-index: 2;

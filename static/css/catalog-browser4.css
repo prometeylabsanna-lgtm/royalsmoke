@@ -229,24 +229,28 @@
   .rs-cb-row__cart-wrap {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     align-items: stretch;
-    gap: 10px;
-    width: 100%;
+    gap: 8px;
+    width: auto;
+    max-width: 100%;
   }
 
   .rs-cb-row__cart-wrap .rs-cb-row__cart-form {
-    flex: 1 1 auto;
+    flex: 0 1 auto;
+    width: auto;
   }
 
   .rs-cb-row__cart-wrap .rs-wish-btn {
-    width: 44px;
+    width: 40px;
     height: 38px;
     min-height: 38px;
     border: 0;
+    flex-shrink: 0;
   }
 
   .rs-cb-row .rs-pcard__buy {
-    width: 100%;
+    width: auto;
     min-width: 0;
     box-sizing: border-box;
     min-height: 38px;

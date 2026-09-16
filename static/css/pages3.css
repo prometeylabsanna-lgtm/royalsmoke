@@ -309,6 +309,8 @@ body.rs-home {
 }
 
 .rs-pcard {
+  position: relative;
+  isolation: isolate;
   flex: 0 0 calc((100% - (var(--rs-catalog-cols) - 1) * var(--rs-catalog-gap)) / var(--rs-catalog-cols));
   width: calc((100% - (var(--rs-catalog-cols) - 1) * var(--rs-catalog-gap)) / var(--rs-catalog-cols));
   max-width: 100%;
