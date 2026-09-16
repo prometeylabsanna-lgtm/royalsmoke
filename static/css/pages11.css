@@ -135,6 +135,46 @@ body.rs-legal-page .rs-legal {
   box-sizing: border-box;
 }
 
+.rs-legal__body {
+  text-align: left;
+  color: rgba(252, 242, 238, 0.88);
+  font-family: var(--rs-font-ui);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.rs-legal__body h2 {
+  margin: 1.6em 0 0.55em;
+  font-family: var(--rs-font-ui);
+  font-size: 13px;
+  font-weight: var(--rs-weight-sub, 600);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rs-gold, #c99a44);
+  line-height: 1.35;
+}
+
+.rs-legal__body h2:first-child {
+  margin-top: 0;
+}
+
+.rs-legal__body p,
+.rs-legal__body ul {
+  margin: 0 0 0.85em;
+}
+
+.rs-legal__body ul {
+  padding-inline-start: 1.2em;
+}
+
+.rs-legal__body li {
+  margin-bottom: 0.35em;
+}
+
+.rs-legal__body li:last-child {
+  margin-bottom: 0;
+}
+
 /* ——— Tablet ——— */
 @media (max-width: 1023px) {
   body.rs-legal-page .rs-main {

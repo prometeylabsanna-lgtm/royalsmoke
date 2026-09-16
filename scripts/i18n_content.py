@@ -238,6 +238,17 @@ def translate_uk(text: str | None) -> tuple[str, str] | None:
     raw = (text or '').strip()
     if not raw:
         return None
+    try:
+        from apps.core.legal_privacy_body import (
+            PRIVACY_BODY_EN,
+            PRIVACY_BODY_UK,
+            PRIVACY_BODY_ZH,
+        )
+
+        if raw == PRIVACY_BODY_UK.strip():
+            return PRIVACY_BODY_EN, PRIVACY_BODY_ZH
+    except ImportError:
+        pass
     hit = _lookup(raw)
     if hit:
         return hit

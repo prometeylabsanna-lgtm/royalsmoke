@@ -122,14 +122,6 @@ PAGES_EXACT: dict[str, tuple[str, str]] = {
     'Умови користування': ('Terms of use', '使用条款'),
     'Вікова політика': ('Age policy', '年龄政策'),
     'Файли cookie': ('Cookies', 'Cookie 文件'),
-    '<p>Ми обробляємо персональні дані (імʼя, телефон, email, адресу доставки) лише для виконання замовлень і зворотного звʼязку. Дані не продаємо третім сторонам.</p>': (
-        '<p>We process personal data (name, phone, email, delivery address) only to fulfill orders and respond to you. We do not sell data to third parties.</p>',
-        '<p>我们仅出于履行订单与回复联系之目的处理个人数据（姓名、电话、邮箱、收件地址）。不会向第三方出售数据。</p>',
-    ),
-    "<p>Ми обробляємо персональні дані (ім'я, телефон, email, адресу доставки) лише для виконання замовлень і зворотного зв'язку. Дані не продаємо третім сторонам.</p>": (
-        '<p>We process personal data (name, phone, email, delivery address) only to fulfill orders and respond to you. We do not sell data to third parties.</p>',
-        '<p>我们仅出于履行订单与回复联系之目的处理个人数据（姓名、电话、邮箱、收件地址）。不会向第三方出售数据。</p>',
-    ),
     '<p>Сайт Royal Smoke пропонує тютюнові вироби та аксесуари повнолітнім відвідувачам. Оформлюючи замовлення, ви підтверджуєте вік 21+ та згоду з умовами продажу.</p>': (
         '<p>Royal Smoke offers tobacco products and accessories to adult visitors. By placing an order you confirm you are 21+ and accept the sales terms.</p>',
         '<p>Royal Smoke 向成年访客提供烟草制品与配件。下单即表示您已年满21岁并同意销售条款。</p>',

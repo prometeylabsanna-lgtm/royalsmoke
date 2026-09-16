@@ -417,6 +417,9 @@ class Command(BaseCommand):
             if not (doc.body or '').strip():
                 doc.body = item['body']
                 updates.append('body')
+            elif item['slug'] == 'privacy' and len((doc.body or '').strip()) < 400:
+                doc.body = item['body']
+                updates.append('body')
             if doc.sort_order != i:
                 doc.sort_order = i
                 updates.append('sort_order')

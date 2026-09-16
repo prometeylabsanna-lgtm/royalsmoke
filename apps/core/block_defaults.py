@@ -14,6 +14,7 @@ from apps.core.block_defaults_pages import (
     PAGE_MULTILINE,
     PAGE_TYPES,
 )
+from apps.core.legal_privacy_body import PRIVACY_BODY_UK
 
 BLOCK_DEFAULTS: dict[tuple[str, str], str] = {**HOME_DEFAULTS, **PAGE_DEFAULTS}
 
@@ -160,10 +161,7 @@ LEGAL_DOC_DEFAULTS: tuple[dict[str, str], ...] = (
     {
         'slug': 'privacy',
         'title': 'Політика конфіденційності',
-        'body': (
-            '<p>Ми обробляємо персональні дані (імʼя, телефон, email, адресу доставки) '
-            'лише для виконання замовлень і зворотного звʼязку. Дані не продаємо третім сторонам.</p>'
-        ),
+        'body': PRIVACY_BODY_UK,
     },
     {
         'slug': 'terms',
