@@ -15,7 +15,8 @@
 
   <div class="rs-svc-card__body">
     <h2 class="rs-svc-card__title">{% cms_text 'service' 'booking_title' %}</h2>
-    <p class="rs-svc-card__lead">{% cms_text 'service' 'booking_lead' %}</p>
+    {% cms_text 'service' 'booking_lead' as booking_lead %}
+    <p class="rs-svc-card__lead">{{ booking_lead|cms_lines }}</p>
     <a class="rs-btn rs-btn--gold rs-svc-card__submit" href="{% url 'booking:page' %}">{% cms_text 'service' 'booking_cta' %}</a>
   </div>
 </article>

@@ -93,6 +93,10 @@ EXACT: dict[str, tuple[str, str]] = {
         'Leave your contacts — a manager will arrange a convenient visit time. We will call back during business hours to confirm the slot and answer questions. Choose a tasting, sommelier consultation, or a quiet showroom visit — we adapt to your pace.',
         '留下联系方式——经理将安排方便的参观时间。我们会在工作日内回电确认时段并解答疑问。可选品鉴、侍茄师咨询或安静的展厅到访——我们按您的节奏安排。',
     ),
+    'Залиште контакти — менеджер узгодить зручний час візиту.\n\nМи передзвонимо протягом робочого дня, щоб підтвердити слот і відповісти на запитання.\n\nМожна обрати дегустацію, консультацію сомельє або спокійний візит у шоурум — підлаштуємось під ваш ритм.': (
+        'Leave your contacts — a manager will arrange a convenient visit time.\n\nWe will call back during business hours to confirm the slot and answer questions.\n\nChoose a tasting, sommelier consultation, or a quiet showroom visit — we adapt to your pace.',
+        '留下联系方式——经理将安排方便的参观时间。\n\n我们会在工作日内回电确认时段并解答疑问。\n\n可选品鉴、侍茄师咨询或安静的展厅到访——我们按您的节奏安排。',
+    ),
     'Прайс і умови для барів, готелів і корпоративних подарунків.': (
         'Pricing and terms for bars, hotels, and corporate gifts.',
         '酒吧、酒店及企业礼赠的价格与条款。',

@@ -89,6 +89,12 @@
   flex-shrink: 0;
 }
 
+.rs-svc-card__lead br {
+  display: block;
+  content: "";
+  margin-top: 0.55em;
+}
+
 .rs-svc-card__form {
   display: flex;
   flex-direction: column;

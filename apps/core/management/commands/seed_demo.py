@@ -39,17 +39,41 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('Seed завершено'))
 
     def _seed_blocks(self):
+        force_keys = {
+            ('service', 'booking_lead'),
+        }
+        booking_lead_uk = str(BLOCK_DEFAULTS[('service', 'booking_lead')])
+        booking_lead_en = (
+            'Leave your contacts — a manager will arrange a convenient visit time.\n\n'
+            'We will call back during business hours to confirm the slot and answer questions.\n\n'
+            'Choose a tasting, sommelier consultation, or a quiet showroom visit — we adapt to your pace.'
+        )
+        booking_lead_zh = (
+            '留下联系方式——经理将安排方便的参观时间。\n\n'
+            '我们会在工作日内回电确认时段并解答疑问。\n\n'
+            '可选品鉴、侍茄师咨询或安静的展厅到访——我们按您的节奏安排。'
+        )
+
         for (page, key), text in BLOCK_DEFAULTS.items():
-            SiteBlock.objects.get_or_create(
+            defaults = {
+                'label': BLOCK_FIELD_LABELS.get((page, key), key),
+                'content_type': BLOCK_CONTENT_TYPES.get((page, key), 'text'),
+                'text_html': str(text),
+                'is_active': True,
+            }
+            block, created = SiteBlock.objects.get_or_create(
                 page=page,
                 key=key,
-                defaults={
-                    'label': BLOCK_FIELD_LABELS.get((page, key), key),
-                    'content_type': BLOCK_CONTENT_TYPES.get((page, key), 'text'),
-                    'text_html': str(text),
-                    'is_active': True,
-                },
+                defaults=defaults,
             )
+            if created or (page, key) not in force_keys:
+                continue
+            block.text_html = booking_lead_uk
+            block.text_html_uk = booking_lead_uk
+            block.text_html_en = booking_lead_en
+            block.text_html_zh_hans = booking_lead_zh
+            block.is_active = True
+            block.save()
 
     def _seed_hero(self):
         if HeroSlide.objects.exists():
