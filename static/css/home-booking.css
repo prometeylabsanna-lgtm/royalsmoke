@@ -57,9 +57,12 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 0;
   padding: 16px 14px calc(16px + var(--rs-safe-b));
   min-width: 0;
+  min-height: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .rs-svc-card__title {
@@ -73,19 +76,26 @@
   overflow-wrap: normal;
   word-break: normal;
   hyphens: none;
+  flex-shrink: 0;
 }
 
 .rs-svc-card__lead {
-  margin: 0;
-  max-width: 36ch;
+  margin: 20px 0 0;
+  max-width: 40ch;
   color: var(--rs-text-muted);
   font-family: var(--rs-font-ui);
   font-size: 13px;
-  line-height: 1.45;
+  line-height: 1.5;
+  flex-shrink: 0;
 }
 
 .rs-svc-card__form {
-  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-top: 12px;
+  gap: 0;
 }
 
 .rs-svc-card__fields {
@@ -93,6 +103,14 @@
   grid-template-columns: 1fr;
   gap: 8px;
   align-items: stretch;
+  align-content: start;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.rs-svc-card__body > .rs-svc-card__submit,
+.rs-svc-card__fields > .rs-svc-card__submit {
+  margin-top: auto;
 }
 
 .rs-svc-card__fields--b2b {
@@ -232,7 +250,7 @@
 
   .rs-svc-card__body {
     padding: 18px 16px;
-    gap: 8px;
+    gap: 0;
   }
 
   .rs-svc-card__title {
@@ -242,6 +260,7 @@
   }
 
   .rs-svc-card__lead {
+    margin-top: 22px;
     font-size: 12px;
   }
 
@@ -278,7 +297,7 @@
 
   .rs-svc-card__body {
     padding: 22px 20px;
-    gap: 10px;
+    gap: 0;
   }
 
   .rs-svc-card__title {
@@ -288,6 +307,7 @@
   }
 
   .rs-svc-card__lead {
+    margin-top: 24px;
     font-size: 13px;
   }
 
