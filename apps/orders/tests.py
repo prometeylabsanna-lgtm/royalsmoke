@@ -36,3 +36,8 @@ class HealthTests(TestCase):
         resp = self.client.get(reverse('health'))
         self.assertIn(resp.status_code, (200, 503))
         self.assertIn('db', resp.json())
+
+    def test_healthz(self):
+        resp = self.client.get(reverse('healthz'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.content, b'ok')

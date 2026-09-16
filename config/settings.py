@@ -5,14 +5,31 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
+from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+def _env_bool(key: str, default: bool) -> bool:
+    raw = os.environ.get(key)
+    if raw is None or raw == '':
+        return default
+    return raw.lower() in ('1', 'true', 'yes')
+
+
 SECRET_KEY = os.environ.get('SECRET_KEY', 'insecure-dev-key')
 DEBUG = os.environ.get('DEBUG', 'True').lower() in ('1', 'true', 'yes')
+_INSECURE_SECRET_KEYS = {
+    '',
+    'insecure-dev-key',
+    'change-me-in-production',
+    'generate-a-long-random-string',
+}
+if not DEBUG and SECRET_KEY in _INSECURE_SECRET_KEYS:
+    raise ImproperlyConfigured('SECRET_KEY must be set when DEBUG=False')
 ALLOWED_HOSTS = [
     h.strip()
     for h in os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver').split(',')
@@ -230,14 +247,22 @@ NP_SENDER_REF = os.environ.get('NP_SENDER_REF', '')
 NP_CONTACT_SENDER = os.environ.get('NP_CONTACT_SENDER', '')
 NP_SENDER_COUNTERPARTY_REF = os.environ.get('NP_SENDER_COUNTERPARTY_REF', '')
 
-if not DEBUG:
-    SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', 'True').lower() in ('1', 'true', 'yes')
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_HSTS_SECONDS = int(os.environ.get('SECURE_HSTS_SECONDS', '31536000') or 0)
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Lax'
+if DEBUG:
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+    SECURE_HSTS_SECONDS = 0
+else:
+    SECURE_SSL_REDIRECT = _env_bool('SECURE_SSL_REDIRECT', False)
+    SESSION_COOKIE_SECURE = _env_bool('SESSION_COOKIE_SECURE', False)
+    CSRF_COOKIE_SECURE = _env_bool('CSRF_COOKIE_SECURE', False)
+    SECURE_HSTS_SECONDS = int(os.environ.get('SECURE_HSTS_SECONDS', '0') or 0)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = SECURE_HSTS_SECONDS > 0
+SECURE_HSTS_PRELOAD = SECURE_HSTS_SECONDS > 0
 
 UNFOLD = {
     'SITE_TITLE': 'Royal Smoke',

@@ -26,6 +26,8 @@ python3 manage.py runserver 127.0.0.1:8001
 - Адмінка: http://127.0.0.1:8001/rs-admin/
 - Демо-адмін (якщо створювали seed): `admin@royalsmoke.ua` / `admin123`
 
+Прод / тестовий Droplet: [deploy/README.md](deploy/README.md) (Docker, HTTP по IP).
+
 ## Apps
 
 `accounts` `catalog` `cart` `orders` `booking` `calculator` `leads` `core` `pages` `api`

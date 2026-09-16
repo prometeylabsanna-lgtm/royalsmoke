@@ -1,0 +1,21 @@
+.git
+.gitignore
+.venv
+venv
+.env
+.env.local
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.coverage
+htmlcov
+media/*
+staticfiles/*
+node_modules
+.cursor
+.DS_Store
+*.log
+"Royal Smoke design system"

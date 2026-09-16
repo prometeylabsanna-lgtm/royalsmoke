@@ -1,5 +1,5 @@
 from django.db import connections
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 
 
 def health(request):
@@ -10,3 +10,7 @@ def health(request):
         db_ok = False
     status = 200 if db_ok else 503
     return JsonResponse({'status': 'ok' if db_ok else 'degraded', 'db': db_ok}, status=status)
+
+
+def healthz(request):
+    return HttpResponse('ok')

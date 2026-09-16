@@ -7,7 +7,7 @@ from django.urls import include, path
 from django.views.generic import TemplateView
 
 from apps.catalog.models import Product
-from apps.core.views import health
+from apps.core.views import health, healthz
 from apps.orders import views as order_views
 from django.contrib.sitemaps import GenericSitemap
 
@@ -21,6 +21,7 @@ urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('api/v1/', include('apps.api.urls')),
     path('health/', health, name='health'),
+    path('healthz/', healthz, name='healthz'),
     path('orders/liqpay/callback/', order_views.liqpay_callback, name='orders_liqpay_callback'),
     path('orders/liqpay/result/', order_views.liqpay_result, name='orders_liqpay_result'),
     path(

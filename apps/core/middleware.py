@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.http import HttpResponse
 from django.utils.deprecation import MiddlewareMixin
 
 
@@ -8,6 +7,7 @@ class AgeGateMiddleware(MiddlewareMixin):
 
     SKIP_PREFIXES = (
         '/static/', '/media/', '/api/', '/i18n/', '/htmx/',
+        '/health/', '/healthz/',
     )
 
     def process_request(self, request):
