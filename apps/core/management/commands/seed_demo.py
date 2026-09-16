@@ -76,26 +76,43 @@ class Command(BaseCommand):
             block.save()
 
     def _seed_hero(self):
-        if HeroSlide.objects.exists():
-            return
-        slides = [
-            (
-                'Сигари, відібрані вручну для тих, хто знає різницю',
-                'Понад 400 позицій з мануфактур Нікарагуа, Домінікани та Куби.',
-            ),
-            (
-                'Лімітовані лінії AJ Fernandez уже в наявності',
-                'Bellas Artes, New World, Enclave — повні вітоли та подарункові набори.',
-            ),
-            (
-                'Аксесуари, які тримають ритуал',
-                'Хумідори, гільйотини, попільниці та футляри від європейських майстерень.',
-            ),
-        ]
-        for i, (title, sub) in enumerate(slides):
-            HeroSlide.objects.create(
-                title=title, subtitle=sub, sort_order=i, is_active=True,
-            )
+        from pathlib import Path
+
+        from django.conf import settings
+        from django.core.files import File
+
+        from apps.core.block_defaults import HERO_IMAGE_FALLBACKS
+
+        if not HeroSlide.objects.exists():
+            slides = [
+                (
+                    'Сигари, відібрані вручну для тих, хто знає різницю',
+                    'Понад 400 позицій з мануфактур Нікарагуа, Домінікани та Куби.',
+                ),
+                (
+                    'Лімітовані лінії AJ Fernandez уже в наявності',
+                    'Bellas Artes, New World, Enclave — повні вітоли та подарункові набори.',
+                ),
+                (
+                    'Аксесуари, які тримають ритуал',
+                    'Хумідори, гільйотини, попільниці та футляри від європейських майстерень.',
+                ),
+            ]
+            for i, (title, sub) in enumerate(slides):
+                HeroSlide.objects.create(
+                    title=title, subtitle=sub, sort_order=i, is_active=True,
+                )
+
+        static_root = Path(settings.BASE_DIR) / 'static'
+        for i, slide in enumerate(HeroSlide.objects.order_by('sort_order', 'id')):
+            if slide.image:
+                continue
+            rel = HERO_IMAGE_FALLBACKS[i % len(HERO_IMAGE_FALLBACKS)]
+            path = static_root / rel
+            if not path.is_file():
+                continue
+            with path.open('rb') as fh:
+                slide.image.save(path.name, File(fh), save=True)
 
     def _seed_history(self):
         from pathlib import Path

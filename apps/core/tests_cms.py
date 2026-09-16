@@ -93,7 +93,7 @@ class CmsAdminTests(TestCase):
             b'\x00\x00\x00\nIDATx\x9cc\x00\x01\x00\x00\x05\x00\x01'
             b'\r\n\xb4\x00\x00\x00\x00IEND\xaeB`\x82'
         )
-        HistorySlide.objects.create(
+        slide = HistorySlide.objects.create(
             title='Slide',
             image=SimpleUploadedFile('hist.png', png, content_type='image/png'),
             sort_order=0,
@@ -103,7 +103,32 @@ class CmsAdminTests(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'data-cms-image-preview')
-        self.assertContains(response, 'hist.png')
+        self.assertContains(response, slide.image.name)
+        self.assertContains(response, 'rs-cms-image__frame')
+
+    def test_hero_slide_shows_image_preview(self):
+        from django.core.files.uploadedfile import SimpleUploadedFile
+
+        from apps.core.models import HeroSlide
+
+        png = (
+            b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01'
+            b'\x00\x00\x00\x01\x08\x06\x00\x00\x00\x1f\x15\xc4\x89'
+            b'\x00\x00\x00\nIDATx\x9cc\x00\x01\x00\x00\x05\x00\x01'
+            b'\r\n\xb4\x00\x00\x00\x00IEND\xaeB`\x82'
+        )
+        slide = HeroSlide.objects.create(
+            title='Hero',
+            image=SimpleUploadedFile('hero.png', png, content_type='image/png'),
+            sort_order=0,
+            is_active=True,
+        )
+        url = reverse('admin:core_homeherosettings_change', args=[1])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'data-cms-image-preview')
+        self.assertContains(response, slide.image.name)
+        self.assertContains(response, 'rs-cms-image__frame')
 
     def test_category_form_uses_image_widget(self):
         from apps.catalog.models_base import Category

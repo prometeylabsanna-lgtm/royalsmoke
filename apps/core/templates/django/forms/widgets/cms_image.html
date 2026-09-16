@@ -1,13 +1,18 @@
 {% load i18n %}
 
 <div class="rs-cms-image" data-cms-image>
-  <img class="rs-cms-image__preview{% if not widget.preview_url %} is-empty{% endif %}"
-       {% if widget.preview_url %}src="{{ widget.preview_url }}"{% endif %}
-       alt=""
-       width="240"
-       height="160"
-       data-cms-image-preview
-       {% if not widget.preview_url %}hidden{% endif %}>
+  <div class="rs-cms-image__frame{% if not widget.preview_url %} is-empty{% endif %}">
+    <img class="rs-cms-image__preview{% if not widget.preview_url %} is-empty{% endif %}"
+         {% if widget.preview_url %}src="{{ widget.preview_url }}"{% endif %}
+         alt=""
+         width="240"
+         height="160"
+         data-cms-image-preview
+         {% if not widget.preview_url %}hidden{% endif %}>
+    {% if not widget.preview_url %}
+      <span class="rs-cms-image__placeholder" data-cms-image-placeholder>{% trans "Немає фото" %}</span>
+    {% endif %}
+  </div>
   {% if widget.is_initial and not widget.required %}
     <label class="rs-cms-image__clear">
       <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %} data-cms-image-clear>

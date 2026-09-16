@@ -63,8 +63,8 @@ class HeroSlideForm(forms.ModelForm):
     class Meta:
         model = HeroSlide
         fields = (
-            *_i18n_fields('title', 'subtitle', 'cta_primary_label', 'cta_secondary_label'),
             'image',
+            *_i18n_fields('title', 'subtitle', 'cta_primary_label', 'cta_secondary_label'),
             'cta_primary_url',
             'cta_secondary_url',
             'sort_order',

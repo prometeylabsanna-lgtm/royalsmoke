@@ -40,6 +40,13 @@ HISTORY_IMAGE_FALLBACKS: tuple[str, ...] = (
     'img/history/04-today.jpg',
 )
 
+# Same order as templates/pages/home.html static fallbacks (02 → 05 → 01).
+HERO_IMAGE_FALLBACKS: tuple[str, ...] = (
+    'img/hero/02.jpg',
+    'img/hero/05.jpg',
+    'img/hero/01.jpg',
+)
+
 BRAND_IMAGE_FALLBACKS: dict[str, str] = {
     'aj-fernandez': 'img/brands/01-aj.jpg',
     'oliva': 'img/brands/02-oliva.jpg',
