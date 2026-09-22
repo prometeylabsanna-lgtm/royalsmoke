@@ -10,11 +10,18 @@ from apps.catalog.models import Product
 from apps.core.i18n_views import set_language
 from apps.core.views import health, healthz
 from apps.orders import views as order_views
+from apps.pages.sitemaps import BlogPostSitemap, StaticPagesSitemap
 from django.contrib.sitemaps import GenericSitemap
 
 info_dict = {
     'queryset': Product.objects.filter(is_active=True),
     'date_field': 'updated_at',
+}
+
+sitemaps = {
+    'static': StaticPagesSitemap,
+    'products': GenericSitemap(info_dict, priority=0.7),
+    'blog': BlogPostSitemap,
 }
 
 urlpatterns = [
@@ -33,7 +40,7 @@ urlpatterns = [
     path(
         'sitemap.xml',
         sitemap,
-        {'sitemaps': {'products': GenericSitemap(info_dict, priority=0.7)}},
+        {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap',
     ),
 ]

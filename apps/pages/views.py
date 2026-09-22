@@ -140,6 +140,36 @@ def about(request):
     return render(request, 'pages/about.html')
 
 
+def blog_list(request):
+    from apps.pages.models import BlogPost
+
+    posts = BlogPost.objects.filter(is_published=True).prefetch_related('faq_items')
+    return render(request, 'pages/blog_list.html', {
+        'posts': posts,
+    })
+
+
+def blog_detail(request, slug):
+    from django.shortcuts import get_object_or_404
+
+    from apps.pages.models import BlogPost
+
+    post = get_object_or_404(
+        BlogPost.objects.filter(is_published=True).prefetch_related('faq_items'),
+        slug=slug,
+    )
+    related = (
+        BlogPost.objects.filter(is_published=True)
+        .exclude(pk=post.pk)
+        .order_by('-published_at')[:3]
+    )
+    return render(request, 'pages/blog_detail.html', {
+        'post': post,
+        'related_posts': related,
+        'faq_items': post.faq_items.all(),
+    })
+
+
 def faq(request):
     from apps.pages.models import FAQItem
     return render(request, 'pages/faq.html', {

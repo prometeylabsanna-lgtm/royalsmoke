@@ -9,6 +9,7 @@ PAGE_DEFAULTS: dict[tuple[str, str], str] = {
     ('site', 'nav_sale'): _('Акції'),
     ('site', 'nav_faq'): _('FAQ'),
     ('site', 'nav_about'): _('Про нас'),
+    ('site', 'nav_blog'): _('Блог'),
     ('site', 'nav_contact'): _('Контакти'),
     ('site', 'nav_delivery'): _('Доставка і оплата'),
     ('site', 'nav_callback'): _('Замовити дзвінок'),
@@ -25,6 +26,19 @@ PAGE_DEFAULTS: dict[tuple[str, str], str] = {
     ('site', 'footer_link_cart'): _('Кошик'),
     ('site', 'footer_link_cabinet'): _('Кабінет'),
     ('site', 'footer_link_privacy'): _('Приватність'),
+    ('blog', 'kicker'): _('Гід і культура'),
+    ('blog', 'title'): _('Блог'),
+    ('blog', 'lead'): _(
+        'Практичні гіди про сигари, зберігання, аксесуари та смак — '
+        'від сомельє Royal Smoke.'
+    ),
+    ('blog', 'meta_description'): _(
+        'Блог Royal Smoke: як обрати сигару, зберігати в хумідорі, '
+        'підібрати аксесуари та читати вітолу. Поради експертів.'
+    ),
+    ('blog', 'read_more'): _('Читати'),
+    ('blog', 'back'): _('Усі статті'),
+    ('blog', 'related'): _('Читайте також'),
     ('about', 'kicker'): _('Про нас'),
     ('about', 'title'): _('Хроніка одного рішення'),
     ('about', 'lead'): _(
@@ -129,9 +143,17 @@ PAGE_LABELS: dict[tuple[str, str], str] = {
     ('site', 'nav_sale'): 'Пункт: Акції',
     ('site', 'nav_faq'): 'Пункт: FAQ',
     ('site', 'nav_about'): 'Пункт: Про нас',
+    ('site', 'nav_blog'): 'Пункт: Блог',
     ('site', 'nav_contact'): 'Пункт: Контакти',
     ('site', 'nav_delivery'): 'Пункт: Доставка',
     ('site', 'nav_callback'): 'Кнопка дзвінка',
+    ('blog', 'kicker'): 'Kicker блогу',
+    ('blog', 'title'): 'Заголовок блогу',
+    ('blog', 'lead'): 'Лід блогу',
+    ('blog', 'meta_description'): 'Meta description блогу',
+    ('blog', 'read_more'): 'Кнопка «Читати»',
+    ('blog', 'back'): 'Кнопка «Усі статті»',
+    ('blog', 'related'): 'Заголовок «Читайте також»',
     ('site', 'drawer_shop'): 'Мобільне меню: Покупка',
     ('site', 'drawer_info'): 'Мобільне меню: Інфо',
     ('site', 'footer_tagline'): 'Слоган у футері',
@@ -233,7 +255,7 @@ PAGE_TYPES: dict[tuple[str, str], str] = {
 
 PAGE_INLINE = {
     'header_search_placeholder', 'nav_home', 'nav_catalog', 'nav_sale', 'nav_faq',
-    'nav_about', 'nav_contact', 'nav_delivery', 'nav_callback', 'drawer_shop',
+    'nav_about', 'nav_blog', 'nav_contact', 'nav_delivery', 'nav_callback', 'drawer_shop',
     'drawer_info', 'footer_col_catalog', 'footer_col_shop', 'footer_col_info',
     'footer_link_cigars', 'footer_link_accessories', 'footer_link_brands',
     'footer_link_calculator', 'footer_link_cart', 'footer_link_cabinet',
@@ -243,10 +265,11 @@ PAGE_INLINE = {
     'kyiv_title', 'ua_title', 'eu_title', 'methods_title', 'pay_h2',
     'pay_online_title', 'pay_cod_title', 'pay_b2b_title', 'empty_cta',
     'continue', 'checkout', 'remove', 'summary', 'yes', 'no', 'reset',
-    'profile', 'orders', 'empty', 'quick',
+    'profile', 'orders', 'empty', 'quick', 'read_more', 'back', 'related',
 }
 PAGE_MULTILINE = {
     'footer_tagline', 'lead', 'era1_text', 'era2_text', 'era3_text', 'era4_text',
     'kyiv_text', 'ua_text', 'eu_text', 'methods_text', 'pay_intro',
     'pay_online_text', 'pay_cod_text', 'pay_b2b_text', 'text', 'denied_text', 'age',
+    'meta_description',
 }

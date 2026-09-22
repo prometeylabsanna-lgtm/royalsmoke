@@ -132,6 +132,25 @@ CONTENT_SECTIONS: tuple[ContentSection, ...] = (
     ),
     ContentSection(
         slug='page',
+        page_slug='blog',
+        title='Блог — шапка',
+        sidebar_title='Шапка',
+        sidebar_icon='article',
+        sidebar_group='blog',
+        preview_url='/blog/',
+        admin_model_name='blogpagesettings',
+        blocks=(
+            ('blog', 'kicker'), ('blog', 'title'), ('blog', 'lead'),
+            ('blog', 'meta_description'), ('blog', 'read_more'),
+            ('blog', 'back'), ('blog', 'related'),
+        ),
+        field_groups=(
+            FieldGroup('Тексти', ('kicker', 'title', 'lead', 'meta_description')),
+            FieldGroup('Кнопки', ('read_more', 'back', 'related')),
+        ),
+    ),
+    ContentSection(
+        slug='page',
         page_slug='faq',
         title='FAQ — шапка',
         sidebar_title='Шапка',
@@ -312,7 +331,8 @@ CONTENT_SECTIONS: tuple[ContentSection, ...] = (
         blocks=(
             ('site', 'header_search_placeholder'),
             ('site', 'nav_home'), ('site', 'nav_catalog'), ('site', 'nav_sale'),
-            ('site', 'nav_faq'), ('site', 'nav_about'), ('site', 'nav_contact'),
+            ('site', 'nav_faq'), ('site', 'nav_about'), ('site', 'nav_blog'),
+            ('site', 'nav_contact'),
             ('site', 'nav_delivery'), ('site', 'nav_callback'),
             ('site', 'drawer_shop'), ('site', 'drawer_info'),
         ),
@@ -320,7 +340,7 @@ CONTENT_SECTIONS: tuple[ContentSection, ...] = (
             FieldGroup('Пошук', ('header_search_placeholder',)),
             FieldGroup('Навігація', (
                 'nav_home', 'nav_catalog', 'nav_sale', 'nav_faq',
-                'nav_about', 'nav_contact', 'nav_delivery', 'nav_callback',
+                'nav_about', 'nav_blog', 'nav_contact', 'nav_delivery', 'nav_callback',
             )),
             FieldGroup('Мобільне меню', ('drawer_shop', 'drawer_info')),
         ),

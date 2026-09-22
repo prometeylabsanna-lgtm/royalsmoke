@@ -1,0 +1,207 @@
+/* Royal Smoke — blog article detail */
+
+.rs-blog-article {
+  width: min(760px, calc(100% - 32px));
+  margin: 24px auto 0;
+  padding-inline: env(safe-area-inset-left, 0px) env(safe-area-inset-right, 0px);
+}
+
+.rs-blog-article__head {
+  margin-bottom: 22px;
+}
+
+.rs-blog-article__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-family: var(--rs-font-ui);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rs-text-muted);
+}
+
+.rs-blog-article__title {
+  margin: 0 0 14px;
+  font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-display);
+  font-size: clamp(30px, 6.5vw, 44px);
+  line-height: 1.18;
+  color: var(--rs-seashell);
+}
+
+.rs-blog-article__lead {
+  margin: 0;
+  color: var(--rs-text-soft);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.rs-blog-article__cover {
+  margin: 0 0 28px;
+  overflow: hidden;
+}
+
+.rs-blog-article__cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 1200 / 630;
+  object-fit: cover;
+}
+
+.rs-blog-article__body {
+  color: var(--rs-text-soft);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.rs-blog-article__body h2 {
+  margin: 1.6em 0 0.55em;
+  font-family: var(--rs-font-display);
+  font-size: clamp(22px, 4vw, 28px);
+  line-height: 1.25;
+  color: var(--rs-seashell);
+}
+
+.rs-blog-article__body h3 {
+  margin: 1.25em 0 0.4em;
+  font-family: var(--rs-font-display);
+  font-size: clamp(18px, 3.2vw, 22px);
+  color: var(--rs-seashell);
+}
+
+.rs-blog-article__body p {
+  margin: 0 0 1em;
+}
+
+.rs-blog-article__body ul,
+.rs-blog-article__body ol {
+  margin: 0 0 1.1em;
+  padding-left: 1.2em;
+}
+
+.rs-blog-article__body li {
+  margin-bottom: 0.4em;
+}
+
+.rs-blog-article__body a {
+  color: var(--rs-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.rs-blog-article__body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.2em 0;
+}
+
+.rs-blog-faq {
+  margin: 40px 0 0;
+  padding-top: 28px;
+  border-top: 1px solid rgba(252, 242, 238, 0.1);
+}
+
+.rs-blog-faq h2 {
+  margin: 0 0 16px;
+  font-family: var(--rs-font-display);
+  font-size: clamp(22px, 4vw, 28px);
+  color: var(--rs-seashell);
+}
+
+.rs-blog-faq details {
+  border-bottom: 1px solid rgba(252, 242, 238, 0.08);
+  padding: 12px 0;
+}
+
+.rs-blog-faq summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--rs-font-ui);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--rs-seashell);
+  padding-right: 24px;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.rs-blog-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.rs-blog-faq summary::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  top: 0.35em;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid var(--rs-gold);
+  border-bottom: 1.5px solid var(--rs-gold);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.rs-blog-faq details[open] summary::after {
+  transform: rotate(-135deg);
+  top: 0.55em;
+}
+
+.rs-blog-faq__a {
+  padding: 10px 0 4px;
+  color: var(--rs-text-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.rs-blog-faq__a p {
+  margin: 0;
+}
+
+.rs-blog-article__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 36px 0 8px;
+}
+
+.rs-blog-related {
+  width: min(1120px, calc(100% - 32px));
+  margin: 48px auto 0;
+  padding-bottom: 24px;
+}
+
+.rs-blog-related h2 {
+  margin: 0 0 20px;
+  font-family: var(--rs-font-display);
+  font-size: clamp(22px, 4vw, 28px);
+  color: var(--rs-seashell);
+}
+
+.rs-blog-grid--related {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .rs-blog-article {
+    margin-top: 36px;
+  }
+
+  .rs-blog-article__lead {
+    font-size: 17px;
+  }
+
+  .rs-blog-grid--related {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .rs-blog-article__body {
+    font-size: 17px;
+  }
+}

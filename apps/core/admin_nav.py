@@ -7,6 +7,7 @@ SIDEBAR_GROUPS: tuple[tuple[str, str, bool], ...] = (
     ('home', _('Головна'), False),
     ('catalog', _('Каталог'), True),
     ('about', _('Про нас'), True),
+    ('blog', _('Блог'), True),
     ('faq', _('FAQ'), True),
     ('contact', _('Контакти'), True),
     ('delivery', _('Доставка і оплата'), True),
@@ -35,6 +36,12 @@ def _cms_items_for(group_key: str) -> list[dict]:
             'title': _('Питання'),
             'icon': 'quiz',
             'link': reverse_lazy('admin:pages_faqitem_changelist'),
+        })
+    if group_key == 'blog':
+        items.append({
+            'title': _('Статті'),
+            'icon': 'newspaper',
+            'link': reverse_lazy('admin:pages_blogpost_changelist'),
         })
     if group_key == 'about':
         pass

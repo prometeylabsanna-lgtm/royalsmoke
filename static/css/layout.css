@@ -244,7 +244,7 @@ body:not(.rs-home) .rs-main {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 28px;
+  gap: 16px;
   height: auto;
   padding-inline: 0;
   max-width: none;
@@ -260,8 +260,8 @@ body:not(.rs-home) .rs-main {
 
 .rs-header__nav a {
   font-family: var(--rs-font-ui);
-  font-size: 13px;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--rs-text-soft);
   white-space: nowrap;
@@ -402,7 +402,7 @@ body:not(.rs-home) .rs-main {
   .rs-header__primary {
     display: flex;
     align-items: center;
-    gap: 22px;
+    gap: 14px;
     flex: 1 1 auto;
     min-width: 0;
   }
@@ -410,16 +410,16 @@ body:not(.rs-home) .rs-main {
   .rs-header__catalog {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     flex-shrink: 0;
-    min-height: 40px;
-    padding: 0 16px;
+    min-height: 36px;
+    padding: 0 12px;
     border: 1px solid rgba(252, 242, 238, 0.14);
     background: rgba(252, 242, 238, 0.08);
     font-family: var(--rs-font-ui);
     font-weight: var(--rs-weight-ui);
-    font-size: 12px;
-    letter-spacing: 0.12em;
+    font-size: 11px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--rs-seashell);
     white-space: nowrap;
@@ -445,7 +445,7 @@ body:not(.rs-home) .rs-main {
   }
 
   .rs-header__nav-inner {
-    gap: 22px;
+    gap: 12px;
   }
 
   .rs-header__tools {

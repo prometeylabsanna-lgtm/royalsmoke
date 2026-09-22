@@ -38,6 +38,7 @@ def _static_label(namespace: str | None, url_name: str | None, kwargs: dict) -> 
         'accounts:register': _('Реєстрація'),
         'accounts:cabinet': _('Кабінет'),
         'pages:about': _('Про нас'),
+        'pages:blog': _('Блог'),
         'pages:faq': _('FAQ'),
         'pages:legal': _('Правова інформація'),
         'leads:b2b': _('B2B'),
@@ -74,6 +75,16 @@ def build_breadcrumbs(request) -> list[dict]:
 
     home = _crumb(_('Головна'), reverse('pages:home'))
     crumbs: list[dict] = [home]
+
+    if namespace == 'pages' and url_name == 'blog_detail':
+        from apps.pages.models import BlogPost
+
+        crumbs.append(_crumb(_('Блог'), reverse('pages:blog')))
+        post = BlogPost.objects.filter(
+            slug=kwargs.get('slug'), is_published=True,
+        ).first()
+        crumbs.append(_crumb(post.title if post else _('Стаття')))
+        return crumbs
 
     if namespace == 'catalog' and url_name == 'list':
         crumbs.append(_crumb(_('Каталог')))

@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% load static i18n rs_content %}
+
+{% block title %}{{ post.seo_title }} | {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block meta_description %}{{ post.seo_description }}{% endblock %}
+{% block body_class %}rs-blog-page rs-blog-detail-page{% endblock %}
+
+{% block canonical %}
+<link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ post.get_absolute_url }}">
+{% endblock %}
+
+{% block og_tags %}
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ post.seo_title }}">
+<meta property="og:description" content="{{ post.seo_description }}">
+<meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ post.get_absolute_url }}">
+{% if post.cover %}
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.cover.url }}">
+{% else %}
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/blog/og-blog.jpg' %}">
+{% endif %}
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="{{ post.published_at|date:'c' }}">
+<meta property="article:modified_time" content="{{ post.updated_at|date:'c' }}">
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/blog.css' %}?v=1">
+<link rel="stylesheet" href="{% static 'css/blog2.css' %}?v=1">
+{% endblock %}
+
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "{% trans 'Головна' %}",
+      "item": "{{ request.scheme }}://{{ request.get_host }}{% url 'pages:home' %}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{% cms_text 'blog' 'title' %}",
+      "item": "{{ request.scheme }}://{{ request.get_host }}{% url 'pages:blog' %}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ post.title|escapejs }}"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ post.title|escapejs }}",
+  "description": "{{ post.seo_description|escapejs }}",
+  {% if post.cover %}"image": "{{ request.scheme }}://{{ request.get_host }}{{ post.cover.url }}",{% endif %}
+  "datePublished": "{{ post.published_at|date:'c' }}",
+  "dateModified": "{{ post.updated_at|date:'c' }}",
+  "author": {
+    "@type": "Organization",
+    "name": "{{ site_settings.site_name|default:'Royal Smoke'|escapejs }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site_settings.site_name|default:'Royal Smoke'|escapejs }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/favicon.png' %}"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ request.scheme }}://{{ request.get_host }}{{ post.get_absolute_url }}"
+  }
+}
+</script>
+{% if faq_items %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for item in faq_items %}
+    {
+      "@type": "Question",
+      "name": "{{ item.question|escapejs }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ item.answer|escapejs }}"
+      }
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<article class="rs-blog-article">
+  <header class="rs-blog-article__head" data-rs-reveal>
+    <p class="rs-blog-article__meta">
+      <time datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:"d.m.Y" }}</time>
+      <span aria-hidden="true">·</span>
+      <span>{% blocktrans with date=post.updated_at|date:"d.m.Y" %}Оновлено {{ date }}{% endblocktrans %}</span>
+    </p>
+    <h1 class="rs-blog-article__title">{{ post.title }}</h1>
+    {% if post.excerpt %}
+    <p class="rs-blog-article__lead">{{ post.excerpt }}</p>
+    {% endif %}
+  </header>
+
+  {% if post.cover %}
+  <figure class="rs-blog-article__cover" data-rs-reveal>
+    <img
+      src="{{ post.cover.url }}"
+      alt="{{ post.cover_alt|default:post.title }}"
+      width="1200"
+      height="630"
+      fetchpriority="high"
+      decoding="async"
+    >
+  </figure>
+  {% endif %}
+
+  <div class="rs-blog-article__body" data-rs-reveal>
+    {{ post.body|safe }}
+  </div>
+
+  {% if faq_items %}
+  <section class="rs-blog-faq" aria-labelledby="blog-faq-heading" data-rs-reveal>
+    <h2 id="blog-faq-heading">{% trans "Часті запитання" %}</h2>
+    {% for item in faq_items %}
+    <details {% if forloop.first %}open{% endif %}>
+      <summary>{{ item.question }}</summary>
+      <div class="rs-blog-faq__a"><p>{{ item.answer }}</p></div>
+    </details>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <footer class="rs-blog-article__cta" data-rs-reveal>
+    <a class="rs-btn rs-btn--gold" href="{% url 'catalog:list' %}">{% cms_text 'site' 'nav_catalog' %}</a>
+    <a class="rs-btn rs-btn--ghost" href="{% url 'pages:blog' %}">{% cms_text 'blog' 'back' %}</a>
+  </footer>
+</article>
+
+{% if related_posts %}
+<section class="rs-container rs-blog-related" aria-labelledby="blog-related-heading">
+  <h2 id="blog-related-heading" data-rs-reveal>{% cms_text 'blog' 'related' %}</h2>
+  <div class="rs-blog-grid rs-blog-grid--related">
+    {% for item in related_posts %}
+    <article class="rs-blog-card" data-rs-reveal>
+      <a class="rs-blog-card__media" href="{{ item.get_absolute_url }}">
+        {% if item.cover %}
+        <img class="rs-blog-card__img" src="{{ item.cover.url }}" alt="{{ item.cover_alt|default:item.title }}" width="800" height="520" loading="lazy" decoding="async">
+        {% endif %}
+      </a>
+      <div class="rs-blog-card__body">
+        <h3 class="rs-blog-card__title"><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></h3>
+        <p class="rs-blog-card__excerpt">{{ item.excerpt|truncatewords:24 }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}

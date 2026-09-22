@@ -52,6 +52,13 @@ class AboutPageSettings(SiteSettings):
         verbose_name_plural = 'Про нас'
 
 
+class BlogPageSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Блог — шапка'
+        verbose_name_plural = 'Блог — шапка'
+
+
 class FaqPageSettings(SiteSettings):
     class Meta:
         proxy = True

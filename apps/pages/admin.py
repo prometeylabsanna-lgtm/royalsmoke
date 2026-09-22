@@ -1,8 +1,8 @@
 from django.contrib import admin
 from tinymce.widgets import TinyMCE
-from unfold.admin import ModelAdmin
+from unfold.admin import ModelAdmin, TabularInline
 
-from .models import FAQItem, LegalDocument
+from .models import BlogFAQItem, BlogPost, FAQItem, LegalDocument
 
 
 @admin.register(FAQItem)
@@ -29,6 +29,45 @@ class LegalDocumentAdmin(ModelAdmin):
         'title_uk', 'title_en', 'title_zh_hans',
         'body_uk', 'body_en', 'body_zh_hans',
         'sort_order', 'is_active',
+    )
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        if db_field.name in {'body_uk', 'body_en', 'body_zh_hans'}:
+            kwargs['widget'] = TinyMCE()
+        return super().formfield_for_dbfield(db_field, request, **kwargs)
+
+
+class BlogFAQItemInline(TabularInline):
+    model = BlogFAQItem
+    extra = 1
+    ordering_field = 'sort_order'
+    fields = (
+        'question_uk', 'question_en', 'question_zh_hans',
+        'answer_uk', 'answer_en', 'answer_zh_hans',
+        'sort_order',
+    )
+
+
+@admin.register(BlogPost)
+class BlogPostAdmin(ModelAdmin):
+    list_display = ('title', 'slug', 'is_published', 'published_at', 'sort_order')
+    list_editable = ('is_published', 'sort_order')
+    list_filter = ('is_published',)
+    search_fields = ('title', 'excerpt', 'slug')
+    prepopulated_fields = {'slug': ('title_uk',)}
+    ordering_field = 'sort_order'
+    date_hierarchy = 'published_at'
+    inlines = (BlogFAQItemInline,)
+    fields = (
+        'slug',
+        'title_uk', 'title_en', 'title_zh_hans',
+        'excerpt_uk', 'excerpt_en', 'excerpt_zh_hans',
+        'body_uk', 'body_en', 'body_zh_hans',
+        'cover',
+        'cover_alt_uk', 'cover_alt_en', 'cover_alt_zh_hans',
+        'meta_title_uk', 'meta_title_en', 'meta_title_zh_hans',
+        'meta_description_uk', 'meta_description_en', 'meta_description_zh_hans',
+        'published_at', 'is_published', 'sort_order',
     )
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):

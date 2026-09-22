@@ -11,8 +11,11 @@
   <link rel="apple-touch-icon" href="{% static 'img/favicon-180.png' %}?v=7" sizes="180x180">
   <title>{% block title %}{{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}{% if site_settings.meta_description %}{{ site_settings.meta_description }}{% else %}{% trans 'Сигари та аксесуари Royal Smoke' %}{% endif %}{% endblock %}">
+  {% block canonical %}{% endblock %}
+  {% block og_tags %}{% endblock %}
+  {% block extra_head %}{% endblock %}
   <link rel="stylesheet" href="{% static 'css/tokens.css' %}?v=4">
-  <link rel="stylesheet" href="{% static 'css/layout.css' %}?v=10">
+  <link rel="stylesheet" href="{% static 'css/layout.css' %}?v=11">
   <link rel="stylesheet" href="{% static 'css/layout2.css' %}?v=4">
   <link rel="stylesheet" href="{% static 'css/layout3.css' %}?v=3">
   <link rel="stylesheet" href="{% static 'css/footer.css' %}?v=16">
