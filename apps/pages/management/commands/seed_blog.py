@@ -97,8 +97,8 @@ class Command(BaseCommand):
         if not src.is_file():
             self.stdout.write(self.style.WARNING(f'No cover: {rel_path}'))
             return
-        if post.cover and Path(post.cover.path).is_file():
-            return
+        if post.cover:
+            post.cover.delete(save=False)
         with src.open('rb') as fh:
             post.cover.save(src.name, File(fh), save=True)
 

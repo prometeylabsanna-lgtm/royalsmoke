@@ -29,6 +29,7 @@ echo "==> Django check + migrate + seed + collectstatic"
 python3 manage.py check --deploy
 python3 manage.py migrate --noinput
 python3 manage.py seed_demo
+python3 manage.py seed_blog
 python3 manage.py fill_i18n_content
 python3 manage.py collectstatic --noinput
 

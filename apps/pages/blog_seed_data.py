@@ -38,9 +38,9 @@ POSTS: list[dict] = [
             'Royal Smoke sommelier tips with catalog links.'
         ),
         'meta_description_zh': '如何选择第一支雪茄：劲头、维托拉、茄衣与仪式。Royal Smoke 侍茄师建议。',
-        'cover_alt_uk': 'Традиція тютюнового ремесла — портрет із сигарою, Royal Smoke',
-        'cover_alt_en': 'Tobacco craft tradition — portrait with a cigar, Royal Smoke',
-        'cover_alt_zh': '烟草工艺传统——手持雪茄的肖像，Royal Smoke',
+        'cover_alt_uk': 'Три сигари на дереві з каттером — гід для першої сигари, Royal Smoke',
+        'cover_alt_en': 'Three cigars on wood with a cutter — first cigar guide, Royal Smoke',
+        'cover_alt_zh': '木桌上的三支雪茄与切刀——第一支雪茄指南，Royal Smoke',
         'faq': [
             {
                 'q_uk': 'Яку міцність обрати для першої сигари?',
@@ -105,9 +105,9 @@ POSTS: list[dict] = [
             'to avoid. A Royal Smoke guide.'
         ),
         'meta_description_zh': '雪茄保存：65–70% 湿度、保湿盒类型、调节包与常见错误。Royal Smoke 指南。',
-        'cover_alt_uk': 'Лаунж-простір для сигар — атмосфера зберігання та ритуалу, Royal Smoke',
-        'cover_alt_en': 'Cigar lounge interior — storage and ritual atmosphere, Royal Smoke',
-        'cover_alt_zh': '雪茄lounge空间——储存与仪式氛围，Royal Smoke',
+        'cover_alt_uk': 'Відкритий хумідор із сигарами та гігрометром, Royal Smoke',
+        'cover_alt_en': 'Open humidor with cigars and a hygrometer, Royal Smoke',
+        'cover_alt_zh': '打开的保湿盒、雪茄与湿度计，Royal Smoke',
         'faq': [
             {
                 'q_uk': 'Яка вологість оптимальна для сигар?',
@@ -171,9 +171,9 @@ POSTS: list[dict] = [
             'without ruining flavor. Royal Smoke.'
         ),
         'meta_description_zh': '切刀、丁烷打火机与烟灰缸：如何挑选雪茄配件且不破坏风味。Royal Smoke。',
-        'cover_alt_uk': 'Подвійна гілотина для сигар — аксесуар Royal Smoke',
-        'cover_alt_en': 'Double guillotine cigar cutter — Royal Smoke accessory',
-        'cover_alt_zh': '双刃雪茄闸刀——Royal Smoke 配件',
+        'cover_alt_uk': 'Каттер, запальничка і попільниця — набір аксесуарів, Royal Smoke',
+        'cover_alt_en': 'Cutter, lighter and ashtray — accessory set, Royal Smoke',
+        'cover_alt_zh': '切刀、打火机与烟灰缸——配件套装，Royal Smoke',
         'faq': [
             {
                 'q_uk': 'Який каттер найкращий для новачка?',
@@ -238,9 +238,9 @@ POSTS: list[dict] = [
             'A practical Royal Smoke catalog guide.'
         ),
         'meta_description_zh': '维托拉、环径、劲头与茄标分别意味着什么。Royal Smoke 实用选购指南。',
-        'cover_alt_uk': 'Історія та культура сигари — візуальний акцент блогу Royal Smoke',
-        'cover_alt_en': 'Cigar history and culture — Royal Smoke blog visual',
-        'cover_alt_zh': '雪茄历史与文化——Royal Smoke 博客视觉',
+        'cover_alt_uk': 'Сигари різної вітоли з вимірювальним інструментом, Royal Smoke',
+        'cover_alt_en': 'Cigars of different vitolas with a measuring tool, Royal Smoke',
+        'cover_alt_zh': '不同维托拉雪茄与测量工具，Royal Smoke',
         'faq': [
             {
                 'q_uk': 'Що таке ring gauge?',
