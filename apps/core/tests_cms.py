@@ -7,7 +7,7 @@ from apps.core.models import PageStyle, SiteBlock, SiteSettings
 from apps.core.page_styles import ensure_page_styles
 from apps.core.site_content_registry import get_section, iter_section_blocks
 from apps.core.site_content_sections import CONTENT_SECTIONS
-from apps.pages.models import FAQItem, LegalDocument
+from apps.pages.models import FAQItem
 
 
 class CmsRegistryTests(TestCase):
@@ -169,11 +169,41 @@ class CmsFrontendTests(TestCase):
         self.assertContains(response, 'A1')
 
     def test_legal_renders_body(self):
-        LegalDocument.objects.create(
-            slug='privacy', title='Privacy', body='<p>Secret</p>', is_active=True,
+        from apps.core.models import SiteBlock
+        SiteBlock.objects.update_or_create(
+            page='privacy',
+            key='title',
+            defaults={
+                'label': 'Заголовок',
+                'content_type': 'text',
+                'text_html': 'Privacy',
+                'is_active': True,
+            },
+        )
+        SiteBlock.objects.update_or_create(
+            page='privacy',
+            key='body',
+            defaults={
+                'label': 'Текст',
+                'content_type': 'text',
+                'text_html': '<p>Secret</p>',
+                'is_active': True,
+            },
         )
         response = self.client.get(reverse('pages:legal', kwargs={'slug': 'privacy'}))
         self.assertContains(response, 'Secret')
+        self.assertContains(response, 'Privacy')
+
+    def test_legal_cms_admin_opens(self):
+        User = get_user_model()
+        user = User.objects.create_superuser(email='legal@test.ua', password='pass12345')
+        self.client.force_login(user)
+        SiteSettings.load()
+        url = reverse('admin:core_privacypagesettings_change', args=[1])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'body')
+        self.assertContains(response, 'title')
 
 
 class PageStyleTests(TestCase):
@@ -294,6 +324,12 @@ class ChromeStyleTests(TestCase):
         self.assertContains(response, '--rs-header-text: #ffeedd')
         # page style must not override header with page bg class on body
         self.assertNotContains(response, 'body class="rs-blog-page has-page')
+
+    def test_header_footer_in_page_style_list(self):
+        response = self.client.get(reverse('admin:core_pagestyle_changelist'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Шапка сайту')
+        self.assertContains(response, 'Підвал')
 
 
 class CmsTinyMCETests(TestCase):

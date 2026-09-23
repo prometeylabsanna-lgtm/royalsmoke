@@ -178,14 +178,40 @@ def faq(request):
 
 
 def legal(request, slug='privacy'):
-    from django.shortcuts import get_object_or_404
+    from django.http import Http404
+    from django.urls import reverse
 
-    from apps.pages.models import LegalDocument
+    from apps.core.block_defaults import BLOCK_DEFAULTS
+    from apps.core.legal_pages import LEGAL_NAV_ORDER, LEGAL_SLUG_TO_PAGE, legal_page_key
+    from apps.core.models import SiteBlock
 
-    doc = get_object_or_404(LegalDocument, slug=slug, is_active=True)
+    page_key = legal_page_key(slug)
+    if not page_key:
+        raise Http404
+
+    titles = {
+        b.page: b.text_html
+        for b in SiteBlock.objects.filter(
+            page__in=LEGAL_SLUG_TO_PAGE.values(),
+            key='title',
+            is_active=True,
+        )
+        if (b.text_html or '').strip()
+    }
+    legal_nav = []
+    for nav_slug in LEGAL_NAV_ORDER:
+        nav_page = LEGAL_SLUG_TO_PAGE[nav_slug]
+        legal_nav.append({
+            'slug': nav_slug,
+            'title': titles.get(nav_page) or str(BLOCK_DEFAULTS.get((nav_page, 'title'), nav_slug)),
+            'url': reverse('pages:legal', kwargs={'slug': nav_slug}),
+            'is_current': nav_slug == slug,
+        })
+
     return render(request, 'pages/legal.html', {
-        'doc': doc,
-        'legal_docs': LegalDocument.objects.filter(is_active=True),
+        'legal_page': page_key,
+        'legal_slug': slug,
+        'legal_nav': legal_nav,
         'slug': slug,
     })
 

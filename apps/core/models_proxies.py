@@ -141,3 +141,31 @@ class SiteFooterSettings(SiteSettings):
         proxy = True
         verbose_name = 'Футер'
         verbose_name_plural = 'Футер'
+
+
+class PrivacyPageSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Політика конфіденційності'
+        verbose_name_plural = 'Політика конфіденційності'
+
+
+class TermsPageSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Умови користування'
+        verbose_name_plural = 'Умови користування'
+
+
+class AgePolicyPageSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Вікова політика'
+        verbose_name_plural = 'Вікова політика'
+
+
+class CookiesPageSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'Файли cookie'
+        verbose_name_plural = 'Файли cookie'

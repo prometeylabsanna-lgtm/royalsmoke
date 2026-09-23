@@ -115,6 +115,8 @@ class SiteBlock(models.Model):
 
     class Page(models.TextChoices):
         HOME = 'home', 'Головна'
+        HEADER = 'header', 'Шапка сайту'
+        FOOTER = 'footer', 'Підвал'
         SITE = 'site', 'Сайт'
         CATALOG = 'catalog', 'Каталог'
         SERVICE = 'service', 'Сервіс'
@@ -129,6 +131,10 @@ class SiteBlock(models.Model):
         CHECKOUT = 'checkout', 'Оформлення'
         CABINET = 'cabinet', 'Кабінет'
         AGE = 'age', 'Age gate'
+        PRIVACY = 'privacy', 'Політика конфіденційності'
+        TERMS = 'terms', 'Умови користування'
+        AGE_POLICY = 'age_policy', 'Вікова політика'
+        COOKIES = 'cookies', 'Файли cookie'
 
     page = models.CharField(max_length=32, choices=Page.choices, verbose_name='Сторінка')
     key = models.CharField(max_length=64, verbose_name='Ключ блоку')

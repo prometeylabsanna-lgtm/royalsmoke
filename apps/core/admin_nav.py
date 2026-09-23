@@ -18,6 +18,7 @@ SIDEBAR_GROUPS: tuple[tuple[str, str, bool], ...] = (
     ('cabinet', _('Кабінет'), True),
     ('age', _('Вікова перевірка'), True),
     ('chrome', _('Шапка і футер'), True),
+    ('legal', _('Документи'), True),
 )
 
 
@@ -61,18 +62,6 @@ def build_unfold_navigation() -> list[dict]:
             'items': items,
         })
 
-    nav.append({
-        'title': _('Документи'),
-        'separator': True,
-        'collapsible': True,
-        'items': [
-            {
-                'title': _('Юридичні документи'),
-                'icon': 'gavel',
-                'link': reverse_lazy('admin:pages_legaldocument_changelist'),
-            },
-        ],
-    })
     nav.append({
         'title': _('Каталог товарів'),
         'separator': True,

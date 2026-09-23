@@ -9,6 +9,7 @@ from apps.core.admin_site_content import site_content_section_view
 from apps.core.models import (
     AboutPageSettings,
     AgeGateSettings,
+    AgePolicyPageSettings,
     B2bPageSettings,
     BlogPageSettings,
     BookingPageSettings,
@@ -17,6 +18,7 @@ from apps.core.models import (
     CatalogPageSettings,
     CheckoutPageSettings,
     ContactPageSettings,
+    CookiesPageSettings,
     DeliveryPageSettings,
     FaqPageSettings,
     HomeAboutSettings,
@@ -25,9 +27,11 @@ from apps.core.models import (
     HomeCatalogSettings,
     HomeHeroSettings,
     HomeServiceSettings,
+    PrivacyPageSettings,
     SiteFooterSettings,
     SiteHeaderSettings,
     SiteSettings,
+    TermsPageSettings,
 )
 
 
@@ -75,6 +79,10 @@ _SECTION_MODELS = (
     (AgeGateSettings, 'age', 'page'),
     (SiteHeaderSettings, 'site', 'header'),
     (SiteFooterSettings, 'site', 'footer'),
+    (PrivacyPageSettings, 'privacy', 'page'),
+    (TermsPageSettings, 'terms', 'page'),
+    (AgePolicyPageSettings, 'age_policy', 'page'),
+    (CookiesPageSettings, 'cookies', 'page'),
 )
 
 

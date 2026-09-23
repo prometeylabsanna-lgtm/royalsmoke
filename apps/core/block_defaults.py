@@ -7,6 +7,13 @@ from apps.core.block_defaults_home import (
     HOME_MULTILINE,
     HOME_TYPES,
 )
+from apps.core.block_defaults_legal import (
+    LEGAL_DEFAULTS,
+    LEGAL_INLINE,
+    LEGAL_LABELS,
+    LEGAL_MULTILINE,
+    LEGAL_TYPES,
+)
 from apps.core.block_defaults_pages import (
     PAGE_DEFAULTS,
     PAGE_INLINE,
@@ -16,22 +23,28 @@ from apps.core.block_defaults_pages import (
 )
 from apps.core.legal_privacy_body import PRIVACY_BODY_UK
 
-BLOCK_DEFAULTS: dict[tuple[str, str], str] = {**HOME_DEFAULTS, **PAGE_DEFAULTS}
+BLOCK_DEFAULTS: dict[tuple[str, str], str] = {
+    **HOME_DEFAULTS,
+    **PAGE_DEFAULTS,
+    **LEGAL_DEFAULTS,
+}
 
 BLOCK_FIELD_LABELS: dict[tuple[str, str], str] = {
     key: key[1].replace('_', ' ') for key in BLOCK_DEFAULTS
 }
 BLOCK_FIELD_LABELS.update(HOME_LABELS)
 BLOCK_FIELD_LABELS.update(PAGE_LABELS)
+BLOCK_FIELD_LABELS.update(LEGAL_LABELS)
 
 BLOCK_CONTENT_TYPES: dict[tuple[str, str], str] = {
     key: 'text' for key in BLOCK_DEFAULTS
 }
 BLOCK_CONTENT_TYPES.update(HOME_TYPES)
 BLOCK_CONTENT_TYPES.update(PAGE_TYPES)
+BLOCK_CONTENT_TYPES.update(LEGAL_TYPES)
 
-INLINE_KEYS = HOME_INLINE | PAGE_INLINE
-MULTILINE_KEYS = HOME_MULTILINE | PAGE_MULTILINE
+INLINE_KEYS = HOME_INLINE | PAGE_INLINE | LEGAL_INLINE
+MULTILINE_KEYS = HOME_MULTILINE | PAGE_MULTILINE | LEGAL_MULTILINE
 
 HISTORY_IMAGE_FALLBACKS: tuple[str, ...] = (
     'img/history/01-intro.jpg',
@@ -80,6 +93,10 @@ BRAND_CARD_TEXT_DEFAULTS: dict[str, str] = {
 PAGE_BG_IMAGE_FALLBACKS: dict[tuple[str, str], str] = {
     ('faq', 'bg'): 'img/calculator/lounge-bg.jpg',
     ('delivery', 'bg'): 'img/calculator/lounge-bg.jpg',
+    ('privacy', 'bg'): 'img/calculator/lounge-bg.jpg',
+    ('terms', 'bg'): 'img/calculator/lounge-bg.jpg',
+    ('age_policy', 'bg'): 'img/calculator/lounge-bg.jpg',
+    ('cookies', 'bg'): 'img/calculator/lounge-bg.jpg',
     ('home', 'calculator_bg'): 'img/calculator/lounge-bg.jpg',
     ('home', 'about_bg'): 'img/history/bg.jpg',
     ('service', 'booking_image'): 'img/booking/lounge.jpg',

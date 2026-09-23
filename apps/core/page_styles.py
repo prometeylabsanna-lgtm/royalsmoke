@@ -7,6 +7,7 @@ from django.core.cache import cache
 from django.urls import reverse
 
 from apps.core.models import ChromeStyle, PageStyle, SiteBlock, clear_site_content_cache
+from apps.core.legal_pages import legal_page_key
 
 PAGE_STYLES_CACHE_KEY = 'page_styles'
 CHROME_STYLE_CACHE_KEY = 'chrome_style'
@@ -19,7 +20,6 @@ _URL_PAGE_MAP: dict[tuple[str | None, str | None], str] = {
     ('pages', 'blog'): SiteBlock.Page.BLOG,
     ('pages', 'blog_detail'): SiteBlock.Page.BLOG,
     ('pages', 'faq'): SiteBlock.Page.FAQ,
-    ('pages', 'legal'): SiteBlock.Page.SITE,
     ('pages', 'age_gate'): SiteBlock.Page.AGE,
     ('catalog', 'list'): SiteBlock.Page.CATALOG,
     ('catalog', 'category'): SiteBlock.Page.CATALOG,
@@ -55,6 +55,12 @@ _PAGE_PREVIEW_REVERSE: dict[str, tuple[str, dict]] = {
     SiteBlock.Page.AGE: ('pages:home', {}),
     SiteBlock.Page.SITE: ('pages:home', {}),
     SiteBlock.Page.SERVICE: ('pages:home', {}),
+    SiteBlock.Page.HEADER: ('pages:home', {}),
+    SiteBlock.Page.FOOTER: ('pages:home', {}),
+    SiteBlock.Page.PRIVACY: ('pages:legal', {'slug': 'privacy'}),
+    SiteBlock.Page.TERMS: ('pages:legal', {'slug': 'terms'}),
+    SiteBlock.Page.AGE_POLICY: ('pages:legal', {'slug': 'age'}),
+    SiteBlock.Page.COOKIES: ('pages:legal', {'slug': 'cookies'}),
 }
 
 
@@ -80,6 +86,9 @@ def resolve_page_key(request) -> str | None:
     match = getattr(request, 'resolver_match', None)
     if match is None:
         return None
+    if match.namespace == 'pages' and match.url_name == 'legal':
+        slug = (match.kwargs or {}).get('slug') or 'privacy'
+        return legal_page_key(slug) or SiteBlock.Page.SITE
     return _URL_PAGE_MAP.get((match.namespace, match.url_name))
 
 

@@ -16,7 +16,6 @@ from apps.core.block_defaults import (
     BLOCK_FIELD_LABELS,
     FAQ_ITEM_DEFAULTS,
     HISTORY_SLIDE_DEFAULTS,
-    LEGAL_DOC_DEFAULTS,
 )
 from apps.core.models import ChromeStyle, HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings
 from apps.core.page_styles import ensure_page_styles
@@ -440,6 +439,8 @@ class Command(BaseCommand):
             )
 
     def _seed_legal(self):
+        """CMS-блоки юр. сторінок + одноразова міграція з LegalDocument."""
+        from apps.core.legal_pages import LEGAL_SLUG_TO_PAGE
         from apps.core.legal_privacy_body import (
             PRIVACY_BODY_EN,
             PRIVACY_BODY_UK,
@@ -447,44 +448,59 @@ class Command(BaseCommand):
         )
         from apps.pages.models import LegalDocument
 
-        for i, item in enumerate(LEGAL_DOC_DEFAULTS):
-            doc, created = LegalDocument.objects.get_or_create(
-                slug=item['slug'],
-                defaults={
-                    'title': item['title'],
-                    'body': item['body'],
-                    'sort_order': i,
-                    'is_active': True,
-                },
+        legacy = {
+            d.slug: d
+            for d in LegalDocument.objects.all()
+        }
+
+        for slug, page in LEGAL_SLUG_TO_PAGE.items():
+            title_default = str(BLOCK_DEFAULTS.get((page, 'title'), slug))
+            body_default = str(BLOCK_DEFAULTS.get((page, 'body'), ''))
+            lead_default = str(BLOCK_DEFAULTS.get((page, 'lead'), ''))
+            doc = legacy.get(slug)
+
+            title = (doc.title if doc and (doc.title or '').strip() else title_default)
+            body = (doc.body if doc and (doc.body or '').strip() else body_default)
+
+            specs = (
+                ('title', title, BLOCK_FIELD_LABELS.get((page, 'title'), 'Заголовок'), 'text'),
+                ('lead', lead_default, BLOCK_FIELD_LABELS.get((page, 'lead'), 'Лід'), 'text'),
+                ('bg', '', BLOCK_FIELD_LABELS.get((page, 'bg'), 'Фон'), 'image'),
+                ('body', body, BLOCK_FIELD_LABELS.get((page, 'body'), 'Текст'), 'text'),
             )
-            updates: list[str] = []
-            if not doc.is_active:
-                doc.is_active = True
-                updates.append('is_active')
-            if not (doc.title or '').strip():
-                doc.title = item['title']
-                updates.append('title')
-            if doc.sort_order != i:
-                doc.sort_order = i
-                updates.append('sort_order')
+            for key, text, label, ctype in specs:
+                block, created = SiteBlock.objects.get_or_create(
+                    page=page,
+                    key=key,
+                    defaults={
+                        'label': label,
+                        'content_type': ctype,
+                        'text_html': text,
+                        'is_active': True,
+                    },
+                )
+                if created:
+                    continue
+                if key == 'body' and not (block.text_html or '').strip() and text:
+                    block.text_html = text
+                    block.save(update_fields=['text_html'])
+                if key == 'title' and not (block.text_html or '').strip() and text:
+                    block.text_html = text
+                    block.save(update_fields=['text_html'])
 
-            if item['slug'] == 'privacy':
-                doc.title = item['title']
-                doc.title_uk = item['title']
-                doc.title_en = 'Privacy policy'
-                doc.title_zh_hans = '隐私政策'
-                doc.body = PRIVACY_BODY_UK
-                doc.body_uk = PRIVACY_BODY_UK
-                doc.body_en = PRIVACY_BODY_EN
-                doc.body_zh_hans = PRIVACY_BODY_ZH
-                updates.extend([
-                    'title', 'title_uk', 'title_en', 'title_zh_hans',
-                    'body', 'body_uk', 'body_en', 'body_zh_hans',
-                ])
-            elif not (doc.body or '').strip():
-                doc.body = item['body']
-                updates.append('body')
-
-            if updates:
-                doc.save(update_fields=list(dict.fromkeys(updates)))
+            if slug == 'privacy':
+                body_block = SiteBlock.objects.filter(page=page, key='body').first()
+                if body_block is not None and not (getattr(body_block, 'text_html_en', '') or '').strip():
+                    body_block.text_html = PRIVACY_BODY_UK
+                    body_block.text_html_uk = PRIVACY_BODY_UK
+                    body_block.text_html_en = PRIVACY_BODY_EN
+                    body_block.text_html_zh_hans = PRIVACY_BODY_ZH
+                    body_block.save()
+                title_block = SiteBlock.objects.filter(page=page, key='title').first()
+                if title_block is not None and not (getattr(title_block, 'text_html_en', '') or '').strip():
+                    title_block.text_html = title_default
+                    title_block.text_html_uk = title_default
+                    title_block.text_html_en = 'Privacy policy'
+                    title_block.text_html_zh_hans = '隐私政策'
+                    title_block.save()
 

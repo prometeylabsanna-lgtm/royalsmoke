@@ -4,7 +4,8 @@ from unfold.admin import ModelAdmin, TabularInline
 
 from apps.core.admin_site_content_widgets import CmsAdminTinyMCEWidget
 
-from .models import BlogFAQItem, BlogPost, FAQItem, LegalDocument
+from .models import BlogFAQItem, BlogPost, FAQItem
+
 
 _FAQ_TINYMCE = {
     'answer', 'answer_uk', 'answer_en', 'answer_zh_hans',
@@ -30,25 +31,6 @@ class FAQItemAdmin(ModelAdmin):
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         if db_field.name in _FAQ_TINYMCE:
             kwargs['widget'] = CmsAdminTinyMCEWidget()
-        return super().formfield_for_dbfield(db_field, request, **kwargs)
-
-
-@admin.register(LegalDocument)
-class LegalDocumentAdmin(ModelAdmin):
-    list_display = ('title', 'slug', 'is_active', 'sort_order')
-    list_editable = ('is_active', 'sort_order')
-    prepopulated_fields = {'slug': ('title_uk',)}
-    ordering_field = 'sort_order'
-    fields = (
-        'slug',
-        'title_uk', 'title_en', 'title_zh_hans',
-        'body_uk', 'body_en', 'body_zh_hans',
-        'sort_order', 'is_active',
-    )
-
-    def formfield_for_dbfield(self, db_field, request, **kwargs):
-        if db_field.name in _BODY_TINYMCE:
-            kwargs['widget'] = TinyMCE()
         return super().formfield_for_dbfield(db_field, request, **kwargs)
 
 

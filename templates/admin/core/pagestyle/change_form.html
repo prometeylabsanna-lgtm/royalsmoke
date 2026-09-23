@@ -12,10 +12,14 @@
 <div class="rs-page-style-admin">
   <div class="rs-cms__head">
     <p class="rs-cms__desc">
-      Оберіть кольори сторінки. «Подивитись на сайті» відкриває демо з поточними
-      значеннями форми <strong>без збереження</strong>.
+      {% if hide_page_style_preview %}
+        Кольори шапки або підвалу. Зміни застосовуються на всіх сторінках сайту.
+      {% else %}
+        Оберіть кольори сторінки. «Подивитись на сайті» відкриває демо з поточними
+        значеннями форми <strong>без збереження</strong>.
+      {% endif %}
     </p>
-    {% if page_preview_base %}
+    {% if page_preview_base and not hide_page_style_preview %}
       <a
         class="rs-cms__preview"
         href="{{ page_preview_base }}"

@@ -1,18 +1,19 @@
 {% extends "base.html" %}
 {% load static i18n rs_content %}
 
-{% block title %}{{ doc.title }} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
+{% block title %}{% cms_text legal_page 'title' %} — {{ site_settings.site_name|default:"Royal Smoke" }}{% endblock %}
 {% block body_class %}rs-legal-page{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/pages11.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'css/pages11.css' %}?v=3">
 {% endblock %}
 
 {% block content %}
+{% cms_image legal_page 'bg' as legal_bg %}
 <div class="rs-legal-page__bg" aria-hidden="true">
   <img
     class="rs-legal-page__bg-img"
-    src="{% static 'img/calculator/lounge-bg.jpg' %}"
+    src="{% if legal_bg %}{{ legal_bg }}{% else %}{% static 'img/calculator/lounge-bg.jpg' %}{% endif %}"
     alt=""
     width="1536"
     height="1024"
@@ -21,17 +22,22 @@
 </div>
 
 <header class="rs-page-head" data-rs-reveal>
-  <h1>{{ doc.title }}</h1>
-  {% if legal_docs %}
+  <h1>{% cms_text legal_page 'title' %}</h1>
+  {% cms_text legal_page 'lead' as legal_lead %}
+  {% if legal_lead %}
+  <p class="rs-page-head__lead">{{ legal_lead }}</p>
+  {% endif %}
+  {% if legal_nav %}
   <nav class="rs-legal-nav" aria-label="Legal">
-    {% for item in legal_docs %}
-      <a href="{% url 'pages:legal' slug=item.slug %}">{{ item.title }}</a>
+    {% for item in legal_nav %}
+      <a href="{{ item.url }}"{% if item.is_current %} aria-current="page"{% endif %}>{{ item.title }}</a>
     {% endfor %}
   </nav>
   {% endif %}
 </header>
 
 <div class="rs-container rs-service-page rs-legal" data-rs-reveal data-reveal-delay="80">
-  <div class="rs-legal__body">{{ doc.body|safe }}</div>
+  {% cms_text legal_page 'body' as legal_body %}
+  <div class="rs-legal__body">{{ legal_body|safe }}</div>
 </div>
 {% endblock %}
