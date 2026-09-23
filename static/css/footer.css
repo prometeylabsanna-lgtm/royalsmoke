@@ -1,17 +1,15 @@
 /* Royal Smoke — footer (BLACKBIRD-inspired, site palette) */
 
 .rs-footer {
-  --rs-footer-top-bg: var(--rs-seashell);
-  --rs-footer-top-ink: var(--rs-bark);
-  --rs-footer-top-muted: rgba(16, 13, 12, 0.55);
-  --rs-footer-bottom-bg: var(--rs-coffee);
+  --rs-footer-top-muted: color-mix(in srgb, var(--rs-footer-top-ink) 55%, transparent);
   --rs-footer-seal: 112px;
+  --rs-seashell: var(--rs-footer-bottom-text);
   position: relative;
   margin: 0;
   padding: 0;
   border-top: none;
   background: var(--rs-footer-bottom-bg);
-  color: var(--rs-seashell);
+  color: var(--rs-footer-bottom-text);
   overflow-x: hidden;
   overflow-y: visible;
 }
@@ -205,9 +203,9 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--rs-seashell);
-  color: var(--rs-bark);
-  border: 1px solid rgba(16, 13, 12, 0.12);
+  background: var(--rs-footer-top-bg);
+  color: var(--rs-footer-top-ink);
+  border: 1px solid color-mix(in srgb, var(--rs-footer-top-ink) 12%, transparent);
   transition:
     background var(--rs-dur-fast) ease,
     color var(--rs-dur-fast) ease,
@@ -217,7 +215,7 @@
 
 .rs-footer__soc:hover {
   background: var(--rs-gold);
-  color: var(--rs-bark);
+  color: var(--rs-footer-top-ink);
   transform: translateY(-2px);
 }
 

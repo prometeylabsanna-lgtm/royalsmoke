@@ -6,9 +6,10 @@ from urllib.parse import urlencode
 from django.core.cache import cache
 from django.urls import reverse
 
-from apps.core.models import PageStyle, SiteBlock, clear_site_content_cache
+from apps.core.models import ChromeStyle, PageStyle, SiteBlock, clear_site_content_cache
 
 PAGE_STYLES_CACHE_KEY = 'page_styles'
+CHROME_STYLE_CACHE_KEY = 'chrome_style'
 _HEX_RE = re.compile(r'^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$')
 
 # (namespace, url_name) → SiteBlock.Page value
@@ -129,7 +130,7 @@ def _preview_from_request(request) -> dict[str, str]:
 
 
 def get_page_style_vars(request) -> dict[str, str]:
-    """Повертає кастомні CSS-змінні (порожні = дефолт CSS)."""
+    """Кастомні CSS-змінні контенту (між шапкою і підвалом). Порожні = дефолт."""
     preview = _preview_from_request(request)
     if preview and any(preview.values()):
         return {
@@ -149,6 +150,16 @@ def get_page_style_vars(request) -> dict[str, str]:
         'accent': row.get('accent', ''),
         'is_preview': False,
     }
+
+
+def get_chrome_style_vars() -> dict[str, str]:
+    """Ефективні кольори шапки/підвалу (завжди з дефолтами)."""
+    cached = cache.get(CHROME_STYLE_CACHE_KEY)
+    if cached is not None:
+        return cached
+    data = ChromeStyle.load().effective()
+    cache.set(CHROME_STYLE_CACHE_KEY, data, 300)
+    return data
 
 
 def build_preview_query(bg: str, text: str, accent: str) -> str:

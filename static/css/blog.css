@@ -2,9 +2,8 @@
 
 body.rs-blog-page {
   --rs-blog-max: 1120px;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(184, 137, 58, 0.12), transparent 55%),
-    linear-gradient(180deg, #161210 0%, #100d0c 42%, #0c0a09 100%);
+  background-color: var(--rs-page-bg);
+  background-image: none;
 }
 
 body.rs-blog-page .rs-main {

@@ -53,12 +53,16 @@
 /* ——— Header ——— */
 .rs-header {
   --rs-header-solid: 0;
+  --rs-seashell: var(--rs-header-text);
+  --rs-text-soft: color-mix(in srgb, var(--rs-header-text) 85%, transparent);
+  --rs-text-muted: color-mix(in srgb, var(--rs-header-text) 60%, transparent);
   position: fixed;
   inset-inline: 0;
   top: 0;
   z-index: var(--rs-z-header);
   padding-top: var(--rs-safe-t);
   background: transparent;
+  color: var(--rs-header-text);
 }
 
 /* Soft dark veil while over hero — fades out as solid fills in */
@@ -91,7 +95,7 @@
   bottom: 0;
   z-index: 0;
   pointer-events: none;
-  background: var(--rs-page-bg);
+  background: var(--rs-header-bg);
   opacity: var(--rs-header-solid);
 }
 
@@ -112,10 +116,11 @@
   background: transparent;
 }
 
-/* Внутрішні сторінки: хедер одразу непрозорий */
+/* Внутрішні сторінки: хедер одразу непрозорий (колір шапки, не сторінки) */
 body:not(.rs-home) .rs-header {
   --rs-header-solid: 1;
-  background: var(--rs-page-bg);
+  background: var(--rs-header-bg);
+  color: var(--rs-header-text);
 }
 
 body:not(.rs-home) .rs-header::before {

@@ -97,10 +97,15 @@ def build_unfold_navigation() -> list[dict]:
         ],
     })
     nav.append({
-        'title': _('Кольори сторінок'),
+        'title': _('Кольори сайту'),
         'separator': True,
         'collapsible': True,
         'items': [
+            {
+                'title': _('Шапка і підвал'),
+                'icon': 'view_agenda',
+                'link': reverse_lazy('admin:core_chromestyle_changelist'),
+            },
             {
                 'title': _('Кольори сторінок'),
                 'icon': 'palette',

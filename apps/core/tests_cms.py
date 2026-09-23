@@ -226,7 +226,12 @@ class PageStyleTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, '--rs-page-bg: #1a1512')
         self.assertContains(response, '--rs-page-text: #eeddcc')
+        self.assertContains(response, '--rs-seashell: #eeddcc')
         self.assertContains(response, '--rs-page-accent: #aabb00')
+        self.assertContains(response, 'has-page-bg')
+        self.assertContains(response, '--rs-header-bg:')
+        # page text remaps live on main, not body class bleed into header
+        self.assertContains(response, 'class="rs-main has-page-text has-page-bg has-page-accent"')
 
     def test_admin_has_circle_picker_and_preview(self):
         style = PageStyle.objects.get(page='about')
@@ -254,6 +259,41 @@ class PageStyleTests(TestCase):
         self.assertContains(response, '--rs-page-bg: #eb3b00')
         self.assertContains(response, 'is-style-preview')
         self.assertContains(response, 'Превʼю кольорів')
+
+    def test_blog_uses_solid_page_bg_token(self):
+        response = self.client.get(reverse('pages:blog'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'rs-blog-page')
+        self.assertContains(response, 'blog.css')
+
+
+class ChromeStyleTests(TestCase):
+    def setUp(self):
+        User = get_user_model()
+        self.user = User.objects.create_superuser(
+            email='chrome@test.ua', password='pass12345',
+        )
+        self.client.force_login(self.user)
+        from apps.core.models import ChromeStyle
+        ChromeStyle.load()
+
+    def test_admin_opens_singleton(self):
+        response = self.client.get(reverse('admin:core_chromestyle_changelist'))
+        self.assertEqual(response.status_code, 302)
+        self.assertIn('/change/', response.url)
+
+    def test_frontend_exposes_header_vars(self):
+        from apps.core.models import ChromeStyle
+        chrome = ChromeStyle.load()
+        chrome.header_bg = '#112233'
+        chrome.header_text = '#ffeedd'
+        chrome.save()
+        response = self.client.get(reverse('pages:blog'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '--rs-header-bg: #112233')
+        self.assertContains(response, '--rs-header-text: #ffeedd')
+        # page style must not override header with page bg class on body
+        self.assertNotContains(response, 'body class="rs-blog-page has-page')
 
 
 class CmsTinyMCETests(TestCase):

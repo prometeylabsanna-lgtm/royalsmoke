@@ -5,7 +5,7 @@ from apps.core.block_defaults import BLOCK_DEFAULTS
 from apps.core.breadcrumbs import build_breadcrumbs
 from apps.core.currency import get_currency
 from apps.core.models import HeroSlide, HistorySlide, SiteBlock, SiteSettings
-from apps.core.page_styles import get_page_style_vars
+from apps.core.page_styles import get_chrome_style_vars, get_page_style_vars
 
 
 def site_globals(request):
@@ -38,6 +38,7 @@ def site_globals(request):
     hero_slides = list(HeroSlide.objects.filter(is_active=True))
     history_slides = list(HistorySlide.objects.filter(is_active=True))
     page_style = get_page_style_vars(request)
+    chrome_style = get_chrome_style_vars()
 
     return {
         'site_settings': settings_obj,
@@ -48,6 +49,7 @@ def site_globals(request):
         'history_slides': history_slides,
         'page_style': page_style,
         'page_background_color': page_style.get('bg', ''),
+        'chrome_style': chrome_style,
         'current_language': get_language() or 'uk',
         'currency': get_currency(),
         'age_gate_cookie': 'age_ok',

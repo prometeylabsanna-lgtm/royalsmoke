@@ -18,7 +18,7 @@ from apps.core.block_defaults import (
     HISTORY_SLIDE_DEFAULTS,
     LEGAL_DOC_DEFAULTS,
 )
-from apps.core.models import HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings
+from apps.core.models import ChromeStyle, HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings
 from apps.core.page_styles import ensure_page_styles
 from apps.core.delivery_cards import ensure_delivery_cards
 
@@ -28,6 +28,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         SiteSettings.load()
+        ChromeStyle.load()
         ensure_page_styles()
         ensure_delivery_cards()
         self._seed_blocks()

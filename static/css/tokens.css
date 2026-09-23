@@ -52,12 +52,20 @@
   --rs-page-text: var(--rs-seashell);
   --rs-page-accent: var(--rs-gold);
 
+  /* Шапка / підвал — окремо від кольорів контенту сторінки */
+  --rs-header-bg: var(--rs-bark);
+  --rs-header-text: var(--rs-seashell);
+  --rs-footer-top-bg: var(--rs-seashell);
+  --rs-footer-top-ink: var(--rs-bark);
+  --rs-footer-bottom-bg: var(--rs-coffee);
+  --rs-footer-bottom-text: var(--rs-seashell);
+
   --rs-text: var(--rs-page-text);
-  --rs-text-muted: rgba(252, 242, 238, 0.6);
-  --rs-text-soft: rgba(252, 242, 238, 0.85);
-  --rs-hairline: rgba(252, 242, 238, 0.14);
-  --rs-border: rgba(252, 242, 238, 0.4);
-  --rs-border-soft: rgba(252, 242, 238, 0.25);
+  --rs-text-muted: color-mix(in srgb, var(--rs-page-text) 60%, transparent);
+  --rs-text-soft: color-mix(in srgb, var(--rs-page-text) 85%, transparent);
+  --rs-hairline: color-mix(in srgb, var(--rs-page-text) 14%, transparent);
+  --rs-border: color-mix(in srgb, var(--rs-page-text) 40%, transparent);
+  --rs-border-soft: color-mix(in srgb, var(--rs-page-text) 25%, transparent);
   --rs-shadow: rgba(16, 13, 12, 0.45);
   --rs-overlay: rgba(16, 13, 12, 0.55);
 
@@ -73,7 +81,7 @@
   --rs-heading-page-size: clamp(28px, 5vw, 42px);
   --rs-heading-page-tracking: 0.28em;
   --rs-heading-page-lh: 1.12;
-  --rs-heading-page-color: rgba(252, 242, 238, 0.92);
+  --rs-heading-page-color: var(--rs-page-text);
 
   --rs-space-1: 4px;
   --rs-space-2: 8px;
@@ -217,6 +225,39 @@ body.is-style-preview:not(.rs-home) .rs-main {
 
 body.is-style-preview.rs-home .rs-site {
   padding-top: var(--rs-style-preview-h);
+}
+
+/* Контент між шапкою і підвалом — page style vars на .rs-main */
+.rs-main.has-page-text {
+  color: var(--rs-page-text);
+  --rs-text-soft: color-mix(in srgb, var(--rs-page-text) 88%, transparent);
+  --rs-text-muted: color-mix(in srgb, var(--rs-page-text) 62%, transparent);
+  --rs-hairline: color-mix(in srgb, var(--rs-page-text) 16%, transparent);
+  --rs-border: color-mix(in srgb, var(--rs-page-text) 42%, transparent);
+  --rs-border-soft: color-mix(in srgb, var(--rs-page-text) 28%, transparent);
+}
+
+.rs-main.has-page-text .rs-crumbs,
+.rs-main.has-page-text .rs-crumbs a,
+.rs-main.has-page-text .rs-page-head h1,
+.rs-main.has-page-text .rs-page-head p,
+.rs-main.has-page-text .rs-section__title {
+  color: var(--rs-page-text);
+}
+
+.rs-main.has-page-text .rs-crumbs__link,
+.rs-main.has-page-text .rs-crumbs__sep {
+  color: var(--rs-text-muted);
+}
+
+.rs-main.has-page-text .rs-crumbs__current,
+.rs-main.has-page-text .rs-crumbs__link:hover,
+.rs-main.has-page-text .rs-crumbs__link:focus-visible {
+  color: var(--rs-page-text);
+}
+
+.rs-main.has-page-bg {
+  background: var(--rs-page-bg);
 }
 
 img,

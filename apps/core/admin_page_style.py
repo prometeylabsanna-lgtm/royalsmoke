@@ -38,9 +38,9 @@ class PageStyleAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         specs = (
-            ('background_color', PageStyle.DEFAULT_BACKGROUND, 'Колір фону'),
-            ('text_color', PageStyle.DEFAULT_TEXT, 'Колір шрифта'),
-            ('accent_color', PageStyle.DEFAULT_ACCENT, 'Колір підсвітки (акцент)'),
+            ('background_color', PageStyle.DEFAULT_BACKGROUND, 'Фон контенту'),
+            ('text_color', PageStyle.DEFAULT_TEXT, 'Шрифт контенту'),
+            ('accent_color', PageStyle.DEFAULT_ACCENT, 'Підсвітка контенту'),
         )
         for name, default, label in specs:
             field = self.fields[name]
@@ -49,7 +49,10 @@ class PageStyleAdminForm(forms.ModelForm):
             field.required = False
             current = (getattr(self.instance, name, '') or '').strip() or default
             field.initial = current
-            field.help_text = f'Дефолт: {default}. Порожнє / дефолтний HEX = стиль сайту.'
+            field.help_text = (
+                f'Тільки між шапкою і підвалом. Дефолт: {default}. '
+                'Порожнє / дефолтний HEX = стиль сайту.'
+            )
 
     def clean_background_color(self):
         return _clean_color(

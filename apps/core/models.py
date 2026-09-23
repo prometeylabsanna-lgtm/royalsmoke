@@ -13,6 +13,7 @@ def clear_site_content_cache() -> None:
     cache.delete('site_settings')
     cache.delete('site_blocks')
     cache.delete('page_styles')
+    cache.delete('chrome_style')
     for code, _name in settings.LANGUAGES:
         cache.delete(f'site_settings:{code}')
         cache.delete(f'site_blocks:{code}')
@@ -165,7 +166,7 @@ class SiteBlock(models.Model):
 
 
 class PageStyle(models.Model):
-    """Кольори окремої сторінки. Порожні поля = дефолт сайту."""
+    """Кольори контенту сторінки (між шапкою і підвалом). Порожні = дефолт."""
 
     DEFAULT_BACKGROUND = '#100d0c'
     DEFAULT_TEXT = '#fcf2ee'
@@ -178,22 +179,22 @@ class PageStyle(models.Model):
         unique=True,
     )
     background_color = models.CharField(
-        'Колір фону',
+        'Колір фону контенту',
         max_length=32,
         blank=True,
-        help_text='HEX. Порожнє — дефолт сайту.',
+        help_text='Фон між шапкою і підвалом. HEX. Порожнє — дефолт.',
     )
     text_color = models.CharField(
-        'Колір шрифта',
+        'Колір шрифта контенту',
         max_length=32,
         blank=True,
-        help_text='HEX. Порожнє — дефолт сайту.',
+        help_text='Текст між шапкою і підвалом. HEX. Порожнє — дефолт.',
     )
     accent_color = models.CharField(
-        'Колір підсвітки',
+        'Колір підсвітки контенту',
         max_length=32,
         blank=True,
-        help_text='Акцент (кнопки, золото). HEX. Порожнє — дефолт сайту.',
+        help_text='Акцент у контенті. HEX. Порожнє — дефолт.',
     )
 
     class Meta:
@@ -224,7 +225,6 @@ class PageStyle(models.Model):
     def effective_accent(self) -> str:
         return (self.accent_color or '').strip() or self.DEFAULT_ACCENT
 
-    # backward-compatible alias used in older code/tests
     @property
     def effective_color(self) -> str:
         return self.effective_background
@@ -238,6 +238,67 @@ class PageStyle(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         clear_site_content_cache()
+
+
+class ChromeStyle(models.Model):
+    """Глобальні кольори шапки та підвалу (singleton pk=1)."""
+
+    DEFAULT_HEADER_BG = '#100d0c'
+    DEFAULT_HEADER_TEXT = '#fcf2ee'
+    DEFAULT_FOOTER_TOP_BG = '#fcf2ee'
+    DEFAULT_FOOTER_TOP_TEXT = '#100d0c'
+    DEFAULT_FOOTER_BOTTOM_BG = '#1c1715'
+    DEFAULT_FOOTER_BOTTOM_TEXT = '#fcf2ee'
+
+    header_bg = models.CharField('Шапка — фон', max_length=32, blank=True)
+    header_text = models.CharField('Шапка — шрифт', max_length=32, blank=True)
+    footer_top_bg = models.CharField('Підвал (верх) — фон', max_length=32, blank=True)
+    footer_top_text = models.CharField('Підвал (верх) — шрифт', max_length=32, blank=True)
+    footer_bottom_bg = models.CharField('Підвал (низ) — фон', max_length=32, blank=True)
+    footer_bottom_text = models.CharField('Підвал (низ) — шрифт', max_length=32, blank=True)
+
+    class Meta:
+        verbose_name = 'Шапка і підвал'
+        verbose_name_plural = 'Шапка і підвал'
+
+    def __str__(self) -> str:
+        return 'Шапка і підвал'
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super().save(*args, **kwargs)
+        clear_site_content_cache()
+
+    def delete(self, *args, **kwargs):
+        return None
+
+    @classmethod
+    def load(cls):
+        obj, _ = cls.objects.get_or_create(pk=1)
+        return obj
+
+    def reset_to_default(self) -> None:
+        self.header_bg = ''
+        self.header_text = ''
+        self.footer_top_bg = ''
+        self.footer_top_text = ''
+        self.footer_bottom_bg = ''
+        self.footer_bottom_text = ''
+        self.save(update_fields=[
+            'header_bg', 'header_text',
+            'footer_top_bg', 'footer_top_text',
+            'footer_bottom_bg', 'footer_bottom_text',
+        ])
+
+    def effective(self) -> dict[str, str]:
+        return {
+            'header_bg': (self.header_bg or '').strip() or self.DEFAULT_HEADER_BG,
+            'header_text': (self.header_text or '').strip() or self.DEFAULT_HEADER_TEXT,
+            'footer_top_bg': (self.footer_top_bg or '').strip() or self.DEFAULT_FOOTER_TOP_BG,
+            'footer_top_text': (self.footer_top_text or '').strip() or self.DEFAULT_FOOTER_TOP_TEXT,
+            'footer_bottom_bg': (self.footer_bottom_bg or '').strip() or self.DEFAULT_FOOTER_BOTTOM_BG,
+            'footer_bottom_text': (self.footer_bottom_text or '').strip() or self.DEFAULT_FOOTER_BOTTOM_TEXT,
+        }
 
 
 class HeroSlide(models.Model):
