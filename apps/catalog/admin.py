@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib import admin
 from unfold.admin import ModelAdmin, TabularInline
 
@@ -58,10 +59,30 @@ class ProductAdminForm(TranslationSyncModelForm):
         fields = '__all__'
 
 
+class ProductImageAdminForm(forms.ModelForm):
+    class Meta:
+        model = ProductImage
+        fields = ('image', 'alt_text', 'sort_order', 'is_primary')
+        labels = {
+            'image': 'Файл фото',
+            'alt_text': 'Підпис до фото',
+            'sort_order': 'Порядок',
+            'is_primary': 'Головне фото',
+        }
+
+
 class ProductImageInline(ImagePreviewAdminMixin, TabularInline):
     model = ProductImage
+    form = ProductImageAdminForm
     extra = 1
     fields = ('image', 'alt_text', 'sort_order', 'is_primary')
+    verbose_name = 'Фото'
+    verbose_name_plural = 'Фото товару'
+    classes = ('rs-product-images-inline',)
+
+    class Media:
+        css = {'all': ('css/admin/product_images_inline.css',)}
+        js = ('js/admin/product_admin_layout.js',)
 
 
 class ProductVariantInline(AutoSlugAdminMixin, ImagePreviewAdminMixin, TabularInline):
@@ -185,7 +206,8 @@ class ProductAdmin(AutoSlugAdminMixin, ImagePreviewAdminMixin, ModelAdmin):
     search_fields = ('name', 'sku', 'brand__name')
     prepopulated_fields = {'slug': ('name',)}
     filter_horizontal = ('tags',)
-    inlines = [ProductVariantInline, ProductImageInline]
+    # Фото вище за відео: інлайн фото перший + JS піднімає його над fieldset «Відео»
+    inlines = [ProductImageInline, ProductVariantInline]
     fieldsets = (
         (None, {
             'fields': (
@@ -207,8 +229,9 @@ class ProductAdmin(AutoSlugAdminMixin, ImagePreviewAdminMixin, ModelAdmin):
                 'base_price', 'old_price', 'currency', 'stock',
             ),
         }),
-        ('Медіа', {
+        ('Відео', {
             'fields': ('video_file', 'video_url'),
+            'classes': ('rs-product-video-fieldset',),
             'description': 'Пріоритет: відеофайл → URL → статичний fallback на картці.',
         }),
         ('SEO', {
@@ -218,6 +241,10 @@ class ProductAdmin(AutoSlugAdminMixin, ImagePreviewAdminMixin, ModelAdmin):
             ),
         }),
     )
+
+    class Media:
+        js = ('js/admin/product_admin_layout.js',)
+        css = {'all': ('css/admin/product_images_inline.css',)}
 
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related('images')

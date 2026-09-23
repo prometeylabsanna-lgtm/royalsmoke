@@ -308,12 +308,18 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
   flex-wrap: nowrap;
   align-items: center;
   gap: 0.5rem;
-  max-width: 17rem;
+  max-width: none;
+  width: max-content;
 }
 
-.inline-group .tabular .rs-cms-image__frame {
-  width: 56px;
-  height: 56px;
+/* Порожній превʼю ховаємо — інакше «Немає фото» штовхає file вниз */
+.inline-group .tabular .rs-cms-image__frame.is-empty {
+  display: none;
+}
+
+.inline-group .tabular .rs-cms-image__frame:not(.is-empty) {
+  width: 48px;
+  height: 48px;
   flex: 0 0 auto;
 }
 
@@ -325,18 +331,25 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
 }
 
 .inline-group .tabular .rs-cms-image__clear {
-  min-height: 0;
-  margin: 0;
-  font-size: 0.75rem;
-  white-space: nowrap;
+  display: none;
 }
 
 .inline-group .tabular .rs-cms-image input[type="file"],
 .inline-group .tabular .rs-cms-image .rs-cms-image-input {
-  flex: 1 1 auto;
-  min-width: 0;
-  max-width: 11rem;
+  flex: 0 1 auto;
+  min-width: 10rem;
+  max-width: 16rem;
   font-size: 0.75rem;
+  min-height: 2.5rem;
+}
+
+.inline-group .tabular td.field-alt_text input {
+  min-width: 12rem;
+  width: 100%;
+}
+
+.inline-group .tabular td.field-sort_order input {
+  width: 4.5rem;
 }
 
 .inline-group .tabular td input[type="text"],
@@ -357,12 +370,14 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
 @media (max-width: 1024px) {
   .inline-group .tabular .rs-cms-image {
     flex-wrap: wrap;
-    max-width: 12rem;
+    width: auto;
+    max-width: 100%;
   }
 
   .inline-group .tabular .rs-cms-image input[type="file"],
   .inline-group .tabular .rs-cms-image .rs-cms-image-input {
     max-width: 100%;
+    min-width: 0;
   }
 }
 

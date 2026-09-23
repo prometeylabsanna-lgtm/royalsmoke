@@ -182,18 +182,23 @@ class ProductVariant(TimeStampedModel):
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField('Фото', upload_to='products/')
-    alt_text = models.CharField('Alt', max_length=200, blank=True)
-    sort_order = models.PositiveIntegerField(default=0)
-    is_primary = models.BooleanField(default=False)
+    image = models.ImageField('Файл фото', upload_to='products/')
+    alt_text = models.CharField(
+        'Підпис до фото',
+        max_length=200,
+        blank=True,
+        help_text='Короткий опис зображення (для доступності та SEO).',
+    )
+    sort_order = models.PositiveIntegerField('Порядок', default=0)
+    is_primary = models.BooleanField('Головне фото', default=False)
 
     class Meta:
         ordering = ['sort_order', 'id']
-        verbose_name = 'Фото товару'
-        verbose_name_plural = 'Фото товарів'
+        verbose_name = 'Фото'
+        verbose_name_plural = 'Фото товару'
 
     def __str__(self) -> str:
-        return self.alt_text or f'Image #{self.pk}'
+        return self.alt_text or f'Фото #{self.pk}'
 
 
 class ProductReview(TimeStampedModel):
