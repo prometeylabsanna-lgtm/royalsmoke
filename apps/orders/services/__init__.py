@@ -45,3 +45,13 @@ def notify_order_paid(order) -> None:
         html=html,
         user=order.user,
     )
+    try:
+        from apps.pwa.services.push import notify_order_push
+
+        notify_order_push(order, kind='payment')
+    except Exception:
+        import logging
+
+        logging.getLogger(__name__).exception(
+            'Push payment notify failed for %s', order.order_number
+        )

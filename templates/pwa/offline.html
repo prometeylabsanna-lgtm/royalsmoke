@@ -1,0 +1,78 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'uk' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#100d0c">
+  <title>{% trans "Каталог офлайн" %} — Royal Smoke</title>
+  <link rel="stylesheet" href="{% static 'css/tokens.css' %}?v=10">
+  <link rel="stylesheet" href="{% static 'css/pwa-offline.css' %}?v=1">
+</head>
+<body class="rs-pwa-offline" data-rs-offline-root>
+  <div class="rs-pwa-stale" role="status" data-rs-pwa-stale>
+    <span data-i18n="stale">{% trans "Офлайн-копія каталогу. Ціни та наявність можуть бути застарілими." %}</span>
+  </div>
+  <header class="rs-pwa-off__head">
+    <a class="rs-pwa-off__brand" href="/" data-i18n-home>Royal Smoke</a>
+    <p class="rs-pwa-off__meta" data-offline-meta></p>
+  </header>
+  <main class="rs-pwa-off__main" id="rs-offline-main" aria-live="polite"></main>
+  <script type="application/json" id="rs-offline-i18n">
+  {
+    "uk": {
+      "stale": "Офлайн-копія каталогу. Ціни та наявність можуть бути застарілими.",
+      "catalog": "Каталог",
+      "brands": "Бренди",
+      "categories": "Категорії",
+      "all": "Усі товари",
+      "empty": "Немає збережених даних каталогу. Підключіться до мережі, щоб оновити.",
+      "back": "Назад до каталогу",
+      "stock": "На складі",
+      "out": "Немає в наявності",
+      "strength": "Міцність",
+      "country": "Країна",
+      "smoke": "Час куріння",
+      "notes": "Смакові нотки",
+      "blend": "Бленд",
+      "updated": "Знімок"
+    },
+    "en": {
+      "stale": "Offline catalog copy. Prices and stock may be outdated.",
+      "catalog": "Catalog",
+      "brands": "Brands",
+      "categories": "Categories",
+      "all": "All products",
+      "empty": "No cached catalog data. Go online to refresh.",
+      "back": "Back to catalog",
+      "stock": "In stock",
+      "out": "Out of stock",
+      "strength": "Strength",
+      "country": "Country",
+      "smoke": "Smoke time",
+      "notes": "Tasting notes",
+      "blend": "Blend",
+      "updated": "Snapshot"
+    },
+    "zh-hans": {
+      "stale": "离线目录副本。价格与库存可能已过期。",
+      "catalog": "目录",
+      "brands": "品牌",
+      "categories": "分类",
+      "all": "全部商品",
+      "empty": "没有缓存的目录数据。请联网后刷新。",
+      "back": "返回目录",
+      "stock": "有货",
+      "out": "缺货",
+      "strength": "浓度",
+      "country": "国家",
+      "smoke": "抽吸时间",
+      "notes": "风味",
+      "blend": "配方",
+      "updated": "快照"
+    }
+  }
+  </script>
+  <script src="{% static 'js/pwa-offline-catalog.js' %}?v=1" defer></script>
+</body>
+</html>

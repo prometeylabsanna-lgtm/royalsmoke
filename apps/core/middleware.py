@@ -7,7 +7,7 @@ class AgeGateMiddleware(MiddlewareMixin):
 
     SKIP_PREFIXES = (
         '/static/', '/media/', '/api/', '/i18n/', '/htmx/',
-        '/health/', '/healthz/',
+        '/health/', '/healthz/', '/pwa/', '/sw.js', '/manifest.webmanifest',
     )
 
     def process_request(self, request):

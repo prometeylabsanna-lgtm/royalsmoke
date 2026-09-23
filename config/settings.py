@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'apps.leads',
     'apps.pages',
     'apps.api',
+    'apps.pwa.apps.PwaConfig',
 ]
 
 MIDDLEWARE = [
@@ -228,6 +229,8 @@ CONTENT_SECURITY_POLICY = {
         'font-src': [SELF, 'https://fonts.gstatic.com'],
         'img-src': [SELF, 'data:', 'blob:', 'https:'],
         'connect-src': [SELF],
+        'worker-src': [SELF],
+        'manifest-src': [SELF],
         'frame-ancestors': [SELF],
     }
 }
@@ -386,5 +389,12 @@ LOGGING = {
         'apps': {'handlers': ['console'], 'level': 'INFO'},
         'apps.orders.services': {'handlers': ['console'], 'level': 'INFO'},
         'apps.core.services': {'handlers': ['console'], 'level': 'INFO'},
+        'apps.pwa': {'handlers': ['console'], 'level': 'INFO'},
     },
 }
+
+# Web Push (PWA). Generate via: python manage.py generate_vapid_keys
+VAPID_PUBLIC_KEY = os.environ.get('VAPID_PUBLIC_KEY', '').strip()
+VAPID_PRIVATE_KEY = os.environ.get('VAPID_PRIVATE_KEY', '').strip().replace('\\n', '\n')
+VAPID_ADMIN_EMAIL = os.environ.get('VAPID_ADMIN_EMAIL', '').strip() or DEFAULT_FROM_EMAIL
+
