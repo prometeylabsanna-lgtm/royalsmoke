@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from decimal import Decimal
 from hashlib import md5
 from pathlib import Path
 
@@ -9,7 +8,7 @@ from django.core.files import File
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-from apps.catalog.models import Product, ProductImage, ProductReview, ProductVariant
+from apps.catalog.models import Product, ProductImage, ProductReview
 
 # Demo photos live in static/; seed copies them into MEDIA for ProductImage.
 STATIC_PRODUCT_IMAGES = {
@@ -103,24 +102,13 @@ REVIEW_NAMES = (
     'Alexander', 'Michael', 'Irene', 'Dmitry', 'Catherine', 'Andrew', 'Julia',
 )
 
-VITOLA_SHAPES = (
-    ('Robusto', 127, 50),
-    ('Toro', 152, 52),
-    ('Churchill', 178, 47),
-    ('Petit Corona', 114, 42),
-    ('Belicoso', 152, 52),
-    ('Gran Toro', 165, 60),
-    ('Epicure', 140, 48),
-    ('Figurado', 152, 54),
-)
-
 
 def _seed_int(key: str) -> int:
     return int(md5(key.encode()).hexdigest(), 16)
 
 
 class Command(BaseCommand):
-    help = 'Заповнює картку товару: історія, опис, blend, vitolas, відео, відгуки'
+    help = 'Заповнює картку товару: історія, опис, blend, відео, відгуки'
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -140,7 +128,6 @@ class Command(BaseCommand):
             return
 
         updated_products = 0
-        created_variants = 0
         created_images = 0
         created_reviews = 0
 
@@ -214,58 +201,14 @@ class Command(BaseCommand):
                 product.save()
                 updated_products += 1
 
-            created_variants += self._ensure_variants(product, seed, force)
             created_images += self._ensure_primary_image(product)
             created_images += self._ensure_gallery(product, seed)
             created_reviews += self._ensure_reviews(product, seed, force)
 
         self.stdout.write(self.style.SUCCESS(
             f'Готово: {len(products)} товарів, оновлено {updated_products}, '
-            f'+{created_variants} vitolas, +{created_images} фото, +{created_reviews} відгуків'
+            f'+{created_images} фото, +{created_reviews} відгуків'
         ))
-
-    def _ensure_variants(self, product: Product, seed: int, force: bool) -> int:
-        if product.category.kind != product.category.Kind.CIGARS:
-            return 0
-
-        existing = list(product.variants.filter(is_active=True))
-        if existing and not force:
-            return 0
-
-        if existing and force:
-            product.variants.all().delete()
-
-        created = 0
-        base = product.base_price if product.base_price > 0 else Decimal('1200')
-        picks = [
-            VITOLA_SHAPES[seed % len(VITOLA_SHAPES)],
-            VITOLA_SHAPES[(seed // 5 + 1) % len(VITOLA_SHAPES)],
-        ]
-        seen_names: set[str] = set()
-        for i, (shape, length, ring) in enumerate(picks):
-            if shape in seen_names:
-                continue
-            seen_names.add(shape)
-            price = (base * Decimal('1') if i == 0 else base * Decimal('1.12')).quantize(Decimal('0.01'))
-            ProductVariant.objects.create(
-                product=product,
-                name=shape,
-                slug=shape.lower().replace(' ', '-'),
-                length_mm=length,
-                ring_gauge=ring,
-                shape=shape,
-                price=price,
-                stock=12 + (seed % 8),
-                is_active=True,
-                sort_order=i,
-            )
-            created += 1
-
-        if created and product.base_price <= 0:
-            product.base_price = base
-            product.save(update_fields=['base_price'])
-
-        return created
 
     def _ensure_primary_image(self, product: Product) -> int:
         if product.images.exists():

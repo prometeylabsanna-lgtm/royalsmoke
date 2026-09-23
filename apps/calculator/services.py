@@ -68,7 +68,7 @@ def _format_q(fmt: str) -> Q | None:
         terms = (fmt,)
     q = Q()
     for term in terms:
-        q |= Q(variants__shape__icontains=term) | Q(variants__name__icontains=term)
+        q |= Q(name__icontains=term) | Q(short_story__icontains=term)
     return q
 
 
@@ -115,11 +115,8 @@ def _score_product(
 
     if fmt:
         terms = FORMAT_TERMS.get(fmt, (fmt,))
-        shapes = ' '.join(
-            f'{(v.shape or "")} {(v.name or "")}'.lower()
-            for v in product.variants.all()
-        )
-        if any(t in shapes for t in terms):
+        haystack = f'{(product.name or "")} {(product.short_story or "")}'.lower()
+        if any(t in haystack for t in terms):
             score += 25
             label = {
                 'petit': 'Petit Robusto',

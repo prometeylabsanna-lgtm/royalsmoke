@@ -9,19 +9,11 @@
         id="rs-pd-cart-form">
     {% csrf_token %}
     <input type="hidden" name="product_id" value="{{ product.id }}">
-    {% if active_variant %}
-      <input type="hidden" name="variant_id" value="{{ active_variant.id }}">
-    {% endif %}
 
     <div class="rs-pd__buy-row">
       <p class="rs-pd__price">
-        {% if active_variant %}
-          {% if active_variant.old_price %}<del class="rs-pd__old">{{ active_variant.old_price|money }} {{ currency.symbol }}</del>{% endif %}
-          <span id="product-price">{{ active_variant.price|money }}</span> {{ currency.symbol }}
-        {% else %}
-          {% if product.old_price %}<del class="rs-pd__old">{{ product.old_price|money }} {{ currency.symbol }}</del>{% endif %}
-          <span id="product-price">{{ product.display_price|money }}</span> {{ currency.symbol }}
-        {% endif %}
+        {% if product.old_price %}<del class="rs-pd__old">{{ product.old_price|money }} {{ currency.symbol }}</del>{% endif %}
+        <span id="product-price">{{ product.display_price|money }}</span> {{ currency.symbol }}
       </p>
 
       <div class="rs-pd__qty" data-pd-qty>

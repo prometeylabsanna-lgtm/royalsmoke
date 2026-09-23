@@ -15,7 +15,7 @@ class OrderItemInline(TabularInline):
     model = OrderItem
     extra = 0
     readonly_fields = (
-        'product', 'variant', 'product_name', 'variant_name',
+        'product', 'product_name',
         'product_sku', 'price', 'quantity', 'line_total',
     )
 

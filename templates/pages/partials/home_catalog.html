@@ -66,9 +66,6 @@
                   {% csrf_token %}
                   <input type="hidden" name="product_id" value="{{ product.id }}">
                   <input type="hidden" name="quantity" value="1">
-                  {% with v=product.variants.all.0 %}
-                    {% if v %}<input type="hidden" name="variant_id" value="{{ v.id }}">{% endif %}
-                  {% endwith %}
                   <button type="submit" class="rs-pcard__buy">{% trans "У кошик" %}</button>
                 </form>
                 {% include "accounts/partials/wish_btn.html" with product=product %}

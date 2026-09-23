@@ -19,9 +19,6 @@
     </div>
 
     <p class="rs-cb-row__meta">
-      {% with v=product.variants.all.0 %}
-        {% if v %}{{ v.name }}{% if product.strength or product.country %} · {% endif %}{% endif %}
-      {% endwith %}
       {% if product.strength %}{{ product.get_strength_display|lower }}{% endif %}
       {% if product.strength and product.country %} · {% endif %}
       {% if product.country %}{{ product.country }}{% endif %}
@@ -42,9 +39,6 @@
           {% csrf_token %}
           <input type="hidden" name="product_id" value="{{ product.id }}">
           <input type="hidden" name="quantity" value="1">
-          {% with v=product.variants.all.0 %}
-            {% if v %}<input type="hidden" name="variant_id" value="{{ v.id }}">{% endif %}
-          {% endwith %}
           <button type="submit" class="rs-pcard__buy">{% trans "У кошик" %}</button>
         </form>
         {% include "accounts/partials/wish_btn.html" with product=product %}

@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 
 from apps.cart.models import Cart, CartItem
 from apps.cart import services as session_cart
-from apps.catalog.models import Product, ProductVariant
+from apps.catalog.models import Product
 
 
 def get_or_create_cart(user) -> Cart:
@@ -23,10 +23,7 @@ def merge_session_into_user(session, user) -> Cart:
     with transaction.atomic():
         for item in session_items:
             product = item['product']
-            variant = item['variant']
-            existing = CartItem.objects.filter(
-                cart=cart, product=product, variant=variant,
-            ).first()
+            existing = CartItem.objects.filter(cart=cart, product=product).first()
             if existing:
                 existing.quantity += item['quantity']
                 existing.save(update_fields=['quantity'])
@@ -34,25 +31,16 @@ def merge_session_into_user(session, user) -> Cart:
                 CartItem.objects.create(
                     cart=cart,
                     product=product,
-                    variant=variant,
                     quantity=item['quantity'],
                 )
         session_cart.clear(session)
     return cart
 
 
-def add_item(user, product_id: int, quantity: int = 1, variant_id: int | None = None) -> Cart:
+def add_item(user, product_id: int, quantity: int = 1) -> Cart:
     cart = get_or_create_cart(user)
     product = get_object_or_404(Product.objects.on_storefront(), pk=product_id)
-    variant = None
-    if variant_id:
-        variant = get_object_or_404(ProductVariant, pk=variant_id, product=product, is_active=True)
-    qs = CartItem.objects.filter(cart=cart, product=product)
-    if variant:
-        qs = qs.filter(variant=variant)
-    else:
-        qs = qs.filter(variant__isnull=True)
-    item = qs.first()
+    item = CartItem.objects.filter(cart=cart, product=product).first()
     if item:
         item.quantity += max(1, int(quantity))
         item.save(update_fields=['quantity'])
@@ -60,7 +48,6 @@ def add_item(user, product_id: int, quantity: int = 1, variant_id: int | None = 
         CartItem.objects.create(
             cart=cart,
             product=product,
-            variant=variant,
             quantity=max(1, int(quantity)),
         )
     return cart
@@ -90,16 +77,15 @@ def clear(user) -> None:
 
 def cart_totals(user) -> dict:
     cart = get_or_create_cart(user)
-    items_qs = cart.items.select_related('product', 'variant', 'product__brand')
+    items_qs = cart.items.select_related('product', 'product__brand')
     items = []
     for row in items_qs:
-        price = row.variant.price if row.variant_id else row.product.base_price
+        price = row.product.base_price
         qty = row.quantity
         items.append({
             'id': row.id,
-            'key': f'{row.product_id}:{row.variant_id or 0}',
+            'key': str(row.product_id),
             'product': row.product,
-            'variant': row.variant,
             'quantity': qty,
             'unit_price': price,
             'line_total': price * qty,

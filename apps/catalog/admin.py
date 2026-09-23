@@ -14,7 +14,7 @@ from apps.core.admin_image_preview import ImagePreviewAdminMixin, image_thumb
 from apps.core.admin_site_content_widgets import CmsAdminFileWidget, CmsAdminTinyMCEWidget
 from apps.core.admin_translation_forms import TranslationSyncModelForm
 
-from .models import Product, ProductImage, ProductReview, ProductVariant
+from .models import Product, ProductImage, ProductReview
 from .models_base import Brand, Category, ProductLine, Tag
 
 _PRODUCT_TINYMCE_FIELDS = {
@@ -82,12 +82,6 @@ class ProductImageInline(ImagePreviewAdminMixin, TabularInline):
 
     class Media:
         css = {'all': ('css/admin/product_images_inline.css',)}
-
-
-class ProductVariantInline(AutoSlugAdminMixin, ImagePreviewAdminMixin, TabularInline):
-    model = ProductVariant
-    extra = 1
-    prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Category)
@@ -206,8 +200,8 @@ class ProductAdmin(AutoSlugAdminMixin, ImagePreviewAdminMixin, ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     filter_horizontal = ('tags',)
     change_form_template = 'admin/catalog/product/change_form.html'
-    # Порядок на формі: … → Фото → Відео → SEO → формати (див. change_form.html)
-    inlines = [ProductImageInline, ProductVariantInline]
+    # Порядок на формі: … → Фото → Відео → SEO (див. change_form.html)
+    inlines = [ProductImageInline]
     fieldsets = (
         (None, {
             'fields': (

@@ -93,10 +93,8 @@ def _create_order_from_cart(request, data, totals) -> Order:
         OrderItem.objects.create(
             order=order,
             product=item['product'],
-            variant=item['variant'],
             product_name=str(item['product']),
-            variant_name=item['variant'].name if item['variant'] else '',
-            product_sku=(item['variant'].sku if item['variant'] else item['product'].sku) or '',
+            product_sku=item['product'].sku or '',
             price=item['unit_price'],
             quantity=item['quantity'],
             line_total=item['line_total'],

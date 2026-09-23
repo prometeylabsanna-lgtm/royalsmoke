@@ -3,7 +3,7 @@ from __future__ import annotations
 from decimal import Decimal
 
 from django.db import models
-from django.db.models import Min, Q
+from django.db.models import Q
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -23,7 +23,7 @@ class ProductQuerySet(models.QuerySet):
 
     def with_relations(self):
         return self.select_related('brand', 'category', 'line').prefetch_related(
-            'images', 'variants', 'tags',
+            'images', 'tags',
         )
 
     def tagged(self, slug: str):
@@ -74,7 +74,7 @@ class Product(TimeStampedModel):
     stock = models.PositiveIntegerField(
         'Кількість на складі',
         default=0,
-        help_text='Для товарів без форматів. Якщо є формати сигари нижче — вказуйте кількість у кожному форматі.',
+        help_text='Залишок на складі для цього SKU.',
     )
     is_active = models.BooleanField('Активний', default=True)
     is_featured = models.BooleanField('Рекомендований', default=False)
@@ -117,67 +117,10 @@ class Product(TimeStampedModel):
 
     @property
     def display_price(self) -> Decimal:
-        agg = self.variants.filter(is_active=True).aggregate(m=Min('price'))
-        if agg['m'] is not None:
-            return agg['m']
         return self.base_price
 
     def available_stock(self) -> int:
-        variants = list(self.variants.filter(is_active=True))
-        if variants:
-            return sum(v.stock for v in variants)
         return self.stock
-
-
-class ProductVariant(TimeStampedModel):
-    """Окремий формат сигари (розмір / форма) з власною ціною та залишком."""
-
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variants')
-    name = models.CharField(
-        'Назва формату',
-        max_length=120,
-        help_text='Наприклад: Robusto, Churchill. У сигар це називають вітолою.',
-    )
-    slug = models.SlugField(
-        'Slug', max_length=140, blank=True, help_text=_SLUG_HELP,
-    )
-    length_mm = models.PositiveIntegerField('Довжина, мм', null=True, blank=True)
-    ring_gauge = models.PositiveIntegerField(
-        'Товщина (ring gauge)',
-        null=True,
-        blank=True,
-        help_text='Діаметр сигари в 64-х частках дюйма.',
-    )
-    shape = models.CharField('Форма', max_length=80, blank=True)
-    price = models.DecimalField('Ціна', max_digits=10, decimal_places=2)
-    old_price = models.DecimalField(
-        'Стара ціна', max_digits=10, decimal_places=2, null=True, blank=True,
-    )
-    sku = models.CharField('Артикул', max_length=64, blank=True)
-    stock = models.PositiveIntegerField('Кількість на складі', default=0)
-    image = models.ImageField('Фото', upload_to='variants/', blank=True)
-    is_active = models.BooleanField('Активний', default=True)
-    sort_order = models.PositiveIntegerField('Порядок', default=0)
-
-    class Meta:
-        verbose_name = 'Формат сигари'
-        verbose_name_plural = 'Формати сигари (розміри)'
-        ordering = ['sort_order', 'price']
-        unique_together = ('product', 'slug')
-
-    def __str__(self) -> str:
-        return f'{self.product.name} · {self.name}'
-
-    def save(self, *args, **kwargs):
-        if not (self.slug or '').strip():
-            self.slug = unique_slug(
-                self.__class__,
-                self.name,
-                max_length=140,
-                instance=self,
-                extra_filter={'product_id': self.product_id} if self.product_id else None,
-            )
-        super().save(*args, **kwargs)
 
 
 class ProductImage(models.Model):

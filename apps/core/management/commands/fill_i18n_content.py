@@ -10,7 +10,7 @@ from django.utils.translation import override
 
 from apps.booking.models import BookingService
 from apps.calculator.models import CalculatorOption, CalculatorQuestion
-from apps.catalog.models import Product, ProductImage, ProductReview, ProductVariant
+from apps.catalog.models import Product, ProductImage, ProductReview
 from apps.catalog.models_base import Brand, Category, ProductLine, Tag
 from apps.core.block_defaults import is_visibility_key
 from apps.core.models import HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings, clear_site_content_cache
@@ -74,7 +74,6 @@ class Command(BaseCommand):
                 ),
                 None,
             ),
-            (ProductVariant.objects.all(), ('name', 'shape'), None),
             (ProductImage.objects.all(), ('alt_text',), None),
             (ProductReview.objects.all(), ('text',), None),
             (BookingService.objects.all(), ('title', 'description'), None),

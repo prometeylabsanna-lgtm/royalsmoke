@@ -112,7 +112,7 @@ def items(request) -> list[Product]:
         for p in Product.objects.on_storefront()
         .filter(id__in=ids)
         .select_related('brand', 'line')
-        .prefetch_related('variants', 'images')
+        .prefetch_related('images')
     }
     return [products[i] for i in ids if i in products]
 

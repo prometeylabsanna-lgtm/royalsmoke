@@ -103,11 +103,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey('catalog.Product', on_delete=models.PROTECT)
-    variant = models.ForeignKey(
-        'catalog.ProductVariant', null=True, blank=True, on_delete=models.SET_NULL,
-    )
     product_name = models.CharField(max_length=300)
-    variant_name = models.CharField(max_length=120, blank=True)
     product_sku = models.CharField(max_length=80, blank=True)
     price = models.DecimalField(max_digits=12, decimal_places=2)
     quantity = models.PositiveIntegerField()

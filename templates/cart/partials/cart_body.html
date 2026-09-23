@@ -16,7 +16,7 @@
               </h2>
               <p class="rs-cart-line__meta">
                 {% if item.product.brand %}{{ item.product.brand.name }}{% endif %}
-                {% if item.variant %} · {{ item.variant.name }}{% endif %}
+                {% if item.product.sku %} · {{ item.product.sku }}{% endif %}
               </p>
               <form method="post"
                     action="{% url 'cart:remove' %}"
@@ -26,7 +26,6 @@
                     class="rs-cart-line__remove">
                 {% csrf_token %}
                 <input type="hidden" name="product_id" value="{{ item.product.id }}">
-                {% if item.variant %}<input type="hidden" name="variant_id" value="{{ item.variant.id }}">{% endif %}
                 <button type="submit" class="rs-btn rs-btn--underline">{% cms_text 'cart' 'remove' %}</button>
               </form>
             </div>
@@ -38,7 +37,6 @@
                   hx-swap="innerHTML">
               {% csrf_token %}
               <input type="hidden" name="product_id" value="{{ item.product.id }}">
-              {% if item.variant %}<input type="hidden" name="variant_id" value="{{ item.variant.id }}">{% endif %}
               <button type="submit" name="quantity" value="{{ item.quantity|add:'-1' }}" aria-label="{% trans "Зменшити" %}">−</button>
               <span>{{ item.quantity }}</span>
               <button type="submit" name="quantity" value="{{ item.quantity|add:'1' }}" aria-label="{% trans "Збільшити" %}">+</button>

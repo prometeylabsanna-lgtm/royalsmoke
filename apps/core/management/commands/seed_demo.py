@@ -8,7 +8,7 @@ from django.utils import timezone
 
 from apps.booking.models import BookingService, BookingSlot
 from apps.calculator.models import CalculatorOption, CalculatorQuestion
-from apps.catalog.models import Product, ProductVariant
+from apps.catalog.models import Product
 from apps.catalog.models_base import Brand, Category, ProductLine, Tag
 from apps.core.block_defaults import (
     BLOCK_CONTENT_TYPES,
@@ -214,7 +214,7 @@ class Command(BaseCommand):
             ('aj-fernandez', 'cigars', 'New World Dorado', 'new-world-dorado', 'mild', '890', 'Robusto', False, True),
             ('oliva', 'accessories', 'Гільйотина Classic', 'guillotine-classic', '', '1450', '', False, True),
         ]
-        for brand_slug, cat_slug, name, slug, strength, price, vitola, is_top, is_new in demo:
+        for brand_slug, cat_slug, name, slug, strength, price, _vitola, is_top, is_new in demo:
             brand = brand_map[brand_slug]
             line, _ = ProductLine.objects.get_or_create(
                 slug=f'{brand_slug}-core',
@@ -226,6 +226,7 @@ class Command(BaseCommand):
                 line=line,
                 name=name,
                 slug=slug,
+                sku=f'RS-{slug.upper()[:20]}',
                 short_story=f'{brand.name} — {name}. Відібрано для Royal Smoke.',
                 description=f'Детальний опис {name}. Зберігання у власних хумідорах.',
                 tasting_notes='Дерево, кава, шкіра',
@@ -240,29 +241,6 @@ class Command(BaseCommand):
                 is_active=True,
                 is_featured=is_top,
             )
-            if vitola:
-                ProductVariant.objects.create(
-                    product=p,
-                    name=vitola,
-                    slug=vitola.lower().replace(' ', '-'),
-                    length_mm=127,
-                    ring_gauge=50,
-                    shape=vitola,
-                    price=Decimal(price),
-                    stock=15,
-                    is_active=True,
-                )
-                ProductVariant.objects.create(
-                    product=p,
-                    name=f'{vitola} Box',
-                    slug=f'{vitola.lower().replace(" ", "-")}-box',
-                    length_mm=127,
-                    ring_gauge=50,
-                    shape=vitola,
-                    price=Decimal(price) * 20,
-                    stock=3,
-                    is_active=True,
-                )
             if is_top:
                 p.tags.add(top)
             if is_new:

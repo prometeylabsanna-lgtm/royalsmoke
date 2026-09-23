@@ -27,28 +27,11 @@
           <dd>{{ product.smoke_time }}</dd>
         </div>
       {% endif %}
-      {% if active_variant and active_variant.length_mm %}
-        <div class="rs-pd__spec">
-          <dt>{% trans "Довжина" %}</dt>
-          <dd>{% blocktrans with mm=active_variant.length_mm %}{{ mm }} мм{% endblocktrans %}</dd>
-        </div>
-      {% endif %}
-      {% if active_variant and active_variant.ring_gauge %}
-        <div class="rs-pd__spec">
-          <dt>Ring</dt>
-          <dd>{{ active_variant.ring_gauge }}</dd>
-        </div>
-      {% endif %}
       <div class="rs-pd__spec">
         <dt>{% trans "Наявність" %}</dt>
         <dd>{% if product.available_stock %}{% trans "В наявності" %}{% else %}{% trans "Під замовлення" %}{% endif %}</dd>
       </div>
-      {% if active_variant and active_variant.sku %}
-        <div class="rs-pd__spec">
-          <dt>{% trans "Код" %}</dt>
-          <dd>{{ active_variant.sku }}</dd>
-        </div>
-      {% elif product.sku %}
+      {% if product.sku %}
         <div class="rs-pd__spec">
           <dt>{% trans "Код" %}</dt>
           <dd>{{ product.sku }}</dd>

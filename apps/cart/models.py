@@ -22,14 +22,14 @@ class Cart(models.Model):
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey('catalog.Product', on_delete=models.CASCADE)
-    variant = models.ForeignKey(
-        'catalog.ProductVariant', null=True, blank=True, on_delete=models.SET_NULL,
-    )
     quantity = models.PositiveIntegerField(default=1)
 
     class Meta:
         verbose_name = 'Позиція кошика'
         verbose_name_plural = 'Позиції кошика'
+        constraints = [
+            models.UniqueConstraint(fields=('cart', 'product'), name='uniq_cart_product'),
+        ]
 
     def __str__(self) -> str:
         return f'{self.product_id} x{self.quantity}'

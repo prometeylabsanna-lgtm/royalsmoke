@@ -66,13 +66,6 @@ def product_detail(request, slug):
         slug=slug,
     )
     product.views_count = models_f_add(product)
-    variant_slug = request.GET.get('vitola')
-    active_variant = None
-    variants = list(product.variants.filter(is_active=True))
-    if variant_slug:
-        active_variant = next((v for v in variants if v.slug == variant_slug), None)
-    if active_variant is None and variants:
-        active_variant = variants[0]
 
     video_url = (product.video_url or '').strip()
     video_direct = ''
@@ -90,8 +83,6 @@ def product_detail(request, slug):
 
     return render(request, 'catalog/product_detail.html', {
         'product': product,
-        'variants': variants,
-        'active_variant': active_variant,
         'related': related_products(product),
         'reviews': getattr(product, 'published_reviews', []),
         'video_embed_url': video_embed,

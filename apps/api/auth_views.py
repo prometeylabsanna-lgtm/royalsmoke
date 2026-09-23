@@ -39,7 +39,6 @@ def _serialize_cart_payload(totals: dict) -> dict:
             'key': item['key'],
             'product_id': item['product'].id,
             'product_name': str(item['product']),
-            'variant_id': item['variant'].id if item['variant'] else None,
             'quantity': item['quantity'],
             'unit_price': str(item['unit_price']),
             'line_total': str(item['line_total']),
@@ -119,7 +118,6 @@ class CartView(APIView):
                 request.user,
                 data['product_id'],
                 data.get('quantity', 1),
-                data.get('variant_id'),
             )
             totals = db_cart.cart_totals(request.user)
         else:
@@ -127,7 +125,6 @@ class CartView(APIView):
                 request.session,
                 data['product_id'],
                 data.get('quantity', 1),
-                data.get('variant_id'),
             )
             totals = session_cart.cart_totals(request.session)
         return Response(_serialize_cart_payload(totals), status=201)
@@ -146,7 +143,7 @@ class CartItemView(APIView):
         else:
             # item_id for session is not numeric PK — accept key via query? use product_id
             return Response(
-                {'detail': 'Session cart: use product_id and variant_id query params'},
+                {'detail': 'Session cart: use product_id query params'},
                 status=400,
             )
         return Response(_serialize_cart_payload(totals))
@@ -207,12 +204,8 @@ class CheckoutView(APIView):
                 OrderItem.objects.create(
                     order=order,
                     product=item['product'],
-                    variant=item['variant'],
                     product_name=str(item['product']),
-                    variant_name=item['variant'].name if item['variant'] else '',
-                    product_sku=(
-                        (item['variant'].sku if item['variant'] else item['product'].sku) or ''
-                    ),
+                    product_sku=item['product'].sku or '',
                     price=item['unit_price'],
                     quantity=item['quantity'],
                     line_total=item['line_total'],
