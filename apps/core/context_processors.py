@@ -3,6 +3,7 @@ from django.utils.translation import get_language
 
 from apps.core.block_defaults import BLOCK_DEFAULTS
 from apps.core.breadcrumbs import build_breadcrumbs
+from apps.core.currency import get_currency
 from apps.core.models import HeroSlide, HistorySlide, SiteBlock, SiteSettings
 
 
@@ -44,6 +45,7 @@ def site_globals(request):
         'hero_slides': hero_slides,
         'history_slides': history_slides,
         'current_language': get_language() or 'uk',
+        'currency': get_currency(),
         'age_gate_cookie': 'age_ok',
         'breadcrumbs': build_breadcrumbs(request),
     }

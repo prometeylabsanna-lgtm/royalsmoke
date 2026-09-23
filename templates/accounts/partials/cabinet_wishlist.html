@@ -21,7 +21,7 @@
           <div class="rs-cab__wish-info">
             <a class="rs-cab__wish-name" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
             <p class="rs-cab__wish-meta">
-              {% if product.brand %}{{ product.brand.name }} · {% endif %}{{ product.display_price }} ₴
+              {% if product.brand %}{{ product.brand.name }} · {% endif %}{{ product.display_price|money }} {{ currency.symbol }}
             </p>
           </div>
           <div class="rs-cab__wish-actions">

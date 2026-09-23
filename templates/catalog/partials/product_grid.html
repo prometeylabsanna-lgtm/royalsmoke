@@ -29,8 +29,8 @@
 
     <div class="rs-cb-row__buy">
       <p class="rs-cb-row__price">
-        <span class="rs-pcard__amount">{{ product.display_price }}</span>
-        <span class="rs-pcard__currency">₴</span>
+        <span class="rs-pcard__amount">{{ product.display_price|money }}</span>
+        <span class="rs-pcard__currency">{{ currency.symbol }}</span>
       </p>
       <div class="rs-cb-row__cart-wrap">
         <form class="rs-cb-row__cart-form"

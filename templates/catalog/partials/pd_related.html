@@ -21,7 +21,7 @@
           </span>
           <span class="rs-pd__related-brand">{{ item.brand.name }}</span>
           <span class="rs-pd__related-name">{{ item.name }}</span>
-          <span class="rs-pd__related-price">{{ item.display_price }} ₴</span>
+          <span class="rs-pd__related-price">{{ item.display_price|money }} {{ currency.symbol }}</span>
         </a>
       </li>
     {% endfor %}

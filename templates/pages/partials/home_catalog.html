@@ -53,8 +53,8 @@
             <div class="rs-pcard__body">
               <a class="rs-pcard__name" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
               <p class="rs-pcard__price">
-                <span class="rs-pcard__amount">{{ product.display_price }}</span>
-                <span class="rs-pcard__currency">₴</span>
+                <span class="rs-pcard__amount">{{ product.display_price|money }}</span>
+                <span class="rs-pcard__currency">{{ currency.symbol }}</span>
               </p>
               <div class="rs-pcard__actions">
                 <form class="rs-pcard__cart"

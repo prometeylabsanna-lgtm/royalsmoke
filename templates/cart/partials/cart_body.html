@@ -43,7 +43,7 @@
               <span>{{ item.quantity }}</span>
               <button type="submit" name="quantity" value="{{ item.quantity|add:'1' }}" aria-label="{% trans "Збільшити" %}">+</button>
             </form>
-            <span class="rs-cart-line__total">{{ item.line_total }} ₴</span>
+            <span class="rs-cart-line__total">{{ item.line_total|money }} {{ currency.symbol }}</span>
           </div>
         </article>
       {% endfor %}
@@ -52,12 +52,12 @@
     <a class="rs-cart__continue" href="{% url 'catalog:list' %}">{% cms_text 'cart' 'continue' %}</a>
 
     {% if site_settings.free_delivery_from %}
-      <p class="rs-cart__hint">{% blocktrans with amount=site_settings.free_delivery_from %}Безкоштовна доставка від {{ amount }} ₴{% endblocktrans %}</p>
+      <p class="rs-cart__hint">{% blocktrans with amount=site_settings.free_delivery_from|money symbol=currency.symbol %}Безкоштовна доставка від {{ amount }} {{ symbol }}{% endblocktrans %}</p>
     {% endif %}
   </div>
 
   <aside class="rs-cart__bar" aria-label="{% trans "Підсумок кошика" %}">
-    <span class="rs-cart__bar-total">{% blocktrans with total=cart.total %}Разом {{ total }} ₴{% endblocktrans %}</span>
+    <span class="rs-cart__bar-total">{% blocktrans with total=cart.total|money symbol=currency.symbol %}Разом {{ total }} {{ symbol }}{% endblocktrans %}</span>
     <a class="rs-cart__checkout" href="{% url 'orders:checkout' %}">{% cms_text 'cart' 'checkout' %}</a>
   </aside>
 {% else %}

@@ -233,6 +233,16 @@ def calculate_delivery_cost(
     return Decimal(str(price))
 
 
+def _order_cost_uah(order) -> Decimal:
+    from apps.core.currency import amount_to_uah
+
+    return amount_to_uah(
+        order.total,
+        currency=getattr(order, 'currency', 'UAH'),
+        fx_rate=getattr(order, 'fx_rate', None),
+    )
+
+
 def create_ttn(order) -> dict[str, str]:
     """Create InternetDocument for order. Returns {ttn, ref}."""
     if _use_demo():
@@ -246,7 +256,7 @@ def create_ttn(order) -> dict[str, str]:
         'ServiceType': 'WarehouseWarehouse',
         'SeatsAmount': '1',
         'Description': f'Order {order.order_number}',
-        'Cost': str(int(order.total)),
+        'Cost': str(int(_order_cost_uah(order))),
         'CitySender': getattr(settings, 'NP_SENDER_CITY_REF', ''),
         'Sender': getattr(settings, 'NP_SENDER_COUNTERPARTY_REF', '') or getattr(settings, 'NP_SENDER_REF', ''),
         'SenderAddress': getattr(settings, 'NP_SENDER_WAREHOUSE_REF', ''),

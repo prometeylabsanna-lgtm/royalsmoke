@@ -1,9 +1,9 @@
 {% load i18n %}
 <div class="rs-cart__row">
   <span>{% trans "Доставка" %}</span>
-  <span id="rs-delivery-cost-label">{{ delivery_cost|default:"0" }} ₴</span>
+  <span id="rs-delivery-cost-label">{{ delivery_cost|default:"0"|money }} {{ currency.symbol }}</span>
 </div>
 <div class="rs-cart__row rs-cart__row--total">
   <span>{% trans "Разом" %}</span>
-  <span id="rs-checkout-total">{{ grand_total|default:cart.total|default:"0" }} ₴</span>
+  <span id="rs-checkout-total">{{ grand_total|default:cart.total|default:"0"|money }} {{ currency.symbol }}</span>
 </div>

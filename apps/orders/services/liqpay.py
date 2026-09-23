@@ -10,6 +10,7 @@ from decimal import Decimal
 from typing import Any
 
 from django.conf import settings
+from django.utils.translation import get_language
 
 logger = logging.getLogger(__name__)
 
@@ -46,6 +47,8 @@ def create_checkout_payload(
         raise ValueError('LiqPay keys are not configured')
     sandbox = getattr(settings, 'LIQPAY_SANDBOX', True)
     amount = Decimal(order.total).quantize(Decimal('0.01'))
+    lang = (get_language() or 'uk').lower()
+    liqpay_lang = 'uk' if lang.startswith('uk') else 'en'
     payload: dict[str, Any] = {
         'public_key': public_key,
         'version': 3,
@@ -56,7 +59,7 @@ def create_checkout_payload(
         'order_id': order.order_number,
         'result_url': result_url,
         'server_url': server_url,
-        'language': 'uk',
+        'language': liqpay_lang,
     }
     if sandbox:
         payload['sandbox'] = 1

@@ -1,6 +1,13 @@
 from rest_framework import serializers
 
 from apps.catalog.models import Brand, Category, Product, ProductVariant
+from apps.core.currency import convert_from_uah, get_currency
+
+
+def _money(value):
+    if value is None:
+        return None
+    return convert_from_uah(value)
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -23,6 +30,14 @@ class VariantSerializer(serializers.ModelSerializer):
             'price', 'old_price', 'sku', 'stock', 'image',
         )
 
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['price'] = str(_money(instance.price))
+        data['old_price'] = (
+            str(_money(instance.old_price)) if instance.old_price is not None else None
+        )
+        return data
+
 
 class ProductSerializer(serializers.ModelSerializer):
     brand = BrandSerializer(read_only=True)
@@ -38,3 +53,13 @@ class ProductSerializer(serializers.ModelSerializer):
             'country', 'strength', 'smoke_time', 'base_price', 'old_price',
             'currency', 'display_price', 'variants', 'video_url',
         )
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['currency'] = get_currency()['code']
+        data['base_price'] = str(_money(instance.base_price))
+        data['old_price'] = (
+            str(_money(instance.old_price)) if instance.old_price is not None else None
+        )
+        data['display_price'] = str(_money(instance.display_price))
+        return data

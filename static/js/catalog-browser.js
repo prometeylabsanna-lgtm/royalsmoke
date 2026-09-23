@@ -39,6 +39,7 @@
 
     var boundMin = Number(root.getAttribute('data-cb-bound-min')) || 0;
     var boundMax = Number(root.getAttribute('data-cb-bound-max')) || 1;
+    var symbol = root.getAttribute('data-cb-currency') || '₴';
     var isBrand = root.getAttribute('data-cb-brand') === '1';
     var basePath = root.getAttribute('data-cb-base') || '/catalog/';
     var listPath = root.getAttribute('data-cb-list') || '/catalog/';
@@ -118,7 +119,7 @@
 
     function setTip(el, value, show) {
       if (!el) return;
-      el.textContent = value + ' ₴';
+      el.textContent = value + ' ' + symbol;
       el.classList.toggle('is-hidden', !show);
       el.setAttribute('aria-hidden', show ? 'false' : 'true');
       var left = pctOf(value, boundMin, boundMax);

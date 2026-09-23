@@ -20,6 +20,7 @@
          data-cb-brand="{% if brand %}1{% else %}0{% endif %}"
          data-cb-bound-min="{{ price_bound_min }}"
          data-cb-bound-max="{{ price_bound_max }}"
+         data-cb-currency="{{ currency.symbol }}"
          data-cb-price-min="{{ price_min }}"
          data-cb-price-max="{{ price_max }}"
          data-cb-sort="{{ current_sort }}"
@@ -168,5 +169,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/catalog-browser.js' %}?v=5" defer></script>
+<script src="{% static 'js/catalog-browser.js' %}?v=6" defer></script>
 {% endblock %}

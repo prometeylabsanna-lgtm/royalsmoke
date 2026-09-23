@@ -133,7 +133,7 @@
     {% for item in cart.items %}
       <div class="rs-cart__row">
         <span>{{ item.product.name }} × {{ item.quantity }}</span>
-        <span>{{ item.line_total }} ₴</span>
+        <span>{{ item.line_total|money }} {{ currency.symbol }}</span>
       </div>
     {% empty %}
       <p class="rs-form__hint">{% trans "Кошик порожній." %}</p>

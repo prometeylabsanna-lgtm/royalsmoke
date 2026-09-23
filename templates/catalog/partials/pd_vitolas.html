@@ -16,8 +16,8 @@
             {% if v.shape %} · {{ v.shape }}{% endif %}
           </span>
           <span class="rs-pd__vitola-price">
-            {% if v.old_price %}<del>{{ v.old_price }} ₴</del>{% endif %}
-            {{ v.price }} ₴
+            {% if v.old_price %}<del>{{ v.old_price|money }} {{ currency.symbol }}</del>{% endif %}
+            {{ v.price|money }} {{ currency.symbol }}
           </span>
         </a>
       </li>

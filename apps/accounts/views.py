@@ -15,6 +15,7 @@ from django.views.decorators.http import require_http_methods, require_POST
 from apps.accounts import wishlist as wishlist_services
 from apps.accounts.forms import EmailAuthenticationForm, RegisterForm
 from apps.catalog.models import Product
+from apps.core.currency import amount_to_uah
 from apps.orders.models import Order
 
 _AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
@@ -74,15 +75,15 @@ def _cabinet_chart(user, weeks: int = 8) -> list[dict]:
     orders = Order.objects.filter(
         user=user,
         created_at__date__gte=range_start,
-    ).values_list('created_at', 'total')
+    ).values_list('created_at', 'total', 'currency', 'fx_rate')
 
     buckets = [Decimal('0')] * weeks
-    for created_at, total in orders:
+    for created_at, total, currency, fx_rate in orders:
         local_d = timezone.localtime(created_at).date()
         monday = local_d - timedelta(days=local_d.weekday())
         idx = (monday - range_start).days // 7
         if 0 <= idx < weeks:
-            buckets[idx] += total or Decimal('0')
+            buckets[idx] += amount_to_uah(total, currency=currency, fx_rate=fx_rate)
 
     max_total = max(buckets) if buckets else Decimal('0')
     series: list[dict] = []

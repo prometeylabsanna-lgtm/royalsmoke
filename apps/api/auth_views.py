@@ -18,6 +18,7 @@ from apps.api.serializers.auth_cart import (
 from apps.api.serializers.orders import CheckoutSerializer, OrderDetailSerializer
 from apps.cart import db_services as db_cart
 from apps.cart import services as session_cart
+from apps.core.currency import convert_cart_totals
 from apps.orders.models import Order, OrderItem
 from apps.orders.services import notify_order_created
 from apps.orders.services import payments as pay_svc
@@ -30,8 +31,9 @@ class AnonCheckoutThrottle(AnonRateThrottle):
 
 
 def _serialize_cart_payload(totals: dict) -> dict:
+    priced = convert_cart_totals(totals)
     items = []
-    for item in totals['items']:
+    for item in priced['items']:
         items.append({
             'id': item.get('id'),
             'key': item['key'],
@@ -44,9 +46,10 @@ def _serialize_cart_payload(totals: dict) -> dict:
         })
     return {
         'items': items,
-        'subtotal': str(totals['subtotal']),
-        'count': totals['count'],
-        'total': str(totals['total']),
+        'subtotal': str(priced['subtotal']),
+        'count': priced['count'],
+        'total': str(priced['total']),
+        'currency': priced['currency'],
     }
 
 
@@ -173,8 +176,7 @@ class CheckoutView(APIView):
             return Response({'detail': 'Cart is empty'}, status=400)
 
         delivery_cost = data.get('delivery_cost') or Decimal('0')
-        subtotal = totals['subtotal']
-        total = subtotal + delivery_cost
+        priced = convert_cart_totals(totals, delivery_cost)
         status_code = Order.STATUS_PENDING
         if data['payment_method'] == Order.PAYMENT_ONLINE:
             status_code = Order.STATUS_AWAITING_PAYMENT
@@ -193,13 +195,15 @@ class CheckoutView(APIView):
                 np_city_ref=data.get('np_city_ref') or '',
                 np_warehouse_ref=data.get('np_warehouse_ref') or '',
                 payment_method=data['payment_method'],
-                subtotal=subtotal,
+                subtotal=priced['subtotal'],
                 discount=Decimal('0'),
-                delivery_cost=delivery_cost,
-                total=total,
+                delivery_cost=priced['delivery_cost'],
+                total=priced['total'],
+                currency=priced['currency'],
+                fx_rate=priced['fx_rate'],
                 status=status_code,
             )
-            for item in totals['items']:
+            for item in priced['items']:
                 OrderItem.objects.create(
                     order=order,
                     product=item['product'],

@@ -16,6 +16,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 
 from apps.cart import services as cart_services
+from apps.core.currency import convert_cart_totals
 from apps.core.validation import EmailField, NameField, PhoneField
 from apps.orders.models import Order, OrderItem, Payment
 from apps.orders.services import notify_order_created
@@ -62,8 +63,7 @@ def _create_order_from_cart(request, data, totals) -> Order:
         delivery_cost = Decimal(delivery_cost)
     except (InvalidOperation, TypeError):
         delivery_cost = Decimal('0')
-    subtotal = totals['subtotal']
-    total = subtotal + delivery_cost
+    priced = convert_cart_totals(totals, delivery_cost)
     status = Order.STATUS_PENDING
     if data['payment_method'] == Order.PAYMENT_ONLINE:
         status = Order.STATUS_AWAITING_PAYMENT
@@ -80,15 +80,16 @@ def _create_order_from_cart(request, data, totals) -> Order:
         np_city_ref=data.get('np_city_ref') or '',
         np_warehouse_ref=data.get('np_warehouse_ref') or '',
         payment_method=data['payment_method'],
-        subtotal=subtotal,
+        subtotal=priced['subtotal'],
         discount=Decimal('0'),
-        delivery_cost=delivery_cost,
-        total=total,
-        currency=getattr(settings, 'CURRENCY_CODE', 'UAH'),
+        delivery_cost=priced['delivery_cost'],
+        total=priced['total'],
+        currency=priced['currency'],
+        fx_rate=priced['fx_rate'],
         market=getattr(settings, 'DEFAULT_MARKET', 'UA'),
         status=status,
     )
-    for item in totals['items']:
+    for item in priced['items']:
         OrderItem.objects.create(
             order=order,
             product=item['product'],

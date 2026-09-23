@@ -2,7 +2,7 @@ from django.contrib import admin
 from unfold.admin import ModelAdmin
 
 from apps.core.admin_site_content_proxies import register_site_content_section_admins  # noqa: F401
-from apps.core.models import SiteSettings
+from apps.core.models import CurrencyRate, SiteSettings
 from apps.core.validation.admin_forms import SiteSettingsAdminForm
 
 
@@ -23,3 +23,12 @@ class SiteSettingsAdmin(ModelAdmin):
 
         obj, _ = SiteSettings.objects.get_or_create(pk=1)
         return HttpResponseRedirect(reverse('admin:core_sitesettings_change', args=[obj.pk]))
+
+
+@admin.register(CurrencyRate)
+class CurrencyRateAdmin(ModelAdmin):
+    list_display = ('code', 'name', 'symbol', 'uah_per_unit', 'sort_order')
+    list_display_links = ('code',)
+    list_editable = ('uah_per_unit', 'sort_order')
+    search_fields = ('code', 'name')
+    ordering = ('sort_order', 'code')

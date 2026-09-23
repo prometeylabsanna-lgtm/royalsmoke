@@ -50,7 +50,7 @@
       {% if site_settings.free_delivery_from %}
       <article class="rs-delivery__region">
         <h3>{% trans "Безкоштовна доставка" %}</h3>
-        <p>{% blocktrans with amount=site_settings.free_delivery_from %}Від {{ amount }} ₴ по Україні (окрім віддалених регіонів).{% endblocktrans %}</p>
+        <p>{% blocktrans with amount=site_settings.free_delivery_from|money symbol=currency.symbol %}Від {{ amount }} {{ symbol }} по Україні (окрім віддалених регіонів).{% endblocktrans %}</p>
       </article>
       {% endif %}
     </div>

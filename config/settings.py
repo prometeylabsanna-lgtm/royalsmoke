@@ -103,6 +103,9 @@ TEMPLATES = [
                 'apps.accounts.context_processors.wishlist_context',
                 'apps.catalog.context_processors.compare_context',
             ],
+            'builtins': [
+                'apps.core.templatetags.rs_currency',
+            ],
         },
     },
 ]
@@ -184,6 +187,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CURRENCY_CODE = 'UAH'
 CURRENCY_SYMBOL = '₴'
+# Мова вітрини → ISO 4217. Нову мову: рядок тут + курс у адмінці «Курси валют».
+LANGUAGE_CURRENCY = {
+    'uk': 'UAH',
+    'en': 'USD',
+    'zh-hans': 'CNY',
+}
 DEFAULT_MARKET = 'UA'
 AGE_GATE_COOKIE = 'age_ok'
 AGE_GATE_DAYS = 30

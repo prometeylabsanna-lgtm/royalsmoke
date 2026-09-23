@@ -35,7 +35,7 @@
         <tr>
           <th scope="row">{% trans "Ціна" %}</th>
           {% for product in products %}
-            <td>{{ product.display_price }} ₴</td>
+            <td>{{ product.display_price|money }} {{ currency.symbol }}</td>
           {% endfor %}
         </tr>
         <tr>

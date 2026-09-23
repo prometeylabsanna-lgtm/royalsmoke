@@ -28,7 +28,7 @@
       <section class="rs-cab__block">
         <h2 class="rs-cab__block-title">{% cms_text 'cabinet' 'orders' %}</h2>
         {% if recent_order %}
-          <p class="rs-cab__meta">{% blocktrans with num=recent_order.order_number total=recent_order.total %}Останнє: #{{ num }} — {{ total }} ₴{% endblocktrans %}</p>
+          <p class="rs-cab__meta">{% blocktrans with num=recent_order.order_number total=recent_order.total symbol=recent_order.currency|currency_symbol %}Останнє: #{{ num }} — {{ total }} {{ symbol }}{% endblocktrans %}</p>
         {% else %}
           <p class="rs-cab__meta">{% trans "Останнє замовлення" %}</p>
         {% endif %}
@@ -59,7 +59,7 @@
         <p class="rs-cab__card-label">{% trans "Останнє замовлення" %}</p>
         {% if recent_order %}
           <p class="rs-cab__chart-caption">
-            #{{ recent_order.order_number }} · {{ recent_order.get_status_display }} · {{ recent_order.total }} ₴
+            #{{ recent_order.order_number }} · {{ recent_order.get_status_display }} · {{ recent_order.total }} {{ recent_order.currency|currency_symbol }}
           </p>
         {% else %}
           <p class="rs-cab__chart-caption">{% cms_text 'cabinet' 'empty' %}</p>
@@ -77,7 +77,7 @@
               <span
                 class="rs-cab__chart-bar rs-cab__chart-bar--{% cycle 'a' 'b' 'c' 'd' %}"
                 style="--rs-cab-h: {{ bar.height }}%"
-                title="{{ bar.total }} ₴"
+                title="{{ bar.total|money }} {{ currency.symbol }}"
               ></span>
             {% endfor %}
           </div>

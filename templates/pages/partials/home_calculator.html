@@ -168,15 +168,15 @@
               <div class="rs-home-calc__chips" role="radiogroup" aria-label="{% trans 'Бюджет' %}">
                 <label class="rs-home-calc__chip">
                   <input type="radio" name="budget" value="0-1000" data-calc-chip checked>
-                  <span>{% trans "до 1000 ₴" %}</span>
+                  <span>{% blocktrans with amount=1000|money symbol=currency.symbol %}до {{ amount }} {{ symbol }}{% endblocktrans %}</span>
                 </label>
                 <label class="rs-home-calc__chip">
                   <input type="radio" name="budget" value="1000-2000" data-calc-chip>
-                  <span>{% trans "1000—2000 ₴" %}</span>
+                  <span>{% blocktrans with lo=1000|money hi=2000|money symbol=currency.symbol %}{{ lo }}—{{ hi }} {{ symbol }}{% endblocktrans %}</span>
                 </label>
                 <label class="rs-home-calc__chip">
                   <input type="radio" name="budget" value="2000-3500" data-calc-chip>
-                  <span>{% trans "2000—3500 ₴" %}</span>
+                  <span>{% blocktrans with lo=2000|money hi=3500|money symbol=currency.symbol %}{{ lo }}—{{ hi }} {{ symbol }}{% endblocktrans %}</span>
                 </label>
                 <label class="rs-home-calc__chip">
                   <input type="radio" name="budget" value="any" data-calc-chip>

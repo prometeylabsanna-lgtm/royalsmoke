@@ -16,7 +16,7 @@
           {% endif %}
         </div>
         <div class="rs-calc-hit__aside">
-          <span class="rs-calc-hit__price">{{ hit.product.display_price }} ₴</span>
+          <span class="rs-calc-hit__price">{{ hit.product.display_price|money }} {{ currency.symbol }}</span>
           <a class="rs-btn rs-btn--ghost" href="{{ hit.product.get_absolute_url }}">{% trans "Переглянути" %}</a>
         </div>
       </article>

@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from apps.catalog.models import Brand, Category, Product
+from apps.core.currency import convert_from_uah_int, convert_to_uah
 
 SORT_OPTIONS = (
     ('top', _('Топ')),
@@ -72,7 +73,7 @@ def apply_filters(qs, params):
             | Q(short_story__icontains=q)
         )
 
-    bound_min, bound_max = price_bounds()
+    bound_min_uah, bound_max_uah = price_bounds()
     price_min = _as_decimal(params.get('price_min'))
     price_max = _as_decimal(params.get('price_max'))
     legacy = (params.get('price') or '').strip()
@@ -80,15 +81,20 @@ def apply_filters(qs, params):
     if price_min is None and price_max is None and legacy:
         if legacy == 'lt1000':
             price_max = Decimal('999.99')
+            qs = qs.filter(base_price__lte=price_max)
         elif legacy == '1000-2000':
-            price_min, price_max = Decimal('1000'), Decimal('2000')
+            qs = qs.filter(base_price__gte=Decimal('1000'), base_price__lte=Decimal('2000'))
         elif legacy == 'gte2000':
-            price_min = Decimal('2000')
-
-    if price_min is not None and price_min > bound_min:
-        qs = qs.filter(base_price__gte=price_min)
-    if price_max is not None and price_max < bound_max:
-        qs = qs.filter(base_price__lte=price_max)
+            qs = qs.filter(base_price__gte=Decimal('2000'))
+    else:
+        if price_min is not None:
+            price_min_uah = convert_to_uah(price_min)
+            if price_min_uah > bound_min_uah:
+                qs = qs.filter(base_price__gte=price_min_uah)
+        if price_max is not None:
+            price_max_uah = convert_to_uah(price_max)
+            if price_max_uah < bound_max_uah:
+                qs = qs.filter(base_price__lte=price_max_uah)
 
     if sort in ('price_asc', 'price'):
         qs = qs.order_by('base_price', 'name')
@@ -157,7 +163,11 @@ def build_browser_context(request, *, products, category=None, brand=None):
         selected_categories = {category.slug}
     all_categories_active = not selected_categories and not category
 
-    bound_min, bound_max = price_bounds()
+    bound_min_uah, bound_max_uah = price_bounds()
+    bound_min = convert_from_uah_int(bound_min_uah)
+    bound_max = convert_from_uah_int(bound_max_uah)
+    if bound_max <= bound_min:
+        bound_max = bound_min + 1
     price_min = _as_decimal(params.get('price_min'), Decimal(bound_min))
     price_max = _as_decimal(params.get('price_max'), Decimal(bound_max))
     price_min = max(Decimal(bound_min), min(price_min, Decimal(bound_max)))

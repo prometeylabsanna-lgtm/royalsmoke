@@ -33,7 +33,7 @@ class PaymentInline(TabularInline):
 class OrderAdmin(ModelAdmin):
     list_display = (
         'order_number', 'status', 'first_name', 'last_name',
-        'phone', 'total', 'np_ttn', 'created_at',
+        'phone', 'total', 'currency', 'np_ttn', 'created_at',
     )
     list_filter = (
         ('status', RsChoicesDropdownFilter),
@@ -51,7 +51,7 @@ class OrderAdmin(ModelAdmin):
     )
     search_fields = ('order_number', 'phone', 'email', 'first_name', 'last_name', 'np_ttn')
     inlines = [OrderItemInline, PaymentInline]
-    readonly_fields = ('order_number', 'idempotency_key', 'created_at', 'updated_at', 'np_ttn', 'np_ttn_ref')
+    readonly_fields = ('order_number', 'idempotency_key', 'fx_rate', 'created_at', 'updated_at', 'np_ttn', 'np_ttn_ref')
     actions = ('create_ttn_action', 'refresh_ttn_status')
 
     @admin.action(description=_('Створити ТТН Нової Пошти'))

@@ -19,8 +19,8 @@
               <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
             </h2>
             <p class="rs-wish-line__price">
-              <span>{{ product.display_price }}</span>
-              <span class="rs-wish-line__currency">₴</span>
+              <span>{{ product.display_price|money }}</span>
+              <span class="rs-wish-line__currency">{{ currency.symbol }}</span>
             </p>
           </div>
           <div class="rs-wish-line__actions">

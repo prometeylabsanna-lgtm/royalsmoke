@@ -10,6 +10,7 @@ from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy as _lazy
 
 from apps.catalog.models import Product
+from apps.core.currency import convert_from_uah, get_currency
 
 COUNTRY_LABELS = {
     'cuba': _lazy('Куба'),
@@ -132,7 +133,10 @@ def _score_product(
         score += 5
     elif _price_in_range(price, budget_lo, budget_hi):
         score += 35
-        reasons.append(_('у бюджеті (%(p)s ₴)') % {'p': price})
+        reasons.append(
+            _('у бюджеті (%(p)s %(symbol)s)')
+            % {'p': convert_from_uah(price), 'symbol': get_currency()['symbol']}
+        )
     elif budget_hi is not None and price <= budget_hi * Decimal('1.15'):
         score -= 8
     else:

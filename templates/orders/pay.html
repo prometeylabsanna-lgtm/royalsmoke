@@ -16,7 +16,7 @@
   <p class="rs-pay__lead">
     {% blocktrans with num=order.order_number %}Номер {{ num }}. Це тестова сторінка, щоб перевірити флоу після LiqPay.{% endblocktrans %}
   </p>
-  <p class="rs-pay__sum">{{ order.total }} {{ order.currency }}</p>
+  <p class="rs-pay__sum">{{ order.total }} {{ order.currency|currency_symbol }}</p>
 
   <form class="rs-form rs-pay__form" method="post" action="{% url 'orders:demo_pay' order.order_number %}">
     {% csrf_token %}

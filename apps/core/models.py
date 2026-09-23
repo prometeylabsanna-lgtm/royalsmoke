@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+from decimal import Decimal
+
 from django.core.cache import cache
+from django.core.validators import MinValueValidator
 from django.db import models
 
 
@@ -55,6 +58,50 @@ class SiteSettings(models.Model):
     def load(cls):
         obj, _ = cls.objects.get_or_create(pk=1)
         return obj
+
+
+class CurrencyRate(models.Model):
+    """Курс до гривні. 1 одиниця валюти = uah_per_unit гривень."""
+
+    code = models.CharField(
+        'Код ISO',
+        max_length=3,
+        unique=True,
+        help_text='USD, CNY, EUR… Для нової мови додайте валюту тут і рядок у LANGUAGE_CURRENCY.',
+    )
+    name = models.CharField('Назва', max_length=64)
+    symbol = models.CharField('Символ', max_length=8)
+    uah_per_unit = models.DecimalField(
+        'Гривень за 1 одиницю',
+        max_digits=12,
+        decimal_places=4,
+        validators=[MinValueValidator(Decimal('0.0001'))],
+        help_text='Скільки гривень коштує 1 одиниця цієї валюти. Для UAH завжди 1.',
+    )
+    sort_order = models.PositiveSmallIntegerField('Порядок', default=0)
+
+    class Meta:
+        verbose_name = 'Курс валюти'
+        verbose_name_plural = 'Курси валют'
+        ordering = ['sort_order', 'code']
+
+    def __str__(self) -> str:
+        return f'{self.code} ({self.symbol})'
+
+    def save(self, *args, **kwargs):
+        self.code = (self.code or '').upper()
+        if self.code == 'UAH':
+            self.uah_per_unit = 1
+        super().save(*args, **kwargs)
+        from apps.core.currency import clear_currency_cache
+
+        clear_currency_cache()
+
+    def delete(self, *args, **kwargs):
+        super().delete(*args, **kwargs)
+        from apps.core.currency import clear_currency_cache
+
+        clear_currency_cache()
 
 
 class SiteBlock(models.Model):

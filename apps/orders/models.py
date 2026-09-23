@@ -68,6 +68,13 @@ class Order(models.Model):
     delivery_cost = models.DecimalField('Доставка', max_digits=12, decimal_places=2, default=0)
     total = models.DecimalField('Разом', max_digits=12, decimal_places=2)
     currency = models.CharField(max_length=3, default='UAH')
+    fx_rate = models.DecimalField(
+        'Курс до UAH',
+        max_digits=12,
+        decimal_places=4,
+        default=Decimal('1'),
+        help_text='Гривень за 1 одиницю валюти замовлення на момент оформлення.',
+    )
     market = models.CharField(max_length=8, default='UA')
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=STATUS_PENDING)
     idempotency_key = models.CharField(max_length=64, unique=True, editable=False)
