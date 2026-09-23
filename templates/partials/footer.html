@@ -60,7 +60,15 @@
     </div>
 
     <div class="rs-footer__seal" aria-hidden="true">
-      <img src="{% static 'img/footer/seal.jpg' %}?v=2" alt="" width="148" height="148" loading="lazy" decoding="async">
+      {% cms_image 'site' 'footer_seal' as footer_seal %}
+      <img
+        src="{% if footer_seal %}{{ footer_seal }}{% else %}{% static 'img/footer/seal.jpg' %}?v=2{% endif %}"
+        alt=""
+        width="148"
+        height="148"
+        loading="lazy"
+        decoding="async"
+      >
     </div>
 
     <div class="rs-footer__social rs-footer__social--right">
@@ -76,9 +84,11 @@
   </div>
 
   <div class="rs-footer__bottom">
-    <div class="rs-footer__wordmark" aria-hidden="true">ROYAL SMOKE</div>
+    {% cms_text 'site' 'footer_wordmark' as footer_wordmark %}
+    <div class="rs-footer__wordmark" aria-hidden="true">{{ footer_wordmark|default:site_settings.site_name|default:"Royal Smoke"|upper }}</div>
     <div class="rs-footer__meta">
-      <p class="rs-footer__copy">© {% now "Y" %} {{ site_settings.site_name|default:"Royal Smoke"|upper }}</p>
+      {% cms_text 'site' 'footer_copyright' as footer_copyright %}
+      <p class="rs-footer__copy">{% if footer_copyright %}{{ footer_copyright }}{% else %}© {% now "Y" %} {{ site_settings.site_name|default:"Royal Smoke"|upper }}{% endif %}</p>
       <p class="rs-footer__credit">
         {% trans "Сайт від" %}
         {% if request.resolver_match.url_name == 'home' %}

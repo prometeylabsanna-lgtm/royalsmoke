@@ -348,8 +348,16 @@ CONTENT_SECTIONS: tuple[ContentSection, ...] = (
         sidebar_group='chrome',
         preview_url='/',
         admin_model_name='sitefootersettings',
+        description=(
+            'Бренд, контакти, слоган, печатка, великий напис і copyright. '
+            'Назва / телефон / email також зберігаються в загальних налаштуваннях сайту.'
+        ),
+        settings_fields=('site_name', 'phone', 'email'),
         blocks=(
             ('site', 'footer_tagline'),
+            ('site', 'footer_seal'),
+            ('site', 'footer_wordmark'),
+            ('site', 'footer_copyright'),
             ('site', 'footer_col_catalog'), ('site', 'footer_col_shop'), ('site', 'footer_col_info'),
             ('site', 'footer_link_cigars'), ('site', 'footer_link_accessories'),
             ('site', 'footer_link_brands'), ('site', 'footer_link_calculator'),
@@ -357,7 +365,8 @@ CONTENT_SECTIONS: tuple[ContentSection, ...] = (
             ('site', 'footer_link_privacy'),
         ),
         field_groups=(
-            FieldGroup('Слоган', ('footer_tagline',)),
+            FieldGroup('Слоган і печатка', ('footer_tagline', 'footer_seal')),
+            FieldGroup('Низ футера', ('footer_wordmark', 'footer_copyright')),
             FieldGroup('Колонки', ('footer_col_catalog', 'footer_col_shop', 'footer_col_info')),
             FieldGroup('Посилання', (
                 'footer_link_cigars', 'footer_link_accessories', 'footer_link_brands',

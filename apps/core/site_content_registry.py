@@ -27,6 +27,8 @@ class ContentSection:
     field_groups: tuple[FieldGroup, ...] = field(default_factory=tuple)
     admin_model_name: str = ''
     collection: str = ''
+    # Поля SiteSettings (singleton), які редагуються на цій CMS-сторінці
+    settings_fields: tuple[str, ...] = ()
 
 
 def _sections():

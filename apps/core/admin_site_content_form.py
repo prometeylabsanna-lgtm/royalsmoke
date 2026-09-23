@@ -19,15 +19,22 @@ from apps.core.block_defaults import (
 )
 from apps.core.cms_i18n import CMS_LANGUAGES, iter_cms_langs
 from apps.core.cms_text_normalize import sanitize_cms_storage
-from apps.core.models import SiteBlock
+from apps.core.models import SiteBlock, SiteSettings
 from apps.core.site_content_registry import (
     ContentSection,
     get_block_field_label,
     iter_section_blocks,
 )
 from apps.core.validation.admin_forms import clean_optional_url
+from apps.core.validation.fields import EmailField, PhoneField
 
 SECTION_VISIBLE_FIELD = 'section_visible'
+SETTINGS_FIELD_PREFIX = 'settings__'
+SETTINGS_FIELD_LABELS = {
+    'site_name': 'Назва бренду',
+    'phone': 'Телефон',
+    'email': 'Email',
+}
 # TinyMCE лише для навмисного HTML (юридичні body тощо). Решта — textarea,
 # інакше редактор обгортає підписи в <p> і теги світяться на вітрині.
 TINYMCE_KEYS = frozenset({'body'})
@@ -75,6 +82,7 @@ class SitePageContentForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.section = section
         self.blocks = blocks
+        self._settings = SiteSettings.load() if section.settings_fields else None
 
         if section.visibility_key:
             page, key = self._visibility_page_key(section)
@@ -86,9 +94,42 @@ class SitePageContentForm(forms.Form):
                 widget=UnfoldBooleanWidget(),
             )
 
+        self._add_settings_fields()
         for page, key in section.blocks:
             self._add_block_fields(blocks[(page, key)])
         self.editor_groups = self._build_editor_groups()
+
+    def _settings_field_name(self, name: str) -> str:
+        return f'{SETTINGS_FIELD_PREFIX}{name}'
+
+    def _add_settings_fields(self) -> None:
+        if not self._settings:
+            return
+        for name in self.section.settings_fields:
+            label = SETTINGS_FIELD_LABELS.get(name, name)
+            initial = getattr(self._settings, name, '') or ''
+            if name == 'phone':
+                self.fields[self._settings_field_name(name)] = PhoneField(
+                    label=label,
+                    optional=True,
+                    initial=initial,
+                    widget=CmsAdminTextInputWidget(),
+                )
+            elif name == 'email':
+                self.fields[self._settings_field_name(name)] = EmailField(
+                    label=label,
+                    optional=True,
+                    initial=initial,
+                    widget=CmsAdminTextInputWidget(),
+                )
+            else:
+                self.fields[self._settings_field_name(name)] = forms.CharField(
+                    label=label,
+                    required=False,
+                    initial=initial,
+                    max_length=100,
+                    widget=CmsAdminTextInputWidget(),
+                )
 
     def _build_editor_groups(self) -> list[dict]:
         groups: list[dict] = []
@@ -96,6 +137,18 @@ class SitePageContentForm(forms.Form):
             groups.append({
                 'title': 'Видимість',
                 'rows': [{'kind': 'single', 'fields': [{'bound': self[SECTION_VISIBLE_FIELD], 'lang': ''}]}],
+            })
+        if self.section.settings_fields:
+            groups.append({
+                'title': 'Бренд і контакти',
+                'rows': [
+                    {
+                        'kind': 'single',
+                        'fields': [{'bound': self[self._settings_field_name(name)], 'lang': ''}],
+                    }
+                    for name in self.section.settings_fields
+                    if self._settings_field_name(name) in self.fields
+                ],
             })
         for group in self.section.field_groups:
             rows = []
@@ -222,6 +275,17 @@ class SitePageContentForm(forms.Form):
             )
 
     def save(self) -> None:
+        if self._settings and self.section.settings_fields:
+            for name in self.section.settings_fields:
+                fname = self._settings_field_name(name)
+                if fname not in self.cleaned_data:
+                    continue
+                value = self.cleaned_data.get(fname)
+                if value is None:
+                    value = ''
+                setattr(self._settings, name, str(value).strip())
+            self._settings.save()
+
         if SECTION_VISIBLE_FIELD in self.fields:
             page, key = self._visibility_page_key(self.section)
             block = self.blocks[(page, key)]

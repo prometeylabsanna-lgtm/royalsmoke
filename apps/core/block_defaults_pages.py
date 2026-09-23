@@ -16,6 +16,9 @@ PAGE_DEFAULTS: dict[tuple[str, str], str] = {
     ('site', 'drawer_shop'): _('Покупка'),
     ('site', 'drawer_info'): _('Інфо'),
     ('site', 'footer_tagline'): _('Сигари, відібрані вручну для тих, хто знає різницю.'),
+    ('site', 'footer_wordmark'): 'ROYAL SMOKE',
+    ('site', 'footer_copyright'): _('© 2026 ROYAL SMOKE'),
+    ('site', 'footer_seal'): '',
     ('site', 'footer_col_catalog'): _('Каталог'),
     ('site', 'footer_col_shop'): _('Покупка'),
     ('site', 'footer_col_info'): _('Інфо'),
@@ -141,6 +144,9 @@ PAGE_LABELS: dict[tuple[str, str], str] = {
     ('site', 'drawer_shop'): 'Мобільне меню: Покупка',
     ('site', 'drawer_info'): 'Мобільне меню: Інфо',
     ('site', 'footer_tagline'): 'Слоган у футері',
+    ('site', 'footer_wordmark'): 'Великий напис (низ)',
+    ('site', 'footer_copyright'): 'Copyright (повний рядок)',
+    ('site', 'footer_seal'): 'Печатка / емблема',
     ('site', 'footer_col_catalog'): 'Колонка: Каталог',
     ('site', 'footer_col_shop'): 'Колонка: Покупка',
     ('site', 'footer_col_info'): 'Колонка: Інфо',
@@ -221,6 +227,7 @@ PAGE_TYPES: dict[tuple[str, str], str] = {
     ('about', 'image'): 'image',
     ('faq', 'bg'): 'image',
     ('delivery', 'bg'): 'image',
+    ('site', 'footer_seal'): 'image',
 }
 
 PAGE_INLINE = {
@@ -229,7 +236,8 @@ PAGE_INLINE = {
     'drawer_info', 'footer_col_catalog', 'footer_col_shop', 'footer_col_info',
     'footer_link_cigars', 'footer_link_accessories', 'footer_link_brands',
     'footer_link_calculator', 'footer_link_cart', 'footer_link_cabinet',
-    'footer_link_privacy', 'kicker', 'title', 'years_num', 'years_label',
+    'footer_link_privacy', 'footer_wordmark', 'footer_copyright', 'kicker', 'title',
+    'years_num', 'years_label',
     'era1_year', 'era1_title', 'era2_year', 'era2_title', 'era3_year', 'era3_title',
     'era4_year', 'era4_title', 'map_label', 'submit', 'callback', 'h2',
     'pay_h2', 'empty_cta',
