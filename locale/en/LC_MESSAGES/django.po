@@ -436,6 +436,9 @@ msgstr "Request a call"
 msgid "Нагору"
 msgstr "Back to top"
 
+msgid "Сайт від"
+msgstr "Site by"
+
 #: apps/core/block_defaults_pages.py:16 apps/core/block_defaults_pages.py:20
 msgid "Покупка"
 msgstr "Shopping"

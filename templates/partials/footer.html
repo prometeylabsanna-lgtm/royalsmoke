@@ -79,6 +79,19 @@
     <div class="rs-footer__wordmark" aria-hidden="true">ROYAL SMOKE</div>
     <div class="rs-footer__meta">
       <p class="rs-footer__copy">© {% now "Y" %} {{ site_settings.site_name|default:"Royal Smoke"|upper }}</p>
+      <p class="rs-footer__credit">
+        {% trans "Сайт від" %}
+        {% if request.resolver_match.url_name == 'home' %}
+          <a
+            class="rs-footer__credit-link"
+            href="https://www.prometeylabs.com/internet-shop-v2/"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >PrometeyLabs</a>
+        {% else %}
+          <span class="rs-footer__credit-name">PrometeyLabs</span>
+        {% endif %}
+      </p>
     </div>
   </div>
 </footer>

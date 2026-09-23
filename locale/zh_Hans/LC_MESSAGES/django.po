@@ -436,6 +436,9 @@ msgstr "预约回电"
 msgid "Нагору"
 msgstr "返回顶部"
 
+msgid "Сайт від"
+msgstr "网站由"
+
 #: apps/core/block_defaults_pages.py:16 apps/core/block_defaults_pages.py:20
 msgid "Покупка"
 msgstr "购物"
