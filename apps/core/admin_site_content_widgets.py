@@ -41,7 +41,12 @@ class CmsAdminTextareaWidget(AdminTextareaWidget):
 class CmsAdminImageWidget(ClearableFileInput):
     template_name = 'django/forms/widgets/cms_image.html'
 
-    def __init__(self, attrs: Optional[dict[str, Any]] = None) -> None:
+    def __init__(
+        self,
+        attrs: Optional[dict[str, Any]] = None,
+        *,
+        fallback_preview_url: str = '',
+    ) -> None:
         merged = dict(attrs or {})
         extra_class = merged.pop('class', '')
         merged.setdefault('accept', 'image/*')
@@ -49,6 +54,7 @@ class CmsAdminImageWidget(ClearableFileInput):
             [c for c in INPUT_CLASSES if c != 'max-w-2xl'] + ['rs-cms-image-input'],
             extra_class,
         )
+        self.fallback_preview_url = (fallback_preview_url or '').strip()
         super().__init__(attrs={**merged, 'class': classes})
 
     def get_context(self, name, value, attrs):
@@ -59,7 +65,12 @@ class CmsAdminImageWidget(ClearableFileInput):
                 preview_url = getattr(value, 'url', '') or ''
             except ValueError:
                 preview_url = ''
+        is_fallback = False
+        if not preview_url and self.fallback_preview_url:
+            preview_url = self.fallback_preview_url
+            is_fallback = True
         context['widget']['preview_url'] = preview_url
+        context['widget']['preview_is_fallback'] = is_fallback
         return context
 
 

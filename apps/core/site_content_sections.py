@@ -358,21 +358,10 @@ CONTENT_SECTIONS: tuple[ContentSection, ...] = (
             ('site', 'footer_seal'),
             ('site', 'footer_wordmark'),
             ('site', 'footer_copyright'),
-            ('site', 'footer_col_catalog'), ('site', 'footer_col_shop'), ('site', 'footer_col_info'),
-            ('site', 'footer_link_cigars'), ('site', 'footer_link_accessories'),
-            ('site', 'footer_link_brands'), ('site', 'footer_link_calculator'),
-            ('site', 'footer_link_cart'), ('site', 'footer_link_cabinet'),
-            ('site', 'footer_link_privacy'),
         ),
         field_groups=(
             FieldGroup('Слоган і печатка', ('footer_tagline', 'footer_seal')),
             FieldGroup('Низ футера', ('footer_wordmark', 'footer_copyright')),
-            FieldGroup('Колонки', ('footer_col_catalog', 'footer_col_shop', 'footer_col_info')),
-            FieldGroup('Посилання', (
-                'footer_link_cigars', 'footer_link_accessories', 'footer_link_brands',
-                'footer_link_calculator', 'footer_link_cart', 'footer_link_cabinet',
-                'footer_link_privacy',
-            )),
         ),
     ),
     ContentSection(

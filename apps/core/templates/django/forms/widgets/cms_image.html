@@ -11,6 +11,8 @@
          {% if not widget.preview_url %}hidden{% endif %}>
     {% if not widget.preview_url %}
       <span class="rs-cms-image__placeholder" data-cms-image-placeholder>{% trans "Немає фото" %}</span>
+    {% elif widget.preview_is_fallback %}
+      <span class="rs-cms-image__fallback-hint" data-cms-image-placeholder>{% trans "Поточне на сайті" %}</span>
     {% endif %}
   </div>
   {% if widget.is_initial and not widget.required %}

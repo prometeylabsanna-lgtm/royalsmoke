@@ -15,6 +15,7 @@ from apps.core.block_defaults_legal import (
     LEGAL_TYPES,
 )
 from apps.core.block_defaults_pages import (
+    IMAGE_STATIC_FALLBACKS,
     PAGE_DEFAULTS,
     PAGE_INLINE,
     PAGE_LABELS,

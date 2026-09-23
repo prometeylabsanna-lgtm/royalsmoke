@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from django.templatetags.static import static
 from django import forms
 from unfold.widgets import UnfoldBooleanWidget
 
@@ -13,6 +14,7 @@ from apps.core.admin_site_content_widgets import (
 from apps.core.block_defaults import (
     BLOCK_CONTENT_TYPES,
     BLOCK_DEFAULTS,
+    IMAGE_STATIC_FALLBACKS,
     INLINE_KEYS,
     MULTILINE_KEYS,
     is_visibility_key,
@@ -217,10 +219,12 @@ class SitePageContentForm(forms.Form):
             )
             return
         if block.content_type == SiteBlock.ContentType.IMAGE:
+            fallback_path = IMAGE_STATIC_FALLBACKS.get((page, key), '')
+            fallback_url = static(fallback_path) if fallback_path else ''
             field = forms.ImageField(
                 label=label,
                 required=False,
-                widget=CmsAdminImageWidget(),
+                widget=CmsAdminImageWidget(fallback_preview_url=fallback_url),
             )
             field.initial = block.image
             self.fields[block_field_name(page, key, 'image')] = field

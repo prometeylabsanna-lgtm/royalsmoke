@@ -223,6 +223,10 @@ PAGE_LABELS: dict[tuple[str, str], str] = {
     ('age', 'reset'): 'Кнопка повернення',
 }
 
+IMAGE_STATIC_FALLBACKS: dict[tuple[str, str], str] = {
+    ('site', 'footer_seal'): 'img/footer/seal.jpg',
+}
+
 PAGE_TYPES: dict[tuple[str, str], str] = {
     ('about', 'image'): 'image',
     ('faq', 'bg'): 'image',

@@ -122,6 +122,18 @@ body.dark .rs-cms-langs {
   color: color-mix(in srgb, var(--color-base-700, #322a26) 70%, transparent);
 }
 
+.rs-cms-image__fallback-hint {
+  position: absolute;
+  left: 0.4rem;
+  bottom: 0.4rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.65rem;
+  line-height: 1.2;
+  background: color-mix(in srgb, var(--color-base-900, #100d0c) 72%, transparent);
+  color: #fcf2ee;
+}
+
 .inline-related .rs-cms-image__frame,
 .tabular .rs-cms-image__frame {
   width: 120px;
