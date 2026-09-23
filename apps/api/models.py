@@ -1,3 +1,1 @@
-from django.db import models
-
-# Create your models here.
+# API app exposes DRF endpoints; no local ORM models.

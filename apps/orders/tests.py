@@ -1,6 +1,5 @@
 import base64
 import json
-from unittest.mock import patch
 
 from django.test import SimpleTestCase, TestCase, override_settings
 from django.urls import reverse

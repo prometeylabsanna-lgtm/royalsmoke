@@ -62,10 +62,6 @@ def count(request) -> int:
     return len(ordered_ids(request))
 
 
-def contains(request, product_id: int) -> bool:
-    return int(product_id) in product_ids(request)
-
-
 def toggle(request, product_id: int) -> bool:
     """Toggle product. Returns True if it is now in the wishlist."""
     product = get_object_or_404(Product.objects.on_storefront(), pk=product_id)
@@ -92,15 +88,6 @@ def toggle(request, product_id: int) -> bool:
     ids.insert(0, product.id)
     _set_session_ids(request.session, ids)
     return True
-
-
-def remove(request, product_id: int) -> None:
-    pid = int(product_id)
-    user = getattr(request, 'user', None)
-    if user is not None and user.is_authenticated:
-        WishlistItem.objects.filter(user=user, product_id=pid).delete()
-    ids = [i for i in _session_ids(request.session) if i != pid]
-    _set_session_ids(request.session, ids)
 
 
 def items(request) -> list[Product]:

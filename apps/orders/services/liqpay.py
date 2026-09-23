@@ -6,7 +6,6 @@ import base64
 import hashlib
 import json
 import logging
-from decimal import Decimal
 from typing import Any
 
 from django.conf import settings

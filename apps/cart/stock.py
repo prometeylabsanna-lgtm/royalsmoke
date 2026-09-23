@@ -33,18 +33,6 @@ def reserved_quantity(product_id: int, *, exclude_session_key: str = '', exclude
     return int(qs.aggregate(total=Sum('quantity'))['total'] or 0)
 
 
-def own_reserved(product_id: int, *, session_key: str = '', user_id: int | None = None) -> int:
-    purge_expired()
-    qs = CartReservation.objects.filter(product_id=product_id, expires_at__gt=timezone.now())
-    if user_id:
-        qs = qs.filter(user_id=user_id)
-    elif session_key:
-        qs = qs.filter(session_key=session_key, user__isnull=True)
-    else:
-        return 0
-    return int(qs.aggregate(total=Sum('quantity'))['total'] or 0)
-
-
 def allocatable(product: Product, *, session_key: str = '', user_id: int | None = None) -> int:
     """Units this holder may keep (physical stock minus others' reservations)."""
     others = reserved_quantity(

@@ -221,7 +221,7 @@
   }
 
   .rs-home-catalog .rs-pcard__buy {
-    min-height: 42px;
+    min-height: 40px;
     font-size: 11px;
   }
 }
@@ -276,6 +276,7 @@
     padding: 0;
     font-size: 11px;
     letter-spacing: 0.08em;
+    text-underline-offset: 4px;
   }
 }
 
@@ -414,12 +415,6 @@
   }
 }
 
-@media (min-width: 1024px) {
-  .rs-home-catalog .rs-pcard__buy {
-    min-height: 40px;
-  }
-}
-
 @media (max-width: 767px) {
   .rs-home-catalog__tools {
     margin: -2px 0 10px;
@@ -427,13 +422,6 @@
 
   .rs-home-catalog .rs-pcard__body {
     column-gap: 12px;
-  }
-
-  .rs-home-catalog .rs-pcard__buy {
-    min-height: 36px;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-underline-offset: 4px;
   }
 
   .rs-home-catalog .rs-pcard__actions {

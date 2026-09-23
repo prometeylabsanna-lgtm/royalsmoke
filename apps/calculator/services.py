@@ -28,13 +28,6 @@ FORMAT_TERMS = {
 
 STRENGTH_LABELS = dict(Product.Strength.choices)
 
-BUDGET_LABELS = {
-    '0-1000': 'до 1000 ₴',
-    '1000-2000': '1000—2000 ₴',
-    '2000-3500': '2000—3500 ₴',
-    'any': 'без обмежень',
-}
-
 
 @dataclass(frozen=True)
 class CalcHit:

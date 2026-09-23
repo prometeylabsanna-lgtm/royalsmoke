@@ -249,48 +249,10 @@ body.rs-cart-page .rs-page-head p {
   color: var(--rs-text-muted);
 }
 
-.rs-cart__issues {
-  list-style: none;
-  margin: 0 0 20px;
-  padding: 14px 16px;
-  border: 1px solid rgba(201, 154, 68, 0.35);
-  background: rgba(20, 17, 15, 0.55);
-  color: var(--rs-seashell, #fcf2ee);
-  font-size: 14px;
-  line-height: 1.5;
-  box-sizing: border-box;
-}
-
-.rs-cart__issue + .rs-cart__issue {
-  margin-top: 8px;
-}
-
 .rs-cart__checkout--disabled {
   opacity: 0.45;
   pointer-events: none;
   cursor: not-allowed;
-}
-
-@media (max-width: 1024px) {
-  .rs-cart__issues {
-    margin-bottom: 16px;
-    padding: 12px 14px;
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 767px) {
-  .rs-cart__issues {
-    margin-bottom: 14px;
-    padding: 12px;
-    font-size: 13px;
-  }
-}
-
-@supports (-webkit-touch-callout: none) {
-  .rs-cart__issues {
-    -webkit-text-size-adjust: 100%;
-  }
 }
 
 /* ——— Summary bar under list (page-scoped, not viewport sticky) ——— */

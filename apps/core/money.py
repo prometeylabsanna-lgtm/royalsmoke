@@ -70,11 +70,6 @@ def apply_sale_percents(base_price, percents) -> Decimal:
     return price
 
 
-def product_unit_price(product) -> Decimal:
-    """Storefront unit price from product.base_price (акція вже в base_price)."""
-    return require_unit_price(getattr(product, 'base_price', 0))
-
-
 def expected_order_total(order) -> Decimal:
     items_sum = sum_money(row.line_total for row in order.items.all())
     return money(items_sum + money(order.delivery_cost) - money(order.discount))

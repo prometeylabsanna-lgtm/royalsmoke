@@ -9,7 +9,6 @@ from operator import or_
 from django.db.models import Q
 
 SEARCH_MAX_LEN = 100
-SEARCH_MIN_LEN = 1
 SUGGEST_MIN_LEN = 2
 
 # Ukrainian (+ shared Cyrillic) → Latin

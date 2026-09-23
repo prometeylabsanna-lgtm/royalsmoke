@@ -9,7 +9,7 @@ from django.core.management.base import BaseCommand
 from django.utils.translation import override
 
 from apps.booking.models import BookingService
-from apps.calculator.models import CalculatorOption, CalculatorQuestion
+from apps.calculator.models import CalculatorQuestion
 from apps.catalog.models import Product, ProductImage, ProductReview
 from apps.catalog.models_base import Brand, Category, ProductLine, Tag
 from apps.core.block_defaults import is_visibility_key

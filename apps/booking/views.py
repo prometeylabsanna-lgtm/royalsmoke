@@ -7,8 +7,7 @@ from django import forms
 from django.contrib import messages
 from django.db import transaction
 from django.db.models import Count, Q
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy as _lazy

@@ -42,10 +42,6 @@ def clear_currency_cache() -> None:
     cache.delete(CACHE_KEY)
 
 
-def _as_dec(amount) -> Decimal:
-    return as_decimal(amount)
-
-
 def language_currency_code(lang: str | None = None) -> str:
     raw = (lang or get_language() or getattr(settings, 'LANGUAGE_CODE', 'uk') or 'uk')
     lang = str(raw).lower()
@@ -69,7 +65,7 @@ def get_rates() -> dict[str, dict]:
         from apps.core.models import CurrencyRate
 
         for row in CurrencyRate.objects.all():
-            rate = _as_dec(row.uah_per_unit)
+            rate = as_decimal(row.uah_per_unit)
             if rate <= 0:
                 rate = Decimal('1')
             rates[row.code.upper()] = {
@@ -91,18 +87,18 @@ def get_currency(code: str | None = None) -> dict:
 
 
 def convert_from_uah(amount, code: str | None = None) -> Decimal:
-    value = _as_dec(amount)
+    value = as_decimal(amount)
     cur = get_currency(code)
-    rate = _as_dec(cur.get('uah_per_unit'))
+    rate = as_decimal(cur.get('uah_per_unit'))
     if cur.get('code') == 'UAH' or rate <= 0:
         return value.quantize(TWOPLACES, rounding=ROUND_HALF_UP)
     return (value / rate).quantize(TWOPLACES, rounding=ROUND_HALF_UP)
 
 
 def convert_to_uah(amount, code: str | None = None) -> Decimal:
-    value = _as_dec(amount)
+    value = as_decimal(amount)
     cur = get_currency(code)
-    rate = _as_dec(cur.get('uah_per_unit'))
+    rate = as_decimal(cur.get('uah_per_unit'))
     if cur.get('code') == 'UAH' or rate <= 0:
         return value.quantize(TWOPLACES, rounding=ROUND_HALF_UP)
     return (value * rate).quantize(TWOPLACES, rounding=ROUND_HALF_UP)
@@ -115,13 +111,13 @@ def convert_from_uah_int(amount, code: str | None = None) -> int:
 
 def amount_to_uah(amount, *, currency: str | None = None, fx_rate=None) -> Decimal:
     """Convert a stored order amount back to UAH using the snapshot rate."""
-    value = _as_dec(amount)
+    value = as_decimal(amount)
     code = (currency or 'UAH').upper()
     if code == 'UAH':
         return value.quantize(TWOPLACES, rounding=ROUND_HALF_UP)
-    rate = _as_dec(fx_rate)
+    rate = as_decimal(fx_rate)
     if rate <= 0:
-        rate = _as_dec(get_currency(code).get('uah_per_unit'))
+        rate = as_decimal(get_currency(code).get('uah_per_unit'))
     if rate <= 0:
         return value.quantize(TWOPLACES, rounding=ROUND_HALF_UP)
     return (value * rate).quantize(TWOPLACES, rounding=ROUND_HALF_UP)

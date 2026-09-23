@@ -49,6 +49,7 @@ class StorefrontCurrencyTests(TestCase):
             brand=brand,
             category=cat,
             base_price=Decimal('1200'),
+            stock=5,
             is_active=True,
         )
 
@@ -75,6 +76,8 @@ class StorefrontCurrencyTests(TestCase):
             'product_id': self.product.id,
             'quantity': 1,
         })
+        self.client.get(checkout_url)
+        token = self.client.session['rs_checkout_token']
         resp = self.client.post(checkout_url, {
             'first_name': 'Ivan',
             'last_name': 'Petrenko',
@@ -85,6 +88,7 @@ class StorefrontCurrencyTests(TestCase):
             'delivery_address': 'Showroom',
             'payment_method': 'cod',
             'age_confirm': '1',
+            'checkout_token': token,
         })
         self.assertEqual(resp.status_code, 302)
         order = Order.objects.get()

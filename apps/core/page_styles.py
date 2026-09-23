@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import re
-from urllib.parse import urlencode
 
 from django.core.cache import cache
 from django.urls import reverse
@@ -169,19 +168,3 @@ def get_chrome_style_vars() -> dict[str, str]:
     data = ChromeStyle.load().effective()
     cache.set(CHROME_STYLE_CACHE_KEY, data, 300)
     return data
-
-
-def build_preview_query(bg: str, text: str, accent: str) -> str:
-    params = {'rs_style_preview': '1'}
-    if bg:
-        params['preview_bg'] = bg
-    if text:
-        params['preview_text'] = text
-    if accent:
-        params['preview_accent'] = accent
-    return urlencode(params)
-
-
-# backward compat
-def get_page_background_color(request) -> str:
-    return get_page_style_vars(request).get('bg', '')
