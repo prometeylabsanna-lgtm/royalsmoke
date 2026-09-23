@@ -4,6 +4,7 @@ from typing import Any, Optional
 
 from django.contrib.admin.widgets import AdminTextInputWidget, AdminTextareaWidget
 from django.forms.widgets import ClearableFileInput
+from tinymce.widgets import TinyMCE
 from unfold.widgets import INPUT_CLASSES, TEXTAREA_CLASSES
 
 
@@ -60,3 +61,58 @@ class CmsAdminImageWidget(ClearableFileInput):
                 preview_url = ''
         context['widget']['preview_url'] = preview_url
         return context
+
+
+class CmsAdminFileWidget(ClearableFileInput):
+    def __init__(self, attrs: Optional[dict[str, Any]] = None) -> None:
+        merged = dict(attrs or {})
+        extra_class = merged.pop('class', '')
+        merged.setdefault('accept', 'video/mp4,video/webm,video/ogg,.mp4,.webm,.ogg')
+        classes = cms_control_classes(INPUT_CLASSES, extra_class)
+        super().__init__(attrs={**merged, 'class': classes})
+
+
+class CmsAdminColorWidget(AdminTextInputWidget):
+    input_type = 'color'
+
+    def __init__(self, attrs: Optional[dict[str, Any]] = None) -> None:
+        merged = dict(attrs or {})
+        extra_class = merged.pop('class', '')
+        super().__init__(attrs={
+            **merged,
+            'class': cms_control_classes(INPUT_CLASSES + ['rs-cms-color'], extra_class),
+        })
+
+    def format_value(self, value):
+        raw = (value or '').strip()
+        if not raw:
+            return '#100d0c'
+        if len(raw) == 4 and raw.startswith('#'):
+            return f'#{raw[1]*2}{raw[2]*2}{raw[3]*2}'
+        return raw
+
+
+class CmsAdminTinyMCEWidget(TinyMCE):
+    def __init__(
+        self,
+        attrs: Optional[dict[str, Any]] = None,
+        mce_attrs: Optional[dict[str, Any]] = None,
+    ) -> None:
+        merged = dict(attrs or {})
+        extra_class = merged.pop('class', '')
+        mce = {
+            'height': 280,
+            'menubar': False,
+            'plugins': 'link lists code',
+            'toolbar': 'undo redo | bold italic underline | bullist numlist | link | code',
+            'branding': False,
+            'promotion': False,
+            **(mce_attrs or {}),
+        }
+        super().__init__(
+            attrs={
+                **merged,
+                'class': cms_control_classes(TEXTAREA_CLASSES, extra_class),
+            },
+            mce_attrs=mce,
+        )

@@ -103,6 +103,7 @@ def build_unfold_navigation() -> list[dict]:
         'items': [
             {'title': _('Акаунти'), 'icon': 'person', 'link': reverse_lazy('admin:accounts_user_changelist')},
             {'title': _('Налаштування сайту'), 'icon': 'settings', 'link': reverse_lazy('admin:core_sitesettings_changelist')},
+            {'title': _('Кольори сторінок'), 'icon': 'palette', 'link': reverse_lazy('admin:core_pagestyle_changelist')},
             {'title': _('Курси валют'), 'icon': 'payments', 'link': reverse_lazy('admin:core_currencyrate_changelist')},
         ],
     })

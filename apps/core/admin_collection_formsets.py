@@ -6,6 +6,7 @@ from apps.core.admin_site_content_widgets import (
     CmsAdminImageWidget,
     CmsAdminTextInputWidget,
     CmsAdminTextareaWidget,
+    CmsAdminTinyMCEWidget,
 )
 from apps.core.cms_i18n import CMS_LANGUAGES
 from apps.core.models import HeroSlide, HistorySlide, HomeBrandCard
@@ -42,9 +43,14 @@ def _i18n_widgets(*names: str) -> dict:
     for name in names:
         for _code, attr, _label in CMS_LANGUAGES:
             field = f'{name}_{attr}'
-            if name in {'text', 'subtitle'}:
+            if name == 'text':
+                widgets[field] = CmsAdminTinyMCEWidget(
+                    attrs={'data-cms-lang': _code},
+                    mce_attrs={'height': 220},
+                )
+            elif name == 'subtitle':
                 widgets[field] = CmsAdminTextareaWidget(
-                    attrs={'rows': 4 if name == 'text' else 2, 'data-cms-lang': _code},
+                    attrs={'rows': 2, 'data-cms-lang': _code},
                 )
             else:
                 widgets[field] = CmsAdminTextInputWidget(attrs={'data-cms-lang': _code})

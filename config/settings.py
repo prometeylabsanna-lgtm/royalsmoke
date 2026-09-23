@@ -360,6 +360,8 @@ TINYMCE_DEFAULT_CONFIG = {
     'skin': 'oxide',
     'promotion': False,
     'branding': False,
+    'forced_root_block': 'p',
+    'newline_behavior': 'block',
 }
 
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 30

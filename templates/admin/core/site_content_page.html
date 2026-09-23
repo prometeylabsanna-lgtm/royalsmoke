@@ -27,6 +27,10 @@
 
   <form method="post" enctype="multipart/form-data" novalidate class="rs-cms__form">
     {% csrf_token %}
+    {{ form.media }}
+    {% if history_formset %}{{ history_formset.media }}{% endif %}
+    {% if brand_formset %}{{ brand_formset.media }}{% endif %}
+    {% if hero_formset %}{{ hero_formset.media }}{% endif %}
 
     {% if form.non_field_errors %}
       <ul class="errorlist">{{ form.non_field_errors }}</ul>

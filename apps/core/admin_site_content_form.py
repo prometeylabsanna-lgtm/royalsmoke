@@ -4,9 +4,11 @@ from django import forms
 from unfold.widgets import UnfoldBooleanWidget
 
 from apps.core.admin_site_content_widgets import (
+    CmsAdminFileWidget,
     CmsAdminImageWidget,
     CmsAdminTextInputWidget,
     CmsAdminTextareaWidget,
+    CmsAdminTinyMCEWidget,
 )
 from apps.core.block_defaults import (
     BLOCK_CONTENT_TYPES,
@@ -22,8 +24,10 @@ from apps.core.site_content_registry import (
     get_block_field_label,
     iter_section_blocks,
 )
+from apps.core.validation.admin_forms import clean_optional_url
 
 SECTION_VISIBLE_FIELD = 'section_visible'
+TINYMCE_SKIP_KEYS = frozenset({'meta_description'})
 
 
 def block_field_name(page: str, key: str, suffix: str) -> str:
@@ -105,6 +109,22 @@ class SitePageContentForm(forms.Form):
                         'kind': 'image',
                         'fields': [{'bound': self[block_field_name(page, key, 'image')], 'lang': ''}],
                     })
+                elif block.content_type == SiteBlock.ContentType.URL:
+                    rows.append({
+                        'kind': 'url',
+                        'fields': [
+                            {'bound': self[block_field_name(page, key, 'link_url')], 'lang': ''},
+                            {'bound': self[block_field_name(page, key, 'link_label')], 'lang': ''},
+                        ],
+                    })
+                elif block.content_type == SiteBlock.ContentType.VIDEO:
+                    rows.append({
+                        'kind': 'video',
+                        'fields': [
+                            {'bound': self[block_field_name(page, key, 'video_embed_url')], 'lang': ''},
+                            {'bound': self[block_field_name(page, key, 'video_file')], 'lang': ''},
+                        ],
+                    })
                 else:
                     fields = [
                         {
@@ -149,17 +169,48 @@ class SitePageContentForm(forms.Form):
             field.initial = block.image
             self.fields[block_field_name(page, key, 'image')] = field
             return
+        if block.content_type == SiteBlock.ContentType.URL:
+            self.fields[block_field_name(page, key, 'link_url')] = forms.CharField(
+                label=f'{label} — URL',
+                required=False,
+                initial=block.link_url or '',
+                widget=CmsAdminTextInputWidget(),
+            )
+            self.fields[block_field_name(page, key, 'link_label')] = forms.CharField(
+                label=f'{label} — текст',
+                required=False,
+                initial=block.link_label or '',
+                widget=CmsAdminTextInputWidget(),
+            )
+            return
+        if block.content_type == SiteBlock.ContentType.VIDEO:
+            self.fields[block_field_name(page, key, 'video_embed_url')] = forms.URLField(
+                label=f'{label} — embed URL',
+                required=False,
+                initial=block.video_embed_url or '',
+                widget=CmsAdminTextInputWidget(),
+            )
+            file_field = forms.FileField(
+                label=f'{label} — файл',
+                required=False,
+                widget=CmsAdminFileWidget(),
+            )
+            file_field.initial = block.video_file
+            self.fields[block_field_name(page, key, 'video_file')] = file_field
+            return
+        use_tinymce = key in MULTILINE_KEYS and key not in TINYMCE_SKIP_KEYS
         for code, attr, lang_label in iter_cms_langs():
-            widget = (
-                CmsAdminTextInputWidget(attrs={'data-cms-lang': code})
-                if key in INLINE_KEYS
-                else CmsAdminTextareaWidget(
+            if key in INLINE_KEYS:
+                widget = CmsAdminTextInputWidget(attrs={'data-cms-lang': code})
+            elif use_tinymce:
+                widget = CmsAdminTinyMCEWidget(attrs={'data-cms-lang': code})
+            else:
+                widget = CmsAdminTextareaWidget(
                     attrs={
                         'rows': 4 if key in MULTILINE_KEYS else 2,
                         'data-cms-lang': code,
                     },
                 )
-            )
             self.fields[block_field_name(page, key, f'text_html_{attr}')] = forms.CharField(
                 label=f'{label} ({lang_label})',
                 initial=_lang_text(block, attr),
@@ -196,6 +247,21 @@ class SitePageContentForm(forms.Form):
                 uploaded = self.cleaned_data.get(block_field_name(page, key, 'image'))
                 if uploaded:
                     block.image = uploaded
+            elif block.content_type == SiteBlock.ContentType.URL:
+                block.link_url = clean_optional_url(
+                    self.cleaned_data.get(block_field_name(page, key, 'link_url'), '') or '',
+                )
+                block.link_label = (
+                    self.cleaned_data.get(block_field_name(page, key, 'link_label'), '') or ''
+                ).strip()
+            elif block.content_type == SiteBlock.ContentType.VIDEO:
+                embed = (
+                    self.cleaned_data.get(block_field_name(page, key, 'video_embed_url'), '') or ''
+                ).strip()
+                block.video_embed_url = embed
+                uploaded = self.cleaned_data.get(block_field_name(page, key, 'video_file'))
+                if uploaded:
+                    block.video_file = uploaded
             else:
                 uk_val = ''
                 for _code, attr, _label in CMS_LANGUAGES:

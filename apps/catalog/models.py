@@ -71,6 +71,12 @@ class Product(TimeStampedModel):
     is_featured = models.BooleanField('Рекомендований', default=False)
     sort_order = models.PositiveIntegerField('Порядок', default=0)
     video_url = models.URLField('URL відео', blank=True)
+    video_file = models.FileField(
+        'Відеофайл',
+        upload_to='products/video/',
+        blank=True,
+        help_text='MP4/WebM. Має пріоритет над URL відео.',
+    )
     tags = models.ManyToManyField(Tag, blank=True, related_name='products', verbose_name='Теги')
     meta_title = models.CharField('SEO-заголовок', max_length=255, blank=True)
     meta_description = models.TextField('SEO-опис', blank=True)

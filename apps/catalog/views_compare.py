@@ -41,6 +41,7 @@ def is_direct_video(url: str) -> bool:
         or raw.endswith('.webm')
         or raw.endswith('.ogg')
         or '/static/video/' in raw
+        or '/media/' in raw
     )
 
 

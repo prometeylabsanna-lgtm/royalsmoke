@@ -12,6 +12,7 @@ def clear_site_content_cache() -> None:
 
     cache.delete('site_settings')
     cache.delete('site_blocks')
+    cache.delete('page_styles')
     for code, _name in settings.LANGUAGES:
         cache.delete(f'site_settings:{code}')
         cache.delete(f'site_blocks:{code}')
@@ -108,6 +109,8 @@ class SiteBlock(models.Model):
     class ContentType(models.TextChoices):
         TEXT = 'text', 'Текст'
         IMAGE = 'image', 'Фото'
+        URL = 'url', 'Посилання'
+        VIDEO = 'video', 'Відео'
 
     class Page(models.TextChoices):
         HOME = 'home', 'Головна'
@@ -115,6 +118,7 @@ class SiteBlock(models.Model):
         CATALOG = 'catalog', 'Каталог'
         SERVICE = 'service', 'Сервіс'
         ABOUT = 'about', 'Про нас'
+        BLOG = 'blog', 'Блог'
         FAQ = 'faq', 'FAQ'
         CONTACT = 'contact', 'Контакти'
         DELIVERY = 'delivery', 'Доставка'
@@ -133,6 +137,10 @@ class SiteBlock(models.Model):
     )
     text_html = models.TextField(blank=True, verbose_name='Текст')
     image = models.ImageField(upload_to='blocks/', blank=True, verbose_name='Зображення')
+    link_url = models.CharField('URL посилання', max_length=512, blank=True)
+    link_label = models.CharField('Текст посилання', max_length=128, blank=True)
+    video_embed_url = models.URLField('URL відео (YouTube/Vimeo)', blank=True)
+    video_file = models.FileField('Відеофайл', upload_to='blocks/video/', blank=True)
     sort_order = models.PositiveSmallIntegerField(default=0)
     is_active = models.BooleanField(default=True)
 
@@ -146,6 +154,54 @@ class SiteBlock(models.Model):
 
     def __str__(self) -> str:
         return f'{self.page}.{self.key}'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        clear_site_content_cache()
+
+    @property
+    def cache_key(self) -> str:
+        return f'{self.page}.{self.key}'
+
+
+class PageStyle(models.Model):
+    """Колір фону окремої сторінки. Порожній background_color = дефолт сайту."""
+
+    DEFAULT_BACKGROUND = '#100d0c'
+
+    page = models.CharField(
+        'Сторінка',
+        max_length=32,
+        choices=SiteBlock.Page.choices,
+        unique=True,
+    )
+    background_color = models.CharField(
+        'Колір фону',
+        max_length=32,
+        blank=True,
+        help_text='HEX (#100d0c). Порожнє значення — дефолтний стиль сайту.',
+    )
+
+    class Meta:
+        ordering = ['page']
+        verbose_name = 'Стиль сторінки'
+        verbose_name_plural = 'Стилі сторінок'
+
+    def __str__(self) -> str:
+        return f'{self.get_page_display()}: {self.effective_color}'
+
+    @property
+    def is_custom(self) -> bool:
+        return bool((self.background_color or '').strip())
+
+    @property
+    def effective_color(self) -> str:
+        raw = (self.background_color or '').strip()
+        return raw or self.DEFAULT_BACKGROUND
+
+    def reset_to_default(self) -> None:
+        self.background_color = ''
+        self.save(update_fields=['background_color'])
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

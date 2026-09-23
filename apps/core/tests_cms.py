@@ -3,7 +3,8 @@ from django.test import TestCase
 from django.urls import reverse
 
 from apps.core.block_defaults import BLOCK_DEFAULTS, is_visibility_key
-from apps.core.models import SiteBlock, SiteSettings
+from apps.core.models import PageStyle, SiteBlock, SiteSettings
+from apps.core.page_styles import ensure_page_styles
 from apps.core.site_content_registry import get_section, iter_section_blocks
 from apps.core.site_content_sections import CONTENT_SECTIONS
 from apps.pages.models import FAQItem, LegalDocument
@@ -173,3 +174,69 @@ class CmsFrontendTests(TestCase):
         )
         response = self.client.get(reverse('pages:legal', kwargs={'slug': 'privacy'}))
         self.assertContains(response, 'Secret')
+
+
+class PageStyleTests(TestCase):
+    def setUp(self):
+        User = get_user_model()
+        self.user = User.objects.create_superuser(
+            email='style@test.ua', password='pass12345',
+        )
+        self.client.force_login(self.user)
+        ensure_page_styles()
+
+    def test_ensure_creates_all_pages(self):
+        self.assertEqual(PageStyle.objects.count(), len(SiteBlock.Page.choices))
+
+    def test_reset_clears_color(self):
+        style = PageStyle.objects.get(page='home')
+        style.background_color = '#221100'
+        style.save()
+        style.reset_to_default()
+        style.refresh_from_db()
+        self.assertEqual(style.background_color, '')
+        self.assertEqual(style.effective_color, PageStyle.DEFAULT_BACKGROUND)
+
+    def test_admin_reset_button(self):
+        style = PageStyle.objects.get(page='about')
+        style.background_color = '#334455'
+        style.save()
+        url = reverse('admin:core_pagestyle_change', args=[style.pk])
+        response = self.client.post(url, {
+            'page': 'about',
+            'background_color': '#334455',
+            '_reset_default': '1',
+        })
+        self.assertEqual(response.status_code, 302)
+        style.refresh_from_db()
+        self.assertEqual(style.background_color, '')
+
+    def test_frontend_applies_custom_bg(self):
+        style = PageStyle.objects.get(page='home')
+        style.background_color = '#1a1512'
+        style.save()
+        response = self.client.get(reverse('pages:home'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '--rs-page-bg: #1a1512')
+
+
+class CmsTinyMCETests(TestCase):
+    def setUp(self):
+        User = get_user_model()
+        self.user = User.objects.create_superuser(
+            email='tinymce@test.ua', password='pass12345',
+        )
+        self.client.force_login(self.user)
+        SiteSettings.load()
+
+    def test_service_section_uses_tinymce_for_leads(self):
+        url = reverse('admin:core_homeservicesettings_change', args=[1])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'tinymce')
+
+    def test_faq_answer_uses_tinymce(self):
+        item = FAQItem.objects.create(question='Q', answer='A', sort_order=0)
+        response = self.client.get(reverse('admin:pages_faqitem_change', args=[item.pk]))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'tinymce')

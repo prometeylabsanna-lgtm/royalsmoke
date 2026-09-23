@@ -14,7 +14,7 @@
   {% block canonical %}{% endblock %}
   {% block og_tags %}{% endblock %}
   {% block extra_head %}{% endblock %}
-  <link rel="stylesheet" href="{% static 'css/tokens.css' %}?v=4">
+  <link rel="stylesheet" href="{% static 'css/tokens.css' %}?v=5">
   <link rel="stylesheet" href="{% static 'css/layout.css' %}?v=11">
   <link rel="stylesheet" href="{% static 'css/layout2.css' %}?v=4">
   <link rel="stylesheet" href="{% static 'css/layout3.css' %}?v=3">
@@ -38,6 +38,7 @@
   <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
 </head>
 <body class="{% block body_class %}{% endblock %}"
+      {% if page_background_color %}style="--rs-page-bg: {{ page_background_color }}"{% endif %}
       hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
   <script>try{localStorage.setItem('rs_lang','{{ LANGUAGE_CODE|default:"uk" }}');}catch(e){}</script>
   {% csrf_token %}

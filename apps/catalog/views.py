@@ -75,14 +75,27 @@ def product_detail(request, slug):
         active_variant = variants[0]
 
     video_url = (product.video_url or '').strip()
+    video_direct = ''
+    video_embed = ''
+    if product.video_file:
+        try:
+            video_direct = product.video_file.url
+        except ValueError:
+            video_direct = ''
+    if not video_direct and video_url:
+        if is_direct_video(video_url):
+            video_direct = video_url
+        else:
+            video_embed = youtube_embed_url(video_url)
+
     return render(request, 'catalog/product_detail.html', {
         'product': product,
         'variants': variants,
         'active_variant': active_variant,
         'related': related_products(product),
         'reviews': getattr(product, 'published_reviews', []),
-        'video_embed_url': youtube_embed_url(video_url),
-        'video_direct': video_url if is_direct_video(video_url) else '',
+        'video_embed_url': video_embed,
+        'video_direct': video_direct,
         'primary_image': product.images.first(),
     })
 

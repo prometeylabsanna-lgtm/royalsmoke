@@ -2,7 +2,17 @@ from django.contrib import admin
 from tinymce.widgets import TinyMCE
 from unfold.admin import ModelAdmin, TabularInline
 
+from apps.core.admin_site_content_widgets import CmsAdminTinyMCEWidget
+
 from .models import BlogFAQItem, BlogPost, FAQItem, LegalDocument
+
+_FAQ_TINYMCE = {
+    'answer', 'answer_uk', 'answer_en', 'answer_zh_hans',
+}
+_BODY_TINYMCE = {
+    'body', 'body_uk', 'body_en', 'body_zh_hans',
+    'excerpt', 'excerpt_uk', 'excerpt_en', 'excerpt_zh_hans',
+}
 
 
 @admin.register(FAQItem)
@@ -16,6 +26,11 @@ class FAQItemAdmin(ModelAdmin):
         'answer_uk', 'answer_en', 'answer_zh_hans',
         'sort_order', 'is_active',
     )
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        if db_field.name in _FAQ_TINYMCE:
+            kwargs['widget'] = CmsAdminTinyMCEWidget()
+        return super().formfield_for_dbfield(db_field, request, **kwargs)
 
 
 @admin.register(LegalDocument)
@@ -32,7 +47,7 @@ class LegalDocumentAdmin(ModelAdmin):
     )
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
-        if db_field.name in {'body_uk', 'body_en', 'body_zh_hans'}:
+        if db_field.name in _BODY_TINYMCE:
             kwargs['widget'] = TinyMCE()
         return super().formfield_for_dbfield(db_field, request, **kwargs)
 
@@ -46,6 +61,11 @@ class BlogFAQItemInline(TabularInline):
         'answer_uk', 'answer_en', 'answer_zh_hans',
         'sort_order',
     )
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        if db_field.name in _FAQ_TINYMCE:
+            kwargs['widget'] = CmsAdminTinyMCEWidget(mce_attrs={'height': 200})
+        return super().formfield_for_dbfield(db_field, request, **kwargs)
 
 
 @admin.register(BlogPost)
@@ -71,6 +91,6 @@ class BlogPostAdmin(ModelAdmin):
     )
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
-        if db_field.name in {'body_uk', 'body_en', 'body_zh_hans'}:
+        if db_field.name in _BODY_TINYMCE:
             kwargs['widget'] = TinyMCE()
         return super().formfield_for_dbfield(db_field, request, **kwargs)

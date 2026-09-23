@@ -48,6 +48,7 @@
   --rs-gold: #c99a44;
   --rs-gold-hover: #d8ac5c;
   --rs-coffee: #1c1715;
+  --rs-page-bg: var(--rs-bark);
 
   --rs-text: var(--rs-seashell);
   --rs-text-muted: rgba(252, 242, 238, 0.6);
@@ -163,7 +164,7 @@ html {
 body {
   margin: 0;
   min-height: 100dvh;
-  background: var(--rs-bark);
+  background: var(--rs-page-bg);
   color: var(--rs-text);
   font-family: var(--rs-font-ui);
   font-weight: var(--rs-weight-ui);
