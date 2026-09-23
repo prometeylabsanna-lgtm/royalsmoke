@@ -254,10 +254,10 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
   width: 7.5rem;
   max-width: 40vw;
   padding: 0.4rem 0.65rem;
-  border: 1px solid var(--color-base-700, #322a26);
+  border: 1px solid var(--color-base-300, #c9beb4);
   border-radius: 0.5rem;
-  background: var(--color-base-900, #181412);
-  color: var(--color-base-100, #fcf2ee);
+  background: var(--color-base-50, #ffffff);
+  color: var(--color-base-900, #181412);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.9rem;
 }
@@ -268,24 +268,50 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
   justify-content: center;
   min-height: 2.75rem;
   padding: 0 0.85rem;
-  border: 1px solid var(--color-base-700, #322a26);
+  border: 1px solid var(--color-base-400, #a89888);
   border-radius: 0.5rem;
-  background: transparent;
-  color: var(--color-base-200, #eadfd6);
+  background: var(--color-base-50, #ffffff);
+  color: var(--color-base-900, #181412);
   font-size: 0.85rem;
+  font-weight: 600;
   line-height: 1;
   cursor: pointer;
   white-space: nowrap;
 }
 
 .rs-cms-colorpick__default:hover {
-  border-color: var(--color-base-500, #8a7a6e);
-  color: var(--color-base-50, #fcf2ee);
+  border-color: var(--color-base-700, #322a26);
+  background: var(--color-base-100, #f4ebe4);
+  color: var(--color-base-950, #100d0c);
 }
 
 .rs-cms-colorpick__default:focus-visible {
   outline: 2px solid var(--color-primary-600, #c99a44);
   outline-offset: 2px;
+}
+
+.dark .rs-cms-colorpick__hex,
+html.dark .rs-cms-colorpick__hex,
+body.dark .rs-cms-colorpick__hex {
+  border-color: var(--color-base-700, #322a26);
+  background: var(--color-base-900, #181412);
+  color: var(--color-base-100, #fcf2ee);
+}
+
+.dark .rs-cms-colorpick__default,
+html.dark .rs-cms-colorpick__default,
+body.dark .rs-cms-colorpick__default {
+  border-color: var(--color-base-600, #4a3f38);
+  background: var(--color-base-800, #241e1b);
+  color: var(--color-base-100, #fcf2ee);
+}
+
+.dark .rs-cms-colorpick__default:hover,
+html.dark .rs-cms-colorpick__default:hover,
+body.dark .rs-cms-colorpick__default:hover {
+  border-color: var(--color-base-400, #a89888);
+  background: var(--color-base-700, #322a26);
+  color: var(--color-base-50, #fcf2ee);
 }
 
 .rs-page-style-admin .rs-cms__head {
