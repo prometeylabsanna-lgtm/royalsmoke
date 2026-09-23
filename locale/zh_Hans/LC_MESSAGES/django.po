@@ -433,6 +433,9 @@ msgstr "促销"
 msgid "Замовити дзвінок"
 msgstr "预约回电"
 
+msgid "Нагору"
+msgstr "返回顶部"
+
 #: apps/core/block_defaults_pages.py:16 apps/core/block_defaults_pages.py:20
 msgid "Покупка"
 msgstr "购物"

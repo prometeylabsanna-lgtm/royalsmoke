@@ -313,22 +313,55 @@
     });
   }
 
-  /* ——— Floating chat hide on scroll down ——— */
+  /* ——— Floating actions + back-to-top ——— */
   function initFloat() {
     var floatEl = qs('[data-float]');
-    if (!floatEl) return;
+    var topBtn = qs('[data-back-top]');
     var lastY = window.scrollY || 0;
     var ticking = false;
 
-    function update() {
-      var y = window.scrollY || 0;
-      if (y > lastY + 8 && y > 120) {
-        floatEl.classList.add('is-hidden');
-      } else if (y < lastY - 8) {
-        floatEl.classList.remove('is-hidden');
+    function jumpTop() {
+      var se = document.scrollingElement || document.documentElement;
+      if (se) se.scrollTop = 0;
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+      window.scrollTo(0, 0);
+    }
+
+    function syncTopBtn(y) {
+      if (!topBtn) return;
+      var threshold = Math.max(window.innerHeight || 0, 1);
+      var show = y >= threshold;
+      if (show) {
+        topBtn.hidden = false;
+        topBtn.removeAttribute('aria-hidden');
+      } else {
+        topBtn.hidden = true;
+        topBtn.setAttribute('aria-hidden', 'true');
       }
+    }
+
+    function update() {
+      var y = window.scrollY || window.pageYOffset || 0;
+      if (floatEl) {
+        if (y > lastY + 8 && y > 120) {
+          floatEl.classList.add('is-hidden');
+        } else if (y < lastY - 8) {
+          floatEl.classList.remove('is-hidden');
+        }
+      }
+      syncTopBtn(y);
       lastY = y;
       ticking = false;
+    }
+
+    if (topBtn) {
+      topBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        jumpTop();
+        lastY = 0;
+        syncTopBtn(window.scrollY || window.pageYOffset || 0);
+      });
     }
 
     window.addEventListener('scroll', function () {
@@ -337,6 +370,8 @@
         window.requestAnimationFrame(update);
       }
     }, { passive: true });
+
+    syncTopBtn(window.scrollY || window.pageYOffset || 0);
   }
 
   /* ——— Callback modal ——— */

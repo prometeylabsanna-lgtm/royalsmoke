@@ -96,14 +96,33 @@
   z-index: var(--rs-z-float);
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
-  transition: transform 320ms var(--rs-ease), opacity 320ms ease;
 }
 
-.rs-float.is-hidden {
-  transform: translateY(120%);
+.rs-float__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 320ms var(--rs-ease), opacity 320ms ease, max-height 320ms var(--rs-ease);
+  max-height: 140px;
+  overflow: hidden;
+}
+
+.rs-float__actions.is-hidden {
+  transform: translateY(24px);
   opacity: 0;
   pointer-events: none;
+  max-height: 0;
+  gap: 0;
+}
+
+.rs-float__top[hidden] {
+  display: none;
+}
+
+.rs-float__top:not([hidden]) {
+  display: grid;
 }
 
 body:has(.rs-drawer.is-open) .rs-float {

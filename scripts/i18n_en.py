@@ -137,6 +137,7 @@ TRANSLATIONS: dict[str, str] = {
     'Django site admin': 'Django site admin',
     'Сигари та аксесуари Royal Smoke': 'Royal Smoke cigars and accessories',
     'Замовити дзвінок': 'Request a call',
+    'Нагору': 'Back to top',
     'Чат / контакти': 'Chat / contacts',
     'Зворотний дзвінок': 'Callback',
     'Залиште номер — передзвонимо протягом робочого дня.': 'Leave your number — we will call back within business hours.',
