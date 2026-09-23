@@ -2,7 +2,9 @@ from django.contrib import admin
 from tinymce.widgets import TinyMCE
 from unfold.admin import ModelAdmin, TabularInline
 
+from apps.core.admin_autoslug import AutoSlugAdminMixin
 from apps.core.admin_site_content_widgets import CmsAdminTinyMCEWidget
+from apps.core.admin_translation_forms import TranslationSyncModelForm
 
 from .models import BlogFAQItem, BlogPost, FAQItem
 
@@ -50,8 +52,15 @@ class BlogFAQItemInline(TabularInline):
         return super().formfield_for_dbfield(db_field, request, **kwargs)
 
 
+class BlogPostAdminForm(TranslationSyncModelForm):
+    class Meta:
+        model = BlogPost
+        fields = '__all__'
+
+
 @admin.register(BlogPost)
-class BlogPostAdmin(ModelAdmin):
+class BlogPostAdmin(AutoSlugAdminMixin, ModelAdmin):
+    form = BlogPostAdminForm
     list_display = ('title', 'slug', 'is_published', 'published_at', 'sort_order')
     list_editable = ('is_published', 'sort_order')
     list_filter = ('is_published',)

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from unfold.admin import ModelAdmin, TabularInline
 
+from apps.core.admin_autoslug import AutoSlugAdminMixin
 from apps.core.admin_filters import (
     RsAllValuesDropdownFilter,
     RsBooleanDropdownFilter,
@@ -10,6 +11,7 @@ from apps.core.admin_filters import (
 )
 from apps.core.admin_image_preview import ImagePreviewAdminMixin, image_thumb
 from apps.core.admin_site_content_widgets import CmsAdminFileWidget, CmsAdminTinyMCEWidget
+from apps.core.admin_translation_forms import TranslationSyncModelForm
 
 from .models import Product, ProductImage, ProductReview, ProductVariant
 from .models_base import Brand, Category, ProductLine, Tag
@@ -26,19 +28,51 @@ _CATALOG_TINYMCE_FIELDS = {
 }
 
 
+class CategoryAdminForm(TranslationSyncModelForm):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+
+class BrandAdminForm(TranslationSyncModelForm):
+    class Meta:
+        model = Brand
+        fields = '__all__'
+
+
+class ProductLineAdminForm(TranslationSyncModelForm):
+    class Meta:
+        model = ProductLine
+        fields = '__all__'
+
+
+class TagAdminForm(TranslationSyncModelForm):
+    class Meta:
+        model = Tag
+        fields = '__all__'
+
+
+class ProductAdminForm(TranslationSyncModelForm):
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+
 class ProductImageInline(ImagePreviewAdminMixin, TabularInline):
     model = ProductImage
     extra = 1
     fields = ('image', 'alt_text', 'sort_order', 'is_primary')
 
 
-class ProductVariantInline(ImagePreviewAdminMixin, TabularInline):
+class ProductVariantInline(AutoSlugAdminMixin, ImagePreviewAdminMixin, TabularInline):
     model = ProductVariant
     extra = 1
+    prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Category)
-class CategoryAdmin(ImagePreviewAdminMixin, ModelAdmin):
+class CategoryAdmin(AutoSlugAdminMixin, ImagePreviewAdminMixin, ModelAdmin):
+    form = CategoryAdminForm
     list_display = ('image_preview', 'name', 'kind', 'parent', 'is_active', 'is_featured', 'sort_order')
     list_filter = (
         ('kind', RsChoicesDropdownFilter),
@@ -50,7 +84,7 @@ class CategoryAdmin(ImagePreviewAdminMixin, ModelAdmin):
         'kind', 'is_active', 'is_featured',
         labels={'is_active': 'Активність', 'is_featured': 'Рекомендовані'},
     )
-    prepopulated_fields = {'slug': ('name',)}
+    prepopulated_fields = {'slug': ('name_uk',)}
     search_fields = ('name',)
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
@@ -64,7 +98,8 @@ class CategoryAdmin(ImagePreviewAdminMixin, ModelAdmin):
 
 
 @admin.register(Brand)
-class BrandAdmin(ImagePreviewAdminMixin, ModelAdmin):
+class BrandAdmin(AutoSlugAdminMixin, ImagePreviewAdminMixin, ModelAdmin):
+    form = BrandAdminForm
     list_display = ('logo_preview', 'name', 'country', 'is_active', 'is_featured', 'sort_order')
     list_filter = (
         ('is_active', RsBooleanDropdownFilter),
@@ -75,7 +110,7 @@ class BrandAdmin(ImagePreviewAdminMixin, ModelAdmin):
         'is_active', 'is_featured',
         labels={'is_active': 'Активність', 'is_featured': 'Рекомендовані'},
     )
-    prepopulated_fields = {'slug': ('name',)}
+    prepopulated_fields = {'slug': ('name_uk',)}
     search_fields = ('name',)
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
@@ -89,7 +124,8 @@ class BrandAdmin(ImagePreviewAdminMixin, ModelAdmin):
 
 
 @admin.register(ProductLine)
-class ProductLineAdmin(ImagePreviewAdminMixin, ModelAdmin):
+class ProductLineAdmin(AutoSlugAdminMixin, ImagePreviewAdminMixin, ModelAdmin):
+    form = ProductLineAdminForm
     list_display = ('image_preview', 'name', 'brand', 'is_active', 'sort_order')
     list_filter = (
         ('brand', RsRelatedDropdownFilter),
@@ -100,7 +136,7 @@ class ProductLineAdmin(ImagePreviewAdminMixin, ModelAdmin):
         'brand', 'is_active',
         labels={'is_active': 'Активність'},
     )
-    prepopulated_fields = {'slug': ('name',)}
+    prepopulated_fields = {'slug': ('name_uk',)}
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         if db_field.name in _CATALOG_TINYMCE_FIELDS:
@@ -113,13 +149,15 @@ class ProductLineAdmin(ImagePreviewAdminMixin, ModelAdmin):
 
 
 @admin.register(Tag)
-class TagAdmin(ModelAdmin):
+class TagAdmin(AutoSlugAdminMixin, ModelAdmin):
+    form = TagAdminForm
     list_display = ('name', 'slug')
-    prepopulated_fields = {'slug': ('name',)}
+    prepopulated_fields = {'slug': ('name_uk',)}
 
 
 @admin.register(Product)
-class ProductAdmin(ImagePreviewAdminMixin, ModelAdmin):
+class ProductAdmin(AutoSlugAdminMixin, ImagePreviewAdminMixin, ModelAdmin):
+    form = ProductAdminForm
     list_display = (
         'image_preview', 'name', 'brand', 'category', 'strength', 'country',
         'base_price', 'is_active', 'is_featured',
@@ -142,7 +180,7 @@ class ProductAdmin(ImagePreviewAdminMixin, ModelAdmin):
         },
     )
     search_fields = ('name', 'sku', 'brand__name')
-    prepopulated_fields = {'slug': ('name',)}
+    prepopulated_fields = {'slug': ('name_uk',)}
     filter_horizontal = ('tags',)
     inlines = [ProductVariantInline, ProductImageInline]
     fieldsets = (

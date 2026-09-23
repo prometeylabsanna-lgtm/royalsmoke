@@ -178,6 +178,58 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
   display: none;
 }
 
+/* Помилки на прихованих мовних полях — показати + підсумок зверху */
+.form-row.has-cms-error,
+.rs-cms-field.has-cms-error,
+[class*="field-"].has-cms-error {
+  display: block;
+}
+
+.rs-cms-error-summary {
+  margin: 0 0 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid color-mix(in srgb, #b42318 45%, transparent);
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, #b42318 10%, var(--color-base-50, #fff));
+  color: #7a1c14;
+}
+
+.rs-cms-error-summary strong {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.rs-cms-error-summary ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.rs-cms-error-summary li {
+  margin: 0.25rem 0;
+  line-height: 1.35;
+}
+
+.rs-cms-error-summary li span {
+  font-weight: 600;
+}
+
+.form-row .errorlist,
+.rs-cms-field .errorlist {
+  margin: 0.35rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: #b42318;
+  font-size: 0.85rem;
+}
+
+.form-row .errorlist li,
+.rs-cms-field .errorlist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
 @media (max-width: 1024px) {
   .rs-cms {
     max-width: none;

@@ -6,9 +6,12 @@ from django.db import models
 from django.db.models import Min, Q
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from slugify import slugify
+
+from apps.core.slug import unique_slug
 
 from .models_base import Brand, Category, ProductLine, Tag, TimeStampedModel
+
+_SLUG_HELP = 'Заповнюється автоматично з назви. Можна залишити порожнім.'
 
 
 class ProductQuerySet(models.QuerySet):
@@ -45,7 +48,9 @@ class Product(TimeStampedModel):
         verbose_name='Лінія',
     )
     name = models.CharField('Назва', max_length=255)
-    slug = models.SlugField('Slug', max_length=280, unique=True)
+    slug = models.SlugField(
+        'Slug', max_length=280, unique=True, blank=True, help_text=_SLUG_HELP,
+    )
     sku = models.CharField('SKU', max_length=64, blank=True, db_index=True)
     short_story = models.TextField('Коротка історія', blank=True)
     description = models.TextField('Опис', blank=True)
@@ -102,8 +107,9 @@ class Product(TimeStampedModel):
         return f'{self.brand.name} — {self.name}'
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(f'{self.brand.name}-{self.name}')[:280]
+        if not (self.slug or '').strip():
+            base = f'{self.brand.name}-{self.name}' if self.brand_id else self.name
+            self.slug = unique_slug(self.__class__, base, max_length=280, instance=self)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -132,7 +138,9 @@ class ProductVariant(TimeStampedModel):
         max_length=120,
         help_text='Наприклад: Robusto, Churchill. У сигар це називають вітолою.',
     )
-    slug = models.SlugField(max_length=140)
+    slug = models.SlugField(
+        'Slug', max_length=140, blank=True, help_text=_SLUG_HELP,
+    )
     length_mm = models.PositiveIntegerField('Довжина, мм', null=True, blank=True)
     ring_gauge = models.PositiveIntegerField(
         'Товщина (ring gauge)',
@@ -161,8 +169,14 @@ class ProductVariant(TimeStampedModel):
         return f'{self.product.name} · {self.name}'
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)[:140]
+        if not (self.slug or '').strip():
+            self.slug = unique_slug(
+                self.__class__,
+                self.name,
+                max_length=140,
+                instance=self,
+                extra_filter={'product_id': self.product_id} if self.product_id else None,
+            )
         super().save(*args, **kwargs)
 
 

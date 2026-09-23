@@ -1,7 +1,10 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from slugify import slugify
+
+from apps.core.slug import unique_slug
+
+_SLUG_HELP = 'Заповнюється автоматично з назви. Можна залишити порожнім.'
 
 
 class FAQItem(models.Model):
@@ -20,7 +23,9 @@ class FAQItem(models.Model):
 
 
 class LegalDocument(models.Model):
-    slug = models.SlugField('Slug', max_length=64, unique=True)
+    slug = models.SlugField(
+        'Slug', max_length=64, unique=True, blank=True, help_text=_SLUG_HELP,
+    )
     title = models.CharField('Заголовок', max_length=255)
     body = models.TextField('Текст', blank=True)
     sort_order = models.PositiveIntegerField('Порядок', default=0)
@@ -34,10 +39,17 @@ class LegalDocument(models.Model):
     def __str__(self) -> str:
         return self.title
 
+    def save(self, *args, **kwargs):
+        if not (self.slug or '').strip():
+            self.slug = unique_slug(self.__class__, self.title, max_length=64, instance=self)
+        super().save(*args, **kwargs)
+
 
 class BlogPost(models.Model):
     title = models.CharField('Заголовок', max_length=255)
-    slug = models.SlugField('Slug', max_length=280, unique=True)
+    slug = models.SlugField(
+        'Slug', max_length=280, unique=True, blank=True, help_text=_SLUG_HELP,
+    )
     excerpt = models.TextField('Короткий опис', blank=True)
     body = models.TextField('Текст статті', blank=True)
     cover = models.ImageField(
@@ -63,8 +75,8 @@ class BlogPost(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title)[:280]
+        if not (self.slug or '').strip():
+            self.slug = unique_slug(self.__class__, self.title, max_length=280, instance=self)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
