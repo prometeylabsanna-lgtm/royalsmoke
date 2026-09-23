@@ -77,7 +77,13 @@ def b2b_page(request):
 
 @require_http_methods(['GET'])
 def delivery_page(request):
-    return render(request, 'leads/delivery.html')
+    from apps.core.delivery_cards import active_delivery_payments, active_delivery_regions
+
+    return render(request, 'leads/delivery.html', {
+        'delivery_regions': active_delivery_regions(),
+        'delivery_payments': active_delivery_payments(),
+    })
+
 
 
 @require_http_methods(['GET', 'POST'])

@@ -165,9 +165,11 @@ class SiteBlock(models.Model):
 
 
 class PageStyle(models.Model):
-    """Колір фону окремої сторінки. Порожній background_color = дефолт сайту."""
+    """Кольори окремої сторінки. Порожні поля = дефолт сайту."""
 
     DEFAULT_BACKGROUND = '#100d0c'
+    DEFAULT_TEXT = '#fcf2ee'
+    DEFAULT_ACCENT = '#c99a44'
 
     page = models.CharField(
         'Сторінка',
@@ -179,7 +181,19 @@ class PageStyle(models.Model):
         'Колір фону',
         max_length=32,
         blank=True,
-        help_text='HEX (#100d0c). Порожнє значення — дефолтний стиль сайту.',
+        help_text='HEX. Порожнє — дефолт сайту.',
+    )
+    text_color = models.CharField(
+        'Колір шрифта',
+        max_length=32,
+        blank=True,
+        help_text='HEX. Порожнє — дефолт сайту.',
+    )
+    accent_color = models.CharField(
+        'Колір підсвітки',
+        max_length=32,
+        blank=True,
+        help_text='Акцент (кнопки, золото). HEX. Порожнє — дефолт сайту.',
     )
 
     class Meta:
@@ -188,20 +202,38 @@ class PageStyle(models.Model):
         verbose_name_plural = 'Стилі сторінок'
 
     def __str__(self) -> str:
-        return f'{self.get_page_display()}: {self.effective_color}'
+        return f'{self.get_page_display()}: {self.effective_background}'
 
     @property
     def is_custom(self) -> bool:
-        return bool((self.background_color or '').strip())
+        return bool(
+            (self.background_color or '').strip()
+            or (self.text_color or '').strip()
+            or (self.accent_color or '').strip()
+        )
 
     @property
+    def effective_background(self) -> str:
+        return (self.background_color or '').strip() or self.DEFAULT_BACKGROUND
+
+    @property
+    def effective_text(self) -> str:
+        return (self.text_color or '').strip() or self.DEFAULT_TEXT
+
+    @property
+    def effective_accent(self) -> str:
+        return (self.accent_color or '').strip() or self.DEFAULT_ACCENT
+
+    # backward-compatible alias used in older code/tests
+    @property
     def effective_color(self) -> str:
-        raw = (self.background_color or '').strip()
-        return raw or self.DEFAULT_BACKGROUND
+        return self.effective_background
 
     def reset_to_default(self) -> None:
         self.background_color = ''
-        self.save(update_fields=['background_color'])
+        self.text_color = ''
+        self.accent_color = ''
+        self.save(update_fields=['background_color', 'text_color', 'accent_color'])
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -266,6 +298,28 @@ class HomeBrandCard(models.Model):
 
     def __str__(self) -> str:
         return str(self.brand_id and self.brand) or f'Картка #{self.pk or "нова"}'
+
+
+class DeliveryCard(models.Model):
+    """Динамічні картки на сторінці «Доставка і оплата» (регіони / способи оплати)."""
+
+    class Kind(models.TextChoices):
+        REGION = 'region', 'Доставка'
+        PAYMENT = 'payment', 'Оплата'
+
+    kind = models.CharField('Тип', max_length=16, choices=Kind.choices, db_index=True)
+    title = models.CharField('Заголовок', max_length=255)
+    text = models.TextField('Текст', blank=True)
+    sort_order = models.PositiveIntegerField('Порядок', default=0)
+    is_active = models.BooleanField('Активна', default=True)
+
+    class Meta:
+        ordering = ['kind', 'sort_order', 'id']
+        verbose_name = 'Картка доставки/оплати'
+        verbose_name_plural = 'Картки доставки/оплати'
+
+    def __str__(self) -> str:
+        return f'{self.get_kind_display()}: {self.title}'
 
 
 from apps.core.models_proxies import *  # noqa: E402,F401,F403

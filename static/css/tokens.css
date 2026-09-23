@@ -49,8 +49,10 @@
   --rs-gold-hover: #d8ac5c;
   --rs-coffee: #1c1715;
   --rs-page-bg: var(--rs-bark);
+  --rs-page-text: var(--rs-seashell);
+  --rs-page-accent: var(--rs-gold);
 
-  --rs-text: var(--rs-seashell);
+  --rs-text: var(--rs-page-text);
   --rs-text-muted: rgba(252, 242, 238, 0.6);
   --rs-text-soft: rgba(252, 242, 238, 0.85);
   --rs-hairline: rgba(252, 242, 238, 0.14);
@@ -165,7 +167,7 @@ body {
   margin: 0;
   min-height: 100dvh;
   background: var(--rs-page-bg);
-  color: var(--rs-text);
+  color: var(--rs-page-text);
   font-family: var(--rs-font-ui);
   font-weight: var(--rs-weight-ui);
   font-size: 14px;
@@ -180,6 +182,18 @@ body.is-locked {
   width: 100%;
   left: 0;
   right: 0;
+}
+
+.rs-style-preview-banner {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0.55rem 1rem;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  background: var(--rs-page-accent, var(--rs-gold));
+  color: var(--rs-bark);
 }
 
 img,

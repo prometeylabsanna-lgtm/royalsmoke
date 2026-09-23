@@ -191,11 +191,15 @@ class PageStyleTests(TestCase):
     def test_reset_clears_color(self):
         style = PageStyle.objects.get(page='home')
         style.background_color = '#221100'
+        style.text_color = '#abcdef'
+        style.accent_color = '#112233'
         style.save()
         style.reset_to_default()
         style.refresh_from_db()
         self.assertEqual(style.background_color, '')
-        self.assertEqual(style.effective_color, PageStyle.DEFAULT_BACKGROUND)
+        self.assertEqual(style.text_color, '')
+        self.assertEqual(style.accent_color, '')
+        self.assertEqual(style.effective_background, PageStyle.DEFAULT_BACKGROUND)
 
     def test_admin_reset_button(self):
         style = PageStyle.objects.get(page='about')
@@ -203,8 +207,9 @@ class PageStyleTests(TestCase):
         style.save()
         url = reverse('admin:core_pagestyle_change', args=[style.pk])
         response = self.client.post(url, {
-            'page': 'about',
             'background_color': '#334455',
+            'text_color': '#fcf2ee',
+            'accent_color': '#c99a44',
             '_reset_default': '1',
         })
         self.assertEqual(response.status_code, 302)
@@ -214,10 +219,34 @@ class PageStyleTests(TestCase):
     def test_frontend_applies_custom_bg(self):
         style = PageStyle.objects.get(page='home')
         style.background_color = '#1a1512'
+        style.text_color = '#eeddcc'
+        style.accent_color = '#aabb00'
         style.save()
         response = self.client.get(reverse('pages:home'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, '--rs-page-bg: #1a1512')
+        self.assertContains(response, '--rs-page-text: #eeddcc')
+        self.assertContains(response, '--rs-page-accent: #aabb00')
+
+    def test_admin_has_circle_picker_and_preview(self):
+        style = PageStyle.objects.get(page='about')
+        url = reverse('admin:core_pagestyle_change', args=[style.pk])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'rs-cms-colorpick')
+        self.assertContains(response, 'data-cms-color-circle')
+        self.assertContains(response, 'Подивитись на сайті')
+        self.assertContains(response, 'data-page-style-preview')
+        self.assertContains(response, 'text_color')
+        self.assertContains(response, 'accent_color')
+
+    def test_preview_query_for_staff(self):
+        response = self.client.get(
+            reverse('pages:about') + '?rs_style_preview=1&preview_bg=%23ff0000&preview_text=%2300ff00&preview_accent=%230000ff',
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '--rs-page-bg: #ff0000')
+        self.assertContains(response, 'Превʼю кольорів')
 
 
 class CmsTinyMCETests(TestCase):
@@ -240,3 +269,41 @@ class CmsTinyMCETests(TestCase):
         response = self.client.get(reverse('admin:pages_faqitem_change', args=[item.pk]))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'tinymce')
+
+
+class DeliveryCardsTests(TestCase):
+    def setUp(self):
+        User = get_user_model()
+        self.user = User.objects.create_superuser(
+            email='delivery@test.ua', password='pass12345',
+        )
+        self.client.force_login(self.user)
+        SiteSettings.load()
+
+    def test_seed_and_frontend(self):
+        from apps.core.delivery_cards import ensure_delivery_cards
+        from apps.core.models import DeliveryCard
+
+        ensure_delivery_cards()
+        self.assertEqual(
+            DeliveryCard.objects.filter(kind=DeliveryCard.Kind.REGION).count(), 4,
+        )
+        self.assertEqual(
+            DeliveryCard.objects.filter(kind=DeliveryCard.Kind.PAYMENT).count(), 3,
+        )
+        response = self.client.get(reverse('leads:delivery'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Київ')
+        self.assertContains(response, 'Онлайн оплата')
+
+    def test_admin_shows_formsets(self):
+        from apps.core.delivery_cards import ensure_delivery_cards
+
+        ensure_delivery_cards()
+        url = reverse('admin:core_deliverypagesettings_change', args=[1])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'delivery_regions')
+        self.assertContains(response, 'delivery_payments')
+        self.assertContains(response, 'Картки доставки')
+        self.assertNotContains(response, 'kyiv_title')

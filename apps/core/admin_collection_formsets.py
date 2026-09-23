@@ -9,7 +9,7 @@ from apps.core.admin_site_content_widgets import (
     CmsAdminTinyMCEWidget,
 )
 from apps.core.cms_i18n import CMS_LANGUAGES
-from apps.core.models import HeroSlide, HistorySlide, HomeBrandCard
+from apps.core.models import DeliveryCard, HeroSlide, HistorySlide, HomeBrandCard
 from apps.core.validation.admin_forms import clean_optional_url
 
 
@@ -36,6 +36,37 @@ class HistorySlideBaseFormSet(SkipEmptyBaseFormSet):
 
 class HomeBrandCardBaseFormSet(SkipEmptyBaseFormSet):
     required_any = ('brand', 'image')
+
+
+class DeliveryCardBaseFormSet(SkipEmptyBaseFormSet):
+    required_any = ('title_uk',)
+    card_kind: str = DeliveryCard.Kind.REGION
+
+    def save(self, commit=True):
+        for form in self.extra_forms:
+            data = getattr(form, 'cleaned_data', None)
+            if not data or form.instance.pk:
+                continue
+            if not any(data.get(name) for name in self.required_any):
+                data['DELETE'] = True
+        instances = forms.BaseModelFormSet.save(self, commit=False)
+        for obj in instances:
+            obj.kind = self.card_kind
+            if commit:
+                obj.save()
+        if commit:
+            self.save_m2m()
+            for obj in self.deleted_objects:
+                obj.delete()
+        return instances
+
+
+class DeliveryRegionFormSetBase(DeliveryCardBaseFormSet):
+    card_kind = DeliveryCard.Kind.REGION
+
+
+class DeliveryPaymentFormSetBase(DeliveryCardBaseFormSet):
+    card_kind = DeliveryCard.Kind.PAYMENT
 
 
 def _i18n_widgets(*names: str) -> dict:
@@ -138,4 +169,34 @@ class HomeBrandCardForm(forms.ModelForm):
 
 HomeBrandCardFormSet = forms.modelformset_factory(
     HomeBrandCard, form=HomeBrandCardForm, formset=HomeBrandCardBaseFormSet, extra=1, can_delete=True,
+)
+
+
+class DeliveryCardForm(forms.ModelForm):
+    class Meta:
+        model = DeliveryCard
+        fields = (
+            *_i18n_fields('title', 'text'),
+            'sort_order',
+            'is_active',
+        )
+        widgets = {
+            **_i18n_widgets('title', 'text'),
+        }
+
+
+DeliveryRegionFormSet = forms.modelformset_factory(
+    DeliveryCard,
+    form=DeliveryCardForm,
+    formset=DeliveryRegionFormSetBase,
+    extra=1,
+    can_delete=True,
+)
+
+DeliveryPaymentFormSet = forms.modelformset_factory(
+    DeliveryCard,
+    form=DeliveryCardForm,
+    formset=DeliveryPaymentFormSetBase,
+    extra=1,
+    can_delete=True,
 )

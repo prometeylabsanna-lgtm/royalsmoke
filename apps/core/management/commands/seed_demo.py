@@ -20,6 +20,7 @@ from apps.core.block_defaults import (
 )
 from apps.core.models import HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings
 from apps.core.page_styles import ensure_page_styles
+from apps.core.delivery_cards import ensure_delivery_cards
 
 
 class Command(BaseCommand):
@@ -28,6 +29,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         SiteSettings.load()
         ensure_page_styles()
+        ensure_delivery_cards()
         self._seed_blocks()
         self._seed_hero()
         self._seed_history()

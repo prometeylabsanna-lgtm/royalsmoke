@@ -74,13 +74,14 @@ class CmsAdminFileWidget(ClearableFileInput):
 
 class CmsAdminColorWidget(AdminTextInputWidget):
     input_type = 'color'
+    template_name = 'django/forms/widgets/cms_color.html'
 
     def __init__(self, attrs: Optional[dict[str, Any]] = None) -> None:
         merged = dict(attrs or {})
         extra_class = merged.pop('class', '')
         super().__init__(attrs={
             **merged,
-            'class': cms_control_classes(INPUT_CLASSES + ['rs-cms-color'], extra_class),
+            'class': cms_control_classes(['rs-cms-colorpick__native'], extra_class),
         })
 
     def format_value(self, value):
@@ -88,7 +89,7 @@ class CmsAdminColorWidget(AdminTextInputWidget):
         if not raw:
             return '#100d0c'
         if len(raw) == 4 and raw.startswith('#'):
-            return f'#{raw[1]*2}{raw[2]*2}{raw[3]*2}'
+            return f'#{raw[1] * 2}{raw[2] * 2}{raw[3] * 2}'
         return raw
 
 

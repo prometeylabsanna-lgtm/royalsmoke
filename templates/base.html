@@ -14,7 +14,7 @@
   {% block canonical %}{% endblock %}
   {% block og_tags %}{% endblock %}
   {% block extra_head %}{% endblock %}
-  <link rel="stylesheet" href="{% static 'css/tokens.css' %}?v=5">
+  <link rel="stylesheet" href="{% static 'css/tokens.css' %}?v=6">
   <link rel="stylesheet" href="{% static 'css/layout.css' %}?v=11">
   <link rel="stylesheet" href="{% static 'css/layout2.css' %}?v=4">
   <link rel="stylesheet" href="{% static 'css/layout3.css' %}?v=3">
@@ -37,9 +37,12 @@
   {% block extra_css %}{% endblock %}
   <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
 </head>
-<body class="{% block body_class %}{% endblock %}"
-      {% if page_background_color %}style="--rs-page-bg: {{ page_background_color }}"{% endif %}
+<body class="{% block body_class %}{% endblock %}{% if page_style.is_preview %} is-style-preview{% endif %}"
+      {% if page_style.bg or page_style.text or page_style.accent %}style="{% if page_style.bg %}--rs-page-bg: {{ page_style.bg }};{% endif %}{% if page_style.text %}--rs-page-text: {{ page_style.text }}; --rs-text: {{ page_style.text }}; --rs-heading-page-color: {{ page_style.text }};{% endif %}{% if page_style.accent %}--rs-page-accent: {{ page_style.accent }}; --rs-gold: {{ page_style.accent }};{% endif %}"{% endif %}
       hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  {% if page_style.is_preview %}
+  <div class="rs-style-preview-banner" role="status">Превʼю кольорів (не збережено)</div>
+  {% endif %}
   <script>try{localStorage.setItem('rs_lang','{{ LANGUAGE_CODE|default:"uk" }}');}catch(e){}</script>
   {% csrf_token %}
 

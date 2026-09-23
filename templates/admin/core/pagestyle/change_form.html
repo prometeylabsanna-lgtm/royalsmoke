@@ -1,9 +1,41 @@
 {% extends "admin/change_form.html" %}
-{% load i18n %}
+{% load i18n static %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/admin/site_content.css' %}">
+  <script src="{% static 'js/admin/cms_color_picker.js' %}" defer></script>
+  <script src="{% static 'js/admin/page_style_preview.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<div class="rs-page-style-admin">
+  <div class="rs-cms__head">
+    <p class="rs-cms__desc">
+      Оберіть кольори сторінки. «Подивитись на сайті» відкриває демо з поточними значеннями форми
+      <strong>без збереження</strong> (потрібна сесія адміна).
+    </p>
+    {% if page_preview_base %}
+      <a
+        class="rs-cms__preview"
+        href="{{ page_preview_base }}"
+        data-page-style-preview
+        data-preview-base="{{ page_preview_base }}"
+        data-default-bg="{{ page_style_defaults.bg }}"
+        data-default-text="{{ page_style_defaults.text }}"
+        data-default-accent="{{ page_style_defaults.accent }}"
+        target="_blank"
+        rel="noopener"
+      >Подивитись на сайті</a>
+    {% endif %}
+  </div>
+  {{ block.super }}
+</div>
+{% endblock %}
 
 {% block submit_buttons_bottom %}
 {{ block.super }}
-<div class="submit-row" style="margin-top: 0.75rem;">
+<div class="submit-row rs-page-style-admin__actions">
   <button type="submit" name="_reset_default" class="border">
     Скинути зміни до дефолту
   </button>

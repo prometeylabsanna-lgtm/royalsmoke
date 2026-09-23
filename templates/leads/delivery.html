@@ -5,7 +5,7 @@
 {% block body_class %}rs-delivery-page{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/pages9.css' %}?v=6">
+<link rel="stylesheet" href="{% static 'css/pages9.css' %}?v=7">
 {% endblock %}
 
 {% block content %}
@@ -31,22 +31,17 @@
     <h2 id="delivery-heading">{% cms_text 'delivery' 'h2' %}</h2>
 
     <div class="rs-delivery__regions">
+      {% for card in delivery_regions %}
       <article class="rs-delivery__region">
-        <h3>{% cms_text 'delivery' 'kyiv_title' %}</h3>
-        <p>{% cms_text 'delivery' 'kyiv_text' %}</p>
+        <h3>{{ card.title }}</h3>
+        <div class="rs-delivery__region-text">{{ card.text|linebreaksbr }}</div>
       </article>
+      {% empty %}
       <article class="rs-delivery__region">
-        <h3>{% cms_text 'delivery' 'ua_title' %}</h3>
-        <p>{% cms_text 'delivery' 'ua_text' %}</p>
+        <h3>{% trans "Доставка" %}</h3>
+        <p>{% trans "Інформацію про доставку буде додано незабаром." %}</p>
       </article>
-      <article class="rs-delivery__region">
-        <h3>{% cms_text 'delivery' 'eu_title' %}</h3>
-        <p>{% cms_text 'delivery' 'eu_text' %}</p>
-      </article>
-      <article class="rs-delivery__region">
-        <h3>{% cms_text 'delivery' 'methods_title' %}</h3>
-        <p>{% cms_text 'delivery' 'methods_text' %}</p>
-      </article>
+      {% endfor %}
       {% if site_settings.free_delivery_from %}
       <article class="rs-delivery__region">
         <h3>{% trans "Безкоштовна доставка" %}</h3>
@@ -60,18 +55,17 @@
     <h2 id="payment-heading">{% cms_text 'delivery' 'pay_h2' %}</h2>
     <p class="rs-delivery__intro">{% cms_text 'delivery' 'pay_intro' %}</p>
     <ul class="rs-delivery__pay">
+      {% for card in delivery_payments %}
       <li>
-        <span class="rs-delivery__pay-title">{% cms_text 'delivery' 'pay_online_title' %}</span>
-        <span class="rs-delivery__pay-text">{% cms_text 'delivery' 'pay_online_text' %}</span>
+        <span class="rs-delivery__pay-title">{{ card.title }}</span>
+        <span class="rs-delivery__pay-text">{{ card.text|linebreaksbr }}</span>
       </li>
+      {% empty %}
       <li>
-        <span class="rs-delivery__pay-title">{% cms_text 'delivery' 'pay_cod_title' %}</span>
-        <span class="rs-delivery__pay-text">{% cms_text 'delivery' 'pay_cod_text' %}</span>
+        <span class="rs-delivery__pay-title">{% trans "Оплата" %}</span>
+        <span class="rs-delivery__pay-text">{% trans "Способи оплати буде додано незабаром." %}</span>
       </li>
-      <li>
-        <span class="rs-delivery__pay-title">{% cms_text 'delivery' 'pay_b2b_title' %}</span>
-        <span class="rs-delivery__pay-text">{% cms_text 'delivery' 'pay_b2b_text' %}</span>
-      </li>
+      {% endfor %}
     </ul>
   </section>
 </div>

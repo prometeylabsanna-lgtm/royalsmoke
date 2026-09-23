@@ -31,6 +31,8 @@
     {% if history_formset %}{{ history_formset.media }}{% endif %}
     {% if brand_formset %}{{ brand_formset.media }}{% endif %}
     {% if hero_formset %}{{ hero_formset.media }}{% endif %}
+    {% if delivery_region_formset %}{{ delivery_region_formset.media }}{% endif %}
+    {% if delivery_payment_formset %}{{ delivery_payment_formset.media }}{% endif %}
 
     {% if form.non_field_errors %}
       <ul class="errorlist">{{ form.non_field_errors }}</ul>
@@ -57,6 +59,8 @@
     {% include "admin/core/cms_formset.html" with formset=hero_formset heading="Слайди банера" %}
     {% include "admin/core/cms_formset.html" with formset=history_formset heading="Слайди історії" %}
     {% include "admin/core/cms_formset.html" with formset=brand_formset heading="Картки брендів" %}
+    {% include "admin/core/cms_formset.html" with formset=delivery_region_formset heading="Картки доставки (додати / видалити)" %}
+    {% include "admin/core/cms_formset.html" with formset=delivery_payment_formset heading="Картки оплати (додати / видалити)" %}
 
     <div class="rs-cms__actions submit-row">
       <button type="submit" class="default" name="_save">Зберегти</button>

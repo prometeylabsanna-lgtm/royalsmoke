@@ -1,6 +1,6 @@
 from modeltranslation.translator import TranslationOptions, register
 
-from .models import HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings
+from .models import DeliveryCard, HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings
 
 
 @register(SiteSettings)
@@ -29,3 +29,9 @@ class HistorySlideTranslation(TranslationOptions):
 @register(HomeBrandCard)
 class HomeBrandCardTranslation(TranslationOptions):
     fields = ('text',)
+
+
+@register(DeliveryCard)
+class DeliveryCardTranslation(TranslationOptions):
+    fields = ('title', 'text')
+

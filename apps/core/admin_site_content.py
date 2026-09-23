@@ -6,12 +6,22 @@ from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 
 from apps.core.admin_collection_formsets import (
+    DeliveryPaymentFormSet,
+    DeliveryRegionFormSet,
     HeroSlideFormSet,
     HistorySlideFormSet,
     HomeBrandCardFormSet,
 )
 from apps.core.admin_site_content_form import SitePageContentForm, load_section_blocks
-from apps.core.models import HeroSlide, HistorySlide, HomeBrandCard, SiteSettings, clear_site_content_cache
+from apps.core.delivery_cards import ensure_delivery_cards
+from apps.core.models import (
+    DeliveryCard,
+    HeroSlide,
+    HistorySlide,
+    HomeBrandCard,
+    SiteSettings,
+    clear_site_content_cache,
+)
 from apps.core.site_content_registry import get_section
 
 SITE_BLOCKS_CACHE_KEY = 'site_blocks'
@@ -24,7 +34,24 @@ def _formsets_for(section, request):
     if section.collection == 'history':
         packs.append(('history_formset', HistorySlideFormSet, HistorySlide.objects.all(), 'history_slides'))
     if section.collection == 'brands':
-        packs.append(('brand_formset', HomeBrandCardFormSet, HomeBrandCard.objects.select_related('brand'), 'brand_cards'))
+        packs.append((
+            'brand_formset', HomeBrandCardFormSet,
+            HomeBrandCard.objects.select_related('brand'), 'brand_cards',
+        ))
+    if section.collection == 'delivery':
+        ensure_delivery_cards()
+        packs.append((
+            'delivery_region_formset',
+            DeliveryRegionFormSet,
+            DeliveryCard.objects.filter(kind=DeliveryCard.Kind.REGION),
+            'delivery_regions',
+        ))
+        packs.append((
+            'delivery_payment_formset',
+            DeliveryPaymentFormSet,
+            DeliveryCard.objects.filter(kind=DeliveryCard.Kind.PAYMENT),
+            'delivery_payments',
+        ))
     built = {}
     for key, factory, qs, prefix in packs:
         built[key] = factory(
@@ -67,6 +94,8 @@ def site_content_section_view(request, page_slug: str, section_slug: str, model_
             'hero_formset': extra_sets.get('hero_formset'),
             'history_formset': extra_sets.get('history_formset'),
             'brand_formset': extra_sets.get('brand_formset'),
+            'delivery_region_formset': extra_sets.get('delivery_region_formset'),
+            'delivery_payment_formset': extra_sets.get('delivery_payment_formset'),
             'opts': getattr(model_admin, 'opts', None),
         },
     )

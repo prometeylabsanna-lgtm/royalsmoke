@@ -202,3 +202,82 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
     font-size: 16px;
   }
 }
+
+/* Page style color picker: visible circle + native picker */
+.rs-cms-colorpick {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 100%;
+}
+
+.rs-cms-colorpick__swatch {
+  position: relative;
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 auto;
+  cursor: pointer;
+  border-radius: 999px;
+}
+
+.rs-cms-colorpick__circle {
+  display: block;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 2px solid var(--color-base-500, #8a7a6e);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.rs-cms-colorpick__circle--list {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  vertical-align: middle;
+  margin-right: 0.35rem;
+}
+
+.rs-cms-colorpick__native {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+}
+
+.rs-cms-colorpick__hex {
+  min-height: 2.75rem;
+  width: 7.5rem;
+  max-width: 40vw;
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--color-base-700, #322a26);
+  border-radius: 0.5rem;
+  background: var(--color-base-900, #181412);
+  color: var(--color-base-100, #fcf2ee);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9rem;
+}
+
+.rs-page-style-admin .rs-cms__head {
+  margin-bottom: 1.25rem;
+}
+
+.rs-page-style-admin__actions {
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .rs-cms-colorpick {
+    width: 100%;
+  }
+
+  .rs-cms-colorpick__hex {
+    flex: 1 1 auto;
+    width: auto;
+    max-width: none;
+  }
+}
