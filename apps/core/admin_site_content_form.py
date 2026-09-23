@@ -226,10 +226,14 @@ class SitePageContentForm(forms.Form):
         if block.content_type == SiteBlock.ContentType.IMAGE:
             fallback_path = IMAGE_STATIC_FALLBACKS.get((page, key), '')
             fallback_url = static(fallback_path) if fallback_path else ''
+            variant = 'icon' if 'icon' in key else 'photo'
             field = forms.ImageField(
                 label=label,
                 required=False,
-                widget=CmsAdminImageWidget(fallback_preview_url=fallback_url),
+                widget=CmsAdminImageWidget(
+                    fallback_preview_url=fallback_url,
+                    preview_variant=variant,
+                ),
             )
             field.initial = block.image
             self.fields[block_field_name(page, key, 'image')] = field

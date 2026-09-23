@@ -1,12 +1,11 @@
 {% load i18n %}
 
-<div class="rs-cms-image" data-cms-image>
+<div class="rs-cms-image{% if widget.preview_variant == 'icon' %} rs-cms-image--icon{% endif %}" data-cms-image{% if widget.preview_variant == 'icon' %} data-cms-image-variant="icon"{% endif %}>
   <div class="rs-cms-image__frame{% if not widget.preview_url %} is-empty{% endif %}">
     <img class="rs-cms-image__preview{% if not widget.preview_url %} is-empty{% endif %}"
          {% if widget.preview_url %}src="{{ widget.preview_url }}"{% endif %}
          alt=""
-         width="240"
-         height="160"
+         {% if widget.preview_variant == 'icon' %}width="48" height="48"{% else %}width="240" height="160"{% endif %}
          data-cms-image-preview
          {% if not widget.preview_url %}hidden{% endif %}>
     {% if not widget.preview_url %}

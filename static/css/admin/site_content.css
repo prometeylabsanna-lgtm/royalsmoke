@@ -116,6 +116,52 @@ body.dark .rs-cms-langs {
   display: none;
 }
 
+/* Header / UI icons: small circle, full glyph visible */
+.rs-cms-image--icon {
+  justify-items: start;
+  max-width: 16rem;
+}
+
+.rs-cms-image--icon .rs-cms-image__frame {
+  width: 3rem;
+  height: 3rem;
+  max-width: 3rem;
+  border-radius: 50%;
+  padding: 0.55rem;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+}
+
+.rs-cms-image--icon .rs-cms-image__frame.is-empty {
+  overflow: hidden;
+}
+
+.rs-cms-image--icon .rs-cms-image__preview {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.rs-cms-image--icon .rs-cms-image__placeholder {
+  font-size: 0.65rem;
+  text-align: center;
+  padding: 0.15rem;
+  line-height: 1.15;
+}
+
+.rs-cms-image--icon .rs-cms-image__fallback-hint {
+  left: calc(100% + 0.45rem);
+  right: auto;
+  bottom: 50%;
+  transform: translateY(50%);
+  white-space: nowrap;
+}
+
 .rs-cms-image__placeholder {
   font-size: 0.8125rem;
   line-height: 1.3;
@@ -259,6 +305,19 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
     width: 100%;
     height: auto;
     aspect-ratio: 3 / 2;
+  }
+
+  .rs-cms-image--icon .rs-cms-image__frame {
+    width: 3rem;
+    height: 3rem;
+    max-width: 3rem;
+    aspect-ratio: 1;
+  }
+
+  .rs-cms-image--icon .rs-cms-image__fallback-hint {
+    left: 50%;
+    bottom: -1.35rem;
+    transform: translateX(-50%);
   }
 
   .rs-cms-image__preview {

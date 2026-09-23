@@ -46,6 +46,7 @@ class CmsAdminImageWidget(ClearableFileInput):
         attrs: Optional[dict[str, Any]] = None,
         *,
         fallback_preview_url: str = '',
+        preview_variant: str = 'photo',
     ) -> None:
         merged = dict(attrs or {})
         extra_class = merged.pop('class', '')
@@ -55,6 +56,7 @@ class CmsAdminImageWidget(ClearableFileInput):
             extra_class,
         )
         self.fallback_preview_url = (fallback_preview_url or '').strip()
+        self.preview_variant = preview_variant if preview_variant in {'photo', 'icon'} else 'photo'
         super().__init__(attrs={**merged, 'class': classes})
 
     def get_context(self, name, value, attrs):
@@ -71,6 +73,7 @@ class CmsAdminImageWidget(ClearableFileInput):
             is_fallback = True
         context['widget']['preview_url'] = preview_url
         context['widget']['preview_is_fallback'] = is_fallback
+        context['widget']['preview_variant'] = self.preview_variant
         return context
 
 
