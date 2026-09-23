@@ -129,6 +129,7 @@ body.dark .rs-cms-langs {
 }
 
 /* Compact preview inside product tabular rows (overrides above) */
+.tabular.inline-related td .rs-cms-image__frame,
 .inline-group .tabular td .rs-cms-image__frame {
   width: 56px;
   height: 56px;
@@ -296,12 +297,15 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
   margin-right: 0.35rem;
 }
 
-/* ——— Tabular inlines (картка товару): одна лінія полів ——— */
+/* ——— Tabular inlines (Unfold: .tabular.inline-related, без .inline-group) ——— */
+.tabular.inline-related table > tbody > tr > td,
+.tabular.inline-related table > thead > tr > th,
 .inline-group .tabular table > tbody > tr > td,
 .inline-group .tabular table > thead > tr > th {
   vertical-align: middle;
 }
 
+.tabular.inline-related .rs-cms-image,
 .inline-group .tabular .rs-cms-image {
   display: flex;
   flex-direction: row;
@@ -313,16 +317,19 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
 }
 
 /* Порожній превʼю ховаємо — інакше «Немає фото» штовхає file вниз */
+.tabular.inline-related .rs-cms-image__frame.is-empty,
 .inline-group .tabular .rs-cms-image__frame.is-empty {
   display: none;
 }
 
+.tabular.inline-related .rs-cms-image__frame:not(.is-empty),
 .inline-group .tabular .rs-cms-image__frame:not(.is-empty) {
   width: 48px;
   height: 48px;
   flex: 0 0 auto;
 }
 
+.tabular.inline-related .rs-cms-image__placeholder,
 .inline-group .tabular .rs-cms-image__placeholder {
   font-size: 0.625rem;
   line-height: 1.2;
@@ -330,10 +337,13 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
   padding: 0.2rem;
 }
 
+.tabular.inline-related .rs-cms-image__clear,
 .inline-group .tabular .rs-cms-image__clear {
   display: none;
 }
 
+.tabular.inline-related .rs-cms-image input[type="file"],
+.tabular.inline-related .rs-cms-image .rs-cms-image-input,
 .inline-group .tabular .rs-cms-image input[type="file"],
 .inline-group .tabular .rs-cms-image .rs-cms-image-input {
   flex: 0 1 auto;
@@ -343,15 +353,22 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
   min-height: 2.5rem;
 }
 
+.tabular.inline-related td.field-alt_text input,
 .inline-group .tabular td.field-alt_text input {
   min-width: 12rem;
   width: 100%;
 }
 
+.tabular.inline-related td.field-sort_order input,
 .inline-group .tabular td.field-sort_order input {
   width: 4.5rem;
 }
 
+.tabular.inline-related td input[type="text"],
+.tabular.inline-related td input[type="number"],
+.tabular.inline-related td input[type="url"],
+.tabular.inline-related td input[type="email"],
+.tabular.inline-related td select,
 .inline-group .tabular td input[type="text"],
 .inline-group .tabular td input[type="number"],
 .inline-group .tabular td input[type="url"],
@@ -361,6 +378,8 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
   vertical-align: middle;
 }
 
+.tabular.inline-related td .flex.items-center,
+.tabular.inline-related td > .flex,
 .inline-group .tabular td .flex.items-center,
 .inline-group .tabular td > .flex {
   align-items: center;
@@ -368,12 +387,15 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
 }
 
 @media (max-width: 1024px) {
+  .tabular.inline-related .rs-cms-image,
   .inline-group .tabular .rs-cms-image {
     flex-wrap: wrap;
     width: auto;
     max-width: 100%;
   }
 
+  .tabular.inline-related .rs-cms-image input[type="file"],
+  .tabular.inline-related .rs-cms-image .rs-cms-image-input,
   .inline-group .tabular .rs-cms-image input[type="file"],
   .inline-group .tabular .rs-cms-image .rs-cms-image-input {
     max-width: 100%;

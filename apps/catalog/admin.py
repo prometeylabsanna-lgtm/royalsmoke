@@ -82,7 +82,6 @@ class ProductImageInline(ImagePreviewAdminMixin, TabularInline):
 
     class Media:
         css = {'all': ('css/admin/product_images_inline.css',)}
-        js = ('js/admin/product_admin_layout.js',)
 
 
 class ProductVariantInline(AutoSlugAdminMixin, ImagePreviewAdminMixin, TabularInline):
@@ -206,7 +205,8 @@ class ProductAdmin(AutoSlugAdminMixin, ImagePreviewAdminMixin, ModelAdmin):
     search_fields = ('name', 'sku', 'brand__name')
     prepopulated_fields = {'slug': ('name',)}
     filter_horizontal = ('tags',)
-    # Фото вище за відео: інлайн фото перший + JS піднімає його над fieldset «Відео»
+    change_form_template = 'admin/catalog/product/change_form.html'
+    # Порядок на формі: … → Фото → Відео → SEO → формати (див. change_form.html)
     inlines = [ProductImageInline, ProductVariantInline]
     fieldsets = (
         (None, {
@@ -239,11 +239,11 @@ class ProductAdmin(AutoSlugAdminMixin, ImagePreviewAdminMixin, ModelAdmin):
                 'meta_title_uk', 'meta_title_en', 'meta_title_zh_hans',
                 'meta_description_uk', 'meta_description_en', 'meta_description_zh_hans',
             ),
+            'classes': ('rs-product-seo-fieldset',),
         }),
     )
 
     class Media:
-        js = ('js/admin/product_admin_layout.js',)
         css = {'all': ('css/admin/product_images_inline.css',)}
 
     def get_queryset(self, request):

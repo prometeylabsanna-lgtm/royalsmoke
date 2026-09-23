@@ -1,30 +1,26 @@
-/* Картка товару: фото-інлайн — файл / підпис / порядок в один ряд */
+/* Картка товару (Unfold tabular: без .inline-group) */
 
 #productimage_set-group .tabular table,
-.inline-group.rs-product-images-inline .tabular table {
+.tabular .rs-product-images-inline table {
   width: 100%;
 }
 
 #productimage_set-group .tabular thead th,
-.inline-group.rs-product-images-inline .tabular thead th {
+.tabular .rs-product-images-inline thead th {
   white-space: nowrap;
   font-size: 0.8125rem;
 }
 
 #productimage_set-group .tabular tbody tr,
-.inline-group.rs-product-images-inline .tabular tbody tr {
-  vertical-align: middle;
-}
-
 #productimage_set-group .tabular td,
-.inline-group.rs-product-images-inline .tabular td {
+.tabular .rs-product-images-inline tbody tr,
+.tabular .rs-product-images-inline td {
   vertical-align: middle;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
 }
 
 #productimage_set-group .rs-cms-image,
-.inline-group.rs-product-images-inline .rs-cms-image {
+.tabular .rs-product-images-inline .rs-cms-image,
+.tabular.inline-related .rs-cms-image {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -34,27 +30,33 @@
   width: max-content;
 }
 
+/* Порожній превʼю ховаємо — інакше «Немає фото» штовхає file вниз */
 #productimage_set-group .rs-cms-image__frame.is-empty,
-.inline-group.rs-product-images-inline .rs-cms-image__frame.is-empty {
+.tabular .rs-product-images-inline .rs-cms-image__frame.is-empty,
+.tabular.inline-related .rs-cms-image__frame.is-empty {
   display: none;
 }
 
 #productimage_set-group .rs-cms-image__frame:not(.is-empty),
-.inline-group.rs-product-images-inline .rs-cms-image__frame:not(.is-empty) {
+.tabular .rs-product-images-inline .rs-cms-image__frame:not(.is-empty),
+.tabular.inline-related .rs-cms-image__frame:not(.is-empty) {
   width: 48px;
   height: 48px;
   flex: 0 0 auto;
 }
 
 #productimage_set-group .rs-cms-image__clear,
-.inline-group.rs-product-images-inline .rs-cms-image__clear {
+.tabular .rs-product-images-inline .rs-cms-image__clear,
+.tabular.inline-related .rs-cms-image__clear {
   display: none;
 }
 
 #productimage_set-group .rs-cms-image input[type="file"],
 #productimage_set-group .rs-cms-image .rs-cms-image-input,
-.inline-group.rs-product-images-inline .rs-cms-image input[type="file"],
-.inline-group.rs-product-images-inline .rs-cms-image .rs-cms-image-input {
+.tabular .rs-product-images-inline .rs-cms-image input[type="file"],
+.tabular .rs-product-images-inline .rs-cms-image .rs-cms-image-input,
+.tabular.inline-related .rs-cms-image input[type="file"],
+.tabular.inline-related .rs-cms-image .rs-cms-image-input {
   flex: 0 1 auto;
   min-width: 10rem;
   max-width: 16rem;
@@ -63,28 +65,30 @@
 }
 
 #productimage_set-group td.field-alt_text input,
-.inline-group.rs-product-images-inline td.field-alt_text input {
+.tabular .rs-product-images-inline td.field-alt_text input {
   min-width: 12rem;
   width: 100%;
   min-height: 2.5rem;
 }
 
 #productimage_set-group td.field-sort_order input,
-.inline-group.rs-product-images-inline td.field-sort_order input {
+.tabular .rs-product-images-inline td.field-sort_order input {
   width: 4.5rem;
   min-height: 2.5rem;
 }
 
 @media (max-width: 900px) {
   #productimage_set-group .rs-cms-image,
-  .inline-group.rs-product-images-inline .rs-cms-image {
+  .tabular .rs-product-images-inline .rs-cms-image,
+  .tabular.inline-related .rs-cms-image {
     flex-wrap: wrap;
     width: auto;
     max-width: 100%;
   }
 
   #productimage_set-group .rs-cms-image input[type="file"],
-  .inline-group.rs-product-images-inline .rs-cms-image input[type="file"] {
+  .tabular .rs-product-images-inline .rs-cms-image input[type="file"],
+  .tabular.inline-related .rs-cms-image input[type="file"] {
     max-width: 100%;
     min-width: 0;
   }
