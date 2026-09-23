@@ -3,6 +3,8 @@
     var native = root.querySelector('[data-cms-color-native]');
     var hex = root.querySelector('[data-cms-color-hex]');
     var circle = root.querySelector('[data-cms-color-circle]');
+    var resetBtn = root.querySelector('[data-cms-color-default]');
+    var fallback = root.getAttribute('data-default-color') || '#100d0c';
     if (!native || !hex || !circle) return;
 
     function normalize(val) {
@@ -17,10 +19,10 @@
     }
 
     function paint(val) {
-      var n = normalize(val) || native.value;
+      var n = normalize(val) || normalize(fallback) || native.value;
       circle.style.background = n;
       hex.value = n;
-      if (normalize(val)) native.value = n;
+      native.value = n;
     }
 
     native.addEventListener('input', function () {
@@ -28,14 +30,15 @@
     });
     hex.addEventListener('change', function () {
       var n = normalize(hex.value);
-      if (n) {
-        native.value = n;
-        paint(n);
-      } else {
-        paint(native.value);
-      }
+      paint(n || native.value);
     });
-    paint(native.value);
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        paint(fallback);
+      });
+    }
+    paint(native.value || fallback);
   }
 
   function init(scope) {

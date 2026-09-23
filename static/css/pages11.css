@@ -1,7 +1,7 @@
 /* Royal Smoke — Legal / Privacy page (FAQ-matched bg) */
 
 body.rs-legal-page {
-  --rs-legal-bg: #100d0c;
+  --rs-legal-bg: var(--rs-page-bg);
   --rs-legal-content-w: 720px;
   background-color: var(--rs-legal-bg);
 }

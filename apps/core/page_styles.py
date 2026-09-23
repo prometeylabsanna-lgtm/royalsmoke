@@ -118,10 +118,7 @@ def _styles_map() -> dict[str, dict[str, str]]:
 
 
 def _preview_from_request(request) -> dict[str, str]:
-    if not getattr(request, 'user', None) or not request.user.is_authenticated:
-        return {}
-    if not (request.user.is_staff or request.user.is_superuser):
-        return {}
+    """Демо з query-параметрів. Працює без окремої staff-сесії на фронті."""
     if request.GET.get('rs_style_preview') != '1':
         return {}
     return {

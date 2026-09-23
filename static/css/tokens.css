@@ -185,15 +185,38 @@ body.is-locked {
 }
 
 .rs-style-preview-banner {
-  position: sticky;
+  --rs-style-preview-h: 36px;
+  position: fixed;
   top: 0;
-  z-index: 100;
-  padding: 0.55rem 1rem;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  box-sizing: border-box;
+  min-height: var(--rs-style-preview-h);
+  padding: 0.45rem 1rem;
   text-align: center;
   font-size: 13px;
   letter-spacing: 0.04em;
   background: var(--rs-page-accent, var(--rs-gold));
   color: var(--rs-bark);
+}
+
+body.is-style-preview {
+  --rs-style-preview-h: 36px;
+}
+
+body.is-style-preview .rs-header {
+  top: var(--rs-style-preview-h);
+}
+
+body.is-style-preview:not(.rs-home) .rs-main {
+  padding-top: calc(
+    var(--rs-header-h) + var(--rs-safe-t, 0px) + var(--rs-style-preview-h) + 1px
+  );
+}
+
+body.is-style-preview.rs-home .rs-site {
+  padding-top: var(--rs-style-preview-h);
 }
 
 img,

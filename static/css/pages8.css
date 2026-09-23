@@ -1,7 +1,7 @@
 /* Royal Smoke — FAQ page */
 
 body.rs-faq-page {
-  --rs-faq-bg: #100d0c;
+  --rs-faq-bg: var(--rs-page-bg);
   --rs-faq-content-w: 720px;
   --rs-faq-gold: var(--rs-gold);
   background-color: var(--rs-faq-bg);

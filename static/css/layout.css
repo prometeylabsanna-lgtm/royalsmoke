@@ -91,7 +91,7 @@
   bottom: 0;
   z-index: 0;
   pointer-events: none;
-  background: #100d0c;
+  background: var(--rs-page-bg);
   opacity: var(--rs-header-solid);
 }
 
@@ -115,7 +115,7 @@
 /* Внутрішні сторінки: хедер одразу непрозорий */
 body:not(.rs-home) .rs-header {
   --rs-header-solid: 1;
-  background: #100d0c;
+  background: var(--rs-page-bg);
 }
 
 body:not(.rs-home) .rs-header::before {

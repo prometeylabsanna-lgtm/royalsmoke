@@ -1,7 +1,7 @@
 /* Royal Smoke — Delivery & Payment page */
 
 body.rs-delivery-page {
-  --rs-delivery-bg: #100d0c;
+  --rs-delivery-bg: var(--rs-page-bg);
   --rs-delivery-content-w: 720px;
   --rs-delivery-gold: var(--rs-gold);
   background-color: var(--rs-delivery-bg);

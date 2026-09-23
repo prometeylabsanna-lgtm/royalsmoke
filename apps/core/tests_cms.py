@@ -235,17 +235,24 @@ class PageStyleTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'rs-cms-colorpick')
         self.assertContains(response, 'data-cms-color-circle')
+        self.assertContains(response, 'data-cms-color-default')
+        self.assertContains(response, 'Дефолт')
+        self.assertContains(response, 'data-default-color="#fcf2ee"')
+        self.assertContains(response, 'data-default-color="#c99a44"')
         self.assertContains(response, 'Подивитись на сайті')
         self.assertContains(response, 'data-page-style-preview')
         self.assertContains(response, 'text_color')
         self.assertContains(response, 'accent_color')
 
-    def test_preview_query_for_staff(self):
+    def test_preview_query_without_login(self):
+        self.client.logout()
         response = self.client.get(
-            reverse('pages:about') + '?rs_style_preview=1&preview_bg=%23ff0000&preview_text=%2300ff00&preview_accent=%230000ff',
+            reverse('pages:about')
+            + '?rs_style_preview=1&preview_bg=%23eb3b00&preview_text=%23100d0c&preview_accent=%23c99a44',
         )
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '--rs-page-bg: #ff0000')
+        self.assertContains(response, '--rs-page-bg: #eb3b00')
+        self.assertContains(response, 'is-style-preview')
         self.assertContains(response, 'Превʼю кольорів')
 
 

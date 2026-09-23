@@ -1,7 +1,7 @@
 /* Royal Smoke — About page (7g sticky media + timeline) */
 
 body.rs-about-page {
-  background-color: #100d0c;
+  background-color: var(--rs-page-bg);
   background-image: none;
 }
 

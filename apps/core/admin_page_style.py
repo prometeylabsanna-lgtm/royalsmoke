@@ -44,7 +44,7 @@ class PageStyleAdminForm(forms.ModelForm):
         )
         for name, default, label in specs:
             field = self.fields[name]
-            field.widget = CmsAdminColorWidget()
+            field.widget = CmsAdminColorWidget(default_color=default)
             field.label = label
             field.required = False
             current = (getattr(self.instance, name, '') or '').strip() or default

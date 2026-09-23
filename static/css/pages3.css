@@ -2,7 +2,7 @@
 
 /* ——— Page background: flat solid (from reference swatch) ——— */
 body.rs-home {
-  background-color: #100d0c;
+  background-color: var(--rs-page-bg);
   background-image: none;
 }
 
@@ -15,13 +15,13 @@ body.rs-home {
   overflow: hidden;
   contain: strict;
   clip-path: inset(0);
-  background: #100d0c;
+  background: var(--rs-page-bg);
 }
 
 .rs-home-bg__base {
   position: absolute;
   inset: 0;
-  background: #100d0c;
+  background: var(--rs-page-bg);
 }
 
 .rs-home-bg__glow,

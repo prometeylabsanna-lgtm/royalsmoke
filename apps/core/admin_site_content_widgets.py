@@ -76,7 +76,13 @@ class CmsAdminColorWidget(AdminTextInputWidget):
     input_type = 'color'
     template_name = 'django/forms/widgets/cms_color.html'
 
-    def __init__(self, attrs: Optional[dict[str, Any]] = None) -> None:
+    def __init__(
+        self,
+        attrs: Optional[dict[str, Any]] = None,
+        *,
+        default_color: str = '#100d0c',
+    ) -> None:
+        self.default_color = self._normalize_hex(default_color) or '#100d0c'
         merged = dict(attrs or {})
         extra_class = merged.pop('class', '')
         super().__init__(attrs={
@@ -84,13 +90,23 @@ class CmsAdminColorWidget(AdminTextInputWidget):
             'class': cms_control_classes(['rs-cms-colorpick__native'], extra_class),
         })
 
-    def format_value(self, value):
+    @staticmethod
+    def _normalize_hex(value: str) -> str:
         raw = (value or '').strip()
         if not raw:
-            return '#100d0c'
+            return ''
         if len(raw) == 4 and raw.startswith('#'):
-            return f'#{raw[1] * 2}{raw[2] * 2}{raw[3] * 2}'
-        return raw
+            return f'#{raw[1] * 2}{raw[2] * 2}{raw[3] * 2}'.lower()
+        return raw.lower()
+
+    def format_value(self, value):
+        raw = self._normalize_hex(value or '')
+        return raw or self.default_color
+
+    def get_context(self, name, value, attrs):
+        context = super().get_context(name, value, attrs)
+        context['widget']['default_color'] = self.default_color
+        return context
 
 
 class CmsAdminTinyMCEWidget(TinyMCE):
