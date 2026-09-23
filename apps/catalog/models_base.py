@@ -20,7 +20,6 @@ class TimeStampedModel(models.Model):
 class Category(TimeStampedModel):
     class Kind(models.TextChoices):
         CIGARS = 'cigars', _('Сигари')
-        CIGARETTES = 'cigarettes', _('Сигарети')
         ACCESSORIES = 'accessories', _('Аксесуари')
         OTHER = 'other', _('Інше')
 

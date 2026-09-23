@@ -87,6 +87,9 @@ class CategoryAdmin(AutoSlugAdminMixin, ImagePreviewAdminMixin, ModelAdmin):
     prepopulated_fields = {'slug': ('name_uk',)}
     search_fields = ('name',)
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).exclude(slug='cigarettes').exclude(name='Сигарети')
+
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         if db_field.name in _CATALOG_TINYMCE_FIELDS:
             kwargs['widget'] = CmsAdminTinyMCEWidget()
@@ -180,7 +183,7 @@ class ProductAdmin(AutoSlugAdminMixin, ImagePreviewAdminMixin, ModelAdmin):
         },
     )
     search_fields = ('name', 'sku', 'brand__name')
-    prepopulated_fields = {'slug': ('name_uk',)}
+    prepopulated_fields = {'slug': ('name',)}
     filter_horizontal = ('tags',)
     inlines = [ProductVariantInline, ProductImageInline]
     fieldsets = (

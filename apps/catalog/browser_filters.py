@@ -128,7 +128,8 @@ def apply_category_params(qs, params, *, path_category=None):
 def category_queryset():
     return (
         Category.objects.filter(is_active=True, parent__isnull=True)
-        .exclude(kind=Category.Kind.CIGARETTES)
+        .exclude(slug='cigarettes')
+        .exclude(name='Сигарети')
         .annotate(
             product_count=Count(
                 'products',

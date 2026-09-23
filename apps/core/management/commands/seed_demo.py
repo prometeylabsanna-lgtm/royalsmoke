@@ -158,7 +158,6 @@ class Command(BaseCommand):
         cats = [
             ('Сигари', 'cigars', Category.Kind.CIGARS, True),
             ('Аксесуари', 'accessories', Category.Kind.ACCESSORIES, True),
-            ('Сигарети', 'cigarettes', Category.Kind.CIGARETTES, False),
         ]
         cat_map = {}
         for name, slug, kind, featured in cats:
@@ -169,6 +168,10 @@ class Command(BaseCommand):
                 },
             )
             cat_map[slug] = cat
+
+        # Прибрати застарілу категорію «Сигарети»
+        Category.objects.filter(slug='cigarettes').delete()
+        Category.objects.filter(name='Сигарети').delete()
 
         brands_data = [
             ('AJ Fernandez', 'aj-fernandez', 'Нікарагуа', True, 0),
