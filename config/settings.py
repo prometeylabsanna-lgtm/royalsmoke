@@ -365,6 +365,11 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# Sliding checkout window (seconds); warn when remaining ≤ CHECKOUT_WARN_SECONDS
+CHECKOUT_SESSION_SECONDS = int(os.environ.get('CHECKOUT_SESSION_SECONDS', str(60 * 60)))
+CHECKOUT_WARN_SECONDS = int(os.environ.get('CHECKOUT_WARN_SECONDS', str(5 * 60)))
+LOGOUT_REDIRECT_URL = '/'
 CSRF_TRUSTED_ORIGINS = [
     o.strip()
     for o in os.environ.get('CSRF_TRUSTED_ORIGINS', 'http://127.0.0.1:8000,http://localhost:8000').split(',')

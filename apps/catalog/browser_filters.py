@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from apps.catalog.models import Brand, Category, Product
+from apps.catalog.search import product_search_q, sanitize_search_query
 from apps.core.currency import convert_from_uah_int, convert_to_uah
 
 SORT_OPTIONS = (
@@ -54,7 +55,7 @@ def apply_filters(qs, params):
     country = _clean_list(params, 'country')
     brand = _clean_list(params, 'brand')
     tag = (params.get('tag') or '').strip()
-    q = (params.get('q') or '').strip()
+    q = sanitize_search_query(params.get('q'))
     sort = params.get('sort') or 'default'
 
     if strength:
@@ -66,12 +67,7 @@ def apply_filters(qs, params):
     if tag:
         qs = qs.filter(tags__slug=tag).distinct()
     if q:
-        qs = qs.filter(
-            Q(name__icontains=q)
-            | Q(brand__name__icontains=q)
-            | Q(description__icontains=q)
-            | Q(short_story__icontains=q)
-        )
+        qs = qs.filter(product_search_q(q)).distinct()
 
     bound_min_uah, bound_max_uah = price_bounds()
     price_min = _as_decimal(params.get('price_min'))
@@ -96,18 +92,19 @@ def apply_filters(qs, params):
             if price_max_uah < bound_max_uah:
                 qs = qs.filter(base_price__lte=price_max_uah)
 
+    # Always end with id for stable pagination (no duplicates/jumps across pages).
     if sort in ('price_asc', 'price'):
-        qs = qs.order_by('base_price', 'name')
+        qs = qs.order_by('base_price', 'name', 'id')
     elif sort in ('price_desc', '-price'):
-        qs = qs.order_by('-base_price', 'name')
+        qs = qs.order_by('-base_price', 'name', 'id')
     elif sort == 'name':
-        qs = qs.order_by('name')
+        qs = qs.order_by('name', 'id')
     elif sort == 'new':
-        qs = qs.order_by('-created_at')
+        qs = qs.order_by('-created_at', 'id')
     elif sort == 'top':
-        qs = qs.order_by('-is_featured', 'sort_order', 'name')
+        qs = qs.order_by('-is_featured', 'sort_order', 'name', 'id')
     else:
-        qs = qs.order_by('sort_order', 'name')
+        qs = qs.order_by('sort_order', 'name', 'id')
     return qs
 
 
@@ -141,7 +138,7 @@ def category_queryset():
     )
 
 
-def build_browser_context(request, *, products, category=None, brand=None):
+def build_browser_context(request, *, products, category=None, brand=None, page_obj=None):
     params = request.GET
     list_path = reverse('catalog:list')
     if category:
@@ -176,7 +173,7 @@ def build_browser_context(request, *, products, category=None, brand=None):
 
     current_tag = (params.get('tag') or '').strip()
     current_sort = (params.get('sort') or '').strip()
-    current_q = (params.get('q') or '').strip()
+    current_q = sanitize_search_query(params.get('q'))
 
     nav_categories = []
     for cat in categories:
@@ -260,8 +257,24 @@ def build_browser_context(request, *, products, category=None, brand=None):
         current_q,
     ])
 
+    page_links = []
+    if page_obj is not None and getattr(page_obj, 'paginator', None):
+        total_pages = page_obj.paginator.num_pages
+        if total_pages > 1 or getattr(page_obj, 'out_of_range', False):
+            qdict = params.copy()
+            for num in range(1, total_pages + 1):
+                qdict['page'] = str(num)
+                page_links.append({
+                    'number': num,
+                    'url': f'{base_path}?{qdict.urlencode()}' if qdict else base_path,
+                    'is_current': num == page_obj.number and not getattr(page_obj, 'out_of_range', False),
+                })
+
     return {
         'products': products,
+        'page_obj': page_obj,
+        'page_links': page_links,
+        'current_q': current_q,
         'category': category,
         'brand': brand,
         'nav_categories': nav_categories,

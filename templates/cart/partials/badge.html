@@ -1,1 +1,4 @@
-<span id="cart-badge" class="rs-badge" data-count="{{ cart_count|default:0 }}">{% if cart_count %}{{ cart_count }}{% endif %}</span>
+<span id="cart-badge"
+      class="rs-badge"
+      data-count="{{ cart_count|default:0 }}"
+      {% if oob %}hx-swap-oob="outerHTML"{% endif %}>{% if cart_count %}{{ cart_count }}{% endif %}</span>

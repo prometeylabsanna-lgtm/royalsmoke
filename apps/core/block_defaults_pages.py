@@ -4,6 +4,11 @@ from django.utils.translation import gettext_lazy as _
 
 PAGE_DEFAULTS: dict[tuple[str, str], str] = {
     ('site', 'header_search_placeholder'): _('Пошук сигар, брендів, аксесуарів…'),
+    ('site', 'header_icon_search'): '',
+    ('site', 'header_icon_profile'): '',
+    ('site', 'header_icon_compare'): '',
+    ('site', 'header_icon_wishlist'): '',
+    ('site', 'header_icon_cart'): '',
     ('site', 'nav_home'): _('Головна'),
     ('site', 'nav_catalog'): _('Каталог'),
     ('site', 'nav_sale'): _('Акції'),
@@ -125,6 +130,11 @@ PAGE_DEFAULTS: dict[tuple[str, str], str] = {
 
 PAGE_LABELS: dict[tuple[str, str], str] = {
     ('site', 'header_search_placeholder'): 'Підказка пошуку',
+    ('site', 'header_icon_search'): 'Іконка пошуку',
+    ('site', 'header_icon_profile'): 'Іконка профілю',
+    ('site', 'header_icon_compare'): 'Іконка порівняння',
+    ('site', 'header_icon_wishlist'): 'Іконка обраного',
+    ('site', 'header_icon_cart'): 'Іконка кошика',
     ('site', 'nav_home'): 'Пункт: Головна',
     ('site', 'nav_catalog'): 'Пункт: Каталог',
     ('site', 'nav_sale'): 'Пункт: Акції',
@@ -225,6 +235,11 @@ PAGE_LABELS: dict[tuple[str, str], str] = {
 
 IMAGE_STATIC_FALLBACKS: dict[tuple[str, str], str] = {
     ('site', 'footer_seal'): 'img/footer/seal.jpg',
+    ('site', 'header_icon_search'): 'img/header/icon-search.svg',
+    ('site', 'header_icon_profile'): 'img/header/icon-profile.svg',
+    ('site', 'header_icon_compare'): 'img/header/icon-compare.svg',
+    ('site', 'header_icon_wishlist'): 'img/header/icon-wishlist.svg',
+    ('site', 'header_icon_cart'): 'img/header/icon-cart.svg',
 }
 
 PAGE_TYPES: dict[tuple[str, str], str] = {
@@ -232,6 +247,11 @@ PAGE_TYPES: dict[tuple[str, str], str] = {
     ('faq', 'bg'): 'image',
     ('delivery', 'bg'): 'image',
     ('site', 'footer_seal'): 'image',
+    ('site', 'header_icon_search'): 'image',
+    ('site', 'header_icon_profile'): 'image',
+    ('site', 'header_icon_compare'): 'image',
+    ('site', 'header_icon_wishlist'): 'image',
+    ('site', 'header_icon_cart'): 'image',
 }
 
 PAGE_INLINE = {

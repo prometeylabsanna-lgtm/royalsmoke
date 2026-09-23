@@ -5,14 +5,15 @@ Add a language in settings.LANGUAGE_CURRENCY and a CurrencyRate row in admin.
 
 from __future__ import annotations
 
-from decimal import Decimal, ROUND_HALF_UP, InvalidOperation
+from decimal import Decimal, ROUND_HALF_UP
 
 from django.conf import settings
 from django.core.cache import cache
 from django.db.utils import OperationalError, ProgrammingError
 from django.utils.translation import get_language
 
-TWOPLACES = Decimal('0.01')
+from apps.core.money import TWOPLACES, as_decimal, money
+
 CACHE_KEY = 'rs_currency_rates'
 
 _FALLBACK: dict[str, dict] = {
@@ -42,14 +43,7 @@ def clear_currency_cache() -> None:
 
 
 def _as_dec(amount) -> Decimal:
-    if amount is None or amount == '':
-        return Decimal('0')
-    if isinstance(amount, Decimal):
-        return amount
-    try:
-        return Decimal(str(amount))
-    except (InvalidOperation, ValueError, TypeError):
-        return Decimal('0')
+    return as_decimal(amount)
 
 
 def language_currency_code(lang: str | None = None) -> str:
@@ -140,16 +134,19 @@ def convert_cart_totals(totals: dict, delivery_uah=None) -> dict:
     for item in totals.get('items') or []:
         unit = convert_from_uah(item.get('unit_price'))
         qty = int(item.get('quantity') or 0)
-        line = (unit * qty).quantize(TWOPLACES, rounding=ROUND_HALF_UP)
+        line = money(unit * qty)
         items.append({**item, 'unit_price': unit, 'line_total': line})
-    subtotal = sum((i['line_total'] for i in items), Decimal('0'))
+    subtotal = money(sum((i['line_total'] for i in items), Decimal('0')))
     delivery = convert_from_uah(delivery_uah or 0)
+    discount = money((totals.get('discount') if totals else None) or 0)
+    total = money(subtotal + delivery - discount)
     return {
         **totals,
         'items': items,
         'subtotal': subtotal,
         'delivery_cost': delivery,
-        'total': (subtotal + delivery).quantize(TWOPLACES, rounding=ROUND_HALF_UP),
+        'discount': discount,
+        'total': total,
         'currency': cur['code'],
         'fx_rate': cur['uah_per_unit'],
         'symbol': cur['symbol'],

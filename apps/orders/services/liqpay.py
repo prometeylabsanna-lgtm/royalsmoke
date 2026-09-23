@@ -46,7 +46,10 @@ def create_checkout_payload(
     if not public_key or not private_key:
         raise ValueError('LiqPay keys are not configured')
     sandbox = getattr(settings, 'LIQPAY_SANDBOX', True)
-    amount = Decimal(order.total).quantize(Decimal('0.01'))
+    from apps.core.money import money, reconcile_order_totals
+    if hasattr(order, 'items'):
+        reconcile_order_totals(order)
+    amount = money(order.total)
     lang = (get_language() or 'uk').lower()
     liqpay_lang = 'uk' if lang.startswith('uk') else 'en'
     payload: dict[str, Any] = {

@@ -112,15 +112,26 @@ class Product(TimeStampedModel):
             self.slug = unique_slug(self.__class__, base, max_length=280, instance=self)
         super().save(*args, **kwargs)
 
+    def clean(self):
+        from django.core.exceptions import ValidationError
+
+        super().clean()
+        if self.base_price is None or self.base_price <= 0:
+            raise ValidationError({'base_price': 'Ціна має бути більшою за 0'})
+        if self.old_price is not None and self.old_price > 0 and self.old_price <= self.base_price:
+            raise ValidationError({'old_price': 'Стара ціна (акція) має бути більшою за поточну'})
+
     def get_absolute_url(self):
         return reverse('catalog:product', kwargs={'slug': self.slug})
 
     @property
     def display_price(self) -> Decimal:
-        return self.base_price
+        from apps.core.money import money
+        return money(self.base_price)
 
     def available_stock(self) -> int:
-        return self.stock
+        from apps.cart.stock import free_stock
+        return free_stock(self.pk)
 
 
 class ProductImage(models.Model):

@@ -58,6 +58,16 @@ class ProductAdminForm(TranslationSyncModelForm):
         model = Product
         fields = '__all__'
 
+    def clean(self):
+        cleaned = super().clean()
+        price = cleaned.get('base_price')
+        if price is None or price <= 0:
+            self.add_error('base_price', 'Ціна має бути більшою за 0')
+        old = cleaned.get('old_price')
+        if old is not None and price is not None and old > 0 and old <= price:
+            self.add_error('old_price', 'Стара ціна (акція) має бути більшою за поточну')
+        return cleaned
+
 
 class ProductImageAdminForm(forms.ModelForm):
     class Meta:

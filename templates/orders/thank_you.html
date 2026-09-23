@@ -9,11 +9,11 @@
   <p>
     {% if order %}
       {% blocktrans with num=order.order_number %}Номер замовлення <strong>{{ num }}</strong>. Ми надіслали підтвердження на вашу пошту.{% endblocktrans %}
-      {% if order.status == 'paid' %}
-        <br>{% trans "Оплату підтверджено." %}
-      {% elif order.status == 'awaiting_payment' %}
-        <br>{% trans "Очікуємо підтвердження оплати." %}
-      {% endif %}
+    {% if order and order.status == 'paid' %}
+      <br>{% trans "Оплату підтверджено." %}
+    {% elif order and order.status == 'awaiting_payment' %}
+      <br>{% trans "Очікуємо підтвердження оплати (оновлюється автоматично після відповіді банку)." %}
+    {% endif %}
     {% else %}
       {% trans "Ми отримали ваше замовлення і скоро звʼяжемося з вами." %}
     {% endif %}

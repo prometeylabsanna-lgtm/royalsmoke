@@ -1,4 +1,5 @@
-from django.db.models import Prefetch, Q
+from django.db.models import Prefetch
+from django.db import DatabaseError
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_GET
 
@@ -8,6 +9,8 @@ from apps.catalog.browser_filters import (
     build_browser_context,
 )
 from apps.catalog.models import Brand, Category, Product, ProductReview
+from apps.catalog.pagination import paginate_catalog
+from apps.catalog.search import SUGGEST_MIN_LEN, product_search_q, sanitize_search_query
 from apps.catalog.views_compare import (
     compare_detail,
     compare_toggle,
@@ -26,6 +29,20 @@ __all__ = [
 ]
 
 
+def _catalog_page(request, qs, *, category=None, brand=None):
+    products, page_obj = paginate_catalog(qs, request.GET.get('page'))
+    ctx = build_browser_context(
+        request,
+        products=products,
+        category=category,
+        brand=brand,
+        page_obj=page_obj,
+    )
+    if request.htmx:
+        return render(request, 'catalog/partials/product_grid.html', ctx)
+    return render(request, 'catalog/list.html', ctx)
+
+
 def catalog_list(request, slug=None):
     qs = Product.objects.on_storefront().with_relations()
     category = None
@@ -33,11 +50,7 @@ def catalog_list(request, slug=None):
         category = get_object_or_404(Category, slug=slug, is_active=True)
     qs = apply_category_params(qs, request.GET, path_category=category)
     qs = apply_filters(qs, request.GET)
-    products = list(qs[:48])
-    ctx = build_browser_context(request, products=products, category=category)
-    if request.htmx:
-        return render(request, 'catalog/partials/product_grid.html', ctx)
-    return render(request, 'catalog/list.html', ctx)
+    return _catalog_page(request, qs, category=category)
 
 
 def brand_detail(request, slug):
@@ -45,11 +58,7 @@ def brand_detail(request, slug):
     qs = Product.objects.on_storefront().with_relations().filter(brand=brand)
     qs = apply_category_params(qs, request.GET, path_category=None)
     qs = apply_filters(qs, request.GET)
-    products = list(qs[:48])
-    ctx = build_browser_context(request, products=products, brand=brand)
-    if request.htmx:
-        return render(request, 'catalog/partials/product_grid.html', ctx)
-    return render(request, 'catalog/list.html', ctx)
+    return _catalog_page(request, qs, brand=brand)
 
 
 def product_detail(request, slug):
@@ -98,17 +107,19 @@ def models_f_add(product: Product) -> int:
 
 @require_GET
 def search_suggest(request):
-    q = (request.GET.get('q') or '').strip()
+    q = sanitize_search_query(request.GET.get('q'))
     products = []
-    if len(q) >= 2:
-        products = list(
-            Product.objects.on_storefront()
-            .filter(
-                Q(name__icontains=q) | Q(brand__name__icontains=q)
+    try:
+        if len(q) >= SUGGEST_MIN_LEN:
+            products = list(
+                Product.objects.on_storefront()
+                .filter(product_search_q(q))
+                .select_related('brand')
+                .prefetch_related('images')
+                .order_by('sort_order', 'name', 'id')[:8]
             )
-            .select_related('brand')
-            .prefetch_related('images')[:8]
-        )
+    except (DatabaseError, ValueError, TypeError):
+        products = []
     return render(request, 'catalog/partials/search_suggest.html', {
         'products': products,
         'q': q,

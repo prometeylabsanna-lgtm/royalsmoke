@@ -78,6 +78,7 @@ class CheckoutAndDemoPayTests(TestCase):
             brand=brand,
             category=cat,
             base_price=1200,
+            stock=20,
             is_active=True,
         )
 
@@ -88,6 +89,9 @@ class CheckoutAndDemoPayTests(TestCase):
         })
 
     def _checkout(self, payment_method='online'):
+        page = self.client.get(reverse('orders:checkout'))
+        self.assertEqual(page.status_code, 200)
+        token = page.context['checkout_token']
         return self.client.post(reverse('orders:checkout'), {
             'first_name': 'Ivan',
             'last_name': 'Petrenko',
@@ -98,6 +102,7 @@ class CheckoutAndDemoPayTests(TestCase):
             'delivery_address': 'Showroom',
             'payment_method': payment_method,
             'age_confirm': '1',
+            'checkout_token': token,
         })
 
     def test_cod_checkout(self):

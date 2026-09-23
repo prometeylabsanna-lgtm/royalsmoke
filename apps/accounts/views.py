@@ -1,7 +1,8 @@
 from datetime import timedelta
 from decimal import Decimal
 
-from django.contrib.auth import login
+from django.contrib import messages
+from django.contrib.auth import login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse
@@ -13,7 +14,18 @@ from django.utils.translation import gettext as _
 from django.views.decorators.http import require_http_methods, require_POST
 
 from apps.accounts import wishlist as wishlist_services
-from apps.accounts.forms import EmailAuthenticationForm, RegisterForm
+from apps.accounts.forms import (
+    ChangePasswordForm,
+    DeleteAccountForm,
+    EmailAuthenticationForm,
+    RegisterForm,
+)
+from apps.accounts.sessions import (
+    delete_account_to_guest,
+    flush_user_sessions,
+    logout_keeping_cart,
+)
+from apps.cart import db_services as db_cart
 from apps.catalog.models import Product
 from apps.core.currency import amount_to_uah
 from apps.orders.models import Order
@@ -44,6 +56,7 @@ def login_view(request):
     form = EmailAuthenticationForm(request, data=request.POST or None)
     if request.method == 'POST' and form.is_valid():
         _login_user(request, form.get_user())
+        db_cart.merge_session_into_user(request.session, request.user)
         wishlist_services.merge_session_to_user(request)
         return redirect(_safe_next(request))
     return render(request, 'accounts/login.html', {'form': form, 'next': next_url})
@@ -61,6 +74,7 @@ def register_view(request):
             form.add_error('email', _('Користувач з таким email уже існує'))
         else:
             _login_user(request, user)
+            db_cart.merge_session_into_user(request.session, request.user)
             wishlist_services.merge_session_to_user(request)
             return redirect('accounts:cabinet')
     return render(request, 'accounts/register.html', {'form': form})
@@ -119,6 +133,36 @@ def cabinet(request):
         'avatar_initial': initial,
         'wishlist_items': wishlist_items,
     })
+
+
+@require_POST
+def logout_view(request):
+    logout_keeping_cart(request)
+    return redirect('/')
+
+
+@login_required
+@require_http_methods(['GET', 'POST'])
+def password_change_view(request):
+    form = ChangePasswordForm(request.user, request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        user = form.save()
+        update_session_auth_hash(request, user)
+        flush_user_sessions(user, keep_session_key=request.session.session_key)
+        messages.success(request, _('Пароль змінено. Інші сесії завершено.'))
+        return redirect('accounts:cabinet')
+    return render(request, 'accounts/password_change.html', {'form': form})
+
+
+@login_required
+@require_http_methods(['GET', 'POST'])
+def delete_account_view(request):
+    form = DeleteAccountForm(request.user, request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        delete_account_to_guest(request, request.user)
+        messages.info(request, _('Акаунт видалено. Кошик збережено як гостьовий.'))
+        return redirect('/')
+    return render(request, 'accounts/delete_account.html', {'form': form})
 
 
 def wishlist_detail(request):

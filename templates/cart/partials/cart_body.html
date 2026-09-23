@@ -1,4 +1,11 @@
-{% load i18n rs_content %}
+{% load i18n rs_content rs_currency %}
+{% if cart.issues %}
+  <ul class="rs-cart__issues" role="alert">
+    {% for issue in cart.issues %}
+      <li class="rs-cart__issue">{{ issue }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
 {% if cart.items %}
   <div class="rs-cart__main">
     <div class="rs-cart__lines">
@@ -56,7 +63,11 @@
 
   <aside class="rs-cart__bar" aria-label="{% trans "Підсумок кошика" %}">
     <span class="rs-cart__bar-total">{% blocktrans with total=cart.total|money symbol=currency.symbol %}Разом {{ total }} {{ symbol }}{% endblocktrans %}</span>
-    <a class="rs-cart__checkout" href="{% url 'orders:checkout' %}">{% cms_text 'cart' 'checkout' %}</a>
+    {% if cart.can_checkout %}
+      <a class="rs-cart__checkout" href="{% url 'orders:checkout' %}">{% cms_text 'cart' 'checkout' %}</a>
+    {% else %}
+      <span class="rs-cart__checkout rs-cart__checkout--disabled" aria-disabled="true">{% cms_text 'cart' 'checkout' %}</span>
+    {% endif %}
   </aside>
 {% else %}
   <div class="rs-cart__empty">

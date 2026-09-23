@@ -172,13 +172,32 @@ class CheckoutView(APIView):
         if not totals['items']:
             return Response({'detail': 'Cart is empty'}, status=400)
 
+        issues = totals.get('issues') or []
+        if issues:
+            return Response({'detail': 'Cart unavailable', 'issues': issues}, status=400)
+
         delivery_cost = data.get('delivery_cost') or Decimal('0')
         priced = convert_cart_totals(totals, delivery_cost)
+        from apps.core.money import MIN_UNIT_PRICE, money, reconcile_order_totals
+        if money(priced['total']) < MIN_UNIT_PRICE:
+            return Response({'detail': 'Invalid order total'}, status=400)
         status_code = Order.STATUS_PENDING
         if data['payment_method'] == Order.PAYMENT_ONLINE:
             status_code = Order.STATUS_AWAITING_PAYMENT
 
+        from apps.cart import stock as stock_svc
+
         with transaction.atomic():
+            consume_issues = stock_svc.consume_for_checkout(
+                totals['items'],
+                session=request.session,
+                user=request.user if request.user.is_authenticated else None,
+            )
+            if consume_issues:
+                return Response(
+                    {'detail': 'Cart unavailable', 'issues': consume_issues},
+                    status=400,
+                )
             order = Order.objects.create(
                 user=request.user if request.user.is_authenticated else None,
                 first_name=data['first_name'],
@@ -192,10 +211,10 @@ class CheckoutView(APIView):
                 np_city_ref=data.get('np_city_ref') or '',
                 np_warehouse_ref=data.get('np_warehouse_ref') or '',
                 payment_method=data['payment_method'],
-                subtotal=priced['subtotal'],
-                discount=Decimal('0'),
-                delivery_cost=priced['delivery_cost'],
-                total=priced['total'],
+                subtotal=money(priced['subtotal']),
+                discount=money(0),
+                delivery_cost=money(priced['delivery_cost']),
+                total=money(priced['total']),
                 currency=priced['currency'],
                 fx_rate=priced['fx_rate'],
                 status=status_code,
@@ -206,10 +225,11 @@ class CheckoutView(APIView):
                     product=item['product'],
                     product_name=str(item['product']),
                     product_sku=item['product'].sku or '',
-                    price=item['unit_price'],
+                    price=money(item['unit_price']),
                     quantity=item['quantity'],
-                    line_total=item['line_total'],
+                    line_total=money(item['line_total']),
                 )
+            reconcile_order_totals(order)
             if request.user.is_authenticated:
                 db_cart.clear(request.user)
             else:

@@ -5,11 +5,22 @@
 {% block body_class %}rs-pay-page{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/pages13.css' %}?v=1">
+<link rel="stylesheet" href="{% static 'css/pages13.css' %}?v=2">
 {% endblock %}
 
 {% block content %}
-{% if demo %}
+{% if waiting %}
+<div class="rs-thank" data-rs-reveal>
+  <h1>{% trans "Очікуємо підтвердження оплати" %}</h1>
+  <p>
+    {% blocktrans with num=order.order_number %}Замовлення <strong>{{ num }}</strong> уже передано в оплату. Не сплачуйте повторно — статус оновиться автоматично після відповіді банку.{% endblocktrans %}
+  </p>
+  <div class="rs-btn-row" style="max-width:420px;margin-inline:auto">
+    <a class="rs-btn rs-btn--gold" href="{% url 'orders:thank_you' order.order_number %}">{% trans "До замовлення" %}</a>
+    <a class="rs-btn rs-btn--ghost" href="{% url 'orders:pay' order.order_number %}">{% trans "Оновити статус" %}</a>
+  </div>
+</div>
+{% elif demo %}
 <div class="rs-pay" data-rs-reveal>
   <p class="rs-pay__badge">{% trans "Демо-режим · гроші не списуються" %}</p>
   <h1>{% trans "Оплата замовлення" %}</h1>
@@ -18,7 +29,7 @@
   </p>
   <p class="rs-pay__sum">{{ order.total }} {{ order.currency|currency_symbol }}</p>
 
-  <form class="rs-form rs-pay__form" method="post" action="{% url 'orders:demo_pay' order.order_number %}">
+  <form class="rs-form rs-pay__form" method="post" action="{% url 'orders:demo_pay' order.order_number %}" data-rs-cart-guard>
     {% csrf_token %}
     <input type="hidden" name="outcome" value="success">
     <div class="rs-field">
@@ -49,7 +60,7 @@
     </div>
   </form>
 
-  <form class="rs-pay__fail" method="post" action="{% url 'orders:demo_pay' order.order_number %}">
+  <form class="rs-pay__fail" method="post" action="{% url 'orders:demo_pay' order.order_number %}" data-rs-cart-guard>
     {% csrf_token %}
     <input type="hidden" name="outcome" value="failure">
     <button type="submit" class="rs-btn rs-btn--ghost rs-btn--block">{% trans "Імітувати відмову" %}</button>
@@ -59,7 +70,7 @@
 <div class="rs-thank" data-rs-reveal>
   <h1>{% trans "Перехід до оплати" %}</h1>
   <p>{% blocktrans with num=order.order_number %}Замовлення {{ num }}. Зараз відкриється LiqPay.{% endblocktrans %}</p>
-  <form id="liqpay-form" method="post" action="{{ checkout_url }}">
+  <form id="liqpay-form" method="post" action="{{ checkout_url }}" data-rs-cart-guard>
     <input type="hidden" name="data" value="{{ data }}">
     <input type="hidden" name="signature" value="{{ signature }}">
     <button type="submit" class="rs-btn rs-btn--gold">{% trans "Сплатити зараз" %}</button>

@@ -19,9 +19,12 @@ def demo_payments_enabled() -> bool:
 
 
 def ensure_pending_payment(order: Order, *, provider: str | None = None) -> Payment:
+    from apps.core.money import money, reconcile_order_totals
+
+    reconcile_order_totals(order)
     defaults = {
         'order': order,
-        'amount': order.total,
+        'amount': money(order.total),
         'currency': order.currency,
         'status': Payment.STATUS_PENDING,
     }

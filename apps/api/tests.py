@@ -20,6 +20,7 @@ class ApiAuthCartTests(TestCase):
             brand=self.brand,
             category=self.cat,
             base_price=100,
+            stock=20,
             is_active=True,
         )
 

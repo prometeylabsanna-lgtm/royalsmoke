@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, UserCreationForm
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
@@ -49,3 +49,59 @@ class RegisterForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class ChangePasswordForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['old_password'] = forms.CharField(
+            label=_('Поточний пароль'),
+            strip=False,
+            widget=forms.PasswordInput(attrs={
+                'autocomplete': 'current-password',
+                'placeholder': _('Поточний пароль'),
+            }),
+        )
+        self.fields['new_password1'] = PasswordField(label=_('Новий пароль'))
+        self.fields['new_password2'] = forms.CharField(
+            label=_('Повторіть новий пароль'),
+            strip=False,
+            widget=forms.PasswordInput(attrs={
+                'data-rs-rule': 'password',
+                'autocomplete': 'new-password',
+                'placeholder': _('Повторіть новий пароль'),
+            }),
+        )
+
+    def clean_new_password2(self):
+        password1 = self.cleaned_data.get('new_password1')
+        password2 = self.cleaned_data.get('new_password2')
+        if password1 and password2 and password1 != password2:
+            raise ValidationError(_('Паролі не збігаються'))
+        if password2:
+            err = validate_password(password2)
+            if err:
+                raise ValidationError(err)
+        return password2
+
+
+class DeleteAccountForm(forms.Form):
+    password = forms.CharField(
+        label=_('Пароль'),
+        strip=False,
+        widget=forms.PasswordInput(attrs={
+            'autocomplete': 'current-password',
+            'placeholder': _('Пароль для підтвердження'),
+        }),
+    )
+    confirm = RequiredCheckboxField(label=_('Підтверджую видалення акаунту'))
+
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super().__init__(*args, **kwargs)
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if not self.user.check_password(password):
+            raise ValidationError(_('Невірний пароль'))
+        return password

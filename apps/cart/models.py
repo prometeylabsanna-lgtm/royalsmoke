@@ -33,3 +33,42 @@ class CartItem(models.Model):
 
     def __str__(self) -> str:
         return f'{self.product_id} x{self.quantity}'
+
+
+class CartReservation(models.Model):
+    """Soft hold on stock while a line sits in a guest/user cart."""
+
+    product = models.ForeignKey(
+        'catalog.Product',
+        on_delete=models.CASCADE,
+        related_name='cart_reservations',
+    )
+    quantity = models.PositiveIntegerField(default=1)
+    session_key = models.CharField(max_length=40, blank=True, db_index=True)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='cart_reservations',
+    )
+    expires_at = models.DateTimeField(db_index=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Резерв кошика'
+        verbose_name_plural = 'Резерви кошика'
+        constraints = [
+            models.CheckConstraint(
+                condition=models.Q(quantity__gte=1),
+                name='cart_reservation_qty_gte_1',
+            ),
+        ]
+        indexes = [
+            models.Index(fields=['product', 'expires_at']),
+        ]
+
+    def __str__(self) -> str:
+        holder = self.user_id or self.session_key or '?'
+        return f'Reserve<{self.product_id} x{self.quantity} @{holder}>'

@@ -141,8 +141,13 @@ class SitePageContentForm(forms.Form):
                 'rows': [{'kind': 'single', 'fields': [{'bound': self[SECTION_VISIBLE_FIELD], 'lang': ''}]}],
             })
         if self.section.settings_fields:
+            settings_title = (
+                'Бренд і контакти'
+                if any(name in {'phone', 'email'} for name in self.section.settings_fields)
+                else 'Бренд'
+            )
             groups.append({
-                'title': 'Бренд і контакти',
+                'title': settings_title,
                 'rows': [
                     {
                         'kind': 'single',

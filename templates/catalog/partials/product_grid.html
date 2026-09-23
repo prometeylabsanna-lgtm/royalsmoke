@@ -1,4 +1,4 @@
-{% load i18n rs_content %}
+{% load i18n %}
 {% for product in products %}
   <article class="rs-cb-row" data-rs-reveal data-reveal-delay="{% widthratio forloop.counter0 1 40 %}">
     <a class="rs-cb-row__media" href="{{ product.get_absolute_url }}" tabindex="-1" aria-hidden="true">
@@ -46,5 +46,22 @@
     </div>
   </article>
 {% empty %}
-          <p class="rs-cb__empty" data-rs-reveal>{% cms_text 'catalog' 'empty' %}</p>
+  <p class="rs-cb__empty" data-rs-reveal role="status">{% trans "Нічого не знайдено" %}</p>
 {% endfor %}
+
+{% if page_links %}
+  <nav class="rs-cb__pager" aria-label="{% trans "Сторінки каталогу" %}" data-rs-reveal>
+    {% if page_obj.out_of_range %}
+      <p class="rs-cb__pager-meta">{% trans "Нічого не знайдено" %}</p>
+    {% endif %}
+    {% for link in page_links %}
+      <a class="rs-cb__page{% if link.is_current %} is-current{% endif %}"
+         href="{{ link.url }}"
+         hx-get="{{ link.url }}"
+         hx-target="#product-grid"
+         hx-swap="innerHTML"
+         hx-push-url="true"
+         {% if link.is_current %}aria-current="page"{% endif %}>{{ link.number }}</a>
+    {% endfor %}
+  </nav>
+{% endif %}

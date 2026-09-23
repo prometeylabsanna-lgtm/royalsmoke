@@ -92,7 +92,9 @@
       <a class="rs-cab__btn" href="{% url 'cart:detail' %}">{% trans "Кошик" %}</a>
       <a class="rs-cab__btn" href="{% url 'catalog:list' %}">{% trans "Каталог" %}</a>
       <a class="rs-cab__btn" href="{% url 'leads:contact' %}">{% trans "Підтримка" %}</a>
-      <a class="rs-cab__btn" href="{% url 'accounts:cabinet' %}">{% trans "Вибране" %}</a>
+      <a class="rs-cab__btn" href="{% url 'accounts:wishlist' %}">{% trans "Вибране" %}</a>
+      <a class="rs-cab__btn" href="{% url 'accounts:password_change' %}">{% trans "Пароль" %}</a>
+      <a class="rs-cab__btn" href="{% url 'accounts:delete_account' %}">{% trans "Видалити акаунт" %}</a>
       <form method="post" action="{% url 'accounts:logout' %}" class="rs-cab__logout">
         {% csrf_token %}
         <button class="rs-cab__btn" type="submit">{% trans "Вийти" %}</button>

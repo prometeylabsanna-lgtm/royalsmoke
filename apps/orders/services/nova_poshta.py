@@ -290,3 +290,26 @@ def track_ttn(ttn: str) -> dict[str, Any]:
         'warehouse': row.get('WarehouseRecipient') or '',
         'raw': row,
     }
+
+
+def warehouse_status(city_ref: str, warehouse_ref: str) -> str:
+    """Validate NP warehouse against live/demo list.
+
+    Returns:
+        'ok' — found
+        'missing' — city/warehouse not in current list (closed/changed)
+        'unverified' — API unavailable; caller may soft-accept with admin warning
+    """
+    city_ref = (city_ref or '').strip()
+    warehouse_ref = (warehouse_ref or '').strip()
+    if not city_ref or not warehouse_ref:
+        return 'missing'
+    try:
+        rows = get_warehouses(city_ref, query='', limit=500)
+    except NovaPoshtaError:
+        logger.warning('NP warehouse verify failed for city=%s', city_ref)
+        return 'unverified'
+    refs = {str(w.get('ref') or '') for w in rows}
+    if warehouse_ref in refs:
+        return 'ok'
+    return 'missing'
