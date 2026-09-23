@@ -34,7 +34,7 @@
       {% for card in delivery_regions %}
       <article class="rs-delivery__region">
         <h3>{{ card.title }}</h3>
-        <div class="rs-delivery__region-text">{{ card.text|linebreaksbr }}</div>
+        <div class="rs-delivery__region-text">{{ card.text|cms_plain|linebreaksbr }}</div>
       </article>
       {% empty %}
       <article class="rs-delivery__region">
@@ -58,7 +58,7 @@
       {% for card in delivery_payments %}
       <li>
         <span class="rs-delivery__pay-title">{{ card.title }}</span>
-        <span class="rs-delivery__pay-text">{{ card.text|linebreaksbr }}</span>
+        <span class="rs-delivery__pay-text">{{ card.text|cms_plain|linebreaksbr }}</span>
       </li>
       {% empty %}
       <li>

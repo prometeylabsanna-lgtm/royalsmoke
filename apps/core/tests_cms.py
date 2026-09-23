@@ -341,8 +341,8 @@ class CmsTinyMCETests(TestCase):
         self.client.force_login(self.user)
         SiteSettings.load()
 
-    def test_service_section_uses_tinymce_for_leads(self):
-        url = reverse('admin:core_homeservicesettings_change', args=[1])
+    def test_privacy_body_uses_tinymce(self):
+        url = reverse('admin:core_privacypagesettings_change', args=[1])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'tinymce')

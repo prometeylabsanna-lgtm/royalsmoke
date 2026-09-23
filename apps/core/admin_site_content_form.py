@@ -18,6 +18,7 @@ from apps.core.block_defaults import (
     is_visibility_key,
 )
 from apps.core.cms_i18n import CMS_LANGUAGES, iter_cms_langs
+from apps.core.cms_text_normalize import sanitize_cms_storage
 from apps.core.models import SiteBlock
 from apps.core.site_content_registry import (
     ContentSection,
@@ -27,7 +28,9 @@ from apps.core.site_content_registry import (
 from apps.core.validation.admin_forms import clean_optional_url
 
 SECTION_VISIBLE_FIELD = 'section_visible'
-TINYMCE_SKIP_KEYS = frozenset({'meta_description'})
+# TinyMCE лише для навмисного HTML (юридичні body тощо). Решта — textarea,
+# інакше редактор обгортає підписи в <p> і теги світяться на вітрині.
+TINYMCE_KEYS = frozenset({'body'})
 
 
 def block_field_name(page: str, key: str, suffix: str) -> str:
@@ -198,7 +201,7 @@ class SitePageContentForm(forms.Form):
             file_field.initial = block.video_file
             self.fields[block_field_name(page, key, 'video_file')] = file_field
             return
-        use_tinymce = key in MULTILINE_KEYS and key not in TINYMCE_SKIP_KEYS
+        use_tinymce = key in TINYMCE_KEYS
         for code, attr, lang_label in iter_cms_langs():
             if key in INLINE_KEYS:
                 widget = CmsAdminTextInputWidget(attrs={'data-cms-lang': code})
@@ -270,8 +273,9 @@ class SitePageContentForm(forms.Form):
                             block_field_name(page, key, f'text_html_{attr}'),
                         ) or ''
                     ).strip()
-                    setattr(block, f'text_html_{attr}', raw)
+                    cleaned = sanitize_cms_storage(key, raw)
+                    setattr(block, f'text_html_{attr}', cleaned)
                     if attr == 'uk':
-                        uk_val = raw
+                        uk_val = cleaned
                 block.text_html = uk_val
             block.save()

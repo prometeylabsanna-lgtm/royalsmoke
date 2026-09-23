@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static i18n rs_content %}
 {% trans "Історія" as history_kicker_default %}
 <section
   class="rs-history-journey"
@@ -57,7 +57,7 @@
             </div>
             <p class="rs-history-journey__year">{{ slide.year_label }}</p>
             {% if slide.text %}
-              <div class="rs-history-journey__text">{{ slide.text|linebreaksbr }}</div>
+              <div class="rs-history-journey__text">{{ slide.text|cms_plain|linebreaksbr }}</div>
             {% endif %}
           </article>
         {% empty %}

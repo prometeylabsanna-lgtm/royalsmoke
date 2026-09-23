@@ -6,9 +6,9 @@ from apps.core.admin_site_content_widgets import (
     CmsAdminImageWidget,
     CmsAdminTextInputWidget,
     CmsAdminTextareaWidget,
-    CmsAdminTinyMCEWidget,
 )
 from apps.core.cms_i18n import CMS_LANGUAGES
+from apps.core.cms_text_normalize import sanitize_cms_storage
 from apps.core.models import DeliveryCard, HeroSlide, HistorySlide, HomeBrandCard
 from apps.core.validation.admin_forms import clean_optional_url
 
@@ -74,14 +74,9 @@ def _i18n_widgets(*names: str) -> dict:
     for name in names:
         for _code, attr, _label in CMS_LANGUAGES:
             field = f'{name}_{attr}'
-            if name == 'text':
-                widgets[field] = CmsAdminTinyMCEWidget(
-                    attrs={'data-cms-lang': _code},
-                    mce_attrs={'height': 220},
-                )
-            elif name == 'subtitle':
+            if name in {'text', 'subtitle'}:
                 widgets[field] = CmsAdminTextareaWidget(
-                    attrs={'rows': 2, 'data-cms-lang': _code},
+                    attrs={'rows': 3 if name == 'text' else 2, 'data-cms-lang': _code},
                 )
             else:
                 widgets[field] = CmsAdminTextInputWidget(attrs={'data-cms-lang': _code})
@@ -94,6 +89,14 @@ def _i18n_fields(*names: str) -> tuple[str, ...]:
         for _code, attr, _label in CMS_LANGUAGES:
             fields.append(f'{name}_{attr}')
     return tuple(fields)
+
+
+def _sanitize_text_fields(form: forms.ModelForm, *names: str) -> None:
+    for name in names:
+        for _code, attr, _label in CMS_LANGUAGES:
+            field = f'{name}_{attr}'
+            if field in form.cleaned_data:
+                form.cleaned_data[field] = sanitize_cms_storage(name, form.cleaned_data.get(field))
 
 
 class HeroSlideForm(forms.ModelForm):
@@ -113,6 +116,11 @@ class HeroSlideForm(forms.ModelForm):
             'cta_primary_url': CmsAdminTextInputWidget(),
             'cta_secondary_url': CmsAdminTextInputWidget(),
         }
+
+    def clean(self):
+        cleaned = super().clean()
+        _sanitize_text_fields(self, 'title', 'subtitle', 'cta_primary_label', 'cta_secondary_label')
+        return cleaned
 
     def clean_cta_primary_url(self):
         return clean_optional_url(self.cleaned_data.get('cta_primary_url', ''))
@@ -142,6 +150,11 @@ class HistorySlideForm(forms.ModelForm):
             'cta_url': CmsAdminTextInputWidget(),
         }
 
+    def clean(self):
+        cleaned = super().clean()
+        _sanitize_text_fields(self, 'year_label', 'title', 'text', 'cta_label')
+        return cleaned
+
     def clean_cta_url(self):
         return clean_optional_url(self.cleaned_data.get('cta_url', ''))
 
@@ -166,6 +179,11 @@ class HomeBrandCardForm(forms.ModelForm):
             'image': CmsAdminImageWidget(),
         }
 
+    def clean(self):
+        cleaned = super().clean()
+        _sanitize_text_fields(self, 'text')
+        return cleaned
+
 
 HomeBrandCardFormSet = forms.modelformset_factory(
     HomeBrandCard, form=HomeBrandCardForm, formset=HomeBrandCardBaseFormSet, extra=1, can_delete=True,
@@ -183,6 +201,11 @@ class DeliveryCardForm(forms.ModelForm):
         widgets = {
             **_i18n_widgets('title', 'text'),
         }
+
+    def clean(self):
+        cleaned = super().clean()
+        _sanitize_text_fields(self, 'title', 'text')
+        return cleaned
 
 
 DeliveryRegionFormSet = forms.modelformset_factory(

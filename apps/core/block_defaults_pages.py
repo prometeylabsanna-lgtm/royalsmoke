@@ -238,6 +238,6 @@ PAGE_INLINE = {
 }
 PAGE_MULTILINE = {
     'footer_tagline', 'lead', 'era1_text', 'era2_text', 'era3_text', 'era4_text',
-    'pay_intro', 'text', 'denied_text', 'age',
+    'pay_intro', 'text', 'denied_text',
     'meta_description',
 }

@@ -4,6 +4,7 @@ from django.utils.translation import get_language
 from apps.core.block_defaults import BLOCK_DEFAULTS
 from apps.core.breadcrumbs import build_breadcrumbs
 from apps.core.currency import get_currency
+from apps.core.cms_text_normalize import normalize_cms_plain
 from apps.core.models import HeroSlide, HistorySlide, SiteBlock, SiteSettings
 from apps.core.page_styles import get_chrome_style_vars, get_page_style_vars
 
@@ -32,7 +33,7 @@ def site_globals(request):
         return str(BLOCK_DEFAULTS.get((page, key), default))
 
     def block_visible(page: str, key: str, default: bool = True) -> bool:
-        raw = str(block_text(page, key, '1' if default else '0'))
+        raw = normalize_cms_plain(str(block_text(page, key, '1' if default else '0')))
         return raw.strip() in {'1', 'true', 'True', ''}
 
     hero_slides = list(HeroSlide.objects.filter(is_active=True))
