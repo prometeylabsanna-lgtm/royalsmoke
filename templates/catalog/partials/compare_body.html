@@ -77,7 +77,7 @@
         <tr>
           <th scope="row">{% trans "Смакові нотки" %}</th>
           {% for product in products %}
-            <td>{{ product.tasting_notes|default:"—" }}</td>
+            <td>{{ product.tasting_notes|safe|default:"—" }}</td>
           {% endfor %}
         </tr>
       </tbody>

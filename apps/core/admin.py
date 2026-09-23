@@ -3,6 +3,7 @@ from unfold.admin import ModelAdmin
 
 from apps.core.admin_chrome_style import ChromeStyleAdmin  # noqa: F401
 from apps.core.admin_page_style import PageStyleAdmin  # noqa: F401
+from apps.core.admin_recent_actions import RecentActionsAdmin  # noqa: F401
 from apps.core.admin_site_content_proxies import register_site_content_section_admins  # noqa: F401
 from apps.core.models import CurrencyRate, SiteSettings
 from apps.core.validation.admin_forms import SiteSettingsAdminForm

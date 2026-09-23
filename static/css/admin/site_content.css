@@ -128,6 +128,12 @@ body.dark .rs-cms-langs {
   height: 80px;
 }
 
+/* Compact preview inside product tabular rows (overrides above) */
+.inline-group .tabular td .rs-cms-image__frame {
+  width: 56px;
+  height: 56px;
+}
+
 .rs-cms-image__clear {
   display: inline-flex;
   align-items: center;
@@ -236,6 +242,76 @@ body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
   height: 1.25rem;
   vertical-align: middle;
   margin-right: 0.35rem;
+}
+
+/* ——— Tabular inlines (картка товару): одна лінія полів ——— */
+.inline-group .tabular table > tbody > tr > td,
+.inline-group .tabular table > thead > tr > th {
+  vertical-align: middle;
+}
+
+.inline-group .tabular .rs-cms-image {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 17rem;
+}
+
+.inline-group .tabular .rs-cms-image__frame {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 auto;
+}
+
+.inline-group .tabular .rs-cms-image__placeholder {
+  font-size: 0.625rem;
+  line-height: 1.2;
+  text-align: center;
+  padding: 0.2rem;
+}
+
+.inline-group .tabular .rs-cms-image__clear {
+  min-height: 0;
+  margin: 0;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.inline-group .tabular .rs-cms-image input[type="file"],
+.inline-group .tabular .rs-cms-image .rs-cms-image-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 11rem;
+  font-size: 0.75rem;
+}
+
+.inline-group .tabular td input[type="text"],
+.inline-group .tabular td input[type="number"],
+.inline-group .tabular td input[type="url"],
+.inline-group .tabular td input[type="email"],
+.inline-group .tabular td select {
+  min-height: 2.5rem;
+  vertical-align: middle;
+}
+
+.inline-group .tabular td .flex.items-center,
+.inline-group .tabular td > .flex {
+  align-items: center;
+  min-height: 2.5rem;
+}
+
+@media (max-width: 1024px) {
+  .inline-group .tabular .rs-cms-image {
+    flex-wrap: wrap;
+    max-width: 12rem;
+  }
+
+  .inline-group .tabular .rs-cms-image input[type="file"],
+  .inline-group .tabular .rs-cms-image .rs-cms-image-input {
+    max-width: 100%;
+  }
 }
 
 .rs-cms-colorpick__native {

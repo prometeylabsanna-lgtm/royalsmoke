@@ -66,7 +66,11 @@ class Product(TimeStampedModel):
         'Стара ціна', max_digits=10, decimal_places=2, null=True, blank=True,
     )
     currency = models.CharField('Валюта', max_length=3, default='UAH')
-    stock = models.PositiveIntegerField('Залишок (без варіантів)', default=0)
+    stock = models.PositiveIntegerField(
+        'Кількість на складі',
+        default=0,
+        help_text='Для товарів без форматів. Якщо є формати сигари нижче — вказуйте кількість у кожному форматі.',
+    )
     is_active = models.BooleanField('Активний', default=True)
     is_featured = models.BooleanField('Рекомендований', default=False)
     sort_order = models.PositiveIntegerField('Порядок', default=0)
@@ -120,27 +124,36 @@ class Product(TimeStampedModel):
 
 
 class ProductVariant(TimeStampedModel):
-    """Vitola / формат з окремою ціною та фото."""
+    """Окремий формат сигари (розмір / форма) з власною ціною та залишком."""
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variants')
-    name = models.CharField('Формат / вітола', max_length=120)
+    name = models.CharField(
+        'Назва формату',
+        max_length=120,
+        help_text='Наприклад: Robusto, Churchill. У сигар це називають вітолою.',
+    )
     slug = models.SlugField(max_length=140)
     length_mm = models.PositiveIntegerField('Довжина, мм', null=True, blank=True)
-    ring_gauge = models.PositiveIntegerField('Ring gauge', null=True, blank=True)
+    ring_gauge = models.PositiveIntegerField(
+        'Товщина (ring gauge)',
+        null=True,
+        blank=True,
+        help_text='Діаметр сигари в 64-х частках дюйма.',
+    )
     shape = models.CharField('Форма', max_length=80, blank=True)
     price = models.DecimalField('Ціна', max_digits=10, decimal_places=2)
     old_price = models.DecimalField(
         'Стара ціна', max_digits=10, decimal_places=2, null=True, blank=True,
     )
-    sku = models.CharField('SKU', max_length=64, blank=True)
-    stock = models.PositiveIntegerField('Залишок', default=0)
+    sku = models.CharField('Артикул', max_length=64, blank=True)
+    stock = models.PositiveIntegerField('Кількість на складі', default=0)
     image = models.ImageField('Фото', upload_to='variants/', blank=True)
     is_active = models.BooleanField('Активний', default=True)
     sort_order = models.PositiveIntegerField('Порядок', default=0)
 
     class Meta:
-        verbose_name = 'Варіант (вітола)'
-        verbose_name_plural = 'Варіанти (вітоли)'
+        verbose_name = 'Формат сигари'
+        verbose_name_plural = 'Формати сигари (розміри)'
         ordering = ['sort_order', 'price']
         unique_together = ('product', 'slug')
 

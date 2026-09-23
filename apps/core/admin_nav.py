@@ -10,7 +10,6 @@ SIDEBAR_GROUPS: tuple[tuple[str, str, bool], ...] = (
     ('blog', _('Блог'), True),
     ('faq', _('FAQ'), True),
     ('contact', _('Контакти'), True),
-    ('delivery', _('Доставка і оплата'), True),
     ('b2b', _('B2B'), True),
     ('booking', _('Бронювання'), True),
     ('cart', _('Кошик'), True),
@@ -107,6 +106,11 @@ def build_unfold_navigation() -> list[dict]:
         'separator': True,
         'collapsible': True,
         'items': [
+            {
+                'title': _('Недавні дії'),
+                'icon': 'history',
+                'link': reverse_lazy('admin:admin_logentry_changelist'),
+            },
             {'title': _('Акаунти'), 'icon': 'person', 'link': reverse_lazy('admin:accounts_user_changelist')},
             {'title': _('Налаштування сайту'), 'icon': 'settings', 'link': reverse_lazy('admin:core_sitesettings_changelist')},
             {'title': _('Курси валют'), 'icon': 'payments', 'link': reverse_lazy('admin:core_currencyrate_changelist')},
