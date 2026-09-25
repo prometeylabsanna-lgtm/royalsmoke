@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<nav style="height:84px;box-sizing:border-box;background:#1c1715;border-top:1px solid rgba(252,242,238,.1);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:6px 4px 0;font-family:'Fixel Display','Helvetica Neue','SF Pro Display',sans-serif">
+<sc-for list="{{ items }}" as="it" hint-placeholder-count="5">
+<a href="{{ it.href }}" style="height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-decoration:none;color:{{ it.color }}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="{{ it.d }}"></path></svg>
+<span style="font-size:10px;font-weight:500;letter-spacing:.04em">{{ it.label }}</span>
+</a>
+</sc-for>
+</nav>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:84},&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;brands&quot;,&quot;house&quot;,&quot;offline&quot;,&quot;more&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const a = this.props.active ?? 'home';
+    const items = [
+      { k: 'home', label: 'Головна', href: '#f03', d: 'M4 11l8-6 8 6v9h-5v-5H9v5H4z' },
+      { k: 'brands', label: 'Бренди', href: '#f04', d: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z' },
+      { k: 'house', label: 'Дім', href: '#f09', d: 'M3.5 9L12 4l8.5 5M6 10v8M10 10v8M14 10v8M18 10v8M4 20.5h16' },
+      { k: 'offline', label: 'Офлайн', href: '#f11', d: 'M4 8h16v12H4zM3 4h18v4H3zM10 12h4' },
+      { k: 'more', label: 'Ще', href: '#f12', d: 'M5.5 12h.01M12 12h.01M18.5 12h.01M5 12a.5.5 0 1 0 1 0a.5.5 0 1 0-1 0M11.5 12a.5.5 0 1 0 1 0a.5.5 0 1 0-1 0M18 12a.5.5 0 1 0 1 0a.5.5 0 1 0-1 0' }
+    ].map(i => ({ ...i, color: i.k === a ? '#c99a44' : 'rgba(252,242,238,.62)' }));
+    return { items };
+  }
+}
+</script>
+</body>
+</html>
