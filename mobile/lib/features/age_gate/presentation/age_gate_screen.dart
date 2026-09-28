@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/constants/app_copy.dart';
-import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
+import '../../../core/constants/app_sizes.dart';
+import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_button.dart';
 
-class AgeGateScreen extends StatelessWidget {
+class AgeGateScreen extends ConsumerWidget {
   const AgeGateScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final age = watchContent(ref).screen('age');
     final bottom = MediaQuery.paddingOf(context).bottom;
     return Scaffold(
       backgroundColor: AppColors.bark,
@@ -61,10 +63,13 @@ class AgeGateScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  Text(AppCopy.ageKicker.toUpperCase(), style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32)),
+                  Text(
+                    (age.kicker.isEmpty ? 'Підтвердження віку · 21+' : age.kicker).toUpperCase(),
+                    style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32),
+                  ),
                   const SizedBox(height: AppSizes.s24),
                   Text(
-                    AppCopy.ageTitle.toUpperCase(),
+                    (age.title.isEmpty ? 'Лише для повнолітніх' : age.title).toUpperCase(),
                     style: TextStyle(
                       fontFamily: AppTextStyles.family,
                       fontSize: 24,
@@ -75,15 +80,20 @@ class AgeGateScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: AppSizes.s24),
-                  Text(AppCopy.ageBody, style: AppTextStyles.body),
+                  Text(
+                    age.body.isEmpty
+                        ? 'Застосунок є інформаційним довідником брендів.'
+                        : age.body,
+                    style: AppTextStyles.body,
+                  ),
                   const SizedBox(height: AppSizes.s24),
                   Text(
-                    AppCopy.ageLegal,
+                    age.legalNote,
                     style: AppTextStyles.body.copyWith(fontSize: 13, color: AppColors.textMuted),
                   ),
                   const SizedBox(height: 32),
                   RsButton(
-                    label: AppCopy.ageConfirm,
+                    label: age.confirmLabel.isEmpty ? 'Мені є 21 рік' : age.confirmLabel,
                     variant: RsButtonVariant.secondary,
                     expand: true,
                     onPressed: () => context.go('/home'),
@@ -95,7 +105,7 @@ class AgeGateScreen extends StatelessWidget {
                       foregroundColor: AppColors.textMuted,
                     ),
                     child: Text(
-                      'ВИЙТИ',
+                      age.ctaSecondary.isEmpty ? 'ВИЙТИ' : age.ctaSecondary,
                       style: TextStyle(
                         fontFamily: AppTextStyles.family,
                         fontSize: 12,

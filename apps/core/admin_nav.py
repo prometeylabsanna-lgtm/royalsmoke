@@ -62,6 +62,33 @@ def build_unfold_navigation() -> list[dict]:
         })
 
     nav.append({
+        'title': _('Мобільний застосунок'),
+        'separator': True,
+        'collapsible': True,
+        'items': [
+            {
+                'title': _('Налаштування застосунку'),
+                'icon': 'phone_iphone',
+                'link': reverse_lazy('admin:mobile_mobilesettings_changelist'),
+            },
+            {
+                'title': _('Бренди гайду'),
+                'icon': 'storefront',
+                'link': reverse_lazy('admin:mobile_mobilebrand_changelist'),
+            },
+            {
+                'title': _('Екрани'),
+                'icon': 'smartphone',
+                'link': reverse_lazy('admin:mobile_mobilescreen_changelist'),
+            },
+            {
+                'title': _('Юридичні сторінки'),
+                'icon': 'gavel',
+                'link': reverse_lazy('admin:mobile_mobilelegalpage_changelist'),
+            },
+        ],
+    })
+    nav.append({
         'title': _('Каталог товарів'),
         'separator': True,
         'collapsible': True,

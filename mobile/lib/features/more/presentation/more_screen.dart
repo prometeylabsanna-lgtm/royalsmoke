@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/constants/app_copy.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../features/brands/presentation/saved_brands_provider.dart';
+import '../../../features/content/data/fallback_bundle.dart';
+import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_chrome.dart';
+import '../../../shared/widgets/rs_cover_image.dart';
 import '../../../shared/widgets/rs_rows.dart';
 
 class MoreScreen extends ConsumerWidget {
@@ -15,7 +17,9 @@ class MoreScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final content = watchContent(ref);
     final savedCount = ref.watch(savedBrandsProvider).length;
+    final sealUrl = content.settings.appSealUrl;
     return ListView(
       padding: const EdgeInsets.fromLTRB(AppSizes.padX, 24, AppSizes.padX, AppSizes.s24),
       children: [
@@ -32,16 +36,37 @@ class MoreScreen extends ConsumerWidget {
           onTap: () => context.go('/offline'),
         ),
         RsEditorialRow(label: 'Контакти', onTap: () => context.push('/more/contacts')),
-        RsEditorialRow(label: 'Політика конфіденційності', onTap: () => context.push('/more/page/privacy')),
-        RsEditorialRow(label: 'Умови', onTap: () => context.push('/more/page/terms')),
-        RsEditorialRow(label: 'Вікова політика', onTap: () => context.push('/more/page/age')),
-        RsEditorialRow(label: 'Про застосунок', onTap: () => context.push('/more/page/about')),
+        RsEditorialRow(
+          label: content.page('privacy')?.title ?? 'Політика конфіденційності',
+          onTap: () => context.push('/more/page/privacy'),
+        ),
+        RsEditorialRow(
+          label: content.page('terms')?.title ?? 'Умови',
+          onTap: () => context.push('/more/page/terms'),
+        ),
+        RsEditorialRow(
+          label: content.page('age')?.title ?? 'Вікова політика',
+          onTap: () => context.push('/more/page/age'),
+        ),
+        RsEditorialRow(
+          label: content.page('about')?.title ?? 'Про застосунок',
+          onTap: () => context.push('/more/page/about'),
+        ),
         const SizedBox(height: 48),
         Column(
           children: [
-            const RsSeal(size: 44),
+            if (sealUrl.isNotEmpty)
+              ClipOval(
+                child: SizedBox(
+                  width: 44,
+                  height: 44,
+                  child: RsCoverImage(imageUrl: sealUrl, assetFallback: 'assets/images/branding/app_icon_master.png'),
+                ),
+              )
+            else
+              const RsSeal(size: 44),
             const SizedBox(height: AppSizes.s12),
-            Text(AppCopy.appVersion, style: AppTextStyles.kicker),
+            Text(content.settings.appVersion, style: AppTextStyles.kicker),
           ],
         ),
       ],
@@ -49,22 +74,17 @@ class MoreScreen extends ConsumerWidget {
   }
 }
 
-class InfoPageScreen extends StatelessWidget {
+class InfoPageScreen extends ConsumerWidget {
   const InfoPageScreen({super.key, required this.pageId});
 
   final String pageId;
 
-  static const _titles = {
-    'privacy': 'Політика конфіденційності',
-    'terms': 'Умови',
-    'age': 'Вікова політика',
-    'about': 'Про застосунок',
-  };
-
   @override
-  Widget build(BuildContext context) {
-    final title = _titles[pageId] ?? 'Документ';
-    final body = _bodyFor(pageId);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final content = watchContent(ref);
+    final page = content.page(pageId) ?? buildFallbackBundle().page(pageId);
+    final title = page?.title ?? 'Документ';
+    final body = page?.body ?? content.settings.appBlurb;
     final viewH = MediaQuery.sizeOf(context).height;
     final topInset = MediaQuery.paddingOf(context).top;
     final bottomInset = MediaQuery.paddingOf(context).bottom;
@@ -103,12 +123,4 @@ class InfoPageScreen extends StatelessWidget {
       ),
     );
   }
-
-  static String _bodyFor(String pageId) => switch (pageId) {
-        'privacy' => AppCopy.privacyBody,
-        'terms' => AppCopy.termsBody,
-        'age' => AppCopy.agePolicyBody,
-        'about' => AppCopy.aboutBody,
-        _ => AppCopy.appBlurb,
-      };
 }

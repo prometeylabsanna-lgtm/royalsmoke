@@ -1,34 +1,39 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
+import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_chrome.dart';
+import '../../../shared/widgets/rs_cover_image.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key, this.autoAdvance = const Duration(milliseconds: 1600)});
 
   final Duration autoAdvance;
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  ConsumerState<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends ConsumerState<SplashScreen> {
   bool _left = false;
-  late final _timer = Timer(widget.autoAdvance, _open);
+  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
-    _timer;
+    // Prefetch CMS bundle під час splash.
+    unawaited(ref.read(appContentProvider.future));
+    _timer = Timer(widget.autoAdvance, _open);
   }
 
   @override
   void dispose() {
-    _timer.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -40,6 +45,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final splash = watchContent(ref).screen('splash');
+    final sealUrl = watchContent(ref).settings.appSealUrl;
     return Scaffold(
       backgroundColor: AppColors.bark,
       body: Stack(
@@ -49,7 +56,19 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const RsSeal(size: 120),
+                if (sealUrl.isNotEmpty)
+                  ClipOval(
+                    child: SizedBox(
+                      width: 120,
+                      height: 120,
+                      child: RsCoverImage(
+                        imageUrl: sealUrl,
+                        assetFallback: 'assets/images/branding/app_icon_master.png',
+                      ),
+                    ),
+                  )
+                else
+                  const RsSeal(size: 120),
                 const SizedBox(height: 28),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -58,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 24 * 0.32),
                       child: Text(
-                        'ROYAL SMOKE',
+                        splash.title.isEmpty ? 'ROYAL SMOKE' : splash.title,
                         style: TextStyle(
                           fontFamily: AppTextStyles.family,
                           fontSize: 24,
@@ -73,7 +92,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
                 const SizedBox(height: 28),
                 Text(
-                  'ДОВІДНИК БРЕНДУ',
+                  splash.kicker.isEmpty ? 'ДОВІДНИК БРЕНДУ' : splash.kicker,
                   style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.34),
                 ),
               ],
@@ -93,7 +112,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                   ),
                   child: Text(
-                    'ВІДКРИТИ',
+                    splash.ctaPrimary.isEmpty ? 'ВІДКРИТИ' : splash.ctaPrimary,
                     style: TextStyle(
                       fontFamily: AppTextStyles.family,
                       fontSize: 12,

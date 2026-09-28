@@ -24,7 +24,17 @@ python3 manage.py runserver 127.0.0.1:8001
 
 - Сайт: http://127.0.0.1:8001/
 - Адмінка: http://127.0.0.1:8001/rs-admin/
+- API застосунку: http://127.0.0.1:8001/api/v1/app/bundle/
 - Демо-адмін (якщо створювали seed): `admin@royalsmoke.ua` / `admin123`
+
+Мобільний контент (окремо від каталогу сайту):
+
+```bash
+python3 manage.py migrate
+python3 manage.py seed_mobile_app
+```
+
+У Flutter: `--dart-define=API_BASE_URL=http://127.0.0.1:8001`
 
 Прод / тестовий Droplet: [deploy/README.md](deploy/README.md) (Docker, HTTP по IP).
 

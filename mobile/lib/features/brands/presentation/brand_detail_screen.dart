@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
-import '../../../features/brands/data/partner_catalog.dart';
 import '../../../features/brands/presentation/saved_brands_provider.dart';
+import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_brand.dart';
 import '../../../shared/widgets/rs_brand_pattern.dart';
 import '../../../shared/widgets/rs_rows.dart';
@@ -18,14 +18,14 @@ class BrandDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final matches = PartnerCatalog.brands.where((b) => b.id == brandId);
-    if (matches.isEmpty) {
+    final content = watchContent(ref);
+    final item = content.brandById(brandId);
+    if (item == null) {
       return const ColoredBox(
         color: AppColors.bark,
         child: Center(child: Text('Бренд не знайдено')),
       );
     }
-    final item = matches.first;
     final saved = ref.watch(savedBrandsProvider).contains(brandId);
 
     final panelHeight = (MediaQuery.sizeOf(context).height * 0.38).clamp(240.0, 330.0);
@@ -64,7 +64,7 @@ class BrandDetailScreen extends ConsumerWidget {
                               onPressed: () => ref.read(savedBrandsProvider.notifier).toggle(brandId),
                               icon: Icon(
                                 saved ? Icons.bookmark : Icons.bookmark_border,
-                                color: AppColors.seashell,
+                                color: AppColors.gold,
                               ),
                             ),
                           ],
@@ -72,9 +72,10 @@ class BrandDetailScreen extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  Center(
+                  Align(
+                    alignment: Alignment.bottomCenter,
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(AppSizes.padX, 48, AppSizes.padX, 24),
+                      padding: const EdgeInsets.fromLTRB(24, 0, 24, 28),
                       child: RsBrandTitle(
                         name: item.name,
                         style: AppTextStyles.hero.copyWith(

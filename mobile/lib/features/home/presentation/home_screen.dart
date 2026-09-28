@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
-import '../../../features/brands/data/partner_catalog.dart';
+import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_brand.dart';
 import '../../../shared/widgets/rs_button.dart';
+import '../../../shared/widgets/rs_cover_image.dart';
 import '../../../shared/widgets/rs_rows.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final content = watchContent(ref);
+    final home = content.screen('home');
+    final brands = content.brands;
     final media = MediaQuery.of(context);
     final screenH = media.size.height;
-    // Залишаємо місце під контент + ряд партнерів у першому екрані (без скролу).
     final heroHeight = (screenH * 0.34).clamp(200.0, 300.0);
     return ListView(
       padding: const EdgeInsets.only(bottom: AppSizes.s24),
@@ -26,10 +30,11 @@ class HomeScreen extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              Image.asset(
-                'assets/images/home/hero.jpg',
-                fit: BoxFit.cover,
-                alignment: Alignment.center,
+              RsCoverImage(
+                imageUrl: home.heroImageUrl,
+                assetFallback: home.heroAssetFallback.isEmpty
+                    ? 'assets/images/home/hero.jpg'
+                    : home.heroAssetFallback,
               ),
               const DecoratedBox(
                 decoration: BoxDecoration(
@@ -49,27 +54,39 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('ДІМ БРЕНДУ', style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32)),
+              Text(
+                home.kicker.isEmpty ? 'ДІМ БРЕНДУ' : home.kicker,
+                style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32),
+              ),
               const SizedBox(height: AppSizes.s12),
-              Text('ROYAL\nSMOKE', style: AppTextStyles.hero),
+              Text(
+                home.title.isEmpty ? 'ROYAL\nSMOKE' : home.title,
+                style: AppTextStyles.hero,
+              ),
               const SizedBox(height: AppSizes.s24),
-              Text('Довідник дому бренду та партнерів', style: AppTextStyles.body),
+              Text(
+                home.body.isEmpty ? 'Довідник дому бренду та партнерів' : home.body,
+                style: AppTextStyles.body,
+              ),
               const SizedBox(height: AppSizes.s16),
               Builder(
                 builder: (context) {
-                  final brands = RsButton(label: 'Бренди', onPressed: () => context.go('/brands'));
-                  final house = RsButton(
-                    label: 'Про дім',
-                    variant: RsButtonVariant.ghost,
+                  final brandsBtn = RsButton(
+                    label: home.ctaPrimary.isEmpty ? 'Бренди' : home.ctaPrimary,
+                    onPressed: () => context.go('/brands'),
+                  );
+                  final houseBtn = RsButton(
+                    label: home.ctaSecondary.isEmpty ? 'Дім' : home.ctaSecondary,
+                    variant: RsButtonVariant.secondary,
                     onPressed: () => context.go('/house'),
                   );
-                  if (MediaQuery.sizeOf(context).width < 360) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [brands, house],
-                    );
-                  }
-                  return Row(children: [brands, const SizedBox(width: AppSizes.s8), house]);
+                  return Row(
+                    children: [
+                      Expanded(child: brandsBtn),
+                      const SizedBox(width: AppSizes.s12),
+                      Expanded(child: houseBtn),
+                    ],
+                  );
                 },
               ),
             ],
@@ -86,10 +103,10 @@ class HomeScreen extends StatelessWidget {
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: AppSizes.padX),
-            itemCount: PartnerCatalog.brands.length,
+            itemCount: brands.length,
             separatorBuilder: (_, _) => const SizedBox(width: AppSizes.s12),
             itemBuilder: (context, index) {
-              final brand = PartnerCatalog.brands[index];
+              final brand = brands[index];
               return RsPartnerMark(
                 brand: brand,
                 onTap: () => context.go('/brands/${brand.id}'),

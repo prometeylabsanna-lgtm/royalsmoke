@@ -5,15 +5,25 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../features/brands/presentation/saved_brands_provider.dart';
+import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_brand.dart';
 import '../../../shared/widgets/rs_chrome.dart';
 
 class OfflineScreen extends ConsumerWidget {
   const OfflineScreen({super.key});
 
+  String _formatDate(DateTime dt) {
+    final d = dt.day.toString().padLeft(2, '0');
+    final m = dt.month.toString().padLeft(2, '0');
+    return '$d.$m.${dt.year}';
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final saved = ref.watch(savedBrandListProvider);
+    final updatedAt = watchContent(ref).updatedAt;
+    final updatedLabel =
+        updatedAt == null ? 'Локальний каталог' : 'Оновлено ${_formatDate(updatedAt)}';
     return ListView(
       padding: const EdgeInsets.fromLTRB(AppSizes.padX, 24, AppSizes.padX, AppSizes.s24),
       children: [
@@ -23,13 +33,13 @@ class OfflineScreen extends ConsumerWidget {
           subtitle: 'Збережений довідник брендів',
         ),
         const SizedBox(height: AppSizes.s24),
-        const Row(
+        Row(
           children: [
-            RsOfflineChip(),
-            Spacer(),
+            const RsOfflineChip(),
+            const Spacer(),
             Text(
-              'Оновлено 24.09.2026',
-              style: TextStyle(
+              updatedLabel,
+              style: const TextStyle(
                 fontFamily: 'Fixel Display',
                 fontSize: 11,
                 letterSpacing: 1.3,
@@ -43,8 +53,8 @@ class OfflineScreen extends ConsumerWidget {
         const SizedBox(height: AppSizes.s8),
         const Divider(height: 1, color: AppColors.hairline),
         if (saved.isEmpty)
-          Padding(
-            padding: const EdgeInsets.only(top: 48),
+          const Padding(
+            padding: EdgeInsets.only(top: 48),
             child: Text(
               'Поки немає збережених брендів.\nДодайте їх закладкою на картці бренду.',
               style: TextStyle(

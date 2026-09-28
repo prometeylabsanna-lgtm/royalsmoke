@@ -40,6 +40,8 @@ class Command(BaseCommand):
         self._seed_legal()
         self._seed_calculator()
         self._seed_booking()
+        from django.core.management import call_command
+        call_command('seed_mobile_app')
         self.stdout.write(self.style.SUCCESS('Seed завершено'))
 
     def _seed_blocks(self):

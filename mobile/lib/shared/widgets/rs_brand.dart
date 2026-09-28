@@ -4,6 +4,7 @@ import '../../core/constants/app_sizes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import '../../features/brands/domain/partner_brand.dart';
+import 'rs_cover_image.dart';
 
 /// Назва бренду: перенос лише по словах, без одиночної літери на рядку.
 class RsBrandTitle extends StatelessWidget {
@@ -76,7 +77,10 @@ class RsBrandCell extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   DecoratedBox(decoration: BoxDecoration(gradient: brand.gradient)),
-                  Image.asset(brand.imageAsset, fit: BoxFit.cover),
+                  RsCoverImage(
+                    imageUrl: brand.imageUrl,
+                    assetFallback: brand.imageAsset,
+                  ),
                   const DecoratedBox(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -128,7 +132,10 @@ class RsPartnerMark extends StatelessWidget {
                 border: Border.all(color: const Color(0x38FCF2EE)),
               ),
               child: ClipOval(
-                child: Image.asset(brand.imageAsset, fit: BoxFit.cover),
+                child: RsCoverImage(
+                  imageUrl: brand.imageUrl,
+                  assetFallback: brand.imageAsset,
+                ),
               ),
             ),
             const SizedBox(height: 10),
@@ -168,7 +175,10 @@ class RsOfflineBrandRow extends StatelessWidget {
               child: SizedBox(
                 width: 52,
                 height: 52,
-                child: Image.asset(brand.imageAsset, fit: BoxFit.cover),
+                child: RsCoverImage(
+                  imageUrl: brand.imageUrl,
+                  assetFallback: brand.imageAsset,
+                ),
               ),
             ),
             const SizedBox(width: 14),

@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../data/partner_catalog.dart';
+import '../../content/presentation/app_content_provider.dart';
 import '../domain/partner_brand.dart';
 
 /// Збережені бренди (демо: два партнери на старті).
@@ -22,5 +22,6 @@ final savedBrandsProvider =
 
 final savedBrandListProvider = Provider<List<PartnerBrand>>((ref) {
   final ids = ref.watch(savedBrandsProvider);
-  return PartnerCatalog.brands.where((b) => ids.contains(b.id)).toList();
+  final brands = ref.watch(appBrandsProvider);
+  return brands.where((b) => ids.contains(b.id)).toList();
 });

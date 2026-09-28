@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
+import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_button.dart';
 import '../../../shared/widgets/rs_chrome.dart';
 import '../../../shared/widgets/rs_fields.dart';
 
-class VisitScreen extends StatefulWidget {
+class VisitScreen extends ConsumerStatefulWidget {
   const VisitScreen({super.key});
 
   @override
-  State<VisitScreen> createState() => _VisitScreenState();
+  ConsumerState<VisitScreen> createState() => _VisitScreenState();
 }
 
-class _VisitScreenState extends State<VisitScreen> {
+class _VisitScreenState extends ConsumerState<VisitScreen> {
   final _name = TextEditingController();
   final _phone = TextEditingController();
   final _date = TextEditingController();
@@ -47,6 +49,7 @@ class _VisitScreenState extends State<VisitScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final visit = watchContent(ref).screen('visit');
     if (_sent) {
       return Padding(
         padding: const EdgeInsets.all(AppSizes.padX),
@@ -65,20 +68,22 @@ class _VisitScreenState extends State<VisitScreen> {
             ),
             const SizedBox(height: 20),
             Text(
-              'ЗАПИТ НАДІСЛАНО',
+              visit.successTitle.isEmpty ? 'ЗАПИТ НАДІСЛАНО' : visit.successTitle,
               textAlign: TextAlign.center,
               style: AppTextStyles.title.copyWith(fontSize: 22, letterSpacing: 22 * 0.2),
             ),
             const SizedBox(height: AppSizes.s16),
             Text(
-              'Ми звʼяжемося з вами, щоб підтвердити дату та час візиту.',
+              visit.successBody.isEmpty
+                  ? 'Ми звʼяжемося з вами, щоб підтвердити дату та час візиту.'
+                  : visit.successBody,
               textAlign: TextAlign.center,
               style: AppTextStyles.body.copyWith(color: AppColors.textMuted),
             ),
             TextButton(
               onPressed: () => setState(() => _sent = false),
               child: Text(
-                'НОВИЙ ЗАПИТ',
+                visit.bodySecondary.isEmpty ? 'НОВИЙ ЗАПИТ' : visit.bodySecondary,
                 style: TextStyle(
                   fontFamily: AppTextStyles.family,
                   fontSize: 12,
@@ -100,7 +105,10 @@ class _VisitScreenState extends State<VisitScreen> {
       padding: const EdgeInsets.fromLTRB(AppSizes.padX, 8, AppSizes.padX, AppSizes.s24),
       children: [
         RsBackBar(label: 'Дім', onPressed: () => context.go('/house')),
-        const RsPageHeading(kicker: 'Дім Royal Smoke', title: 'Візит'),
+        RsPageHeading(
+          kicker: visit.kicker.isEmpty ? 'Дім Royal Smoke' : visit.kicker,
+          title: visit.title.isEmpty ? 'Візит' : visit.title,
+        ),
         const SizedBox(height: 20),
         RsTextField(
           label: 'Імʼя',
@@ -129,7 +137,11 @@ class _VisitScreenState extends State<VisitScreen> {
         const SizedBox(height: 20),
         RsTextField(label: 'Коментар', hint: 'Необовʼязково', controller: _comment, maxLines: 3),
         const SizedBox(height: AppSizes.s24),
-        RsButton(label: 'Надіслати запит', expand: true, onPressed: _submit),
+        RsButton(
+          label: visit.ctaPrimary.isEmpty ? 'Надіслати запит' : visit.ctaPrimary,
+          expand: true,
+          onPressed: _submit,
+        ),
       ],
     );
   }

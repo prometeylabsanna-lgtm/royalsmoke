@@ -22,6 +22,8 @@ class PartnerBrand {
     required this.heritage,
     required this.facts,
     required this.lines,
+    this.imageUrl = '',
+    this.photoUrls = const [],
   });
 
   final String id;
@@ -31,6 +33,8 @@ class PartnerBrand {
   final String country;
   final BrandPanel panel;
   final String imageAsset;
+  final String imageUrl;
+  final List<String> photoUrls;
   final String heritage;
   final List<BrandFact> facts;
   final List<String> lines;

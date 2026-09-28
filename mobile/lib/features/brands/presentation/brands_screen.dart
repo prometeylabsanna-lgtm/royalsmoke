@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_sizes.dart';
-import '../../../features/brands/data/partner_catalog.dart';
 import '../../../features/brands/domain/partner_brand.dart';
+import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_brand.dart';
 import '../../../shared/widgets/rs_chrome.dart';
 import '../../../shared/widgets/rs_fields.dart';
 import '../../../shared/widgets/rs_rows.dart';
 
-class BrandsScreen extends StatefulWidget {
+class BrandsScreen extends ConsumerStatefulWidget {
   const BrandsScreen({super.key});
 
   @override
-  State<BrandsScreen> createState() => _BrandsScreenState();
+  ConsumerState<BrandsScreen> createState() => _BrandsScreenState();
 }
 
-class _BrandsScreenState extends State<BrandsScreen> {
+class _BrandsScreenState extends ConsumerState<BrandsScreen> {
   final _query = TextEditingController();
 
   @override
@@ -25,17 +26,17 @@ class _BrandsScreenState extends State<BrandsScreen> {
     super.dispose();
   }
 
-  List<PartnerBrand> get _visible {
+  List<PartnerBrand> _visible(List<PartnerBrand> all) {
     final q = _query.text.trim().toLowerCase();
-    if (q.isEmpty) return PartnerCatalog.brands;
-    return PartnerCatalog.brands
+    if (q.isEmpty) return all;
+    return all
         .where((b) => '${b.name} ${b.shortName}'.toLowerCase().contains(q))
         .toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    final brands = _visible;
+    final brands = _visible(ref.watch(appBrandsProvider));
     return ListView(
       padding: const EdgeInsets.fromLTRB(AppSizes.padX, 24, AppSizes.padX, AppSizes.s24),
       children: [

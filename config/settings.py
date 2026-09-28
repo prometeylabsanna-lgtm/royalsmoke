@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'apps.leads',
     'apps.pages',
     'apps.api',
+    'apps.mobile.apps.MobileConfig',
     'apps.pwa.apps.PwaConfig',
 ]
 

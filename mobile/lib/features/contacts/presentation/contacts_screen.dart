@@ -1,33 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../core/constants/app_copy.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
+import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_chrome.dart';
 import '../../../shared/widgets/rs_venue_map.dart';
 
-class ContactsScreen extends StatelessWidget {
+class ContactsScreen extends ConsumerWidget {
   const ContactsScreen({super.key});
 
-  Future<void> _openMaps() async {
+  Future<void> _openMaps(double lat, double lng, String address) async {
     final uri = Uri.parse(
-      'https://maps.apple.com/?ll=${AppCopy.contactLat},${AppCopy.contactLng}'
-      '&q=${Uri.encodeComponent(AppCopy.contactAddress)}',
+      'https://maps.apple.com/?ll=$lat,$lng'
+      '&q=${Uri.encodeComponent(address)}',
     );
     await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 
-  Future<void> _call() async {
-    final digits = AppCopy.contactPhone.replaceAll(RegExp(r'[^\d+]'), '');
+  Future<void> _call(String phone) async {
+    final digits = phone.replaceAll(RegExp(r'[^\d+]'), '');
     final uri = Uri(scheme: 'tel', path: digits);
     await launchUrl(uri);
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = watchContent(ref).settings;
     return ListView(
       padding: const EdgeInsets.fromLTRB(AppSizes.padX, 8, AppSizes.padX, AppSizes.s24),
       children: [
@@ -43,24 +45,28 @@ class ContactsScreen extends StatelessWidget {
         ),
         const RsPageHeading(kicker: 'Дім Royal Smoke', title: 'Контакти'),
         const SizedBox(height: 12),
-        Text(AppCopy.appBlurb, style: AppTextStyles.body),
+        Text(settings.appBlurb, style: AppTextStyles.body),
         const SizedBox(height: 20),
-        const RsVenueMap(),
+        RsVenueMap(lat: settings.contactLat, lng: settings.contactLng),
         const SizedBox(height: 20),
         const Divider(height: 1, color: AppColors.hairline),
         _ContactBlock(
           label: 'Адреса',
-          value: AppCopy.contactAddress,
+          value: settings.contactAddress,
           action: 'Прокласти маршрут',
-          onAction: _openMaps,
+          onAction: () => _openMaps(
+            settings.contactLat,
+            settings.contactLng,
+            settings.contactAddress,
+          ),
         ),
         _ContactBlock(
           label: 'Телефон',
-          value: AppCopy.contactPhone,
+          value: settings.contactPhone,
           action: 'Зателефонувати',
-          onAction: _call,
+          onAction: () => _call(settings.contactPhone),
         ),
-        const _ContactBlock(label: 'Години', value: AppCopy.contactHours),
+        _ContactBlock(label: 'Години', value: settings.contactHours),
       ],
     );
   }

@@ -16,12 +16,22 @@ from apps.api.viewsets.catalog_orders import (
     ProductViewSet,
 )
 from apps.calculator.views import calculator_api
+from apps.mobile.api import (
+    MobileBrandViewSet,
+    MobileLegalPageViewSet,
+    MobileScreenViewSet,
+    mobile_bundle_view,
+    mobile_settings_view,
+)
 
 router = DefaultRouter()
 router.register('categories', CategoryViewSet, basename='api-categories')
 router.register('brands', BrandViewSet, basename='api-brands')
 router.register('products', ProductViewSet, basename='api-products')
 router.register('my/orders', MyOrdersViewSet, basename='api-my-orders')
+router.register('app/brands', MobileBrandViewSet, basename='api-app-brands')
+router.register('app/screens', MobileScreenViewSet, basename='api-app-screens')
+router.register('app/pages', MobileLegalPageViewSet, basename='api-app-pages')
 
 urlpatterns = [
     path('', include(router.urls)),
@@ -32,4 +42,6 @@ urlpatterns = [
     path('cart/', CartView.as_view(), name='api-cart'),
     path('cart/items/<int:item_id>/', CartItemView.as_view(), name='api-cart-item'),
     path('checkout/', CheckoutView.as_view(), name='api-checkout'),
+    path('app/settings/', mobile_settings_view, name='api-app-settings'),
+    path('app/bundle/', mobile_bundle_view, name='api-app-bundle'),
 ]
