@@ -1,33 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../features/brands/data/partner_catalog.dart';
+import '../../../features/brands/presentation/saved_brands_provider.dart';
 import '../../../shared/widgets/rs_brand.dart';
 import '../../../shared/widgets/rs_brand_pattern.dart';
 import '../../../shared/widgets/rs_rows.dart';
 
-class BrandDetailScreen extends StatefulWidget {
+class BrandDetailScreen extends ConsumerWidget {
   const BrandDetailScreen({super.key, required this.brandId});
 
   final String brandId;
 
   @override
-  State<BrandDetailScreen> createState() => _BrandDetailScreenState();
-}
-
-class _BrandDetailScreenState extends State<BrandDetailScreen> {
-  bool _saved = false;
-
-  @override
-  Widget build(BuildContext context) {
-    final matches = PartnerCatalog.brands.where((b) => b.id == widget.brandId);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final matches = PartnerCatalog.brands.where((b) => b.id == brandId);
     if (matches.isEmpty) {
       return const Center(child: Text('Бренд не знайдено'));
     }
     final item = matches.first;
+    final saved = ref.watch(savedBrandsProvider).contains(brandId);
 
     final panelHeight = (MediaQuery.sizeOf(context).height * 0.38).clamp(240.0, 330.0);
     return ListView(
@@ -62,9 +58,9 @@ class _BrandDetailScreenState extends State<BrandDetailScreen> {
                             ),
                             const Spacer(),
                             IconButton(
-                              onPressed: () => setState(() => _saved = !_saved),
+                              onPressed: () => ref.read(savedBrandsProvider.notifier).toggle(brandId),
                               icon: Icon(
-                                _saved ? Icons.bookmark : Icons.bookmark_border,
+                                saved ? Icons.bookmark : Icons.bookmark_border,
                                 color: AppColors.seashell,
                               ),
                             ),

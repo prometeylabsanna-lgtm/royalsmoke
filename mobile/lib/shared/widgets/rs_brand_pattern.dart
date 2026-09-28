@@ -180,16 +180,19 @@ class RsBrandLetterPanel extends StatelessWidget {
           DecoratedBox(decoration: BoxDecoration(gradient: brand.gradient)),
           Positioned.fill(
             child: ClipRect(
-              child: OverflowBox(
-                alignment: extendLower ? Alignment.topLeft : Alignment.centerLeft,
-                maxWidth: 800,
-                maxHeight: patternHeight,
-                child: RsBrandLetterPattern(
-                  word: patternWord ?? brand.shortName,
-                  panel: brand.panel,
-                  fontSize: fontSize,
-                  rowCount: rowCount,
-                  extendLower: extendLower,
+              clipBehavior: Clip.hardEdge,
+              child: IgnorePointer(
+                child: OverflowBox(
+                  alignment: extendLower ? Alignment.topLeft : Alignment.centerLeft,
+                  maxWidth: 800,
+                  maxHeight: patternHeight,
+                  child: RsBrandLetterPattern(
+                    word: patternWord ?? brand.shortName,
+                    panel: brand.panel,
+                    fontSize: fontSize,
+                    rowCount: rowCount,
+                    extendLower: extendLower,
+                  ),
                 ),
               ),
             ),

@@ -14,7 +14,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final heroHeight = (MediaQuery.sizeOf(context).height * 0.48).clamp(280.0, 430.0);
+    final media = MediaQuery.of(context);
+    final screenH = media.size.height;
+    // Залишаємо місце під контент + ряд партнерів у першому екрані (без скролу).
+    final heroHeight = (screenH * 0.34).clamp(200.0, 300.0);
     return ListView(
       padding: const EdgeInsets.only(bottom: AppSizes.s24),
       children: [
@@ -47,11 +50,11 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('ДІМ БРЕНДУ', style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32)),
-              const SizedBox(height: AppSizes.s16),
+              const SizedBox(height: AppSizes.s12),
               Text('ROYAL\nSMOKE', style: AppTextStyles.hero),
-              const SizedBox(height: AppSizes.s16),
-              Text('Довідник дому бренду та партнерів', style: AppTextStyles.body),
               const SizedBox(height: AppSizes.s24),
+              Text('Довідник дому бренду та партнерів', style: AppTextStyles.body),
+              const SizedBox(height: AppSizes.s16),
               Builder(
                 builder: (context) {
                   final brands = RsButton(label: 'Бренди', onPressed: () => context.go('/brands'));
@@ -72,14 +75,14 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: AppSizes.s56),
+        const SizedBox(height: AppSizes.s40),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppSizes.padX),
           child: Text('ПАРТНЕРИ', style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32)),
         ),
-        const SizedBox(height: AppSizes.s16),
+        const SizedBox(height: AppSizes.s12),
         SizedBox(
-          height: 110,
+          height: 128,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: AppSizes.padX),

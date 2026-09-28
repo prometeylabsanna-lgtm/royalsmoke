@@ -8,24 +8,78 @@ import '../../core/theme/app_text_styles.dart';
 enum RsTab { home, brands, house, offline, more }
 
 class RsPageHeading extends StatelessWidget {
-  const RsPageHeading({super.key, required this.kicker, required this.title, this.subtitle});
+  const RsPageHeading({
+    super.key,
+    required this.kicker,
+    required this.title,
+    this.subtitle,
+    this.compactTitle = false,
+  });
 
   final String kicker;
   final String title;
   final String? subtitle;
+  /// Менший letter-spacing і перенос лише по словах (для довгих юр. заголовків).
+  final bool compactTitle;
 
   @override
   Widget build(BuildContext context) {
+    final titleStyle = compactTitle
+        ? AppTextStyles.title.copyWith(
+            fontSize: 26,
+            letterSpacing: 26 * 0.08,
+            height: 1.15,
+          )
+        : AppTextStyles.title;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(kicker.toUpperCase(), style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32)),
         const SizedBox(height: 10),
-        Text(title.toUpperCase(), style: AppTextStyles.title),
+        if (compactTitle)
+          _WordSafeTitle(text: title.toUpperCase(), style: titleStyle)
+        else
+          Text(title.toUpperCase(), style: titleStyle),
         if (subtitle != null) ...[
           const SizedBox(height: 4),
           Text(subtitle!, style: AppTextStyles.body),
         ],
+      ],
+    );
+  }
+}
+
+/// Заголовок без розриву слова посередині: кожне слово — окремий рядок із scaleDown.
+class _WordSafeTitle extends StatelessWidget {
+  const _WordSafeTitle({required this.text, required this.style});
+
+  final String text;
+  final TextStyle style;
+
+  @override
+  Widget build(BuildContext context) {
+    final words = text
+        .trim()
+        .split(RegExp(r'\s+'))
+        .where((w) => w.isNotEmpty)
+        .toList();
+    if (words.isEmpty) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (final word in words)
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(
+              word,
+              maxLines: 1,
+              softWrap: false,
+              style: style,
+            ),
+          ),
       ],
     );
   }
@@ -219,20 +273,26 @@ class RsTabBar extends StatelessWidget {
               children: [
                 for (final item in _items)
                   Expanded(
-                    child: InkWell(
-                      onTap: () => onChanged(item.$1),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _TabGlyph(tab: item.$1, active: item.$1 == current),
-                          const SizedBox(height: 4),
-                          Text(
-                            item.$2,
-                            style: AppTextStyles.tabLabel.copyWith(
-                              color: item.$1 == current ? AppColors.gold : AppColors.tabInactive,
-                            ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () => onChanged(item.$1),
+                        child: SizedBox(
+                          height: 48,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              _TabGlyph(tab: item.$1, active: item.$1 == current),
+                              const SizedBox(height: 4),
+                              Text(
+                                item.$2,
+                                style: AppTextStyles.tabLabel.copyWith(
+                                  color: item.$1 == current ? AppColors.gold : AppColors.tabInactive,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
                   ),

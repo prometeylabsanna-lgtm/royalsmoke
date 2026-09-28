@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../features/brands/data/partner_catalog.dart';
+import '../../../features/brands/presentation/saved_brands_provider.dart';
 import '../../../shared/widgets/rs_brand.dart';
 import '../../../shared/widgets/rs_chrome.dart';
 
-class OfflineScreen extends StatelessWidget {
+class OfflineScreen extends ConsumerWidget {
   const OfflineScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final saved = ref.watch(savedBrandListProvider);
     return ListView(
       padding: const EdgeInsets.fromLTRB(AppSizes.padX, 24, AppSizes.padX, AppSizes.s24),
       children: [
@@ -40,11 +42,25 @@ class OfflineScreen extends StatelessWidget {
         const Divider(height: 1, color: AppColors.gold),
         const SizedBox(height: AppSizes.s8),
         const Divider(height: 1, color: AppColors.hairline),
-        for (final brand in PartnerCatalog.brands)
-          RsOfflineBrandRow(
-            brand: brand,
-            onTap: () => context.go('/brands/${brand.id}'),
-          ),
+        if (saved.isEmpty)
+          Padding(
+            padding: const EdgeInsets.only(top: 48),
+            child: Text(
+              'Поки немає збережених брендів.\nДодайте їх закладкою на картці бренду.',
+              style: TextStyle(
+                fontFamily: 'Fixel Display',
+                fontSize: 15,
+                height: 1.5,
+                color: AppColors.textMuted,
+              ),
+            ),
+          )
+        else
+          for (final brand in saved)
+            RsOfflineBrandRow(
+              brand: brand,
+              onTap: () => context.go('/brands/${brand.id}'),
+            ),
       ],
     );
   }

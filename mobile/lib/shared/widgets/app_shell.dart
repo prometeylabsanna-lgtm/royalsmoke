@@ -8,13 +8,22 @@ class AppShell extends StatelessWidget {
 
   final StatefulNavigationShell navigationShell;
 
+  void _onTab(RsTab tab) {
+    // Завжди відкриваємо корінь вкладки: після картки бренду «Бренди»
+    // знову показує список, а не залишений detail.
+    navigationShell.goBranch(tab.index, initialLocation: true);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: navigationShell,
+      body: Material(
+        color: Colors.transparent,
+        child: navigationShell,
+      ),
       bottomNavigationBar: RsTabBar(
         current: RsTab.values[navigationShell.currentIndex],
-        onChanged: (tab) => navigationShell.goBranch(tab.index),
+        onChanged: _onTab,
       ),
     );
   }
