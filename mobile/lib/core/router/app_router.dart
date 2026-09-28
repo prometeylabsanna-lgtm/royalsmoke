@@ -11,30 +11,55 @@ import '../../features/more/presentation/more_screen.dart';
 import '../../features/offline/presentation/offline_screen.dart';
 import '../../features/splash/presentation/splash_screen.dart';
 import '../../shared/widgets/app_shell.dart';
+import 'rs_page.dart';
 
 GoRouter buildAppRouter() {
   return GoRouter(
     initialLocation: '/splash',
     routes: [
-      GoRoute(path: '/splash', builder: (context, state) => const SplashScreen()),
-      GoRoute(path: '/age', builder: (context, state) => const AgeGateScreen()),
+      GoRoute(
+        path: '/splash',
+        pageBuilder: (context, state) => rsOpaquePage(
+          key: state.pageKey,
+          child: const SplashScreen(),
+        ),
+      ),
+      GoRoute(
+        path: '/age',
+        pageBuilder: (context, state) => rsOpaquePage(
+          key: state.pageKey,
+          child: const AgeGateScreen(),
+        ),
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) => AppShell(navigationShell: navigationShell),
         branches: [
           StatefulShellBranch(
             routes: [
-              GoRoute(path: '/home', builder: (context, state) => const HomeScreen()),
+              GoRoute(
+                path: '/home',
+                pageBuilder: (context, state) => rsOpaquePage(
+                  key: state.pageKey,
+                  child: const HomeScreen(),
+                ),
+              ),
             ],
           ),
           StatefulShellBranch(
             routes: [
               GoRoute(
                 path: '/brands',
-                builder: (context, state) => const BrandsScreen(),
+                pageBuilder: (context, state) => rsOpaquePage(
+                  key: state.pageKey,
+                  child: const BrandsScreen(),
+                ),
                 routes: [
                   GoRoute(
                     path: ':id',
-                    builder: (context, state) => BrandDetailScreen(brandId: state.pathParameters['id']!),
+                    pageBuilder: (context, state) => rsOpaquePage(
+                      key: state.pageKey,
+                      child: BrandDetailScreen(brandId: state.pathParameters['id']!),
+                    ),
                   ),
                 ],
               ),
@@ -44,28 +69,55 @@ GoRouter buildAppRouter() {
             routes: [
               GoRoute(
                 path: '/house',
-                builder: (context, state) => const HouseScreen(),
+                pageBuilder: (context, state) => rsOpaquePage(
+                  key: state.pageKey,
+                  child: const HouseScreen(),
+                ),
                 routes: [
-                  GoRoute(path: 'visit', builder: (context, state) => const VisitScreen()),
+                  GoRoute(
+                    path: 'visit',
+                    pageBuilder: (context, state) => rsOpaquePage(
+                      key: state.pageKey,
+                      child: const VisitScreen(),
+                    ),
+                  ),
                 ],
               ),
             ],
           ),
           StatefulShellBranch(
             routes: [
-              GoRoute(path: '/offline', builder: (context, state) => const OfflineScreen()),
+              GoRoute(
+                path: '/offline',
+                pageBuilder: (context, state) => rsOpaquePage(
+                  key: state.pageKey,
+                  child: const OfflineScreen(),
+                ),
+              ),
             ],
           ),
           StatefulShellBranch(
             routes: [
               GoRoute(
                 path: '/more',
-                builder: (context, state) => const MoreScreen(),
+                pageBuilder: (context, state) => rsOpaquePage(
+                  key: state.pageKey,
+                  child: const MoreScreen(),
+                ),
                 routes: [
-                  GoRoute(path: 'contacts', builder: (context, state) => const ContactsScreen()),
+                  GoRoute(
+                    path: 'contacts',
+                    pageBuilder: (context, state) => rsOpaquePage(
+                      key: state.pageKey,
+                      child: const ContactsScreen(),
+                    ),
+                  ),
                   GoRoute(
                     path: 'page/:id',
-                    builder: (context, state) => InfoPageScreen(pageId: state.pathParameters['id']!),
+                    pageBuilder: (context, state) => rsOpaquePage(
+                      key: state.pageKey,
+                      child: InfoPageScreen(pageId: state.pathParameters['id']!),
+                    ),
                   ),
                 ],
               ),

@@ -20,7 +20,11 @@ void main() {
             children: [
               const RsAgeBadge(),
               RsButton(label: 'Бренди', onPressed: () {}),
-              SizedBox(width: 160, child: RsBrandCell(brand: turrent)),
+              SizedBox(
+                width: 160,
+                height: 220,
+                child: RsBrandCell(brand: turrent),
+              ),
             ],
           ),
         ),
@@ -29,7 +33,8 @@ void main() {
 
     expect(find.text('21+'), findsOneWidget);
     expect(find.text('БРЕНДИ'), findsOneWidget);
-    expect(find.text('Casa Turrent'), findsOneWidget);
+    expect(find.text('CASA'), findsOneWidget);
+    expect(find.text('TURRENT'), findsOneWidget);
     expect(find.textContaining('₴'), findsNothing);
     expect(find.textContaining('Купити'), findsNothing);
   });

@@ -16,9 +16,10 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Довідник дому бренду та партнерів'), findsOneWidget);
 
-    await tester.tap(find.text('Бренди'));
+    await tester.tap(find.text('Бренди').last);
     await tester.pumpAndSettle();
-    expect(find.text('Casa Turrent'), findsOneWidget);
+    // Назви на картках у uppercase по словах (RsBrandTitle).
+    expect(find.text('TURRENT'), findsOneWidget);
     expect(find.textContaining('Купити'), findsNothing);
   });
 }

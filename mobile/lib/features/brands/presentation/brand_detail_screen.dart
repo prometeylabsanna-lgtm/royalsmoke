@@ -20,7 +20,10 @@ class BrandDetailScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final matches = PartnerCatalog.brands.where((b) => b.id == brandId);
     if (matches.isEmpty) {
-      return const Center(child: Text('Бренд не знайдено'));
+      return const ColoredBox(
+        color: AppColors.bark,
+        child: Center(child: Text('Бренд не знайдено')),
+      );
     }
     final item = matches.first;
     final saved = ref.watch(savedBrandsProvider).contains(brandId);

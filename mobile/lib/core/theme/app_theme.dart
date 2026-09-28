@@ -21,6 +21,13 @@ abstract final class AppTheme {
       brightness: Brightness.dark,
       fontFamily: AppTextStyles.family,
       scaffoldBackgroundColor: AppColors.bark,
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.macOS: FadeUpwardsPageTransitionsBuilder(),
+          TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+        },
+      ),
       colorScheme: scheme,
       textTheme: TextTheme(
         headlineMedium: AppTextStyles.title,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/theme/app_colors.dart';
 import 'rs_chrome.dart';
 
 class AppShell extends StatelessWidget {
@@ -17,8 +18,9 @@ class AppShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Material(
-        color: Colors.transparent,
+      backgroundColor: AppColors.bark,
+      body: ColoredBox(
+        color: AppColors.bark,
         child: navigationShell,
       ),
       bottomNavigationBar: RsTabBar(
