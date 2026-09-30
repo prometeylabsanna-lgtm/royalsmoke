@@ -27,7 +27,7 @@ class SkipEmptyBaseFormSet(forms.BaseModelFormSet):
 
 
 class HeroSlideBaseFormSet(SkipEmptyBaseFormSet):
-    required_any = ('image', 'title_uk')
+    required_any = ('image',)
 
 
 class HistorySlideBaseFormSet(SkipEmptyBaseFormSet):
@@ -104,14 +104,14 @@ class HeroSlideForm(forms.ModelForm):
         model = HeroSlide
         fields = (
             'image',
-            *_i18n_fields('title', 'subtitle', 'cta_primary_label', 'cta_secondary_label'),
+            *_i18n_fields('cta_primary_label', 'cta_secondary_label'),
             'cta_primary_url',
             'cta_secondary_url',
             'sort_order',
             'is_active',
         )
         widgets = {
-            **_i18n_widgets('title', 'subtitle', 'cta_primary_label', 'cta_secondary_label'),
+            **_i18n_widgets('cta_primary_label', 'cta_secondary_label'),
             'image': CmsAdminImageWidget(),
             'cta_primary_url': CmsAdminTextInputWidget(),
             'cta_secondary_url': CmsAdminTextInputWidget(),
@@ -119,7 +119,7 @@ class HeroSlideForm(forms.ModelForm):
 
     def clean(self):
         cleaned = super().clean()
-        _sanitize_text_fields(self, 'title', 'subtitle', 'cta_primary_label', 'cta_secondary_label')
+        _sanitize_text_fields(self, 'cta_primary_label', 'cta_secondary_label')
         return cleaned
 
     def clean_cta_primary_url(self):

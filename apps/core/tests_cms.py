@@ -130,6 +130,9 @@ class CmsAdminTests(TestCase):
         self.assertContains(response, 'data-cms-image-preview')
         self.assertContains(response, slide.image.name)
         self.assertContains(response, 'rs-cms-image__frame')
+        self.assertNotContains(response, 'title_uk')
+        self.assertNotContains(response, 'subtitle_uk')
+        self.assertContains(response, 'cta_primary_label_uk')
 
     def test_category_form_uses_image_widget(self):
         from apps.catalog.models_base import Category
