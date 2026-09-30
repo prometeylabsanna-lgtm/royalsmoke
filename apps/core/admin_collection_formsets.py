@@ -79,7 +79,10 @@ def _i18n_widgets(*names: str) -> dict:
                     attrs={'rows': 3 if name == 'text' else 2, 'data-cms-lang': _code},
                 )
             else:
-                widgets[field] = CmsAdminTextInputWidget(attrs={'data-cms-lang': _code})
+                widgets[field] = CmsAdminTextInputWidget(attrs={
+                    'data-cms-lang': _code,
+                    'autocomplete': 'off',
+                })
     return widgets
 
 
@@ -112,14 +115,32 @@ class HeroSlideForm(forms.ModelForm):
         )
         widgets = {
             **_i18n_widgets('cta_primary_label', 'cta_secondary_label'),
-            'image': CmsAdminImageWidget(),
-            'cta_primary_url': CmsAdminTextInputWidget(),
-            'cta_secondary_url': CmsAdminTextInputWidget(),
+            'image': CmsAdminImageWidget(attrs={'autocomplete': 'off'}),
+            'cta_primary_url': CmsAdminTextInputWidget(attrs={'autocomplete': 'off'}),
+            'cta_secondary_url': CmsAdminTextInputWidget(attrs={'autocomplete': 'off'}),
         }
 
     def clean(self):
         cleaned = super().clean()
         _sanitize_text_fields(self, 'cta_primary_label', 'cta_secondary_label')
+        uploaded = self.cleaned_data.get('image')
+        file_name = ''
+        if uploaded and hasattr(uploaded, 'name'):
+            file_name = (uploaded.name or '').rsplit('/', 1)[-1]
+        for key in list(self.cleaned_data):
+            if 'cta_' not in key or 'label' not in key:
+                continue
+            val = (self.cleaned_data.get(key) or '').strip()
+            if not val:
+                continue
+            if file_name and (val == file_name or val.endswith(file_name)):
+                self.cleaned_data[key] = self.initial.get(key) or (
+                    'До каталогу' if 'primary' in key else 'Сигари'
+                )
+            elif val.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.webp', '.avif', '.svg')):
+                self.cleaned_data[key] = self.initial.get(key) or (
+                    'До каталогу' if 'primary' in key else 'Сигари'
+                )
         return cleaned
 
     def clean_cta_primary_url(self):

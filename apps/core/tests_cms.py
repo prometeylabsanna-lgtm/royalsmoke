@@ -135,6 +135,35 @@ class CmsAdminTests(TestCase):
         self.assertNotContains(response, 'subtitle_uk')
         self.assertContains(response, 'cta_primary_label_uk')
 
+    def test_hero_form_rejects_filename_as_cta_label(self):
+        from apps.core.admin_collection_formsets import HeroSlideForm
+        from apps.core.models import HeroSlide
+
+        slide = HeroSlide.objects.create(
+            title='Hero',
+            cta_primary_label='Каталог',
+            cta_primary_label_uk='Каталог',
+            sort_order=0,
+            is_active=True,
+        )
+        form = HeroSlideForm(
+            data={
+                'cta_primary_label_uk': 'adam-smigielski-unsplash.jpg',
+                'cta_primary_label_en': '',
+                'cta_primary_label_zh_hans': '',
+                'cta_secondary_label_uk': 'Сигари',
+                'cta_secondary_label_en': '',
+                'cta_secondary_label_zh_hans': '',
+                'cta_primary_url': '/catalog/',
+                'cta_secondary_url': '/catalog/cigars/',
+                'sort_order': '0',
+                'is_active': 'on',
+            },
+            instance=slide,
+        )
+        self.assertTrue(form.is_valid(), form.errors)
+        self.assertEqual(form.cleaned_data['cta_primary_label_uk'], 'Каталог')
+
     def test_category_form_uses_image_widget(self):
         from apps.catalog.models_base import Category
 
