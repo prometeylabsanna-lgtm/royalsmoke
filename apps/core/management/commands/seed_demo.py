@@ -20,6 +20,10 @@ from apps.core.block_defaults import (
 from apps.core.models import ChromeStyle, HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings
 from apps.core.page_styles import ensure_page_styles
 from apps.core.delivery_cards import ensure_delivery_cards
+from apps.core.legal_delivery_migrate import (
+    ensure_delivery_body_block,
+    ensure_delivery_header_blocks,
+)
 
 
 class Command(BaseCommand):
@@ -30,6 +34,8 @@ class Command(BaseCommand):
         ChromeStyle.load()
         ensure_page_styles()
         ensure_delivery_cards()
+        ensure_delivery_header_blocks()
+        ensure_delivery_body_block(force=False)
         self._seed_blocks()
         self._seed_hero()
         self._seed_history()
@@ -486,4 +492,33 @@ class Command(BaseCommand):
                     title_block.text_html_en = 'Privacy policy'
                     title_block.text_html_zh_hans = '隐私政策'
                     title_block.save()
+
+        from apps.core.legal_delivery_body import (
+            DELIVERY_BODY_EN,
+            DELIVERY_BODY_UK,
+            DELIVERY_BODY_ZH,
+        )
+        from apps.core.legal_delivery_migrate import (
+            ensure_delivery_body_block,
+            ensure_delivery_header_blocks,
+        )
+
+        ensure_delivery_header_blocks()
+        ensure_delivery_body_block(force=False)
+        delivery_body = SiteBlock.objects.filter(page='delivery', key='body').first()
+        if delivery_body is not None and not (getattr(delivery_body, 'text_html_en', '') or '').strip():
+            if not (delivery_body.text_html or '').strip():
+                delivery_body.text_html = DELIVERY_BODY_UK
+                delivery_body.text_html_uk = DELIVERY_BODY_UK
+            delivery_body.text_html_en = DELIVERY_BODY_EN
+            delivery_body.text_html_zh_hans = DELIVERY_BODY_ZH
+            delivery_body.save()
+        delivery_title = SiteBlock.objects.filter(page='delivery', key='title').first()
+        if delivery_title is not None and not (getattr(delivery_title, 'text_html_en', '') or '').strip():
+            title_uk = str(BLOCK_DEFAULTS.get(('delivery', 'title'), 'Доставка і оплата'))
+            delivery_title.text_html = title_uk
+            delivery_title.text_html_uk = title_uk
+            delivery_title.text_html_en = 'Delivery and payment'
+            delivery_title.text_html_zh_hans = '配送与支付'
+            delivery_title.save()
 

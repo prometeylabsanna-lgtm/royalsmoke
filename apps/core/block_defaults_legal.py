@@ -1,12 +1,17 @@
-"""Блоки юридичних сторінок (privacy / terms / age_policy / cookies)."""
+"""Блоки юридичних сторінок (delivery / privacy / terms / age_policy / cookies)."""
 
 from __future__ import annotations
 
 from django.utils.translation import gettext_lazy as _
 
+from apps.core.legal_delivery_body import DELIVERY_BODY_UK
 from apps.core.legal_privacy_body import PRIVACY_BODY_UK
 
 LEGAL_DEFAULTS: dict[tuple[str, str], str] = {
+    ('delivery', 'title'): _('Доставка і оплата'),
+    ('delivery', 'lead'): _('Київ — того ж дня · Україна — 1–2 дні · ЄС — 3–5 днів.'),
+    ('delivery', 'bg'): '',
+    ('delivery', 'body'): DELIVERY_BODY_UK,
     ('privacy', 'title'): _('Політика конфіденційності'),
     ('privacy', 'lead'): _('Як ми збираємо, зберігаємо та захищаємо ваші дані.'),
     ('privacy', 'bg'): '',
@@ -35,6 +40,10 @@ LEGAL_DEFAULTS: dict[tuple[str, str], str] = {
 }
 
 LEGAL_LABELS: dict[tuple[str, str], str] = {
+    ('delivery', 'title'): 'Заголовок',
+    ('delivery', 'lead'): 'Лід',
+    ('delivery', 'bg'): 'Фон сторінки',
+    ('delivery', 'body'): 'Текст сторінки',
     ('privacy', 'title'): 'Заголовок',
     ('privacy', 'lead'): 'Лід',
     ('privacy', 'bg'): 'Фон сторінки',
@@ -54,6 +63,7 @@ LEGAL_LABELS: dict[tuple[str, str], str] = {
 }
 
 LEGAL_TYPES: dict[tuple[str, str], str] = {
+    ('delivery', 'bg'): 'image',
     ('privacy', 'bg'): 'image',
     ('terms', 'bg'): 'image',
     ('age_policy', 'bg'): 'image',

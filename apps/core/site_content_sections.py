@@ -191,17 +191,14 @@ CONTENT_SECTIONS: tuple[ContentSection, ...] = (
         sidebar_group='legal',
         preview_url='/service/delivery/',
         admin_model_name='deliverypagesettings',
-        collection='delivery',
-        description='Шапка, заголовки секцій і динамічні картки (додати / прибрати / порядок).',
+        description='Заголовок, лід, фон і текст сторінки (TinyMCE).',
         blocks=(
-            ('delivery', 'title'), ('delivery', 'lead'), ('delivery', 'bg'),
-            ('delivery', 'h2'),
-            ('delivery', 'pay_h2'), ('delivery', 'pay_intro'),
+            ('delivery', 'title'), ('delivery', 'lead'),
+            ('delivery', 'bg'), ('delivery', 'body'),
         ),
         field_groups=(
-            FieldGroup('Шапка сторінки', ('title', 'lead', 'bg')),
-            FieldGroup('Секція доставки', ('h2',)),
-            FieldGroup('Секція оплати', ('pay_h2', 'pay_intro')),
+            FieldGroup('Шапка', ('title', 'lead', 'bg')),
+            FieldGroup('Текст', ('body',)),
         ),
     ),
     ContentSection(

@@ -347,6 +347,12 @@ class CmsTinyMCETests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'tinymce')
 
+    def test_delivery_body_uses_tinymce(self):
+        url = reverse('admin:core_deliverypagesettings_change', args=[1])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'tinymce')
+
     def test_faq_answer_uses_tinymce(self):
         item = FAQItem.objects.create(question='Q', answer='A', sort_order=0)
         response = self.client.get(reverse('admin:pages_faqitem_change', args=[item.pk]))
@@ -354,7 +360,7 @@ class CmsTinyMCETests(TestCase):
         self.assertContains(response, 'tinymce')
 
 
-class DeliveryCardsTests(TestCase):
+class DeliveryBodyTests(TestCase):
     def setUp(self):
         User = get_user_model()
         self.user = User.objects.create_superuser(
@@ -365,28 +371,29 @@ class DeliveryCardsTests(TestCase):
 
     def test_seed_and_frontend(self):
         from apps.core.delivery_cards import ensure_delivery_cards
-        from apps.core.models import DeliveryCard
+        from apps.core.legal_delivery_migrate import ensure_delivery_body_block
+        from apps.core.models import SiteBlock
 
         ensure_delivery_cards()
-        self.assertEqual(
-            DeliveryCard.objects.filter(kind=DeliveryCard.Kind.REGION).count(), 4,
-        )
-        self.assertEqual(
-            DeliveryCard.objects.filter(kind=DeliveryCard.Kind.PAYMENT).count(), 3,
-        )
+        ensure_delivery_body_block(force=True)
+        body = SiteBlock.objects.get(page='delivery', key='body')
+        self.assertIn('Київ', body.text_html)
+        self.assertIn('Онлайн оплата', body.text_html)
         response = self.client.get(reverse('leads:delivery'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Київ')
         self.assertContains(response, 'Онлайн оплата')
+        self.assertContains(response, 'rs-delivery__body')
 
-    def test_admin_shows_formsets(self):
-        from apps.core.delivery_cards import ensure_delivery_cards
+    def test_admin_uses_tinymce_body(self):
+        from apps.core.legal_delivery_migrate import ensure_delivery_body_block
 
-        ensure_delivery_cards()
+        ensure_delivery_body_block(force=False)
         url = reverse('admin:core_deliverypagesettings_change', args=[1])
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'delivery_regions')
-        self.assertContains(response, 'delivery_payments')
-        self.assertContains(response, 'Картки доставки')
+        self.assertContains(response, 'tinymce')
+        self.assertContains(response, 'body')
+        self.assertNotContains(response, 'delivery_regions')
+        self.assertNotContains(response, 'Картки доставки')
         self.assertNotContains(response, 'kyiv_title')
