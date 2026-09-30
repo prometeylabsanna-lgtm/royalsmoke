@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import html
 import re
 
 from django.utils.html import strip_tags
 from django.utils.safestring import SafeString, mark_safe
 
 # Поля SiteBlock, які навмисно зберігають HTML і рендеряться через |safe / cms_html.
-CMS_RICH_HTML_KEYS = frozenset({'body'})
+CMS_RICH_HTML_KEYS = frozenset({'body', 'map_embed'})
 
 _BR_RE = re.compile(r'<br\s*/?>', re.IGNORECASE)
 _P_CLOSE_RE = re.compile(r'</p\s*>', re.IGNORECASE)
@@ -23,6 +24,8 @@ def normalize_cms_plain(value: str | None) -> str:
     text = _BR_RE.sub('\n', text)
     text = _P_CLOSE_RE.sub('\n', text)
     text = strip_tags(text)
+    # TinyMCE часто лишає &ndash; / &deg; — інакше після escape вони видимі на вітрині.
+    text = html.unescape(text)
     lines = [ln.strip() for ln in text.replace('\r\n', '\n').split('\n')]
     return '\n'.join(ln for ln in lines if ln)
 

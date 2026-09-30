@@ -87,6 +87,13 @@ PAGE_DEFAULTS: dict[tuple[str, str], str] = {
     ('contact', 'title'): _('Напишіть нам'),
     ('contact', 'lead'): _('Відповідаємо протягом робочого дня.'),
     ('contact', 'map_label'): _('Карта — Хрещатик 1'),
+    ('contact', 'map_embed'): (
+        '<iframe src="https://maps.google.com/maps?q='
+        '%D0%A5%D1%80%D0%B5%D1%89%D0%B0%D1%82%D0%B8%D0%BA+1,+%D0%9A%D0%B8%D1%97%D0%B2'
+        '&amp;hl=uk&amp;z=16&amp;output=embed" '
+        'title="Хрещатик 1, Київ" loading="lazy" '
+        'referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>'
+    ),
     ('contact', 'submit'): _('Надіслати'),
     ('contact', 'callback'): _('Замовити дзвінок'),
     ('b2b', 'title'): 'B2B',
@@ -185,7 +192,8 @@ PAGE_LABELS: dict[tuple[str, str], str] = {
     ('contact', 'kicker'): 'Мітка',
     ('contact', 'title'): 'Заголовок',
     ('contact', 'lead'): 'Лід',
-    ('contact', 'map_label'): 'Підпис карти',
+    ('contact', 'map_label'): 'Підпис карти (якщо немає iframe)',
+    ('contact', 'map_embed'): 'Карта — HTML iframe (вставте тег з Google Maps)',
     ('contact', 'submit'): 'Кнопка «Надіслати»',
     ('contact', 'callback'): 'Кнопка дзвінка',
     ('b2b', 'title'): 'Заголовок',
@@ -232,6 +240,7 @@ IMAGE_STATIC_FALLBACKS: dict[tuple[str, str], str] = {
     ('home', 'calculator_bg'): 'img/calculator/lounge-bg.jpg',
     ('service', 'booking_image'): 'img/booking/lounge.jpg',
     ('service', 'b2b_image'): 'img/service/b2b.jpg',
+    ('about', 'image'): 'img/about/team-boutique.jpg',
     ('faq', 'bg'): 'img/calculator/lounge-bg.jpg',
     ('delivery', 'bg'): 'img/calculator/lounge-bg.jpg',
     ('privacy', 'bg'): 'img/calculator/lounge-bg.jpg',
@@ -267,5 +276,5 @@ PAGE_INLINE = {
 PAGE_MULTILINE = {
     'footer_tagline', 'lead', 'era1_text', 'era2_text', 'era3_text', 'era4_text',
     'text', 'denied_text',
-    'meta_description',
+    'meta_description', 'map_embed',
 }

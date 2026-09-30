@@ -90,6 +90,10 @@ class CmsAdminColorWidget(AdminTextInputWidget):
     input_type = 'color'
     template_name = 'django/forms/widgets/cms_color.html'
 
+    class Media:
+        css = {'all': ('css/admin/site_content.css',)}
+        js = ('js/admin/cms_color_picker.js',)
+
     def __init__(
         self,
         attrs: Optional[dict[str, Any]] = None,

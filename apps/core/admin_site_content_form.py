@@ -66,6 +66,15 @@ def load_section_blocks(section: ContentSection) -> dict[tuple[str, str], SiteBl
         if block.content_type != content_type:
             block.content_type = content_type
             block.save(update_fields=['content_type'])
+        # Нові raw-HTML ключі: підставити дефолт, якщо блок ще порожній.
+        if key in ('map_embed',) and not (block.text_html or '').strip():
+            default_html = str(BLOCK_DEFAULTS.get((page, key), '') or '')
+            if default_html:
+                block.text_html = default_html
+                for _code, attr, _label in CMS_LANGUAGES:
+                    if not (getattr(block, f'text_html_{attr}', None) or '').strip():
+                        setattr(block, f'text_html_{attr}', default_html)
+                block.save()
         blocks[(page, key)] = block
     return blocks
 
@@ -276,8 +285,9 @@ class SitePageContentForm(forms.Form):
             else:
                 widget = CmsAdminTextareaWidget(
                     attrs={
-                        'rows': 4 if key in MULTILINE_KEYS else 2,
+                        'rows': 6 if key == 'map_embed' else (4 if key in MULTILINE_KEYS else 2),
                         'data-cms-lang': code,
+                        **({'placeholder': '<iframe src="https://maps.google.com/maps?q=...&output=embed"></iframe>'} if key == 'map_embed' else {}),
                     },
                 )
             self.fields[block_field_name(page, key, f'text_html_{attr}')] = forms.CharField(

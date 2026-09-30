@@ -5,7 +5,7 @@
 {% block body_class %}rs-contact-page{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/pages10.css' %}?v=4">
+<link rel="stylesheet" href="{% static 'css/pages10.css' %}?v=5">
 {% endblock %}
 
 {% block content %}
@@ -14,11 +14,16 @@
 {% trans "Телефон" as label_phone %}
 {% trans "Повідомлення" as label_message %}
 {% trans "Пн–Нд: 11:00–21:00" as default_hours %}
+{% cms_text 'contact' 'map_embed' as map_embed %}
 <div class="rs-container rs-contact">
   <div class="rs-contact__split" data-rs-reveal>
     <aside class="rs-contact__aside" aria-label="{% trans "Контактна інформація" %}">
-      <div class="rs-contact__map" aria-hidden="true">
-        <span class="rs-contact__map-label">{% cms_text 'contact' 'map_label' %}</span>
+      <div class="rs-contact__map{% if map_embed %} rs-contact__map--embed{% endif %}">
+        {% if map_embed %}
+          {{ map_embed }}
+        {% else %}
+          <span class="rs-contact__map-label" aria-hidden="true">{% cms_text 'contact' 'map_label' %}</span>
+        {% endif %}
       </div>
       <dl class="rs-contact__info">
         <div class="rs-contact__info-row">

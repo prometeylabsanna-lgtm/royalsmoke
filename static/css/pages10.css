@@ -85,6 +85,16 @@ body.rs-contact-page .rs-crumbs-bar {
   align-items: center;
   justify-content: center;
   background: var(--rs-bark);
+  overflow: hidden;
+}
+
+.rs-contact__map--embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
 }
 
 .rs-contact__map-label {
@@ -322,6 +332,10 @@ body.rs-contact-page .rs-crumbs-bar {
 
   .rs-contact__map {
     min-height: 160px;
+  }
+
+  .rs-contact__map--embed {
+    min-height: 220px;
   }
 
   .rs-contact__info {

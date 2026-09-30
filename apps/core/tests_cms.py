@@ -201,6 +201,51 @@ class CmsFrontendTests(TestCase):
         self.assertContains(response, 'Q1')
         self.assertContains(response, 'A1')
 
+    def test_faq_unescapes_tinymce_entities(self):
+        FAQItem.objects.create(
+            question='Як зберігати сигари?',
+            answer='У хумідорі при 68&ndash;72% вологості та 16&ndash;20&deg;C.',
+            sort_order=0,
+            is_active=True,
+        )
+        response = self.client.get(reverse('pages:faq'))
+        self.assertContains(response, '68–72%')
+        self.assertContains(response, '16–20°C')
+        self.assertNotContains(response, '&ndash;')
+        self.assertNotContains(response, '&deg;')
+
+    def test_contact_renders_map_embed(self):
+        from apps.core.models import SiteBlock
+        SiteBlock.objects.update_or_create(
+            page='contact',
+            key='map_embed',
+            defaults={
+                'label': 'Карта',
+                'content_type': 'text',
+                'text_html': (
+                    '<iframe src="https://maps.google.com/maps?q=Khreshchatyk+1&amp;output=embed" '
+                    'title="map"></iframe>'
+                ),
+                'is_active': True,
+            },
+        )
+        response = self.client.get(reverse('leads:contact'))
+        self.assertContains(response, '<iframe')
+        self.assertContains(response, 'output=embed')
+        self.assertContains(response, 'rs-contact__map--embed')
+
+    def test_blog_admin_hides_meta_description(self):
+        User = get_user_model()
+        user = User.objects.create_superuser(email='blogmeta@test.ua', password='pass12345')
+        self.client.force_login(user)
+        response = self.client.get(
+            reverse('admin:core_blogpagesettings_changelist'),
+            follow=True,
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, 'meta_description')
+        self.assertNotContains(response, 'Meta description блогу')
+
     def test_legal_renders_body(self):
         from apps.core.models import SiteBlock
         SiteBlock.objects.update_or_create(

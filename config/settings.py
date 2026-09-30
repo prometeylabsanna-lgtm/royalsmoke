@@ -345,7 +345,7 @@ UNFOLD = {
         lambda request: static('css/admin/site_content.css') + '?v=15',
     ],
     'SCRIPTS': [
-        lambda request: static('js/admin/cms_lang_switch.js') + '?v=3',
+        lambda request: static('js/admin/cms_lang_switch.js') + '?v=4',
         lambda request: static('js/admin/cms_image_preview.js'),
     ],
     'SIDEBAR': {

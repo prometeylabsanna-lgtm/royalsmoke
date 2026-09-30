@@ -91,6 +91,7 @@ class ChromeStyleAdmin(ModelAdmin):
     list_display = ('__str__', 'swatch_header', 'swatch_footer')
     fields = [name for name, _d, _l in _FIELD_DEFAULTS]
     actions = ('reset_to_default_action',)
+    change_form_template = 'admin/core/pagestyle/change_form.html'
 
     def has_add_permission(self, request):
         return not ChromeStyle.objects.exists()
@@ -111,6 +112,8 @@ class ChromeStyleAdmin(ModelAdmin):
                 return HttpResponseRedirect(
                     reverse('admin:core_chromestyle_change', args=[obj.pk]),
                 )
+        extra_context = extra_context or {}
+        extra_context['hide_page_style_preview'] = True
         return super().change_view(request, object_id, form_url, extra_context)
 
     def _swatch(self, color: str) -> str:

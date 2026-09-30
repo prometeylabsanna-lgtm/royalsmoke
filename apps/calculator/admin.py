@@ -6,7 +6,14 @@ from .models import CalculatorOption, CalculatorQuestion
 
 class CalculatorOptionInline(TabularInline):
     model = CalculatorOption
-    extra = 2
+    extra = 1
+    show_title = False
+    fields = (
+        'label_uk', 'label_en', 'label_zh_hans',
+        'value', 'filter_field', 'filter_value',
+        'explanation_uk', 'explanation_en', 'explanation_zh_hans',
+        'sort_order', 'is_active',
+    )
 
 
 @admin.register(CalculatorQuestion)

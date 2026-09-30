@@ -10,11 +10,35 @@
     return "";
   }
 
+  function fieldNameFromClass(el) {
+    var cls = (el && el.className) || "";
+    var m = String(cls).match(/(?:^|\s)(?:field|column)-([a-z0-9_]+)/i);
+    return m ? m[1] : "";
+  }
+
   function closestField(el) {
+    // Unfold tabular: клітинка td, НЕ весь tr.form-row (інакше ховається весь рядок).
+    var td = el.closest("td.field-tabular, td[class*='field-']");
+    if (td) return td;
     return el.closest(".rs-cms-field")
       || el.closest(".form-row")
       || el.closest("[class*='field-']")
       || el.parentElement;
+  }
+
+  function markMatchingHeader(cell, lang, isOriginal) {
+    if (!cell || cell.tagName !== "TD") return;
+    var name = fieldNameFromClass(cell);
+    if (!name) return;
+    var table = cell.closest("table");
+    if (!table) return;
+    var th = table.querySelector("th.column-" + name);
+    if (!th) return;
+    if (isOriginal) {
+      th.classList.add("rs-cms-original-alias");
+    } else if (lang) {
+      th.setAttribute("data-cms-lang", lang);
+    }
   }
 
   function markFields() {
@@ -23,6 +47,7 @@
       var wrap = closestField(el);
       if (wrap && !wrap.getAttribute("data-cms-lang")) {
         wrap.setAttribute("data-cms-lang", el.getAttribute("data-cms-lang"));
+        markMatchingHeader(wrap, el.getAttribute("data-cms-lang"), false);
       }
     });
 
@@ -31,7 +56,10 @@
       if (!lang) return;
       el.setAttribute("data-cms-lang", lang);
       var wrap = closestField(el);
-      if (wrap) wrap.setAttribute("data-cms-lang", lang);
+      if (wrap) {
+        wrap.setAttribute("data-cms-lang", lang);
+        markMatchingHeader(wrap, lang, false);
+      }
     });
   }
 
@@ -47,8 +75,15 @@
       // readonly: значення йде в POST (disabled — ні, і виникає «тиха» помилка)
       el.readOnly = true;
       el.setAttribute("data-cms-original", "1");
-      var wrap = el.closest(".form-row") || closestField(el);
-      if (wrap) wrap.classList.add("rs-cms-original-alias");
+      var wrap = closestField(el);
+      // Ніколи не вішати на tr.form-row — у tabular це ховає весь рядок полів.
+      if (wrap && wrap.tagName === "TR") {
+        wrap = el.closest("td") || el.parentElement;
+      }
+      if (wrap) {
+        wrap.classList.add("rs-cms-original-alias");
+        markMatchingHeader(wrap, "", true);
+      }
     });
   }
 
@@ -234,6 +269,15 @@
       if (!btn) return;
       event.preventDefault();
       applyLang(btn.getAttribute("data-cms-lang-btn"));
+    });
+    document.addEventListener("formset:added", function () {
+      markFields();
+      neutralizeOriginals();
+      var lang = "uk";
+      try {
+        lang = localStorage.getItem(STORAGE_KEY) || "uk";
+      } catch (err) {}
+      applyLang(lang);
     });
   }
 

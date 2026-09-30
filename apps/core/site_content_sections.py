@@ -158,11 +158,11 @@ CONTENT_SECTIONS: tuple[ContentSection, ...] = (
         admin_model_name='blogpagesettings',
         blocks=(
             ('blog', 'kicker'), ('blog', 'title'), ('blog', 'lead'),
-            ('blog', 'meta_description'), ('blog', 'read_more'),
+            ('blog', 'read_more'),
             ('blog', 'back'), ('blog', 'related'),
         ),
         field_groups=(
-            FieldGroup('Тексти', ('kicker', 'title', 'lead', 'meta_description')),
+            FieldGroup('Тексти', ('kicker', 'title', 'lead')),
             FieldGroup('Кнопки', ('read_more', 'back', 'related')),
         ),
     ),
@@ -192,10 +192,12 @@ CONTENT_SECTIONS: tuple[ContentSection, ...] = (
         admin_model_name='contactpagesettings',
         blocks=(
             ('contact', 'kicker'), ('contact', 'title'), ('contact', 'lead'),
-            ('contact', 'map_label'), ('contact', 'submit'), ('contact', 'callback'),
+            ('contact', 'map_embed'), ('contact', 'map_label'),
+            ('contact', 'submit'), ('contact', 'callback'),
         ),
         field_groups=(
-            FieldGroup('Тексти', ('kicker', 'title', 'lead', 'map_label')),
+            FieldGroup('Тексти', ('kicker', 'title', 'lead')),
+            FieldGroup('Карта', ('map_embed', 'map_label')),
             FieldGroup('Кнопки', ('submit', 'callback')),
         ),
     ),

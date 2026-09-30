@@ -102,6 +102,7 @@ PAGE_BG_IMAGE_FALLBACKS: dict[tuple[str, str], str] = {
     ('home', 'about_bg'): 'img/history/bg.jpg',
     ('service', 'booking_image'): 'img/booking/lounge.jpg',
     ('service', 'b2b_image'): 'img/service/b2b.jpg',
+    ('about', 'image'): 'img/about/team-boutique.jpg',
 }
 
 HISTORY_SLIDE_DEFAULTS: tuple[dict[str, str | int], ...] = (
