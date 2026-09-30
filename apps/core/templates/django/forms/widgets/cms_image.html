@@ -21,4 +21,5 @@
     </label>
   {% endif %}
   <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %} data-cms-image-input>
+  <p class="rs-cms-image__hint" data-cms-image-name hidden></p>
 </div>

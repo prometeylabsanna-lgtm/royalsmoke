@@ -34,6 +34,11 @@
       if (frame) frame.classList.remove("is-empty");
       if (placeholder) placeholder.hidden = true;
       if (clearBox) clearBox.checked = false;
+      var hint = wrap.querySelector("[data-cms-image-name]");
+      if (hint) {
+        hint.textContent = "Обрано файл: " + file.name;
+        hint.hidden = false;
+      }
     });
   }
 

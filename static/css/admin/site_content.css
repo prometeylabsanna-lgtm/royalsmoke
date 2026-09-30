@@ -86,6 +86,7 @@ body.dark .rs-cms-langs {
 .rs-cms-image {
   display: grid;
   gap: 0.5rem;
+  max-width: 20rem;
 }
 
 .rs-cms-image__frame {
@@ -114,6 +115,22 @@ body.dark .rs-cms-langs {
 .rs-cms-image__preview.is-empty,
 .rs-cms-image__preview[hidden] {
   display: none;
+}
+
+.rs-cms-image__hint {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: color-mix(in srgb, var(--color-base-700, #6b635c) 85%, transparent);
+  word-break: break-all;
+}
+
+.rs-cms-image input[type="file"],
+.rs-cms-image .rs-cms-image-input {
+  max-width: 16rem;
+  font-size: 0.75rem;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.5rem;
 }
 
 /* Header / UI icons: small circle, full glyph visible */
