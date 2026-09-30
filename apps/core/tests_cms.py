@@ -45,15 +45,14 @@ class CmsAdminTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'UA')
         self.assertContains(response, 'data-cms-langs')
+        self.assertNotContains(response, 'hero_eyebrow')
+        self.assertNotContains(response, 'Мітка над заголовком')
 
-    def test_post_updates_uk_text(self):
+    def test_post_saves_hero_visibility(self):
         url = reverse('admin:core_homeherosettings_change', args=[1])
         self.client.get(url)
         payload = {
             'section_visible': 'on',
-            'block__home__hero_eyebrow__text_html_uk': 'Atelier Test',
-            'block__home__hero_eyebrow__text_html_en': 'Atelier EN',
-            'block__home__hero_eyebrow__text_html_zh_hans': '工坊',
             'hero_slides-TOTAL_FORMS': '0',
             'hero_slides-INITIAL_FORMS': '0',
             'hero_slides-MIN_NUM_FORMS': '0',
@@ -61,9 +60,8 @@ class CmsAdminTests(TestCase):
         }
         response = self.client.post(url, payload)
         self.assertEqual(response.status_code, 302)
-        block = SiteBlock.objects.get(page='home', key='hero_eyebrow')
-        self.assertEqual(block.text_html_uk, 'Atelier Test')
-        self.assertEqual(block.text_html_en, 'Atelier EN')
+        vis = SiteBlock.objects.get(page='home', key='hero_section_visible')
+        self.assertEqual(vis.text_html, '1')
 
     def test_header_toggle_off(self):
         section = get_section('home', 'hero')
@@ -71,9 +69,6 @@ class CmsAdminTests(TestCase):
         url = reverse('admin:core_homeherosettings_change', args=[1])
         self.client.get(url)
         payload = {
-            'block__home__hero_eyebrow__text_html_uk': 'x',
-            'block__home__hero_eyebrow__text_html_en': '',
-            'block__home__hero_eyebrow__text_html_zh_hans': '',
             'hero_slides-TOTAL_FORMS': '0',
             'hero_slides-INITIAL_FORMS': '0',
             'hero_slides-MIN_NUM_FORMS': '0',
@@ -95,6 +90,7 @@ class CmsAdminTests(TestCase):
             b'\r\n\xb4\x00\x00\x00\x00IEND\xaeB`\x82'
         )
         slide = HistorySlide.objects.create(
+            year_label='2019',
             title='Slide',
             image=SimpleUploadedFile('hist.png', png, content_type='image/png'),
             sort_order=0,
@@ -106,6 +102,11 @@ class CmsAdminTests(TestCase):
         self.assertContains(response, 'data-cms-image-preview')
         self.assertContains(response, slide.image.name)
         self.assertContains(response, 'rs-cms-image__frame')
+        self.assertContains(response, 'year_label_uk')
+        self.assertNotContains(response, 'title_uk')
+        self.assertNotContains(response, 'cta_label_uk')
+        self.assertNotContains(response, 'cta_url')
+        self.assertNotContains(response, 'about_bg')
 
     def test_hero_slide_shows_image_preview(self):
         from django.core.files.uploadedfile import SimpleUploadedFile

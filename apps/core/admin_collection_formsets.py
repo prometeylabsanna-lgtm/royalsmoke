@@ -31,7 +31,7 @@ class HeroSlideBaseFormSet(SkipEmptyBaseFormSet):
 
 
 class HistorySlideBaseFormSet(SkipEmptyBaseFormSet):
-    required_any = ('image', 'title_uk', 'year_label_uk')
+    required_any = ('image', 'year_label_uk')
 
 
 class HomeBrandCardBaseFormSet(SkipEmptyBaseFormSet):
@@ -138,25 +138,20 @@ class HistorySlideForm(forms.ModelForm):
     class Meta:
         model = HistorySlide
         fields = (
-            *_i18n_fields('year_label', 'title', 'text', 'cta_label'),
+            *_i18n_fields('year_label', 'text'),
             'image',
-            'cta_url',
             'sort_order',
             'is_active',
         )
         widgets = {
-            **_i18n_widgets('year_label', 'title', 'text', 'cta_label'),
+            **_i18n_widgets('year_label', 'text'),
             'image': CmsAdminImageWidget(),
-            'cta_url': CmsAdminTextInputWidget(),
         }
 
     def clean(self):
         cleaned = super().clean()
-        _sanitize_text_fields(self, 'year_label', 'title', 'text', 'cta_label')
+        _sanitize_text_fields(self, 'year_label', 'text')
         return cleaned
-
-    def clean_cta_url(self):
-        return clean_optional_url(self.cleaned_data.get('cta_url', ''))
 
 
 HistorySlideFormSet = forms.modelformset_factory(

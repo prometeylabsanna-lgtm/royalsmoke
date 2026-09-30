@@ -132,7 +132,6 @@ def home(request):
         'hero_slides': slides,
         'history_slides': history_slides,
         'history_kicker': _block('home', 'about_kicker') or _('Історія'),
-        'history_bg': _block_image('home', 'about_bg'),
     })
 
 

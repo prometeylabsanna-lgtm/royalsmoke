@@ -87,13 +87,6 @@ class DeliveryPageSettings(SiteSettings):
         verbose_name_plural = 'Доставка'
 
 
-class CatalogPageSettings(SiteSettings):
-    class Meta:
-        proxy = True
-        verbose_name = 'Каталог — тексти'
-        verbose_name_plural = 'Каталог — тексти'
-
-
 class CartPageSettings(SiteSettings):
     class Meta:
         proxy = True

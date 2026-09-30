@@ -14,9 +14,9 @@ CONTENT_SECTIONS: tuple[ContentSection, ...] = (
         admin_model_name='homeherosettings',
         visibility_key='hero_section_visible',
         collection='hero',
-        description='Мітка банера та слайди.',
-        blocks=(('home', 'hero_eyebrow'),),
-        field_groups=(FieldGroup('Мітка', ('hero_eyebrow',)),),
+        description='Слайди банера: фото та кнопки.',
+        blocks=(),
+        field_groups=(),
     ),
     ContentSection(
         slug='brands',
@@ -57,10 +57,9 @@ CONTENT_SECTIONS: tuple[ContentSection, ...] = (
         admin_model_name='homeaboutsettings',
         visibility_key='about_section_visible',
         collection='history',
-        blocks=(('home', 'about_kicker'), ('home', 'about_bg')),
+        blocks=(('home', 'about_kicker'),),
         field_groups=(
             FieldGroup('Секція', ('about_kicker',)),
-            FieldGroup('Фон', ('about_bg',)),
         ),
     ),
     ContentSection(
@@ -218,18 +217,6 @@ CONTENT_SECTIONS: tuple[ContentSection, ...] = (
             FieldGroup('Шапка', ('title', 'lead', 'bg')),
             FieldGroup('Текст', ('body',)),
         ),
-    ),
-    ContentSection(
-        slug='page',
-        page_slug='catalog',
-        title='Каталог',
-        sidebar_title='Тексти',
-        sidebar_icon='category',
-        sidebar_group='catalog',
-        preview_url='/catalog/',
-        admin_model_name='catalogpagesettings',
-        blocks=(('catalog', 'empty'),),
-        field_groups=(FieldGroup('Порожній стан', ('empty',)),),
     ),
     ContentSection(
         slug='page',
