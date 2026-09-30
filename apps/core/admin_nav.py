@@ -10,8 +10,6 @@ SIDEBAR_GROUPS: tuple[tuple[str, str, bool], ...] = (
     ('blog', _('Блог'), True),
     ('faq', _('FAQ'), True),
     ('contact', _('Контакти'), True),
-    ('b2b', _('B2B'), True),
-    ('booking', _('Бронювання'), True),
     ('cart', _('Кошик'), True),
     ('checkout', _('Оформлення'), True),
     ('cabinet', _('Кабінет'), True),

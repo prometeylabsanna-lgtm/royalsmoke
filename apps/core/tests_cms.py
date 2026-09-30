@@ -359,6 +359,21 @@ class CmsTinyMCETests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'tinymce')
 
+    def test_home_booking_and_b2b_admin(self):
+        booking = self.client.get(reverse('admin:core_homebookingsettings_change', args=[1]))
+        self.assertEqual(booking.status_code, 200)
+        self.assertContains(booking, 'booking_lead')
+        self.assertContains(booking, 'booking_image')
+        self.assertContains(booking, 'rs-cms-image')
+        self.assertContains(booking, 'img/booking/lounge.jpg')
+
+        b2b = self.client.get(reverse('admin:core_homeb2bsettings_change', args=[1]))
+        self.assertEqual(b2b.status_code, 200)
+        self.assertContains(b2b, 'b2b_lead')
+        self.assertContains(b2b, 'b2b_image')
+        self.assertContains(b2b, 'rs-cms-image')
+        self.assertContains(b2b, 'img/service/b2b.jpg')
+
 
 class DeliveryBodyTests(TestCase):
     def setUp(self):

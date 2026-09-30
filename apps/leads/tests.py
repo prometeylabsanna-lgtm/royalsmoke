@@ -43,15 +43,7 @@ class LeadFormTests(TestCase):
         self.assertEqual(lead.kind, Lead.Kind.CONTACT)
         self.assertEqual(lead.message, 'Need a humidor')
 
-    def test_b2b_creates_lead_and_honors_next(self):
-        resp = self.client.post(reverse('leads:b2b'), {
-            'name': 'Ivan',
-            'company': 'Bar Atlas',
-            'phone': '+380501112233',
-            'email': 'b2b@example.com',
-            'message': 'Need a price list',
-            'next': '/#home-b2b',
-        })
+    def test_b2b_get_redirects_to_home_block(self):
+        resp = self.client.get(reverse('leads:b2b'))
         self.assertEqual(resp.status_code, 302)
         self.assertEqual(resp.url, '/#home-b2b')
-        self.assertEqual(Lead.objects.filter(kind=Lead.Kind.B2B).count(), 1)

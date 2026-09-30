@@ -26,7 +26,7 @@ HOME_DEFAULTS: dict[tuple[str, str], str] = {
     ('service', 'booking_cta'): _('Обрати час'),
     ('service', 'booking_image'): '',
     ('service', 'b2b_title'): 'B2B',
-    ('service', 'b2b_lead'): _('Прайс для барів, готелів і корпоративних подарунків.'),
+    ('service', 'b2b_lead'): _('Прайс і умови для барів, готелів і корпоративних подарунків.'),
     ('service', 'b2b_cta'): _('Запросити прайс'),
     ('service', 'b2b_image'): '',
 }

@@ -38,11 +38,18 @@ class HomeCalculatorSettings(SiteSettings):
         verbose_name_plural = 'Калькулятор'
 
 
-class HomeServiceSettings(SiteSettings):
+class HomeBookingSettings(SiteSettings):
     class Meta:
         proxy = True
-        verbose_name = 'Сервіс'
-        verbose_name_plural = 'Сервіс'
+        verbose_name = 'Бронювання'
+        verbose_name_plural = 'Бронювання'
+
+
+class HomeB2bSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = 'B2B'
+        verbose_name_plural = 'B2B'
 
 
 class AboutPageSettings(SiteSettings):
@@ -78,20 +85,6 @@ class DeliveryPageSettings(SiteSettings):
         proxy = True
         verbose_name = 'Доставка'
         verbose_name_plural = 'Доставка'
-
-
-class B2bPageSettings(SiteSettings):
-    class Meta:
-        proxy = True
-        verbose_name = 'B2B'
-        verbose_name_plural = 'B2B'
-
-
-class BookingPageSettings(SiteSettings):
-    class Meta:
-        proxy = True
-        verbose_name = 'Бронювання'
-        verbose_name_plural = 'Бронювання'
 
 
 class CatalogPageSettings(SiteSettings):

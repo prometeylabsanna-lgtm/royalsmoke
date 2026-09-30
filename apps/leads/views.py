@@ -54,8 +54,10 @@ def _notify(lead: Lead) -> None:
 
 @require_http_methods(['GET', 'POST'])
 def b2b_page(request):
+    if request.method == 'GET':
+        return redirect('/#home-b2b')
     form = B2BForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
+    if form.is_valid():
         data = form.cleaned_data
         lead = Lead.objects.create(
             kind=Lead.Kind.B2B,
@@ -71,8 +73,8 @@ def b2b_page(request):
         next_url = request.POST.get('next') or ''
         if next_url.startswith('/'):
             return redirect(next_url)
-        return redirect('leads:b2b')
-    return render(request, 'leads/b2b.html', {'form': form})
+        return redirect('/#home-b2b')
+    return redirect('/#home-b2b')
 
 
 @require_http_methods(['GET'])

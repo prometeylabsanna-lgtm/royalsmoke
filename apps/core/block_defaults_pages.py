@@ -228,6 +228,16 @@ IMAGE_STATIC_FALLBACKS: dict[tuple[str, str], str] = {
     ('site', 'header_icon_compare'): 'img/header/icon-compare.svg',
     ('site', 'header_icon_wishlist'): 'img/header/icon-wishlist.svg',
     ('site', 'header_icon_cart'): 'img/header/icon-cart.svg',
+    ('home', 'about_bg'): 'img/history/bg.jpg',
+    ('home', 'calculator_bg'): 'img/calculator/lounge-bg.jpg',
+    ('service', 'booking_image'): 'img/booking/lounge.jpg',
+    ('service', 'b2b_image'): 'img/service/b2b.jpg',
+    ('faq', 'bg'): 'img/calculator/lounge-bg.jpg',
+    ('delivery', 'bg'): 'img/calculator/lounge-bg.jpg',
+    ('privacy', 'bg'): 'img/calculator/lounge-bg.jpg',
+    ('terms', 'bg'): 'img/calculator/lounge-bg.jpg',
+    ('age_policy', 'bg'): 'img/calculator/lounge-bg.jpg',
+    ('cookies', 'bg'): 'img/calculator/lounge-bg.jpg',
 }
 
 PAGE_TYPES: dict[tuple[str, str], str] = {
