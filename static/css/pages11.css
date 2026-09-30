@@ -159,16 +159,28 @@ body.rs-legal-page .rs-legal {
 }
 
 .rs-legal__body p,
-.rs-legal__body ul {
+.rs-legal__body ul,
+.rs-legal__body ol {
   margin: 0 0 0.85em;
 }
 
-.rs-legal__body ul {
-  padding-inline-start: 1.2em;
+.rs-legal__body ul,
+.rs-legal__body ol {
+  list-style: disc;
+  list-style-position: outside;
+  padding-inline-start: 1.35em;
+}
+
+.rs-legal__body ol {
+  list-style: decimal;
 }
 
 .rs-legal__body li {
   margin-bottom: 0.35em;
+}
+
+.rs-legal__body li::marker {
+  color: var(--rs-gold, #c99a44);
 }
 
 .rs-legal__body li:last-child {

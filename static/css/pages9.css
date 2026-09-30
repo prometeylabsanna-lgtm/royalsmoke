@@ -109,7 +109,7 @@ body.rs-delivery-page .rs-page-head h1 {
   line-height: 1.55;
 }
 
-/* ——— Content (TinyMCE body) ——— */
+/* ——— Content column ——— */
 body.rs-delivery-page .rs-delivery {
   max-width: var(--rs-delivery-content-w);
   margin-inline: auto;
@@ -122,59 +122,126 @@ body.rs-delivery-page .rs-delivery.rs-service-page {
   padding-block: 4px 16px;
 }
 
+/* TinyMCE body — візуал як у старої верстки секцій */
 .rs-delivery__body {
-  text-align: left;
-  color: rgba(252, 242, 238, 0.88);
+  color: var(--rs-text-muted);
   font-family: var(--rs-font-ui);
+  font-size: 15px;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.rs-delivery__body h2 {
+  margin: 0 0 clamp(14px, 2vh, 20px);
+  font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-sub);
+  font-size: clamp(22px, 3.2vw, 28px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--rs-delivery-gold);
+  text-align: center;
+}
+
+.rs-delivery__body h2:not(:first-child) {
+  margin-top: clamp(24px, 4vh, 40px);
+  padding-top: clamp(20px, 3vh, 32px);
+  border-top: 1px solid var(--rs-hairline);
+}
+
+.rs-delivery__body h3 {
+  margin: 0;
+  padding-top: 12px;
+  font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-sub);
+  font-size: clamp(16px, 2.4vw, 18px);
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  color: var(--rs-seashell);
+}
+
+.rs-delivery__body h3:first-of-type,
+.rs-delivery__body h2 + h3 {
+  padding-top: 0;
+}
+
+.rs-delivery__body h3 + p {
+  margin: 6px 0 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rs-hairline);
+  max-width: 52ch;
+  color: var(--rs-text-muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.rs-delivery__body h3:last-of-type + p,
+.rs-delivery__body h2 ~ h3:last-of-type + p {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Intro під заголовком секції (напр. «Оплата») */
+.rs-delivery__body h2 + p {
+  margin: 0 0 14px;
+  padding-bottom: 0;
+  border-bottom: 0;
+  max-width: none;
+  color: var(--rs-text-soft);
+  font-size: 15px;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.rs-delivery__body > p {
+  margin: 0 0 14px;
+  max-width: 52ch;
+}
+
+.rs-delivery__body ul,
+.rs-delivery__body ol {
+  list-style: disc;
+  list-style-position: outside;
+  margin: 0;
+  padding: 0 0 0 1.35em;
+}
+
+.rs-delivery__body ol {
+  list-style: decimal;
+}
+
+.rs-delivery__body li {
+  margin: 0;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rs-hairline);
+  color: var(--rs-text-muted);
   font-size: 15px;
   line-height: 1.65;
 }
 
-.rs-delivery__body h2 {
-  margin: 1.6em 0 0.55em;
-  font-family: var(--rs-font-ui);
-  font-size: 13px;
-  font-weight: var(--rs-weight-sub, 600);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--rs-delivery-gold);
-  line-height: 1.35;
-}
-
-.rs-delivery__body h2:first-child {
-  margin-top: 0;
-}
-
-.rs-delivery__body h3 {
-  margin: 1.1em 0 0.4em;
-  font-family: var(--rs-font-ui);
-  font-size: 16px;
-  font-weight: var(--rs-weight-sub, 600);
-  letter-spacing: 0.02em;
-  color: rgba(252, 242, 238, 0.95);
-  line-height: 1.35;
-}
-
-.rs-delivery__body p,
-.rs-delivery__body ul {
-  margin: 0 0 0.85em;
-}
-
-.rs-delivery__body ul {
-  padding-inline-start: 1.2em;
-}
-
-.rs-delivery__body li {
-  margin-bottom: 0.35em;
+.rs-delivery__body li:first-child {
+  padding-top: 0;
 }
 
 .rs-delivery__body li:last-child {
-  margin-bottom: 0;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.rs-delivery__body li::marker {
+  color: var(--rs-delivery-gold);
+}
+
+.rs-delivery__body li strong {
+  font-family: var(--rs-font-display);
+  font-weight: var(--rs-weight-sub);
+  letter-spacing: 0.04em;
+  color: var(--rs-seashell);
 }
 
 .rs-delivery__note {
-  margin-top: clamp(20px, 3vh, 28px);
-  padding-top: clamp(16px, 2.5vh, 22px);
+  margin: 16px 0 0;
+  padding-top: 14px;
   border-top: 1px solid var(--rs-hairline);
   color: var(--rs-text-muted);
   font-size: 14px;
@@ -194,12 +261,8 @@ body.rs-delivery-page .rs-delivery.rs-service-page {
     max-width: 100%;
   }
 
-  .rs-delivery__body {
-    font-size: 14px;
-  }
-
-  .rs-delivery__body h3 {
-    font-size: 15px;
+  .rs-delivery__body h2 {
+    letter-spacing: 0.1em;
   }
 }
 
@@ -241,16 +304,33 @@ body.rs-delivery-page .rs-delivery.rs-service-page {
 
   .rs-delivery__body {
     font-size: 14px;
-    line-height: 1.6;
   }
 
   .rs-delivery__body h2 {
-    font-size: 12px;
-    letter-spacing: 0.12em;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+
+  .rs-delivery__body h2:not(:first-child) {
+    margin-top: 36px;
+    padding-top: 28px;
   }
 
   .rs-delivery__body h3 {
     font-size: 15px;
+    padding-top: 14px;
+  }
+
+  .rs-delivery__body h3 + p,
+  .rs-delivery__body h2 + p,
+  .rs-delivery__body li {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .rs-delivery__body li {
+    padding: 14px 0;
   }
 
   .rs-delivery__note {
