@@ -1,6 +1,8 @@
 from django.contrib import admin
 from unfold.admin import ModelAdmin, TabularInline
 
+from apps.core.cms_i18n import lang_fields
+
 from .models import CalculatorOption, CalculatorQuestion
 
 
@@ -9,9 +11,9 @@ class CalculatorOptionInline(TabularInline):
     extra = 1
     show_title = False
     fields = (
-        'label_uk', 'label_en', 'label_zh_hans',
+        *lang_fields('label'),
         'value', 'filter_field', 'filter_value',
-        'explanation_uk', 'explanation_en', 'explanation_zh_hans',
+        *lang_fields('explanation'),
         'sort_order', 'is_active',
     )
 

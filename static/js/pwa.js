@@ -2,8 +2,6 @@
 (function () {
   'use strict';
 
-  var PUSH_PROMPT_KEY = 'rs_pwa_push_prompt';
-
   function csrfToken() {
     var input = document.querySelector('input[name="csrfmiddlewaretoken"]');
     if (input && input.value) return input.value;
@@ -74,67 +72,12 @@
     });
   }
 
-  function pushCopy(lang) {
-    var map = {
-      uk: {
-        text: 'Увімкнути сповіщення про оплату та статус замовлення?',
-        yes: 'Увімкнути',
-        no: 'Не зараз',
-      },
-      en: {
-        text: 'Enable notifications for payment and order status?',
-        yes: 'Enable',
-        no: 'Not now',
-      },
-      'zh-hans': {
-        text: '是否开启付款与订单状态通知？',
-        yes: '开启',
-        no: '稍后',
-      },
-    };
-    return map[lang] || map.uk;
-  }
-
-  function showPushPrompt(registration, publicKey) {
-    if (!publicKey || Notification.permission !== 'default') return;
-    try {
-      if (localStorage.getItem(PUSH_PROMPT_KEY) === '1') return;
-    } catch (e) { /* ignore */ }
-
-    var copy = pushCopy(pageLang());
-    var bar = document.createElement('div');
-    bar.className = 'rs-pwa-push-bar';
-    bar.setAttribute('role', 'dialog');
-    bar.innerHTML =
-      '<p class="rs-pwa-push-bar__text"></p>' +
-      '<div class="rs-pwa-push-bar__actions">' +
-      '<button type="button" class="rs-btn rs-btn--gold" data-pwa-push-yes></button>' +
-      '<button type="button" class="rs-btn rs-btn--ghost" data-pwa-push-no></button>' +
-      '</div>';
-    bar.querySelector('.rs-pwa-push-bar__text').textContent = copy.text;
-    bar.querySelector('[data-pwa-push-yes]').textContent = copy.yes;
-    bar.querySelector('[data-pwa-push-no]').textContent = copy.no;
-    document.body.appendChild(bar);
-
-    function dismiss() {
-      try { localStorage.setItem(PUSH_PROMPT_KEY, '1'); } catch (e) { /* ignore */ }
-      if (bar.parentNode) bar.parentNode.removeChild(bar);
-    }
-
-    bar.querySelector('[data-pwa-push-no]').addEventListener('click', dismiss);
-    bar.querySelector('[data-pwa-push-yes]').addEventListener('click', function () {
-      ensureSubscription(registration, publicKey, true).finally(dismiss);
-    });
-  }
-
   function initPush(registration) {
     return fetch('/pwa/vapid-public-key/', { credentials: 'same-origin' })
       .then(function (r) { return r.json(); })
       .then(function (info) {
         if (!info || !info.enabled || !info.publicKey) return;
-        return ensureSubscription(registration, info.publicKey, false).then(function () {
-          showPushPrompt(registration, info.publicKey);
-        });
+        return ensureSubscription(registration, info.publicKey, false);
       })
       .catch(function () {});
   }

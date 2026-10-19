@@ -1,12 +1,29 @@
 (function () {
   var STORAGE_KEY = "rs-cms-lang";
-  var LANGS = ["uk", "en", "zh-hans"];
+  // Суфікс — як у modeltranslation (id → ind, щоб не збігатися з FK-атрибутами <поле>_id).
+  var LANG_CONFIG = [
+    { code: "uk", suffix: "uk", label: "UA" },
+    { code: "en", suffix: "en", label: "EN" },
+    { code: "zh-hans", suffix: "zh_hans", label: "中文" },
+    { code: "ms", suffix: "ms", label: "MS" },
+    { code: "fil", suffix: "fil", label: "FIL" },
+    { code: "id", suffix: "ind", label: "ID" },
+    { code: "vi", suffix: "vi", label: "VI" }
+  ];
+  var LANGS = LANG_CONFIG.map(function (cfg) { return cfg.code; });
+
+  function langConfig(code) {
+    return LANG_CONFIG.filter(function (cfg) { return cfg.code === code; })[0] || LANG_CONFIG[0];
+  }
 
   function langFromName(name) {
     if (!name) return "";
-    if (name.endsWith("_zh_hans") || name.indexOf("__text_html_zh_hans") !== -1) return "zh-hans";
-    if (name.endsWith("_uk") || name.indexOf("__text_html_uk") !== -1) return "uk";
-    if (name.endsWith("_en") || name.indexOf("__text_html_en") !== -1) return "en";
+    for (var i = 0; i < LANG_CONFIG.length; i += 1) {
+      var suffix = LANG_CONFIG[i].suffix;
+      if (name.endsWith("_" + suffix) || name.indexOf("__text_html_" + suffix) !== -1) {
+        return LANG_CONFIG[i].code;
+      }
+    }
     return "";
   }
 
@@ -68,8 +85,7 @@
       var name = el.getAttribute("name") || "";
       if (!name || langFromName(name) || el.type === "hidden" || el.type === "file") return;
       var hasTrans = LANGS.some(function (code) {
-        var suffix = code === "zh-hans" ? "_zh_hans" : "_" + code;
-        return document.querySelector("[name='" + name + suffix + "']");
+        return document.querySelector("[name='" + name + "_" + langConfig(code).suffix + "']");
       });
       if (!hasTrans) return;
       // readonly: значення йде в POST (disabled — ні, і виникає «тиха» помилка)
@@ -89,7 +105,7 @@
 
   function syncOriginalFromLang(lang) {
     if (LANGS.indexOf(lang) === -1) lang = "uk";
-    var suffix = lang === "zh-hans" ? "_zh_hans" : "_" + lang;
+    var suffix = "_" + langConfig(lang).suffix;
     document.querySelectorAll("[data-cms-original='1']").forEach(function (el) {
       var name = el.getAttribute("name") || "";
       if (!name) return;
@@ -132,7 +148,7 @@
       btn.className = "rs-cms-langs__btn";
       btn.setAttribute("data-cms-lang-btn", code);
       btn.setAttribute("role", "tab");
-      btn.textContent = code === "zh-hans" ? "中文" : code === "en" ? "EN" : "UA";
+      btn.textContent = langConfig(code).label;
       bar.appendChild(btn);
     });
     var cms = document.querySelector(".rs-cms");
@@ -153,7 +169,7 @@
 
   function applyLang(lang) {
     if (LANGS.indexOf(lang) === -1) lang = "uk";
-    document.body.classList.remove("cms-lang-uk", "cms-lang-en", "cms-lang-zh-hans");
+    LANGS.forEach(function (code) { document.body.classList.remove("cms-lang-" + code); });
     document.body.classList.add("cms-lang-" + lang);
     try {
       localStorage.setItem(STORAGE_KEY, lang);
@@ -226,7 +242,7 @@
     }
     var html = "<strong>Що виправити:</strong><ul>";
     items.forEach(function (it) {
-      var langHint = it.lang ? " [" + (it.lang === "zh-hans" ? "中文" : it.lang.toUpperCase()) + "]" : "";
+      var langHint = it.lang ? " [" + langConfig(it.lang).label + "]" : "";
       html += "<li><span>" + it.label + langHint + ":</span> " + it.texts.join("; ") + "</li>";
     });
     html += "</ul>";

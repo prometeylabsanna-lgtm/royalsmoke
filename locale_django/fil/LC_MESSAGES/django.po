@@ -1,0 +1,196 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Royal Smoke (Django built-in messages)\n"
+"Language: fil\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Enter a valid value."
+msgstr "Maglagay ng wastong halaga."
+
+msgid "Enter a valid URL."
+msgstr "Maglagay ng wastong URL."
+
+msgid "Enter a valid integer."
+msgstr "Maglagay ng wastong buong bilang."
+
+msgid "Enter a valid email address."
+msgstr "Maglagay ng wastong email address."
+
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr "Tiyaking hindi hihigit sa %(limit_value)s ang halagang ito."
+
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr "Tiyaking hindi bababa sa %(limit_value)s ang halagang ito."
+
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has %(sho"
+"w_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has %(sh"
+"ow_value)d)."
+msgstr[0] ""
+"Tiyaking may hindi bababa sa %(limit_value)d karakter ang halagang ito"
+" (mayroon itong %(show_value)d)."
+msgstr[1] ""
+"Tiyaking may hindi bababa sa %(limit_value)d karakter ang halagang ito"
+" (mayroon itong %(show_value)d)."
+
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has %(show"
+"_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has %(sho"
+"w_value)d)."
+msgstr[0] ""
+"Tiyaking may hindi hihigit sa %(limit_value)d karakter ang halagang it"
+"o (mayroon itong %(show_value)d)."
+msgstr[1] ""
+"Tiyaking may hindi hihigit sa %(limit_value)d karakter ang halagang it"
+"o (mayroon itong %(show_value)d)."
+
+msgid "Enter a number."
+msgstr "Maglagay ng numero."
+
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] "Tiyaking walang hihigit sa %(max)s digit sa kabuuan."
+msgstr[1] "Tiyaking walang hihigit sa %(max)s digit sa kabuuan."
+
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] "Tiyaking walang hihigit sa %(max)s decimal place."
+msgstr[1] "Tiyaking walang hihigit sa %(max)s decimal place."
+
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal po"
+"int."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal p"
+"oint."
+msgstr[0] "Tiyaking walang hihigit sa %(max)s digit bago ang decimal point."
+msgstr[1] "Tiyaking walang hihigit sa %(max)s digit bago ang decimal point."
+
+msgid "Null characters are not allowed."
+msgstr "Hindi pinapayagan ang mga null character."
+
+msgid "This field is required."
+msgstr "Kailangang punan ang field na ito."
+
+msgid "Enter a whole number."
+msgstr "Maglagay ng buong bilang."
+
+msgid "Enter a valid date."
+msgstr "Maglagay ng wastong petsa."
+
+msgid "Enter a valid time."
+msgstr "Maglagay ng wastong oras."
+
+msgid "Enter a valid date/time."
+msgstr "Maglagay ng wastong petsa at oras."
+
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+"Pumili ng wastong opsyon. Ang %(value)s ay wala sa mga available na op"
+"syon."
+
+msgid ""
+"Select a valid choice. That choice is not one of the available choices"
+"."
+msgstr ""
+"Pumili ng wastong opsyon. Ang napili mo ay wala sa mga available na op"
+"syon."
+
+msgid "Enter a list of values."
+msgstr "Maglagay ng listahan ng mga halaga."
+
+msgid "Enter a complete value."
+msgstr "Maglagay ng kumpletong halaga."
+
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr "Ang halagang %(value)r ay hindi wastong opsyon."
+
+msgid "This field cannot be null."
+msgstr "Hindi maaaring walang laman (null) ang field na ito."
+
+msgid "This field cannot be blank."
+msgstr "Hindi maaaring blangko ang field na ito."
+
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr "Mayroon nang %(model_name)s na may ganitong %(field_label)s."
+
+msgid "Yes"
+msgstr "Oo"
+
+msgid "No"
+msgstr "Hindi"
+
+msgid "Unknown"
+msgstr "Hindi alam"
+
+#, python-format
+msgid ""
+"Please enter a correct %(username)s and password. Note that both field"
+"s may be case-sensitive."
+msgstr ""
+"Maglagay ng tamang %(username)s at password. Tandaan na maaaring case-"
+"sensitive ang parehong field."
+
+msgid "This account is inactive."
+msgstr "Hindi aktibo ang account na ito."
+
+msgid "The two password fields didn’t match."
+msgstr "Hindi magkapareho ang dalawang password field."
+
+msgid "Your old password was entered incorrectly. Please enter it again."
+msgstr "Maling naipasok ang dati mong password. Pakipasok itong muli."
+
+#, python-format
+msgid "This password is too short. It must contain at least %d character."
+msgid_plural "This password is too short. It must contain at least %d characters."
+msgstr[0] ""
+"Masyadong maikli ang password na ito. Dapat itong may hindi bababa sa "
+"%d karakter."
+msgstr[1] ""
+"Masyadong maikli ang password na ito. Dapat itong may hindi bababa sa "
+"%d karakter."
+
+#, python-format
+msgid "Your password must contain at least %(min_length)d character."
+msgid_plural "Your password must contain at least %(min_length)d characters."
+msgstr[0] "Dapat may hindi bababa sa %(min_length)d karakter ang iyong password."
+msgstr[1] "Dapat may hindi bababa sa %(min_length)d karakter ang iyong password."
+
+#, python-format
+msgid "The password is too similar to the %(verbose_name)s."
+msgstr "Masyadong kahawig ng %(verbose_name)s ang password."
+
+msgid "Your password can’t be too similar to your other personal information."
+msgstr ""
+"Hindi maaaring masyadong kahawig ng iba mong personal na impormasyon a"
+"ng iyong password."
+
+msgid "This password is too common."
+msgstr "Masyadong karaniwan ang password na ito."
+
+msgid "Your password can’t be a commonly used password."
+msgstr "Hindi maaaring karaniwang ginagamit na password ang iyong password."
+
+msgid "This password is entirely numeric."
+msgstr "Puro numero ang password na ito."
+
+msgid "Your password can’t be entirely numeric."
+msgstr "Hindi maaaring puro numero ang iyong password."
+

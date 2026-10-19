@@ -9,6 +9,15 @@ from django.core.exceptions import ImproperlyConfigured
 from django.templatetags.static import static
 from dotenv import load_dotenv
 
+from config.i18n_settings import (  # noqa: E402
+    LANGUAGE_CURRENCY,
+    LANGUAGE_SHORT_LABELS,
+    MODELTRANSLATION_FALLBACK,
+    MODELTRANSLATION_LANGUAGE_CODES,
+    STOREFRONT_LANGUAGES,
+    STOREFRONT_LANGUAGES_VISIBLE,
+)
+
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -159,14 +168,12 @@ TIME_ZONE = os.environ.get('TIME_ZONE', 'Europe/Kyiv')
 USE_I18N = True
 USE_TZ = True
 
-LANGUAGES = [
-    ('uk', 'Українська'),
-    ('en', 'English'),
-    ('zh-hans', '中文'),
-]
+LANGUAGES = STOREFRONT_LANGUAGES
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'uk'
-MODELTRANSLATION_LANGUAGES = ('uk', 'en', 'zh-hans')
-LOCALE_PATHS = [BASE_DIR / 'locale']
+MODELTRANSLATION_LANGUAGES = MODELTRANSLATION_LANGUAGE_CODES
+MODELTRANSLATION_FALLBACK_LANGUAGES = MODELTRANSLATION_FALLBACK
+# locale_django — переклади вбудованих повідомлень Django для Filipino (Django не має каталогу fil).
+LOCALE_PATHS = [BASE_DIR / 'locale', BASE_DIR / 'locale_django']
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
@@ -189,12 +196,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CURRENCY_CODE = 'UAH'
 CURRENCY_SYMBOL = '₴'
-# Мова вітрини → ISO 4217. Нову мову: рядок тут + курс у адмінці «Курси валют».
-LANGUAGE_CURRENCY = {
-    'uk': 'UAH',
-    'en': 'USD',
-    'zh-hans': 'CNY',
-}
+# LANGUAGE_CURRENCY (мова → ISO 4217) живе в config/i18n_settings.py.
 DEFAULT_MARKET = 'UA'
 AGE_GATE_COOKIE = 'age_ok'
 AGE_GATE_DAYS = 30

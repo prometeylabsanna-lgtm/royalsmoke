@@ -39,10 +39,11 @@ BODIES_EN: dict[str, str] = {
 
 <h2>First ritual: cut, light, draw</h2>
 <p>Even a perfect cigar disappoints if poorly prepared. Cut only the cap — cleanly, without tearing the wrapper. Light with wood matches or odorless butane: hold the cigar above the flame and rotate until the rim glows evenly.</p>
-<p>Draw slowly, like sipping a thick drink through a straw. Do not pull like a cigarette. Pause so the cigar smolders instead of torching. If one side races, correct gently with the flame.</p>
+<p>Draw slowly, like sipping a thick drink through a straw. Do not pull like a cigarette. Pause so the cigar smolders instead of torching. If one side burns faster, moisten it lightly with a finger, or rotate the cigar and even it out with the flame.</p>
 
 <h2>Budget and quantity: a smart start</h2>
-<p>Do not buy a full box of an unknown profile. Start with 1–3 sticks across mild–medium. Then build a humidor collection. If you will store longer than a week, plan humidity early — see our guide on <a href="/en/blog/yak-zberigaty-sygary-humidora/">how to store cigars</a>.</p>
+<p>Do not buy a full box of an unknown profile right away. For a first step, one to three sticks of different strengths within the medium segment are enough. That way you will see what suits you better: nut and wood, or coffee and cocoa. Only then start building a collection in your humidor.</p>
+<p>If you plan to store cigars for more than a week, think about humidity right away. We cover it separately in our guide on <a href="/en/blog/yak-zberigaty-sygary-humidora/">how to store cigars</a>.</p>
 
 <h2>Common beginner mistakes</h2>
 <ol>
@@ -56,7 +57,7 @@ BODIES_EN: dict[str, str] = {
 
 <h2>Flavor cues for the first buy</h2>
 <p>If you like milky coffee and nutty desserts, look for cream, almond, light wood, gentle honey. If you prefer dark chocolate and espresso, browse maduro notes with cocoa and coffee — but keep strength in the medium range. Save spicy Nicaraguan profiles for step two, once you know your baseline.</p>
-<p>Ask a sommelier. Describe your free time, balcony versus indoor, and whether sweetness matters. We will shortlist two or three sticks from live stock instead of pushing a display hit.</p>
+<p>Do not hesitate to ask a sommelier: a short conversation saves money better than any algorithm. Describe how much time you have, whether you smoke on a balcony or indoors, and whether sweetness matters to you. Based on that, we will shortlist two or three sticks from live stock instead of pushing a “hit of the week” for the display.</p>
 
 <h2>What to bring to the first session</h2>
 <p>Still water, an uninterrupted window, and a place where smoke bothers no one. Keep alcohol minimal so you can judge the leaf honestly. Afterward write three taste words and whether you would repeat the format — your personal dictionary for the next catalog visit.</p>
@@ -74,7 +75,7 @@ BODIES_EN: dict[str, str] = {
 
 <h2>Humidor types: wood, acrylic, cabinet</h2>
 <h3>Classic wooden humidor</h3>
-<p>Spanish cedar helps buffer moisture and adds a light aroma. Season an empty box to working humidity before loading cigars. Cheap souvenir boxes with poor seals often lie to the hygrometer.</p>
+<p>Spanish cedar helps buffer moisture and adds a light aroma. Before the first load, season the box: bring the humidity inside the empty humidor up to working level, and only then place cigars in it. Cheap “souvenir” boxes without a proper seal often feed the hygrometer false readings.</p>
 <h3>Acrylic and travel humidors</h3>
 <p>Clear boxes with Boveda or other two-way packs are ideal for 5–25 cigars. They stabilize faster and are easier to maintain — a strong start while you build a selection from the <a href="/en/catalog/">cigar catalog</a>.</p>
 
@@ -83,7 +84,7 @@ BODIES_EN: dict[str, str] = {
 
 <h2>How to place cigars inside</h2>
 <ul>
-<li>do not overstuff — air must move;</li>
+<li>do not pack the box to the lid — air needs to move;</li>
 <li>remove cellophane only if you will smoke soon and understand the box climate;</li>
 <li>let new arrivals rest a few days after insulated shipping;</li>
 <li>isolate very aromatic profiles if you worry about scent transfer.</li>
@@ -101,25 +102,30 @@ BODIES_EN: dict[str, str] = {
 <h2>Short stock without a full humidor</h2>
 <p>For an evening smoke, a sealed bag with a small pack can last a few days. For weeks and months you need stable volume. For shipping across Ukraine we pack with climate in mind — details on <a href="/en/service/delivery/">delivery and payment</a>.</p>
 
-<h2>Seasonal tips</h2>
+<h2>Seasonal tips for Ukraine</h2>
 <p>Winter heating dries air: check the humidor more often. Summer heat raises vapor pressure — keep the box off sunny glass. If you leave for 2–3 weeks, refresh packs and store the box in shade.</p>
 
 <h2>When a cigar is “ready”</h2>
 <p>After purchase, let the leaf acclimate. A sharp jump from a dry courier case into a very wet box can mute aroma temporarily. After 3–7 days in a stable climate the profile usually opens more evenly — that is when you should judge a new catalog stick.</p>
 
-<h2>Calibrating the hygrometer</h2>
-<p>Use a salt test or manufacturer calibration pack, then apply the offset. Uncalibrated dials create fake problems: you add moisture when it is already wet, or dry when it is already dry. Recheck each season or after battery changes. Weekly notes beat one reading right after opening the lid.</p>
+<h2>Calibrating a hygrometer in practice</h2>
+<p>Place the hygrometer in a sealed bag with a salt packet or a calibration sachet, following the manufacturer’s instructions. After a few hours compare the reading and set the offset. Without this you “treat” the box for problems that do not exist: you add moisture when it is already damp, or the other way round.</p>
+<p>Digital instruments are more convenient than analog dials but also lie without calibration. Check once a season or after a drop or a battery change. Log the readings once a week — that way you see a trend, not a one-off spike after opening the lid.</p>
 
-<h2>Rotation and rest after shipping</h2>
-<p>Do not smoke brand-new arrivals on delivery day if the climate changed on the road. Rest them 3–7 days. If you buy several identical vitolas, open them gradually so you taste the blend after acclimation. Inspect monthly for cracks or suspicious bloom; crystal oil bloom is not mold, but fuzzy growth needs isolation.</p>
+<h2>Stock rotation and “rest” after delivery</h2>
+<p>It is better not to smoke new cigars on the day they arrive if they traveled through a changing climate. Give them 3–7 days in a stable humidor. If you buy several identical vitolas, open them gradually: that way you will feel how the profile opens after acclimation, and you will not spend the whole pack “on the courier’s temperature”.</p>
+<p>Once a month, inspect the wrappers for cracks and suspicious bloom. A light crystalline bloom (oils) is not mold; a fuzzy white or green growth means isolate the cigar and ask for advice. Never put an affected cigar back with the healthy ones.</p>
 
-<h2>Home scale: 5 to 50 cigars</h2>
-<p>Under about 15 sticks a quality acrylic box is enough. At 25–50 consider cedar or a small cabinet with dual packs. Do not buy a giant unused safe — large empty volume swings more when rarely opened. Keep a separate travel kit so the main box stays closed.</p>
+<h2>Home scenario: from 5 to 50 cigars</h2>
+<p>Up to 10–15 sticks, a quality acrylic digi-box is enough. At 25–50 it is worth thinking about a cedar box or a small cabinet with two regulators. Do not buy a giant safe “to grow into” if you are not ready to maintain it: a large volume takes longer to stabilize and drifts more easily when opened rarely.</p>
+<p>Keep a separate small travel kit for trips so you do not open the main humidor every time. It reduces humidity swings at home and protects your main stock.</p>
 
-<h2>Why stability beats a “perfect” number</h2>
-<p>A cigar is a living product with oils and porous structure. It responds slowly, so humidity swings stress the wrapper. Holding 66–68% for weeks beats chasing 72% with a wet sponge and crashing to 60% the next day. Stable microclimate protects even burn, predictable draw, and a cleaner finish — what you pay for in the premium catalog segment. Label gift stock with the date you shelved it so you know what has rested and what is still acclimating after showroom or warehouse shipping. After a holiday, wait a day before judging a newly opened catalog stick.</p>
 <h2>Signals that the climate slipped</h2>
-<p>A tight dry draw, seam cracks, and fast extinguishing point to dryness. A soft sticky wrapper, stale box smell, and heavy burn point to excess moisture. Respond gradually: move to a neighboring pack value rather than shock-drying on a radiator. If you travel, leave the box in shade, refresh packs, and avoid opening it “for goodbye.” After you return, give the microclimate a day before judging a new catalog profile. Treat every adjustment as a week-long experiment, not a one-hour fix.</p>
+<p>A tight, “dry” draw, seam cracks, and fast extinguishing are signs of dryness. A soft sticky wrapper, a heavy stale smell in the box, and a heavy burn are signs of excess moisture. React gradually: move the regulator to the neighboring value (for example, from 69% to 65%) instead of shock-drying on a radiator.</p>
+<p>If you go on vacation, leave the box in shade, refresh the packs, and do not open it “for goodbye” without need. After you return, give it a day to stabilize before judging the taste of a new catalog item. If you keep cigars for gifts, write the date you shelved them — that makes it easier to tell which stock has already “rested” and which is still acclimating after delivery from the showroom or warehouse.</p>
+
+<h2>Why stability matters more than the “perfect” number</h2>
+<p>A cigar is a living product with oils and a porous structure. It responds slowly to climate, so humidity jumps stress the wrapper. It is better to hold 66–68% for weeks than to chase 72% after an “emergency” wet sponge and fall to 60% the next day. A stable microclimate preserves an even burn, a predictable draw, and a cleaner finish — exactly what you pay for in the premium segment of the Royal Smoke catalog.</p>
 """,
     'aksessuary-dlya-sygar-katter-zapalnychka': """
 <p>Cigar accessories are tools, not shelf decor. A bad cut tears the wrapper. A scented fuel lighter adds chemical notes. The wrong ashtray spills ash across the table. This guide covers the core kit: cutter, lighter, ashtray — and how to pick them in the <a href="/en/catalog/">Royal Smoke catalog</a>.</p>
@@ -142,11 +148,11 @@ BODIES_EN: dict[str, str] = {
 <p>More on choosing the stick itself: <a href="/en/blog/yak-obraty-pershu-sygaru/">how to choose your first cigar</a>.</p>
 
 <h2>Lighters: clean fuel only</h2>
-<p>Use odorless butane. Soft-flame is gentle for toasting and evening an uneven rim. Torch (jet) is faster outdoors but overheats if held too close. Avoid gasoline-scented flames for premium leaf.</p>
+<p>Choose odorless butane for cigars. Soft-flame is convenient for calm lighting and for “evening out” an uneven rim. Torch (jet) is faster and more powerful — useful in the wind, but it easily overheats the rim if held close. Do not use gasoline Zippo-style lighters with a fuel aroma for the ritual of premium leaf.</p>
 <p>After refilling, purge briefly per the manufacturer so excess air does not leave a dirty yellow flame.</p>
 
 <h2>Ashtrays: shape matters</h2>
-<p>A deep, heavy ashtray holds ash and resists wind. Rests help park the vitola without crushing the wrapper. Tiny plastic cups fill fast and stain the table.</p>
+<p>A deep, heavy ashtray holds the ash and keeps the wind from scattering sparks. Grooves for the cigar help you rest the vitola without pressing on the wrapper. Fragile plastic and tiny “bar” cups overflow quickly and stain the table.</p>
 
 <h2>Minimal kit vs expanded</h2>
 <ul>
@@ -163,21 +169,22 @@ BODIES_EN: dict[str, str] = {
 <p>Need a kit matched to your format? Write via <a href="/en/service/contact/">contact</a> — we will suggest a cutter and lighter for diameter and scenario (home, terrace, travel).</p>
 
 <h2>Match the cutter to ring gauge</h2>
-<p>Check maximum opening. A pocket cutter may crush a 60-ring head. For mixed collections choose a guillotine with headroom. Control V-cut depth on thinner coronas. Keep sand away from blades — it kills sharpness. If the cut starts to crush instead of slice, service or replace.</p>
+<p>Before buying, check the maximum opening diameter. If your selection includes a 60 ring, a small pocket cutter may not fit or may crush the wrapper. For a mixed collection, a guillotine with headroom on diameter is more convenient. Choose a V-cut with controlled depth: a wedge that is too deep on a thin corona spoils the draw.</p>
+<p>Store the cutter in a dry place, away from sand in your pocket. Sand on the blade is the main enemy of sharpness. Every few months, check whether the cut is still “like butter”; if you crush the cap, it is time to service or replace it.</p>
 
 <h2>Home, terrace, travel</h2>
-<p>Soft-flame and a heavy ashtray at home; torch and a deeper bowl outdoors; compact cutter, spare butane, and a humidified 2–3 stick case on the road. Keep a second clean cutter for guests.</p>
+<p>At home, a soft-flame and a heavy ashtray are enough. On a windy terrace, a torch and a deeper bowl make sense. On the road: a compact guillotine or punch, a lighter with spare butane, a 2–3 stick case with a humidity card. Do not carry open ash in the car: the smell sinks into the interior faster than it seems.</p>
+<p>If you share the ritual with guests, keep a second clean cutter. Passing a single tool from hand to hand after sticky leaf is neither the best manners nor good hygiene.</p>
 
-<h2>Accessories change how you rate a cigar</h2>
-<p>Many “bitter cigar” reports are overheating and aggressive draws. Retest with a sharp cutter and calmer lighting before discarding a brand. Royal Smoke accessory cards note purpose and typical vitola fit. Send a photo of your format if you need a blade-size match.</p>
+<h2>How accessories affect the way you rate a cigar</h2>
+<p>We often hear “the cigar is bitter,” and it turns out the rim was scorched with a torch and the draws were ripped. Before writing off a brand, check your tools. Sometimes replacing the cutter and lighting more calmly “brings back” a profile you were ready to cross off your favorites.</p>
+<p>In the Royal Smoke accessory cards we state the purpose and compatibility with typical vitolas. If in doubt, send a photo of your format — we will suggest the diameter and blade type.</p>
 
-<h2>Checklist before buying a first kit</h2>
-<p>Confirm the cutter fits your thickest wishlist cigar, the lighter runs on clean butane, and the ashtray stays stable when full. Add napkins and water — small details that keep the ritual clean. Then shop the catalog knowing the tools will not fail at the start. For gifts, match cutter and lighter style with a travel case so a guest can begin without explanations.</p>
+<h2>Checklist before buying your first kit</h2>
+<p>Make sure the cutter fits the thickest cigar on your wishlist, the lighter runs on clean butane, and the ashtray stands steady on the table even when full. Add napkins for your hands and water — small things, but they keep the ritual tidy. After that you can calmly choose a cigar in the catalog, knowing the tools will not fail at the start. If you buy a gift set, put the cutter and lighter together in one style with the case — so a guest can begin the ritual without extra explanations.</p>
 
 <h2>Budget start without losing ritual quality</h2>
-<p>You do not need the most expensive set in month one. Choose a sharp guillotine with proven geometry, a reliable butane lighter, and a heavy ashtray. Expand when scenarios appear: windy terrace, travel, guests. Spend grows with experience. A solid base kit lasts years and pays for itself by the second or third box you do not ruin with a bad cut or dirty flame. Keep spare butane and a backup cutter in the travel case so a weekend trip never forces a gasoline lighter or a torn wrapper.</p>
-<h2>Why tools belong in the same decision as the cigar</h2>
-<p>Buying a premium stick with a dull cutter is like pouring fine wine into a dirty glass. Plan the kit and the leaf together. When you shortlist two robustos in the catalog, also confirm your guillotine opening and whether you will smoke indoors or on a windy terrace. That habit prevents most “the cigar was bitter” tickets we hear after holiday gifts. A five-minute tool check saves an evening and protects the reputation of a blend that deserved a fair trial.</p>
+<p>There is no need to buy the most expensive set in month one. Choose a sharp guillotine of proven geometry, a reliable butane lighter, and a heavy ashtray. That is enough to judge a cigar honestly. Expand your tool collection when a scenario appears: a windy terrace, travel, guests. That way spending grows with experience rather than ahead of it. A quality base kit lasts for years and pays for itself by the second or third box you do not spoil with a bad cut or a dirty flame.</p>
 """,
     'yak-chytaty-vitolu-micnist-kilce': """
 <p>The band, the vitola, and the strength rating are three languages of the same ritual. Read them well and you navigate the <a href="/en/catalog/">catalog</a> faster with fewer random buys. This guide explains format, ring gauge, strength, and why a pretty band is not a flavor guarantee.</p>
@@ -217,20 +224,21 @@ BODIES_EN: dict[str, str] = {
 <p>When these five align, the band becomes a nice detail — the decision is already made with head and palate.</p>
 
 <h2>Common catalog formats</h2>
-<p>Corona usually fits 30–45 minutes. Robusto holds about an hour. Toro and Churchill run longer. Belicoso with a figured head needs a careful cut. Do not chase the biggest stick for status — an unfinished third wastes money and flavor. Trust length and ring numbers over marketing names; Royal Smoke duplicates both in plain form.</p>
+<p>Corona is usually shorter and thinner — convenient for 30–45 minutes. Robusto holds about an hour. Toro and Churchill give a longer narrative. Belicoso with a figured head requires a more careful cut. Do not chase the “biggest” cigar for status: an unsmoked third is not savings but a lost profile and irritation.</p>
+<p>Look not only at the format name but also at the numbers in the specification. Manufacturers sometimes use marketing names. That is why at Royal Smoke we duplicate the length and ring gauge in a plain form.</p>
 
 <h2>Strength and time of day</h2>
-<p>Full strength on an empty stomach often overwhelms even regulars. After a dense meal, medium or medium-full opens more gently. For a two-hour conversation pick a longer medium format, not a short full-body rocket. Keep simple notes: date, vitola, strength, three taste words, score 1–5. Patterns appear within a month.</p>
+<p>In the morning or on an empty stomach, full strength often causes dizziness even in experienced smokers. After a substantial dinner, medium or medium-full opens more softly. If you plan a two-hour conversation, choose a longer format of medium strength rather than a short full-body “rocket.”</p>
+<p>Keep simple notes: date, vitola, strength, three words of taste, a score of 1–5. In a month you will see a pattern — for example, that you consistently enjoy nutty medium robustos and rarely enjoy very spicy thin gauges.</p>
 
 <h2>Bands, limited editions, expectations</h2>
-<p>Limited bands are collectible; flavor still comes from the blend. Beginners should learn two or three core lines before rare releases. A beautiful band never replaces a humidor. Reading vitola ends with storage and cutter decisions — only then is buying a system, not an accident.</p>
+<p>Limited bands are beautiful for a collection, but flavor is determined by the blend. Buy a limited edition once you already understand the brand’s base style. A beginner is better off with two or three classic lines than with one “rare” item with no reference point. If the band is a collectible, remove it carefully or leave it on until the end so you do not damage the wrapper.</p>
+<p>Remember: a band does not protect against dry air. Even the most beautiful label will not replace a humidor. Reading a vitola ends with a decision about storage and a cutting tool — only then does a purchase become a system rather than an accident.</p>
 
-<h2>Practical comparison of two cards</h2>
-<p>Imagine a medium robusto with cocoa and light pepper versus a mild corona with nut and cream. The first asks for a calm evening and water nearby; the second for a short daytime pause. Both can be “right” if you read vitola and strength together. That is how Royal Smoke catalog choice works: parameters first, band emotion second. Between two close-strength cards, prefer clearer notes and smoking time; vague “premium” epithets are a weak buying signal.</p>
+<h2>A practical example: comparing two cards</h2>
+<p>Imagine two items: a medium robusto with cocoa and light pepper notes versus a mild corona with nut and cream. The first asks for a calm evening and water at hand; the second, a short daytime pause. Both can be “right” if you read vitola and strength together, not separately. That is how choosing in the Royal Smoke catalog works: parameters first, then the emotion of the band. When you hesitate between two cards of similar strength, choose the one where the notes and smoking time are described more clearly; abstract epithets like “premium” and “elite” without details are a weak buying signal.</p>
 
 <h2>Beginner glossary: five terms</h2>
-<p>Vitola — size. Ring gauge — diameter. Strength — body feel. Wrapper — outer leaf that strongly shapes first aroma. Band — line identifier. Keep this glossary while browsing and you cut random buys faster, building a selection for your time rather than someone else’s status. Repeat the terms aloud while choosing — your brain links card numbers to real session experience. Within weeks you will read the shelf faster than friends who still pick only by a pretty band, ignoring strength, vitola, and stated smoking time in the Royal Smoke catalog. When two cards look close, reread smoking time and tasting notes before you trust the band design.</p>
-<h2>From reading to buying without guesswork</h2>
-<p>Once you can parse vitola, strength, and band, shopping becomes quieter. Open the catalog, set strength and size first, then compare two tasting notes. Ignore decorative language until the numbers fit your evening. If you still hesitate, ask Royal Smoke for a short shortlist with reasons — strength for your time of day, vitola for your free window, and a cutter tip for the ring gauge. That is how reading becomes a purchase system instead of another random band on the table.</p>
+<p>Vitola — size. Ring gauge — diameter. Strength — body feel. Wrapper — the outer leaf that strongly shapes the first aroma. Band — the line identifier. If you keep this glossary in mind while browsing the catalog, you will cut out random purchases faster and build a selection around your own time, not someone else’s status. Repeat the terms aloud when choosing — that way your brain links the numbers on the card to the real experience of a session. In a few weeks you will start reading the shelf faster than friends who still choose only “by a pretty band” without looking at strength, vitola, and the stated smoking time in the Royal Smoke catalog.</p>
 """,
 }

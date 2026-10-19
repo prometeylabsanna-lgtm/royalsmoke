@@ -16,14 +16,17 @@
       .replace(/"/g, '&quot;');
   }
 
+  // Мови з URL-префіксом (settings.LANGUAGES без uk). Синхронно з templates/pwa/sw.js.
+  var PREFIXED_LANGS = ['en', 'zh-hans', 'ms', 'fil', 'id', 'vi'];
+  var LANG_PREFIX_RE = new RegExp('^/(' + PREFIXED_LANGS.join('|') + ')(?=/|$)');
+
   function detectLang(pathname) {
-    if (pathname.indexOf('/en/') === 0 || pathname === '/en') return 'en';
-    if (pathname.indexOf('/zh-hans/') === 0 || pathname === '/zh-hans') return 'zh-hans';
-    return 'uk';
+    var match = LANG_PREFIX_RE.exec(pathname);
+    return match ? match[1] : 'uk';
   }
 
   function stripLang(pathname) {
-    return pathname.replace(/^\/(en|zh-hans)(?=\/|$)/, '') || '/';
+    return pathname.replace(LANG_PREFIX_RE, '') || '/';
   }
 
   function catalogBase(lang) {

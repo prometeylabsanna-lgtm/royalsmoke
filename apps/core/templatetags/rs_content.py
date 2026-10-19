@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import re
+
 from django import template
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
@@ -62,6 +64,16 @@ def cms_plain(value):
 @register.filter
 def cms_format(value, arg):
     return normalize_cms_plain(str(value or '')).replace('{name}', str(arg))
+
+
+@register.filter
+def with_iframe_title(html, title):
+    """Підпис карти з перекладу, а не з зашитого в HTML українського title."""
+    raw = str(html or '')
+    label = escape(str(title or ''))
+    if 'title="' in raw:
+        return mark_safe(re.sub(r'title="[^"]*"', f'title="{label}"', raw, count=1))
+    return mark_safe(raw)
 
 
 @register.filter

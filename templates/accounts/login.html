@@ -21,9 +21,9 @@
           <div class="rs-field__error">{{ form.non_field_errors }}</div>
         {% endif %}
         <div class="rs-field{% if form.username.errors %} is-invalid{% endif %}">
-          <label class="sr-only" for="id_username">Email</label>
+          <label class="sr-only" for="id_username">{% trans "Email" %}</label>
           <input id="id_username" type="email" name="username" required autocomplete="username"
-                 placeholder="Email" value="{{ form.username.value|default:'' }}"
+                 placeholder="{% trans "Email" %}" value="{{ form.username.value|default:'' }}"
                  aria-describedby="id_username-error"
                  {% if form.username.errors %}aria-invalid="true"{% endif %}>
           <p class="rs-field__error" id="id_username-error" {% if not form.username.errors %}hidden{% endif %}>{% if form.username.errors %}{{ form.username.errors.0 }}{% endif %}</p>

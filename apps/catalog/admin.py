@@ -13,20 +13,15 @@ from apps.core.admin_filters import (
 from apps.core.admin_image_preview import ImagePreviewAdminMixin, image_thumb
 from apps.core.admin_site_content_widgets import CmsAdminFileWidget, CmsAdminTinyMCEWidget
 from apps.core.admin_translation_forms import TranslationSyncModelForm
+from apps.core.cms_i18n import lang_field_set, lang_fields
 
 from .models import Product, ProductImage, ProductReview
 from .models_base import Brand, Category, ProductLine, Tag
 
-_PRODUCT_TINYMCE_FIELDS = {
-    'short_story', 'short_story_uk', 'short_story_en', 'short_story_zh_hans',
-    'description', 'description_uk', 'description_en', 'description_zh_hans',
-    'tasting_notes', 'tasting_notes_uk', 'tasting_notes_en', 'tasting_notes_zh_hans',
-    'recommendations', 'recommendations_uk', 'recommendations_en', 'recommendations_zh_hans',
-}
-_CATALOG_TINYMCE_FIELDS = {
-    'description', 'description_uk', 'description_en', 'description_zh_hans',
-    'short_description', 'short_description_uk', 'short_description_en', 'short_description_zh_hans',
-}
+_PRODUCT_TINYMCE_FIELDS = lang_field_set(
+    'short_story', 'description', 'tasting_notes', 'recommendations',
+)
+_CATALOG_TINYMCE_FIELDS = lang_field_set('description', 'short_description')
 
 
 class CategoryAdminForm(TranslationSyncModelForm):
@@ -220,11 +215,8 @@ class ProductAdmin(AutoSlugAdminMixin, ImagePreviewAdminMixin, ModelAdmin):
             ),
         }),
         ('Описи', {
-            'fields': (
-                'short_story_uk', 'short_story_en', 'short_story_zh_hans',
-                'description_uk', 'description_en', 'description_zh_hans',
-                'tasting_notes_uk', 'tasting_notes_en', 'tasting_notes_zh_hans',
-                'recommendations_uk', 'recommendations_en', 'recommendations_zh_hans',
+            'fields': lang_fields(
+                'short_story', 'description', 'tasting_notes', 'recommendations',
             ),
         }),
         ('Характеристики', {
@@ -239,10 +231,7 @@ class ProductAdmin(AutoSlugAdminMixin, ImagePreviewAdminMixin, ModelAdmin):
             'description': 'Пріоритет: відеофайл → URL → статичний fallback на картці.',
         }),
         ('SEO', {
-            'fields': (
-                'meta_title_uk', 'meta_title_en', 'meta_title_zh_hans',
-                'meta_description_uk', 'meta_description_en', 'meta_description_zh_hans',
-            ),
+            'fields': lang_fields('meta_title', 'meta_description'),
             'classes': ('rs-product-seo-fieldset',),
         }),
     )

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creat"
-"ion-Date: 2026-09-23 09:57+0300\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZO"
+"ion-Date: 2026-10-19 14:30+0300\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZO"
 "NE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAG"
 "E <LL@li.org>\nLanguage: zh_Hans\nMIME-Version: 1.0\nContent-Type: tex"
 "t/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms:"
@@ -20,31 +20,33 @@ msgid "Email"
 msgstr "电子邮件"
 
 #: apps/accounts/forms.py:17 templates/accounts/register.html:9
-#: templates/base.html:98 templates/booking/page.html:45
+#: templates/base.html:122 templates/booking/page.html:45
 #: templates/emails/booking_created_customer.txt:5
-#: templates/leads/contact.html:12 templates/orders/checkout.html:20
+#: templates/leads/contact.html:12 templates/orders/checkout.html:33
 msgid "Імʼя"
 msgstr "名字"
 
-#: apps/accounts/forms.py:18 templates/orders/checkout.html:28
+#: apps/accounts/forms.py:18 templates/orders/checkout.html:41
 msgid "Прізвище"
 msgstr "姓氏"
 
 #: apps/accounts/forms.py:19 templates/accounts/register.html:11
-#: templates/base.html:99 templates/booking/page.html:50
+#: templates/base.html:123 templates/booking/page.html:50
 #: templates/emails/booking_created_customer.txt:6 templates/leads/b2b.html:8
-#: templates/leads/contact.html:14 templates/leads/contact.html:25
-#: templates/orders/checkout.html:36 templates/pages/partials/home_b2b.html:59
+#: templates/leads/contact.html:14 templates/leads/contact.html:30
+#: templates/orders/checkout.html:49 templates/pages/partials/home_b2b.html:59
 #: templates/pages/partials/home_b2b.html:68
 msgid "Телефон"
 msgstr "电话"
 
 #: apps/accounts/forms.py:20
 msgid "Підтвердження віку"
-msgstr "我确认已满21岁"
+msgstr "年龄确认"
 
-#: apps/accounts/forms.py:28 templates/accounts/login.html:32
-#: templates/accounts/login.html:34 templates/accounts/register.html:12
+#: apps/accounts/forms.py:28 apps/accounts/forms.py:90
+#: templates/accounts/cabinet.html:96 templates/accounts/delete_account.html:24
+#: templates/accounts/login.html:32 templates/accounts/login.html:34
+#: templates/accounts/register.html:12
 msgid "Пароль"
 msgstr "密码"
 
@@ -52,17 +54,54 @@ msgstr "密码"
 msgid "Повторіть пароль"
 msgstr "确认密码"
 
-#: apps/accounts/forms.py:39
+#: apps/accounts/forms.py:39 apps/accounts/forms.py:80
 msgid "Паролі не збігаються"
 msgstr "两次密码不一致"
 
-#: apps/accounts/views.py:61
-msgid "Користувач з таким email уже існує"
-msgstr ""
+#: apps/accounts/forms.py:58 apps/accounts/forms.py:62
+#: templates/accounts/password_change.html:24
+#: templates/accounts/password_change.html:26
+msgid "Поточний пароль"
+msgstr "当前密码"
 
-#: apps/accounts/views.py:110
+#: apps/accounts/forms.py:65 templates/accounts/password_change.html:32
+#: templates/accounts/password_change.html:34
+msgid "Новий пароль"
+msgstr "新密码"
+
+#: apps/accounts/forms.py:67 apps/accounts/forms.py:72
+#: templates/accounts/password_change.html:40
+#: templates/accounts/password_change.html:42
+msgid "Повторіть новий пароль"
+msgstr "确认新密码"
+
+#: apps/accounts/forms.py:94 templates/accounts/delete_account.html:26
+msgid "Пароль для підтвердження"
+msgstr "用于确认的密码"
+
+#: apps/accounts/forms.py:97 templates/accounts/delete_account.html:34
+msgid "Підтверджую видалення акаунту"
+msgstr "我确认删除账户"
+
+#: apps/accounts/forms.py:106
+msgid "Невірний пароль"
+msgstr "密码错误"
+
+#: apps/accounts/views.py:74
+msgid "Користувач з таким email уже існує"
+msgstr "该邮箱对应的用户已存在"
+
+#: apps/accounts/views.py:124
 msgid "гість"
 msgstr "访客"
+
+#: apps/accounts/views.py:152
+msgid "Пароль змінено. Інші сесії завершено."
+msgstr "密码已更改，其他会话已退出登录。"
+
+#: apps/accounts/views.py:163
+msgid "Акаунт видалено. Кошик збережено як гостьовий."
+msgstr "账户已删除。购物车已作为访客购物车保留。"
 
 #: apps/booking/models.py:9
 msgid "Дегустація"
@@ -80,39 +119,39 @@ msgstr "展厅参观"
 msgid "Самовивіз"
 msgstr "自提"
 
-#: apps/booking/views.py:56
+#: apps/booking/views.py:55
 msgid "Цей слот уже минув"
 msgstr "该时段已过"
 
-#: apps/booking/views.py:58 apps/booking/views.py:172
+#: apps/booking/views.py:57 apps/booking/views.py:171
 msgid "Немає вільних місць"
 msgstr "没有空位"
 
-#: apps/booking/views.py:79
+#: apps/booking/views.py:78
 msgid "Бронювання прийнято"
 msgstr "预约已受理"
 
-#: apps/booking/views.py:124
+#: apps/booking/views.py:123
 msgid "Слот недоступний"
 msgstr "该时段不可用"
 
-#: apps/booking/views.py:135
+#: apps/booking/views.py:134
 msgid "Бронювання прийнято. Очікуйте підтвердження."
 msgstr "预约已受理。请等待确认。"
 
-#: apps/booking/views.py:141
+#: apps/booking/views.py:140
 msgid "Не вдалося створити бронювання"
 msgstr "无法创建预约"
 
-#: apps/booking/views.py:184
+#: apps/booking/views.py:183
 msgid "Бронювання прийнято."
 msgstr "预约已受理。"
 
-#: apps/booking/views.py:186
+#: apps/booking/views.py:185
 msgid "Перевірте дані бронювання."
 msgstr "请检查预约信息。"
 
-#: apps/booking/views.py:188
+#: apps/booking/views.py:187
 msgid "Оберіть послугу та час на сторінці бронювання."
 msgstr "请在预约页选择服务和时间。"
 
@@ -124,7 +163,7 @@ msgstr "请在预约页选择服务和时间。"
 #: templates/pages/partials/home_calculator.html:63
 #: templates/pages/partials/home_calculator.html:208
 msgid "Міцність"
-msgstr "浓度"
+msgstr "劲头"
 
 #: apps/calculator/models.py:14
 #: templates/pages/partials/home_calculator.html:25
@@ -150,100 +189,126 @@ msgstr "产地"
 msgid "Бюджет"
 msgstr "预算"
 
-#: apps/calculator/services.py:98
+#: apps/calculator/services.py:91
 #, python-format
 msgid "міцність %(s)s"
-msgstr "浓度 %(s)s"
+msgstr "劲头 %(s)s"
 
-#: apps/calculator/services.py:112
+#: apps/calculator/services.py:105
 #, python-format
 msgid "країна %(c)s"
 msgstr "产地 %(c)s"
 
-#: apps/calculator/services.py:130
+#: apps/calculator/services.py:120
 #, python-format
 msgid "формат %(f)s"
 msgstr "规格 %(f)s"
 
-#: apps/calculator/services.py:137
+#: apps/calculator/services.py:127
 #, python-format
 msgid "у бюджеті (%(p)s %(symbol)s)"
 msgstr "符合预算（%(p)s %(symbol)s）"
 
-#: apps/calculator/services.py:146
+#: apps/calculator/services.py:136
 msgid "близький за профілем асортименту"
 msgstr "接近您偏好的风味"
 
-#: apps/catalog/browser_filters.py:15
+#: apps/cart/stock.py:161 apps/cart/stock.py:199 apps/cart/stock.py:204
+#: apps/cart/stock.py:210 apps/cart/stock.py:213
+#, python-format
+msgid "«%(name)s» більше недоступний"
+msgstr "“%(name)s”已不可购买"
+
+#: apps/cart/stock.py:167 apps/cart/stock.py:217
+#, python-format
+msgid "«%(name)s» закінчився на складі"
+msgstr "“%(name)s”已售罄"
+
+#: apps/cart/stock.py:170 apps/cart/stock.py:220
+#, python-format
+msgid "«%(name)s»: на складі лише %(n)s шт."
+msgstr "“%(name)s”：库存仅剩 %(n)s 件"
+
+#: apps/cart/stock.py:200 apps/cart/stubs.py:21
+msgid "Товар недоступний"
+msgstr "商品不可购买"
+
+#: apps/cart/stock.py:227
+#, python-format
+msgid "«%(name)s» недоступний для замовлення (некоректна ціна)"
+msgstr "“%(name)s”无法下单（价格无效）"
+
+#: apps/cart/views.py:25 apps/orders/views.py:74 apps/orders/views.py:217
+#: apps/orders/views.py:224 apps/orders/views.py:267
+msgid "Замовлення вже створено"
+msgstr "订单已创建"
+
+#: apps/catalog/browser_filters.py:16
 msgid "Топ"
 msgstr "热门"
 
-#: apps/catalog/browser_filters.py:16
+#: apps/catalog/browser_filters.py:17
 msgid "Новинки"
 msgstr "新品"
 
-#: apps/catalog/browser_filters.py:17
+#: apps/catalog/browser_filters.py:18
 msgid "Ціна ↑"
 msgstr "价格 ↑"
 
-#: apps/catalog/browser_filters.py:18
+#: apps/catalog/browser_filters.py:19
 msgid "Ціна ↓"
 msgstr "价格 ↓"
 
-#: apps/catalog/models.py:32 templates/catalog/list.html:81
+#: apps/catalog/models.py:35 templates/catalog/list.html:81
 #: templates/catalog/list.html:86
 #: templates/pages/partials/home_calculator.html:66
 msgid "Легка"
 msgstr "轻度"
 
-#: apps/catalog/models.py:33 templates/catalog/list.html:82
+#: apps/catalog/models.py:36 templates/catalog/list.html:82
 #: templates/pages/partials/home_calculator.html:70
 msgid "Середня"
 msgstr "中度"
 
-#: apps/catalog/models.py:34 templates/pages/partials/home_calculator.html:74
+#: apps/catalog/models.py:37 templates/pages/partials/home_calculator.html:74
 msgid "Середньо-повна"
 msgstr "中重度"
 
-#: apps/catalog/models.py:35 templates/catalog/list.html:83
+#: apps/catalog/models.py:38 templates/catalog/list.html:83
 #: templates/catalog/list.html:88
 #: templates/pages/partials/home_calculator.html:78
 msgid "Повна"
 msgstr "重度"
 
-#: apps/catalog/models_base.py:19 apps/core/block_defaults_pages.py:22
+#: apps/catalog/models_base.py:22 apps/core/block_defaults_pages.py:30
 #: templates/pages/home.html:25
 msgid "Сигари"
 msgstr "雪茄"
 
-#: apps/catalog/models_base.py:20
-msgid "Сигарети"
-msgstr "香烟"
-
-#: apps/catalog/models_base.py:21 apps/core/block_defaults_pages.py:23
+#: apps/catalog/models_base.py:23 apps/core/block_defaults_pages.py:31
 msgid "Аксесуари"
 msgstr "配件"
 
-#: apps/catalog/models_base.py:22
+#: apps/catalog/models_base.py:24
 msgid "Інше"
 msgstr "其他"
 
 #: apps/core/admin_filters.py:85
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: apps/core/admin_filters.py:86
 msgid "No"
-msgstr ""
+msgstr "否"
 
-#: apps/core/admin_nav.py:7 apps/core/block_defaults_pages.py:7
+#: apps/core/admin_nav.py:7 apps/core/block_defaults_pages.py:12
 #: apps/core/breadcrumbs.py:76 templates/pages/blog_detail.html:42
 #: templates/pages/blog_list.html:36
 msgid "Головна"
 msgstr "首页"
 
 #: apps/core/admin_nav.py:8 apps/core/block_defaults_home.py:10
-#: apps/core/block_defaults_pages.py:8 apps/core/block_defaults_pages.py:19
+#: apps/core/block_defaults_pages.py:13 apps/core/block_defaults_pages.py:27
 #: apps/core/breadcrumbs.py:33 apps/core/breadcrumbs.py:90
 #: apps/core/breadcrumbs.py:94 apps/core/breadcrumbs.py:105
 #: apps/core/breadcrumbs.py:109 apps/core/breadcrumbs.py:115
@@ -254,142 +319,165 @@ msgstr "首页"
 msgid "Каталог"
 msgstr "目录"
 
-#: apps/core/admin_nav.py:9 apps/core/block_defaults_pages.py:11
-#: apps/core/block_defaults_pages.py:42 apps/core/breadcrumbs.py:40
+#: apps/core/admin_nav.py:9 apps/core/block_defaults_pages.py:16
+#: apps/core/block_defaults_pages.py:50 apps/core/breadcrumbs.py:40
 msgid "Про нас"
 msgstr "关于我们"
 
-#: apps/core/admin_nav.py:10 apps/core/block_defaults_pages.py:12
-#: apps/core/block_defaults_pages.py:30 apps/core/breadcrumbs.py:41
+#: apps/core/admin_nav.py:10 apps/core/block_defaults_pages.py:17
+#: apps/core/block_defaults_pages.py:38 apps/core/breadcrumbs.py:41
 #: apps/core/breadcrumbs.py:82
 msgid "Блог"
-msgstr ""
+msgstr "博客"
 
-#: apps/core/admin_nav.py:11 apps/core/block_defaults_pages.py:10
+#: apps/core/admin_nav.py:11 apps/core/block_defaults_pages.py:15
 #: apps/core/breadcrumbs.py:42
 msgid "FAQ"
 msgstr "常见问题"
 
-#: apps/core/admin_nav.py:12 apps/core/block_defaults_pages.py:13
-#: apps/core/block_defaults_pages.py:78 apps/core/breadcrumbs.py:46
-#: templates/partials/footer.html:72
+#: apps/core/admin_nav.py:12 apps/core/block_defaults_pages.py:18
+#: apps/core/block_defaults_pages.py:86 apps/core/breadcrumbs.py:46
+#: templates/partials/footer.html:80
 msgid "Контакти"
 msgstr "联系方式"
 
-#: apps/core/admin_nav.py:13 apps/core/block_defaults_pages.py:14
-#: apps/core/block_defaults_pages.py:84 apps/core/breadcrumbs.py:45
-msgid "Доставка і оплата"
-msgstr "配送与支付"
-
-#: apps/core/admin_nav.py:14 apps/core/breadcrumbs.py:44
-msgid "B2B"
-msgstr "B2B"
-
-#: apps/core/admin_nav.py:15 apps/core/admin_nav.py:95
-#: apps/core/block_defaults_home.py:19 apps/core/block_defaults_pages.py:109
-msgid "Бронювання"
-msgstr "预约"
-
-#: apps/core/admin_nav.py:16 apps/core/block_defaults_pages.py:26
-#: apps/core/block_defaults_pages.py:113 apps/core/breadcrumbs.py:34
+#: apps/core/admin_nav.py:13 apps/core/block_defaults_pages.py:34
+#: apps/core/block_defaults_pages.py:106 apps/core/breadcrumbs.py:34
 #: templates/accounts/cabinet.html:92
 #: templates/accounts/partials/cabinet_aside.html:7
-#: templates/partials/header.html:59
+#: templates/partials/header.html:75
 msgid "Кошик"
 msgstr "购物车"
 
-#: apps/core/admin_nav.py:17 apps/core/block_defaults_pages.py:119
+#: apps/core/admin_nav.py:14 apps/core/block_defaults_pages.py:112
 #: apps/core/breadcrumbs.py:35
 msgid "Оформлення"
 msgstr "结账"
 
-#: apps/core/admin_nav.py:18 apps/core/block_defaults_pages.py:27
-#: apps/core/block_defaults_pages.py:124 apps/core/breadcrumbs.py:39
-#: templates/orders/thank_you.html:27 templates/partials/header.html:43
+#: apps/core/admin_nav.py:15 apps/core/block_defaults_pages.py:35
+#: apps/core/block_defaults_pages.py:117 apps/core/breadcrumbs.py:39
+#: templates/orders/thank_you.html:27 templates/partials/header.html:52
 msgid "Кабінет"
 msgstr "个人中心"
 
-#: apps/core/admin_nav.py:19
+#: apps/core/admin_nav.py:16
 msgid "Вікова перевірка"
-msgstr "年龄政策"
+msgstr "年龄验证"
 
-#: apps/core/admin_nav.py:20
+#: apps/core/admin_nav.py:17
 msgid "Шапка і футер"
-msgstr "页脚导航"
+msgstr "页眉与页脚"
 
-#: apps/core/admin_nav.py:36
-msgid "Питання"
-msgstr "排序"
-
-#: apps/core/admin_nav.py:42
-msgid "Статті"
-msgstr "状态"
-
-#: apps/core/admin_nav.py:65
+#: apps/core/admin_nav.py:18
 msgid "Документи"
-msgstr "备注"
+msgstr "文档"
 
-#: apps/core/admin_nav.py:70
-msgid "Юридичні документи"
-msgstr ""
+#: apps/core/admin_nav.py:34
+msgid "Питання"
+msgstr "问题"
 
-#: apps/core/admin_nav.py:77
+#: apps/core/admin_nav.py:40
+msgid "Статті"
+msgstr "文章"
+
+#: apps/core/admin_nav.py:63
+msgid "Мобільний застосунок"
+msgstr "移动应用"
+
+#: apps/core/admin_nav.py:68
+msgid "Налаштування застосунку"
+msgstr "应用设置"
+
+#: apps/core/admin_nav.py:73
+msgid "Бренди гайду"
+msgstr "指南品牌"
+
+#: apps/core/admin_nav.py:78
+msgid "Екрани"
+msgstr "界面"
+
+#: apps/core/admin_nav.py:83
+msgid "Юридичні сторінки"
+msgstr "法律页面"
+
+#: apps/core/admin_nav.py:90
 msgid "Каталог товарів"
-msgstr "商品搜索"
+msgstr "商品目录"
 
-#: apps/core/admin_nav.py:81
+#: apps/core/admin_nav.py:94
 msgid "Товари"
 msgstr "商品"
 
-#: apps/core/admin_nav.py:82 templates/catalog/list.html:33
+#: apps/core/admin_nav.py:95 templates/catalog/list.html:33
 msgid "Категорії"
 msgstr "分类"
 
-#: apps/core/admin_nav.py:83 apps/core/block_defaults_pages.py:24
+#: apps/core/admin_nav.py:96 apps/core/block_defaults_pages.py:32
 #: templates/pages/partials/home_brands.html:3
 msgid "Бренди"
 msgstr "品牌"
 
-#: apps/core/admin_nav.py:84
+#: apps/core/admin_nav.py:97
 msgid "Лінії"
 msgstr "系列"
 
-#: apps/core/admin_nav.py:85
+#: apps/core/admin_nav.py:98
 msgid "Теги"
 msgstr "标签"
 
-#: apps/core/admin_nav.py:89
+#: apps/core/admin_nav.py:102
 msgid "Продажі"
 msgstr "销售"
 
-#: apps/core/admin_nav.py:93 apps/core/block_defaults_pages.py:127
+#: apps/core/admin_nav.py:106 apps/core/block_defaults_pages.py:120
 msgid "Замовлення"
 msgstr "订单"
 
-#: apps/core/admin_nav.py:94
+#: apps/core/admin_nav.py:107
 msgid "Ліди"
 msgstr "线索"
 
-#: apps/core/admin_nav.py:96 apps/core/block_defaults_home.py:16
-#: apps/core/block_defaults_pages.py:25
+#: apps/core/admin_nav.py:108 apps/core/block_defaults_home.py:19
+#: apps/core/block_defaults_pages.py:102
+msgid "Бронювання"
+msgstr "预约"
+
+#: apps/core/admin_nav.py:109 apps/core/block_defaults_home.py:16
+#: apps/core/block_defaults_pages.py:33
 msgid "Калькулятор"
 msgstr "计算器"
 
-#: apps/core/admin_nav.py:100
+#: apps/core/admin_nav.py:113
+msgid "Кольори сайту"
+msgstr "网站颜色"
+
+#: apps/core/admin_nav.py:118
+msgid "Шапка і підвал"
+msgstr "页眉与页脚"
+
+#: apps/core/admin_nav.py:123
+msgid "Кольори сторінок"
+msgstr "页面颜色"
+
+#: apps/core/admin_nav.py:130
 msgid "Користувачі"
 msgstr "用户"
 
-#: apps/core/admin_nav.py:104
+#: apps/core/admin_nav.py:135
+msgid "Недавні дії"
+msgstr "最近操作"
+
+#: apps/core/admin_nav.py:139
 msgid "Акаунти"
 msgstr "账户"
 
-#: apps/core/admin_nav.py:105
+#: apps/core/admin_nav.py:140
 msgid "Налаштування сайту"
 msgstr "网站设置"
 
-#: apps/core/admin_nav.py:106
+#: apps/core/admin_nav.py:141
 msgid "Курси валют"
-msgstr ""
+msgstr "汇率"
 
 #: apps/core/block_defaults_home.py:11
 msgid "Увесь каталог"
@@ -407,342 +495,300 @@ msgid ""
 "тання.\n\nМожна обрати дегустацію, консультацію сомельє або спокійний "
 "візит у шоурум — підлаштуємось під ваш ритм."
 msgstr ""
+"留下联系方式——经理将安排方便的参观时间。\n\n我们会在工作日内回电确认时段并解答疑问。\n\n可选品鉴、侍茄师咨询或安静的展厅到访——我"
+"们按您的节奏安排。"
 
 #: apps/core/block_defaults_home.py:26
 msgid "Обрати час"
 msgstr "选择时间"
 
-#: apps/core/block_defaults_home.py:29
-msgid "Прайс для барів, готелів і корпоративних подарунків."
-msgstr "酒吧、酒店及企业礼赠报价。"
+#: apps/core/block_defaults_home.py:29 apps/core/block_defaults_pages.py:100
+msgid "Прайс і умови для барів, готелів і корпоративних подарунків."
+msgstr "酒吧、酒店及企业礼赠的价格与条款。"
 
-#: apps/core/block_defaults_home.py:30 apps/core/block_defaults_pages.py:108
+#: apps/core/block_defaults_home.py:30 apps/core/block_defaults_pages.py:101
 msgid "Запросити прайс"
 msgstr "索取报价"
+
+#: apps/core/block_defaults_legal.py:11 apps/core/block_defaults_pages.py:19
+#: apps/core/breadcrumbs.py:45
+msgid "Доставка і оплата"
+msgstr "配送与支付"
+
+#: apps/core/block_defaults_legal.py:12
+msgid "Київ — того ж дня · Україна — 1–2 дні · ЄС — 3–5 днів."
+msgstr "基辅——当日 · 乌克兰——1–2天 · 欧盟——3–5天。"
+
+#: apps/core/block_defaults_legal.py:15 apps/core/breadcrumbs.py:51
+msgid "Політика конфіденційності"
+msgstr "隐私政策"
+
+#: apps/core/block_defaults_legal.py:16
+msgid "Як ми збираємо, зберігаємо та захищаємо ваші дані."
+msgstr "我们如何收集、存储和保护您的数据。"
+
+#: apps/core/block_defaults_legal.py:19 apps/core/breadcrumbs.py:52
+msgid "Умови користування"
+msgstr "使用条款"
+
+#: apps/core/block_defaults_legal.py:20
+msgid "Правила користування сайтом і умови продажу."
+msgstr "网站使用规则与销售条款。"
+
+#: apps/core/block_defaults_legal.py:26 apps/core/breadcrumbs.py:53
+msgid "Вікова політика"
+msgstr "年龄政策"
+
+#: apps/core/block_defaults_legal.py:27
+msgid "Доступ лише для повнолітніх відвідувачів 21+."
+msgstr "仅限21岁以上的成年访客访问。"
+
+#: apps/core/block_defaults_legal.py:33 apps/core/breadcrumbs.py:54
+msgid "Файли cookie"
+msgstr "Cookie"
+
+#: apps/core/block_defaults_legal.py:34
+msgid "Які cookies використовує сайт і навіщо."
+msgstr "本网站使用哪些 Cookie 及其用途。"
 
 #: apps/core/block_defaults_pages.py:6
 msgid "Пошук сигар, брендів, аксесуарів…"
 msgstr "搜索雪茄、品牌、配件…"
 
-#: apps/core/block_defaults_pages.py:9
+#: apps/core/block_defaults_pages.py:14
 msgid "Акції"
 msgstr "促销"
 
-#: apps/core/block_defaults_pages.py:15 apps/core/block_defaults_pages.py:83
-#: templates/base.html:84
+#: apps/core/block_defaults_pages.py:20 apps/core/block_defaults_pages.py:98
+#: templates/base.html:107
 msgid "Замовити дзвінок"
 msgstr "预约回电"
 
-msgid "Нагору"
-msgstr "返回顶部"
-
-msgid "Сайт від"
-msgstr "网站由"
-
-#: apps/core/block_defaults_pages.py:16 apps/core/block_defaults_pages.py:20
+#: apps/core/block_defaults_pages.py:21 apps/core/block_defaults_pages.py:28
 msgid "Покупка"
 msgstr "购物"
 
-#: apps/core/block_defaults_pages.py:17 apps/core/block_defaults_pages.py:21
+#: apps/core/block_defaults_pages.py:22 apps/core/block_defaults_pages.py:29
 msgid "Інфо"
 msgstr "信息"
 
-#: apps/core/block_defaults_pages.py:18
+#: apps/core/block_defaults_pages.py:23
 msgid "Сигари, відібрані вручну для тих, хто знає різницю."
 msgstr "为懂行之人手工甄选雪茄。"
 
-#: apps/core/block_defaults_pages.py:28
+#: apps/core/block_defaults_pages.py:25
+msgid "© 2026 ROYAL SMOKE"
+msgstr "© 2026 ROYAL SMOKE"
+
+#: apps/core/block_defaults_pages.py:36
 msgid "Приватність"
 msgstr "隐私"
 
-#: apps/core/block_defaults_pages.py:29
+#: apps/core/block_defaults_pages.py:37
 msgid "Гід і культура"
-msgstr ""
+msgstr "指南与文化"
 
-#: apps/core/block_defaults_pages.py:32
+#: apps/core/block_defaults_pages.py:40
 msgid ""
 "Практичні гіди про сигари, зберігання, аксесуари та смак — від сомельє"
 " Royal Smoke."
-msgstr ""
+msgstr "来自 Royal Smoke 侍茄师的雪茄、储存、配件与风味实用指南。"
 
-#: apps/core/block_defaults_pages.py:36
+#: apps/core/block_defaults_pages.py:44
 msgid ""
 "Блог Royal Smoke: як обрати сигару, зберігати в хумідорі, підібрати ак"
 "сесуари та читати вітолу. Поради експертів."
-msgstr ""
+msgstr "Royal Smoke 博客：如何选购雪茄、在保湿盒中保存、挑选配件并阅读维托拉。专家建议。"
 
-#: apps/core/block_defaults_pages.py:39
+#: apps/core/block_defaults_pages.py:47
 msgid "Читати"
-msgstr ""
+msgstr "阅读"
 
-#: apps/core/block_defaults_pages.py:40
+#: apps/core/block_defaults_pages.py:48
 msgid "Усі статті"
-msgstr ""
+msgstr "全部文章"
 
-#: apps/core/block_defaults_pages.py:41
+#: apps/core/block_defaults_pages.py:49
 msgid "Читайте також"
-msgstr ""
+msgstr "相关阅读"
 
-#: apps/core/block_defaults_pages.py:43
+#: apps/core/block_defaults_pages.py:51
 msgid "Хроніка одного рішення"
 msgstr "一个决定的故事"
 
-#: apps/core/block_defaults_pages.py:45
+#: apps/core/block_defaults_pages.py:53
 msgid ""
 "Royal Smoke — tobacco atelier, зібраний навколо простого правила: прод"
 "авати лише те, що самі готові курити."
 msgstr "Royal Smoke——以简单原则为核心的烟草工作室：只销售我们自己愿意抽的产品。"
 
-#: apps/core/block_defaults_pages.py:50
+#: apps/core/block_defaults_pages.py:58
 msgid "років на ринку"
 msgstr "年市场经验"
 
-#: apps/core/block_defaults_pages.py:52
+#: apps/core/block_defaults_pages.py:60
 msgid "Перший кабінет"
 msgstr "第一家店"
 
-#: apps/core/block_defaults_pages.py:54
+#: apps/core/block_defaults_pages.py:62
 msgid ""
 "Почали з невеликого простору в Києві: кілька полиць, ручний відбір і р"
 "озмова з кожним гостем замість випадкової вітрини."
 msgstr "我们从基辅一个小空间起步：几层货架、手工甄选，与每位客人交流，而非随意陈列。"
 
-#: apps/core/block_defaults_pages.py:58
+#: apps/core/block_defaults_pages.py:66
 msgid "Прямі мануфактури"
 msgstr "直采工厂"
 
-#: apps/core/block_defaults_pages.py:60
+#: apps/core/block_defaults_pages.py:68
 msgid ""
 "Налагодили прямі поставки з Нікарагуа, Домінікани та Куби — без зайвих"
 " посередників, з чесною ціною і стабільною якістю партій."
 msgstr "与尼加拉瓜、多米尼加和古巴建立直供——无多余中间商，价格公道，批次质量稳定。"
 
-#: apps/core/block_defaults_pages.py:64
+#: apps/core/block_defaults_pages.py:72
 msgid "Власний хумідор"
 msgstr "自有保湿房"
 
-#: apps/core/block_defaults_pages.py:66
+#: apps/core/block_defaults_pages.py:74
 msgid ""
 "Збудували сховище зі стабільною вологістю й зібрали команду сомельє, я"
 "ка супроводжує замовлення від першої консультації до доставки."
 msgstr "建造恒湿仓储并组建侍茄师团队，从首次咨询到配送全程服务。"
 
-#: apps/core/block_defaults_pages.py:69
+#: apps/core/block_defaults_pages.py:77
 msgid "Сьогодні"
 msgstr "今天"
 
-#: apps/core/block_defaults_pages.py:70
+#: apps/core/block_defaults_pages.py:78
 msgid "Бутік, каталог, сервіс"
 msgstr "精品店、目录、服务"
 
-#: apps/core/block_defaults_pages.py:72
+#: apps/core/block_defaults_pages.py:80
 msgid ""
 "Працюємо як бутік і як точний онлайн-каталог: консультація, термобокс "
 "і доставка, яка береже лист."
-msgstr ""
+msgstr "我们既是精品店也是精准在线目录：咨询、保温包装，以及呵护烟叶的配送。"
 
-#: apps/core/block_defaults_pages.py:76
+#: apps/core/block_defaults_pages.py:84
 msgid "Короткі відповіді про замовлення, зберігання та доставку."
 msgstr "关于订单、储存和配送的简要解答。"
 
-#: apps/core/block_defaults_pages.py:79
+#: apps/core/block_defaults_pages.py:87
 msgid "Напишіть нам"
 msgstr "给我们留言"
 
-#: apps/core/block_defaults_pages.py:80
+#: apps/core/block_defaults_pages.py:88
 msgid "Відповідаємо протягом робочого дня."
 msgstr "工作日内回复。"
 
-#: apps/core/block_defaults_pages.py:81
+#: apps/core/block_defaults_pages.py:89
 msgid "Карта — Хрещатик 1"
 msgstr "地图 — 赫雷夏蒂克街1号"
 
-#: apps/core/block_defaults_pages.py:82 templates/base.html:103
+#: apps/core/block_defaults_pages.py:97 templates/base.html:127
 msgid "Надіслати"
 msgstr "发送"
 
-#: apps/core/block_defaults_pages.py:85
-msgid "Київ — того ж дня · Україна — 1–2 дні · ЄС — 3–5 днів."
-msgstr "基辅——当日 · 乌克兰——1–2天 · 欧盟——3–5天。"
-
-#: apps/core/block_defaults_pages.py:87
-#: templates/emails/order_created_customer.txt:5
-#: templates/orders/partials/checkout_costs.html:3
-msgid "Доставка"
-msgstr "配送"
-
-#: apps/core/block_defaults_pages.py:88
-msgid "Київ"
-msgstr "基辅"
-
-#: apps/core/block_defaults_pages.py:90
-msgid ""
-"Курʼєрська доставка того ж дня при замовленні до 15:00. Самовивіз зі ш"
-"оуруму."
-msgstr "15:00前下单可享基辅当日快递。展厅自提地址：%(address)s。"
-
-#: apps/core/block_defaults_pages.py:92
-msgid "Україна"
-msgstr "乌克兰"
-
-#: apps/core/block_defaults_pages.py:93
-msgid "Нова Пошта — 1–2 дні. Сигари пакуємо в термобокси зі страхуванням."
-msgstr "Nova Poshta——1–2天。雪茄采用保温箱包装并投保。"
-
-#: apps/core/block_defaults_pages.py:94
-msgid "ЄС"
-msgstr "欧盟"
-
-#: apps/core/block_defaults_pages.py:95
-msgid "Міжнародна доставка — 3–5 робочих днів. Умови уточнюйте у менеджера."
-msgstr "国际配送——3–5个工作日。详情请联系经理。"
-
-#: apps/core/block_defaults_pages.py:96
-msgid "Способи доставки"
-msgstr "配送方式"
-
-#: apps/core/block_defaults_pages.py:97
-msgid "Нова Пошта, курʼєр або самовивіз — обираєте під час оформлення."
-msgstr "Nova Poshta、快递或自提——结账时选择。"
-
-#: apps/core/block_defaults_pages.py:98
-#: templates/emails/order_created_customer.html:8
-#: templates/emails/order_created_customer.txt:6
-#: templates/orders/checkout.html:103 templates/orders/pay.html:4
-msgid "Оплата"
-msgstr "支付"
-
-#: apps/core/block_defaults_pages.py:99
-msgid "Доступні способи оплати під час оформлення замовлення:"
-msgstr "结账时可用的支付方式："
-
-#: apps/core/block_defaults_pages.py:100 apps/orders/models.py:32
-msgid "Онлайн оплата"
-msgstr "在线支付"
-
-#: apps/core/block_defaults_pages.py:101
-msgid "банківською карткою через платіжний сервіс."
-msgstr "通过支付服务使用银行卡。"
-
-#: apps/core/block_defaults_pages.py:102 apps/orders/models.py:33
-msgid "Оплата при отриманні"
-msgstr "货到付款"
-
 #: apps/core/block_defaults_pages.py:103
-msgid "готівкою або карткою курʼєру / у відділенні."
-msgstr "现金或刷卡付给快递员/网点。"
-
-#: apps/core/block_defaults_pages.py:104 apps/orders/models.py:34
-msgid "Безготівковий розрахунок"
-msgstr "银行转账"
-
-#: apps/core/block_defaults_pages.py:105
-msgid "для юридичних осіб та B2B-замовлень за рахунком."
-msgstr "适用于法人及B2B发票订单。"
-
-#: apps/core/block_defaults_pages.py:107
-msgid "Прайс і умови для барів, готелів і корпоративних подарунків."
-msgstr "酒吧、酒店及企业礼赠的价格与条款。"
-
-#: apps/core/block_defaults_pages.py:110
 msgid "Оберіть послугу, дату та вільний слот."
 msgstr "请选择服务、日期和可用时段。"
 
-#: apps/core/block_defaults_pages.py:111
+#: apps/core/block_defaults_pages.py:104
 msgid "Забронювати"
 msgstr "预约"
 
-#: apps/core/block_defaults_pages.py:112
+#: apps/core/block_defaults_pages.py:105
 msgid "Каталог наповнюється."
 msgstr "目录更新中。"
 
-#: apps/core/block_defaults_pages.py:114 templates/orders/checkout.html:139
+#: apps/core/block_defaults_pages.py:107 templates/orders/checkout.html:155
 msgid "Кошик порожній."
 msgstr "购物车为空。"
 
-#: apps/core/block_defaults_pages.py:115
-#: templates/accounts/partials/cabinet_wishlist.html:56
-#: templates/accounts/partials/wishlist_body.html:56
-#: templates/accounts/partials/wishlist_body.html:60
+#: apps/core/block_defaults_pages.py:108
+#: templates/accounts/partials/cabinet_wishlist.html:53
+#: templates/accounts/partials/wishlist_body.html:53
+#: templates/accounts/partials/wishlist_body.html:57
 #: templates/catalog/partials/compare_body.html:89
 #: templates/orders/thank_you.html:24 templates/orders/thank_you.html:26
 #: templates/pages/home.html:24
 msgid "До каталогу"
 msgstr "前往目录"
 
-#: apps/core/block_defaults_pages.py:116
+#: apps/core/block_defaults_pages.py:109
 msgid "Продовжити покупки"
 msgstr "继续购物"
 
-#: apps/core/block_defaults_pages.py:117
+#: apps/core/block_defaults_pages.py:110
 msgid "Оформити замовлення"
 msgstr "提交订单"
 
-#: apps/core/block_defaults_pages.py:118
+#: apps/core/block_defaults_pages.py:111
 msgid "Видалити"
 msgstr "删除"
 
-#: apps/core/block_defaults_pages.py:120
+#: apps/core/block_defaults_pages.py:113
 msgid "Заповніть контакти та спосіб доставки."
 msgstr "请填写联系方式和配送方式。"
 
-#: apps/core/block_defaults_pages.py:121
+#: apps/core/block_defaults_pages.py:114
 msgid "Підтвердити замовлення"
 msgstr "确认订单"
 
-#: apps/core/block_defaults_pages.py:122
+#: apps/core/block_defaults_pages.py:115
 msgid "Ваше замовлення"
 msgstr "您的订单"
 
-#: apps/core/block_defaults_pages.py:123
+#: apps/core/block_defaults_pages.py:116
 msgid "Підтверджую, що мені є 21 рік"
 msgstr "我确认已满21岁"
 
-#: apps/core/block_defaults_pages.py:125
+#: apps/core/block_defaults_pages.py:118
 #, python-brace-format
 msgid "Вітаємо, {name}"
 msgstr "欢迎，{name}"
 
-#: apps/core/block_defaults_pages.py:126
+#: apps/core/block_defaults_pages.py:119
 msgid "Профіль"
 msgstr "个人资料"
 
-#: apps/core/block_defaults_pages.py:128
+#: apps/core/block_defaults_pages.py:121
 msgid "Замовлень ще немає"
 msgstr "暂无订单"
 
-#: apps/core/block_defaults_pages.py:129 templates/accounts/cabinet.html:89
-#: templates/accounts/cabinet.html:90 templates/base.html:83
+#: apps/core/block_defaults_pages.py:122 templates/accounts/cabinet.html:89
+#: templates/accounts/cabinet.html:90 templates/base.html:96
 msgid "Швидкі дії"
 msgstr "快捷操作"
 
-#: apps/core/block_defaults_pages.py:130
+#: apps/core/block_defaults_pages.py:123
 msgid "Вам виповнилося 21 рік?"
-msgstr "您是否已满"
+msgstr "您是否已年满21岁？"
 
-#: apps/core/block_defaults_pages.py:131
+#: apps/core/block_defaults_pages.py:124
 msgid ""
 "Сайт містить інформацію про тютюнові вироби. Підтвердіть вік, щоб прод"
 "овжити."
 msgstr "本网站含烟草制品信息。请确认年龄以继续。"
 
-#: apps/core/block_defaults_pages.py:132 templates/accounts/register.html:31
+#: apps/core/block_defaults_pages.py:125 templates/accounts/register.html:31
 msgid "Мені є 21 рік"
 msgstr "我已满21岁"
 
-#: apps/core/block_defaults_pages.py:133
+#: apps/core/block_defaults_pages.py:126
 msgid "Мені немає 21 року"
 msgstr "我未满21岁"
 
-#: apps/core/block_defaults_pages.py:134
+#: apps/core/block_defaults_pages.py:127
 msgid "Доступ обмежено"
 msgstr "访问受限"
 
-#: apps/core/block_defaults_pages.py:135
+#: apps/core/block_defaults_pages.py:128
 msgid "Цей сайт призначений лише для повнолітніх відвідувачів 21+."
 msgstr "本网站仅供21岁以上成年访客使用。"
 
-#: apps/core/block_defaults_pages.py:136
+#: apps/core/block_defaults_pages.py:129
 msgid "Повернутися"
 msgstr "返回"
 
@@ -764,25 +810,13 @@ msgstr "注册"
 msgid "Правова інформація"
 msgstr "法律信息"
 
-#: apps/core/breadcrumbs.py:51
-msgid "Політика конфіденційності"
-msgstr "隐私政策"
-
-#: apps/core/breadcrumbs.py:52
-msgid "Умови користування"
-msgstr "使用条款"
-
-#: apps/core/breadcrumbs.py:53
-msgid "Вікова політика"
-msgstr "年龄政策"
-
-#: apps/core/breadcrumbs.py:54
-msgid "Файли cookie"
-msgstr "Cookie"
+#: apps/core/breadcrumbs.py:44
+msgid "B2B"
+msgstr "B2B"
 
 #: apps/core/breadcrumbs.py:86
 msgid "Стаття"
-msgstr "状态"
+msgstr "文章"
 
 #: apps/core/breadcrumbs.py:111
 msgid "Бренд"
@@ -792,66 +826,88 @@ msgstr "品牌"
 msgid "Товар"
 msgstr "商品"
 
-#: apps/core/templates/django/forms/widgets/cms_image.html:13
-#: templates/admin/core/widgets/cms_image.html:13
+#: apps/core/templates/django/forms/widgets/cms_color.html:3
+msgid "Обрати колір"
+msgstr "选择颜色"
+
+#: apps/core/templates/django/forms/widgets/cms_color.html:5
+msgid "Пікер кольору"
+msgstr "取色器"
+
+#: apps/core/templates/django/forms/widgets/cms_color.html:7
+msgid "HEX"
+msgstr "HEX"
+
+#: apps/core/templates/django/forms/widgets/cms_color.html:12
+msgid "Повернути дефолтний колір"
+msgstr "恢复默认颜色"
+
+#: apps/core/templates/django/forms/widgets/cms_color.html:13
+msgid "Дефолт"
+msgstr "默认"
+
+#: apps/core/templates/django/forms/widgets/cms_image.html:12
 #: templates/catalog/partials/pd_gallery.html:26
 msgid "Немає фото"
 msgstr "暂无图片"
 
-#: apps/core/templates/django/forms/widgets/cms_image.html:19
-#: templates/admin/core/widgets/cms_image.html:19
-msgid "Очистити"
-msgstr ""
+#: apps/core/templates/django/forms/widgets/cms_image.html:14
+msgid "Поточне на сайті"
+msgstr "网站当前使用"
 
-#: apps/core/validation/messages.py:5 templates/base.html:111
+#: apps/core/templates/django/forms/widgets/cms_image.html:20
+msgid "Очистити"
+msgstr "清除"
+
+#: apps/core/validation/messages.py:5 templates/base.html:135
 msgid "Це поле обовʼязкове"
 msgstr "此字段为必填项"
 
-#: apps/core/validation/messages.py:6 templates/base.html:111
+#: apps/core/validation/messages.py:6 templates/base.html:135
 msgid "Підтвердіть цю опцію"
 msgstr "请确认此选项"
 
-#: apps/core/validation/messages.py:7 templates/base.html:111
+#: apps/core/validation/messages.py:7 templates/base.html:135
 msgid "Поле не може складатися лише з пробілів"
 msgstr "字段不能仅包含空格"
 
-#: apps/core/validation/messages.py:9 templates/base.html:111
+#: apps/core/validation/messages.py:9 templates/base.html:135
 msgid "Імʼя має містити мінімум 2 символи"
 msgstr "姓名至少2个字符"
 
-#: apps/core/validation/messages.py:10 templates/base.html:111
+#: apps/core/validation/messages.py:10 templates/base.html:135
 msgid "Імʼя може містити лише літери, пробіли, дефіс і апостроф"
 msgstr "姓名只能包含字母、空格、连字符和撇号"
 
-#: apps/core/validation/messages.py:12 templates/base.html:111
+#: apps/core/validation/messages.py:12 templates/base.html:135
 msgid "Введіть коректну електронну пошту"
 msgstr "请输入有效的电子邮件"
 
-#: apps/core/validation/messages.py:14 templates/base.html:111
+#: apps/core/validation/messages.py:14 templates/base.html:135
 msgid "Пароль має містити мінімум 8 символів"
 msgstr "密码至少8个字符"
 
-#: apps/core/validation/messages.py:15 templates/base.html:111
+#: apps/core/validation/messages.py:15 templates/base.html:135
 msgid "Пароль має містити хоча б одну велику літеру"
 msgstr "密码须包含至少一个大写字母"
 
-#: apps/core/validation/messages.py:16 templates/base.html:111
+#: apps/core/validation/messages.py:16 templates/base.html:135
 msgid "Пароль має містити хоча б одну малу літеру"
 msgstr "密码须包含至少一个小写字母"
 
-#: apps/core/validation/messages.py:17 templates/base.html:111
+#: apps/core/validation/messages.py:17 templates/base.html:135
 msgid "Пароль має містити хоча б одну цифру"
 msgstr "密码须包含至少一个数字"
 
-#: apps/core/validation/messages.py:18 templates/base.html:111
+#: apps/core/validation/messages.py:18 templates/base.html:135
 msgid "Пароль має містити хоча б один спеціальний символ"
 msgstr "密码须包含至少一个特殊字符"
 
-#: apps/core/validation/messages.py:20 templates/base.html:111
+#: apps/core/validation/messages.py:20 templates/base.html:135
 msgid "Введіть коректний номер телефону"
 msgstr "请输入有效的电话号码"
 
-#: apps/core/validation/messages.py:21 templates/base.html:111
+#: apps/core/validation/messages.py:21 templates/base.html:135
 msgid "Введіть коректну URL-адресу"
 msgstr "请输入有效的URL"
 
@@ -863,25 +919,25 @@ msgstr "密码至少8个字符，须含大小写字母、数字和特殊字符�
 
 #: apps/leads/views.py:31
 msgid "Вкажіть телефон або email"
-msgstr ""
+msgstr "请填写电话或邮箱"
 
-#: apps/leads/views.py:70
+#: apps/leads/views.py:72
 msgid "Запит надіслано. Менеджер звʼяжеться з вами."
 msgstr "请求已发送。经理将与您联系。"
 
-#: apps/leads/views.py:97
+#: apps/leads/views.py:100
 msgid "Повідомлення надіслано."
 msgstr "消息已发送。"
 
-#: apps/leads/views.py:115
+#: apps/leads/views.py:118
 msgid "Дякуємо! Передзвонимо найближчим часом."
 msgstr "感谢！我们将尽快回电。"
 
-#: apps/leads/views.py:117
+#: apps/leads/views.py:120
 msgid "Заявку прийнято"
 msgstr "申请已受理"
 
-#: apps/leads/views.py:120 apps/leads/views.py:124
+#: apps/leads/views.py:123 apps/leads/views.py:127
 msgid "Перевірте номер телефону."
 msgstr "请检查电话号码。"
 
@@ -931,6 +987,18 @@ msgstr "已完成"
 msgid "Скасовано"
 msgstr "已取消"
 
+#: apps/orders/models.py:32
+msgid "Онлайн оплата"
+msgstr "在线支付"
+
+#: apps/orders/models.py:33
+msgid "Оплата при отриманні"
+msgstr "货到付款"
+
+#: apps/orders/models.py:34
+msgid "Безготівковий розрахунок"
+msgstr "银行转账"
+
 #: apps/orders/models.py:41
 msgid "Нова Пошта"
 msgstr "Nova Poshta"
@@ -951,29 +1019,71 @@ msgstr "订单 %(num)s 已受理"
 msgid "Оплату замовлення %(num)s підтверджено"
 msgstr "订单 %(num)s 付款已确认"
 
-#: apps/orders/views.py:49
+#: apps/orders/views.py:68
+msgid "Немає доступу до цього замовлення"
+msgstr "您无权访问此订单"
+
+#: apps/orders/views.py:99
 msgid "Потрібно підтвердити вік 21+"
 msgstr "须确认已满21岁"
 
-#: apps/orders/views.py:56
+#: apps/orders/views.py:108
 msgid "Оберіть місто та відділення Нової Пошти зі списку"
 msgstr "请从列表中选择城市和 Nova Poshta 网点"
 
-#: apps/orders/views.py:111
+#: apps/orders/views.py:118
+msgid "Обране відділення більше недоступне. Оберіть інше зі списку."
+msgstr "所选网点已不可用，请从列表中另选一个。"
+
+#: apps/orders/views.py:187
 msgid "Кошик порожній"
 msgstr "购物车为空"
 
-#: apps/orders/views.py:169
+#: apps/orders/views.py:194 apps/orders/views.py:243
+msgid "Оформлення заблоковано через наявність товарів"
+msgstr "因商品库存问题，无法结账"
+
+#: apps/orders/views.py:257
+msgid "Оформлення заблоковано: некоректна сума замовлення"
+msgstr "无法结账：订单金额无效"
+
+#: apps/orders/views.py:322 apps/orders/views.py:383 apps/orders/views.py:398
+msgid "Замовлення вже оплачено"
+msgstr "订单已支付"
+
+#: apps/orders/views.py:329
+msgid "Суму замовлення неможливо підтвердити. Звʼяжіться з підтримкою."
+msgstr "无法核实订单金额，请联系客服。"
+
+#: apps/orders/views.py:359
 msgid "Онлайн-оплата тимчасово недоступна"
 msgstr "在线支付暂时不可用"
 
-#: apps/orders/views.py:200
+#: apps/orders/views.py:396
 msgid "Демо-оплату підтверджено."
+msgstr "演示付款已确认。"
+
+#: apps/orders/views.py:400
+msgid "Демо-оплату відхилено. Можна спробувати ще раз."
+msgstr "演示付款被拒绝，您可以重试。"
+
+#: apps/pwa/services/push.py:106 templates/emails/order_paid.html:5
+msgid "Оплату підтверджено"
 msgstr "付款已确认"
 
-#: apps/orders/views.py:202
-msgid "Демо-оплату відхилено. Можна спробувати ще раз."
-msgstr ""
+#: apps/pwa/services/push.py:107
+#, python-format
+msgid "Замовлення %(num)s оплачено."
+msgstr "订单 %(num)s 已支付。"
+
+#: apps/pwa/services/push.py:111
+msgid "Статус замовлення"
+msgstr "订单状态"
+
+#: apps/pwa/services/push.py:112
+#, python-format
+msgid "Замовлення %(num)s: %(status)s"
+msgstr "订单 %(num)s：%(status)s"
 
 #: templates/accounts/cabinet.html:31
 #, python-format
@@ -996,14 +1106,33 @@ msgstr "客服"
 #: templates/accounts/cabinet.html:95
 #: templates/accounts/partials/cabinet_wishlist.html:2
 #: templates/accounts/partials/cabinet_wishlist.html:4
-#: templates/accounts/wishlist.html:4 templates/accounts/wishlist.html:14
-#: templates/partials/header.html:53 templates/partials/header.html:91
+#: templates/accounts/wishlist.html:4 templates/accounts/wishlist.html:13
+#: templates/partials/header.html:67 templates/partials/header.html:111
 msgid "Вибране"
 msgstr "收藏"
 
-#: templates/accounts/cabinet.html:98
+#: templates/accounts/cabinet.html:97 templates/accounts/delete_account.html:41
+msgid "Видалити акаунт"
+msgstr "删除账户"
+
+#: templates/accounts/cabinet.html:100
 msgid "Вийти"
 msgstr "退出"
+
+#: templates/accounts/delete_account.html:4
+#: templates/accounts/delete_account.html:16
+msgid "Видалення акаунту"
+msgstr "账户删除"
+
+#: templates/accounts/delete_account.html:17
+msgid ""
+"Усі сесії буде завершено. Кошик залишиться у цьому браузері як гостьов"
+"ий."
+msgstr "所有会话都将退出登录。购物车将作为访客购物车保留在此浏览器中。"
+
+#: templates/accounts/delete_account.html:42 templates/base.html:128
+msgid "Скасувати"
+msgstr "取消"
 
 #: templates/accounts/login.html:17
 msgid "Увійдіть, щоб бачити замовлення та обране."
@@ -1030,20 +1159,20 @@ msgstr "个人中心快捷操作"
 msgid "Усі"
 msgstr "全部"
 
-#: templates/accounts/partials/cabinet_wishlist.html:39
-#: templates/accounts/partials/wishlist_body.html:39
-#: templates/catalog/partials/pd_cta.html:44
-#: templates/catalog/partials/product_grid.html:48
-#: templates/pages/partials/home_catalog.html:72
+#: templates/accounts/partials/cabinet_wishlist.html:36
+#: templates/accounts/partials/wishlist_body.html:36
+#: templates/catalog/partials/pd_cta.html:36
+#: templates/catalog/partials/product_grid.html:42
+#: templates/pages/partials/home_catalog.html:69
 msgid "У кошик"
 msgstr "加入购物车"
 
-#: templates/accounts/partials/cabinet_wishlist.html:48
+#: templates/accounts/partials/cabinet_wishlist.html:45
 #: templates/accounts/partials/wish_btn.html:15
 msgid "Прибрати з вибраного"
 msgstr "移出收藏"
 
-#: templates/accounts/partials/cabinet_wishlist.html:55
+#: templates/accounts/partials/cabinet_wishlist.html:52
 msgid "Поки порожньо. Додайте товари сердечком у каталозі."
 msgstr "暂无内容。请在目录中点击心形图标添加商品。"
 
@@ -1059,14 +1188,32 @@ msgstr "已收藏"
 msgid "Обране"
 msgstr "收藏"
 
-#: templates/accounts/partials/wishlist_body.html:49
+#: templates/accounts/partials/wishlist_body.html:46
 #: templates/catalog/partials/compare_body.html:27
 msgid "Прибрати"
 msgstr "移除"
 
-#: templates/accounts/partials/wishlist_body.html:59
+#: templates/accounts/partials/wishlist_body.html:56
 msgid "Вибране порожнє."
 msgstr "收藏为空。"
+
+#: templates/accounts/password_change.html:4
+#: templates/accounts/password_change.html:16
+msgid "Зміна пароля"
+msgstr "修改密码"
+
+#: templates/accounts/password_change.html:17
+msgid "Після зміни ви залишитесь у системі; інші пристрої вийдуть."
+msgstr "修改后您将保持登录状态，其他设备将退出登录。"
+
+#: templates/accounts/password_change.html:48
+msgid "Зберегти пароль"
+msgstr "保存密码"
+
+#: templates/accounts/password_change.html:49
+#: templates/pages/partials/home_calculator.html:197
+msgid "Назад"
+msgstr "上一步"
 
 #: templates/accounts/register.html:18
 msgid "Створіть кабінет для швидкого оформлення."
@@ -1080,13 +1227,13 @@ msgstr "创建账户"
 msgid "Вже є акаунт?"
 msgstr "已有账户？"
 
-#: templates/accounts/wishlist.html:17
+#: templates/accounts/wishlist.html:16
 #, python-format
 msgid "%(counter)s товар"
 msgid_plural "%(counter)s товари"
 msgstr[0] "%(counter)s 件商品"
 
-#: templates/accounts/wishlist.html:19
+#: templates/accounts/wishlist.html:18
 msgid "Порожній список"
 msgstr "空列表"
 
@@ -1094,25 +1241,25 @@ msgstr "空列表"
 msgid "Django site admin"
 msgstr "Django 站点管理"
 
-#: templates/base.html:13
+#: templates/base.html:19
 msgid "Сигари та аксесуари Royal Smoke"
 msgstr "Royal Smoke 雪茄与配件"
 
-#: templates/base.html:87
+#: templates/base.html:101
+msgid "Нагору"
+msgstr "返回顶部"
+
+#: templates/base.html:110
 msgid "Чат / контакти"
 msgstr "聊天 / 联系"
 
-#: templates/base.html:94
+#: templates/base.html:118
 msgid "Зворотний дзвінок"
 msgstr "回电"
 
-#: templates/base.html:95
+#: templates/base.html:119
 msgid "Залиште номер — передзвонимо протягом робочого дня."
 msgstr "留下号码——工作日内回电。"
-
-#: templates/base.html:104
-msgid "Скасувати"
-msgstr "取消"
 
 #: templates/booking/page.html:18
 msgid "Послуга"
@@ -1177,39 +1324,39 @@ msgstr[0] "件"
 msgid "Порожній кошик"
 msgstr "空购物车"
 
-#: templates/cart/partials/cart_body.html:42
+#: templates/cart/partials/cart_body.html:47
 msgid "Зменшити"
 msgstr "减少"
 
-#: templates/cart/partials/cart_body.html:44
+#: templates/cart/partials/cart_body.html:49
 msgid "Збільшити"
 msgstr "增加"
 
-#: templates/cart/partials/cart_body.html:55
+#: templates/cart/partials/cart_body.html:60
 #, python-format
 msgid "Безкоштовна доставка від %(amount)s %(symbol)s"
 msgstr "%(amount)s %(symbol)s 起免运费"
 
-#: templates/cart/partials/cart_body.html:59
+#: templates/cart/partials/cart_body.html:64
 msgid "Підсумок кошика"
 msgstr "购物车摘要"
 
-#: templates/cart/partials/cart_body.html:60
+#: templates/cart/partials/cart_body.html:65
 #, python-format
 msgid "Разом %(total)s %(symbol)s"
 msgstr "合计 %(total)s %(symbol)s"
 
-#: templates/catalog/compare.html:4 templates/catalog/compare.html:14
-#: templates/partials/header.html:46 templates/partials/header.html:90
+#: templates/catalog/compare.html:4 templates/catalog/compare.html:13
+#: templates/partials/header.html:59 templates/partials/header.html:110
 msgid "Порівняння"
 msgstr "对比"
 
-#: templates/catalog/compare.html:17
+#: templates/catalog/compare.html:16
 #, python-format
 msgid "%(n)s з %(max)s товарів"
 msgstr "%(n)s / %(max)s 件商品"
 
-#: templates/catalog/compare.html:19
+#: templates/catalog/compare.html:18
 msgid "Оберіть до 4 товарів для порівняння"
 msgstr "最多选择4件商品进行对比"
 
@@ -1281,19 +1428,19 @@ msgstr "已加入对比"
 msgid "Купити"
 msgstr "购买"
 
-#: templates/catalog/partials/pd_cta.html:28
+#: templates/catalog/partials/pd_cta.html:20
 msgid "Менше"
 msgstr "减少"
 
-#: templates/catalog/partials/pd_cta.html:37
+#: templates/catalog/partials/pd_cta.html:29
 msgid "Кількість"
 msgstr "数量"
 
-#: templates/catalog/partials/pd_cta.html:38
+#: templates/catalog/partials/pd_cta.html:30
 msgid "Більше"
 msgstr "增加"
 
-#: templates/catalog/partials/pd_cta.html:45
+#: templates/catalog/partials/pd_cta.html:37
 msgid "Розрахунок"
 msgstr "选茄"
 
@@ -1366,41 +1513,32 @@ msgstr "规格"
 msgid "Виробник"
 msgstr "制造商"
 
-#: templates/catalog/partials/pd_specs.html:32
-msgid "Довжина"
-msgstr "长度"
-
-#: templates/catalog/partials/pd_specs.html:33
-#: templates/catalog/partials/pd_vitolas.html:13
-#, python-format
-msgid "%(mm)s мм"
-msgstr "%(mm)s 毫米"
-
-#: templates/catalog/partials/pd_specs.html:43
+#: templates/catalog/partials/pd_specs.html:31
 msgid "Наявність"
 msgstr "库存"
 
-#: templates/catalog/partials/pd_specs.html:44
+#: templates/catalog/partials/pd_specs.html:32
 msgid "В наявності"
 msgstr "有货"
 
-#: templates/catalog/partials/pd_specs.html:44
+#: templates/catalog/partials/pd_specs.html:32
 msgid "Під замовлення"
 msgstr "预订"
 
-#: templates/catalog/partials/pd_specs.html:48
-#: templates/catalog/partials/pd_specs.html:53
+#: templates/catalog/partials/pd_specs.html:36
 msgid "Код"
 msgstr "货号"
 
-#: templates/catalog/partials/pd_vitolas.html:4
-msgid "Vitolas"
-msgstr "规格型号"
-
+#: templates/catalog/partials/product_grid.html:49
+#: templates/catalog/partials/product_grid.html:55
 #: templates/catalog/partials/search_results.html:6
 #: templates/catalog/partials/search_suggest.html:23
 msgid "Нічого не знайдено"
 msgstr "未找到结果"
+
+#: templates/catalog/partials/product_grid.html:53
+msgid "Сторінки каталогу"
+msgstr "目录分页"
 
 #: templates/emails/booking_created_customer.txt:2
 msgid "Ваше бронювання прийнято."
@@ -1421,14 +1559,21 @@ msgstr "我们将与您联系确认。Royal Smoke。"
 msgid "Сума"
 msgstr "金额"
 
+#: templates/emails/order_created_customer.html:8
+#: templates/emails/order_created_customer.txt:6
+#: templates/orders/checkout.html:116 templates/orders/pay.html:4
+msgid "Оплата"
+msgstr "支付"
+
 #: templates/emails/order_created_customer.html:9
 #: templates/emails/order_created_customer.txt:8
 msgid "Дякуємо, що обрали Royal Smoke."
 msgstr "感谢您选择 Royal Smoke。"
 
-#: templates/emails/order_paid.html:5
-msgid "Оплату підтверджено"
-msgstr "付款已确认"
+#: templates/emails/order_created_customer.txt:5
+#: templates/orders/partials/checkout_costs.html:3
+msgid "Доставка"
+msgstr "配送"
 
 #: templates/emails/order_paid.html:6
 #, python-format
@@ -1464,46 +1609,51 @@ msgstr "留言"
 msgid "Пн–Нд: 11:00–21:00"
 msgstr "周一至周日：11:00–21:00"
 
-#: templates/leads/contact.html:19
+#: templates/leads/contact.html:20
 msgid "Контактна інформація"
 msgstr "联系信息"
 
-#: templates/leads/contact.html:37
+#: templates/leads/contact.html:42
 msgid "Адреса"
 msgstr "地址"
 
-#: templates/leads/contact.html:41
+#: templates/leads/contact.html:46
 msgid "Години"
 msgstr "营业时间"
 
-#: templates/leads/delivery.html:52
-msgid "Безкоштовна доставка"
-msgstr "免运费"
-
-#: templates/leads/delivery.html:53
+#: templates/leads/delivery.html:37
 #, python-format
-msgid "Від %(amount)s %(symbol)s по Україні (окрім віддалених регіонів)."
-msgstr "乌克兰境内 %(amount)s %(symbol)s 起（偏远地区除外）。"
+msgid ""
+"Безкоштовна доставка від %(amount)s %(symbol)s по Україні (окрім відда"
+"лених регіонів)."
+msgstr "乌克兰境内满 %(amount)s %(symbol)s 免运费（偏远地区除外）。"
 
-#: templates/orders/checkout.html:52
+#: templates/orders/checkout.html:15
+#, python-format
+msgid ""
+"Сесія оформлення завершиться приблизно за %(mins)s хв. Збережіть дані "
+"або оновіть сторінку, щоб продовжити."
+msgstr "结账会话将在约 %(mins)s 分钟后过期。请保存信息或刷新页面以继续。"
+
+#: templates/orders/checkout.html:65
 msgid "Спосіб доставки"
 msgstr "配送方式"
 
-#: templates/orders/checkout.html:67
+#: templates/orders/checkout.html:80
 msgid "Місто"
 msgstr "城市"
 
-#: templates/orders/checkout.html:85
+#: templates/orders/checkout.html:98
 msgid "Адреса / відділення"
 msgstr "地址 / 网点"
 
-#: templates/orders/checkout.html:111
+#: templates/orders/checkout.html:124
 msgid ""
 "Онлайн-оплата зараз у демо-режимі: після підтвердження відкриється тес"
 "това сторінка без реального списання."
-msgstr ""
+msgstr "在线支付目前为演示模式：确认后将打开测试页面，不会产生实际扣款。"
 
-#: templates/orders/checkout.html:115
+#: templates/orders/checkout.html:128
 msgid "Коментар"
 msgstr "备注"
 
@@ -1513,67 +1663,86 @@ msgstr "合计"
 
 #: templates/orders/partials/np_cities.html:15
 msgid "Міст за запитом не знайдено"
-msgstr "未找到结果"
+msgstr "未找到符合搜索条件的城市"
 
 #: templates/orders/partials/np_warehouses.html:15
 msgid "Спочатку оберіть місто зі списку вище"
-msgstr ""
+msgstr "请先从上方列表中选择城市"
 
 #: templates/orders/partials/np_warehouses.html:17
 msgid "Відділень за запитом не знайдено"
-msgstr "未找到结果"
+msgstr "未找到符合搜索条件的网点"
 
 #: templates/orders/pay.html:14
-msgid "Демо-режим · гроші не списуються"
-msgstr ""
+msgid "Очікуємо підтвердження оплати"
+msgstr "等待付款确认"
 
-#: templates/orders/pay.html:15
-msgid "Оплата замовлення"
-msgstr "您的订单"
-
-#: templates/orders/pay.html:17
+#: templates/orders/pay.html:16
 #, python-format
-msgid "Номер %(num)s. Це тестова сторінка, щоб перевірити флоу після LiqPay."
-msgstr ""
+msgid ""
+"Замовлення <strong>%(num)s</strong> уже передано в оплату. Не сплачуйт"
+"е повторно — статус оновиться автоматично після відповіді банку."
+msgstr "订单 <strong>%(num)s</strong> 已提交支付。请勿重复付款——银行回复后状态将自动更新。"
+
+#: templates/orders/pay.html:19
+msgid "До замовлення"
+msgstr "查看订单"
+
+#: templates/orders/pay.html:20
+msgid "Оновити статус"
+msgstr "刷新状态"
 
 #: templates/orders/pay.html:25
-msgid "Імʼя на картці"
-msgstr ""
+msgid "Демо-режим · гроші не списуються"
+msgstr "演示模式 · 不会扣款"
 
-#: templates/orders/pay.html:27
-msgid "IVAN PETRENKO"
-msgstr ""
+#: templates/orders/pay.html:26
+msgid "Оплата замовлення"
+msgstr "订单支付"
 
-#: templates/orders/pay.html:30
-msgid "Номер картки"
-msgstr ""
+#: templates/orders/pay.html:28
+#, python-format
+msgid "Номер %(num)s. Це тестова сторінка, щоб перевірити флоу після LiqPay."
+msgstr "订单号 %(num)s。这是用于检查 LiqPay 之后流程的测试页面。"
 
 #: templates/orders/pay.html:36
+msgid "Імʼя на картці"
+msgstr "持卡人姓名"
+
+#: templates/orders/pay.html:38
+msgid "IVAN PETRENKO"
+msgstr "IVAN PETRENKO"
+
+#: templates/orders/pay.html:41
+msgid "Номер картки"
+msgstr "卡号"
+
+#: templates/orders/pay.html:47
 msgid "Термін"
-msgstr ""
+msgstr "有效期"
 
-#: templates/orders/pay.html:46
+#: templates/orders/pay.html:57
 msgid "Будь-які дані підійдуть — це симуляція."
-msgstr ""
+msgstr "任意信息均可——这只是模拟。"
 
-#: templates/orders/pay.html:48
+#: templates/orders/pay.html:59
 msgid "Сплатити (демо)"
-msgstr "立即支付"
+msgstr "立即支付（演示）"
 
-#: templates/orders/pay.html:55
+#: templates/orders/pay.html:66
 msgid "Імітувати відмову"
-msgstr ""
+msgstr "模拟付款失败"
 
-#: templates/orders/pay.html:60
+#: templates/orders/pay.html:71
 msgid "Перехід до оплати"
 msgstr "正在跳转支付"
 
-#: templates/orders/pay.html:61
+#: templates/orders/pay.html:72
 #, python-format
 msgid "Замовлення %(num)s. Зараз відкриється LiqPay."
 msgstr "订单 %(num)s。即将打开 LiqPay。"
 
-#: templates/orders/pay.html:65
+#: templates/orders/pay.html:76
 msgid "Сплатити зараз"
 msgstr "立即支付"
 
@@ -1590,11 +1759,13 @@ msgstr "订单号 <strong>%(num)s</strong>。确认邮件已发送至您的邮�
 
 #: templates/orders/thank_you.html:13
 msgid "Оплату підтверджено."
-msgstr "付款已确认"
+msgstr "付款已确认。"
 
 #: templates/orders/thank_you.html:15
-msgid "Очікуємо підтвердження оплати."
-msgstr "正在等待付款确认。"
+msgid ""
+"Очікуємо підтвердження оплати (оновлюється автоматично після відповіді"
+" банку)."
+msgstr "等待付款确认（银行回复后自动更新）。"
 
 #: templates/orders/thank_you.html:18
 msgid "Ми отримали ваше замовлення і скоро звʼяжемося з вами."
@@ -1615,11 +1786,11 @@ msgstr "常见问题"
 
 #: templates/pages/blog_list.html:106
 msgid "Статті зʼявляться незабаром."
-msgstr ""
+msgstr "文章即将上线。"
 
 #: templates/pages/faq.html:41
 msgid "Питання зʼявляться незабаром."
-msgstr ""
+msgstr "问题即将上线。"
 
 #: templates/pages/home.html:6
 msgid "Tobacco Atelier"
@@ -1675,7 +1846,7 @@ msgstr "选茄步骤"
 
 #: templates/pages/partials/home_calculator.html:49
 msgid "Яку міцність шукаєте?"
-msgstr "您想要什么浓度？"
+msgstr "您想要什么劲头？"
 
 #: templates/pages/partials/home_calculator.html:51
 #: templates/pages/partials/home_calculator.html:86
@@ -1759,10 +1930,6 @@ msgstr "下一步"
 msgid "Показати підбір"
 msgstr "显示推荐"
 
-#: templates/pages/partials/home_calculator.html:197
-msgid "Назад"
-msgstr "上一步"
-
 #: templates/pages/partials/home_calculator.html:204
 msgid "Підсумок вибору"
 msgstr "选择摘要"
@@ -1779,7 +1946,7 @@ msgstr "上一页商品"
 msgid "Товари каталогу"
 msgstr "目录商品"
 
-#: templates/pages/partials/home_catalog.html:87
+#: templates/pages/partials/home_catalog.html:84
 msgid "Наступні товари"
 msgstr "下一页商品"
 
@@ -1821,35 +1988,47 @@ msgstr "Instagram"
 msgid "Telegram"
 msgstr "Telegram"
 
-#: templates/partials/footer.html:68
+#: templates/partials/footer.html:76
 msgid "Facebook"
 msgstr "Facebook"
 
-#: templates/partials/header.html:11
+#: templates/partials/footer.html:93
+msgid "Сайт від"
+msgstr "网站由"
+
+#: templates/partials/header.html:16
 msgid "Основна навігація"
 msgstr "主导航"
 
-#: templates/partials/header.html:26 templates/partials/header.html:31
+#: templates/partials/header.html:31 templates/partials/header.html:40
 msgid "Пошук"
 msgstr "搜索"
 
-#: templates/partials/header.html:29
+#: templates/partials/header.html:38
 msgid "Пошук товарів"
 msgstr "商品搜索"
 
-#: templates/partials/header.html:63
+#: templates/partials/header.html:83
 msgid "Відкрити меню"
 msgstr "打开菜单"
 
-#: templates/partials/header.html:71
+#: templates/partials/header.html:91
 msgid "Меню"
 msgstr "菜单"
 
-#: templates/partials/header.html:79
+#: templates/partials/header.html:99
 msgid "Закрити меню"
 msgstr "关闭菜单"
 
 #: templates/partials/lang_switcher.html:3
 msgid "Мова"
 msgstr "语言"
+
+#: templates/pwa/offline.html:8
+msgid "Каталог офлайн"
+msgstr "离线目录"
+
+#: templates/pwa/offline.html:14
+msgid "Офлайн-копія каталогу. Ціни та наявність можуть бути застарілими."
+msgstr "离线目录副本。价格与库存可能已过期。"
 

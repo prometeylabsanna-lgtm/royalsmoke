@@ -1,19 +1,44 @@
 {% load i18n rs_i18n %}
-{# Language codes: uk→UA, en→EN, zh-hans→CN. URL prefix is the source of truth. #}
-<div class="rs-lang" aria-label="{% trans 'Мова' %}" data-lang-switcher>
-  {% get_current_language as LANGUAGE_CODE %}
-  {% get_available_languages as LANGUAGES %}
-  {% get_language_info_list for LANGUAGES as languages %}
-  {% for lang in languages %}
+{# Перемикач мов. Мови: STOREFRONT_LANGUAGES_VISIBLE; джерело істини — префікс URL. #}
+{# variant="list" (або compact) — усі коди в рядок; інакше випадний список. #}
+{% get_current_language as LANGUAGE_CODE %}
+{% storefront_languages as langs %}
+{% if variant == 'list' or compact %}
+<div class="rs-lang rs-lang--list" aria-label="{% trans 'Мова' %}" data-lang-switcher>
+  {% for lang in langs.entries %}
     {% language_next lang.code as lang_href %}
-    {% if lang.code == LANGUAGE_CODE %}
-      <span aria-current="true"{% if compact %} data-active{% endif %}>
-        {% if lang.code == 'uk' %}UA{% elif lang.code == 'zh-hans' %}CN{% else %}EN{% endif %}
-      </span>
+    {% if lang.is_current %}
+      <span aria-current="true"{% if compact %} data-active{% endif %}>{{ lang.short }}</span>
     {% else %}
-      <a class="rs-lang__btn" href="{{ lang_href }}" hreflang="{{ lang.code }}" lang="{{ lang.code }}">
-        {% if lang.code == 'uk' %}UA{% elif lang.code == 'zh-hans' %}CN{% else %}EN{% endif %}
-      </a>
+      <a class="rs-lang__btn" href="{{ lang_href }}" hreflang="{{ lang.code }}" lang="{{ lang.code }}" title="{{ lang.name }}">{{ lang.short }}</a>
     {% endif %}
   {% endfor %}
 </div>
+{% else %}
+<div class="rs-lang rs-lang--menu" data-lang-switcher>
+  <details class="rs-lang-menu" data-lang-menu>
+    <summary class="rs-lang-menu__summary" aria-label="{% trans 'Мова' %}: {{ langs.current.name }}">
+      <span class="rs-lang-menu__code">{{ langs.current.short }}</span>
+      <span class="rs-lang-menu__chevron" aria-hidden="true"></span>
+    </summary>
+    <ul class="rs-lang-menu__list">
+      {% for lang in langs.entries %}
+        {% language_next lang.code as lang_href %}
+        <li>
+          {% if lang.is_current %}
+            <span class="rs-lang-menu__item rs-lang-menu__item--current" aria-current="true" lang="{{ lang.code }}">
+              <span class="rs-lang-menu__short">{{ lang.short }}</span>
+              <span class="rs-lang-menu__name">{{ lang.name }}</span>
+            </span>
+          {% else %}
+            <a class="rs-lang-menu__item" href="{{ lang_href }}" hreflang="{{ lang.code }}" lang="{{ lang.code }}">
+              <span class="rs-lang-menu__short">{{ lang.short }}</span>
+              <span class="rs-lang-menu__name">{{ lang.name }}</span>
+            </a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </details>
+</div>
+{% endif %}

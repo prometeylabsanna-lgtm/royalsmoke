@@ -42,12 +42,17 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+// Мови з URL-префіксом (settings.LANGUAGES без uk). Синхронно з static/js/pwa-offline-catalog.js.
+const PREFIXED_LANGS = ['en', 'zh-hans', 'ms', 'fil', 'id', 'vi'];
+const LANG_PREFIX_RE = new RegExp('^/(' + PREFIXED_LANGS.join('|') + ')(?=/|$)');
+const LANG_CATALOG_RE = new RegExp('/(' + PREFIXED_LANGS.join('|') + ')/catalog(/|$)');
+
 function isCatalogPath(pathname) {
   return (
     pathname === '/catalog' ||
     pathname === '/catalog/' ||
     pathname.indexOf('/catalog/') !== -1 ||
-    /\/(en|zh-hans)\/catalog(\/|$)/.test(pathname)
+    LANG_CATALOG_RE.test(pathname)
   );
 }
 
@@ -61,6 +66,10 @@ function staleBannerHtml(lang) {
     uk: 'Офлайн-копія каталогу. Ціни та наявність можуть бути застарілими.',
     en: 'Offline catalog copy. Prices and stock may be outdated.',
     'zh-hans': '离线目录副本。价格与库存可能已过期。',
+    'ms': 'Salinan katalog luar talian. Harga dan stok mungkin sudah lapuk.',
+    'fil': 'Offline na kopya ng katalogo. Maaaring luma na ang mga presyo at stock.',
+    'id': 'Salinan katalog offline. Harga dan ketersediaan stok mungkin sudah usang.',
+    'vi': 'Bản sao danh mục ngoại tuyến. Giá và tình trạng còn hàng có thể đã cũ.',
   };
   const text = messages[lang] || messages.uk;
   return (
@@ -70,9 +79,8 @@ function staleBannerHtml(lang) {
 }
 
 function detectLang(pathname) {
-  if (pathname.indexOf('/en/') === 0 || pathname === '/en') return 'en';
-  if (pathname.indexOf('/zh-hans/') === 0 || pathname === '/zh-hans') return 'zh-hans';
-  return 'uk';
+  const match = LANG_PREFIX_RE.exec(pathname);
+  return match ? match[1] : 'uk';
 }
 
 async function injectStale(response, lang) {

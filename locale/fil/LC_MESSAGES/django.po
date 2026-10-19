@@ -1,0 +1,2103 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creat"
+"ion-Date: 2026-10-19 15:43+0300\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZO"
+"NE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAG"
+"E <LL@li.org>\nLanguage: fil\nMIME-Version: 1.0\nContent-Type: text/pl"
+"ain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: npl"
+"urals=2; plural=(n > 1);\n"
+
+#: apps/accounts/forms.py:12 apps/accounts/forms.py:16
+#: templates/accounts/register.html:10 templates/leads/b2b.html:9
+#: templates/leads/contact.html:13 templates/pages/partials/home_b2b.html:73
+#: templates/pages/partials/home_b2b.html:81
+msgid "Email"
+msgstr "Email"
+
+#: apps/accounts/forms.py:17 templates/accounts/register.html:9
+#: templates/base.html:122 templates/booking/page.html:45
+#: templates/emails/booking_created_customer.txt:5
+#: templates/leads/contact.html:12 templates/orders/checkout.html:33
+msgid "Імʼя"
+msgstr "Pangalan"
+
+#: apps/accounts/forms.py:18 templates/orders/checkout.html:41
+msgid "Прізвище"
+msgstr "Apelyido"
+
+#: apps/accounts/forms.py:19 templates/accounts/register.html:11
+#: templates/base.html:123 templates/booking/page.html:50
+#: templates/emails/booking_created_customer.txt:6 templates/leads/b2b.html:8
+#: templates/leads/contact.html:14 templates/leads/contact.html:30
+#: templates/orders/checkout.html:49 templates/pages/partials/home_b2b.html:59
+#: templates/pages/partials/home_b2b.html:68
+msgid "Телефон"
+msgstr "Telepono"
+
+#: apps/accounts/forms.py:20
+msgid "Підтвердження віку"
+msgstr "Kumpirmasyon ng edad"
+
+#: apps/accounts/forms.py:28 apps/accounts/forms.py:90
+#: templates/accounts/cabinet.html:96 templates/accounts/delete_account.html:24
+#: templates/accounts/login.html:32 templates/accounts/login.html:34
+#: templates/accounts/register.html:12
+msgid "Пароль"
+msgstr "Password"
+
+#: apps/accounts/forms.py:30 templates/accounts/register.html:13
+msgid "Повторіть пароль"
+msgstr "Kumpirmahin ang password"
+
+#: apps/accounts/forms.py:39 apps/accounts/forms.py:80
+msgid "Паролі не збігаються"
+msgstr "Hindi magkatugma ang mga password"
+
+#: apps/accounts/forms.py:58 apps/accounts/forms.py:62
+#: templates/accounts/password_change.html:24
+#: templates/accounts/password_change.html:26
+msgid "Поточний пароль"
+msgstr "Kasalukuyang password"
+
+#: apps/accounts/forms.py:65 templates/accounts/password_change.html:32
+#: templates/accounts/password_change.html:34
+msgid "Новий пароль"
+msgstr "Bagong password"
+
+#: apps/accounts/forms.py:67 apps/accounts/forms.py:72
+#: templates/accounts/password_change.html:40
+#: templates/accounts/password_change.html:42
+msgid "Повторіть новий пароль"
+msgstr "Kumpirmahin ang bagong password"
+
+#: apps/accounts/forms.py:94 templates/accounts/delete_account.html:26
+msgid "Пароль для підтвердження"
+msgstr "Password para sa kumpirmasyon"
+
+#: apps/accounts/forms.py:97 templates/accounts/delete_account.html:34
+msgid "Підтверджую видалення акаунту"
+msgstr "Kinukumpirma ko ang pagbura ng account"
+
+#: apps/accounts/forms.py:106
+msgid "Невірний пароль"
+msgstr "Maling password"
+
+#: apps/accounts/views.py:74
+msgid "Користувач з таким email уже існує"
+msgstr "Mayroon nang user na may ganitong email"
+
+#: apps/accounts/views.py:124
+msgid "гість"
+msgstr "bisita"
+
+#: apps/accounts/views.py:152
+msgid "Пароль змінено. Інші сесії завершено."
+msgstr "Napalitan na ang password. Nag-log out na ang iba pang session."
+
+#: apps/accounts/views.py:163
+msgid "Акаунт видалено. Кошик збережено як гостьовий."
+msgstr "Natanggal na ang account. Napanatili ang iyong cart bilang guest cart."
+
+#: apps/booking/models.py:9
+msgid "Дегустація"
+msgstr "Tasting"
+
+#: apps/booking/models.py:10
+msgid "Консультація сомельє"
+msgstr "Konsultasyon sa sommelier"
+
+#: apps/booking/models.py:11
+msgid "Візит у шоурум"
+msgstr "Pagbisita sa showroom"
+
+#: apps/booking/models.py:12 apps/orders/models.py:43
+msgid "Самовивіз"
+msgstr "Pickup"
+
+#: apps/booking/views.py:55
+msgid "Цей слот уже минув"
+msgstr "Nakalipas na ang slot na ito"
+
+#: apps/booking/views.py:57 apps/booking/views.py:171
+msgid "Немає вільних місць"
+msgstr "Walang bakanteng upuan"
+
+#: apps/booking/views.py:78
+msgid "Бронювання прийнято"
+msgstr "Natanggap ang reserbasyon"
+
+#: apps/booking/views.py:123
+msgid "Слот недоступний"
+msgstr "Hindi available ang slot"
+
+#: apps/booking/views.py:134
+msgid "Бронювання прийнято. Очікуйте підтвердження."
+msgstr "Natanggap ang reserbasyon. Hintayin ang kumpirmasyon."
+
+#: apps/booking/views.py:140
+msgid "Не вдалося створити бронювання"
+msgstr "Hindi nagawa ang reserbasyon"
+
+#: apps/booking/views.py:183
+msgid "Бронювання прийнято."
+msgstr "Natanggap ang reserbasyon."
+
+#: apps/booking/views.py:185
+msgid "Перевірте дані бронювання."
+msgstr "Pakisuri ang mga detalye ng iyong reserbasyon."
+
+#: apps/booking/views.py:187
+msgid "Оберіть послугу та час на сторінці бронювання."
+msgstr "Pumili ng serbisyo at oras sa pahina ng reserbasyon."
+
+#: apps/calculator/models.py:13 templates/catalog/list.html:63
+#: templates/catalog/list.html:77
+#: templates/catalog/partials/compare_body.html:48
+#: templates/catalog/partials/pd_specs.html:20
+#: templates/pages/partials/home_calculator.html:22
+#: templates/pages/partials/home_calculator.html:63
+#: templates/pages/partials/home_calculator.html:208
+msgid "Міцність"
+msgstr "Lakas"
+
+#: apps/calculator/models.py:14
+#: templates/pages/partials/home_calculator.html:25
+#: templates/pages/partials/home_calculator.html:98
+#: templates/pages/partials/home_calculator.html:212
+msgid "Формат"
+msgstr "Sukat"
+
+#: apps/calculator/models.py:15 templates/catalog/list.html:95
+#: templates/catalog/list.html:96
+#: templates/catalog/partials/compare_body.html:42
+#: templates/catalog/partials/pd_specs.html:14
+#: templates/pages/partials/home_calculator.html:28
+#: templates/pages/partials/home_calculator.html:133
+#: templates/pages/partials/home_calculator.html:216
+msgid "Країна"
+msgstr "Bansa"
+
+#: apps/calculator/models.py:16
+#: templates/pages/partials/home_calculator.html:31
+#: templates/pages/partials/home_calculator.html:168
+#: templates/pages/partials/home_calculator.html:220
+msgid "Бюджет"
+msgstr "Badyet"
+
+#: apps/calculator/services.py:91
+#, python-format
+msgid "міцність %(s)s"
+msgstr "lakas na %(s)s"
+
+#: apps/calculator/services.py:105
+#, python-format
+msgid "країна %(c)s"
+msgstr "bansang %(c)s"
+
+#: apps/calculator/services.py:120
+#, python-format
+msgid "формат %(f)s"
+msgstr "sukat na %(f)s"
+
+#: apps/calculator/services.py:127
+#, python-format
+msgid "у бюджеті (%(p)s %(symbol)s)"
+msgstr "pasok sa badyet (%(p)s %(symbol)s)"
+
+#: apps/calculator/services.py:136
+msgid "близький за профілем асортименту"
+msgstr "malapit sa gusto mong profile"
+
+#: apps/cart/stock.py:161 apps/cart/stock.py:199 apps/cart/stock.py:204
+#: apps/cart/stock.py:210 apps/cart/stock.py:213
+#, python-format
+msgid "«%(name)s» більше недоступний"
+msgstr "Hindi na available ang “%(name)s”"
+
+#: apps/cart/stock.py:167 apps/cart/stock.py:217
+#, python-format
+msgid "«%(name)s» закінчився на складі"
+msgstr "Ubos na ang stock ng “%(name)s”"
+
+#: apps/cart/stock.py:170 apps/cart/stock.py:220
+#, python-format
+msgid "«%(name)s»: на складі лише %(n)s шт."
+msgstr "“%(name)s”: %(n)s pcs na lang ang nasa stock"
+
+#: apps/cart/stock.py:200 apps/cart/stubs.py:21
+msgid "Товар недоступний"
+msgstr "Hindi available ang produkto"
+
+#: apps/cart/stock.py:227
+#, python-format
+msgid "«%(name)s» недоступний для замовлення (некоректна ціна)"
+msgstr "Hindi maaaring i-order ang “%(name)s” (maling presyo)"
+
+#: apps/cart/views.py:25 apps/orders/views.py:74 apps/orders/views.py:217
+#: apps/orders/views.py:224 apps/orders/views.py:267
+msgid "Замовлення вже створено"
+msgstr "Nagawa na ang order"
+
+#: apps/catalog/browser_filters.py:16
+msgid "Топ"
+msgstr "Top"
+
+#: apps/catalog/browser_filters.py:17
+msgid "Новинки"
+msgstr "Mga bagong dating"
+
+#: apps/catalog/browser_filters.py:18
+msgid "Ціна ↑"
+msgstr "Presyo ↑"
+
+#: apps/catalog/browser_filters.py:19
+msgid "Ціна ↓"
+msgstr "Presyo ↓"
+
+#: apps/catalog/models.py:35 templates/catalog/list.html:81
+#: templates/catalog/list.html:86
+#: templates/pages/partials/home_calculator.html:66
+msgid "Легка"
+msgstr "Banayad"
+
+#: apps/catalog/models.py:36 templates/catalog/list.html:82
+#: templates/pages/partials/home_calculator.html:70
+msgid "Середня"
+msgstr "Katamtaman"
+
+#: apps/catalog/models.py:37 templates/pages/partials/home_calculator.html:74
+msgid "Середньо-повна"
+msgstr "Katamtaman hanggang malakas"
+
+#: apps/catalog/models.py:38 templates/catalog/list.html:83
+#: templates/catalog/list.html:88
+#: templates/pages/partials/home_calculator.html:78
+msgid "Повна"
+msgstr "Malakas"
+
+#: apps/catalog/models_base.py:22 apps/core/block_defaults_pages.py:30
+#: templates/pages/home.html:25
+msgid "Сигари"
+msgstr "Mga cigar"
+
+#: apps/catalog/models_base.py:23 apps/core/block_defaults_pages.py:31
+msgid "Аксесуари"
+msgstr "Accessories"
+
+#: apps/catalog/models_base.py:24
+msgid "Інше"
+msgstr "Iba pa"
+
+#: apps/core/admin_filters.py:85
+msgid "Yes"
+msgstr ""
+
+#: apps/core/admin_filters.py:86
+msgid "No"
+msgstr ""
+
+#: apps/core/admin_nav.py:7 apps/core/block_defaults_pages.py:12
+#: apps/core/breadcrumbs.py:76 templates/pages/blog_detail.html:42
+#: templates/pages/blog_list.html:36
+msgid "Головна"
+msgstr "Home"
+
+#: apps/core/admin_nav.py:8 apps/core/block_defaults_home.py:10
+#: apps/core/block_defaults_pages.py:13 apps/core/block_defaults_pages.py:27
+#: apps/core/breadcrumbs.py:33 apps/core/breadcrumbs.py:90
+#: apps/core/breadcrumbs.py:94 apps/core/breadcrumbs.py:105
+#: apps/core/breadcrumbs.py:109 apps/core/breadcrumbs.py:115
+#: templates/accounts/cabinet.html:93
+#: templates/accounts/partials/cabinet_aside.html:6
+#: templates/catalog/list.html:4 templates/catalog/list.html:16
+#: templates/partials/footer.html:56
+msgid "Каталог"
+msgstr "Katalogo"
+
+#: apps/core/admin_nav.py:9 apps/core/block_defaults_pages.py:16
+#: apps/core/block_defaults_pages.py:50 apps/core/breadcrumbs.py:40
+msgid "Про нас"
+msgstr "Tungkol sa amin"
+
+#: apps/core/admin_nav.py:10 apps/core/block_defaults_pages.py:17
+#: apps/core/block_defaults_pages.py:38 apps/core/breadcrumbs.py:41
+#: apps/core/breadcrumbs.py:82
+msgid "Блог"
+msgstr "Blog"
+
+#: apps/core/admin_nav.py:11 apps/core/block_defaults_pages.py:15
+#: apps/core/breadcrumbs.py:42
+msgid "FAQ"
+msgstr "FAQ"
+
+#: apps/core/admin_nav.py:12 apps/core/block_defaults_pages.py:18
+#: apps/core/block_defaults_pages.py:86 apps/core/breadcrumbs.py:46
+#: templates/partials/footer.html:80
+msgid "Контакти"
+msgstr "Makipag-ugnayan"
+
+#: apps/core/admin_nav.py:13 apps/core/block_defaults_pages.py:34
+#: apps/core/block_defaults_pages.py:106 apps/core/breadcrumbs.py:34
+#: templates/accounts/cabinet.html:92
+#: templates/accounts/partials/cabinet_aside.html:7
+#: templates/partials/header.html:75
+msgid "Кошик"
+msgstr "Cart"
+
+#: apps/core/admin_nav.py:14 apps/core/block_defaults_pages.py:112
+#: apps/core/breadcrumbs.py:35
+msgid "Оформлення"
+msgstr "Checkout"
+
+#: apps/core/admin_nav.py:15 apps/core/block_defaults_pages.py:35
+#: apps/core/block_defaults_pages.py:117 apps/core/breadcrumbs.py:39
+#: templates/orders/thank_you.html:27 templates/partials/header.html:52
+msgid "Кабінет"
+msgstr "Account"
+
+#: apps/core/admin_nav.py:16
+msgid "Вікова перевірка"
+msgstr ""
+
+#: apps/core/admin_nav.py:17
+msgid "Шапка і футер"
+msgstr ""
+
+#: apps/core/admin_nav.py:18
+msgid "Документи"
+msgstr ""
+
+#: apps/core/admin_nav.py:34
+msgid "Питання"
+msgstr ""
+
+#: apps/core/admin_nav.py:40
+msgid "Статті"
+msgstr ""
+
+#: apps/core/admin_nav.py:63
+msgid "Мобільний застосунок"
+msgstr ""
+
+#: apps/core/admin_nav.py:68
+msgid "Налаштування застосунку"
+msgstr ""
+
+#: apps/core/admin_nav.py:73
+msgid "Бренди гайду"
+msgstr ""
+
+#: apps/core/admin_nav.py:78
+msgid "Екрани"
+msgstr ""
+
+#: apps/core/admin_nav.py:83
+msgid "Юридичні сторінки"
+msgstr ""
+
+#: apps/core/admin_nav.py:90
+msgid "Каталог товарів"
+msgstr ""
+
+#: apps/core/admin_nav.py:94
+msgid "Товари"
+msgstr ""
+
+#: apps/core/admin_nav.py:95 templates/catalog/list.html:33
+msgid "Категорії"
+msgstr "Mga kategorya"
+
+#: apps/core/admin_nav.py:96 apps/core/block_defaults_pages.py:32
+#: templates/pages/partials/home_brands.html:3
+msgid "Бренди"
+msgstr "Mga brand"
+
+#: apps/core/admin_nav.py:97
+msgid "Лінії"
+msgstr ""
+
+#: apps/core/admin_nav.py:98
+msgid "Теги"
+msgstr ""
+
+#: apps/core/admin_nav.py:102
+msgid "Продажі"
+msgstr ""
+
+#: apps/core/admin_nav.py:106 apps/core/block_defaults_pages.py:120
+msgid "Замовлення"
+msgstr "Mga order"
+
+#: apps/core/admin_nav.py:107
+msgid "Ліди"
+msgstr ""
+
+#: apps/core/admin_nav.py:108 apps/core/block_defaults_home.py:19
+#: apps/core/block_defaults_pages.py:102
+msgid "Бронювання"
+msgstr "Reserbasyon"
+
+#: apps/core/admin_nav.py:109 apps/core/block_defaults_home.py:16
+#: apps/core/block_defaults_pages.py:33
+msgid "Калькулятор"
+msgstr "Calculator"
+
+#: apps/core/admin_nav.py:113
+msgid "Кольори сайту"
+msgstr ""
+
+#: apps/core/admin_nav.py:118
+msgid "Шапка і підвал"
+msgstr ""
+
+#: apps/core/admin_nav.py:123
+msgid "Кольори сторінок"
+msgstr ""
+
+#: apps/core/admin_nav.py:130
+msgid "Користувачі"
+msgstr ""
+
+#: apps/core/admin_nav.py:135
+msgid "Недавні дії"
+msgstr ""
+
+#: apps/core/admin_nav.py:139
+msgid "Акаунти"
+msgstr ""
+
+#: apps/core/admin_nav.py:140
+msgid "Налаштування сайту"
+msgstr ""
+
+#: apps/core/admin_nav.py:141
+msgid "Курси валют"
+msgstr ""
+
+#: apps/core/block_defaults_home.py:11
+msgid "Увесь каталог"
+msgstr "Buong katalogo"
+
+#: apps/core/block_defaults_home.py:13 apps/pages/views.py:134
+#: templates/pages/partials/home_history.html:2
+msgid "Історія"
+msgstr "Kasaysayan"
+
+#: apps/core/block_defaults_home.py:21
+msgid ""
+"Залиште контакти — менеджер узгодить зручний час візиту.\n\nМи передзв"
+"онимо протягом робочого дня, щоб підтвердити слот і відповісти на запи"
+"тання.\n\nМожна обрати дегустацію, консультацію сомельє або спокійний "
+"візит у шоурум — підлаштуємось під ваш ритм."
+msgstr ""
+
+#: apps/core/block_defaults_home.py:26
+msgid "Обрати час"
+msgstr "Pumili ng oras"
+
+#: apps/core/block_defaults_home.py:29 apps/core/block_defaults_pages.py:100
+msgid "Прайс і умови для барів, готелів і корпоративних подарунків."
+msgstr "Presyo at mga tuntunin para sa mga bar, hotel, at corporate gift."
+
+#: apps/core/block_defaults_home.py:30 apps/core/block_defaults_pages.py:101
+msgid "Запросити прайс"
+msgstr "Humiling ng listahan ng presyo"
+
+#: apps/core/block_defaults_legal.py:11 apps/core/block_defaults_pages.py:19
+#: apps/core/breadcrumbs.py:45
+msgid "Доставка і оплата"
+msgstr "Paghahatid at pagbabayad"
+
+#: apps/core/block_defaults_legal.py:12
+msgid "Київ — того ж дня · Україна — 1–2 дні · ЄС — 3–5 днів."
+msgstr "Kyiv — sa parehong araw · Ukraine — 1–2 araw · EU — 3–5 araw."
+
+#: apps/core/block_defaults_legal.py:15 apps/core/breadcrumbs.py:51
+msgid "Політика конфіденційності"
+msgstr "Patakaran sa privacy"
+
+#: apps/core/block_defaults_legal.py:16
+msgid "Як ми збираємо, зберігаємо та захищаємо ваші дані."
+msgstr "Paano namin kinokolekta, iniimbak, at pinoprotektahan ang iyong data."
+
+#: apps/core/block_defaults_legal.py:19 apps/core/breadcrumbs.py:52
+msgid "Умови користування"
+msgstr "Mga tuntunin sa paggamit"
+
+#: apps/core/block_defaults_legal.py:20
+msgid "Правила користування сайтом і умови продажу."
+msgstr "Mga patakaran sa paggamit ng site at mga tuntunin sa pagbebenta."
+
+#: apps/core/block_defaults_legal.py:26 apps/core/breadcrumbs.py:53
+msgid "Вікова політика"
+msgstr "Patakaran sa edad"
+
+#: apps/core/block_defaults_legal.py:27
+msgid "Доступ лише для повнолітніх відвідувачів 21+."
+msgstr "Para lamang sa mga bisitang nasa hustong gulang na 21+ ang access."
+
+#: apps/core/block_defaults_legal.py:33 apps/core/breadcrumbs.py:54
+msgid "Файли cookie"
+msgstr "Mga cookie"
+
+#: apps/core/block_defaults_legal.py:34
+msgid "Які cookies використовує сайт і навіщо."
+msgstr "Aling mga cookie ang ginagamit ng site at bakit."
+
+#: apps/core/block_defaults_pages.py:6
+msgid "Пошук сигар, брендів, аксесуарів…"
+msgstr "Maghanap ng cigar, brand, at accessories…"
+
+#: apps/core/block_defaults_pages.py:14
+msgid "Акції"
+msgstr "Sale"
+
+#: apps/core/block_defaults_pages.py:20 apps/core/block_defaults_pages.py:98
+#: templates/base.html:107
+msgid "Замовити дзвінок"
+msgstr "Humiling ng tawag"
+
+#: apps/core/block_defaults_pages.py:21 apps/core/block_defaults_pages.py:28
+msgid "Покупка"
+msgstr "Mamili"
+
+#: apps/core/block_defaults_pages.py:22 apps/core/block_defaults_pages.py:29
+msgid "Інфо"
+msgstr "Impormasyon"
+
+#: apps/core/block_defaults_pages.py:23
+msgid "Сигари, відібрані вручну для тих, хто знає різницю."
+msgstr "Mga cigar na personal na pinili para sa mga nakakaalam ng pagkakaiba."
+
+#: apps/core/block_defaults_pages.py:25
+msgid "© 2026 ROYAL SMOKE"
+msgstr "© 2026 ROYAL SMOKE"
+
+#: apps/core/block_defaults_pages.py:36
+msgid "Приватність"
+msgstr "Privacy"
+
+#: apps/core/block_defaults_pages.py:37
+msgid "Гід і культура"
+msgstr "Gabay at kultura"
+
+#: apps/core/block_defaults_pages.py:40
+msgid ""
+"Практичні гіди про сигари, зберігання, аксесуари та смак — від сомельє"
+" Royal Smoke."
+msgstr ""
+"Mga praktikal na gabay tungkol sa cigar, pag-iimbak, accessories, at l"
+"asa — mula sa mga sommelier ng Royal Smoke."
+
+#: apps/core/block_defaults_pages.py:44
+msgid ""
+"Блог Royal Smoke: як обрати сигару, зберігати в хумідорі, підібрати ак"
+"сесуари та читати вітолу. Поради експертів."
+msgstr ""
+"Blog ng Royal Smoke: paano pumili ng cigar, mag-imbak sa humidor, pumi"
+"li ng accessories, at bumasa ng vitola. Mga payo ng eksperto."
+
+#: apps/core/block_defaults_pages.py:47
+msgid "Читати"
+msgstr "Basahin"
+
+#: apps/core/block_defaults_pages.py:48
+msgid "Усі статті"
+msgstr "Lahat ng artikulo"
+
+#: apps/core/block_defaults_pages.py:49
+msgid "Читайте також"
+msgstr "Kaugnay na babasahin"
+
+#: apps/core/block_defaults_pages.py:51
+msgid "Хроніка одного рішення"
+msgstr "Salaysay ng isang desisyon"
+
+#: apps/core/block_defaults_pages.py:53
+msgid ""
+"Royal Smoke — tobacco atelier, зібраний навколо простого правила: прод"
+"авати лише те, що самі готові курити."
+msgstr ""
+"Ang Royal Smoke ay isang tobacco atelier na binuo sa isang simpleng pa"
+"takaran: magbenta lamang ng mga produktong handa naming hithitin mismo"
+"."
+
+#: apps/core/block_defaults_pages.py:58
+msgid "років на ринку"
+msgstr "taon sa merkado"
+
+#: apps/core/block_defaults_pages.py:60
+msgid "Перший кабінет"
+msgstr "Unang espasyo"
+
+#: apps/core/block_defaults_pages.py:62
+msgid ""
+"Почали з невеликого простору в Києві: кілька полиць, ручний відбір і р"
+"озмова з кожним гостем замість випадкової вітрини."
+msgstr ""
+"Nagsimula kami sa isang maliit na espasyo sa Kyiv: ilang istante, pini"
+"ling kamay, at pakikipag-usap sa bawat bisita sa halip na basta-bastan"
+"g display."
+
+#: apps/core/block_defaults_pages.py:66
+msgid "Прямі мануфактури"
+msgstr "Direkta mula sa mga manupaktura"
+
+#: apps/core/block_defaults_pages.py:68
+msgid ""
+"Налагодили прямі поставки з Нікарагуа, Домінікани та Куби — без зайвих"
+" посередників, з чесною ціною і стабільною якістю партій."
+msgstr ""
+"Nagtatag kami ng direktang suplay mula sa Nicaragua, Dominican Republi"
+"c, at Cuba — walang hindi kinakailangang tagapamagitan, may patas na p"
+"resyo at matatag na kalidad ng bawat batch."
+
+#: apps/core/block_defaults_pages.py:72
+msgid "Власний хумідор"
+msgstr "Sarili naming humidor"
+
+#: apps/core/block_defaults_pages.py:74
+msgid ""
+"Збудували сховище зі стабільною вологістю й зібрали команду сомельє, я"
+"ка супроводжує замовлення від першої консультації до доставки."
+msgstr ""
+"Nagtayo kami ng imbakan na may matatag na halumigmig at bumuo ng pangk"
+"at ng mga sommelier na gumagabay sa bawat order mula sa unang konsulta"
+"syon hanggang sa paghahatid."
+
+#: apps/core/block_defaults_pages.py:77
+msgid "Сьогодні"
+msgstr "Ngayon"
+
+#: apps/core/block_defaults_pages.py:78
+msgid "Бутік, каталог, сервіс"
+msgstr "Boutique, katalogo, serbisyo"
+
+#: apps/core/block_defaults_pages.py:80
+msgid ""
+"Працюємо як бутік і як точний онлайн-каталог: консультація, термобокс "
+"і доставка, яка береже лист."
+msgstr ""
+"Nagtatrabaho kami bilang boutique at tumpak na online na katalogo: kon"
+"sultasyon, insulated box, at paghahatid na nag-iingat sa dahon ng taba"
+"ko."
+
+#: apps/core/block_defaults_pages.py:84
+msgid "Короткі відповіді про замовлення, зберігання та доставку."
+msgstr "Maiikling sagot tungkol sa mga order, pag-iimbak, at paghahatid."
+
+#: apps/core/block_defaults_pages.py:87
+msgid "Напишіть нам"
+msgstr "Sumulat sa amin"
+
+#: apps/core/block_defaults_pages.py:88
+msgid "Відповідаємо протягом робочого дня."
+msgstr "Sumasagot kami sa loob ng oras ng trabaho."
+
+#: apps/core/block_defaults_pages.py:89
+msgid "Карта — Хрещатик 1"
+msgstr "Mapa — Khreshchatyk 1"
+
+#: apps/core/block_defaults_pages.py:97 templates/base.html:127
+msgid "Надіслати"
+msgstr "Ipadala"
+
+#: apps/core/block_defaults_pages.py:103
+msgid "Оберіть послугу, дату та вільний слот."
+msgstr "Pumili ng serbisyo, petsa, at bakanteng slot."
+
+#: apps/core/block_defaults_pages.py:104
+msgid "Забронювати"
+msgstr "Mag-reserve ngayon"
+
+#: apps/core/block_defaults_pages.py:105
+msgid "Каталог наповнюється."
+msgstr "Patuloy pang dinadagdagan ng mga produkto ang katalogo."
+
+#: apps/core/block_defaults_pages.py:107 templates/orders/checkout.html:155
+msgid "Кошик порожній."
+msgstr "Walang laman ang iyong cart."
+
+#: apps/core/block_defaults_pages.py:108
+#: templates/accounts/partials/cabinet_wishlist.html:53
+#: templates/accounts/partials/wishlist_body.html:53
+#: templates/accounts/partials/wishlist_body.html:57
+#: templates/catalog/partials/compare_body.html:89
+#: templates/orders/thank_you.html:24 templates/orders/thank_you.html:26
+#: templates/pages/home.html:24
+msgid "До каталогу"
+msgstr "Sa katalogo"
+
+#: apps/core/block_defaults_pages.py:109
+msgid "Продовжити покупки"
+msgstr "Magpatuloy sa pamimili"
+
+#: apps/core/block_defaults_pages.py:110
+msgid "Оформити замовлення"
+msgstr "Magpatuloy sa checkout"
+
+#: apps/core/block_defaults_pages.py:111
+msgid "Видалити"
+msgstr "Alisin"
+
+#: apps/core/block_defaults_pages.py:113
+msgid "Заповніть контакти та спосіб доставки."
+msgstr "Punan ang iyong mga contact at paraan ng paghahatid."
+
+#: apps/core/block_defaults_pages.py:114
+msgid "Підтвердити замовлення"
+msgstr "Kumpirmahin ang order"
+
+#: apps/core/block_defaults_pages.py:115
+msgid "Ваше замовлення"
+msgstr "Ang iyong order"
+
+#: apps/core/block_defaults_pages.py:116
+msgid "Підтверджую, що мені є 21 рік"
+msgstr "Kinukumpirma kong 21 taong gulang pataas na ako"
+
+#: apps/core/block_defaults_pages.py:118
+#, python-brace-format
+msgid "Вітаємо, {name}"
+msgstr "Maligayang pagdating, {name}"
+
+#: apps/core/block_defaults_pages.py:119
+msgid "Профіль"
+msgstr "Profile"
+
+#: apps/core/block_defaults_pages.py:121
+msgid "Замовлень ще немає"
+msgstr "Wala pang order"
+
+#: apps/core/block_defaults_pages.py:122 templates/accounts/cabinet.html:89
+#: templates/accounts/cabinet.html:90 templates/base.html:96
+msgid "Швидкі дії"
+msgstr "Mabilisang aksyon"
+
+#: apps/core/block_defaults_pages.py:123
+msgid "Вам виповнилося 21 рік?"
+msgstr "Ikaw ba ay 21 taong gulang pataas?"
+
+#: apps/core/block_defaults_pages.py:124
+msgid ""
+"Сайт містить інформацію про тютюнові вироби. Підтвердіть вік, щоб прод"
+"овжити."
+msgstr ""
+"Naglalaman ang site na ito ng impormasyon tungkol sa mga produktong ta"
+"bako. Kumpirmahin ang iyong edad para magpatuloy."
+
+#: apps/core/block_defaults_pages.py:125 templates/accounts/register.html:31
+msgid "Мені є 21 рік"
+msgstr "21 pataas na ako"
+
+#: apps/core/block_defaults_pages.py:126
+msgid "Мені немає 21 року"
+msgstr "Wala pa akong 21 taong gulang"
+
+#: apps/core/block_defaults_pages.py:127
+msgid "Доступ обмежено"
+msgstr "Pinaghihigpitan ang access"
+
+#: apps/core/block_defaults_pages.py:128
+msgid "Цей сайт призначений лише для повнолітніх відвідувачів 21+."
+msgstr ""
+"Ang site na ito ay para lamang sa mga bisitang nasa hustong gulang, 21"
+" taong gulang pataas."
+
+#: apps/core/block_defaults_pages.py:129
+msgid "Повернутися"
+msgstr "Bumalik"
+
+#: apps/core/breadcrumbs.py:36 templates/orders/thank_you.html:4
+msgid "Дякуємо"
+msgstr "Salamat"
+
+#: apps/core/breadcrumbs.py:37 templates/accounts/login.html:4
+#: templates/accounts/login.html:16
+msgid "Вхід"
+msgstr "Mag-log in"
+
+#: apps/core/breadcrumbs.py:38 templates/accounts/register.html:4
+#: templates/accounts/register.html:17
+msgid "Реєстрація"
+msgstr "Pagpaparehistro"
+
+#: apps/core/breadcrumbs.py:43 apps/core/breadcrumbs.py:56
+msgid "Правова інформація"
+msgstr "Impormasyong legal"
+
+#: apps/core/breadcrumbs.py:44
+msgid "B2B"
+msgstr "B2B"
+
+#: apps/core/breadcrumbs.py:86
+msgid "Стаття"
+msgstr "Artikulo"
+
+#: apps/core/breadcrumbs.py:111
+msgid "Бренд"
+msgstr "Brand"
+
+#: apps/core/breadcrumbs.py:132
+msgid "Товар"
+msgstr "Produkto"
+
+#: apps/core/templates/django/forms/widgets/cms_color.html:3
+msgid "Обрати колір"
+msgstr ""
+
+#: apps/core/templates/django/forms/widgets/cms_color.html:5
+msgid "Пікер кольору"
+msgstr ""
+
+#: apps/core/templates/django/forms/widgets/cms_color.html:7
+msgid "HEX"
+msgstr ""
+
+#: apps/core/templates/django/forms/widgets/cms_color.html:12
+msgid "Повернути дефолтний колір"
+msgstr ""
+
+#: apps/core/templates/django/forms/widgets/cms_color.html:13
+msgid "Дефолт"
+msgstr ""
+
+#: apps/core/templates/django/forms/widgets/cms_image.html:12
+#: templates/catalog/partials/pd_gallery.html:26
+msgid "Немає фото"
+msgstr "Walang larawan"
+
+#: apps/core/templates/django/forms/widgets/cms_image.html:14
+msgid "Поточне на сайті"
+msgstr ""
+
+#: apps/core/templates/django/forms/widgets/cms_image.html:20
+msgid "Очистити"
+msgstr ""
+
+#: apps/core/validation/messages.py:5 templates/base.html:135
+msgid "Це поле обовʼязкове"
+msgstr "Kailangang punan ang field na ito"
+
+#: apps/core/validation/messages.py:6 templates/base.html:135
+msgid "Підтвердіть цю опцію"
+msgstr "Pakikumpirma ang opsyong ito"
+
+#: apps/core/validation/messages.py:7 templates/base.html:135
+msgid "Поле не може складатися лише з пробілів"
+msgstr "Hindi maaaring puro espasyo ang laman ng field"
+
+#: apps/core/validation/messages.py:9 templates/base.html:135
+msgid "Імʼя має містити мінімум 2 символи"
+msgstr "Dapat may hindi bababa sa 2 character ang pangalan"
+
+#: apps/core/validation/messages.py:10 templates/base.html:135
+msgid "Імʼя може містити лише літери, пробіли, дефіс і апостроф"
+msgstr ""
+"Ang pangalan ay maaari lamang maglaman ng mga letra, espasyo, gitling,"
+" at apostrope"
+
+#: apps/core/validation/messages.py:12 templates/base.html:135
+msgid "Введіть коректну електронну пошту"
+msgstr "Maglagay ng wastong email address"
+
+#: apps/core/validation/messages.py:14 templates/base.html:135
+msgid "Пароль має містити мінімум 8 символів"
+msgstr "Dapat may hindi bababa sa 8 character ang password"
+
+#: apps/core/validation/messages.py:15 templates/base.html:135
+msgid "Пароль має містити хоча б одну велику літеру"
+msgstr "Dapat may kahit isang malaking letra ang password"
+
+#: apps/core/validation/messages.py:16 templates/base.html:135
+msgid "Пароль має містити хоча б одну малу літеру"
+msgstr "Dapat may kahit isang maliit na letra ang password"
+
+#: apps/core/validation/messages.py:17 templates/base.html:135
+msgid "Пароль має містити хоча б одну цифру"
+msgstr "Dapat may kahit isang numero ang password"
+
+#: apps/core/validation/messages.py:18 templates/base.html:135
+msgid "Пароль має містити хоча б один спеціальний символ"
+msgstr "Dapat may kahit isang espesyal na character ang password"
+
+#: apps/core/validation/messages.py:20 templates/base.html:135
+msgid "Введіть коректний номер телефону"
+msgstr "Maglagay ng wastong numero ng telepono"
+
+#: apps/core/validation/messages.py:21 templates/base.html:135
+msgid "Введіть коректну URL-адресу"
+msgstr "Maglagay ng wastong URL"
+
+#: apps/core/validation/password.py:21
+msgid ""
+"Пароль має містити мінімум 8 символів, велику та малу літери, цифру та"
+" спеціальний символ."
+msgstr ""
+"Dapat may hindi bababa sa 8 character ang password at may malaking let"
+"ra, maliit na letra, numero, at espesyal na character."
+
+#: apps/leads/views.py:31
+msgid "Вкажіть телефон або email"
+msgstr "Maglagay ng numero ng telepono o email"
+
+#: apps/leads/views.py:72
+msgid "Запит надіслано. Менеджер звʼяжеться з вами."
+msgstr "Naipadala na ang kahilingan. Makikipag-ugnayan sa iyo ang manager."
+
+#: apps/leads/views.py:100
+msgid "Повідомлення надіслано."
+msgstr "Naipadala na ang mensahe."
+
+#: apps/leads/views.py:118
+msgid "Дякуємо! Передзвонимо найближчим часом."
+msgstr "Salamat! Tatawagan ka namin sa lalong madaling panahon."
+
+#: apps/leads/views.py:120
+msgid "Заявку прийнято"
+msgstr "Natanggap ang kahilingan"
+
+#: apps/leads/views.py:123 apps/leads/views.py:127
+msgid "Перевірте номер телефону."
+msgstr "Pakisuri ang iyong numero ng telepono."
+
+#: apps/orders/admin.py:57
+msgid "Створити ТТН Нової Пошти"
+msgstr ""
+
+#: apps/orders/admin.py:77
+#, python-format
+msgid "Створено ТТН: %(n)s"
+msgstr ""
+
+#: apps/orders/admin.py:79
+msgid "Оновити статус ТТН"
+msgstr ""
+
+#: apps/orders/admin.py:100
+#, python-format
+msgid "Оновлено статусів: %(n)s"
+msgstr ""
+
+#: apps/orders/models.py:19
+msgid "Нове"
+msgstr "Bago"
+
+#: apps/orders/models.py:20
+msgid "Очікує оплату"
+msgstr "Naghihintay ng bayad"
+
+#: apps/orders/models.py:21
+msgid "Оплачено"
+msgstr "Bayad na"
+
+#: apps/orders/models.py:22
+msgid "В обробці"
+msgstr "Pinoproseso"
+
+#: apps/orders/models.py:23
+msgid "Відправлено"
+msgstr "Naipadala na"
+
+#: apps/orders/models.py:24
+msgid "Виконано"
+msgstr "Nakumpleto"
+
+#: apps/orders/models.py:25
+msgid "Скасовано"
+msgstr "Nakansela"
+
+#: apps/orders/models.py:32
+msgid "Онлайн оплата"
+msgstr "Online na pagbabayad"
+
+#: apps/orders/models.py:33
+msgid "Оплата при отриманні"
+msgstr "Cash on delivery"
+
+#: apps/orders/models.py:34
+msgid "Безготівковий розрахунок"
+msgstr "Bank transfer"
+
+#: apps/orders/models.py:41
+msgid "Нова Пошта"
+msgstr "Nova Poshta"
+
+#: apps/orders/models.py:42
+msgid "Курʼєр"
+msgstr "Courier"
+
+#: apps/orders/services/__init__.py:25
+#: templates/emails/order_created_customer.html:5
+#: templates/emails/order_created_customer.txt:2
+#, python-format
+msgid "Замовлення %(num)s прийнято"
+msgstr "Natanggap ang order %(num)s"
+
+#: apps/orders/services/__init__.py:43 templates/emails/order_paid.txt:2
+#, python-format
+msgid "Оплату замовлення %(num)s підтверджено"
+msgstr "Nakumpirma ang bayad para sa order %(num)s"
+
+#: apps/orders/views.py:68
+msgid "Немає доступу до цього замовлення"
+msgstr "Wala kang access sa order na ito"
+
+#: apps/orders/views.py:99
+msgid "Потрібно підтвердити вік 21+"
+msgstr "Kailangan mong kumpirmahin na 21+ ka na"
+
+#: apps/orders/views.py:108
+msgid "Оберіть місто та відділення Нової Пошти зі списку"
+msgstr "Pumili ng lungsod at sangay ng Nova Poshta mula sa listahan"
+
+#: apps/orders/views.py:118
+msgid "Обране відділення більше недоступне. Оберіть інше зі списку."
+msgstr ""
+"Hindi na available ang napiling sangay. Pumili ng iba mula sa listahan"
+"."
+
+#: apps/orders/views.py:187
+msgid "Кошик порожній"
+msgstr "Walang laman ang cart"
+
+#: apps/orders/views.py:194 apps/orders/views.py:243
+msgid "Оформлення заблоковано через наявність товарів"
+msgstr "Naka-block ang checkout dahil sa isyu sa availability ng mga produkto"
+
+#: apps/orders/views.py:257
+msgid "Оформлення заблоковано: некоректна сума замовлення"
+msgstr "Naka-block ang checkout: maling halaga ng order"
+
+#: apps/orders/views.py:322 apps/orders/views.py:383 apps/orders/views.py:398
+msgid "Замовлення вже оплачено"
+msgstr "Bayad na ang order"
+
+#: apps/orders/views.py:329
+msgid "Суму замовлення неможливо підтвердити. Звʼяжіться з підтримкою."
+msgstr "Hindi makumpirma ang halaga ng order. Makipag-ugnayan sa support."
+
+#: apps/orders/views.py:359
+msgid "Онлайн-оплата тимчасово недоступна"
+msgstr "Pansamantalang hindi available ang online na pagbabayad"
+
+#: apps/orders/views.py:396
+msgid "Демо-оплату підтверджено."
+msgstr "Nakumpirma na ang demo na bayad."
+
+#: apps/orders/views.py:400
+msgid "Демо-оплату відхилено. Можна спробувати ще раз."
+msgstr "Tinanggihan ang demo na bayad. Maaari kang subukan muli."
+
+#: apps/pwa/services/push.py:106 templates/emails/order_paid.html:5
+msgid "Оплату підтверджено"
+msgstr "Nakumpirma na ang bayad"
+
+#: apps/pwa/services/push.py:107
+#, python-format
+msgid "Замовлення %(num)s оплачено."
+msgstr "Bayad na ang order %(num)s."
+
+#: apps/pwa/services/push.py:111
+msgid "Статус замовлення"
+msgstr "Status ng order"
+
+#: apps/pwa/services/push.py:112
+#, python-format
+msgid "Замовлення %(num)s: %(status)s"
+msgstr "Order %(num)s: %(status)s"
+
+#: templates/accounts/cabinet.html:31
+#, python-format
+msgid "Останнє: #%(num)s — %(total)s %(symbol)s"
+msgstr "Pinakahuli: #%(num)s — %(total)s %(symbol)s"
+
+#: templates/accounts/cabinet.html:33 templates/accounts/cabinet.html:59
+msgid "Останнє замовлення"
+msgstr "Pinakahuling order"
+
+#: templates/accounts/cabinet.html:67
+msgid "Динаміка замовлень за останні тижні"
+msgstr "Aktibidad ng order sa nakalipas na mga linggo"
+
+#: templates/accounts/cabinet.html:94
+#: templates/accounts/partials/cabinet_aside.html:8
+msgid "Підтримка"
+msgstr "Support"
+
+#: templates/accounts/cabinet.html:95
+#: templates/accounts/partials/cabinet_wishlist.html:2
+#: templates/accounts/partials/cabinet_wishlist.html:4
+#: templates/accounts/wishlist.html:4 templates/accounts/wishlist.html:13
+#: templates/partials/header.html:67 templates/partials/header.html:111
+msgid "Вибране"
+msgstr "Wishlist"
+
+#: templates/accounts/cabinet.html:97 templates/accounts/delete_account.html:41
+msgid "Видалити акаунт"
+msgstr "Burahin ang account"
+
+#: templates/accounts/cabinet.html:100
+msgid "Вийти"
+msgstr "Mag-log out"
+
+#: templates/accounts/delete_account.html:4
+#: templates/accounts/delete_account.html:16
+msgid "Видалення акаунту"
+msgstr "Pagbura ng account"
+
+#: templates/accounts/delete_account.html:17
+msgid ""
+"Усі сесії буде завершено. Кошик залишиться у цьому браузері як гостьов"
+"ий."
+msgstr ""
+"Lahat ng session ay ilo-log out. Mananatili ang iyong cart sa browser "
+"na ito bilang guest cart."
+
+#: templates/accounts/delete_account.html:42 templates/base.html:128
+msgid "Скасувати"
+msgstr "Kanselahin"
+
+#: templates/accounts/login.html:17
+msgid "Увійдіть, щоб бачити замовлення та обране."
+msgstr "Mag-log in para makita ang iyong mga order at wishlist."
+
+#: templates/accounts/login.html:41 templates/accounts/register.html:38
+msgid "Увійти"
+msgstr "Mag-log in"
+
+#: templates/accounts/login.html:44
+msgid "Немає акаунту?"
+msgstr "Wala ka pang account?"
+
+#: templates/accounts/login.html:44
+msgid "Зареєструватися"
+msgstr "Magrehistro"
+
+#: templates/accounts/partials/cabinet_aside.html:5
+msgid "Швидкі дії кабінету"
+msgstr "Mabilisang aksyon sa account"
+
+#: templates/accounts/partials/cabinet_wishlist.html:6
+#: templates/catalog/list.html:39
+msgid "Усі"
+msgstr "Lahat"
+
+#: templates/accounts/partials/cabinet_wishlist.html:36
+#: templates/accounts/partials/wishlist_body.html:36
+#: templates/catalog/partials/pd_cta.html:36
+#: templates/catalog/partials/product_grid.html:42
+#: templates/pages/partials/home_catalog.html:69
+msgid "У кошик"
+msgstr "Idagdag sa cart"
+
+#: templates/accounts/partials/cabinet_wishlist.html:45
+#: templates/accounts/partials/wish_btn.html:15
+msgid "Прибрати з вибраного"
+msgstr "Alisin sa wishlist"
+
+#: templates/accounts/partials/cabinet_wishlist.html:52
+msgid "Поки порожньо. Додайте товари сердечком у каталозі."
+msgstr ""
+"Wala pang laman. Magdagdag ng mga produkto gamit ang heart icon sa kat"
+"alogo."
+
+#: templates/accounts/partials/wish_btn.html:15
+msgid "Додати до вибраного"
+msgstr "Idagdag sa wishlist"
+
+#: templates/accounts/partials/wish_btn.html:23
+msgid "У обраному"
+msgstr "Nasa wishlist"
+
+#: templates/accounts/partials/wish_btn.html:23
+msgid "Обране"
+msgstr "Wishlist"
+
+#: templates/accounts/partials/wishlist_body.html:46
+#: templates/catalog/partials/compare_body.html:27
+msgid "Прибрати"
+msgstr "Alisin"
+
+#: templates/accounts/partials/wishlist_body.html:56
+msgid "Вибране порожнє."
+msgstr "Walang laman ang wishlist."
+
+#: templates/accounts/password_change.html:4
+#: templates/accounts/password_change.html:16
+msgid "Зміна пароля"
+msgstr "Palitan ang password"
+
+#: templates/accounts/password_change.html:17
+msgid "Після зміни ви залишитесь у системі; інші пристрої вийдуть."
+msgstr ""
+"Pagkatapos ng pagbabago, mananatili kang naka-log in; magla-log out an"
+"g iba pang device."
+
+#: templates/accounts/password_change.html:48
+msgid "Зберегти пароль"
+msgstr "I-save ang password"
+
+#: templates/accounts/password_change.html:49
+#: templates/pages/partials/home_calculator.html:197
+msgid "Назад"
+msgstr "Bumalik"
+
+#: templates/accounts/register.html:18
+msgid "Створіть кабінет для швидкого оформлення."
+msgstr "Gumawa ng account para sa mas mabilis na checkout."
+
+#: templates/accounts/register.html:35
+msgid "Створити акаунт"
+msgstr "Gumawa ng account"
+
+#: templates/accounts/register.html:38
+msgid "Вже є акаунт?"
+msgstr "May account ka na ba?"
+
+#: templates/accounts/wishlist.html:16
+#, python-format
+msgid "%(counter)s товар"
+msgid_plural "%(counter)s товари"
+msgstr[0] "%(counter)s produkto"
+msgstr[1] "%(counter)s mga produkto"
+
+#: templates/accounts/wishlist.html:18
+msgid "Порожній список"
+msgstr "Walang laman na listahan"
+
+#: templates/admin/core/site_content_page.html:4
+msgid "Django site admin"
+msgstr ""
+
+#: templates/base.html:19
+msgid "Сигари та аксесуари Royal Smoke"
+msgstr "Mga cigar at accessories ng Royal Smoke"
+
+#: templates/base.html:101
+msgid "Нагору"
+msgstr "Bumalik sa itaas"
+
+#: templates/base.html:110
+msgid "Чат / контакти"
+msgstr "Chat / makipag-ugnayan"
+
+#: templates/base.html:118
+msgid "Зворотний дзвінок"
+msgstr "Callback"
+
+#: templates/base.html:119
+msgid "Залиште номер — передзвонимо протягом робочого дня."
+msgstr ""
+"Iwanan ang iyong numero — tatawagan ka namin pabalik sa loob ng oras n"
+"g trabaho."
+
+#: templates/booking/page.html:18
+msgid "Послуга"
+msgstr "Serbisyo"
+
+#: templates/booking/page.html:24
+msgid "Оберіть послугу"
+msgstr "Pumili ng serbisyo"
+
+#: templates/booking/page.html:32
+msgid "Дата"
+msgstr "Petsa"
+
+#: templates/booking/page.html:60
+msgid "Побажання"
+msgstr "Mga tala"
+
+#: templates/booking/partials/slots.html:2
+msgid "Час"
+msgstr "Oras"
+
+#: templates/booking/partials/slots.html:5
+msgid "Оберіть час"
+msgstr "Pumili ng oras"
+
+#: templates/booking/partials/slots.html:9
+#, python-format
+msgid "вільно: %(n)s"
+msgstr "bakante: %(n)s"
+
+#: templates/booking/partials/slots.html:14
+msgid "Оберіть послугу та дату, щоб побачити вільні слоти."
+msgstr "Pumili ng serbisyo at petsa para makita ang mga available na slot."
+
+#: templates/booking/partials/slots.html:16
+msgid "Немає слотів"
+msgstr "Walang slot"
+
+#: templates/calculator/partials/results.html:3
+msgid "Ваші рекомендації"
+msgstr "Ang iyong mga rekomendasyon"
+
+#: templates/calculator/partials/results.html:15
+#, python-format
+msgid "Чому підходить: %(reasons)s."
+msgstr "Bakit bagay: %(reasons)s."
+
+#: templates/calculator/partials/results.html:20
+msgid "Переглянути"
+msgstr "Tingnan"
+
+#: templates/calculator/partials/results.html:24
+msgid "Немає точних збігів — спробуйте інші параметри."
+msgstr "Walang eksaktong tugma — subukan ang ibang mga parameter."
+
+#: templates/cart/cart.html:14 templates/catalog/list.html:52
+msgid "позиція"
+msgid_plural "позиції"
+msgstr[0] "item"
+msgstr[1] "mga item"
+
+#: templates/cart/cart.html:14
+msgid "Порожній кошик"
+msgstr "Walang laman ang cart"
+
+#: templates/cart/partials/cart_body.html:47
+msgid "Зменшити"
+msgstr "Bawasan"
+
+#: templates/cart/partials/cart_body.html:49
+msgid "Збільшити"
+msgstr "Dagdagan"
+
+#: templates/cart/partials/cart_body.html:60
+#, python-format
+msgid "Безкоштовна доставка від %(amount)s %(symbol)s"
+msgstr "Libreng delivery mula %(amount)s %(symbol)s"
+
+#: templates/cart/partials/cart_body.html:64
+msgid "Підсумок кошика"
+msgstr "Buod ng cart"
+
+#: templates/cart/partials/cart_body.html:65
+#, python-format
+msgid "Разом %(total)s %(symbol)s"
+msgstr "Kabuuan %(total)s %(symbol)s"
+
+#: templates/catalog/compare.html:4 templates/catalog/compare.html:13
+#: templates/partials/header.html:59 templates/partials/header.html:110
+msgid "Порівняння"
+msgstr "Paghahambing"
+
+#: templates/catalog/compare.html:16
+#, python-format
+msgid "%(n)s з %(max)s товарів"
+msgstr "%(n)s sa %(max)s produkto"
+
+#: templates/catalog/compare.html:18
+msgid "Оберіть до 4 товарів для порівняння"
+msgstr "Pumili ng hanggang 4 na produkto na ihahambing"
+
+#: templates/catalog/list.html:32
+msgid "Категорії та фільтри"
+msgstr "Mga kategorya at filter"
+
+#: templates/catalog/list.html:40
+msgid "каталог"
+msgstr "katalogo"
+
+#: templates/catalog/list.html:109
+#: templates/catalog/partials/compare_body.html:36
+msgid "Ціна"
+msgstr "Presyo"
+
+#: templates/catalog/list.html:126
+msgid "Мінімальна ціна"
+msgstr "Pinakamababang presyo"
+
+#: templates/catalog/list.html:134
+msgid "Максимальна ціна"
+msgstr "Pinakamataas na presyo"
+
+#: templates/catalog/list.html:141
+msgid "Застосувати"
+msgstr "Ilapat"
+
+#: templates/catalog/list.html:146
+msgid "Скинути фільтри"
+msgstr "I-reset ang mga filter"
+
+#: templates/catalog/list.html:153
+msgid "Сортування"
+msgstr "Ayusin ayon sa"
+
+#: templates/catalog/partials/compare_body.html:7
+msgid "Параметр"
+msgstr "Parameter"
+
+#: templates/catalog/partials/compare_body.html:54
+#: templates/catalog/partials/pd_specs.html:26
+msgid "Час куріння"
+msgstr "Tagal ng paghithit"
+
+#: templates/catalog/partials/compare_body.html:78
+#: templates/catalog/partials/pd_description.html:10
+msgid "Смакові нотки"
+msgstr "Mga nota ng lasa"
+
+#: templates/catalog/partials/compare_body.html:88
+msgid "Список порівняння порожній."
+msgstr "Walang laman ang listahan ng paghahambing."
+
+#: templates/catalog/partials/compare_btn.html:12
+msgid "Прибрати з порівняння"
+msgstr "Alisin sa paghahambing"
+
+#: templates/catalog/partials/compare_btn.html:12
+#: templates/catalog/partials/compare_btn.html:18
+msgid "Порівняти"
+msgstr "Ihambing"
+
+#: templates/catalog/partials/compare_btn.html:18
+msgid "У порівнянні"
+msgstr "Nasa paghahambing"
+
+#: templates/catalog/partials/pd_cta.html:2
+msgid "Купити"
+msgstr "Bumili"
+
+#: templates/catalog/partials/pd_cta.html:20
+msgid "Менше"
+msgstr "Bawasan"
+
+#: templates/catalog/partials/pd_cta.html:29
+msgid "Кількість"
+msgstr "Dami"
+
+#: templates/catalog/partials/pd_cta.html:30
+msgid "Більше"
+msgstr "Dagdagan"
+
+#: templates/catalog/partials/pd_cta.html:37
+msgid "Розрахунок"
+msgstr "Calculator"
+
+#: templates/catalog/partials/pd_description.html:4
+msgid "Опис"
+msgstr "Paglalarawan"
+
+#: templates/catalog/partials/pd_description.html:16
+msgid "Рекомендації"
+msgstr "Mga rekomendasyon"
+
+#: templates/catalog/partials/pd_gallery.html:6
+msgid "Попереднє фото"
+msgstr "Naunang larawan"
+
+#: templates/catalog/partials/pd_gallery.html:47
+#: templates/catalog/partials/pd_gallery.html:93
+msgid "Відео"
+msgstr "Video"
+
+#: templates/catalog/partials/pd_gallery.html:55
+msgid "Наступне фото"
+msgstr "Susunod na larawan"
+
+#: templates/catalog/partials/pd_gallery.html:62
+msgid "Мініатюри"
+msgstr "Mga thumbnail"
+
+#: templates/catalog/partials/pd_gallery.html:71
+#, python-format
+msgid "Фото %(n)s"
+msgstr "Larawan %(n)s"
+
+#: templates/catalog/partials/pd_gallery.html:82
+msgid "Фото 1"
+msgstr "Larawan 1"
+
+#: templates/catalog/partials/pd_history.html:4
+msgid "Історія сигари"
+msgstr "Kasaysayan ng cigar"
+
+#: templates/catalog/partials/pd_related.html:6
+#, python-format
+msgid "Схожі з лінії %(line)s"
+msgstr "Mga katulad mula sa linyang %(line)s"
+
+#: templates/catalog/partials/pd_related.html:8
+#, python-format
+msgid "Схожі від %(brand)s"
+msgstr "Mga katulad mula sa %(brand)s"
+
+#: templates/catalog/partials/pd_reviews.html:3
+msgid "Відгуки / рейтинг"
+msgstr "Mga review / rating"
+
+#: templates/catalog/partials/pd_reviews.html:11
+#, python-format
+msgid "Оцінка %(n)s з 5"
+msgstr "Rating na %(n)s sa 5"
+
+#: templates/catalog/partials/pd_reviews.html:24
+msgid "Поки немає відгуків — станьте першим, хто оцінить цей товар."
+msgstr "Wala pang review — maging una na magre-rate ng produktong ito."
+
+#: templates/catalog/partials/pd_specs.html:3
+msgid "Специфікації"
+msgstr "Mga espesipikasyon"
+
+#: templates/catalog/partials/pd_specs.html:8
+msgid "Виробник"
+msgstr "Tagagawa"
+
+#: templates/catalog/partials/pd_specs.html:31
+msgid "Наявність"
+msgstr "Availability"
+
+#: templates/catalog/partials/pd_specs.html:32
+msgid "В наявності"
+msgstr "Nasa stock"
+
+#: templates/catalog/partials/pd_specs.html:32
+msgid "Під замовлення"
+msgstr "Maaaring i-order"
+
+#: templates/catalog/partials/pd_specs.html:36
+msgid "Код"
+msgstr "Code"
+
+#: templates/catalog/partials/product_grid.html:49
+#: templates/catalog/partials/product_grid.html:55
+#: templates/catalog/partials/search_results.html:6
+#: templates/catalog/partials/search_suggest.html:23
+msgid "Нічого не знайдено"
+msgstr "Walang natagpuan"
+
+#: templates/catalog/partials/product_grid.html:53
+msgid "Сторінки каталогу"
+msgstr "Mga pahina ng katalogo"
+
+#: templates/emails/booking_created_customer.txt:2
+msgid "Ваше бронювання прийнято."
+msgstr "Natanggap na ang iyong reserbasyon."
+
+#: templates/emails/booking_created_customer.txt:4
+#, python-format
+msgid "Слот: %(slot)s"
+msgstr "Slot: %(slot)s"
+
+#: templates/emails/booking_created_customer.txt:8
+msgid "Ми звʼяжемося для підтвердження. Royal Smoke."
+msgstr "Makikipag-ugnayan kami sa iyo para sa kumpirmasyon. Royal Smoke."
+
+#: templates/emails/order_created_customer.html:6
+#: templates/emails/order_created_customer.txt:4
+#: templates/emails/order_paid.html:7 templates/emails/order_paid.txt:4
+msgid "Сума"
+msgstr "Halaga"
+
+#: templates/emails/order_created_customer.html:8
+#: templates/emails/order_created_customer.txt:6
+#: templates/orders/checkout.html:116 templates/orders/pay.html:4
+msgid "Оплата"
+msgstr "Pagbabayad"
+
+#: templates/emails/order_created_customer.html:9
+#: templates/emails/order_created_customer.txt:8
+msgid "Дякуємо, що обрали Royal Smoke."
+msgstr "Salamat sa pagpili sa Royal Smoke."
+
+#: templates/emails/order_created_customer.txt:5
+#: templates/orders/partials/checkout_costs.html:3
+msgid "Доставка"
+msgstr "Paghahatid"
+
+#: templates/emails/order_paid.html:6
+#, python-format
+msgid "Замовлення %(num)s"
+msgstr "Order %(num)s"
+
+#: templates/emails/order_paid.txt:5
+msgid "Статус"
+msgstr "Status"
+
+#: templates/leads/b2b.html:7 templates/pages/partials/home_b2b.html:45
+msgid "Контактна особа"
+msgstr "Contact person"
+
+#: templates/leads/b2b.html:10 templates/pages/partials/home_b2b.html:86
+msgid "Що цікавить"
+msgstr "Ano ang interes mo"
+
+#: templates/leads/b2b.html:11
+msgid "Прайс, гравіювання, корпоративні набори…"
+msgstr "Listahan ng presyo, pag-ukit, mga corporate set…"
+
+#: templates/leads/b2b.html:21 templates/pages/partials/home_b2b.html:32
+#: templates/pages/partials/home_b2b.html:40
+msgid "Компанія"
+msgstr "Kompanya"
+
+#: templates/leads/contact.html:15
+msgid "Повідомлення"
+msgstr "Mensahe"
+
+#: templates/leads/contact.html:16
+msgid "Пн–Нд: 11:00–21:00"
+msgstr "Lun–Lin: 11:00–21:00"
+
+#: templates/leads/contact.html:20
+msgid "Контактна інформація"
+msgstr "Impormasyon sa pakikipag-ugnayan"
+
+#: templates/leads/contact.html:42
+msgid "Адреса"
+msgstr "Address"
+
+#: templates/leads/contact.html:46
+msgid "Години"
+msgstr "Oras ng bukas"
+
+#: templates/leads/delivery.html:37
+#, python-format
+msgid ""
+"Безкоштовна доставка від %(amount)s %(symbol)s по Україні (окрім відда"
+"лених регіонів)."
+msgstr ""
+"Libreng paghahatid sa buong Ukraine para sa order na %(amount)s %(symb"
+"ol)s pataas (maliban sa mga liblib na rehiyon)."
+
+#: templates/orders/checkout.html:15
+#, python-format
+msgid ""
+"Сесія оформлення завершиться приблизно за %(mins)s хв. Збережіть дані "
+"або оновіть сторінку, щоб продовжити."
+msgstr ""
+"Matatapos ang session ng pag-checkout sa loob ng humigit-kumulang %(mi"
+"ns)s minuto. I-save ang iyong mga detalye o i-refresh ang pahina para "
+"magpatuloy."
+
+#: templates/orders/checkout.html:65
+msgid "Спосіб доставки"
+msgstr "Paraan ng paghahatid"
+
+#: templates/orders/checkout.html:80
+msgid "Місто"
+msgstr "Lungsod"
+
+#: templates/orders/checkout.html:98
+msgid "Адреса / відділення"
+msgstr "Address / sangay"
+
+#: templates/orders/checkout.html:124
+msgid ""
+"Онлайн-оплата зараз у демо-режимі: після підтвердження відкриється тес"
+"това сторінка без реального списання."
+msgstr ""
+"Nasa demo mode pa ang online na pagbabayad: pagkatapos mong kumpirmahi"
+"n, magbubukas ang isang test page at walang totoong singil na gagawin."
+
+#: templates/orders/checkout.html:128
+msgid "Коментар"
+msgstr "Komento"
+
+#: templates/orders/partials/checkout_costs.html:7
+msgid "Разом"
+msgstr "Kabuuan"
+
+#: templates/orders/partials/np_cities.html:15
+msgid "Міст за запитом не знайдено"
+msgstr "Walang nahanap na lungsod para sa iyong hinahanap"
+
+#: templates/orders/partials/np_warehouses.html:15
+msgid "Спочатку оберіть місто зі списку вище"
+msgstr "Pumili muna ng lungsod mula sa listahan sa itaas"
+
+#: templates/orders/partials/np_warehouses.html:17
+msgid "Відділень за запитом не знайдено"
+msgstr "Walang nahanap na sangay para sa iyong hinahanap"
+
+#: templates/orders/pay.html:14
+msgid "Очікуємо підтвердження оплати"
+msgstr "Hinihintay ang kumpirmasyon ng bayad"
+
+#: templates/orders/pay.html:16
+#, python-format
+msgid ""
+"Замовлення <strong>%(num)s</strong> уже передано в оплату. Не сплачуйт"
+"е повторно — статус оновиться автоматично після відповіді банку."
+msgstr ""
+"Naipasa na sa pagbabayad ang order <strong>%(num)s</strong>. Huwag nan"
+"g magbayad muli — awtomatikong mag-a-update ang status kapag sumagot n"
+"a ang bangko."
+
+#: templates/orders/pay.html:19
+msgid "До замовлення"
+msgstr "Pumunta sa order"
+
+#: templates/orders/pay.html:20
+msgid "Оновити статус"
+msgstr "I-refresh ang status"
+
+#: templates/orders/pay.html:25
+msgid "Демо-режим · гроші не списуються"
+msgstr "Demo mode · walang perang kakaltasin"
+
+#: templates/orders/pay.html:26
+msgid "Оплата замовлення"
+msgstr "Pagbabayad sa order"
+
+#: templates/orders/pay.html:28
+#, python-format
+msgid "Номер %(num)s. Це тестова сторінка, щоб перевірити флоу після LiqPay."
+msgstr ""
+"Numero ng order %(num)s. Ito ay test page para suriin ang daloy pagkat"
+"apos ng LiqPay."
+
+#: templates/orders/pay.html:36
+msgid "Імʼя на картці"
+msgstr "Pangalan sa card"
+
+#: templates/orders/pay.html:38
+msgid "IVAN PETRENKO"
+msgstr "IVAN PETRENKO"
+
+#: templates/orders/pay.html:41
+msgid "Номер картки"
+msgstr "Numero ng card"
+
+#: templates/orders/pay.html:47
+msgid "Термін"
+msgstr "Petsa ng pag-expire"
+
+#: templates/orders/pay.html:57
+msgid "Будь-які дані підійдуть — це симуляція."
+msgstr "Kahit anong detalye ay puwede — simulasyon lang ito."
+
+#: templates/orders/pay.html:59
+msgid "Сплатити (демо)"
+msgstr "Magbayad ngayon (demo)"
+
+#: templates/orders/pay.html:66
+msgid "Імітувати відмову"
+msgstr "Gayahin ang pagtanggi"
+
+#: templates/orders/pay.html:71
+msgid "Перехід до оплати"
+msgstr "Pagpunta sa pagbabayad"
+
+#: templates/orders/pay.html:72
+#, python-format
+msgid "Замовлення %(num)s. Зараз відкриється LiqPay."
+msgstr "Order %(num)s. Magbubukas na ang LiqPay."
+
+#: templates/orders/pay.html:76
+msgid "Сплатити зараз"
+msgstr "Magbayad ngayon"
+
+#: templates/orders/thank_you.html:8
+msgid "Дякуємо за замовлення"
+msgstr "Salamat sa iyong order"
+
+#: templates/orders/thank_you.html:11
+#, python-format
+msgid ""
+"Номер замовлення <strong>%(num)s</strong>. Ми надіслали підтвердження "
+"на вашу пошту."
+msgstr ""
+"Numero ng order <strong>%(num)s</strong>. Nagpadala kami ng kumpirmasy"
+"on sa iyong email."
+
+#: templates/orders/thank_you.html:13
+msgid "Оплату підтверджено."
+msgstr "Nakumpirma na ang bayad."
+
+#: templates/orders/thank_you.html:15
+msgid ""
+"Очікуємо підтвердження оплати (оновлюється автоматично після відповіді"
+" банку)."
+msgstr ""
+"Hinihintay ang kumpirmasyon ng bayad (awtomatikong mag-a-update kapag "
+"sumagot na ang bangko)."
+
+#: templates/orders/thank_you.html:18
+msgid "Ми отримали ваше замовлення і скоро звʼяжемося з вами."
+msgstr ""
+"Natanggap namin ang iyong order at makikipag-ugnayan kami sa iyo sa la"
+"long madaling panahon."
+
+#: templates/orders/thank_you.html:23
+msgid "Сплатити"
+msgstr "Magbayad"
+
+#: templates/pages/blog_detail.html:114
+#, python-format
+msgid "Оновлено %(date)s"
+msgstr "In-update noong %(date)s"
+
+#: templates/pages/blog_detail.html:141
+msgid "Часті запитання"
+msgstr "Mga madalas itanong"
+
+#: templates/pages/blog_list.html:106
+msgid "Статті зʼявляться незабаром."
+msgstr "Lalabas na ang mga artikulo sa lalong madaling panahon."
+
+#: templates/pages/faq.html:41
+msgid "Питання зʼявляться незабаром."
+msgstr "Lalabas na ang mga tanong sa lalong madaling panahon."
+
+#: templates/pages/home.html:6
+msgid "Tobacco Atelier"
+msgstr "Tobacco Atelier"
+
+#: templates/pages/home.html:35
+msgid "Головний банер"
+msgstr "Pangunahing banner"
+
+#: templates/pages/home.html:64
+msgid "Royal Smoke — cigar ritual"
+msgstr "Royal Smoke — ritwal ng cigar"
+
+#: templates/pages/home.html:70
+msgid "Royal Smoke — premium cigars"
+msgstr "Royal Smoke — mga premium na cigar"
+
+#: templates/pages/home.html:76
+msgid "Royal Smoke — lighting a cigar"
+msgstr "Royal Smoke — pagsisindi ng cigar"
+
+#: templates/pages/home.html:84
+msgid "Наступний слайд"
+msgstr "Susunod na slide"
+
+#: templates/pages/home.html:135
+msgid "Бронювання та B2B"
+msgstr "Reserbasyon at B2B"
+
+#: templates/pages/partials/home_b2b.html:54
+msgid "Контакт"
+msgstr "Contact person"
+
+#: templates/pages/partials/home_b2b.html:94
+msgid "Прайс, гравіювання…"
+msgstr "Listahan ng presyo, pag-ukit…"
+
+#: templates/pages/partials/home_brands.html:2
+msgid "Premium"
+msgstr "Premium"
+
+#: templates/pages/partials/home_brands.html:63
+msgid "До бренду"
+msgstr "Tingnan ang brand"
+
+#: templates/pages/partials/home_brands.html:70
+msgid "Незабаром з’являться featured-бренди."
+msgstr "Malapit nang dumating ang mga piling brand."
+
+#: templates/pages/partials/home_calculator.html:19
+msgid "Кроки підбору"
+msgstr "Mga hakbang sa pagpili"
+
+#: templates/pages/partials/home_calculator.html:49
+msgid "Яку міцність шукаєте?"
+msgstr "Anong lakas ang hinahanap mo?"
+
+#: templates/pages/partials/home_calculator.html:51
+#: templates/pages/partials/home_calculator.html:86
+#: templates/pages/partials/home_calculator.html:121
+#: templates/pages/partials/home_calculator.html:156
+msgid "Крок"
+msgstr "Hakbang"
+
+#: templates/pages/partials/home_calculator.html:60
+msgid ""
+"Light — до ранкової кави. Medium — універсальний щоденний вибір. Full "
+"— для вечірнього ритуалу."
+msgstr ""
+"Banayad — para sa kape sa umaga. Katamtaman — maraming gamit na pang-a"
+"raw-araw na pagpipilian. Malakas — para sa ritwal sa gabi."
+
+#: templates/pages/partials/home_calculator.html:84
+msgid "Який формат зручніший?"
+msgstr "Aling sukat ang mas bagay sa iyo?"
+
+#: templates/pages/partials/home_calculator.html:95
+msgid ""
+"Petit — короткі перерви. Robusto — класика на 45–60 хв. Churchill — до"
+"вгий вечір без поспіху."
+msgstr ""
+"Petit — para sa maiikling pahinga. Robusto — klasiko na 45–60 minuto. "
+"Churchill — mahabang gabing walang pagmamadali."
+
+#: templates/pages/partials/home_calculator.html:119
+msgid "Яку країну обираєте?"
+msgstr "Aling bansa ang pipiliin mo?"
+
+#: templates/pages/partials/home_calculator.html:130
+msgid ""
+"Куба — класика й елегантність. Нікарагуа — сила й спеції. Домінікана —"
+" м’якість і баланс. Або без обмежень."
+msgstr ""
+"Cuba — klasiko at elegante. Nicaragua — lakas at pampalasa. Dominican "
+"Republic — malambot at balanse. O walang kagustuhan."
+
+#: templates/pages/partials/home_calculator.html:136
+msgid "Куба"
+msgstr "Cuba"
+
+#: templates/pages/partials/home_calculator.html:140
+msgid "Нікарагуа"
+msgstr "Nicaragua"
+
+#: templates/pages/partials/home_calculator.html:144
+msgid "Домінікана"
+msgstr "Dominican Republic"
+
+#: templates/pages/partials/home_calculator.html:148
+msgid "Будь-яка"
+msgstr "Alinman"
+
+#: templates/pages/partials/home_calculator.html:154
+msgid "Який бюджет на сигару?"
+msgstr "Magkano ang badyet mo kada cigar?"
+
+#: templates/pages/partials/home_calculator.html:165
+msgid ""
+"Оберіть комфортний діапазон — підберемо варіанти в межах ціни або пока"
+"жемо найкраще без обмежень."
+msgstr ""
+"Pumili ng komportableng saklaw — hahanapan ka namin ng mga opsyon sa l"
+"oob ng iyong presyo o ipapakita ang pinakamahusay nang walang limitasy"
+"on."
+
+#: templates/pages/partials/home_calculator.html:171
+#, python-format
+msgid "до %(amount)s %(symbol)s"
+msgstr "hanggang %(amount)s %(symbol)s"
+
+#: templates/pages/partials/home_calculator.html:175
+#: templates/pages/partials/home_calculator.html:179
+#, python-format
+msgid "%(lo)s—%(hi)s %(symbol)s"
+msgstr "%(lo)s—%(hi)s %(symbol)s"
+
+#: templates/pages/partials/home_calculator.html:183
+msgid "без обмежень"
+msgstr "walang limitasyon"
+
+#: templates/pages/partials/home_calculator.html:191
+msgid "Далі"
+msgstr "Susunod"
+
+#: templates/pages/partials/home_calculator.html:194
+msgid "Показати підбір"
+msgstr "Ipakita ang mga rekomendasyon"
+
+#: templates/pages/partials/home_calculator.html:204
+msgid "Підсумок вибору"
+msgstr "Buod ng mga napili"
+
+#: templates/pages/partials/home_calculator.html:205
+msgid "Ваш вибір"
+msgstr "Ang mga napili mo"
+
+#: templates/pages/partials/home_catalog.html:17
+msgid "Попередні товари"
+msgstr "Mga naunang produkto"
+
+#: templates/pages/partials/home_catalog.html:28
+msgid "Товари каталогу"
+msgstr "Mga produkto sa katalogo"
+
+#: templates/pages/partials/home_catalog.html:84
+msgid "Наступні товари"
+msgstr "Mga susunod na produkto"
+
+#: templates/pages/partials/home_history.html:17
+msgid "Попередній етап"
+msgstr "Naunang yugto"
+
+#: templates/pages/partials/home_history.html:28
+msgid "Етапи історії"
+msgstr "Mga yugto ng kasaysayan"
+
+#: templates/pages/partials/home_history.html:70
+msgid ""
+"Від майя та таїно до кубинських фабрик і сучасних мануфактур — сигара "
+"як ритуал часу, який ми зберігаємо в Royal Smoke."
+msgstr ""
+"Mula sa mga Maya at Taíno hanggang sa mga pabrika ng Cuba at modernong"
+" manupaktura — ang cigar bilang ritwal ng panahon na pinapangalagaan n"
+"amin sa Royal Smoke."
+
+#: templates/pages/partials/home_history.html:81
+msgid "Наступний етап"
+msgstr "Susunod na yugto"
+
+#: templates/pages/partials/home_history.html:87
+msgid "Роки історії"
+msgstr "Mga taon ng kasaysayan"
+
+#: templates/partials/breadcrumbs.html:3
+msgid "Навігаційний шлях"
+msgstr "Landas ng nabigasyon"
+
+#: templates/partials/footer.html:18
+msgid "Навігація футера"
+msgstr "Nabigasyon sa footer"
+
+#: templates/partials/footer.html:47
+msgid "Instagram"
+msgstr "Instagram"
+
+#: templates/partials/footer.html:52
+msgid "Telegram"
+msgstr "Telegram"
+
+#: templates/partials/footer.html:76
+msgid "Facebook"
+msgstr "Facebook"
+
+#: templates/partials/footer.html:93
+msgid "Сайт від"
+msgstr "Ginawa ng"
+
+#: templates/partials/header.html:16
+msgid "Основна навігація"
+msgstr "Pangunahing nabigasyon"
+
+#: templates/partials/header.html:31 templates/partials/header.html:40
+msgid "Пошук"
+msgstr "Paghahanap"
+
+#: templates/partials/header.html:38
+msgid "Пошук товарів"
+msgstr "Paghahanap ng produkto"
+
+#: templates/partials/header.html:83
+msgid "Відкрити меню"
+msgstr "Buksan ang menu"
+
+#: templates/partials/header.html:91
+msgid "Меню"
+msgstr "Menu"
+
+#: templates/partials/header.html:99
+msgid "Закрити меню"
+msgstr "Isara ang menu"
+
+#: templates/partials/lang_switcher.html:3
+msgid "Мова"
+msgstr "Wika"
+
+#: templates/pwa/offline.html:8
+msgid "Каталог офлайн"
+msgstr "Offline na katalogo"
+
+#: templates/pwa/offline.html:14
+msgid "Офлайн-копія каталогу. Ціни та наявність можуть бути застарілими."
+msgstr ""
+"Offline na kopya ng katalogo. Maaaring luma na ang mga presyo at stock"
+"."
+

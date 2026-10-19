@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 from django.conf import settings
 from django.core.files import File
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError, no_translations
+from modeltranslation.utils import build_localized_fieldname
 
 from apps.pages.blog_seed_bodies1 import POST_BODIES as BODIES_1
 from apps.pages.blog_seed_bodies2 import POST_BODIES as BODIES_2
@@ -12,14 +14,42 @@ from apps.pages.blog_seed_data import POSTS
 from apps.pages.blog_seed_en import BODIES_EN
 from apps.pages.blog_seed_extra import EXTRA_UK
 from apps.pages.blog_seed_zh import BODIES_ZH
+from apps.pages.blog_seed_ms import BODIES as BODIES_MS
+from apps.pages.blog_seed_fil import BODIES as BODIES_FIL
+from apps.pages.blog_seed_id import BODIES as BODIES_ID
+from apps.pages.blog_seed_vi import BODIES as BODIES_VI
 from apps.pages.models import BlogFAQItem, BlogPost
 from apps.core.block_defaults import BLOCK_CONTENT_TYPES, BLOCK_DEFAULTS, BLOCK_FIELD_LABELS
 from apps.core.models import SiteBlock
 
 
-class Command(BaseCommand):
-    help = 'Ідемпотентний seed: 4 SEO-статті блогу (UK/EN/ZH) з обкладинками'
+SEA_CODES = ('ms', 'fil', 'id', 'vi')
+SEA_BODIES = {'ms': BODIES_MS, 'fil': BODIES_FIL, 'id': BODIES_ID, 'vi': BODIES_VI}
 
+
+def _sea(text: str) -> dict[str, str]:
+    """Переклад рядка статті з таблиці docs/i18n (scripts/i18n_data)."""
+    scripts = Path(__file__).resolve().parents[4] / 'scripts'
+    if str(scripts) not in sys.path:
+        sys.path.insert(0, str(scripts))
+    from i18n_sea import translate
+
+    found = translate(text)
+    if not found:
+        raise CommandError(f'Немає перекладу ms/fil/id/vi: {text[:80]!r}')
+    return found
+
+
+def _put(defaults: dict, field: str, uk: str) -> None:
+    found = _sea(uk)
+    for code in SEA_CODES:
+        defaults[build_localized_fieldname(field, code)] = found[code]
+
+
+class Command(BaseCommand):
+    help = 'Ідемпотентний seed: 4 SEO-статті блогу (UK/EN/ZH і ms/fil/id/vi) з обкладинками'
+
+    @no_translations
     def handle(self, *args, **options):
         self._seed_cms_blocks()
         bodies_uk = {**BODIES_1, **BODIES_2}
@@ -55,10 +85,22 @@ class Command(BaseCommand):
                 'meta_description_uk': data['meta_description_uk'],
                 'meta_description_en': data['meta_description_en'],
                 'meta_description_zh_hans': data['meta_description_zh'],
+                **{
+                    build_localized_fieldname('body', code): SEA_BODIES[code][slug]
+                    for code in SEA_CODES
+                },
                 'published_at': data['published_at'],
                 'is_published': True,
                 'sort_order': data['sort_order'],
             }
+            for field, uk_key in (
+                ('title', 'title_uk'),
+                ('excerpt', 'excerpt_uk'),
+                ('cover_alt', 'cover_alt_uk'),
+                ('meta_title', 'meta_title_uk'),
+                ('meta_description', 'meta_description_uk'),
+            ):
+                _put(defaults, field, data[uk_key])
             post, was_created = BlogPost.objects.update_or_create(
                 slug=slug, defaults=defaults,
             )
@@ -105,15 +147,18 @@ class Command(BaseCommand):
     def _sync_faq(self, post: BlogPost, faq_rows: list[dict]) -> None:
         post.faq_items.all().delete()
         for i, row in enumerate(faq_rows):
-            BlogFAQItem.objects.create(
-                post=post,
-                sort_order=i * 10,
-                question=row['q_uk'],
-                question_uk=row['q_uk'],
-                question_en=row['q_en'],
-                question_zh_hans=row['q_zh'],
-                answer=row['a_uk'],
-                answer_uk=row['a_uk'],
-                answer_en=row['a_en'],
-                answer_zh_hans=row['a_zh'],
-            )
+            fields = {
+                'post': post,
+                'sort_order': i * 10,
+                'question': row['q_uk'],
+                'question_uk': row['q_uk'],
+                'question_en': row['q_en'],
+                'question_zh_hans': row['q_zh'],
+                'answer': row['a_uk'],
+                'answer_uk': row['a_uk'],
+                'answer_en': row['a_en'],
+                'answer_zh_hans': row['a_zh'],
+            }
+            _put(fields, 'question', row['q_uk'])
+            _put(fields, 'answer', row['a_uk'])
+            BlogFAQItem.objects.create(**fields)

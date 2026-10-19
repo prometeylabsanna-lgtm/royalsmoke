@@ -110,20 +110,37 @@ def _match(haystack: str, needle: str) -> bool:
     return (needle or '').casefold() in (haystack or '').casefold()
 
 
+def _matches_query(text: str, query: str) -> bool:
+    """Збіг і з українською назвою, і з її латиницею (Kyiv знаходить Київ)."""
+    from apps.orders.services.uk_latin import transliterate_uk
+
+    return _match(text, query) or _match(transliterate_uk(text), query)
+
+
+def _for_language(row: dict[str, str], *keys: str) -> dict[str, str]:
+    from apps.orders.services.uk_latin import place_name
+
+    shown = dict(row)
+    for key in keys:
+        if shown.get(key):
+            shown[key] = place_name(shown[key])
+    return shown
+
+
 def _demo_search_cities(query: str, limit: int = 20) -> list[dict[str, str]]:
     q = (query or '').strip()
     if len(q) < 2:
         return []
-    hits = [c for c in DEMO_CITIES if _match(c['name'], q) or _match(c['area'], q)]
-    return hits[:limit]
+    hits = [c for c in DEMO_CITIES if _matches_query(c['name'], q) or _matches_query(c['area'], q)]
+    return [_for_language(c, 'name', 'area') for c in hits[:limit]]
 
 
 def _demo_warehouses(city_ref: str, query: str = '', limit: int = 50) -> list[dict[str, str]]:
     rows = list(DEMO_WAREHOUSES.get(city_ref) or [])
     q = (query or '').strip()
     if q:
-        rows = [w for w in rows if _match(w['name'], q) or _match(w.get('address', ''), q)]
-    return rows[:limit]
+        rows = [w for w in rows if _matches_query(w['name'], q) or _matches_query(w.get('address', ''), q)]
+    return [_for_language(w, 'name', 'address') for w in rows[:limit]]
 
 
 def call(model: str, method: str, properties: dict | None = None) -> list[dict]:
@@ -168,20 +185,20 @@ def search_cities(query: str, limit: int = 20) -> list[dict[str, str]]:
     out: list[dict[str, str]] = []
     for block in rows:
         for addr in block.get('Addresses') or []:
-            out.append({
+            out.append(_for_language({
                 'ref': addr.get('DeliveryCity') or addr.get('Ref') or '',
                 'name': addr.get('Present') or addr.get('MainDescription') or '',
                 'area': addr.get('Area') or '',
-            })
+            }, 'name', 'area'))
     if out:
         return out
     rows = call('Address', 'getCities', {'FindByString': q, 'Limit': str(limit)})
     for row in rows:
-        out.append({
+        out.append(_for_language({
             'ref': row.get('Ref') or '',
             'name': row.get('Description') or '',
             'area': row.get('AreaDescription') or '',
-        })
+        }, 'name', 'area'))
     return out
 
 
@@ -198,12 +215,12 @@ def get_warehouses(city_ref: str, query: str = '', limit: int = 50) -> list[dict
         props['FindByString'] = query.strip()
     rows = call('Address', 'getWarehouses', props)
     return [
-        {
+        _for_language({
             'ref': r.get('Ref') or '',
             'name': r.get('Description') or '',
             'number': r.get('Number') or '',
             'address': r.get('ShortAddress') or r.get('Description') or '',
-        }
+        }, 'name', 'address')
         for r in rows
     ]
 
@@ -287,7 +304,7 @@ def track_ttn(ttn: str) -> dict[str, Any]:
     return {
         'status_code': str(row.get('StatusCode') or ''),
         'status': row.get('Status') or '',
-        'warehouse': row.get('WarehouseRecipient') or '',
+        'warehouse': _for_language({'warehouse': row.get('WarehouseRecipient') or ''}, 'warehouse')['warehouse'],
         'raw': row,
     }
 

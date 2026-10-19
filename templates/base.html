@@ -41,6 +41,8 @@
   <link rel="stylesheet" href="{% static 'css/wishlist.css' %}?v=3">
   <link rel="stylesheet" href="{% static 'css/compare.css' %}?v=1">
   <link rel="stylesheet" href="{% static 'css/pwa.css' %}?v=1">
+  <link rel="stylesheet" href="{% static 'css/lang-switcher.css' %}?v=1">
+  {% if LANGUAGE_CODE == 'vi' %}<link rel="stylesheet" href="{% static 'css/fonts-vi.css' %}?v=1">{% endif %}
   {% block extra_css %}{% endblock %}
   <script src="https://unpkg.com/htmx.org@2.0.4" defer></script>
 </head>
@@ -138,7 +140,8 @@
   <script src="{% static 'js/cart-guard.js' %}?v=1" defer></script>
   <script src="{% static 'js/main.js' %}?v=6" defer></script>
   <script src="{% static 'js/home-parallax.js' %}?v=1" defer></script>
-  <script src="{% static 'js/pwa.js' %}?v=1" defer></script>
+  <script src="{% static 'js/lang-switcher.js' %}?v=1" defer></script>
+  <script src="{% static 'js/pwa.js' %}?v=3" defer></script>
   {% block extra_js %}{% endblock %}
 </body>
 </html>

@@ -75,10 +75,13 @@ class CurrencyRate(models.Model):
     symbol = models.CharField('Символ', max_length=8)
     uah_per_unit = models.DecimalField(
         'Гривень за 1 одиницю',
-        max_digits=12,
-        decimal_places=4,
-        validators=[MinValueValidator(Decimal('0.0001'))],
-        help_text='Скільки гривень коштує 1 одиниця цієї валюти. Для UAH завжди 1.',
+        max_digits=16,
+        decimal_places=8,
+        validators=[MinValueValidator(Decimal('0.00000001'))],
+        help_text=(
+            'Скільки гривень коштує 1 одиниця цієї валюти. Для UAH завжди 1. '
+            'Для дрібних валют (IDR, VND) потрібні знаки після коми: 0.00250000.'
+        ),
     )
     sort_order = models.PositiveSmallIntegerField('Порядок', default=0)
 

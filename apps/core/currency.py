@@ -12,9 +12,28 @@ from django.core.cache import cache
 from django.db.utils import OperationalError, ProgrammingError
 from django.utils.translation import get_language
 
-from apps.core.money import TWOPLACES, as_decimal, money
+from apps.core.money import TWOPLACES, as_decimal
 
 CACHE_KEY = 'rs_currency_rates'
+
+# Валюти без дробової частини: суми показуємо й рахуємо цілими (400000, а не 400000.00).
+ZERO_DECIMAL_CURRENCIES = frozenset({'IDR', 'VND'})
+_WHOLE = Decimal('1')
+
+
+def currency_quantum(code: str | None) -> Decimal:
+    return _WHOLE if str(code or '').upper() in ZERO_DECIMAL_CURRENCIES else TWOPLACES
+
+
+def price_slider_step(code: str | None = None) -> int:
+    """Крок повзунка цін: 1 для звичайних валют, 1000 для IDR/VND (суми в сотні тисяч)."""
+    resolved = code or language_currency_code()
+    return 1000 if str(resolved).upper() in ZERO_DECIMAL_CURRENCIES else 1
+
+
+def round_for_currency(amount, code: str | None = None) -> Decimal:
+    """Округлення суми у валюті: 2 знаки, а для IDR/VND — до цілого (ROUND_HALF_UP)."""
+    return as_decimal(amount).quantize(currency_quantum(code), rounding=ROUND_HALF_UP)
 
 _FALLBACK: dict[str, dict] = {
     'UAH': {
@@ -34,6 +53,30 @@ _FALLBACK: dict[str, dict] = {
         'symbol': '¥',
         'name': 'Юань',
         'uah_per_unit': Decimal('5.80'),
+    },
+    'MYR': {
+        'code': 'MYR',
+        'symbol': 'RM',
+        'name': 'Малайзійський рингіт',
+        'uah_per_unit': Decimal('9.76'),
+    },
+    'PHP': {
+        'code': 'PHP',
+        'symbol': '₱',
+        'name': 'Філіппінське песо',
+        'uah_per_unit': Decimal('0.70'),
+    },
+    'IDR': {
+        'code': 'IDR',
+        'symbol': 'Rp',
+        'name': 'Індонезійська рупія',
+        'uah_per_unit': Decimal('0.0025'),
+    },
+    'VND': {
+        'code': 'VND',
+        'symbol': '₫',
+        'name': 'В’єтнамський донг',
+        'uah_per_unit': Decimal('0.00156'),
     },
 }
 
@@ -92,7 +135,7 @@ def convert_from_uah(amount, code: str | None = None) -> Decimal:
     rate = as_decimal(cur.get('uah_per_unit'))
     if cur.get('code') == 'UAH' or rate <= 0:
         return value.quantize(TWOPLACES, rounding=ROUND_HALF_UP)
-    return (value / rate).quantize(TWOPLACES, rounding=ROUND_HALF_UP)
+    return round_for_currency(value / rate, cur.get('code'))
 
 
 def convert_to_uah(amount, code: str | None = None) -> Decimal:
@@ -126,16 +169,17 @@ def amount_to_uah(amount, *, currency: str | None = None, fx_rate=None) -> Decim
 def convert_cart_totals(totals: dict, delivery_uah=None) -> dict:
     """Return cart-like totals converted from UAH into the active currency."""
     cur = get_currency()
+    code = cur['code']
     items = []
     for item in totals.get('items') or []:
         unit = convert_from_uah(item.get('unit_price'))
         qty = int(item.get('quantity') or 0)
-        line = money(unit * qty)
+        line = round_for_currency(unit * qty, code)
         items.append({**item, 'unit_price': unit, 'line_total': line})
-    subtotal = money(sum((i['line_total'] for i in items), Decimal('0')))
+    subtotal = round_for_currency(sum((i['line_total'] for i in items), Decimal('0')), code)
     delivery = convert_from_uah(delivery_uah or 0)
-    discount = money((totals.get('discount') if totals else None) or 0)
-    total = money(subtotal + delivery - discount)
+    discount = round_for_currency((totals.get('discount') if totals else None) or 0, code)
+    total = round_for_currency(subtotal + delivery - discount, code)
     return {
         **totals,
         'items': items,

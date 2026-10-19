@@ -5,7 +5,7 @@ from pathlib import Path
 
 from django.conf import settings
 from django.core.files import File
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, no_translations
 from django.db import transaction
 
 from apps.catalog.models import Product, ProductImage, ProductReview
@@ -118,6 +118,7 @@ class Command(BaseCommand):
         )
 
     @transaction.atomic
+    @no_translations
     def handle(self, *args, **options):
         force = bool(options.get('force'))
         products = list(

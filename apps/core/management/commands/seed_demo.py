@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import timedelta
 from decimal import Decimal
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, no_translations
 from django.utils import timezone
 
 from apps.booking.models import BookingService, BookingSlot
@@ -29,6 +29,7 @@ from apps.core.legal_delivery_migrate import (
 class Command(BaseCommand):
     help = 'Ідемпотентний seed: CMS-блоки, демо-каталог, калькулятор, бронювання'
 
+    @no_translations
     def handle(self, *args, **options):
         SiteSettings.load()
         ChromeStyle.load()

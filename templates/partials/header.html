@@ -120,7 +120,7 @@
       <a href="{% url 'pages:legal' slug='privacy' %}">{% cms_text 'site' 'footer_link_privacy' %}</a>
     </nav>
     <div class="rs-drawer__meta">
-      {% include "partials/lang_switcher.html" %}
+      {% include "partials/lang_switcher.html" with variant="list" %}
       <button type="button" class="rs-drawer__callback" data-callback-open>{% cms_text 'site' 'nav_callback' %}</button>
     </div>
   </div>

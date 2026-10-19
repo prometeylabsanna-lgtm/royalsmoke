@@ -63,6 +63,27 @@ def localize_path(path: str | None) -> str:
     return localize_path_for(raw, get_language() or settings.LANGUAGE_CODE)
 
 
+@register.simple_tag
+def storefront_languages() -> dict:
+    """Мови для перемикача: видимі (STOREFRONT_LANGUAGES_VISIBLE) + поточна, навіть якщо вона прихована."""
+    current = get_language() or settings.LANGUAGE_CODE
+    visible = set(getattr(settings, 'STOREFRONT_LANGUAGES_VISIBLE', ())) | {current}
+    names = dict(settings.LANGUAGES)
+    short = getattr(settings, 'LANGUAGE_SHORT_LABELS', {})
+    entries = [
+        {
+            'code': code,
+            'name': names[code],
+            'short': short.get(code, code.upper()),
+            'is_current': code == current,
+        }
+        for code, _name in settings.LANGUAGES
+        if code in visible
+    ]
+    current_entry = next((e for e in entries if e['is_current']), entries[0] if entries else None)
+    return {'entries': entries, 'current': current_entry}
+
+
 @register.simple_tag(takes_context=True)
 def language_next(context, lang_code: str) -> str:
     request = context.get('request')

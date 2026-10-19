@@ -117,13 +117,31 @@
       });
     }
 
+    // Великі суми (IDR/VND) розділяємо пробілами груп за мовою сторінки: 860 000, а не 860000.
+    function formatAmount(value) {
+      if (Math.abs(value) < 10000) return String(value);
+      try {
+        return Number(value).toLocaleString(document.documentElement.lang || undefined);
+      } catch (e) {
+        return String(value);
+      }
+    }
+
     function setTip(el, value, show) {
       if (!el) return;
-      el.textContent = value + ' ' + symbol;
+      el.textContent = formatAmount(value) + ' ' + symbol;
       el.classList.toggle('is-hidden', !show);
       el.setAttribute('aria-hidden', show ? 'false' : 'true');
-      var left = pctOf(value, boundMin, boundMax);
-      el.style.left = left + '%';
+      var pct = pctOf(value, boundMin, boundMax);
+      var parent = el.offsetParent;
+      if (!parent || !parent.clientWidth) {
+        el.style.left = pct + '%';
+        return;
+      }
+      // Підпис по центру повзунка, але в межах доріжки: довга сума не виходить за екран.
+      var half = el.offsetWidth / 2;
+      var px = (pct / 100) * parent.clientWidth;
+      el.style.left = Math.min(Math.max(px, half), parent.clientWidth - half) + 'px';
     }
 
     function syncRangeUi() {

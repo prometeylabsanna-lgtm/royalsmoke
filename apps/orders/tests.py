@@ -12,11 +12,30 @@ class NovaPoshtaDemoTests(SimpleTestCase):
     def test_demo_cities_and_warehouses(self):
         from apps.orders.services import nova_poshta as np_svc
 
-        cities = np_svc.search_cities('Ки')
+        from django.utils import translation
+
+        with translation.override('uk'):
+            cities = np_svc.search_cities('Ки')
         self.assertTrue(any(c['ref'] == 'demo-kyiv' for c in cities))
         warehouses = np_svc.get_warehouses('demo-kyiv')
         self.assertGreaterEqual(len(warehouses), 1)
+        with translation.override('uk'):
+            self.assertEqual(np_svc.search_cities('Ки')[0]['name'], 'Київ')
         self.assertEqual(np_svc.calculate_delivery_cost('demo-kyiv'), np_svc.DEMO_DELIVERY_COST)
+
+    def test_non_ukrainian_names_are_transliterated(self):
+        from django.utils import translation
+
+        from apps.orders.services import nova_poshta as np_svc
+
+        with translation.override('en'):
+            city = np_svc.search_cities('Kyiv')[0]
+            self.assertEqual(city['name'], 'Kyiv')
+            self.assertEqual(city['area'], 'm. Kyiv')
+            warehouse = np_svc.get_warehouses('demo-kyiv')[0]
+            self.assertEqual(warehouse['name'], 'Viddilennia №1: vul. Khreshchatyk, 22')
+        with translation.override('vi'):
+            self.assertEqual(np_svc.search_cities('Lviv')[0]['name'], 'Lviv')
 
 
 @override_settings(NOVA_POSHTA_API_KEY='')

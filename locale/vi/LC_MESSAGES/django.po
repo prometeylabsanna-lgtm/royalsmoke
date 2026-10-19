@@ -1,0 +1,2095 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\nReport-Msgid-Bugs-To: \nPOT-Creat"
+"ion-Date: 2026-10-19 15:43+0300\nPO-Revision-Date: YEAR-MO-DA HO:MI+ZO"
+"NE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAG"
+"E <LL@li.org>\nLanguage: vi\nMIME-Version: 1.0\nContent-Type: text/pla"
+"in; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplu"
+"rals=1; plural=0;\n"
+
+#: apps/accounts/forms.py:12 apps/accounts/forms.py:16
+#: templates/accounts/register.html:10 templates/leads/b2b.html:9
+#: templates/leads/contact.html:13 templates/pages/partials/home_b2b.html:73
+#: templates/pages/partials/home_b2b.html:81
+msgid "Email"
+msgstr "Email"
+
+#: apps/accounts/forms.py:17 templates/accounts/register.html:9
+#: templates/base.html:122 templates/booking/page.html:45
+#: templates/emails/booking_created_customer.txt:5
+#: templates/leads/contact.html:12 templates/orders/checkout.html:33
+msgid "Імʼя"
+msgstr "Tên"
+
+#: apps/accounts/forms.py:18 templates/orders/checkout.html:41
+msgid "Прізвище"
+msgstr "Họ"
+
+#: apps/accounts/forms.py:19 templates/accounts/register.html:11
+#: templates/base.html:123 templates/booking/page.html:50
+#: templates/emails/booking_created_customer.txt:6 templates/leads/b2b.html:8
+#: templates/leads/contact.html:14 templates/leads/contact.html:30
+#: templates/orders/checkout.html:49 templates/pages/partials/home_b2b.html:59
+#: templates/pages/partials/home_b2b.html:68
+msgid "Телефон"
+msgstr "Số điện thoại"
+
+#: apps/accounts/forms.py:20
+msgid "Підтвердження віку"
+msgstr "Xác nhận độ tuổi"
+
+#: apps/accounts/forms.py:28 apps/accounts/forms.py:90
+#: templates/accounts/cabinet.html:96 templates/accounts/delete_account.html:24
+#: templates/accounts/login.html:32 templates/accounts/login.html:34
+#: templates/accounts/register.html:12
+msgid "Пароль"
+msgstr "Mật khẩu"
+
+#: apps/accounts/forms.py:30 templates/accounts/register.html:13
+msgid "Повторіть пароль"
+msgstr "Nhập lại mật khẩu"
+
+#: apps/accounts/forms.py:39 apps/accounts/forms.py:80
+msgid "Паролі не збігаються"
+msgstr "Mật khẩu không khớp"
+
+#: apps/accounts/forms.py:58 apps/accounts/forms.py:62
+#: templates/accounts/password_change.html:24
+#: templates/accounts/password_change.html:26
+msgid "Поточний пароль"
+msgstr "Mật khẩu hiện tại"
+
+#: apps/accounts/forms.py:65 templates/accounts/password_change.html:32
+#: templates/accounts/password_change.html:34
+msgid "Новий пароль"
+msgstr "Mật khẩu mới"
+
+#: apps/accounts/forms.py:67 apps/accounts/forms.py:72
+#: templates/accounts/password_change.html:40
+#: templates/accounts/password_change.html:42
+msgid "Повторіть новий пароль"
+msgstr "Nhập lại mật khẩu mới"
+
+#: apps/accounts/forms.py:94 templates/accounts/delete_account.html:26
+msgid "Пароль для підтвердження"
+msgstr "Mật khẩu để xác nhận"
+
+#: apps/accounts/forms.py:97 templates/accounts/delete_account.html:34
+msgid "Підтверджую видалення акаунту"
+msgstr "Tôi xác nhận xóa tài khoản"
+
+#: apps/accounts/forms.py:106
+msgid "Невірний пароль"
+msgstr "Mật khẩu không đúng"
+
+#: apps/accounts/views.py:74
+msgid "Користувач з таким email уже існує"
+msgstr "Đã tồn tại người dùng với email này"
+
+#: apps/accounts/views.py:124
+msgid "гість"
+msgstr "khách"
+
+#: apps/accounts/views.py:152
+msgid "Пароль змінено. Інші сесії завершено."
+msgstr "Đã đổi mật khẩu. Các phiên khác đã được đăng xuất."
+
+#: apps/accounts/views.py:163
+msgid "Акаунт видалено. Кошик збережено як гостьовий."
+msgstr ""
+"Đã xóa tài khoản. Giỏ hàng của bạn được giữ lại dưới dạng giỏ hàng khá"
+"ch."
+
+#: apps/booking/models.py:9
+msgid "Дегустація"
+msgstr "Buổi thưởng thức"
+
+#: apps/booking/models.py:10
+msgid "Консультація сомельє"
+msgstr "Tư vấn cùng sommelier"
+
+#: apps/booking/models.py:11
+msgid "Візит у шоурум"
+msgstr "Tham quan showroom"
+
+#: apps/booking/models.py:12 apps/orders/models.py:43
+msgid "Самовивіз"
+msgstr "Tự đến lấy"
+
+#: apps/booking/views.py:55
+msgid "Цей слот уже минув"
+msgstr "Khung giờ này đã qua"
+
+#: apps/booking/views.py:57 apps/booking/views.py:171
+msgid "Немає вільних місць"
+msgstr "Không còn chỗ trống"
+
+#: apps/booking/views.py:78
+msgid "Бронювання прийнято"
+msgstr "Đã nhận đặt lịch"
+
+#: apps/booking/views.py:123
+msgid "Слот недоступний"
+msgstr "Khung giờ không khả dụng"
+
+#: apps/booking/views.py:134
+msgid "Бронювання прийнято. Очікуйте підтвердження."
+msgstr "Đã nhận đặt lịch. Vui lòng chờ xác nhận."
+
+#: apps/booking/views.py:140
+msgid "Не вдалося створити бронювання"
+msgstr "Không thể tạo đặt lịch"
+
+#: apps/booking/views.py:183
+msgid "Бронювання прийнято."
+msgstr "Đã nhận đặt lịch."
+
+#: apps/booking/views.py:185
+msgid "Перевірте дані бронювання."
+msgstr "Vui lòng kiểm tra thông tin đặt lịch."
+
+#: apps/booking/views.py:187
+msgid "Оберіть послугу та час на сторінці бронювання."
+msgstr "Hãy chọn dịch vụ và giờ trên trang đặt lịch."
+
+#: apps/calculator/models.py:13 templates/catalog/list.html:63
+#: templates/catalog/list.html:77
+#: templates/catalog/partials/compare_body.html:48
+#: templates/catalog/partials/pd_specs.html:20
+#: templates/pages/partials/home_calculator.html:22
+#: templates/pages/partials/home_calculator.html:63
+#: templates/pages/partials/home_calculator.html:208
+msgid "Міцність"
+msgstr "Độ mạnh"
+
+#: apps/calculator/models.py:14
+#: templates/pages/partials/home_calculator.html:25
+#: templates/pages/partials/home_calculator.html:98
+#: templates/pages/partials/home_calculator.html:212
+msgid "Формат"
+msgstr "Kích cỡ"
+
+#: apps/calculator/models.py:15 templates/catalog/list.html:95
+#: templates/catalog/list.html:96
+#: templates/catalog/partials/compare_body.html:42
+#: templates/catalog/partials/pd_specs.html:14
+#: templates/pages/partials/home_calculator.html:28
+#: templates/pages/partials/home_calculator.html:133
+#: templates/pages/partials/home_calculator.html:216
+msgid "Країна"
+msgstr "Quốc gia"
+
+#: apps/calculator/models.py:16
+#: templates/pages/partials/home_calculator.html:31
+#: templates/pages/partials/home_calculator.html:168
+#: templates/pages/partials/home_calculator.html:220
+msgid "Бюджет"
+msgstr "Ngân sách"
+
+#: apps/calculator/services.py:91
+#, python-format
+msgid "міцність %(s)s"
+msgstr "độ mạnh %(s)s"
+
+#: apps/calculator/services.py:105
+#, python-format
+msgid "країна %(c)s"
+msgstr "quốc gia %(c)s"
+
+#: apps/calculator/services.py:120
+#, python-format
+msgid "формат %(f)s"
+msgstr "kích cỡ %(f)s"
+
+#: apps/calculator/services.py:127
+#, python-format
+msgid "у бюджеті (%(p)s %(symbol)s)"
+msgstr "trong ngân sách (%(p)s %(symbol)s)"
+
+#: apps/calculator/services.py:136
+msgid "близький за профілем асортименту"
+msgstr "gần với hương vị bạn ưa thích"
+
+#: apps/cart/stock.py:161 apps/cart/stock.py:199 apps/cart/stock.py:204
+#: apps/cart/stock.py:210 apps/cart/stock.py:213
+#, python-format
+msgid "«%(name)s» більше недоступний"
+msgstr "“%(name)s” không còn khả dụng"
+
+#: apps/cart/stock.py:167 apps/cart/stock.py:217
+#, python-format
+msgid "«%(name)s» закінчився на складі"
+msgstr "“%(name)s” đã hết hàng"
+
+#: apps/cart/stock.py:170 apps/cart/stock.py:220
+#, python-format
+msgid "«%(name)s»: на складі лише %(n)s шт."
+msgstr "“%(name)s”: trong kho chỉ còn %(n)s sản phẩm"
+
+#: apps/cart/stock.py:200 apps/cart/stubs.py:21
+msgid "Товар недоступний"
+msgstr "Sản phẩm không khả dụng"
+
+#: apps/cart/stock.py:227
+#, python-format
+msgid "«%(name)s» недоступний для замовлення (некоректна ціна)"
+msgstr "“%(name)s” không thể đặt hàng (giá không hợp lệ)"
+
+#: apps/cart/views.py:25 apps/orders/views.py:74 apps/orders/views.py:217
+#: apps/orders/views.py:224 apps/orders/views.py:267
+msgid "Замовлення вже створено"
+msgstr "Đơn hàng đã được tạo"
+
+#: apps/catalog/browser_filters.py:16
+msgid "Топ"
+msgstr "Hàng đầu"
+
+#: apps/catalog/browser_filters.py:17
+msgid "Новинки"
+msgstr "Hàng mới về"
+
+#: apps/catalog/browser_filters.py:18
+msgid "Ціна ↑"
+msgstr "Giá ↑"
+
+#: apps/catalog/browser_filters.py:19
+msgid "Ціна ↓"
+msgstr "Giá ↓"
+
+#: apps/catalog/models.py:35 templates/catalog/list.html:81
+#: templates/catalog/list.html:86
+#: templates/pages/partials/home_calculator.html:66
+msgid "Легка"
+msgstr "Nhẹ"
+
+#: apps/catalog/models.py:36 templates/catalog/list.html:82
+#: templates/pages/partials/home_calculator.html:70
+msgid "Середня"
+msgstr "Vừa"
+
+#: apps/catalog/models.py:37 templates/pages/partials/home_calculator.html:74
+msgid "Середньо-повна"
+msgstr "Vừa đến đậm"
+
+#: apps/catalog/models.py:38 templates/catalog/list.html:83
+#: templates/catalog/list.html:88
+#: templates/pages/partials/home_calculator.html:78
+msgid "Повна"
+msgstr "Đậm"
+
+#: apps/catalog/models_base.py:22 apps/core/block_defaults_pages.py:30
+#: templates/pages/home.html:25
+msgid "Сигари"
+msgstr "Xì gà"
+
+#: apps/catalog/models_base.py:23 apps/core/block_defaults_pages.py:31
+msgid "Аксесуари"
+msgstr "Phụ kiện"
+
+#: apps/catalog/models_base.py:24
+msgid "Інше"
+msgstr "Khác"
+
+#: apps/core/admin_filters.py:85
+msgid "Yes"
+msgstr ""
+
+#: apps/core/admin_filters.py:86
+msgid "No"
+msgstr ""
+
+#: apps/core/admin_nav.py:7 apps/core/block_defaults_pages.py:12
+#: apps/core/breadcrumbs.py:76 templates/pages/blog_detail.html:42
+#: templates/pages/blog_list.html:36
+msgid "Головна"
+msgstr "Trang chủ"
+
+#: apps/core/admin_nav.py:8 apps/core/block_defaults_home.py:10
+#: apps/core/block_defaults_pages.py:13 apps/core/block_defaults_pages.py:27
+#: apps/core/breadcrumbs.py:33 apps/core/breadcrumbs.py:90
+#: apps/core/breadcrumbs.py:94 apps/core/breadcrumbs.py:105
+#: apps/core/breadcrumbs.py:109 apps/core/breadcrumbs.py:115
+#: templates/accounts/cabinet.html:93
+#: templates/accounts/partials/cabinet_aside.html:6
+#: templates/catalog/list.html:4 templates/catalog/list.html:16
+#: templates/partials/footer.html:56
+msgid "Каталог"
+msgstr "Sản phẩm"
+
+#: apps/core/admin_nav.py:9 apps/core/block_defaults_pages.py:16
+#: apps/core/block_defaults_pages.py:50 apps/core/breadcrumbs.py:40
+msgid "Про нас"
+msgstr "Về chúng tôi"
+
+#: apps/core/admin_nav.py:10 apps/core/block_defaults_pages.py:17
+#: apps/core/block_defaults_pages.py:38 apps/core/breadcrumbs.py:41
+#: apps/core/breadcrumbs.py:82
+msgid "Блог"
+msgstr "Blog"
+
+#: apps/core/admin_nav.py:11 apps/core/block_defaults_pages.py:15
+#: apps/core/breadcrumbs.py:42
+msgid "FAQ"
+msgstr "Câu hỏi thường gặp"
+
+#: apps/core/admin_nav.py:12 apps/core/block_defaults_pages.py:18
+#: apps/core/block_defaults_pages.py:86 apps/core/breadcrumbs.py:46
+#: templates/partials/footer.html:80
+msgid "Контакти"
+msgstr "Liên hệ"
+
+#: apps/core/admin_nav.py:13 apps/core/block_defaults_pages.py:34
+#: apps/core/block_defaults_pages.py:106 apps/core/breadcrumbs.py:34
+#: templates/accounts/cabinet.html:92
+#: templates/accounts/partials/cabinet_aside.html:7
+#: templates/partials/header.html:75
+msgid "Кошик"
+msgstr "Giỏ hàng"
+
+#: apps/core/admin_nav.py:14 apps/core/block_defaults_pages.py:112
+#: apps/core/breadcrumbs.py:35
+msgid "Оформлення"
+msgstr "Đặt hàng"
+
+#: apps/core/admin_nav.py:15 apps/core/block_defaults_pages.py:35
+#: apps/core/block_defaults_pages.py:117 apps/core/breadcrumbs.py:39
+#: templates/orders/thank_you.html:27 templates/partials/header.html:52
+msgid "Кабінет"
+msgstr "Tài khoản"
+
+#: apps/core/admin_nav.py:16
+msgid "Вікова перевірка"
+msgstr ""
+
+#: apps/core/admin_nav.py:17
+msgid "Шапка і футер"
+msgstr ""
+
+#: apps/core/admin_nav.py:18
+msgid "Документи"
+msgstr ""
+
+#: apps/core/admin_nav.py:34
+msgid "Питання"
+msgstr ""
+
+#: apps/core/admin_nav.py:40
+msgid "Статті"
+msgstr ""
+
+#: apps/core/admin_nav.py:63
+msgid "Мобільний застосунок"
+msgstr ""
+
+#: apps/core/admin_nav.py:68
+msgid "Налаштування застосунку"
+msgstr ""
+
+#: apps/core/admin_nav.py:73
+msgid "Бренди гайду"
+msgstr ""
+
+#: apps/core/admin_nav.py:78
+msgid "Екрани"
+msgstr ""
+
+#: apps/core/admin_nav.py:83
+msgid "Юридичні сторінки"
+msgstr ""
+
+#: apps/core/admin_nav.py:90
+msgid "Каталог товарів"
+msgstr ""
+
+#: apps/core/admin_nav.py:94
+msgid "Товари"
+msgstr ""
+
+#: apps/core/admin_nav.py:95 templates/catalog/list.html:33
+msgid "Категорії"
+msgstr "Danh mục"
+
+#: apps/core/admin_nav.py:96 apps/core/block_defaults_pages.py:32
+#: templates/pages/partials/home_brands.html:3
+msgid "Бренди"
+msgstr "Thương hiệu"
+
+#: apps/core/admin_nav.py:97
+msgid "Лінії"
+msgstr ""
+
+#: apps/core/admin_nav.py:98
+msgid "Теги"
+msgstr ""
+
+#: apps/core/admin_nav.py:102
+msgid "Продажі"
+msgstr ""
+
+#: apps/core/admin_nav.py:106 apps/core/block_defaults_pages.py:120
+msgid "Замовлення"
+msgstr "Đơn hàng"
+
+#: apps/core/admin_nav.py:107
+msgid "Ліди"
+msgstr ""
+
+#: apps/core/admin_nav.py:108 apps/core/block_defaults_home.py:19
+#: apps/core/block_defaults_pages.py:102
+msgid "Бронювання"
+msgstr "Đặt lịch"
+
+#: apps/core/admin_nav.py:109 apps/core/block_defaults_home.py:16
+#: apps/core/block_defaults_pages.py:33
+msgid "Калькулятор"
+msgstr "Công cụ chọn xì gà"
+
+#: apps/core/admin_nav.py:113
+msgid "Кольори сайту"
+msgstr ""
+
+#: apps/core/admin_nav.py:118
+msgid "Шапка і підвал"
+msgstr ""
+
+#: apps/core/admin_nav.py:123
+msgid "Кольори сторінок"
+msgstr ""
+
+#: apps/core/admin_nav.py:130
+msgid "Користувачі"
+msgstr ""
+
+#: apps/core/admin_nav.py:135
+msgid "Недавні дії"
+msgstr ""
+
+#: apps/core/admin_nav.py:139
+msgid "Акаунти"
+msgstr ""
+
+#: apps/core/admin_nav.py:140
+msgid "Налаштування сайту"
+msgstr ""
+
+#: apps/core/admin_nav.py:141
+msgid "Курси валют"
+msgstr ""
+
+#: apps/core/block_defaults_home.py:11
+msgid "Увесь каталог"
+msgstr "Tất cả sản phẩm"
+
+#: apps/core/block_defaults_home.py:13 apps/pages/views.py:134
+#: templates/pages/partials/home_history.html:2
+msgid "Історія"
+msgstr "Lịch sử"
+
+#: apps/core/block_defaults_home.py:21
+msgid ""
+"Залиште контакти — менеджер узгодить зручний час візиту.\n\nМи передзв"
+"онимо протягом робочого дня, щоб підтвердити слот і відповісти на запи"
+"тання.\n\nМожна обрати дегустацію, консультацію сомельє або спокійний "
+"візит у шоурум — підлаштуємось під ваш ритм."
+msgstr ""
+
+#: apps/core/block_defaults_home.py:26
+msgid "Обрати час"
+msgstr "Chọn giờ"
+
+#: apps/core/block_defaults_home.py:29 apps/core/block_defaults_pages.py:100
+msgid "Прайс і умови для барів, готелів і корпоративних подарунків."
+msgstr ""
+"Bảng giá và điều khoản dành cho quán bar, khách sạn và quà tặng doanh "
+"nghiệp."
+
+#: apps/core/block_defaults_home.py:30 apps/core/block_defaults_pages.py:101
+msgid "Запросити прайс"
+msgstr "Yêu cầu bảng giá"
+
+#: apps/core/block_defaults_legal.py:11 apps/core/block_defaults_pages.py:19
+#: apps/core/breadcrumbs.py:45
+msgid "Доставка і оплата"
+msgstr "Giao hàng và thanh toán"
+
+#: apps/core/block_defaults_legal.py:12
+msgid "Київ — того ж дня · Україна — 1–2 дні · ЄС — 3–5 днів."
+msgstr "Kyiv — trong ngày · Ukraine — 1–2 ngày · EU — 3–5 ngày."
+
+#: apps/core/block_defaults_legal.py:15 apps/core/breadcrumbs.py:51
+msgid "Політика конфіденційності"
+msgstr "Chính sách bảo mật"
+
+#: apps/core/block_defaults_legal.py:16
+msgid "Як ми збираємо, зберігаємо та захищаємо ваші дані."
+msgstr "Cách chúng tôi thu thập, lưu trữ và bảo vệ dữ liệu của bạn."
+
+#: apps/core/block_defaults_legal.py:19 apps/core/breadcrumbs.py:52
+msgid "Умови користування"
+msgstr "Điều khoản sử dụng"
+
+#: apps/core/block_defaults_legal.py:20
+msgid "Правила користування сайтом і умови продажу."
+msgstr "Quy tắc sử dụng trang web và điều kiện bán hàng."
+
+#: apps/core/block_defaults_legal.py:26 apps/core/breadcrumbs.py:53
+msgid "Вікова політика"
+msgstr "Chính sách độ tuổi"
+
+#: apps/core/block_defaults_legal.py:27
+msgid "Доступ лише для повнолітніх відвідувачів 21+."
+msgstr "Chỉ dành cho khách truy cập là người trưởng thành từ 21 tuổi trở lên."
+
+#: apps/core/block_defaults_legal.py:33 apps/core/breadcrumbs.py:54
+msgid "Файли cookie"
+msgstr "Cookie"
+
+#: apps/core/block_defaults_legal.py:34
+msgid "Які cookies використовує сайт і навіщо."
+msgstr "Trang web sử dụng những cookie nào và để làm gì."
+
+#: apps/core/block_defaults_pages.py:6
+msgid "Пошук сигар, брендів, аксесуарів…"
+msgstr "Tìm xì gà, thương hiệu, phụ kiện…"
+
+#: apps/core/block_defaults_pages.py:14
+msgid "Акції"
+msgstr "Khuyến mãi"
+
+#: apps/core/block_defaults_pages.py:20 apps/core/block_defaults_pages.py:98
+#: templates/base.html:107
+msgid "Замовити дзвінок"
+msgstr "Yêu cầu gọi lại"
+
+#: apps/core/block_defaults_pages.py:21 apps/core/block_defaults_pages.py:28
+msgid "Покупка"
+msgstr "Mua sắm"
+
+#: apps/core/block_defaults_pages.py:22 apps/core/block_defaults_pages.py:29
+msgid "Інфо"
+msgstr "Thông tin"
+
+#: apps/core/block_defaults_pages.py:23
+msgid "Сигари, відібрані вручну для тих, хто знає різницю."
+msgstr "Xì gà được chọn lọc từng điếu dành cho những ai hiểu rõ sự khác biệt."
+
+#: apps/core/block_defaults_pages.py:25
+msgid "© 2026 ROYAL SMOKE"
+msgstr "© 2026 ROYAL SMOKE"
+
+#: apps/core/block_defaults_pages.py:36
+msgid "Приватність"
+msgstr "Quyền riêng tư"
+
+#: apps/core/block_defaults_pages.py:37
+msgid "Гід і культура"
+msgstr "Cẩm nang & văn hóa"
+
+#: apps/core/block_defaults_pages.py:40
+msgid ""
+"Практичні гіди про сигари, зберігання, аксесуари та смак — від сомельє"
+" Royal Smoke."
+msgstr ""
+"Hướng dẫn thực tế về xì gà, bảo quản, phụ kiện và hương vị — từ các so"
+"mmelier của Royal Smoke."
+
+#: apps/core/block_defaults_pages.py:44
+msgid ""
+"Блог Royal Smoke: як обрати сигару, зберігати в хумідорі, підібрати ак"
+"сесуари та читати вітолу. Поради експертів."
+msgstr ""
+"Blog Royal Smoke: cách chọn xì gà, bảo quản trong tủ humidor, chọn phụ"
+" kiện và đọc vitola. Lời khuyên từ chuyên gia."
+
+#: apps/core/block_defaults_pages.py:47
+msgid "Читати"
+msgstr "Đọc"
+
+#: apps/core/block_defaults_pages.py:48
+msgid "Усі статті"
+msgstr "Tất cả bài viết"
+
+#: apps/core/block_defaults_pages.py:49
+msgid "Читайте також"
+msgstr "Bài viết liên quan"
+
+#: apps/core/block_defaults_pages.py:51
+msgid "Хроніка одного рішення"
+msgstr "Câu chuyện của một quyết định"
+
+#: apps/core/block_defaults_pages.py:53
+msgid ""
+"Royal Smoke — tobacco atelier, зібраний навколо простого правила: прод"
+"авати лише те, що самі готові курити."
+msgstr ""
+"Royal Smoke là một tobacco atelier được xây dựng trên một quy tắc đơn "
+"giản: chỉ bán những gì chính chúng tôi sẵn sàng hút."
+
+#: apps/core/block_defaults_pages.py:58
+msgid "років на ринку"
+msgstr "năm trên thị trường"
+
+#: apps/core/block_defaults_pages.py:60
+msgid "Перший кабінет"
+msgstr "Không gian đầu tiên"
+
+#: apps/core/block_defaults_pages.py:62
+msgid ""
+"Почали з невеликого простору в Києві: кілька полиць, ручний відбір і р"
+"озмова з кожним гостем замість випадкової вітрини."
+msgstr ""
+"Chúng tôi bắt đầu từ một không gian nhỏ ở Kyiv: vài giá kệ, tuyển chọn"
+" thủ công và trò chuyện với từng vị khách thay vì một tủ trưng bày ngẫ"
+"u nhiên."
+
+#: apps/core/block_defaults_pages.py:66
+msgid "Прямі мануфактури"
+msgstr "Trực tiếp từ xưởng sản xuất"
+
+#: apps/core/block_defaults_pages.py:68
+msgid ""
+"Налагодили прямі поставки з Нікарагуа, Домінікани та Куби — без зайвих"
+" посередників, з чесною ціною і стабільною якістю партій."
+msgstr ""
+"Chúng tôi thiết lập nguồn cung trực tiếp từ Nicaragua, Cộng hòa Domini"
+"ca và Cuba — không qua trung gian không cần thiết, với giá hợp lý và c"
+"hất lượng từng lô ổn định."
+
+#: apps/core/block_defaults_pages.py:72
+msgid "Власний хумідор"
+msgstr "Tủ humidor riêng"
+
+#: apps/core/block_defaults_pages.py:74
+msgid ""
+"Збудували сховище зі стабільною вологістю й зібрали команду сомельє, я"
+"ка супроводжує замовлення від першої консультації до доставки."
+msgstr ""
+"Chúng tôi xây dựng kho bảo quản có độ ẩm ổn định và lập đội ngũ sommel"
+"ier đồng hành cùng mỗi đơn hàng, từ buổi tư vấn đầu tiên đến khi giao "
+"hàng."
+
+#: apps/core/block_defaults_pages.py:77
+msgid "Сьогодні"
+msgstr "Ngày nay"
+
+#: apps/core/block_defaults_pages.py:78
+msgid "Бутік, каталог, сервіс"
+msgstr "Boutique, sản phẩm, dịch vụ"
+
+#: apps/core/block_defaults_pages.py:80
+msgid ""
+"Працюємо як бутік і як точний онлайн-каталог: консультація, термобокс "
+"і доставка, яка береже лист."
+msgstr ""
+"Chúng tôi vận hành như một boutique và một danh mục trực tuyến chuẩn x"
+"ác: tư vấn, hộp cách nhiệt và giao hàng bảo vệ lá thuốc."
+
+#: apps/core/block_defaults_pages.py:84
+msgid "Короткі відповіді про замовлення, зберігання та доставку."
+msgstr "Câu trả lời ngắn gọn về đơn hàng, bảo quản và giao hàng."
+
+#: apps/core/block_defaults_pages.py:87
+msgid "Напишіть нам"
+msgstr "Nhắn tin cho chúng tôi"
+
+#: apps/core/block_defaults_pages.py:88
+msgid "Відповідаємо протягом робочого дня."
+msgstr "Chúng tôi phản hồi trong giờ làm việc."
+
+#: apps/core/block_defaults_pages.py:89
+msgid "Карта — Хрещатик 1"
+msgstr "Bản đồ — Khreshchatyk 1"
+
+#: apps/core/block_defaults_pages.py:97 templates/base.html:127
+msgid "Надіслати"
+msgstr "Gửi"
+
+#: apps/core/block_defaults_pages.py:103
+msgid "Оберіть послугу, дату та вільний слот."
+msgstr "Chọn dịch vụ, ngày và khung giờ còn trống."
+
+#: apps/core/block_defaults_pages.py:104
+msgid "Забронювати"
+msgstr "Đặt lịch ngay"
+
+#: apps/core/block_defaults_pages.py:105
+msgid "Каталог наповнюється."
+msgstr "Sản phẩm đang được bổ sung."
+
+#: apps/core/block_defaults_pages.py:107 templates/orders/checkout.html:155
+msgid "Кошик порожній."
+msgstr "Giỏ hàng của bạn đang trống."
+
+#: apps/core/block_defaults_pages.py:108
+#: templates/accounts/partials/cabinet_wishlist.html:53
+#: templates/accounts/partials/wishlist_body.html:53
+#: templates/accounts/partials/wishlist_body.html:57
+#: templates/catalog/partials/compare_body.html:89
+#: templates/orders/thank_you.html:24 templates/orders/thank_you.html:26
+#: templates/pages/home.html:24
+msgid "До каталогу"
+msgstr "Xem sản phẩm"
+
+#: apps/core/block_defaults_pages.py:109
+msgid "Продовжити покупки"
+msgstr "Tiếp tục mua sắm"
+
+#: apps/core/block_defaults_pages.py:110
+msgid "Оформити замовлення"
+msgstr "Đặt hàng"
+
+#: apps/core/block_defaults_pages.py:111
+msgid "Видалити"
+msgstr "Xóa"
+
+#: apps/core/block_defaults_pages.py:113
+msgid "Заповніть контакти та спосіб доставки."
+msgstr "Vui lòng điền thông tin liên hệ và phương thức giao hàng."
+
+#: apps/core/block_defaults_pages.py:114
+msgid "Підтвердити замовлення"
+msgstr "Xác nhận đơn hàng"
+
+#: apps/core/block_defaults_pages.py:115
+msgid "Ваше замовлення"
+msgstr "Đơn hàng của bạn"
+
+#: apps/core/block_defaults_pages.py:116
+msgid "Підтверджую, що мені є 21 рік"
+msgstr "Tôi xác nhận mình đủ 21 tuổi"
+
+#: apps/core/block_defaults_pages.py:118
+#, python-brace-format
+msgid "Вітаємо, {name}"
+msgstr "Chào mừng, {name}"
+
+#: apps/core/block_defaults_pages.py:119
+msgid "Профіль"
+msgstr "Hồ sơ"
+
+#: apps/core/block_defaults_pages.py:121
+msgid "Замовлень ще немає"
+msgstr "Chưa có đơn hàng nào"
+
+#: apps/core/block_defaults_pages.py:122 templates/accounts/cabinet.html:89
+#: templates/accounts/cabinet.html:90 templates/base.html:96
+msgid "Швидкі дії"
+msgstr "Thao tác nhanh"
+
+#: apps/core/block_defaults_pages.py:123
+msgid "Вам виповнилося 21 рік?"
+msgstr "Bạn đã đủ 21 tuổi chưa?"
+
+#: apps/core/block_defaults_pages.py:124
+msgid ""
+"Сайт містить інформацію про тютюнові вироби. Підтвердіть вік, щоб прод"
+"овжити."
+msgstr ""
+"Trang web này có thông tin về các sản phẩm thuốc lá. Vui lòng xác nhận"
+" độ tuổi của bạn để tiếp tục."
+
+#: apps/core/block_defaults_pages.py:125 templates/accounts/register.html:31
+msgid "Мені є 21 рік"
+msgstr "Tôi đủ 21 tuổi"
+
+#: apps/core/block_defaults_pages.py:126
+msgid "Мені немає 21 року"
+msgstr "Tôi chưa đủ 21 tuổi"
+
+#: apps/core/block_defaults_pages.py:127
+msgid "Доступ обмежено"
+msgstr "Quyền truy cập bị hạn chế"
+
+#: apps/core/block_defaults_pages.py:128
+msgid "Цей сайт призначений лише для повнолітніх відвідувачів 21+."
+msgstr ""
+"Trang web này chỉ dành cho khách truy cập là người trưởng thành từ 21 "
+"tuổi trở lên."
+
+#: apps/core/block_defaults_pages.py:129
+msgid "Повернутися"
+msgstr "Quay lại"
+
+#: apps/core/breadcrumbs.py:36 templates/orders/thank_you.html:4
+msgid "Дякуємо"
+msgstr "Cảm ơn bạn"
+
+#: apps/core/breadcrumbs.py:37 templates/accounts/login.html:4
+#: templates/accounts/login.html:16
+msgid "Вхід"
+msgstr "Đăng nhập"
+
+#: apps/core/breadcrumbs.py:38 templates/accounts/register.html:4
+#: templates/accounts/register.html:17
+msgid "Реєстрація"
+msgstr "Đăng ký"
+
+#: apps/core/breadcrumbs.py:43 apps/core/breadcrumbs.py:56
+msgid "Правова інформація"
+msgstr "Thông tin pháp lý"
+
+#: apps/core/breadcrumbs.py:44
+msgid "B2B"
+msgstr "B2B"
+
+#: apps/core/breadcrumbs.py:86
+msgid "Стаття"
+msgstr "Bài viết"
+
+#: apps/core/breadcrumbs.py:111
+msgid "Бренд"
+msgstr "Thương hiệu"
+
+#: apps/core/breadcrumbs.py:132
+msgid "Товар"
+msgstr "Sản phẩm"
+
+#: apps/core/templates/django/forms/widgets/cms_color.html:3
+msgid "Обрати колір"
+msgstr ""
+
+#: apps/core/templates/django/forms/widgets/cms_color.html:5
+msgid "Пікер кольору"
+msgstr ""
+
+#: apps/core/templates/django/forms/widgets/cms_color.html:7
+msgid "HEX"
+msgstr ""
+
+#: apps/core/templates/django/forms/widgets/cms_color.html:12
+msgid "Повернути дефолтний колір"
+msgstr ""
+
+#: apps/core/templates/django/forms/widgets/cms_color.html:13
+msgid "Дефолт"
+msgstr ""
+
+#: apps/core/templates/django/forms/widgets/cms_image.html:12
+#: templates/catalog/partials/pd_gallery.html:26
+msgid "Немає фото"
+msgstr "Chưa có ảnh"
+
+#: apps/core/templates/django/forms/widgets/cms_image.html:14
+msgid "Поточне на сайті"
+msgstr ""
+
+#: apps/core/templates/django/forms/widgets/cms_image.html:20
+msgid "Очистити"
+msgstr ""
+
+#: apps/core/validation/messages.py:5 templates/base.html:135
+msgid "Це поле обовʼязкове"
+msgstr "Trường này là bắt buộc"
+
+#: apps/core/validation/messages.py:6 templates/base.html:135
+msgid "Підтвердіть цю опцію"
+msgstr "Vui lòng xác nhận tùy chọn này"
+
+#: apps/core/validation/messages.py:7 templates/base.html:135
+msgid "Поле не може складатися лише з пробілів"
+msgstr "Trường không được chỉ chứa khoảng trắng"
+
+#: apps/core/validation/messages.py:9 templates/base.html:135
+msgid "Імʼя має містити мінімум 2 символи"
+msgstr "Tên phải có ít nhất 2 ký tự"
+
+#: apps/core/validation/messages.py:10 templates/base.html:135
+msgid "Імʼя може містити лише літери, пробіли, дефіс і апостроф"
+msgstr ""
+"Tên chỉ được chứa chữ cái, khoảng trắng, dấu gạch ngang và dấu nháy đơ"
+"n"
+
+#: apps/core/validation/messages.py:12 templates/base.html:135
+msgid "Введіть коректну електронну пошту"
+msgstr "Vui lòng nhập địa chỉ email hợp lệ"
+
+#: apps/core/validation/messages.py:14 templates/base.html:135
+msgid "Пароль має містити мінімум 8 символів"
+msgstr "Mật khẩu phải có ít nhất 8 ký tự"
+
+#: apps/core/validation/messages.py:15 templates/base.html:135
+msgid "Пароль має містити хоча б одну велику літеру"
+msgstr "Mật khẩu phải chứa ít nhất một chữ cái viết hoa"
+
+#: apps/core/validation/messages.py:16 templates/base.html:135
+msgid "Пароль має містити хоча б одну малу літеру"
+msgstr "Mật khẩu phải chứa ít nhất một chữ cái viết thường"
+
+#: apps/core/validation/messages.py:17 templates/base.html:135
+msgid "Пароль має містити хоча б одну цифру"
+msgstr "Mật khẩu phải chứa ít nhất một chữ số"
+
+#: apps/core/validation/messages.py:18 templates/base.html:135
+msgid "Пароль має містити хоча б один спеціальний символ"
+msgstr "Mật khẩu phải chứa ít nhất một ký tự đặc biệt"
+
+#: apps/core/validation/messages.py:20 templates/base.html:135
+msgid "Введіть коректний номер телефону"
+msgstr "Vui lòng nhập số điện thoại hợp lệ"
+
+#: apps/core/validation/messages.py:21 templates/base.html:135
+msgid "Введіть коректну URL-адресу"
+msgstr "Vui lòng nhập URL hợp lệ"
+
+#: apps/core/validation/password.py:21
+msgid ""
+"Пароль має містити мінімум 8 символів, велику та малу літери, цифру та"
+" спеціальний символ."
+msgstr ""
+"Mật khẩu phải có ít nhất 8 ký tự, gồm chữ hoa, chữ thường, chữ số và k"
+"ý tự đặc biệt."
+
+#: apps/leads/views.py:31
+msgid "Вкажіть телефон або email"
+msgstr "Vui lòng nhập số điện thoại hoặc email"
+
+#: apps/leads/views.py:72
+msgid "Запит надіслано. Менеджер звʼяжеться з вами."
+msgstr "Đã gửi yêu cầu. Quản lý sẽ liên hệ với bạn."
+
+#: apps/leads/views.py:100
+msgid "Повідомлення надіслано."
+msgstr "Đã gửi tin nhắn."
+
+#: apps/leads/views.py:118
+msgid "Дякуємо! Передзвонимо найближчим часом."
+msgstr "Cảm ơn bạn! Chúng tôi sẽ sớm gọi lại cho bạn."
+
+#: apps/leads/views.py:120
+msgid "Заявку прийнято"
+msgstr "Đã nhận yêu cầu"
+
+#: apps/leads/views.py:123 apps/leads/views.py:127
+msgid "Перевірте номер телефону."
+msgstr "Vui lòng kiểm tra số điện thoại."
+
+#: apps/orders/admin.py:57
+msgid "Створити ТТН Нової Пошти"
+msgstr ""
+
+#: apps/orders/admin.py:77
+#, python-format
+msgid "Створено ТТН: %(n)s"
+msgstr ""
+
+#: apps/orders/admin.py:79
+msgid "Оновити статус ТТН"
+msgstr ""
+
+#: apps/orders/admin.py:100
+#, python-format
+msgid "Оновлено статусів: %(n)s"
+msgstr ""
+
+#: apps/orders/models.py:19
+msgid "Нове"
+msgstr "Mới"
+
+#: apps/orders/models.py:20
+msgid "Очікує оплату"
+msgstr "Chờ thanh toán"
+
+#: apps/orders/models.py:21
+msgid "Оплачено"
+msgstr "Đã thanh toán"
+
+#: apps/orders/models.py:22
+msgid "В обробці"
+msgstr "Đang xử lý"
+
+#: apps/orders/models.py:23
+msgid "Відправлено"
+msgstr "Đã gửi hàng"
+
+#: apps/orders/models.py:24
+msgid "Виконано"
+msgstr "Hoàn tất"
+
+#: apps/orders/models.py:25
+msgid "Скасовано"
+msgstr "Đã hủy"
+
+#: apps/orders/models.py:32
+msgid "Онлайн оплата"
+msgstr "Thanh toán trực tuyến"
+
+#: apps/orders/models.py:33
+msgid "Оплата при отриманні"
+msgstr "Thanh toán khi nhận hàng"
+
+#: apps/orders/models.py:34
+msgid "Безготівковий розрахунок"
+msgstr "Chuyển khoản ngân hàng"
+
+#: apps/orders/models.py:41
+msgid "Нова Пошта"
+msgstr "Nova Poshta"
+
+#: apps/orders/models.py:42
+msgid "Курʼєр"
+msgstr "Giao hàng tận nơi"
+
+#: apps/orders/services/__init__.py:25
+#: templates/emails/order_created_customer.html:5
+#: templates/emails/order_created_customer.txt:2
+#, python-format
+msgid "Замовлення %(num)s прийнято"
+msgstr "Đã nhận đơn hàng %(num)s"
+
+#: apps/orders/services/__init__.py:43 templates/emails/order_paid.txt:2
+#, python-format
+msgid "Оплату замовлення %(num)s підтверджено"
+msgstr "Đã xác nhận thanh toán cho đơn hàng %(num)s"
+
+#: apps/orders/views.py:68
+msgid "Немає доступу до цього замовлення"
+msgstr "Bạn không có quyền truy cập đơn hàng này"
+
+#: apps/orders/views.py:99
+msgid "Потрібно підтвердити вік 21+"
+msgstr "Bạn cần xác nhận mình từ 21 tuổi trở lên"
+
+#: apps/orders/views.py:108
+msgid "Оберіть місто та відділення Нової Пошти зі списку"
+msgstr "Chọn thành phố và chi nhánh Nova Poshta từ danh sách"
+
+#: apps/orders/views.py:118
+msgid "Обране відділення більше недоступне. Оберіть інше зі списку."
+msgstr ""
+"Chi nhánh đã chọn không còn khả dụng. Vui lòng chọn chi nhánh khác tro"
+"ng danh sách."
+
+#: apps/orders/views.py:187
+msgid "Кошик порожній"
+msgstr "Giỏ hàng trống"
+
+#: apps/orders/views.py:194 apps/orders/views.py:243
+msgid "Оформлення заблоковано через наявність товарів"
+msgstr "Không thể đặt hàng do vấn đề về tình trạng còn hàng của sản phẩm"
+
+#: apps/orders/views.py:257
+msgid "Оформлення заблоковано: некоректна сума замовлення"
+msgstr "Không thể đặt hàng: tổng đơn hàng không hợp lệ"
+
+#: apps/orders/views.py:322 apps/orders/views.py:383 apps/orders/views.py:398
+msgid "Замовлення вже оплачено"
+msgstr "Đơn hàng đã được thanh toán"
+
+#: apps/orders/views.py:329
+msgid "Суму замовлення неможливо підтвердити. Звʼяжіться з підтримкою."
+msgstr "Không thể xác minh tổng đơn hàng. Vui lòng liên hệ bộ phận hỗ trợ."
+
+#: apps/orders/views.py:359
+msgid "Онлайн-оплата тимчасово недоступна"
+msgstr "Thanh toán trực tuyến tạm thời không khả dụng"
+
+#: apps/orders/views.py:396
+msgid "Демо-оплату підтверджено."
+msgstr "Đã xác nhận thanh toán demo."
+
+#: apps/orders/views.py:400
+msgid "Демо-оплату відхилено. Можна спробувати ще раз."
+msgstr "Thanh toán demo bị từ chối. Bạn có thể thử lại."
+
+#: apps/pwa/services/push.py:106 templates/emails/order_paid.html:5
+msgid "Оплату підтверджено"
+msgstr "Đã xác nhận thanh toán"
+
+#: apps/pwa/services/push.py:107
+#, python-format
+msgid "Замовлення %(num)s оплачено."
+msgstr "Đơn hàng %(num)s đã được thanh toán."
+
+#: apps/pwa/services/push.py:111
+msgid "Статус замовлення"
+msgstr "Trạng thái đơn hàng"
+
+#: apps/pwa/services/push.py:112
+#, python-format
+msgid "Замовлення %(num)s: %(status)s"
+msgstr "Đơn hàng %(num)s: %(status)s"
+
+#: templates/accounts/cabinet.html:31
+#, python-format
+msgid "Останнє: #%(num)s — %(total)s %(symbol)s"
+msgstr "Gần nhất: #%(num)s — %(total)s %(symbol)s"
+
+#: templates/accounts/cabinet.html:33 templates/accounts/cabinet.html:59
+msgid "Останнє замовлення"
+msgstr "Đơn hàng gần nhất"
+
+#: templates/accounts/cabinet.html:67
+msgid "Динаміка замовлень за останні тижні"
+msgstr "Hoạt động đặt hàng trong những tuần gần đây"
+
+#: templates/accounts/cabinet.html:94
+#: templates/accounts/partials/cabinet_aside.html:8
+msgid "Підтримка"
+msgstr "Hỗ trợ"
+
+#: templates/accounts/cabinet.html:95
+#: templates/accounts/partials/cabinet_wishlist.html:2
+#: templates/accounts/partials/cabinet_wishlist.html:4
+#: templates/accounts/wishlist.html:4 templates/accounts/wishlist.html:13
+#: templates/partials/header.html:67 templates/partials/header.html:111
+msgid "Вибране"
+msgstr "Yêu thích"
+
+#: templates/accounts/cabinet.html:97 templates/accounts/delete_account.html:41
+msgid "Видалити акаунт"
+msgstr "Xóa tài khoản"
+
+#: templates/accounts/cabinet.html:100
+msgid "Вийти"
+msgstr "Đăng xuất"
+
+#: templates/accounts/delete_account.html:4
+#: templates/accounts/delete_account.html:16
+msgid "Видалення акаунту"
+msgstr "Xóa tài khoản"
+
+#: templates/accounts/delete_account.html:17
+msgid ""
+"Усі сесії буде завершено. Кошик залишиться у цьому браузері як гостьов"
+"ий."
+msgstr ""
+"Tất cả phiên đăng nhập sẽ bị đăng xuất. Giỏ hàng sẽ được giữ lại trong"
+" trình duyệt này dưới dạng giỏ hàng khách."
+
+#: templates/accounts/delete_account.html:42 templates/base.html:128
+msgid "Скасувати"
+msgstr "Hủy"
+
+#: templates/accounts/login.html:17
+msgid "Увійдіть, щоб бачити замовлення та обране."
+msgstr "Đăng nhập để xem đơn hàng và danh sách yêu thích."
+
+#: templates/accounts/login.html:41 templates/accounts/register.html:38
+msgid "Увійти"
+msgstr "Đăng nhập"
+
+#: templates/accounts/login.html:44
+msgid "Немає акаунту?"
+msgstr "Chưa có tài khoản?"
+
+#: templates/accounts/login.html:44
+msgid "Зареєструватися"
+msgstr "Đăng ký"
+
+#: templates/accounts/partials/cabinet_aside.html:5
+msgid "Швидкі дії кабінету"
+msgstr "Thao tác nhanh của tài khoản"
+
+#: templates/accounts/partials/cabinet_wishlist.html:6
+#: templates/catalog/list.html:39
+msgid "Усі"
+msgstr "Tất cả"
+
+#: templates/accounts/partials/cabinet_wishlist.html:36
+#: templates/accounts/partials/wishlist_body.html:36
+#: templates/catalog/partials/pd_cta.html:36
+#: templates/catalog/partials/product_grid.html:42
+#: templates/pages/partials/home_catalog.html:69
+msgid "У кошик"
+msgstr "Thêm vào giỏ hàng"
+
+#: templates/accounts/partials/cabinet_wishlist.html:45
+#: templates/accounts/partials/wish_btn.html:15
+msgid "Прибрати з вибраного"
+msgstr "Bỏ khỏi yêu thích"
+
+#: templates/accounts/partials/cabinet_wishlist.html:52
+msgid "Поки порожньо. Додайте товари сердечком у каталозі."
+msgstr ""
+"Chưa có gì ở đây. Thêm sản phẩm bằng biểu tượng trái tim trong trang S"
+"ản phẩm."
+
+#: templates/accounts/partials/wish_btn.html:15
+msgid "Додати до вибраного"
+msgstr "Thêm vào yêu thích"
+
+#: templates/accounts/partials/wish_btn.html:23
+msgid "У обраному"
+msgstr "Đã yêu thích"
+
+#: templates/accounts/partials/wish_btn.html:23
+msgid "Обране"
+msgstr "Yêu thích"
+
+#: templates/accounts/partials/wishlist_body.html:46
+#: templates/catalog/partials/compare_body.html:27
+msgid "Прибрати"
+msgstr "Xóa"
+
+#: templates/accounts/partials/wishlist_body.html:56
+msgid "Вибране порожнє."
+msgstr "Danh sách yêu thích đang trống."
+
+#: templates/accounts/password_change.html:4
+#: templates/accounts/password_change.html:16
+msgid "Зміна пароля"
+msgstr "Đổi mật khẩu"
+
+#: templates/accounts/password_change.html:17
+msgid "Після зміни ви залишитесь у системі; інші пристрої вийдуть."
+msgstr ""
+"Sau khi đổi, bạn vẫn giữ trạng thái đăng nhập; các thiết bị khác sẽ bị"
+" đăng xuất."
+
+#: templates/accounts/password_change.html:48
+msgid "Зберегти пароль"
+msgstr "Lưu mật khẩu"
+
+#: templates/accounts/password_change.html:49
+#: templates/pages/partials/home_calculator.html:197
+msgid "Назад"
+msgstr "Quay lại"
+
+#: templates/accounts/register.html:18
+msgid "Створіть кабінет для швидкого оформлення."
+msgstr "Tạo tài khoản để đặt hàng nhanh hơn."
+
+#: templates/accounts/register.html:35
+msgid "Створити акаунт"
+msgstr "Tạo tài khoản"
+
+#: templates/accounts/register.html:38
+msgid "Вже є акаунт?"
+msgstr "Đã có tài khoản?"
+
+#: templates/accounts/wishlist.html:16
+#, python-format
+msgid "%(counter)s товар"
+msgid_plural "%(counter)s товари"
+msgstr[0] "%(counter)s sản phẩm"
+
+#: templates/accounts/wishlist.html:18
+msgid "Порожній список"
+msgstr "Danh sách trống"
+
+#: templates/admin/core/site_content_page.html:4
+msgid "Django site admin"
+msgstr ""
+
+#: templates/base.html:19
+msgid "Сигари та аксесуари Royal Smoke"
+msgstr "Xì gà và phụ kiện Royal Smoke"
+
+#: templates/base.html:101
+msgid "Нагору"
+msgstr "Lên đầu trang"
+
+#: templates/base.html:110
+msgid "Чат / контакти"
+msgstr "Trò chuyện / liên hệ"
+
+#: templates/base.html:118
+msgid "Зворотний дзвінок"
+msgstr "Gọi lại"
+
+#: templates/base.html:119
+msgid "Залиште номер — передзвонимо протягом робочого дня."
+msgstr "Hãy để lại số điện thoại — chúng tôi sẽ gọi lại trong giờ làm việc."
+
+#: templates/booking/page.html:18
+msgid "Послуга"
+msgstr "Dịch vụ"
+
+#: templates/booking/page.html:24
+msgid "Оберіть послугу"
+msgstr "Chọn dịch vụ"
+
+#: templates/booking/page.html:32
+msgid "Дата"
+msgstr "Ngày"
+
+#: templates/booking/page.html:60
+msgid "Побажання"
+msgstr "Ghi chú"
+
+#: templates/booking/partials/slots.html:2
+msgid "Час"
+msgstr "Giờ"
+
+#: templates/booking/partials/slots.html:5
+msgid "Оберіть час"
+msgstr "Chọn giờ"
+
+#: templates/booking/partials/slots.html:9
+#, python-format
+msgid "вільно: %(n)s"
+msgstr "còn trống: %(n)s"
+
+#: templates/booking/partials/slots.html:14
+msgid "Оберіть послугу та дату, щоб побачити вільні слоти."
+msgstr "Chọn dịch vụ và ngày để xem các khung giờ còn trống."
+
+#: templates/booking/partials/slots.html:16
+msgid "Немає слотів"
+msgstr "Không có khung giờ"
+
+#: templates/calculator/partials/results.html:3
+msgid "Ваші рекомендації"
+msgstr "Gợi ý dành cho bạn"
+
+#: templates/calculator/partials/results.html:15
+#, python-format
+msgid "Чому підходить: %(reasons)s."
+msgstr "Vì sao phù hợp: %(reasons)s."
+
+#: templates/calculator/partials/results.html:20
+msgid "Переглянути"
+msgstr "Xem"
+
+#: templates/calculator/partials/results.html:24
+msgid "Немає точних збігів — спробуйте інші параметри."
+msgstr "Không có kết quả khớp chính xác — hãy thử các tiêu chí khác."
+
+#: templates/cart/cart.html:14 templates/catalog/list.html:52
+msgid "позиція"
+msgid_plural "позиції"
+msgstr[0] "sản phẩm"
+
+#: templates/cart/cart.html:14
+msgid "Порожній кошик"
+msgstr "Giỏ hàng trống"
+
+#: templates/cart/partials/cart_body.html:47
+msgid "Зменшити"
+msgstr "Giảm"
+
+#: templates/cart/partials/cart_body.html:49
+msgid "Збільшити"
+msgstr "Tăng"
+
+#: templates/cart/partials/cart_body.html:60
+#, python-format
+msgid "Безкоштовна доставка від %(amount)s %(symbol)s"
+msgstr "Miễn phí giao hàng từ %(amount)s %(symbol)s"
+
+#: templates/cart/partials/cart_body.html:64
+msgid "Підсумок кошика"
+msgstr "Tóm tắt giỏ hàng"
+
+#: templates/cart/partials/cart_body.html:65
+#, python-format
+msgid "Разом %(total)s %(symbol)s"
+msgstr "Tổng cộng %(total)s %(symbol)s"
+
+#: templates/catalog/compare.html:4 templates/catalog/compare.html:13
+#: templates/partials/header.html:59 templates/partials/header.html:110
+msgid "Порівняння"
+msgstr "So sánh"
+
+#: templates/catalog/compare.html:16
+#, python-format
+msgid "%(n)s з %(max)s товарів"
+msgstr "%(n)s trên %(max)s sản phẩm"
+
+#: templates/catalog/compare.html:18
+msgid "Оберіть до 4 товарів для порівняння"
+msgstr "Chọn tối đa 4 sản phẩm để so sánh"
+
+#: templates/catalog/list.html:32
+msgid "Категорії та фільтри"
+msgstr "Danh mục và bộ lọc"
+
+#: templates/catalog/list.html:40
+msgid "каталог"
+msgstr "sản phẩm"
+
+#: templates/catalog/list.html:109
+#: templates/catalog/partials/compare_body.html:36
+msgid "Ціна"
+msgstr "Giá"
+
+#: templates/catalog/list.html:126
+msgid "Мінімальна ціна"
+msgstr "Giá tối thiểu"
+
+#: templates/catalog/list.html:134
+msgid "Максимальна ціна"
+msgstr "Giá tối đa"
+
+#: templates/catalog/list.html:141
+msgid "Застосувати"
+msgstr "Áp dụng"
+
+#: templates/catalog/list.html:146
+msgid "Скинути фільтри"
+msgstr "Đặt lại bộ lọc"
+
+#: templates/catalog/list.html:153
+msgid "Сортування"
+msgstr "Sắp xếp theo"
+
+#: templates/catalog/partials/compare_body.html:7
+msgid "Параметр"
+msgstr "Thông số"
+
+#: templates/catalog/partials/compare_body.html:54
+#: templates/catalog/partials/pd_specs.html:26
+msgid "Час куріння"
+msgstr "Thời gian hút"
+
+#: templates/catalog/partials/compare_body.html:78
+#: templates/catalog/partials/pd_description.html:10
+msgid "Смакові нотки"
+msgstr "Hương vị"
+
+#: templates/catalog/partials/compare_body.html:88
+msgid "Список порівняння порожній."
+msgstr "Danh sách so sánh đang trống."
+
+#: templates/catalog/partials/compare_btn.html:12
+msgid "Прибрати з порівняння"
+msgstr "Bỏ khỏi so sánh"
+
+#: templates/catalog/partials/compare_btn.html:12
+#: templates/catalog/partials/compare_btn.html:18
+msgid "Порівняти"
+msgstr "So sánh"
+
+#: templates/catalog/partials/compare_btn.html:18
+msgid "У порівнянні"
+msgstr "Đang so sánh"
+
+#: templates/catalog/partials/pd_cta.html:2
+msgid "Купити"
+msgstr "Mua"
+
+#: templates/catalog/partials/pd_cta.html:20
+msgid "Менше"
+msgstr "Giảm"
+
+#: templates/catalog/partials/pd_cta.html:29
+msgid "Кількість"
+msgstr "Số lượng"
+
+#: templates/catalog/partials/pd_cta.html:30
+msgid "Більше"
+msgstr "Tăng"
+
+#: templates/catalog/partials/pd_cta.html:37
+msgid "Розрахунок"
+msgstr "Công cụ chọn xì gà"
+
+#: templates/catalog/partials/pd_description.html:4
+msgid "Опис"
+msgstr "Mô tả"
+
+#: templates/catalog/partials/pd_description.html:16
+msgid "Рекомендації"
+msgstr "Gợi ý"
+
+#: templates/catalog/partials/pd_gallery.html:6
+msgid "Попереднє фото"
+msgstr "Ảnh trước"
+
+#: templates/catalog/partials/pd_gallery.html:47
+#: templates/catalog/partials/pd_gallery.html:93
+msgid "Відео"
+msgstr "Video"
+
+#: templates/catalog/partials/pd_gallery.html:55
+msgid "Наступне фото"
+msgstr "Ảnh tiếp theo"
+
+#: templates/catalog/partials/pd_gallery.html:62
+msgid "Мініатюри"
+msgstr "Ảnh thu nhỏ"
+
+#: templates/catalog/partials/pd_gallery.html:71
+#, python-format
+msgid "Фото %(n)s"
+msgstr "Ảnh %(n)s"
+
+#: templates/catalog/partials/pd_gallery.html:82
+msgid "Фото 1"
+msgstr "Ảnh 1"
+
+#: templates/catalog/partials/pd_history.html:4
+msgid "Історія сигари"
+msgstr "Lịch sử điếu xì gà"
+
+#: templates/catalog/partials/pd_related.html:6
+#, python-format
+msgid "Схожі з лінії %(line)s"
+msgstr "Tương tự từ dòng %(line)s"
+
+#: templates/catalog/partials/pd_related.html:8
+#, python-format
+msgid "Схожі від %(brand)s"
+msgstr "Tương tự từ %(brand)s"
+
+#: templates/catalog/partials/pd_reviews.html:3
+msgid "Відгуки / рейтинг"
+msgstr "Đánh giá / xếp hạng"
+
+#: templates/catalog/partials/pd_reviews.html:11
+#, python-format
+msgid "Оцінка %(n)s з 5"
+msgstr "Đánh giá %(n)s trên 5"
+
+#: templates/catalog/partials/pd_reviews.html:24
+msgid "Поки немає відгуків — станьте першим, хто оцінить цей товар."
+msgstr "Chưa có đánh giá nào — hãy là người đầu tiên đánh giá sản phẩm này."
+
+#: templates/catalog/partials/pd_specs.html:3
+msgid "Специфікації"
+msgstr "Thông số kỹ thuật"
+
+#: templates/catalog/partials/pd_specs.html:8
+msgid "Виробник"
+msgstr "Nhà sản xuất"
+
+#: templates/catalog/partials/pd_specs.html:31
+msgid "Наявність"
+msgstr "Tình trạng"
+
+#: templates/catalog/partials/pd_specs.html:32
+msgid "В наявності"
+msgstr "Còn hàng"
+
+#: templates/catalog/partials/pd_specs.html:32
+msgid "Під замовлення"
+msgstr "Đặt trước"
+
+#: templates/catalog/partials/pd_specs.html:36
+msgid "Код"
+msgstr "Mã"
+
+#: templates/catalog/partials/product_grid.html:49
+#: templates/catalog/partials/product_grid.html:55
+#: templates/catalog/partials/search_results.html:6
+#: templates/catalog/partials/search_suggest.html:23
+msgid "Нічого не знайдено"
+msgstr "Không tìm thấy kết quả"
+
+#: templates/catalog/partials/product_grid.html:53
+msgid "Сторінки каталогу"
+msgstr "Các trang sản phẩm"
+
+#: templates/emails/booking_created_customer.txt:2
+msgid "Ваше бронювання прийнято."
+msgstr "Đã nhận đặt lịch của bạn."
+
+#: templates/emails/booking_created_customer.txt:4
+#, python-format
+msgid "Слот: %(slot)s"
+msgstr "Khung giờ: %(slot)s"
+
+#: templates/emails/booking_created_customer.txt:8
+msgid "Ми звʼяжемося для підтвердження. Royal Smoke."
+msgstr "Chúng tôi sẽ liên hệ với bạn để xác nhận. Royal Smoke."
+
+#: templates/emails/order_created_customer.html:6
+#: templates/emails/order_created_customer.txt:4
+#: templates/emails/order_paid.html:7 templates/emails/order_paid.txt:4
+msgid "Сума"
+msgstr "Số tiền"
+
+#: templates/emails/order_created_customer.html:8
+#: templates/emails/order_created_customer.txt:6
+#: templates/orders/checkout.html:116 templates/orders/pay.html:4
+msgid "Оплата"
+msgstr "Thanh toán"
+
+#: templates/emails/order_created_customer.html:9
+#: templates/emails/order_created_customer.txt:8
+msgid "Дякуємо, що обрали Royal Smoke."
+msgstr "Cảm ơn bạn đã chọn Royal Smoke."
+
+#: templates/emails/order_created_customer.txt:5
+#: templates/orders/partials/checkout_costs.html:3
+msgid "Доставка"
+msgstr "Giao hàng"
+
+#: templates/emails/order_paid.html:6
+#, python-format
+msgid "Замовлення %(num)s"
+msgstr "Đơn hàng %(num)s"
+
+#: templates/emails/order_paid.txt:5
+msgid "Статус"
+msgstr "Trạng thái"
+
+#: templates/leads/b2b.html:7 templates/pages/partials/home_b2b.html:45
+msgid "Контактна особа"
+msgstr "Người liên hệ"
+
+#: templates/leads/b2b.html:10 templates/pages/partials/home_b2b.html:86
+msgid "Що цікавить"
+msgstr "Bạn quan tâm đến điều gì"
+
+#: templates/leads/b2b.html:11
+msgid "Прайс, гравіювання, корпоративні набори…"
+msgstr "Bảng giá, khắc chữ, bộ quà doanh nghiệp…"
+
+#: templates/leads/b2b.html:21 templates/pages/partials/home_b2b.html:32
+#: templates/pages/partials/home_b2b.html:40
+msgid "Компанія"
+msgstr "Công ty"
+
+#: templates/leads/contact.html:15
+msgid "Повідомлення"
+msgstr "Tin nhắn"
+
+#: templates/leads/contact.html:16
+msgid "Пн–Нд: 11:00–21:00"
+msgstr "T2–CN: 11:00–21:00"
+
+#: templates/leads/contact.html:20
+msgid "Контактна інформація"
+msgstr "Thông tin liên hệ"
+
+#: templates/leads/contact.html:42
+msgid "Адреса"
+msgstr "Địa chỉ"
+
+#: templates/leads/contact.html:46
+msgid "Години"
+msgstr "Giờ mở cửa"
+
+#: templates/leads/delivery.html:37
+#, python-format
+msgid ""
+"Безкоштовна доставка від %(amount)s %(symbol)s по Україні (окрім відда"
+"лених регіонів)."
+msgstr ""
+"Miễn phí giao hàng trên toàn Ukraine cho đơn từ %(amount)s %(symbol)s "
+"(trừ các vùng xa)."
+
+#: templates/orders/checkout.html:15
+#, python-format
+msgid ""
+"Сесія оформлення завершиться приблизно за %(mins)s хв. Збережіть дані "
+"або оновіть сторінку, щоб продовжити."
+msgstr ""
+"Phiên đặt hàng sẽ hết hạn sau khoảng %(mins)s phút. Hãy lưu thông tin "
+"hoặc tải lại trang để tiếp tục."
+
+#: templates/orders/checkout.html:65
+msgid "Спосіб доставки"
+msgstr "Phương thức giao hàng"
+
+#: templates/orders/checkout.html:80
+msgid "Місто"
+msgstr "Thành phố"
+
+#: templates/orders/checkout.html:98
+msgid "Адреса / відділення"
+msgstr "Địa chỉ / chi nhánh"
+
+#: templates/orders/checkout.html:124
+msgid ""
+"Онлайн-оплата зараз у демо-режимі: після підтвердження відкриється тес"
+"това сторінка без реального списання."
+msgstr ""
+"Thanh toán trực tuyến hiện đang ở chế độ demo: sau khi bạn xác nhận, m"
+"ột trang thử nghiệm sẽ mở ra và không có khoản phí thực nào bị trừ."
+
+#: templates/orders/checkout.html:128
+msgid "Коментар"
+msgstr "Ghi chú"
+
+#: templates/orders/partials/checkout_costs.html:7
+msgid "Разом"
+msgstr "Tổng cộng"
+
+#: templates/orders/partials/np_cities.html:15
+msgid "Міст за запитом не знайдено"
+msgstr "Không tìm thấy thành phố phù hợp với tìm kiếm của bạn"
+
+#: templates/orders/partials/np_warehouses.html:15
+msgid "Спочатку оберіть місто зі списку вище"
+msgstr "Trước tiên hãy chọn thành phố từ danh sách phía trên"
+
+#: templates/orders/partials/np_warehouses.html:17
+msgid "Відділень за запитом не знайдено"
+msgstr "Không tìm thấy chi nhánh phù hợp với tìm kiếm của bạn"
+
+#: templates/orders/pay.html:14
+msgid "Очікуємо підтвердження оплати"
+msgstr "Đang chờ xác nhận thanh toán"
+
+#: templates/orders/pay.html:16
+#, python-format
+msgid ""
+"Замовлення <strong>%(num)s</strong> уже передано в оплату. Не сплачуйт"
+"е повторно — статус оновиться автоматично після відповіді банку."
+msgstr ""
+"Đơn hàng <strong>%(num)s</strong> đã được chuyển sang bước thanh toán."
+" Vui lòng không thanh toán lại — trạng thái sẽ tự động cập nhật sau kh"
+"i ngân hàng phản hồi."
+
+#: templates/orders/pay.html:19
+msgid "До замовлення"
+msgstr "Đến đơn hàng"
+
+#: templates/orders/pay.html:20
+msgid "Оновити статус"
+msgstr "Cập nhật trạng thái"
+
+#: templates/orders/pay.html:25
+msgid "Демо-режим · гроші не списуються"
+msgstr "Chế độ demo · không trừ tiền"
+
+#: templates/orders/pay.html:26
+msgid "Оплата замовлення"
+msgstr "Thanh toán đơn hàng"
+
+#: templates/orders/pay.html:28
+#, python-format
+msgid "Номер %(num)s. Це тестова сторінка, щоб перевірити флоу після LiqPay."
+msgstr ""
+"Mã đơn hàng %(num)s. Đây là trang thử nghiệm để kiểm tra luồng sau Liq"
+"Pay."
+
+#: templates/orders/pay.html:36
+msgid "Імʼя на картці"
+msgstr "Tên trên thẻ"
+
+#: templates/orders/pay.html:38
+msgid "IVAN PETRENKO"
+msgstr "IVAN PETRENKO"
+
+#: templates/orders/pay.html:41
+msgid "Номер картки"
+msgstr "Số thẻ"
+
+#: templates/orders/pay.html:47
+msgid "Термін"
+msgstr "Ngày hết hạn"
+
+#: templates/orders/pay.html:57
+msgid "Будь-які дані підійдуть — це симуляція."
+msgstr "Nhập thông tin nào cũng được — đây chỉ là mô phỏng."
+
+#: templates/orders/pay.html:59
+msgid "Сплатити (демо)"
+msgstr "Thanh toán ngay (demo)"
+
+#: templates/orders/pay.html:66
+msgid "Імітувати відмову"
+msgstr "Mô phỏng thanh toán bị từ chối"
+
+#: templates/orders/pay.html:71
+msgid "Перехід до оплати"
+msgstr "Chuyển đến thanh toán"
+
+#: templates/orders/pay.html:72
+#, python-format
+msgid "Замовлення %(num)s. Зараз відкриється LiqPay."
+msgstr "Đơn hàng %(num)s. LiqPay sắp được mở."
+
+#: templates/orders/pay.html:76
+msgid "Сплатити зараз"
+msgstr "Thanh toán ngay"
+
+#: templates/orders/thank_you.html:8
+msgid "Дякуємо за замовлення"
+msgstr "Cảm ơn bạn đã đặt hàng"
+
+#: templates/orders/thank_you.html:11
+#, python-format
+msgid ""
+"Номер замовлення <strong>%(num)s</strong>. Ми надіслали підтвердження "
+"на вашу пошту."
+msgstr ""
+"Mã đơn hàng <strong>%(num)s</strong>. Chúng tôi đã gửi xác nhận đến em"
+"ail của bạn."
+
+#: templates/orders/thank_you.html:13
+msgid "Оплату підтверджено."
+msgstr "Đã xác nhận thanh toán."
+
+#: templates/orders/thank_you.html:15
+msgid ""
+"Очікуємо підтвердження оплати (оновлюється автоматично після відповіді"
+" банку)."
+msgstr ""
+"Đang chờ xác nhận thanh toán (tự động cập nhật sau khi ngân hàng phản "
+"hồi)."
+
+#: templates/orders/thank_you.html:18
+msgid "Ми отримали ваше замовлення і скоро звʼяжемося з вами."
+msgstr "Chúng tôi đã nhận được đơn hàng của bạn và sẽ sớm liên hệ với bạn."
+
+#: templates/orders/thank_you.html:23
+msgid "Сплатити"
+msgstr "Thanh toán"
+
+#: templates/pages/blog_detail.html:114
+#, python-format
+msgid "Оновлено %(date)s"
+msgstr "Cập nhật %(date)s"
+
+#: templates/pages/blog_detail.html:141
+msgid "Часті запитання"
+msgstr "Câu hỏi thường gặp"
+
+#: templates/pages/blog_list.html:106
+msgid "Статті зʼявляться незабаром."
+msgstr "Các bài viết sẽ sớm xuất hiện."
+
+#: templates/pages/faq.html:41
+msgid "Питання зʼявляться незабаром."
+msgstr "Các câu hỏi sẽ sớm xuất hiện."
+
+#: templates/pages/home.html:6
+msgid "Tobacco Atelier"
+msgstr "Tobacco Atelier"
+
+#: templates/pages/home.html:35
+msgid "Головний банер"
+msgstr "Banner chính"
+
+#: templates/pages/home.html:64
+msgid "Royal Smoke — cigar ritual"
+msgstr "Royal Smoke — nghi thức xì gà"
+
+#: templates/pages/home.html:70
+msgid "Royal Smoke — premium cigars"
+msgstr "Royal Smoke — xì gà cao cấp"
+
+#: templates/pages/home.html:76
+msgid "Royal Smoke — lighting a cigar"
+msgstr "Royal Smoke — châm một điếu xì gà"
+
+#: templates/pages/home.html:84
+msgid "Наступний слайд"
+msgstr "Slide tiếp theo"
+
+#: templates/pages/home.html:135
+msgid "Бронювання та B2B"
+msgstr "Đặt lịch và B2B"
+
+#: templates/pages/partials/home_b2b.html:54
+msgid "Контакт"
+msgstr "Người liên hệ"
+
+#: templates/pages/partials/home_b2b.html:94
+msgid "Прайс, гравіювання…"
+msgstr "Bảng giá, khắc chữ…"
+
+#: templates/pages/partials/home_brands.html:2
+msgid "Premium"
+msgstr "Premium"
+
+#: templates/pages/partials/home_brands.html:63
+msgid "До бренду"
+msgstr "Xem thương hiệu"
+
+#: templates/pages/partials/home_brands.html:70
+msgid "Незабаром з’являться featured-бренди."
+msgstr "Các thương hiệu nổi bật sắp ra mắt."
+
+#: templates/pages/partials/home_calculator.html:19
+msgid "Кроки підбору"
+msgstr "Các bước lựa chọn"
+
+#: templates/pages/partials/home_calculator.html:49
+msgid "Яку міцність шукаєте?"
+msgstr "Bạn đang tìm độ mạnh nào?"
+
+#: templates/pages/partials/home_calculator.html:51
+#: templates/pages/partials/home_calculator.html:86
+#: templates/pages/partials/home_calculator.html:121
+#: templates/pages/partials/home_calculator.html:156
+msgid "Крок"
+msgstr "Bước"
+
+#: templates/pages/partials/home_calculator.html:60
+msgid ""
+"Light — до ранкової кави. Medium — універсальний щоденний вибір. Full "
+"— для вечірнього ритуалу."
+msgstr ""
+"Nhẹ — hợp với cà phê buổi sáng. Vừa — lựa chọn đa năng hằng ngày. Đậm "
+"— cho nghi thức buổi tối."
+
+#: templates/pages/partials/home_calculator.html:84
+msgid "Який формат зручніший?"
+msgstr "Kích cỡ nào phù hợp với bạn hơn?"
+
+#: templates/pages/partials/home_calculator.html:95
+msgid ""
+"Petit — короткі перерви. Robusto — класика на 45–60 хв. Churchill — до"
+"вгий вечір без поспіху."
+msgstr ""
+"Petit — cho những lúc nghỉ ngắn. Robusto — dòng kinh điển 45–60 phút. "
+"Churchill — một buổi tối dài thong thả."
+
+#: templates/pages/partials/home_calculator.html:119
+msgid "Яку країну обираєте?"
+msgstr "Bạn chọn quốc gia nào?"
+
+#: templates/pages/partials/home_calculator.html:130
+msgid ""
+"Куба — класика й елегантність. Нікарагуа — сила й спеції. Домінікана —"
+" м’якість і баланс. Або без обмежень."
+msgstr ""
+"Cuba — cổ điển và thanh lịch. Nicaragua — mạnh mẽ và nhiều gia vị. Cộn"
+"g hòa Dominica — êm dịu và cân bằng. Hoặc không giới hạn."
+
+#: templates/pages/partials/home_calculator.html:136
+msgid "Куба"
+msgstr "Cuba"
+
+#: templates/pages/partials/home_calculator.html:140
+msgid "Нікарагуа"
+msgstr "Nicaragua"
+
+#: templates/pages/partials/home_calculator.html:144
+msgid "Домінікана"
+msgstr "Cộng hòa Dominica"
+
+#: templates/pages/partials/home_calculator.html:148
+msgid "Будь-яка"
+msgstr "Bất kỳ"
+
+#: templates/pages/partials/home_calculator.html:154
+msgid "Який бюджет на сигару?"
+msgstr "Ngân sách của bạn cho mỗi điếu xì gà là bao nhiêu?"
+
+#: templates/pages/partials/home_calculator.html:165
+msgid ""
+"Оберіть комфортний діапазон — підберемо варіанти в межах ціни або пока"
+"жемо найкраще без обмежень."
+msgstr ""
+"Hãy chọn khoảng giá phù hợp — chúng tôi sẽ gợi ý các lựa chọn trong tầ"
+"m giá của bạn hoặc giới thiệu những lựa chọn tốt nhất không giới hạn."
+
+#: templates/pages/partials/home_calculator.html:171
+#, python-format
+msgid "до %(amount)s %(symbol)s"
+msgstr "đến %(amount)s %(symbol)s"
+
+#: templates/pages/partials/home_calculator.html:175
+#: templates/pages/partials/home_calculator.html:179
+#, python-format
+msgid "%(lo)s—%(hi)s %(symbol)s"
+msgstr "%(lo)s—%(hi)s %(symbol)s"
+
+#: templates/pages/partials/home_calculator.html:183
+msgid "без обмежень"
+msgstr "không giới hạn"
+
+#: templates/pages/partials/home_calculator.html:191
+msgid "Далі"
+msgstr "Tiếp theo"
+
+#: templates/pages/partials/home_calculator.html:194
+msgid "Показати підбір"
+msgstr "Xem gợi ý"
+
+#: templates/pages/partials/home_calculator.html:204
+msgid "Підсумок вибору"
+msgstr "Tóm tắt lựa chọn"
+
+#: templates/pages/partials/home_calculator.html:205
+msgid "Ваш вибір"
+msgstr "Lựa chọn của bạn"
+
+#: templates/pages/partials/home_catalog.html:17
+msgid "Попередні товари"
+msgstr "Sản phẩm trước"
+
+#: templates/pages/partials/home_catalog.html:28
+msgid "Товари каталогу"
+msgstr "Danh sách sản phẩm"
+
+#: templates/pages/partials/home_catalog.html:84
+msgid "Наступні товари"
+msgstr "Sản phẩm tiếp theo"
+
+#: templates/pages/partials/home_history.html:17
+msgid "Попередній етап"
+msgstr "Giai đoạn trước"
+
+#: templates/pages/partials/home_history.html:28
+msgid "Етапи історії"
+msgstr "Các giai đoạn lịch sử"
+
+#: templates/pages/partials/home_history.html:70
+msgid ""
+"Від майя та таїно до кубинських фабрик і сучасних мануфактур — сигара "
+"як ритуал часу, який ми зберігаємо в Royal Smoke."
+msgstr ""
+"Từ người Maya và Taíno đến các nhà máy xì gà Cuba và những xưởng chế t"
+"ác hiện đại — xì gà như một nghi thức của thời gian mà chúng tôi gìn g"
+"iữ tại Royal Smoke."
+
+#: templates/pages/partials/home_history.html:81
+msgid "Наступний етап"
+msgstr "Giai đoạn tiếp theo"
+
+#: templates/pages/partials/home_history.html:87
+msgid "Роки історії"
+msgstr "Các mốc năm lịch sử"
+
+#: templates/partials/breadcrumbs.html:3
+msgid "Навігаційний шлях"
+msgstr "Đường dẫn điều hướng"
+
+#: templates/partials/footer.html:18
+msgid "Навігація футера"
+msgstr "Điều hướng chân trang"
+
+#: templates/partials/footer.html:47
+msgid "Instagram"
+msgstr "Instagram"
+
+#: templates/partials/footer.html:52
+msgid "Telegram"
+msgstr "Telegram"
+
+#: templates/partials/footer.html:76
+msgid "Facebook"
+msgstr "Facebook"
+
+#: templates/partials/footer.html:93
+msgid "Сайт від"
+msgstr "Website bởi"
+
+#: templates/partials/header.html:16
+msgid "Основна навігація"
+msgstr "Điều hướng chính"
+
+#: templates/partials/header.html:31 templates/partials/header.html:40
+msgid "Пошук"
+msgstr "Tìm kiếm"
+
+#: templates/partials/header.html:38
+msgid "Пошук товарів"
+msgstr "Tìm kiếm sản phẩm"
+
+#: templates/partials/header.html:83
+msgid "Відкрити меню"
+msgstr "Mở menu"
+
+#: templates/partials/header.html:91
+msgid "Меню"
+msgstr "Menu"
+
+#: templates/partials/header.html:99
+msgid "Закрити меню"
+msgstr "Đóng menu"
+
+#: templates/partials/lang_switcher.html:3
+msgid "Мова"
+msgstr "Ngôn ngữ"
+
+#: templates/pwa/offline.html:8
+msgid "Каталог офлайн"
+msgstr "Danh mục sản phẩm ngoại tuyến"
+
+#: templates/pwa/offline.html:14
+msgid "Офлайн-копія каталогу. Ціни та наявність можуть бути застарілими."
+msgstr "Bản sao danh mục ngoại tuyến. Giá và tình trạng còn hàng có thể đã cũ."
+

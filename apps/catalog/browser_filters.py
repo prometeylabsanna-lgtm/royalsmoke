@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 
 from apps.catalog.models import Brand, Category, Product
 from apps.catalog.search import product_search_q, sanitize_search_query
-from apps.core.currency import convert_from_uah_int, convert_to_uah
+from apps.core.currency import convert_from_uah_int, convert_to_uah, price_slider_step
 
 SORT_OPTIONS = (
     ('top', _('Топ')),
@@ -164,8 +164,12 @@ def build_browser_context(request, *, products, category=None, brand=None, page_
     bound_min_uah, bound_max_uah = price_bounds()
     bound_min = convert_from_uah_int(bound_min_uah)
     bound_max = convert_from_uah_int(bound_max_uah)
+    # Межі кратні кроку повзунка, щоб обидва кінці були досяжні (IDR/VND: крок 1000).
+    step = price_slider_step()
+    bound_min = (bound_min // step) * step
+    bound_max = -(-bound_max // step) * step
     if bound_max <= bound_min:
-        bound_max = bound_min + 1
+        bound_max = bound_min + step
     price_min = _as_decimal(params.get('price_min'), Decimal(bound_min))
     price_max = _as_decimal(params.get('price_max'), Decimal(bound_max))
     price_min = max(Decimal(bound_min), min(price_min, Decimal(bound_max)))
@@ -290,6 +294,7 @@ def build_browser_context(request, *, products, category=None, brand=None, page_
         'filter_base_path': base_path,
         'filter_list_path': list_path,
         'price_bound_min': bound_min,
+        'price_step': step,
         'price_bound_max': bound_max,
         'price_min': int(price_min),
         'price_max': int(price_max),

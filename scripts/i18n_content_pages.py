@@ -127,11 +127,11 @@ PAGES_EXACT: dict[str, tuple[str, str]] = {
         '<p>Royal Smoke 向成年访客提供烟草制品与配件。下单即表示您已年满21岁并同意销售条款。</p>',
     ),
     '<p>Доступ до вітрини можливий лише після підтвердження віку (cookie age_ok). Особам молодше 21 року продаж заборонено.</p>': (
-        '<p>Storefront access requires age confirmation (cookie age_ok). Sales to persons under 21 are prohibited.</p>',
+        '<p>Access to the storefront is available only after age confirmation (age_ok cookie). Sales to persons under 21 are prohibited.</p>',
         '<p>进入店面前须确认年龄（cookie age_ok）。禁止向未满21岁者销售。</p>',
     ),
     '<p>Використовуємо необхідні cookies для сесії кошика, age gate та мови. Аналітичні cookies — лише за згодою, якщо увімкнено на проєкті.</p>': (
-        '<p>We use necessary cookies for the cart session, age gate, and language. Analytics cookies only with consent, if enabled on the project.</p>',
+        '<p>We use necessary cookies for the cart session, age gate, and language. Analytics cookies — only with consent, if enabled on the project.</p>',
         '<p>我们使用必要 Cookie 用于购物车会话、年龄门槛与语言。分析类 Cookie 仅在征得同意且项目启用时使用。</p>',
     ),
     'Нікарагуанський характер: насичений дим, чітка структура та вітоли для вечірнього ритуалу.': (
@@ -139,7 +139,7 @@ PAGES_EXACT: dict[str, tuple[str, str]] = {
         '尼加拉瓜风格：浓郁烟气、清晰结构，适合晚间仪式的规格。',
     ),
     'Сімейна мануфактура з глибокими blend і стабільним горінням — від Serie V до класичних ліній.': (
-        'A family manufactory with deep blends and steady burn — from Serie V to classic lines.',
+        'A family-run manufacturer with deep blends and steady burn — from Serie V to classic lines.',
         '家族工坊，配方深厚、燃烧稳定——从 Serie V 到经典系列。',
     ),
     'Витримка та точність скрутки: епікюри й торо з теплими нотами дерева та кави.': (
@@ -184,7 +184,7 @@ PAGES_EXACT: dict[str, tuple[str, str]] = {
     ),
     'Читати': ('Read', '阅读'),
     'Усі статті': ('All articles', '全部文章'),
-    'Читайте також': ('Read also', '相关阅读'),
+    'Читайте також': ('Related reading', '相关阅读'),
     'Про нас': ('About us', '关于我们'),
     'Бренди': ('Brands', '品牌'),
     'Покупка': ('Shop', '购物'),
@@ -199,7 +199,7 @@ PAGES_EXACT: dict[str, tuple[str, str]] = {
         '请填写联系方式与配送方式。',
     ),
     'Підтверджую, що мені є 21 рік': ('I confirm I am 21 or older', '我确认已年满21岁'),
-    'Каталог наповнюється.': ('The catalog is being filled.', '目录正在充实中。'),
+    'Каталог наповнюється.': ('Products are being added to the catalog.', '目录正在充实中。'),
     'Видалити': ('Remove', '删除'),
     'Кошик порожній.': ('Your cart is empty.', '购物车为空。'),
     'Продовжити покупки': ('Continue shopping', '继续购物'),
@@ -227,9 +227,9 @@ PAGES_EXACT: dict[str, tuple[str, str]] = {
         '本站仅面向年满21岁的访客。',
     ),
     'Повернутися': ('Go back', '返回'),
-    'Перший кабінет': ('First cabinet', '第一间品鉴室'),
-    'Прямі мануфактури': ('Direct manufactories', '直连工坊'),
-    'Власний хумідор': ('Own humidor', '自有保湿房'),
+    'Перший кабінет': ('The first room', '第一间品鉴室'),
+    'Прямі мануфактури': ('Direct manufacturers', '直连工坊'),
+    'Власний хумідор': ('Our own humidor', '自有保湿房'),
     'Бутік, каталог, сервіс': ('Boutique, catalog, service', '精品店、目录与服务'),
     'Хроніка одного рішення': ('Chronicle of one decision', '一个决定的编年'),
     'років на ринку': ('years on the market', '年市场经验'),
@@ -246,11 +246,27 @@ PAGES_EXACT: dict[str, tuple[str, str]] = {
         '我们打造湿度稳定的仓储，并组建侍茄师团队，从首次咨询到配送全程陪伴订单。',
     ),
     'Працюємо як бутік і як точний онлайн-каталог: консультація, термобокс і доставка, яка береже лист.': (
-        'We work as a boutique and a precise online catalog: consultation, insulated boxing, and delivery that protects the leaf.',
+        'We work as a boutique and a precise online catalog: consultation, insulated packaging, and delivery that protects the leaf.',
         '我们既是精品店也是精准在线目录：咨询、保温包装，以及呵护烟叶的配送。',
     ),
     'Royal Smoke — tobacco atelier, зібраний навколо простого правила: продавати лише те, що самі готові курити.': (
         'Royal Smoke is a tobacco atelier built around a simple rule: sell only what we are ready to smoke ourselves.',
         'Royal Smoke 是围绕一条简单规则打造的烟草工坊：只卖我们自己也愿意品吸的东西。',
+    ),
+    'Як ми збираємо, зберігаємо та захищаємо ваші дані.': (
+        'How we collect, store, and protect your data.',
+        '我们如何收集、存储和保护您的数据。',
+    ),
+    'Правила користування сайтом і умови продажу.': (
+        'Rules for using the site and terms of sale.',
+        '网站使用规则与销售条款。',
+    ),
+    'Доступ лише для повнолітніх відвідувачів 21+.': (
+        'Access is for adult visitors aged 21+ only.',
+        '仅限21岁以上的成年访客访问。',
+    ),
+    'Які cookies використовує сайт і навіщо.': (
+        'Which cookies the site uses and why.',
+        '本网站使用哪些 Cookie 及其用途。',
     ),
 }

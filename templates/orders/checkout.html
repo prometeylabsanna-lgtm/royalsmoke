@@ -54,7 +54,7 @@
       <p class="rs-field__error" id="id_phone-error" data-rs-error {% if not form.phone.errors %}hidden{% endif %}>{% if form.phone.errors %}{{ form.phone.errors.0 }}{% endif %}</p>
     </div>
     <div class="rs-field{% if form.email.errors %} is-invalid{% endif %}">
-      <label for="id_email">Email</label>
+      <label for="id_email">{% trans "Email" %}</label>
       <input id="id_email" type="email" name="email" required autocomplete="email" data-rs-rule="email"
              value="{{ form.email.value|default:'' }}"
              aria-describedby="id_email-error"

@@ -7,18 +7,28 @@ from pathlib import Path
 
 from django.core.management.base import BaseCommand
 from django.utils.translation import override
+from modeltranslation.utils import build_localized_fieldname
 
 from apps.booking.models import BookingService
-from apps.calculator.models import CalculatorQuestion
+from apps.calculator.models import CalculatorOption, CalculatorQuestion
 from apps.catalog.models import Product, ProductImage, ProductReview
 from apps.catalog.models_base import Brand, Category, ProductLine, Tag
 from apps.core.block_defaults import is_visibility_key
-from apps.core.models import HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings, clear_site_content_cache
+from apps.core.models import (
+    DeliveryCard,
+    HeroSlide,
+    HistorySlide,
+    HomeBrandCard,
+    SiteBlock,
+    SiteSettings,
+    clear_site_content_cache,
+)
 from apps.pages.models import FAQItem, LegalDocument
 
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from i18n_content import translate_uk  # noqa: E402
+from i18n_sea import translate as translate_sea  # noqa: E402
 
 
 def _uk_value(obj, field: str) -> str:
@@ -38,11 +48,12 @@ def _skip_block(obj: SiteBlock, field: str) -> bool:
     if is_visibility_key(obj.key):
         return True
     raw = (getattr(obj, 'text_html_uk', None) or obj.text_html or '').strip()
-    return raw in ('0', '1')
+    # Visibility flags and map embeds carry no translatable text.
+    return raw in ('0', '1') or raw.lstrip().lower().startswith('<iframe')
 
 
 class Command(BaseCommand):
-    help = 'Заповнює порожні EN/ZH поля CMS і каталогу з українських оригіналів'
+    help = 'Заповнює порожні EN/ZH/MS/FIL/ID/VI поля CMS і каталогу з українських оригіналів'
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -50,11 +61,18 @@ class Command(BaseCommand):
             action='store_true',
             help='Перезаписати вже заповнені EN/ZH поля',
         )
+        parser.add_argument(
+            '--strict-sea',
+            action='store_true',
+            help='Завершити з помилкою, якщо для ms/fil/id/vi немає перекладу (у кінці інтеграції)',
+        )
 
     def handle(self, *args, **options):
         force = bool(options.get('force'))
+        strict_sea = bool(options.get('strict_sea'))
         filled = 0
         missing = 0
+        pending_sea = 0
         skipped = 0
         jobs = (
             (SiteBlock.objects.all(), ('text_html',), _skip_block),
@@ -78,6 +96,8 @@ class Command(BaseCommand):
             (ProductReview.objects.all(), ('text',), None),
             (BookingService.objects.all(), ('title', 'description'), None),
             (CalculatorQuestion.objects.all(), ('title', 'help_text'), None),
+            (CalculatorOption.objects.all(), ('label', 'explanation'), None),
+            (DeliveryCard.objects.all(), ('title', 'text'), None),
             (HomeBrandCard.objects.all(), ('text',), None),
             (FAQItem.objects.all(), ('question', 'answer'), None),
             (LegalDocument.objects.all(), ('title', 'body'), None),
@@ -121,6 +141,23 @@ class Command(BaseCommand):
                                 continue
                             setattr(obj, attr, val)
                             changed.append(attr)
+                        sea = translate_sea(uk)
+                        if not sea:
+                            pending_sea += 1
+                            if strict_sea:
+                                self.stderr.write(
+                                    f'  NO MS/FIL/ID/VI: {obj.__class__.__name__}.{field} {uk[:90]!r}'
+                                )
+                            continue
+                        for lang, val in sea.items():
+                            attr = build_localized_fieldname(field, lang)
+                            current = (getattr(obj, attr, None) or '').strip()
+                            if current and current != uk and not force:
+                                continue
+                            if current == val:
+                                continue
+                            setattr(obj, attr, val)
+                            changed.append(attr)
                     if changed:
                         obj.save(update_fields=changed)
                         filled += len(changed)
@@ -133,7 +170,11 @@ class Command(BaseCommand):
                 filled += 1
         clear_site_content_cache()
         self.stdout.write(self.style.SUCCESS(
-            f'fill_i18n_content: updated_fields={filled}, missing={missing}, skipped={skipped}'
+            f'fill_i18n_content: updated_fields={filled}, missing={missing}, skipped={skipped}, '
+            f'sea_pending={pending_sea}'
         ))
+        if strict_sea and pending_sea:
+            self.stderr.write(self.style.ERROR(f'{pending_sea} strings have no ms/fil/id/vi translation'))
+            raise SystemExit(2)
         if missing:
             self.stderr.write(self.style.ERROR(f'{missing} strings still need a mapping'))

@@ -12,6 +12,10 @@ from apps.core.legal_delivery_body import (
 from apps.core.models import DeliveryCard, SiteBlock
 
 
+# Той самий вступний рядок, що й у DELIVERY_BODY_UK/EN/ZH: блоки UK, EN і ZH мають збігатися 1:1.
+DEFAULT_PAY_INTRO = 'Доступні способи оплати під час оформлення замовлення:'
+
+
 def _escape_text(value: str) -> str:
     return escape((value or '').strip())
 
@@ -50,7 +54,7 @@ def build_delivery_body_html(
 
     h2 = (h2 or _block_text('h2') or 'Доставка').strip()
     pay_h2 = (pay_h2 or _block_text('pay_h2') or 'Оплата').strip()
-    pay_intro = (pay_intro or _block_text('pay_intro') or '').strip()
+    pay_intro = (pay_intro or _block_text('pay_intro') or DEFAULT_PAY_INTRO).strip()
 
     parts: list[str] = [f'<h2>{_escape_text(h2)}</h2>']
     if region_qs:

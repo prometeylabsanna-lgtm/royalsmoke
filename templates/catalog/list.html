@@ -121,7 +121,7 @@
                      data-cb-range-min
                      min="{{ price_bound_min }}"
                      max="{{ price_bound_max }}"
-                     step="1"
+                     step="{{ price_step }}"
                      value="{{ price_min }}"
                      aria-label="{% trans "Мінімальна ціна" %}">
               <input class="rs-cb__range-input rs-cb__range-input--max"
@@ -129,7 +129,7 @@
                      data-cb-range-max
                      min="{{ price_bound_min }}"
                      max="{{ price_bound_max }}"
-                     step="1"
+                     step="{{ price_step }}"
                      value="{{ price_max }}"
                      aria-label="{% trans "Максимальна ціна" %}">
             </div>
@@ -169,5 +169,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/catalog-browser.js' %}?v=7" defer></script>
+<script src="{% static 'js/catalog-browser.js' %}?v=8" defer></script>
 {% endblock %}

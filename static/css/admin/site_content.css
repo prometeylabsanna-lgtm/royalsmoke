@@ -250,6 +250,10 @@ body.dark .rs-cms-langs {
 body.cms-lang-uk [data-cms-lang]:not([data-cms-lang="uk"]),
 body.cms-lang-en [data-cms-lang]:not([data-cms-lang="en"]),
 body.cms-lang-zh-hans [data-cms-lang]:not([data-cms-lang="zh-hans"]),
+body.cms-lang-ms [data-cms-lang]:not([data-cms-lang="ms"]),
+body.cms-lang-fil [data-cms-lang]:not([data-cms-lang="fil"]),
+body.cms-lang-id [data-cms-lang]:not([data-cms-lang="id"]),
+body.cms-lang-vi [data-cms-lang]:not([data-cms-lang="vi"]),
 .rs-cms-original-alias {
   display: none;
 }

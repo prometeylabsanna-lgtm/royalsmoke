@@ -2,6 +2,7 @@
 """Fill django.po msgstr from EN/ZH translation dicts and compile messages."""
 from __future__ import annotations
 
+import argparse
 import re
 import subprocess
 import sys
@@ -14,6 +15,7 @@ LOCALE_DIR = ROOT / "locale"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from i18n_en import PLURALS as EN_PLURALS  # noqa: E402
 from i18n_en import TRANSLATIONS as EN  # noqa: E402
+from i18n_sea import SEA_LANGUAGES, SEA_PLURAL_FORMS, load_language  # noqa: E402
 from i18n_zh import PLURALS as ZH_PLURALS  # noqa: E402
 from i18n_zh import TRANSLATIONS as ZH  # noqa: E402
 
@@ -58,8 +60,15 @@ def format_po_string(text: str, prefix: str) -> list[str]:
     out = [f'{prefix} ""']
     pos = 0
     while pos < len(escaped):
-        out.append(f'"{escaped[pos : pos + 70]}"')
-        pos += 70
+        end = pos + 70
+        if end < len(escaped):
+            head = escaped[:end]
+            # An odd run of trailing backslashes means the cut would split an
+            # escape sequence (\n, \", \\). Move it before the backslash.
+            if (len(head) - len(head.rstrip("\\"))) % 2:
+                end -= 1
+        out.append(f'"{escaped[pos:end]}"')
+        pos = end
     return out
 
 
@@ -183,22 +192,38 @@ def lookup(msgid: str, mapping: dict[str, str]) -> str | None:
     return None
 
 
-def patch_header(header: str, lang_code: str) -> str:
+def patch_header(header: str, lang_code: str, plural_forms: str | None = None) -> str:
     if re.search(r"(?m)^Language:", header):
         header = re.sub(r"(?m)^Language:.*$", f"Language: {lang_code}\\n", header)
     else:
         header = header.rstrip("\n") + f"\nLanguage: {lang_code}\n"
+    if plural_forms:
+        if re.search(r"(?m)^Plural-Forms:", header):
+            header = re.sub(r"(?m)^Plural-Forms:.*$", f"Plural-Forms: {plural_forms}", header)
+        else:
+            header = header.rstrip("\n") + f"\nPlural-Forms: {plural_forms}\n"
     return header.replace("\n\nMIME", "\nMIME")
 
 
-def fill_po(path: Path, mapping: dict[str, str], plurals: dict[str, tuple[str, str]], lang_code: str) -> tuple[int, int]:
+def fill_po(
+    path: Path,
+    mapping: dict[str, str],
+    plurals: dict[str, tuple[str, str]],
+    lang_code: str,
+    *,
+    plural_forms: str | None = None,
+    single_plural: bool | None = None,
+    quiet_missing: bool = False,
+) -> tuple[int, int]:
     entries = parse_po(path)
     filled = 0
     missing = 0
+    if single_plural is None:
+        single_plural = lang_code == "zh_Hans"
     for entry in entries:
         if entry.is_header:
             meta = entry.msgstr or entry.msgid
-            entry.msgstr = patch_header(meta, lang_code)
+            entry.msgstr = patch_header(meta, lang_code, plural_forms)
             entry.msgid = ""
             entry.flags = [f for f in entry.flags if f != "fuzzy"]
             continue
@@ -213,7 +238,8 @@ def fill_po(path: Path, mapping: dict[str, str], plurals: dict[str, tuple[str, s
                 filled += 1
             else:
                 missing += 1
-                print(f"  MISSING plural [{lang_code}]: {entry.msgid!r}", file=sys.stderr)
+                if not quiet_missing:
+                    print(f"  MISSING plural [{lang_code}]: {entry.msgid!r}", file=sys.stderr)
             continue
         if not entry.msgid:
             continue
@@ -223,51 +249,85 @@ def fill_po(path: Path, mapping: dict[str, str], plurals: dict[str, tuple[str, s
             entry.flags = [f for f in entry.flags if f != "fuzzy"]
             filled += 1
         else:
+            entry.msgstr = ""
             missing += 1
-            print(f"  MISSING [{lang_code}]: {entry.msgid[:80]!r}", file=sys.stderr)
-    write_po(path, entries, single_plural=(lang_code == "zh_Hans"))
+            if not quiet_missing:
+                print(f"  MISSING [{lang_code}]: {entry.msgid[:80]!r}", file=sys.stderr)
+    write_po(path, entries, single_plural=single_plural)
     return filled, missing
 
 
-def compile_messages() -> None:
-    subprocess.run(
-        [
-            str(ROOT / ".venv/bin/python"),
-            "manage.py",
-            "compilemessages",
-            "-l",
-            "en",
-            "-l",
-            "zh_Hans",
-            "--ignore=.venv",
-        ],
-        cwd=ROOT,
-        check=True,
-    )
+def compile_messages(codes: list[str]) -> None:
+    """msgfmt напряму: проєктний .venv не потрібен, а формат плейсхолдерів перевіряється."""
+    for code in codes:
+        base = LOCALE_DIR / code / "LC_MESSAGES"
+        subprocess.run(
+            ["msgfmt", "--check-format", "-o", str(base / "django.mo"), str(base / "django.po")],
+            check=True,
+        )
 
 
-def main() -> int:
-    en_po = LOCALE_DIR / "en" / "LC_MESSAGES" / "django.po"
-    zh_po = LOCALE_DIR / "zh_Hans" / "LC_MESSAGES" / "django.po"
-    if not en_po.exists() or not zh_po.exists():
-        print("Run makemessages first.", file=sys.stderr)
+def build_targets() -> dict[str, dict]:
+    """Мова → дані й параметри каталогу. en/zh обовʼязкові; ms/fil/id/vi заповнюються по сторінках."""
+    targets: dict[str, dict] = {
+        "en": {"mapping": EN, "plurals": EN_PLURALS, "required": True},
+        "zh_Hans": {"mapping": ZH, "plurals": ZH_PLURALS, "required": True},
+    }
+    for code in SEA_LANGUAGES:
+        mapping, plurals = load_language(code)
+        forms = SEA_PLURAL_FORMS[code]
+        targets[code] = {
+            "mapping": mapping,
+            "plurals": plurals,
+            "required": False,
+            "plural_forms": forms,
+            "single_plural": forms.startswith("nplurals=1"),
+        }
+    return targets
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--lang", action="append", help="locale code (default: all)")
+    parser.add_argument("--strict", action="store_true", help="fail on missing strings for ms/fil/id/vi too")
+    args = parser.parse_args(argv)
+
+    targets = build_targets()
+    codes = args.lang or list(targets)
+    unknown = [c for c in codes if c not in targets]
+    if unknown:
+        print(f"Unknown locale(s): {unknown}", file=sys.stderr)
         return 1
+    for code in codes:
+        if not (LOCALE_DIR / code / "LC_MESSAGES" / "django.po").exists():
+            print(f"Run makemessages -l {code} first.", file=sys.stderr)
+            return 1
 
-    print("Filling EN…")
-    en_filled, en_missing = fill_po(en_po, EN, EN_PLURALS, "en")
-    print("Filling zh_Hans…")
-    zh_filled, zh_missing = fill_po(zh_po, ZH, ZH_PLURALS, "zh_Hans")
+    results: dict[str, tuple[int, int]] = {}
+    for code in codes:
+        cfg = targets[code]
+        print(f"Filling {code}…")
+        results[code] = fill_po(
+            LOCALE_DIR / code / "LC_MESSAGES" / "django.po",
+            cfg["mapping"],
+            cfg["plurals"],
+            code,
+            plural_forms=cfg.get("plural_forms"),
+            single_plural=cfg.get("single_plural"),
+            quiet_missing=not cfg["required"] and not args.strict,
+        )
 
     print("Compiling messages…")
-    compile_messages()
+    compile_messages(codes)
 
-    for lang in ("en", "zh_Hans"):
-        mo = LOCALE_DIR / lang / "LC_MESSAGES" / "django.mo"
-        print(f"  {mo}: {'OK' if mo.exists() else 'MISSING'}")
-
-    print(f"\nEN: filled={en_filled}, missing={en_missing}")
-    print(f"zh_Hans: filled={zh_filled}, missing={zh_missing}")
-    return 0 if en_missing == 0 and zh_missing == 0 else 2
+    failed = False
+    for code in codes:
+        filled, missing = results[code]
+        mo = LOCALE_DIR / code / "LC_MESSAGES" / "django.mo"
+        print(f"  {code}: filled={filled}, missing={missing}, mo={'OK' if mo.exists() else 'MISSING'}")
+        if missing and (targets[code]["required"] or args.strict):
+            failed = True
+    return 2 if failed else 0
 
 
 if __name__ == "__main__":

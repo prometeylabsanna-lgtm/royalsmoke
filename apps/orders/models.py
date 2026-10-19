@@ -70,8 +70,8 @@ class Order(models.Model):
     currency = models.CharField(max_length=3, default='UAH')
     fx_rate = models.DecimalField(
         'Курс до UAH',
-        max_digits=12,
-        decimal_places=4,
+        max_digits=16,
+        decimal_places=8,
         default=Decimal('1'),
         help_text='Гривень за 1 одиницю валюти замовлення на момент оформлення.',
     )

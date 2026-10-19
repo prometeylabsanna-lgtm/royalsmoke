@@ -1,4 +1,4 @@
-/* Soft prompt for Web Push permission + stale offline banner */
+/* Stale offline banner. The push permission bar was removed from the storefront. */
 
 .rs-pwa-stale {
   position: sticky;
@@ -15,50 +15,3 @@
   border-bottom: 1px solid var(--rs-hairline, rgba(252, 242, 238, 0.14));
 }
 
-.rs-pwa-push-bar {
-  position: fixed;
-  left: max(12px, env(safe-area-inset-left));
-  right: max(12px, env(safe-area-inset-right));
-  bottom: max(12px, env(safe-area-inset-bottom));
-  z-index: 60;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px 16px;
-  background: color-mix(in srgb, var(--rs-bark, #100d0c) 92%, black);
-  border: 1px solid var(--rs-border-soft, rgba(252, 242, 238, 0.25));
-  color: var(--rs-seashell, #fcf2ee);
-  font-family: var(--rs-font-ui, "Fixel Display", "Helvetica Neue", sans-serif);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-}
-
-.rs-pwa-push-bar__text {
-  margin: 0;
-  flex: 1 1 180px;
-  font-size: 14px;
-  line-height: 1.35;
-}
-
-.rs-pwa-push-bar__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.rs-pwa-push-bar .rs-btn {
-  min-height: 40px;
-  padding: 8px 14px;
-  font-size: 13px;
-  touch-action: manipulation;
-}
-
-@media (min-width: 768px) {
-  .rs-pwa-push-bar {
-    left: auto;
-    right: max(24px, env(safe-area-inset-right));
-    bottom: max(24px, env(safe-area-inset-bottom));
-    max-width: 420px;
-  }
-}

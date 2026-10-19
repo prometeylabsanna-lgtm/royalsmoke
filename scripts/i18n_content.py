@@ -32,7 +32,7 @@ EXACT: dict[str, tuple[str, str]] = {
     'Intro': ('Intro', 'Intro'),
     '1492+': ('1492+', '1492+'),
     'Core': ('Core', 'Core'),
-    'Міцність': ('Strength', '浓度'),
+    'Міцність': ('Strength', '劲头'),
     'Формат': ('Format', '规格'),
     'Країна': ('Country', '产地'),
     'Бюджет': ('Budget', '预算'),
@@ -122,7 +122,7 @@ EXACT: dict[str, tuple[str, str]] = {
         '为懂行之人手工甄选雪茄',
     ),
     'Понад 400 позицій з мануфактур Нікарагуа, Домінікани та Куби.': (
-        'Over 400 items from manufactories in Nicaragua, the Dominican Republic, and Cuba.',
+        'Over 400 items from manufacturers in Nicaragua, the Dominican Republic, and Cuba.',
         '来自尼加拉瓜、多米尼加和古巴工厂的400余款产品。',
     ),
     'Лімітовані лінії AJ Fernandez уже в наявності': (
@@ -173,7 +173,7 @@ EXACT: dict[str, tuple[str, str]] = {
         '十九世纪的古巴奠定典范：规格、卷制纪律、传奇之名。雪茄成为品味与身份的语言——精致且毫不妥协。',
     ),
     'Смак уже не має однієї адреси: Нікарагуа, Домінікана, Гондурас. Ми обираємо мануфактури за характером диму — тихо, точно, без зайвого шуму.': (
-        'Flavor no longer has a single address: Nicaragua, the Dominican Republic, Honduras. We choose manufactories by the character of the smoke — quietly, precisely, without extra noise.',
+        'Flavor no longer has a single address: Nicaragua, the Dominican Republic, Honduras. We choose manufacturers by the character of the smoke — quietly, precisely, without extra noise.',
         '风味已不再只有一个地址：尼加拉瓜、多米尼加、洪都拉斯。我们按烟气性格选择工厂——安静、准确、不事张扬。',
     ),
     'Рекомендуємо 30–40 хвилин відпочинку в хумідорі перед розкурюванням.': (
