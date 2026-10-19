@@ -187,8 +187,10 @@ class LanguageSwitcherTests(TestCase):
         self.assertIn('English', html)
         self.assertIn('hreflang="en"', html)
         self.assertIn('hreflang="zh-hans"', html)
-        for hidden in ('Bahasa Melayu', 'Filipino', 'Bahasa Indonesia', 'Tiếng Việt'):
-            self.assertNotIn(hidden, html)
+        for name in ('Bahasa Melayu', 'Filipino', 'Bahasa Indonesia', 'Tiếng Việt'):
+            self.assertIn(name, html)
+        for code in ('ms', 'fil', 'id', 'vi'):
+            self.assertIn(f'href="/{code}/"', html)
 
     def test_drawer_uses_inline_list(self):
         html = self._home()

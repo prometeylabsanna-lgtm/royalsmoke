@@ -19,9 +19,10 @@ STOREFRONT_LANGUAGES: list[tuple[str, str]] = [
     ('vi', 'Tiếng Việt'),
 ]
 
-# Мови, які бачить відвідувач у перемикачі. Нові мови вмикаються лише після повної
-# перевірки всіх сторінок: додайте їхні коди сюди.
-STOREFRONT_LANGUAGES_VISIBLE: tuple[str, ...] = ('uk', 'en', 'zh-hans')
+# Мови, які бачить відвідувач у перемикачі. Порядок — порядок пунктів у списку.
+STOREFRONT_LANGUAGES_VISIBLE: tuple[str, ...] = (
+    'uk', 'en', 'zh-hans', 'ms', 'fil', 'id', 'vi',
+)
 
 # Короткі підписи в перемикачі мов.
 LANGUAGE_SHORT_LABELS: dict[str, str] = {
