@@ -25,12 +25,15 @@ else:
     sys.exit(1)
 PY
 
-echo "==> Django check + migrate + seed + collectstatic"
+echo "==> Django check + migrate + collectstatic"
 python3 manage.py check --deploy
 python3 manage.py migrate --noinput
-python3 manage.py seed_demo
-python3 manage.py seed_blog
-python3 manage.py fill_i18n_content
+# seed_demo / seed_blog: run manually when needed (not on every startup).
+# fill_i18n_content can overwrite existing translations — opt-in via RUN_FILL_I18N=1.
+if [ "${RUN_FILL_I18N:-0}" = "1" ]; then
+  echo "==> fill_i18n_content (RUN_FILL_I18N=1)"
+  python3 manage.py fill_i18n_content
+fi
 python3 manage.py collectstatic --noinput
 
 _static_count=$(find "${STATIC_ROOT:-/app/staticfiles}" -type f 2>/dev/null | wc -l | tr -d ' ')
