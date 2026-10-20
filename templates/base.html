@@ -53,7 +53,7 @@
   {% if page_style.is_preview %}
   <div class="rs-style-preview-banner" role="status">Превʼю кольорів (не збережено)</div>
   {% endif %}
-  <script>try{localStorage.setItem('rs_lang','{{ LANGUAGE_CODE|default:"uk" }}');}catch(e){}</script>
+  <script nonce="{{ request.csp_nonce }}">try{localStorage.setItem('rs_lang','{{ LANGUAGE_CODE|default:"uk"|escapejs }}');}catch(e){}</script>
   {% csrf_token %}
 
   <svg class="rs-wish-defs" aria-hidden="true" focusable="false">

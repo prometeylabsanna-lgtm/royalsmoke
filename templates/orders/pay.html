@@ -76,7 +76,7 @@
     <button type="submit" class="rs-btn rs-btn--gold">{% trans "Сплатити зараз" %}</button>
   </form>
 </div>
-<script>
+<script nonce="{{ request.csp_nonce }}">
   document.getElementById('liqpay-form').submit();
 </script>
 {% endif %}
