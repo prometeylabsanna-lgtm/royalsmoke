@@ -48,6 +48,8 @@ def _brand_static_image(brand) -> str:
 
 
 def _enrich_brand_craft(brands):
+    from apps.core.brand_cards import home_brand_description
+
     enriched = []
     for i, brand in enumerate(brands[:4]):
         logo = ''
@@ -56,7 +58,7 @@ def _enrich_brand_craft(brands):
                 logo = brand.logo.url
             except ValueError:
                 logo = ''
-        desc = (brand.short_description or brand.description or '').strip()
+        desc = home_brand_description(brand)
         enriched.append({
             'brand': brand,
             'tone': _BRAND_CRAFT_TONES[i % len(_BRAND_CRAFT_TONES)],
@@ -69,7 +71,7 @@ def _enrich_brand_craft(brands):
 
 
 def _home_brand_cards():
-    from apps.core.block_defaults import BRAND_CARD_TEXT_DEFAULTS
+    from apps.core.brand_cards import home_brand_description
 
     cards = list(
         HomeBrandCard.objects.filter(is_active=True, brand__is_active=True)
@@ -91,9 +93,7 @@ def _home_brand_cards():
                 image = card.brand.logo.url
             except ValueError:
                 image = ''
-        desc = (card.text or card.brand.short_description or card.brand.description or '').strip()
-        if not desc:
-            desc = BRAND_CARD_TEXT_DEFAULTS.get(card.brand.slug, '')
+        desc = home_brand_description(card.brand, card)
         enriched.append({
             'brand': card.brand,
             'tone': _BRAND_CRAFT_TONES[i % len(_BRAND_CRAFT_TONES)],

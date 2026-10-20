@@ -17,7 +17,7 @@ from apps.core.block_defaults import (
     FAQ_ITEM_DEFAULTS,
     HISTORY_SLIDE_DEFAULTS,
 )
-from apps.core.models import ChromeStyle, HeroSlide, HistorySlide, HomeBrandCard, SiteBlock, SiteSettings
+from apps.core.models import ChromeStyle, HeroSlide, HistorySlide, SiteBlock, SiteSettings
 from apps.core.page_styles import ensure_page_styles
 from apps.core.delivery_cards import ensure_delivery_cards
 from apps.core.legal_delivery_migrate import (
@@ -347,47 +347,9 @@ class Command(BaseCommand):
                     )
 
     def _seed_brand_cards(self):
-        from pathlib import Path
+        from apps.core.brand_cards import seed_brand_cards
 
-        from django.conf import settings
-        from django.core.files import File
-
-        from apps.catalog.models_base import Brand
-        from apps.core.block_defaults import BRAND_CARD_TEXT_DEFAULTS, BRAND_IMAGE_FALLBACKS
-
-        brands = list(Brand.objects.filter(is_featured=True).order_by('sort_order', 'id')[:4])
-        if not brands:
-            brands = list(Brand.objects.filter(is_active=True).order_by('sort_order', 'id')[:4])
-        static_root = Path(settings.BASE_DIR) / 'static'
-        for i, brand in enumerate(brands):
-            text = BRAND_CARD_TEXT_DEFAULTS.get(brand.slug, '')
-            if not (brand.short_description or '').strip() and text:
-                brand.short_description = text
-                brand.save(update_fields=['short_description'])
-            card, _ = HomeBrandCard.objects.get_or_create(
-                brand=brand,
-                defaults={'sort_order': i, 'is_active': True, 'text': text},
-            )
-            changed = False
-            if not (card.text or '').strip() and text:
-                card.text = text
-                changed = True
-            if card.sort_order != i:
-                card.sort_order = i
-                changed = True
-            if not card.is_active:
-                card.is_active = True
-                changed = True
-            if changed:
-                card.save(update_fields=['text', 'sort_order', 'is_active'])
-            rel = BRAND_IMAGE_FALLBACKS.get(brand.slug)
-            if not rel:
-                continue
-            path = static_root / rel
-            if not path.is_file():
-                continue
-            with path.open('rb') as fh:
-                card.image.save(path.name, File(fh), save=True)
+        seed_brand_cards()
 
     def _seed_page_bg_images(self):
         from pathlib import Path

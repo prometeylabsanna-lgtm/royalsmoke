@@ -152,7 +152,8 @@ class Command(BaseCommand):
                         for lang, val in sea.items():
                             attr = build_localized_fieldname(field, lang)
                             current = (getattr(obj, attr, None) or '').strip()
-                            if current and current != uk and not force:
+                            # Копія англійського тексту в колонці ms/fil/id/vi — ще не переклад.
+                            if current and current != uk and current != en and not force:
                                 continue
                             if current == val:
                                 continue

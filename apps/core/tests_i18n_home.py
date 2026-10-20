@@ -45,6 +45,25 @@ class HomePageTranslationTests(TestCase):
             if not any(pending in text for pending in PENDING_LATER_PAGES)
         ]
 
+    def test_brand_blurb_uses_table_when_language_column_empty(self):
+        from apps.catalog.models_base import Brand
+        from apps.core.models import HomeBrandCard
+
+        card = HomeBrandCard.objects.select_related('brand').get(brand__slug='oliva')
+        card.text_en = (
+            'Deep profiles with cocoa, leather, and cedar — Oliva builds cigars '
+            'for a long evening ritual.'
+        )
+        card.text_ind = ''
+        card.save(update_fields=['text_en', 'text_ind'])
+        brand = Brand.objects.get(slug='oliva')
+        brand.short_description_ind = ''
+        brand.save(update_fields=['short_description_ind'])
+
+        html = self._html('/id/')
+        self.assertIn('Oliva menciptakan cerutu', html)
+        self.assertNotIn('Oliva builds cigars', html)
+
     def test_no_cyrillic_on_home_page(self):
         for lang in SEA_LANGUAGES:
             self.assertEqual(self._leftovers(self._html(f'/{lang}/')), [], lang)
