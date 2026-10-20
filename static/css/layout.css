@@ -191,11 +191,6 @@ body:not(.rs-home) .rs-main {
     font-size: 13px;
     max-width: 40%;
   }
-
-  .rs-header__bar {
-    gap: 4px;
-    padding-inline: 12px;
-  }
 }
 
 @media (max-width: 767px) {
@@ -205,6 +200,16 @@ body:not(.rs-home) .rs-main {
 
   .rs-header__search {
     margin-right: auto;
+  }
+
+  .rs-header__bar {
+    gap: 0;
+    padding-inline: max(8px, env(safe-area-inset-left, 0px)) max(8px, env(safe-area-inset-right, 0px));
+  }
+
+  .rs-header .rs-icon-btn {
+    width: 40px;
+    height: 40px;
   }
 }
 

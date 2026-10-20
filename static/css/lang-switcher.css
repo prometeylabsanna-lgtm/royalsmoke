@@ -126,3 +126,39 @@
     transition: none;
   }
 }
+
+/* До 768px layout.css ховає .rs-lang. У мобільній шапці лишаємо той самий випадний список. */
+.rs-header .rs-lang--menu {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 4;
+}
+
+@media (max-width: 767px) {
+  .rs-header .rs-lang-menu__summary {
+    min-width: 44px;
+    min-height: 40px;
+    padding: 0 2px;
+    gap: 4px;
+    justify-content: center;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .rs-header .rs-lang-menu__code {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+
+  .rs-header .rs-lang-menu__list {
+    position: fixed;
+    top: calc(var(--rs-header-h) + var(--rs-safe-t, 0px) + 6px);
+    right: max(8px, env(safe-area-inset-right, 0px));
+    left: auto;
+    width: min(240px, calc(100vw - 16px));
+    max-width: calc(100vw - 16px);
+    max-height: min(70dvh, 420px);
+  }
+}
