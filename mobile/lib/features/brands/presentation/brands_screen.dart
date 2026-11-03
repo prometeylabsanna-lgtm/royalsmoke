@@ -9,6 +9,7 @@ import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_brand.dart';
 import '../../../shared/widgets/rs_chrome.dart';
 import '../../../shared/widgets/rs_fields.dart';
+import '../../../shared/widgets/rs_insets.dart';
 import '../../../shared/widgets/rs_rows.dart';
 
 class BrandsScreen extends ConsumerStatefulWidget {
@@ -39,40 +40,50 @@ class _BrandsScreenState extends ConsumerState<BrandsScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final brands = _visible(ref.watch(appBrandsProvider));
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(AppSizes.padX, 24, AppSizes.padX, AppSizes.s24),
-      children: [
-        RsPageHeading(kicker: l10n.partnersKicker, title: l10n.brands),
-        const SizedBox(height: AppSizes.s24),
-        RsSearchField(controller: _query, onChanged: (_) => setState(() {})),
-        const SizedBox(height: AppSizes.s16),
-        Align(alignment: Alignment.centerLeft, child: RsChip(label: l10n.filterAll, selected: true)),
-        const SizedBox(height: AppSizes.s24),
-        if (brands.isEmpty)
-          const Padding(
-            padding: EdgeInsets.only(top: 80),
-            child: RsEmptySearch(),
-          )
-        else
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: brands.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 24,
-              crossAxisSpacing: 14,
-              childAspectRatio: 0.72,
-            ),
-            itemBuilder: (context, index) {
-              final brand = brands[index];
-              return RsBrandCell(
-                brand: brand,
-                onTap: () => context.go('/brands/${brand.id}'),
-              );
-            },
+    return RsSafeBody(
+      child: ListView(
+        padding: const EdgeInsets.fromLTRB(
+          AppSizes.padX,
+          24,
+          AppSizes.padX,
+          AppSizes.s24,
+        ),
+        children: [
+          RsPageHeading(kicker: l10n.partnersKicker, title: l10n.brands),
+          const SizedBox(height: AppSizes.s24),
+          RsSearchField(controller: _query, onChanged: (_) => setState(() {})),
+          const SizedBox(height: AppSizes.s16),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: RsChip(label: l10n.filterAll, selected: true),
           ),
-      ],
+          const SizedBox(height: AppSizes.s24),
+          if (brands.isEmpty)
+            const Padding(
+              padding: EdgeInsets.only(top: 80),
+              child: RsEmptySearch(),
+            )
+          else
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: brands.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 24,
+                crossAxisSpacing: 14,
+                childAspectRatio: 0.72,
+              ),
+              itemBuilder: (context, index) {
+                final brand = brands[index];
+                return RsBrandCell(
+                  brand: brand,
+                  onTap: () => context.go('/brands/${brand.id}'),
+                );
+              },
+            ),
+        ],
+      ),
     );
   }
 }

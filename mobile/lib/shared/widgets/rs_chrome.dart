@@ -4,6 +4,7 @@ import 'package:royal_smoke/l10n/app_localizations.dart';
 import '../../core/constants/app_sizes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
+import 'rs_insets.dart';
 
 enum RsTab { home, brands, house, offline, more }
 
@@ -19,6 +20,7 @@ class RsPageHeading extends StatelessWidget {
   final String kicker;
   final String title;
   final String? subtitle;
+
   /// Менший letter-spacing і перенос лише по словах (для довгих юр. заголовків).
   final bool compactTitle;
 
@@ -35,7 +37,10 @@ class RsPageHeading extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(kicker.toUpperCase(), style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32)),
+        Text(
+          kicker.toUpperCase(),
+          style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32),
+        ),
         const SizedBox(height: 10),
         if (compactTitle)
           _WordSafeTitle(text: title.toUpperCase(), style: titleStyle)
@@ -73,12 +78,7 @@ class _WordSafeTitle extends StatelessWidget {
           FittedBox(
             fit: BoxFit.scaleDown,
             alignment: Alignment.centerLeft,
-            child: Text(
-              word,
-              maxLines: 1,
-              softWrap: false,
-              style: style,
-            ),
+            child: Text(word, maxLines: 1, softWrap: false, style: style),
           ),
       ],
     );
@@ -86,7 +86,12 @@ class _WordSafeTitle extends StatelessWidget {
 }
 
 class RsBackBar extends StatelessWidget {
-  const RsBackBar({super.key, required this.label, this.onPressed, this.trailing});
+  const RsBackBar({
+    super.key,
+    required this.label,
+    this.onPressed,
+    this.trailing,
+  });
 
   final String label;
   final VoidCallback? onPressed;
@@ -204,9 +209,21 @@ class RsEmptySearch extends StatelessWidget {
           ),
         ),
         const SizedBox(height: AppSizes.s16),
-        Text(l10n.emptySearchTitle, style: AppTextStyles.body.copyWith(fontSize: 17, fontWeight: FontWeight.w600)),
+        Text(
+          l10n.emptySearchTitle,
+          style: AppTextStyles.body.copyWith(
+            fontSize: 17,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         const SizedBox(height: AppSizes.s8),
-        Text(l10n.emptySearchBody, style: AppTextStyles.body.copyWith(fontSize: 14, color: AppColors.textMuted)),
+        Text(
+          l10n.emptySearchBody,
+          style: AppTextStyles.body.copyWith(
+            fontSize: 14,
+            color: AppColors.textMuted,
+          ),
+        ),
       ],
     );
   }
@@ -230,12 +247,18 @@ class RsOfflineChip extends StatelessWidget {
           Container(
             width: 6,
             height: 6,
-            decoration: const BoxDecoration(color: AppColors.gold, shape: BoxShape.circle),
+            decoration: const BoxDecoration(
+              color: AppColors.gold,
+              shape: BoxShape.circle,
+            ),
           ),
           const SizedBox(width: AppSizes.s8),
           Text(
             AppLocalizations.of(context).offlineMode,
-            style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.16, color: AppColors.seashell),
+            style: AppTextStyles.kicker.copyWith(
+              letterSpacing: 11 * 0.16,
+              color: AppColors.seashell,
+            ),
           ),
         ],
       ),
@@ -262,13 +285,18 @@ class RsTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = _items(AppLocalizations.of(context));
+    final edges = rsSafeEdges(context, top: false, bottom: true);
     return DecoratedBox(
       decoration: const BoxDecoration(
         color: AppColors.coffee,
         border: Border(top: BorderSide(color: Color(0x1AFCF2EE))),
       ),
-      child: SafeArea(
-        top: false,
+      child: Padding(
+        padding: EdgeInsets.only(
+          left: edges.left,
+          right: edges.right,
+          bottom: edges.bottom,
+        ),
         child: Padding(
           padding: const EdgeInsets.only(top: 6),
           child: SizedBox(
@@ -286,12 +314,17 @@ class RsTabBar extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              _TabGlyph(tab: item.$1, active: item.$1 == current),
+                              _TabGlyph(
+                                tab: item.$1,
+                                active: item.$1 == current,
+                              ),
                               const SizedBox(height: 4),
                               Text(
                                 item.$2,
                                 style: AppTextStyles.tabLabel.copyWith(
-                                  color: item.$1 == current ? AppColors.gold : AppColors.tabInactive,
+                                  color: item.$1 == current
+                                      ? AppColors.gold
+                                      : AppColors.tabInactive,
                                 ),
                               ),
                             ],
@@ -319,7 +352,10 @@ class _TabGlyph extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomPaint(
       size: const Size(AppSizes.tabIcon, AppSizes.tabIcon),
-      painter: _TabPainter(tab: tab, color: active ? AppColors.gold : AppColors.tabInactive),
+      painter: _TabPainter(
+        tab: tab,
+        color: active ? AppColors.gold : AppColors.tabInactive,
+      ),
     );
   }
 }
@@ -353,7 +389,12 @@ class _TabPainter extends CustomPainter {
           ..lineTo(4, 20)
           ..close();
       case RsTab.brands:
-        for (final origin in const [Offset(4, 4), Offset(13, 4), Offset(4, 13), Offset(13, 13)]) {
+        for (final origin in const [
+          Offset(4, 4),
+          Offset(13, 4),
+          Offset(4, 13),
+          Offset(13, 13),
+        ]) {
           path.addRect(Rect.fromLTWH(origin.dx, origin.dy, 7, 7));
         }
       case RsTab.house:

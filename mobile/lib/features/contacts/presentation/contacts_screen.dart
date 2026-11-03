@@ -9,6 +9,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_chrome.dart';
+import '../../../shared/widgets/rs_insets.dart';
 import '../../../shared/widgets/rs_venue_map.dart';
 
 class ContactsScreen extends ConsumerWidget {
@@ -32,44 +33,51 @@ class ContactsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final settings = watchContent(ref).settings;
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(AppSizes.padX, 8, AppSizes.padX, AppSizes.s24),
-      children: [
-        RsBackBar(
-          label: l10n.moreTitle,
-          onPressed: () {
-            if (context.canPop()) {
-              context.pop();
-            } else {
-              context.go('/more');
-            }
-          },
+    return RsSafeBody(
+      child: ListView(
+        padding: const EdgeInsets.fromLTRB(
+          AppSizes.padX,
+          8,
+          AppSizes.padX,
+          AppSizes.s24,
         ),
-        RsPageHeading(kicker: l10n.visitKicker, title: l10n.contacts),
-        const SizedBox(height: 12),
-        Text(settings.appBlurb, style: AppTextStyles.body),
-        const SizedBox(height: 20),
-        RsVenueMap(lat: settings.contactLat, lng: settings.contactLng),
-        const SizedBox(height: 20),
-        const Divider(height: 1, color: AppColors.hairline),
-        _ContactBlock(
-          label: l10n.addressLabel,
-          value: settings.contactAddress,
-          action: l10n.getDirections,
-          onAction: () => _openMaps(
-            settings.contactLat,
-            settings.contactLng,
-            settings.contactAddress,
+        children: [
+          RsBackBar(
+            label: l10n.moreTitle,
+            onPressed: () {
+              if (context.canPop()) {
+                context.pop();
+              } else {
+                context.go('/more');
+              }
+            },
           ),
-        ),
-        _ContactBlock(
-          label: l10n.phoneLabel,
-          value: settings.contactPhone,
-          action: l10n.call,
-          onAction: () => _call(settings.contactPhone),
-        ),
-        _ContactBlock(label: l10n.hoursLabel, value: settings.contactHours),
-      ],
+          RsPageHeading(kicker: l10n.visitKicker, title: l10n.contacts),
+          const SizedBox(height: 12),
+          Text(settings.appBlurb, style: AppTextStyles.body),
+          const SizedBox(height: 20),
+          RsVenueMap(lat: settings.contactLat, lng: settings.contactLng),
+          const SizedBox(height: 20),
+          const Divider(height: 1, color: AppColors.hairline),
+          _ContactBlock(
+            label: l10n.addressLabel,
+            value: settings.contactAddress,
+            action: l10n.getDirections,
+            onAction: () => _openMaps(
+              settings.contactLat,
+              settings.contactLng,
+              settings.contactAddress,
+            ),
+          ),
+          _ContactBlock(
+            label: l10n.phoneLabel,
+            value: settings.contactPhone,
+            action: l10n.call,
+            onAction: () => _call(settings.contactPhone),
+          ),
+          _ContactBlock(label: l10n.hoursLabel, value: settings.contactHours),
+        ],
+      ),
     );
   }
 }
@@ -98,7 +106,10 @@ class _ContactBlock extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label.toUpperCase(), style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.24)),
+          Text(
+            label.toUpperCase(),
+            style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.24),
+          ),
           const SizedBox(height: 6),
           Text(value, style: AppTextStyles.body),
           if (action != null) ...[

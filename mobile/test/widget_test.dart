@@ -22,7 +22,14 @@ void main() {
   });
 
   testWidgets('застосунок стартує з темною темою', (tester) async {
-    await tester.pumpWidget(const ProviderScope(child: RoyalSmokeApp()));
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          initialLocaleProvider.overrideWithValue(const Locale('uk')),
+        ],
+        child: const RoyalSmokeApp(),
+      ),
+    );
     expect(find.text('ROYAL SMOKE'), findsOneWidget);
     expect(find.text('21+'), findsOneWidget);
 
@@ -44,7 +51,9 @@ void main() {
   testWidgets('англійські рядки рендеряться', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
-        overrides: [initialLocaleProvider.overrideWithValue(const Locale('en'))],
+        overrides: [
+          initialLocaleProvider.overrideWithValue(const Locale('en')),
+        ],
         child: const RoyalSmokeApp(),
       ),
     );
@@ -61,7 +70,9 @@ void main() {
   testWidgets('fil не валить Material і Cupertino', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
-        overrides: [initialLocaleProvider.overrideWithValue(const Locale('fil'))],
+        overrides: [
+          initialLocaleProvider.overrideWithValue(const Locale('fil')),
+        ],
         child: const RoyalSmokeApp(),
       ),
     );

@@ -11,9 +11,13 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_chrome.dart';
 import '../../../shared/widgets/rs_cover_image.dart';
+import '../../../shared/widgets/rs_insets.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
-  const SplashScreen({super.key, this.autoAdvance = const Duration(milliseconds: 1600)});
+  const SplashScreen({
+    super.key,
+    this.autoAdvance = const Duration(milliseconds: 1600),
+  });
 
   final Duration autoAdvance;
 
@@ -55,79 +59,90 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       body: Stack(
         children: [
           const Positioned.fill(child: _BarkGrain()),
-          Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (sealUrl.isNotEmpty)
-                  ClipOval(
-                    child: SizedBox(
-                      width: 120,
-                      height: 120,
-                      child: RsCoverImage(
-                        imageUrl: sealUrl,
-                        assetFallback: 'assets/images/branding/app_icon_master.png',
-                      ),
-                    ),
-                  )
-                else
-                  const RsSeal(size: 120),
-                const SizedBox(height: 28),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 24 * 0.32),
-                      child: Text(
-                        textOr(splash.title, l10n.splashTitle),
-                        style: TextStyle(
-                          fontFamily: AppTextStyles.family,
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                          height: 1.1,
-                          letterSpacing: 24 * 0.32,
-                          color: AppColors.seashell,
+          Positioned.fill(
+            child: RsSafeBody(
+              child: Stack(
+                children: [
+                  Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (sealUrl.isNotEmpty)
+                          ClipOval(
+                            child: SizedBox(
+                              width: 120,
+                              height: 120,
+                              child: RsCoverImage(
+                                imageUrl: sealUrl,
+                                assetFallback:
+                                    'assets/images/branding/app_icon_master.png',
+                              ),
+                            ),
+                          )
+                        else
+                          const RsSeal(size: 120),
+                        const SizedBox(height: 28),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 24 * 0.32),
+                              child: Text(
+                                textOr(splash.title, l10n.splashTitle),
+                                style: TextStyle(
+                                  fontFamily: AppTextStyles.family,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.1,
+                                  letterSpacing: 24 * 0.32,
+                                  color: AppColors.seashell,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 28),
+                        Text(
+                          textOr(splash.kicker, l10n.splashKicker),
+                          style: AppTextStyles.kicker.copyWith(
+                            letterSpacing: 11 * 0.34,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-                const SizedBox(height: 28),
-                Text(
-                  textOr(splash.kicker, l10n.splashKicker),
-                  style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.34),
-                ),
-              ],
-            ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 48 + MediaQuery.paddingOf(context).bottom,
-            child: Column(
-              children: [
-                TextButton(
-                  onPressed: _open,
-                  style: TextButton.styleFrom(
-                    foregroundColor: AppColors.seashell,
-                    minimumSize: const Size(0, 48),
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                  ),
-                  child: Text(
-                    textOr(splash.ctaPrimary, l10n.splashOpen),
-                    style: TextStyle(
-                      fontFamily: AppTextStyles.family,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 12 * 0.24,
-                      color: AppColors.seashell,
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 48 + rsBottomInset(context),
+                    child: Column(
+                      children: [
+                        TextButton(
+                          onPressed: _open,
+                          style: TextButton.styleFrom(
+                            foregroundColor: AppColors.seashell,
+                            minimumSize: const Size(0, 48),
+                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                          ),
+                          child: Text(
+                            textOr(splash.ctaPrimary, l10n.splashOpen),
+                            style: TextStyle(
+                              fontFamily: AppTextStyles.family,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 12 * 0.24,
+                              color: AppColors.seashell,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        const RsAgeBadge(),
+                      ],
                     ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                const RsAgeBadge(),
-              ],
+                ],
+              ),
             ),
           ),
         ],

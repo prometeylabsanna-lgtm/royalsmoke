@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/constants/app_sizes.dart';
 import 'rs_chrome.dart';
+import 'rs_insets.dart';
 
 /// Тимчасовий екран розділу. Наповнення — на кроці 4.
 class SectionStub extends StatelessWidget {
@@ -12,10 +13,14 @@ class SectionStub extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      bottom: false,
+    return RsSafeBody(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(AppSizes.padX, 24, AppSizes.padX, AppSizes.s24),
+        padding: const EdgeInsets.fromLTRB(
+          AppSizes.padX,
+          24,
+          AppSizes.padX,
+          AppSizes.s24,
+        ),
         child: RsPageHeading(kicker: kicker, title: title),
       ),
     );

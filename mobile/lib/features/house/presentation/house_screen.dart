@@ -11,6 +11,7 @@ import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_button.dart';
 import '../../../shared/widgets/rs_chrome.dart';
 import '../../../shared/widgets/rs_cover_image.dart';
+import '../../../shared/widgets/rs_insets.dart';
 
 class HouseScreen extends ConsumerWidget {
   const HouseScreen({super.key});
@@ -20,56 +21,71 @@ class HouseScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final house = watchContent(ref).screen('house');
     final blocks = house.houseBlocks;
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(AppSizes.padX, 24, AppSizes.padX, AppSizes.s24),
-      children: [
-        RsPageHeading(
-          kicker: textOr(house.kicker, l10n.houseKicker),
-          title: textOr(house.title, l10n.houseTitle),
+    return RsSafeBody(
+      child: ListView(
+        padding: const EdgeInsets.fromLTRB(
+          AppSizes.padX,
+          24,
+          AppSizes.padX,
+          AppSizes.s24,
         ),
-        const SizedBox(height: AppSizes.s24),
-        Text(
-          textOr(house.body, l10n.houseBodyShort),
-          style: AppTextStyles.body,
-        ),
-        const SizedBox(height: AppSizes.s24),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(AppSizes.radiusSearch),
-          child: SizedBox(
-            height: 220,
-            width: double.infinity,
-            child: RsCoverImage(
-              imageUrl: house.heroImageUrl,
-              assetFallback: house.heroAssetFallback.isEmpty
-                  ? 'assets/images/home/house.jpg'
-                  : house.heroAssetFallback,
+        children: [
+          RsPageHeading(
+            kicker: textOr(house.kicker, l10n.houseKicker),
+            title: textOr(house.title, l10n.houseTitle),
+          ),
+          const SizedBox(height: AppSizes.s24),
+          Text(
+            textOr(house.body, l10n.houseBodyShort),
+            style: AppTextStyles.body,
+          ),
+          const SizedBox(height: AppSizes.s24),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(AppSizes.radiusSearch),
+            child: SizedBox(
+              height: 220,
+              width: double.infinity,
+              child: RsCoverImage(
+                imageUrl: house.heroImageUrl,
+                assetFallback: house.heroAssetFallback.isEmpty
+                    ? 'assets/images/home/house.jpg'
+                    : house.heroAssetFallback,
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: AppSizes.s24),
-        const Divider(height: 1, color: AppColors.hairline),
-        for (final block in blocks)
-          _HouseBlock(index: block.indexLabel, title: block.title, body: block.body),
-        const SizedBox(height: AppSizes.s24),
-        RsButton(
-          label: textOr(house.ctaPrimary, l10n.bookVisit),
-          expand: true,
-          onPressed: () => context.go('/house/visit'),
-        ),
-        const SizedBox(height: AppSizes.s8),
-        RsButton(
-          label: textOr(house.ctaSecondary, l10n.contacts),
-          variant: RsButtonVariant.secondary,
-          expand: true,
-          onPressed: () => context.go('/more/contacts'),
-        ),
-      ],
+          const SizedBox(height: AppSizes.s24),
+          const Divider(height: 1, color: AppColors.hairline),
+          for (final block in blocks)
+            _HouseBlock(
+              index: block.indexLabel,
+              title: block.title,
+              body: block.body,
+            ),
+          const SizedBox(height: AppSizes.s24),
+          RsButton(
+            label: textOr(house.ctaPrimary, l10n.bookVisit),
+            expand: true,
+            onPressed: () => context.go('/house/visit'),
+          ),
+          const SizedBox(height: AppSizes.s8),
+          RsButton(
+            label: textOr(house.ctaSecondary, l10n.contacts),
+            variant: RsButtonVariant.secondary,
+            expand: true,
+            onPressed: () => context.go('/more/contacts'),
+          ),
+        ],
+      ),
     );
   }
 }
 
 class _HouseBlock extends StatelessWidget {
-  const _HouseBlock({required this.index, required this.title, required this.body});
+  const _HouseBlock({
+    required this.index,
+    required this.title,
+    required this.body,
+  });
 
   final String index;
   final String title;
@@ -87,15 +103,29 @@ class _HouseBlock extends StatelessWidget {
         children: [
           SizedBox(
             width: 32,
-            child: Text(index, style: AppTextStyles.kicker.copyWith(color: AppColors.gold)),
+            child: Text(
+              index,
+              style: AppTextStyles.kicker.copyWith(color: AppColors.gold),
+            ),
           ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: AppTextStyles.title.copyWith(fontSize: 18, letterSpacing: 18 * 0.12)),
+                Text(
+                  title,
+                  style: AppTextStyles.title.copyWith(
+                    fontSize: 18,
+                    letterSpacing: 18 * 0.12,
+                  ),
+                ),
                 const SizedBox(height: 8),
-                Text(body, style: AppTextStyles.body.copyWith(color: AppColors.textMuted)),
+                Text(
+                  body,
+                  style: AppTextStyles.body.copyWith(
+                    color: AppColors.textMuted,
+                  ),
+                ),
               ],
             ),
           ),
