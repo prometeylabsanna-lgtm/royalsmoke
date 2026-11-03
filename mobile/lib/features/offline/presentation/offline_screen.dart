@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -20,17 +21,19 @@ class OfflineScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final saved = ref.watch(savedBrandListProvider);
     final updatedAt = watchContent(ref).updatedAt;
-    final updatedLabel =
-        updatedAt == null ? 'Локальний каталог' : 'Оновлено ${_formatDate(updatedAt)}';
+    final updatedLabel = updatedAt == null
+        ? l10n.offlineLocalCatalog
+        : l10n.offlineUpdated(_formatDate(updatedAt));
     return ListView(
       padding: const EdgeInsets.fromLTRB(AppSizes.padX, 24, AppSizes.padX, AppSizes.s24),
       children: [
-        const RsPageHeading(
-          kicker: 'Довідник',
-          title: 'Офлайн',
-          subtitle: 'Збережений довідник брендів',
+        RsPageHeading(
+          kicker: l10n.offlineKicker,
+          title: l10n.offlineTitle,
+          subtitle: l10n.offlineSubtitle,
         ),
         const SizedBox(height: AppSizes.s24),
         Row(
@@ -53,10 +56,10 @@ class OfflineScreen extends ConsumerWidget {
         const SizedBox(height: AppSizes.s8),
         const Divider(height: 1, color: AppColors.hairline),
         if (saved.isEmpty)
-          const Padding(
-            padding: EdgeInsets.only(top: 48),
+          Padding(
+            padding: const EdgeInsets.only(top: 48),
             child: Text(
-              'Поки немає збережених брендів.\nДодайте їх закладкою на картці бренду.',
+              l10n.offlineEmpty,
               style: TextStyle(
                 fontFamily: 'Fixel Display',
                 fontSize: 15,

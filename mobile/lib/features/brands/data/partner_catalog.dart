@@ -1,78 +1,78 @@
+import 'package:royal_smoke/l10n/app_localizations.dart';
+
 import '../domain/partner_brand.dart';
 
-/// Чернетка з прототипу. Пізніше ці записи прийдуть з адмінки.
+/// Запасний каталог, якщо API недоступне. Тексти залежать від локалі.
 abstract final class PartnerCatalog {
-  static const List<PartnerBrand> brands = [
-    PartnerBrand(
-      id: 'aj',
-      mono: 'AJ',
-      shortName: 'AJ',
-      name: 'AJ Fernandez',
-      country: 'Нікарагуа',
-      panel: BrandPanel.amber,
-      imageAsset: 'assets/images/brands/aj.jpg',
-      heritage:
-          'Абдель Фернандес — представник четвертого покоління кубинської родини майстрів. Власну мануфактуру в Естелі заснував на початку 2000-х; компанія розвиває виробництво в кількох регіонах Нікарагуа.',
-      facts: [
-        BrandFact(label: 'Походження', value: 'Естелі, Нікарагуа'),
-        BrandFact(label: 'Засновано', value: 'Початок 2000-х'),
-        BrandFact(label: 'Родина', value: 'Фернандес, кубинське коріння'),
-        BrandFact(label: 'Характер ліній', value: 'Насичені, виразні профілі'),
-      ],
-      lines: ['New World', 'Bellas Artes', 'Enclave', 'San Lotano'],
-    ),
-    PartnerBrand(
-      id: 'oliva',
-      mono: 'O',
-      shortName: 'Oliva',
-      name: 'Oliva',
-      country: 'Нікарагуа',
-      panel: BrandPanel.burgundy,
-      imageAsset: 'assets/images/brands/oliva.jpg',
-      heritage:
-          'Родина Олива розвиває свою справу з кінця XIX століття, починаючи з провінції Пінар-дель-Ріо на Кубі. Після еміграції виробництво зосередилося в Нікарагуа, де розташовані основні майстерні та фабрика бренду.',
-      facts: [
-        BrandFact(label: 'Походження', value: 'Естелі, Нікарагуа'),
-        BrandFact(label: 'Традиція', value: 'З кінця XIX ст., Куба'),
-        BrandFact(label: 'Виробництво', value: 'Власні майстерні в долині Хамастран'),
-        BrandFact(label: 'Характер ліній', value: 'Від збалансованих до насичених'),
-      ],
-      lines: ['Serie V', 'Serie G', 'Master Blends', 'Serie O'],
-    ),
-    PartnerBrand(
-      id: 'perdomo',
-      mono: 'P',
-      shortName: 'Perdomo',
-      name: 'Perdomo',
-      country: 'Нікарагуа',
-      panel: BrandPanel.green,
-      imageAsset: 'assets/images/brands/perdomo.jpg',
-      heritage:
-          'Бренд засновано в Маямі на початку 1990-х. Згодом виробництво перенесено до Естелі, де компанія вибудувала повний цикл — від власних ділянок до фабрики та тривалої витримки.',
-      facts: [
-        BrandFact(label: 'Походження', value: 'Естелі, Нікарагуа'),
-        BrandFact(label: 'Засновано', value: '1990-ті, Маямі'),
-        BrandFact(label: 'Засновник', value: 'Нік Пердомо'),
-        BrandFact(label: 'Особливість', value: 'Тривала витримка матеріалів'),
-      ],
-      lines: ['Reserve 10th Anniversary', 'Habano', 'Lot 23'],
-    ),
-    PartnerBrand(
-      id: 'turrent',
-      mono: 'CT',
-      shortName: 'Casa Turrent',
-      name: 'Casa Turrent',
-      country: 'Мексика',
-      panel: BrandPanel.brown,
-      imageAsset: 'assets/images/brands/turrent.jpg',
-      heritage:
-          'Мексиканський бренд родини Турренте. Виробництво в долині Сан-Андрес, штат Веракрус; глибокі місцеві традиції та характерний стиль регіону.',
-      facts: [
-        BrandFact(label: 'Походження', value: 'Сан-Андрес, Мексика'),
-        BrandFact(label: 'Родина', value: 'Турренте'),
-        BrandFact(label: 'Характер ліній', value: 'Насичений профіль, стійкий фініш'),
-      ],
-      lines: ['1942', '1880', 'Origin Series', 'Serie 1901'],
-    ),
-  ];
+  static List<PartnerBrand> of(AppLocalizations t) {
+    return [
+      PartnerBrand(
+        id: 'aj',
+        mono: t.brandAjShort,
+        shortName: t.brandAjShort,
+        name: t.brandAjName,
+        country: t.countryNicaragua,
+        panel: BrandPanel.amber,
+        imageAsset: 'assets/images/brands/aj.jpg',
+        heritage: t.brandAjHeritage,
+        facts: [
+          BrandFact(label: t.factOrigin, value: t.factOriginEsteli),
+          BrandFact(label: t.factFounded, value: t.factFoundedAj),
+          BrandFact(label: t.factFamily, value: t.factFamilyAj),
+          BrandFact(label: t.factLineCharacter, value: t.factLineCharacterAj),
+        ],
+        lines: [t.lineAjNewWorld, t.lineAjBellasArtes, t.lineAjEnclave, t.lineAjSanLotano],
+      ),
+      PartnerBrand(
+        id: 'oliva',
+        mono: t.brandOlivaMono,
+        shortName: t.brandOlivaName,
+        name: t.brandOlivaName,
+        country: t.countryNicaragua,
+        panel: BrandPanel.burgundy,
+        imageAsset: 'assets/images/brands/oliva.jpg',
+        heritage: t.brandOlivaHeritage,
+        facts: [
+          BrandFact(label: t.factOrigin, value: t.factOriginEsteli),
+          BrandFact(label: t.factTradition, value: t.factTraditionOliva),
+          BrandFact(label: t.factProduction, value: t.factProductionOliva),
+          BrandFact(label: t.factLineCharacter, value: t.factLineCharacterOliva),
+        ],
+        lines: [t.lineOlivaSerieV, t.lineOlivaSerieG, t.lineOlivaMasterBlends, t.lineOlivaSerieO],
+      ),
+      PartnerBrand(
+        id: 'perdomo',
+        mono: t.brandPerdomoMono,
+        shortName: t.brandPerdomoName,
+        name: t.brandPerdomoName,
+        country: t.countryNicaragua,
+        panel: BrandPanel.green,
+        imageAsset: 'assets/images/brands/perdomo.jpg',
+        heritage: t.brandPerdomoHeritage,
+        facts: [
+          BrandFact(label: t.factOrigin, value: t.factOriginEsteli),
+          BrandFact(label: t.factFounded, value: t.factFoundedPerdomo),
+          BrandFact(label: t.factFounder, value: t.factFounderPerdomo),
+          BrandFact(label: t.factFeature, value: t.factFeaturePerdomo),
+        ],
+        lines: [t.linePerdomoReserve, t.linePerdomoHabano, t.linePerdomoLot23],
+      ),
+      PartnerBrand(
+        id: 'turrent',
+        mono: t.brandTurrentMono,
+        shortName: t.brandTurrentName,
+        name: t.brandTurrentName,
+        country: t.countryMexico,
+        panel: BrandPanel.brown,
+        imageAsset: 'assets/images/brands/turrent.jpg',
+        heritage: t.brandTurrentHeritage,
+        facts: [
+          BrandFact(label: t.factOrigin, value: t.factOriginTurrent),
+          BrandFact(label: t.factFamily, value: t.factFamilyTurrent),
+          BrandFact(label: t.factLineCharacter, value: t.factLineCharacterTurrent),
+        ],
+        lines: [t.lineTurrent1942, t.lineTurrent1880, t.lineTurrentOrigin, t.lineTurrent1901],
+      ),
+    ];
+  }
 }

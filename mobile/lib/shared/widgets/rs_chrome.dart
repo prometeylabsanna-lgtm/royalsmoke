@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
-import '../../core/constants/app_copy.dart';
 import '../../core/constants/app_sizes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
@@ -128,7 +128,7 @@ class RsAgeBadge extends StatelessWidget {
         border: Border.all(color: const Color(0x33FCF2EE)),
       ),
       child: Text(
-        AppCopy.ageBadge,
+        AppLocalizations.of(context).ageBadge,
         style: AppTextStyles.tabLabel.copyWith(letterSpacing: 10 * 0.2),
       ),
     );
@@ -153,7 +153,7 @@ class RsSeal extends StatelessWidget {
             color: AppColors.coffee,
             alignment: Alignment.center,
             child: Text(
-              'RS',
+              AppLocalizations.of(context).monogramRs,
               style: TextStyle(
                 fontFamily: AppTextStyles.family,
                 fontSize: size * 0.2,
@@ -173,6 +173,7 @@ class RsEmptySearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -193,7 +194,7 @@ class RsEmptySearch extends StatelessWidget {
               border: Border.all(color: AppColors.gold.withValues(alpha: 0.35)),
             ),
             child: Text(
-              'RS',
+              l10n.monogramRs,
               style: AppTextStyles.brandName.copyWith(
                 fontSize: 14,
                 letterSpacing: 14 * 0.14,
@@ -203,9 +204,9 @@ class RsEmptySearch extends StatelessWidget {
           ),
         ),
         const SizedBox(height: AppSizes.s16),
-        Text('Нічого не знайдено', style: AppTextStyles.body.copyWith(fontSize: 17, fontWeight: FontWeight.w600)),
+        Text(l10n.emptySearchTitle, style: AppTextStyles.body.copyWith(fontSize: 17, fontWeight: FontWeight.w600)),
         const SizedBox(height: AppSizes.s8),
-        Text('Спробуйте іншу назву', style: AppTextStyles.body.copyWith(fontSize: 14, color: AppColors.textMuted)),
+        Text(l10n.emptySearchBody, style: AppTextStyles.body.copyWith(fontSize: 14, color: AppColors.textMuted)),
       ],
     );
   }
@@ -233,7 +234,7 @@ class RsOfflineChip extends StatelessWidget {
           ),
           const SizedBox(width: AppSizes.s8),
           Text(
-            'ОФЛАЙН-РЕЖИМ',
+            AppLocalizations.of(context).offlineMode,
             style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.16, color: AppColors.seashell),
           ),
         ],
@@ -248,16 +249,19 @@ class RsTabBar extends StatelessWidget {
   final RsTab current;
   final ValueChanged<RsTab> onChanged;
 
-  static const _items = <(RsTab, String)>[
-    (RsTab.home, 'Головна'),
-    (RsTab.brands, 'Бренди'),
-    (RsTab.house, 'Дім'),
-    (RsTab.offline, 'Офлайн'),
-    (RsTab.more, 'Ще'),
-  ];
+  List<(RsTab, String)> _items(AppLocalizations l10n) {
+    return [
+      (RsTab.home, l10n.tabHome),
+      (RsTab.brands, l10n.brands),
+      (RsTab.house, l10n.houseTab),
+      (RsTab.offline, l10n.offlineTitle),
+      (RsTab.more, l10n.moreTitle),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
+    final items = _items(AppLocalizations.of(context));
     return DecoratedBox(
       decoration: const BoxDecoration(
         color: AppColors.coffee,
@@ -271,7 +275,7 @@ class RsTabBar extends StatelessWidget {
             height: 48,
             child: Row(
               children: [
-                for (final item in _items)
+                for (final item in items)
                   Expanded(
                     child: Material(
                       color: Colors.transparent,

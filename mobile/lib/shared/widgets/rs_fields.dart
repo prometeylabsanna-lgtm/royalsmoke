@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
 import '../../core/constants/app_sizes.dart';
 import '../../core/theme/app_colors.dart';
@@ -96,12 +97,12 @@ class RsSearchField extends StatelessWidget {
   const RsSearchField({
     super.key,
     required this.controller,
-    this.hint = 'Пошук бренду',
+    this.hint,
     this.onChanged,
   });
 
   final TextEditingController controller;
-  final String hint;
+  final String? hint;
   final ValueChanged<String>? onChanged;
 
   @override
@@ -112,7 +113,7 @@ class RsSearchField extends StatelessWidget {
         final hasText = controller.text.isNotEmpty;
         return RsTextField(
           controller: controller,
-          hint: hint,
+          hint: hint ?? AppLocalizations.of(context).searchBrandHint,
           onChanged: onChanged,
           prefix: const _SearchMark(),
           onClear: hasText

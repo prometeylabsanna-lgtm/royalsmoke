@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
+import '../../../core/constants/app_sizes.dart';
+import '../../../core/l10n/app_locale.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
-import '../../../core/constants/app_sizes.dart';
 import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_button.dart';
 
@@ -13,6 +15,7 @@ class AgeGateScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final age = watchContent(ref).screen('age');
     final bottom = MediaQuery.paddingOf(context).bottom;
     return Scaffold(
@@ -26,7 +29,7 @@ class AgeGateScreen extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.only(left: 22 * 0.32),
                 child: Text(
-                  'ROYAL SMOKE',
+                  l10n.splashTitle,
                   style: TextStyle(
                     fontFamily: AppTextStyles.family,
                     fontSize: 22,
@@ -64,12 +67,12 @@ class AgeGateScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    (age.kicker.isEmpty ? 'Підтвердження віку · 21+' : age.kicker).toUpperCase(),
+                    textOr(age.kicker, l10n.ageKicker).toUpperCase(),
                     style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32),
                   ),
                   const SizedBox(height: AppSizes.s24),
                   Text(
-                    (age.title.isEmpty ? 'Лише для повнолітніх' : age.title).toUpperCase(),
+                    textOr(age.title, l10n.ageTitle).toUpperCase(),
                     style: TextStyle(
                       fontFamily: AppTextStyles.family,
                       fontSize: 24,
@@ -81,19 +84,17 @@ class AgeGateScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: AppSizes.s24),
                   Text(
-                    age.body.isEmpty
-                        ? 'Застосунок є інформаційним довідником брендів.'
-                        : age.body,
+                    textOr(age.body, l10n.ageBodyShort),
                     style: AppTextStyles.body,
                   ),
                   const SizedBox(height: AppSizes.s24),
                   Text(
-                    age.legalNote,
+                    textOr(age.legalNote, l10n.ageLegal),
                     style: AppTextStyles.body.copyWith(fontSize: 13, color: AppColors.textMuted),
                   ),
                   const SizedBox(height: 32),
                   RsButton(
-                    label: age.confirmLabel.isEmpty ? 'Мені є 21 рік' : age.confirmLabel,
+                    label: textOr(age.confirmLabel, l10n.ageConfirm),
                     variant: RsButtonVariant.secondary,
                     expand: true,
                     onPressed: () => context.go('/home'),
@@ -105,7 +106,7 @@ class AgeGateScreen extends ConsumerWidget {
                       foregroundColor: AppColors.textMuted,
                     ),
                     child: Text(
-                      age.ctaSecondary.isEmpty ? 'ВИЙТИ' : age.ctaSecondary,
+                      textOr(age.ctaSecondary, l10n.ageExit),
                       style: TextStyle(
                         fontFamily: AppTextStyles.family,
                         fontSize: 12,

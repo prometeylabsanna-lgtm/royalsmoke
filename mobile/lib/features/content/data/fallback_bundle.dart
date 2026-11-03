@@ -1,88 +1,95 @@
 import 'package:royal_smoke/core/constants/app_copy.dart';
 import 'package:royal_smoke/features/brands/data/partner_catalog.dart';
 import 'package:royal_smoke/features/content/domain/app_content.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
+
+String _paragraphs(List<String> parts) => parts.join('\n\n');
 
 /// Локальний fallback, якщо API / кеш недоступні.
-AppContentBundle buildFallbackBundle() {
+AppContentBundle buildFallbackBundle(AppLocalizations t) {
   return AppContentBundle(
     settings: AppSettingsContent(
-      appVersion: AppCopy.appVersion,
-      appBlurb: AppCopy.appBlurb,
-      contactAddress: AppCopy.contactAddress,
-      contactPhone: AppCopy.contactPhone,
-      contactHours: AppCopy.contactHours,
+      appVersion: t.appVersion,
+      appBlurb: t.appBlurb,
+      contactAddress: t.contactAddress,
+      contactPhone: t.contactPhone,
+      contactHours: t.contactHours,
       contactLat: AppCopy.contactLat,
       contactLng: AppCopy.contactLng,
     ),
-    brands: PartnerCatalog.brands,
+    brands: PartnerCatalog.of(t),
     screens: {
-      'splash': const AppScreenContent(
-        kicker: 'ДОВІДНИК БРЕНДУ',
-        title: 'ROYAL SMOKE',
-        ctaPrimary: 'ВІДКРИТИ',
+      'splash': AppScreenContent(
+        kicker: t.splashKicker,
+        title: t.splashTitle,
+        ctaPrimary: t.splashOpen,
       ),
-      'age': const AppScreenContent(
-        kicker: AppCopy.ageKicker,
-        title: AppCopy.ageTitle,
-        subtitle: AppCopy.ageBadge,
-        body: AppCopy.ageBody,
-        legalNote: AppCopy.ageLegal,
-        confirmLabel: AppCopy.ageConfirm,
-        ctaSecondary: 'ВИЙТИ',
+      'age': AppScreenContent(
+        kicker: t.ageKicker,
+        title: t.ageTitle,
+        subtitle: t.ageBadge,
+        body: t.ageBody,
+        legalNote: t.ageLegal,
+        confirmLabel: t.ageConfirm,
+        ctaSecondary: t.ageExit,
       ),
-      'home': const AppScreenContent(
-        kicker: 'ДІМ БРЕНДУ',
-        title: 'ROYAL\nSMOKE',
-        body: 'Довідник дому бренду та партнерів',
-        ctaPrimary: 'Бренди',
-        ctaSecondary: 'Дім',
+      'home': AppScreenContent(
+        kicker: t.homeKicker,
+        title: t.homeTitle,
+        body: t.homeBody,
+        ctaPrimary: t.brands,
+        ctaSecondary: t.houseTab,
         heroAssetFallback: 'assets/images/home/hero.jpg',
       ),
-      'house': const AppScreenContent(
-        kicker: 'Про дім',
-        title: 'Дім\nRoyal Smoke',
-        body:
-            'Royal Smoke — дім, що представляє в Україні родинні бренди з багаторічною історією. '
-            'Тут можна дізнатися про походження брендів і познайомитися з колекцією під час візиту.',
-        ctaPrimary: 'Забронювати візит',
-        ctaSecondary: 'Контакти',
+      'house': AppScreenContent(
+        kicker: t.houseKicker,
+        title: t.houseTitle,
+        body: t.houseBody,
+        ctaPrimary: t.bookVisit,
+        ctaSecondary: t.contacts,
         heroAssetFallback: 'assets/images/home/house.jpg',
         houseBlocks: [
-          AppHouseBlock(
-            indexLabel: '01',
-            title: 'Сервіс',
-            body: 'Консультації щодо брендів, історії та зберігання.',
-          ),
-          AppHouseBlock(
-            indexLabel: '02',
-            title: 'B2B',
-            body: 'Співпраця із закладами та професійними партнерами.',
-          ),
-          AppHouseBlock(
-            indexLabel: '03',
-            title: 'Візит',
-            body: 'Знайомство з домом за попереднім записом.',
-          ),
+          AppHouseBlock(indexLabel: t.houseBlock1Index, title: t.houseBlockServiceTitle, body: t.houseBlockServiceBody),
+          AppHouseBlock(indexLabel: t.houseBlock2Index, title: t.houseBlockB2bTitle, body: t.houseBlockB2bBody),
+          AppHouseBlock(indexLabel: t.houseBlock3Index, title: t.visitTitle, body: t.houseBlockVisitBody),
         ],
       ),
-      'visit': const AppScreenContent(
-        kicker: 'Дім Royal Smoke',
-        title: 'Візит',
-        ctaPrimary: 'Надіслати запит',
-        successTitle: 'ЗАПИТ НАДІСЛАНО',
-        successBody: 'Ми звʼяжемося з вами, щоб підтвердити дату та час візиту.',
-        bodySecondary: 'НОВИЙ ЗАПИТ',
+      'visit': AppScreenContent(
+        kicker: t.visitKicker,
+        title: t.visitTitle,
+        ctaPrimary: t.visitSendRequest,
+        successTitle: t.visitSuccessTitle,
+        successBody: t.visitSuccessBody,
+        bodySecondary: t.visitNewRequest,
       ),
     },
     pages: {
-      'privacy': const AppLegalPage(
+      'privacy': AppLegalPage(
         slug: 'privacy',
-        title: 'Політика конфіденційності',
-        body: AppCopy.privacyBody,
+        title: t.privacyTitle,
+        body: _paragraphs([t.privacyBody1, t.privacyBody2, t.privacyBody3, t.privacyBody4, t.privacyBody5]),
       ),
-      'terms': const AppLegalPage(slug: 'terms', title: 'Умови', body: AppCopy.termsBody),
-      'age': const AppLegalPage(slug: 'age', title: 'Вікова політика', body: AppCopy.agePolicyBody),
-      'about': const AppLegalPage(slug: 'about', title: 'Про застосунок', body: AppCopy.aboutBody),
+      'terms': AppLegalPage(
+        slug: 'terms',
+        title: t.termsTitle,
+        body: _paragraphs([t.termsBody1, t.termsBody2, t.termsBody3, t.termsBody4, t.termsBody5]),
+      ),
+      'age': AppLegalPage(
+        slug: 'age',
+        title: t.agePolicyTitle,
+        body: _paragraphs([
+          t.agePolicyBody1,
+          t.agePolicyBody2,
+          t.agePolicyBody3,
+          t.agePolicyBody4,
+          t.agePolicyBody5,
+        ]),
+      ),
+      'about': AppLegalPage(
+        slug: 'about',
+        title: t.aboutTitle,
+        body: _paragraphs([t.aboutBody1, t.aboutBody2, t.aboutBody3, t.aboutBody4, t.aboutBody5]),
+      ),
     },
   );
 }

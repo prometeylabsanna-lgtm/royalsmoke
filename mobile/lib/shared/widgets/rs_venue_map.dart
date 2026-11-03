@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
 import '../../core/constants/app_copy.dart';
 import '../../core/constants/app_sizes.dart';
@@ -58,7 +59,7 @@ class RsVenueMap extends StatelessWidget {
               right: 10,
               bottom: 8,
               child: Text(
-                'МАПА',
+                AppLocalizations.of(context).mapLabel,
                 style: AppTextStyles.kicker.copyWith(
                   color: AppColors.seashell.withValues(alpha: 0.7),
                   shadows: const [Shadow(blurRadius: 6, color: Color(0x88000000))],

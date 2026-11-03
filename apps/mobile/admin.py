@@ -19,11 +19,13 @@ from .models import (
 class MobileBrandFactInline(TabularInline):
     model = MobileBrandFact
     extra = 0
+    fields = ('label', 'value', 'sort_order')
 
 
 class MobileBrandLineInline(TabularInline):
     model = MobileBrandLine
     extra = 0
+    fields = ('name', 'sort_order')
 
 
 class MobileBrandPhotoInline(TabularInline):
@@ -40,6 +42,7 @@ class MobileBrandPhotoInline(TabularInline):
 class MobileHouseBlockInline(TabularInline):
     model = MobileHouseBlock
     extra = 0
+    fields = ('index_label', 'title', 'body', 'sort_order')
 
 
 @admin.register(MobileSettings)

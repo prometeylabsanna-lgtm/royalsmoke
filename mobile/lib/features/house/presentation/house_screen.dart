@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:royal_smoke/core/l10n/app_locale.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -15,20 +17,19 @@ class HouseScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final house = watchContent(ref).screen('house');
     final blocks = house.houseBlocks;
     return ListView(
       padding: const EdgeInsets.fromLTRB(AppSizes.padX, 24, AppSizes.padX, AppSizes.s24),
       children: [
         RsPageHeading(
-          kicker: house.kicker.isEmpty ? 'Про дім' : house.kicker,
-          title: house.title.isEmpty ? 'Дім\nRoyal Smoke' : house.title,
+          kicker: textOr(house.kicker, l10n.houseKicker),
+          title: textOr(house.title, l10n.houseTitle),
         ),
         const SizedBox(height: AppSizes.s24),
         Text(
-          house.body.isEmpty
-              ? 'Royal Smoke — дім, що представляє в Україні родинні бренди з багаторічною історією.'
-              : house.body,
+          textOr(house.body, l10n.houseBodyShort),
           style: AppTextStyles.body,
         ),
         const SizedBox(height: AppSizes.s24),
@@ -51,13 +52,13 @@ class HouseScreen extends ConsumerWidget {
           _HouseBlock(index: block.indexLabel, title: block.title, body: block.body),
         const SizedBox(height: AppSizes.s24),
         RsButton(
-          label: house.ctaPrimary.isEmpty ? 'Забронювати візит' : house.ctaPrimary,
+          label: textOr(house.ctaPrimary, l10n.bookVisit),
           expand: true,
           onPressed: () => context.go('/house/visit'),
         ),
         const SizedBox(height: AppSizes.s8),
         RsButton(
-          label: house.ctaSecondary.isEmpty ? 'Контакти' : house.ctaSecondary,
+          label: textOr(house.ctaSecondary, l10n.contacts),
           variant: RsButtonVariant.secondary,
           expand: true,
           onPressed: () => context.go('/more/contacts'),

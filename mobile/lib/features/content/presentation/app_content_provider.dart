@@ -1,4 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:royal_smoke/core/l10n/app_locale.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
 import '../../brands/domain/partner_brand.dart';
 import '../data/app_content_repository.dart';
@@ -12,17 +14,27 @@ final appContentRepositoryProvider = Provider<AppContentRepository>((ref) {
 class AppContentNotifier extends AsyncNotifier<AppContentBundle> {
   @override
   Future<AppContentBundle> build() async {
+    final locale = ref.watch(appLocaleProvider);
+    final l10n = lookupAppLocalizations(locale);
     final repo = ref.read(appContentRepositoryProvider);
     try {
-      return await repo.load();
+      return await repo.load(lang: apiLanguageCode(locale), l10n: l10n);
     } catch (_) {
-      return buildFallbackBundle();
+      return buildFallbackBundle(l10n);
     }
   }
 
   Future<void> refresh() async {
+    final locale = ref.read(appLocaleProvider);
+    final l10n = lookupAppLocalizations(locale);
     state = const AsyncLoading();
-    state = AsyncData(await ref.read(appContentRepositoryProvider).load(forceNetwork: true));
+    state = AsyncData(
+      await ref.read(appContentRepositoryProvider).load(
+            lang: apiLanguageCode(locale),
+            l10n: l10n,
+            forceNetwork: true,
+          ),
+    );
   }
 }
 
@@ -31,9 +43,13 @@ final appContentProvider =
 
 /// Синхронний доступ: remote / кеш / fallback.
 AppContentBundle watchContent(WidgetRef ref) {
-  return ref.watch(appContentProvider).asData?.value ?? buildFallbackBundle();
+  final locale = ref.watch(appLocaleProvider);
+  final l10n = lookupAppLocalizations(locale);
+  return ref.watch(appContentProvider).asData?.value ?? buildFallbackBundle(l10n);
 }
 
 final appBrandsProvider = Provider<List<PartnerBrand>>((ref) {
-  return ref.watch(appContentProvider).asData?.value.brands ?? buildFallbackBundle().brands;
+  final locale = ref.watch(appLocaleProvider);
+  final l10n = lookupAppLocalizations(locale);
+  return ref.watch(appContentProvider).asData?.value.brands ?? buildFallbackBundle(l10n).brands;
 });

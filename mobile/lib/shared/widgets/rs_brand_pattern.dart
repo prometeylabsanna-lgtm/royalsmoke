@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
 import '../../core/theme/app_text_styles.dart';
 import '../../features/brands/domain/partner_brand.dart';
@@ -21,9 +22,9 @@ class RsBrandLetterPattern extends StatelessWidget {
   /// М’якший fade вниз — патерн видно нижче по картці.
   final bool extendLower;
 
-  String get _token {
+  String _token(String fallback) {
     final cleaned = word.replaceAll(RegExp(r'\s+'), '').toUpperCase();
-    return cleaned.isEmpty ? 'RS' : cleaned;
+    return cleaned.isEmpty ? fallback : cleaned;
   }
 
   Color get _ink => switch (panel) {
@@ -37,7 +38,7 @@ class RsBrandLetterPattern extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final token = _token;
+    final token = _token(AppLocalizations.of(context).monogramRs);
     final repeats = (28 / token.length).ceil().clamp(4, 14);
     final line = List.filled(repeats, token).join();
 

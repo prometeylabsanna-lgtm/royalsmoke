@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:royal_smoke/core/l10n/app_locale.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -16,6 +18,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final content = watchContent(ref);
     final home = content.screen('home');
     final brands = content.brands;
@@ -55,28 +58,28 @@ class HomeScreen extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                home.kicker.isEmpty ? 'ДІМ БРЕНДУ' : home.kicker,
+                textOr(home.kicker, l10n.homeKicker),
                 style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32),
               ),
               const SizedBox(height: AppSizes.s12),
               Text(
-                home.title.isEmpty ? 'ROYAL\nSMOKE' : home.title,
+                textOr(home.title, l10n.homeTitle),
                 style: AppTextStyles.hero,
               ),
               const SizedBox(height: AppSizes.s24),
               Text(
-                home.body.isEmpty ? 'Довідник дому бренду та партнерів' : home.body,
+                textOr(home.body, l10n.homeBody),
                 style: AppTextStyles.body,
               ),
               const SizedBox(height: AppSizes.s16),
               Builder(
                 builder: (context) {
                   final brandsBtn = RsButton(
-                    label: home.ctaPrimary.isEmpty ? 'Бренди' : home.ctaPrimary,
+                    label: textOr(home.ctaPrimary, l10n.brands),
                     onPressed: () => context.go('/brands'),
                   );
                   final houseBtn = RsButton(
-                    label: home.ctaSecondary.isEmpty ? 'Дім' : home.ctaSecondary,
+                    label: textOr(home.ctaSecondary, l10n.houseTab),
                     variant: RsButtonVariant.secondary,
                     onPressed: () => context.go('/house'),
                   );
@@ -95,7 +98,7 @@ class HomeScreen extends ConsumerWidget {
         const SizedBox(height: AppSizes.s40),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppSizes.padX),
-          child: Text('ПАРТНЕРИ', style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32)),
+          child: Text(l10n.partnersSection, style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32)),
         ),
         const SizedBox(height: AppSizes.s12),
         SizedBox(
@@ -120,9 +123,9 @@ class HomeScreen extends ConsumerWidget {
           child: Column(
             children: [
               const Divider(height: 1, color: AppColors.hairline),
-              RsEditorialRow(label: 'Про дім', onTap: () => context.go('/house')),
-              RsEditorialRow(label: 'Контакти', onTap: () => context.go('/more/contacts')),
-              RsEditorialRow(label: 'Забронювати візит', onTap: () => context.go('/house/visit')),
+              RsEditorialRow(label: l10n.houseKicker, onTap: () => context.go('/house')),
+              RsEditorialRow(label: l10n.contacts, onTap: () => context.go('/more/contacts')),
+              RsEditorialRow(label: l10n.bookVisit, onTap: () => context.go('/house/visit')),
             ],
           ),
         ),

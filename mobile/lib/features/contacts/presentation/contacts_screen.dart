@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/constants/app_sizes.dart';
@@ -29,12 +30,13 @@ class ContactsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final settings = watchContent(ref).settings;
     return ListView(
       padding: const EdgeInsets.fromLTRB(AppSizes.padX, 8, AppSizes.padX, AppSizes.s24),
       children: [
         RsBackBar(
-          label: 'Ще',
+          label: l10n.moreTitle,
           onPressed: () {
             if (context.canPop()) {
               context.pop();
@@ -43,7 +45,7 @@ class ContactsScreen extends ConsumerWidget {
             }
           },
         ),
-        const RsPageHeading(kicker: 'Дім Royal Smoke', title: 'Контакти'),
+        RsPageHeading(kicker: l10n.visitKicker, title: l10n.contacts),
         const SizedBox(height: 12),
         Text(settings.appBlurb, style: AppTextStyles.body),
         const SizedBox(height: 20),
@@ -51,9 +53,9 @@ class ContactsScreen extends ConsumerWidget {
         const SizedBox(height: 20),
         const Divider(height: 1, color: AppColors.hairline),
         _ContactBlock(
-          label: 'Адреса',
+          label: l10n.addressLabel,
           value: settings.contactAddress,
-          action: 'Прокласти маршрут',
+          action: l10n.getDirections,
           onAction: () => _openMaps(
             settings.contactLat,
             settings.contactLng,
@@ -61,12 +63,12 @@ class ContactsScreen extends ConsumerWidget {
           ),
         ),
         _ContactBlock(
-          label: 'Телефон',
+          label: l10n.phoneLabel,
           value: settings.contactPhone,
-          action: 'Зателефонувати',
+          action: l10n.call,
           onAction: () => _call(settings.contactPhone),
         ),
-        _ContactBlock(label: 'Години', value: settings.contactHours),
+        _ContactBlock(label: l10n.hoursLabel, value: settings.contactHours),
       ],
     );
   }

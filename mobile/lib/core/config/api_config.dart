@@ -6,5 +6,9 @@ abstract final class ApiConfig {
     defaultValue: 'http://127.0.0.1:8001',
   );
 
-  static Uri bundleUri() => Uri.parse('$baseUrl/api/v1/app/bundle/');
+  static Uri bundleUri(String lang) {
+    return Uri.parse('$baseUrl/api/v1/app/bundle/').replace(
+      queryParameters: {'lang': lang},
+    );
+  }
 }

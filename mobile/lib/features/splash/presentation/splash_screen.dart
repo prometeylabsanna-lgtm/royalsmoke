@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:royal_smoke/core/l10n/app_locale.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
@@ -45,6 +47,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final splash = watchContent(ref).screen('splash');
     final sealUrl = watchContent(ref).settings.appSealUrl;
     return Scaffold(
@@ -77,7 +80,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 24 * 0.32),
                       child: Text(
-                        splash.title.isEmpty ? 'ROYAL SMOKE' : splash.title,
+                        textOr(splash.title, l10n.splashTitle),
                         style: TextStyle(
                           fontFamily: AppTextStyles.family,
                           fontSize: 24,
@@ -92,7 +95,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                 ),
                 const SizedBox(height: 28),
                 Text(
-                  splash.kicker.isEmpty ? 'ДОВІДНИК БРЕНДУ' : splash.kicker,
+                  textOr(splash.kicker, l10n.splashKicker),
                   style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.34),
                 ),
               ],
@@ -112,7 +115,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                   ),
                   child: Text(
-                    splash.ctaPrimary.isEmpty ? 'ВІДКРИТИ' : splash.ctaPrimary,
+                    textOr(splash.ctaPrimary, l10n.splashOpen),
                     style: TextStyle(
                       fontFamily: AppTextStyles.family,
                       fontSize: 12,

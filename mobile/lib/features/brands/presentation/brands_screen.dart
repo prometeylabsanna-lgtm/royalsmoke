@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
 import '../../../core/constants/app_sizes.dart';
 import '../../../features/brands/domain/partner_brand.dart';
@@ -36,15 +37,16 @@ class _BrandsScreenState extends ConsumerState<BrandsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final brands = _visible(ref.watch(appBrandsProvider));
     return ListView(
       padding: const EdgeInsets.fromLTRB(AppSizes.padX, 24, AppSizes.padX, AppSizes.s24),
       children: [
-        const RsPageHeading(kicker: 'Партнери дому', title: 'Бренди'),
+        RsPageHeading(kicker: l10n.partnersKicker, title: l10n.brands),
         const SizedBox(height: AppSizes.s24),
         RsSearchField(controller: _query, onChanged: (_) => setState(() {})),
         const SizedBox(height: AppSizes.s16),
-        const Align(alignment: Alignment.centerLeft, child: RsChip(label: 'Усі', selected: true)),
+        Align(alignment: Alignment.centerLeft, child: RsChip(label: l10n.filterAll, selected: true)),
         const SizedBox(height: AppSizes.s24),
         if (brands.isEmpty)
           const Padding(

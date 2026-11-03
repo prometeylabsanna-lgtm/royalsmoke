@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -18,12 +19,13 @@ class BrandDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final content = watchContent(ref);
     final item = content.brandById(brandId);
     if (item == null) {
-      return const ColoredBox(
+      return ColoredBox(
         color: AppColors.bark,
-        child: Center(child: Text('Бренд не знайдено')),
+        child: Center(child: Text(l10n.brandNotFound)),
       );
     }
     final saved = ref.watch(savedBrandsProvider).contains(brandId);
@@ -37,7 +39,7 @@ class BrandDetailScreen extends ConsumerWidget {
           child: ClipRect(
             child: RsBrandLetterPanel(
               brand: item,
-              patternWord: 'ROYAL',
+              patternWord: l10n.patternRoyal,
               fontSize: 18,
               rowCount: 22,
               extendLower: true,
@@ -57,7 +59,7 @@ class BrandDetailScreen extends ConsumerWidget {
                             TextButton.icon(
                               onPressed: () => context.go('/brands'),
                               icon: const Icon(Icons.chevron_left, color: AppColors.seashell),
-                              label: Text('БРЕНДИ', style: AppTextStyles.back),
+                              label: Text(l10n.brandsBack, style: AppTextStyles.back),
                             ),
                             const Spacer(),
                             IconButton(
@@ -109,7 +111,7 @@ class BrandDetailScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('КОРОТКО', style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32)),
+              Text(l10n.factsKicker, style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32)),
               const SizedBox(height: AppSizes.s12),
               const Divider(height: 1, color: AppColors.hairline),
               for (final fact in item.facts) RsFactRow(label: fact.label, value: fact.value),
@@ -121,14 +123,14 @@ class BrandDetailScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('ЛІНІЙКИ', style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32)),
+              Text(l10n.linesKicker, style: AppTextStyles.kicker.copyWith(letterSpacing: 11 * 0.32)),
               const SizedBox(height: AppSizes.s12),
               const Divider(height: 1, color: AppColors.hairline),
               for (var i = 0; i < item.lines.length; i++) RsLineRow(index: i + 1, title: item.lines[i]),
               const SizedBox(height: AppSizes.s40),
               GestureDetector(
                 onTap: () => context.go('/brands'),
-                child: Text('УСІ БРЕНДИ', style: AppTextStyles.link),
+                child: Text(l10n.allBrands, style: AppTextStyles.link),
               ),
             ],
           ),

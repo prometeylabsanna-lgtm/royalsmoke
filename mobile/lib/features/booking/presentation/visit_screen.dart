@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:royal_smoke/core/l10n/app_locale.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
@@ -49,6 +51,7 @@ class _VisitScreenState extends ConsumerState<VisitScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final visit = watchContent(ref).screen('visit');
     if (_sent) {
       return Padding(
@@ -68,22 +71,20 @@ class _VisitScreenState extends ConsumerState<VisitScreen> {
             ),
             const SizedBox(height: 20),
             Text(
-              visit.successTitle.isEmpty ? 'ЗАПИТ НАДІСЛАНО' : visit.successTitle,
+              textOr(visit.successTitle, l10n.visitSuccessTitle),
               textAlign: TextAlign.center,
               style: AppTextStyles.title.copyWith(fontSize: 22, letterSpacing: 22 * 0.2),
             ),
             const SizedBox(height: AppSizes.s16),
             Text(
-              visit.successBody.isEmpty
-                  ? 'Ми звʼяжемося з вами, щоб підтвердити дату та час візиту.'
-                  : visit.successBody,
+              textOr(visit.successBody, l10n.visitSuccessBody),
               textAlign: TextAlign.center,
               style: AppTextStyles.body.copyWith(color: AppColors.textMuted),
             ),
             TextButton(
               onPressed: () => setState(() => _sent = false),
               child: Text(
-                visit.bodySecondary.isEmpty ? 'НОВИЙ ЗАПИТ' : visit.bodySecondary,
+                textOr(visit.bodySecondary, l10n.visitNewRequest),
                 style: TextStyle(
                   fontFamily: AppTextStyles.family,
                   fontSize: 12,
@@ -104,41 +105,41 @@ class _VisitScreenState extends ConsumerState<VisitScreen> {
     return ListView(
       padding: const EdgeInsets.fromLTRB(AppSizes.padX, 8, AppSizes.padX, AppSizes.s24),
       children: [
-        RsBackBar(label: 'Дім', onPressed: () => context.go('/house')),
+        RsBackBar(label: l10n.houseTab, onPressed: () => context.go('/house')),
         RsPageHeading(
-          kicker: visit.kicker.isEmpty ? 'Дім Royal Smoke' : visit.kicker,
-          title: visit.title.isEmpty ? 'Візит' : visit.title,
+          kicker: textOr(visit.kicker, l10n.visitKicker),
+          title: textOr(visit.title, l10n.visitTitle),
         ),
         const SizedBox(height: 20),
         RsTextField(
-          label: 'Імʼя',
-          hint: 'Ваше імʼя',
+          label: l10n.visitNameLabel,
+          hint: l10n.visitNameHint,
           controller: _name,
-          errorText: nameError ? 'Вкажіть імʼя та телефон' : null,
+          errorText: nameError ? l10n.visitNamePhoneError : null,
           onChanged: (_) => setState(() {}),
         ),
         const SizedBox(height: 20),
         RsTextField(
-          label: 'Телефон',
-          hint: '+380',
+          label: l10n.phoneLabel,
+          hint: l10n.phonePrefix,
           controller: _phone,
           keyboardType: TextInputType.phone,
-          errorText: phoneError && !nameError ? 'Вкажіть імʼя та телефон' : null,
+          errorText: phoneError && !nameError ? l10n.visitNamePhoneError : null,
           onChanged: (_) => setState(() {}),
         ),
         const SizedBox(height: 20),
         Row(
           children: [
-            Expanded(child: RsTextField(label: 'Дата', hint: 'ДД.ММ.РРРР', controller: _date)),
+            Expanded(child: RsTextField(label: l10n.dateLabel, hint: l10n.dateHint, controller: _date)),
             const SizedBox(width: AppSizes.s12),
-            Expanded(child: RsTextField(label: 'Час', hint: 'ГГ:ХХ', controller: _time)),
+            Expanded(child: RsTextField(label: l10n.timeLabel, hint: l10n.timeHint, controller: _time)),
           ],
         ),
         const SizedBox(height: 20),
-        RsTextField(label: 'Коментар', hint: 'Необовʼязково', controller: _comment, maxLines: 3),
+        RsTextField(label: l10n.commentLabel, hint: l10n.commentHint, controller: _comment, maxLines: 3),
         const SizedBox(height: AppSizes.s24),
         RsButton(
-          label: visit.ctaPrimary.isEmpty ? 'Надіслати запит' : visit.ctaPrimary,
+          label: textOr(visit.ctaPrimary, l10n.visitSendRequest),
           expand: true,
           onPressed: _submit,
         ),

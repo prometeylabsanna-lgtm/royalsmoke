@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:royal_smoke/features/content/data/bundle_parser.dart';
 import 'package:royal_smoke/features/content/data/fallback_bundle.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
 void main() {
   test('fallback bundle має бренди та екрани', () {
-    final bundle = buildFallbackBundle();
+    final bundle = buildFallbackBundle(lookupAppLocalizations(const Locale('uk')));
     expect(bundle.brands.length, greaterThanOrEqualTo(4));
     expect(bundle.screen('home').title, isNotEmpty);
     expect(bundle.page('privacy')?.body, isNotEmpty);

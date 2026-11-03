@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:royal_smoke/l10n/app_localizations.dart';
 
 import '../../core/constants/app_sizes.dart';
 import '../../core/theme/app_colors.dart';
@@ -197,7 +198,7 @@ class RsOfflineBrandRow extends StatelessWidget {
               ),
             ),
             Text(
-              'ЗБЕРЕЖЕНО',
+              AppLocalizations.of(context).savedBadge,
               style: AppTextStyles.tabLabel.copyWith(letterSpacing: 10 * 0.18),
             ),
           ],
