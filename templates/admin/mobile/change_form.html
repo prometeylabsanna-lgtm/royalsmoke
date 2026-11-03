@@ -1,0 +1,14 @@
+{% extends "admin/change_form.html" %}
+
+{% block content %}
+<div class="rs-cms-langs" data-cms-langs role="tablist" aria-label="Мова полів">
+  <button type="button" class="rs-cms-langs__btn is-active" data-cms-lang-btn="uk" role="tab" aria-selected="true">UA</button>
+  <button type="button" class="rs-cms-langs__btn" data-cms-lang-btn="en" role="tab" aria-selected="false">EN</button>
+  <button type="button" class="rs-cms-langs__btn" data-cms-lang-btn="zh-hans" role="tab" aria-selected="false">中文</button>
+  <button type="button" class="rs-cms-langs__btn" data-cms-lang-btn="ms" role="tab" aria-selected="false">MS</button>
+  <button type="button" class="rs-cms-langs__btn" data-cms-lang-btn="fil" role="tab" aria-selected="false">FIL</button>
+  <button type="button" class="rs-cms-langs__btn" data-cms-lang-btn="id" role="tab" aria-selected="false">ID</button>
+  <button type="button" class="rs-cms-langs__btn" data-cms-lang-btn="vi" role="tab" aria-selected="false">VI</button>
+</div>
+{{ block.super }}
+{% endblock %}

@@ -345,7 +345,7 @@ UNFOLD = {
         },
     },
     'STYLES': [
-        lambda request: static('css/admin/site_content.css') + '?v=15',
+        lambda request: static('css/admin/site_content.css') + '?v=16',
     ],
     'SCRIPTS': [
         lambda request: static('js/admin/cms_lang_switch.js') + '?v=4',

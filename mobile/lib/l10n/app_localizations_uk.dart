@@ -143,7 +143,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get brandAjHeritage =>
-      'Абдель Фернандес — представник четвертого покоління кубинської родини майстрів. Власну мануфактуру в Естелі заснував на початку 2000-х; компанія розвиває виробництво в кількох регіонах Нікарагуа.';
+      'Abdel Fernández — представник четвертого покоління кубинської родини майстрів. Власну мануфактуру в Естелі заснував на початку 2000-х; компанія розвиває виробництво в кількох регіонах Нікарагуа.';
 
   @override
   String get factOrigin => 'Походження';
@@ -161,7 +161,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get factFamily => 'Родина';
 
   @override
-  String get factFamilyAj => 'Фернандес, кубинське коріння';
+  String get factFamilyAj => 'Fernández, кубинське коріння';
 
   @override
   String get factLineCharacter => 'Характер ліній';
@@ -189,7 +189,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get brandOlivaHeritage =>
-      'Родина Олива розвиває свою справу з кінця XIX століття, починаючи з провінції Пінар-дель-Ріо на Кубі. Після еміграції виробництво зосередилося в Нікарагуа, де розташовані основні майстерні та фабрика бренду.';
+      'Родина Oliva розвиває свою справу з кінця XIX століття, починаючи з провінції Пінар-дель-Ріо на Кубі. Після еміграції виробництво зосередилося в Нікарагуа, де розташовані основні майстерні та фабрика бренду.';
 
   @override
   String get factTradition => 'Традиція';
@@ -235,7 +235,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get factFounder => 'Засновник';
 
   @override
-  String get factFounderPerdomo => 'Нік Пердомо';
+  String get factFounderPerdomo => 'Nick Perdomo';
 
   @override
   String get factFeature => 'Особливість';

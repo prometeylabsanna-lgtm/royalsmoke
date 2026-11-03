@@ -258,6 +258,16 @@ body.cms-lang-vi [data-cms-lang]:not([data-cms-lang="vi"]),
   display: none;
 }
 
+/* Блоки без перекладу (фото, лінійки) — лише вкладка UA */
+body.cms-lang-en .rs-cms-uk-only,
+body.cms-lang-zh-hans .rs-cms-uk-only,
+body.cms-lang-ms .rs-cms-uk-only,
+body.cms-lang-fil .rs-cms-uk-only,
+body.cms-lang-id .rs-cms-uk-only,
+body.cms-lang-vi .rs-cms-uk-only {
+  display: none;
+}
+
 /* Помилки на прихованих мовних полях — показати + підсумок зверху */
 .form-row.has-cms-error,
 .rs-cms-field.has-cms-error,
