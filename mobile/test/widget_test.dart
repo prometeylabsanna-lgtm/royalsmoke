@@ -11,7 +11,7 @@ void main() {
     final en = lookupAppLocalizations(const Locale('en'));
     expect(uk.termsBody2, contains('допомагають'));
     expect(uk.termsBody2.contains('допомогають'), isFalse);
-    expect(uk.factFamilyTurrent, 'Туррент');
+    expect(uk.factFamilyTurrent, 'Turrent');
     expect(en.factFamilyTurrent, 'Turrent');
     expect(uk.appBlurb, contains('дому бренду'));
     expect(en.appBlurb, contains('brand house'));

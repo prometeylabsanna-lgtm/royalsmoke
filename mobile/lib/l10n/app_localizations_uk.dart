@@ -263,13 +263,13 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get brandTurrentHeritage =>
-      'Мексиканський бренд родини Туррент. Виробництво в долині Сан-Андрес, штат Веракрус; глибокі місцеві традиції та характерний стиль регіону.';
+      'Мексиканський бренд родини Turrent. Виробництво в долині Сан-Андрес, штат Веракрус; глибокі місцеві традиції та характерний стиль регіону.';
 
   @override
   String get factOriginTurrent => 'Сан-Андрес, Мексика';
 
   @override
-  String get factFamilyTurrent => 'Туррент';
+  String get factFamilyTurrent => 'Turrent';
 
   @override
   String get factLineCharacterTurrent => 'Насичений профіль, стійкий фініш';

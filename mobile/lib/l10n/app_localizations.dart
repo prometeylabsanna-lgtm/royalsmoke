@@ -598,7 +598,7 @@ abstract class AppLocalizations {
   /// M082
   ///
   /// In uk, this message translates to:
-  /// **'Мексиканський бренд родини Туррент. Виробництво в долині Сан-Андрес, штат Веракрус; глибокі місцеві традиції та характерний стиль регіону.'**
+  /// **'Мексиканський бренд родини Turrent. Виробництво в долині Сан-Андрес, штат Веракрус; глибокі місцеві традиції та характерний стиль регіону.'**
   String get brandTurrentHeritage;
 
   /// M083
@@ -610,7 +610,7 @@ abstract class AppLocalizations {
   /// M084
   ///
   /// In uk, this message translates to:
-  /// **'Туррент'**
+  /// **'Turrent'**
   String get factFamilyTurrent;
 
   /// M085
