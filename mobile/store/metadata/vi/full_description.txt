@@ -1,11 +1,11 @@
-RoyalSmoke là lounge và câu lạc bộ với đặt lịch thăm.
+RoyalSmoke là lounge với đặt lịch thăm.
 
 Ứng dụng dành cho người từ 21 tuổi. Cần xác nhận tuổi trước khi vào các mục chính.
 
 Không gian được tìm hiểu theo lịch hẹn trước. Bạn có thể gửi yêu cầu thăm: tên, điện thoại, ngày, giờ và ghi chú không bắt buộc.
 
-Liên hệ tại Kyiv: 1 phố Khreshchatyk. Giờ: T2–CN, 11:00–22:00. Số điện thoại và đường đi có trong ứng dụng.
+Giờ: T2–CN, 11:00–22:00. Số điện thoại có trong ứng dụng.
 
 Ngôn ngữ giao diện: Ukraina, Anh, Trung, Mã Lai, Filipino, Indonesia và Việt.
 
-RoyalSmoke không bán hàng trong ứng dụng và không tạo hồ sơ quảng cáo.
+RoyalSmoke không tạo hồ sơ quảng cáo.

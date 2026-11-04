@@ -1,11 +1,11 @@
-RoyalSmoke is a lounge and club with visit booking.
+RoyalSmoke is a lounge with visit booking.
 
 The app is for people aged 21 and over. Age confirmation is required before the main sections.
 
 You get to know the space by prior appointment. The app lets you send a visit request with your name, phone, date, time, and an optional comment.
 
-Contacts in Kyiv: 1 Khreshchatyk St. Hours: Mon–Sun, 11:00–22:00. Phone and directions are included.
+Hours: Mon–Sun, 11:00–22:00. The phone number is in the app.
 
 Interface languages: Ukrainian, English, Chinese, Malay, Filipino, Indonesian, and Vietnamese.
 
-RoyalSmoke does not sell goods in the app and does not build advertising profiles.
+RoyalSmoke does not build advertising profiles.

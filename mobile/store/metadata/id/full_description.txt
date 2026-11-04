@@ -1,11 +1,11 @@
-RoyalSmoke adalah lounge dan klub dengan pencatatan kunjungan.
+RoyalSmoke adalah lounge dengan pencatatan kunjungan.
 
 Aplikasi ini untuk orang yang berusia 21 tahun ke atas. Konfirmasi usia diperlukan sebelum bagian utama.
 
 Ruang ini dikenali melalui janji temu terlebih dahulu. Anda dapat mengirim permintaan kunjungan dengan nama, telepon, tanggal, waktu, dan komentar opsional.
 
-Kontak di Kyiv: Jl. Khreshchatyk No. 1. Jam: Sen–Min, 11:00–22:00. Telepon dan arah tersedia di aplikasi.
+Jam: Sen–Min, 11:00–22:00. Telepon tersedia di aplikasi.
 
 Bahasa antarmuka: Ukraina, Inggris, Tionghoa, Melayu, Filipino, Indonesia, dan Vietnam.
 
-RoyalSmoke tidak menjual barang di dalam aplikasi dan tidak membuat profil iklan.
+RoyalSmoke tidak membuat profil iklan.

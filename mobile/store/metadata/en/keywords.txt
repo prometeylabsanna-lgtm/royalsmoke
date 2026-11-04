@@ -1,1 +1,1 @@
-lounge,club,visit,Kyiv,contacts,21+
+lounge,visit,booking,contacts,21+
