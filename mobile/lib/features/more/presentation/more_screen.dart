@@ -36,7 +36,7 @@ class MoreScreen extends ConsumerWidget {
           const Divider(height: 1, color: AppColors.hairline),
           RsEditorialRow(
             label: l10n.contacts,
-            onTap: () => context.push('/more/contacts'),
+            onTap: () => context.go('/contacts'),
           ),
           RsEditorialRow(
             label: content.page('privacy')?.title ?? l10n.privacyTitle,
@@ -66,8 +66,7 @@ class MoreScreen extends ConsumerWidget {
                     height: 44,
                     child: RsCoverImage(
                       imageUrl: sealUrl,
-                      assetFallback:
-                          'assets/images/mark/app_icon_master.png',
+                      assetFallback: 'assets/images/mark/app_icon_master.png',
                     ),
                   ),
                 )

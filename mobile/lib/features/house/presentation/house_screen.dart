@@ -72,7 +72,7 @@ class HouseScreen extends ConsumerWidget {
             label: textOr(house.ctaSecondary, l10n.contacts),
             variant: RsButtonVariant.secondary,
             expand: true,
-            onPressed: () => context.go('/more/contacts'),
+            onPressed: () => context.go('/contacts'),
           ),
         ],
       ),

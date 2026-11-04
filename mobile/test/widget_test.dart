@@ -53,6 +53,10 @@ void main() {
     );
     expect(find.text('ПЕРСОНАЛЬНИЙ СЕРВІС'), findsWidgets);
     expect(find.text('ЗАЛИШИТИ ЗАПИТ'), findsOneWidget);
+    expect(find.text('Головна'), findsNothing);
+    expect(find.text('Сервіс'), findsOneWidget);
+    expect(find.text('Контакти'), findsWidgets);
+    expect(find.text('Ще'), findsOneWidget);
     expect(find.text('Бренди'), findsNothing);
 
     await tester.tap(find.text('Запит'));

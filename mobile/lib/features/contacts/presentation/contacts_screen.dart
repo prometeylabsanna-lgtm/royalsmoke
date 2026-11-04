@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:royal_smoke/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -33,22 +32,12 @@ class ContactsScreen extends ConsumerWidget {
       child: ListView(
         padding: const EdgeInsets.fromLTRB(
           AppSizes.padX,
-          8,
+          24,
           AppSizes.padX,
           AppSizes.s24,
         ),
         children: [
-          RsBackBar(
-            label: l10n.moreTitle,
-            onPressed: () {
-              if (context.canPop()) {
-                context.pop();
-              } else {
-                context.go('/more');
-              }
-            },
-          ),
-          RsPageHeading(kicker: l10n.visitKicker, title: l10n.contacts),
+          RsPageHeading(kicker: l10n.appName, title: l10n.contacts),
           if (hasDetails) ...[
             const SizedBox(height: 20),
             const Divider(height: 1, color: AppColors.hairline),

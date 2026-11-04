@@ -6,7 +6,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import 'rs_insets.dart';
 
-enum RsTab { home, house, visit, more }
+enum RsTab { home, house, visit, contacts, more }
 
 class RsPageHeading extends StatelessWidget {
   const RsPageHeading({
@@ -181,9 +181,9 @@ class RsTabBar extends StatelessWidget {
 
   List<(RsTab, String)> _items(AppLocalizations l10n) {
     return [
-      (RsTab.home, l10n.tabHome),
       (RsTab.house, l10n.houseTab),
       (RsTab.visit, l10n.visitTitle),
+      (RsTab.contacts, l10n.contacts),
       (RsTab.more, l10n.moreTitle),
     ];
   }
@@ -331,6 +331,11 @@ class _TabPainter extends CustomPainter {
           ..lineTo(8, 7)
           ..moveTo(16, 3)
           ..lineTo(16, 7);
+      case RsTab.contacts:
+        canvas.drawCircle(const Offset(12, 7.5), 3.2, paint);
+        path
+          ..moveTo(5.5, 19)
+          ..quadraticBezierTo(12, 13.2, 18.5, 19);
       case RsTab.more:
         canvas.drawCircle(const Offset(6, 12), 1.2, Paint()..color = color);
         canvas.drawCircle(const Offset(12, 12), 1.2, Paint()..color = color);

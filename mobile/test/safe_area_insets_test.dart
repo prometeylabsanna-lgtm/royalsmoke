@@ -128,7 +128,7 @@ void main() {
       await pumpScreen(tester, const ContactsScreen(), top: top);
       expect(tester.takeException(), isNull);
       expect(
-        tester.getTopLeft(find.text('ЩЕ')).dy,
+        tester.getTopLeft(find.text('ROYALSMOKE')).dy,
         greaterThanOrEqualTo(top),
         reason: 'contacts top=$top',
       );
@@ -172,7 +172,7 @@ void main() {
           Scaffold(
             body: const SizedBox.expand(),
             bottomNavigationBar: RsTabBar(
-              current: RsTab.home,
+              current: RsTab.house,
               onChanged: (_) {},
             ),
           ),
@@ -180,7 +180,7 @@ void main() {
       );
       await tester.pump();
       expect(tester.takeException(), isNull);
-      final bottom = tester.getRect(find.text('Головна')).bottom;
+      final bottom = tester.getRect(find.text('Сервіс')).bottom;
       expect(bottom, lessThanOrEqualTo(844 - inset));
       expect(bottom, greaterThan(844 - inset - 24));
     }

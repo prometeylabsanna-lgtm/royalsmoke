@@ -115,7 +115,7 @@ class HomeScreen extends ConsumerWidget {
                 ),
                 RsEditorialRow(
                   label: l10n.contacts,
-                  onTap: () => context.go('/more/contacts'),
+                  onTap: () => context.go('/contacts'),
                 ),
                 RsEditorialRow(
                   label: l10n.bookVisit,
