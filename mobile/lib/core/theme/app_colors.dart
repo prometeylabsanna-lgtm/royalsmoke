@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Токени з прототипу Royal Smoke (фрейм 00) і сайту.
+/// Кольори інтерфейсу.
 abstract final class AppColors {
   static const Color bark = Color(0xFF100D0C);
   static const Color barkLight = Color(0xFF181412);
@@ -9,7 +9,7 @@ abstract final class AppColors {
   static const Color seashell = Color(0xFFFCF2EE);
   static const Color gold = Color(0xFFC99A44);
 
-  /// Натиснутий акцент з токенів сайту (`--rs-gold-hover`).
+  /// Натиснутий акцент (`--rs-gold-hover`).
   static const Color goldHover = Color(0xFFD8AC5C);
 
   /// seashell @ 62% — неактивний таб

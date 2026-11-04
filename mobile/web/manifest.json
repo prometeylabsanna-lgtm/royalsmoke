@@ -1,11 +1,11 @@
 {
-    "name": "Royal Smoke",
-    "short_name": "Royal Smoke",
+    "name": "RoyalSmoke",
+    "short_name": "RoyalSmoke",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#100D0C",
     "theme_color": "#100D0C",
-    "description": "Довідник бренду Royal Smoke.",
+    "description": "RoyalSmoke — персональний сервіс. Вікове обмеження 21+.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
