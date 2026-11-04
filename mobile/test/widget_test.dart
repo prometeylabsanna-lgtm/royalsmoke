@@ -9,18 +9,22 @@ void main() {
   test('uk та en рядки з таблиць', () {
     final uk = lookupAppLocalizations(const Locale('uk'));
     final en = lookupAppLocalizations(const Locale('en'));
-    expect(uk.termsBody2, contains('допомагають'));
-    expect(uk.termsBody2.contains('допомогають'), isFalse);
-    expect(uk.houseTab, 'Лаунж');
-    expect(en.houseTab, 'Lounge');
+    expect(uk.termsBody2, contains('запит'));
+    expect(uk.termsBody2.toLowerCase().contains('лаунж'), isFalse);
+    expect(uk.houseTab, 'Сервіс');
+    expect(en.houseTab, 'Service');
     expect(uk.contactAddress, isEmpty);
     expect(en.contactAddress, isEmpty);
-    expect(uk.appBlurb, contains('лаунжу'));
-    expect(en.appBlurb, contains('lounge'));
-    expect(uk.aboutBody3, contains('він розповідає'));
-    expect(en.aboutBody3, contains('covers the culture'));
-    expect(uk.visitTitle, 'Візит');
-    expect(en.visitTitle, 'Visit');
+    expect(uk.appBlurb.toLowerCase(), contains('персональний сервіс'));
+    expect(en.appBlurb.toLowerCase(), contains('personal service'));
+    expect(uk.aboutBody1.toLowerCase(), contains('персонального сервісу'));
+    expect(en.aboutBody1.toLowerCase(), contains('personal service'));
+    expect(uk.visitTitle, 'Запит');
+    expect(en.visitTitle, 'Request');
+    expect(uk.dateLabel, 'Зручний час для звʼязку');
+    expect(en.dateLabel, 'Convenient time to get in touch');
+    expect(uk.appName, 'RoyalSmoke');
+    expect(en.appName, 'RoyalSmoke');
   });
 
   testWidgets('застосунок стартує з темною темою', (tester) async {
@@ -32,23 +36,29 @@ void main() {
         child: const RoyalSmokeApp(),
       ),
     );
-    expect(find.text('ROYAL SMOKE'), findsOneWidget);
+    expect(find.text('ROYALSMOKE'), findsOneWidget);
     expect(find.text('21+'), findsOneWidget);
 
     await tester.tap(find.text('ВІДКРИТИ'));
     await tester.pumpAndSettle();
-    expect(find.text('ЛИШЕ ДЛЯ ПОВНОЛІТНІХ'), findsOneWidget);
+    expect(find.text('ВІКОВЕ ОБМЕЖЕННЯ 21+'), findsOneWidget);
 
     await tester.tap(find.text('МЕНІ Є 21 РІК'));
     await tester.pumpAndSettle();
-    expect(find.text('Довідник лаунжу та партнерів'), findsOneWidget);
-    expect(find.text('ЛАУНЖ'), findsWidgets);
-    expect(find.text('ЗАБРОНЮВАТИ ВІЗИТ'), findsOneWidget);
+    expect(
+      find.text(
+        'Залиште запит у застосунку — менеджер звʼяжеться з вами у зручний спосіб.',
+      ),
+      findsOneWidget,
+    );
+    expect(find.text('ПЕРСОНАЛЬНИЙ СЕРВІС'), findsWidgets);
+    expect(find.text('ЗАЛИШИТИ ЗАПИТ'), findsOneWidget);
     expect(find.text('Бренди'), findsNothing);
 
-    await tester.tap(find.text('Візит'));
+    await tester.tap(find.text('Запит'));
     await tester.pumpAndSettle();
-    expect(find.text('ВІЗИТ'), findsOneWidget);
+    expect(find.text('ЗАПИТ'), findsOneWidget);
+    expect(find.text('ЗРУЧНИЙ ЧАС ДЛЯ ЗВʼЯЗКУ'), findsOneWidget);
     expect(find.textContaining('Купити'), findsNothing);
   });
 
@@ -63,12 +73,12 @@ void main() {
     );
     await tester.pump();
     expect(find.text('OPEN'), findsOneWidget);
-    expect(find.text('LOUNGE'), findsOneWidget);
+    expect(find.text('PERSONAL SERVICE'), findsOneWidget);
 
     await tester.tap(find.text('OPEN'));
     await tester.pumpAndSettle();
-    expect(find.text('ADULTS ONLY'), findsOneWidget);
-    expect(find.text('I AM 21+'), findsOneWidget);
+    expect(find.text('AGE RESTRICTION 21+'), findsOneWidget);
+    expect(find.text('I AM 21 OR OLDER'), findsOneWidget);
   });
 
   testWidgets('fil не валить Material і Cupertino', (tester) async {

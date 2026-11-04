@@ -1,7 +1,8 @@
 import 'package:royal_smoke/features/content/domain/app_content.dart';
 import 'package:royal_smoke/l10n/app_localizations.dart';
 
-String _paragraphs(List<String> parts) => parts.join('\n\n');
+String _paragraphs(List<String> parts) =>
+    parts.where((part) => part.trim().isNotEmpty).join('\n\n');
 
 /// Локальний fallback, якщо API / кеш недоступні.
 AppContentBundle buildFallbackBundle(AppLocalizations t) {
@@ -35,7 +36,7 @@ AppContentBundle buildFallbackBundle(AppLocalizations t) {
         title: t.homeTitle,
         body: t.homeBody,
         ctaPrimary: t.bookVisit,
-        ctaSecondary: t.houseTab,
+        ctaSecondary: t.houseKicker,
         heroAssetFallback: 'assets/images/home/hero.jpg',
       ),
       'house': AppScreenContent(
@@ -46,9 +47,21 @@ AppContentBundle buildFallbackBundle(AppLocalizations t) {
         ctaSecondary: t.contacts,
         heroAssetFallback: 'assets/images/home/house.jpg',
         houseBlocks: [
-          AppHouseBlock(indexLabel: t.houseBlock1Index, title: t.houseBlockServiceTitle, body: t.houseBlockServiceBody),
-          AppHouseBlock(indexLabel: t.houseBlock2Index, title: t.houseBlockB2bTitle, body: t.houseBlockB2bBody),
-          AppHouseBlock(indexLabel: t.houseBlock3Index, title: t.visitTitle, body: t.houseBlockVisitBody),
+          AppHouseBlock(
+            indexLabel: t.houseBlock1Index,
+            title: t.houseBlockServiceTitle,
+            body: t.houseBlockServiceBody,
+          ),
+          AppHouseBlock(
+            indexLabel: t.houseBlock2Index,
+            title: t.visitTitle,
+            body: t.houseBlockVisitBody,
+          ),
+          AppHouseBlock(
+            indexLabel: t.houseBlock3Index,
+            title: t.houseBlockB2bTitle,
+            body: t.houseBlockB2bBody,
+          ),
         ],
       ),
       'visit': AppScreenContent(
@@ -64,12 +77,24 @@ AppContentBundle buildFallbackBundle(AppLocalizations t) {
       'privacy': AppLegalPage(
         slug: 'privacy',
         title: t.privacyTitle,
-        body: _paragraphs([t.privacyBody1, t.privacyBody2, t.privacyBody3, t.privacyBody4, t.privacyBody5]),
+        body: _paragraphs([
+          t.privacyBody1,
+          t.privacyBody2,
+          t.privacyBody3,
+          t.privacyBody4,
+          t.privacyBody5,
+        ]),
       ),
       'terms': AppLegalPage(
         slug: 'terms',
         title: t.termsTitle,
-        body: _paragraphs([t.termsBody1, t.termsBody2, t.termsBody3, t.termsBody4, t.termsBody5]),
+        body: _paragraphs([
+          t.termsBody1,
+          t.termsBody2,
+          t.termsBody3,
+          t.termsBody4,
+          t.termsBody5,
+        ]),
       ),
       'age': AppLegalPage(
         slug: 'age',
@@ -85,7 +110,13 @@ AppContentBundle buildFallbackBundle(AppLocalizations t) {
       'about': AppLegalPage(
         slug: 'about',
         title: t.aboutTitle,
-        body: _paragraphs([t.aboutBody1, t.aboutBody2, t.aboutBody3, t.aboutBody4, t.aboutBody5]),
+        body: _paragraphs([
+          t.aboutBody1,
+          t.aboutBody2,
+          t.aboutBody3,
+          t.aboutBody4,
+          t.aboutBody5,
+        ]),
       ),
     },
   );

@@ -9,10 +9,10 @@ class AppLocalizationsUk extends AppLocalizations {
   AppLocalizationsUk([String locale = 'uk']) : super(locale);
 
   @override
-  String get splashKicker => 'ЛАУНЖ';
+  String get splashKicker => 'ПЕРСОНАЛЬНИЙ СЕРВІС';
 
   @override
-  String get splashTitle => 'ROYAL SMOKE';
+  String get splashTitle => 'ROYALSMOKE';
 
   @override
   String get splashOpen => 'ВІДКРИТИ';
@@ -21,14 +21,14 @@ class AppLocalizationsUk extends AppLocalizations {
   String get ageKicker => 'Підтвердження віку · 21+';
 
   @override
-  String get ageTitle => 'Лише для повнолітніх';
+  String get ageTitle => 'Вікове обмеження 21+';
 
   @override
   String get ageBadge => '21+';
 
   @override
   String get ageBody =>
-      'Застосунок є інформаційним довідником. Вміст призначений виключно для осіб, яким виповнилося 21 рік.';
+      'Застосунок RoyalSmoke доступний користувачам віком від 21 року.';
 
   @override
   String get ageExit => 'ВИЙТИ';
@@ -41,29 +41,30 @@ class AppLocalizationsUk extends AppLocalizations {
       'Продовжуючи, ви підтверджуєте свій вік і погоджуєтеся з віковою політикою.';
 
   @override
-  String get homeKicker => 'ЛАУНЖ';
+  String get homeKicker => 'ПЕРСОНАЛЬНИЙ СЕРВІС';
 
   @override
-  String get homeTitle => 'ROYAL\nSMOKE';
+  String get homeTitle => 'ROYALSMOKE';
 
   @override
-  String get homeBody => 'Довідник лаунжу та партнерів';
+  String get homeBody =>
+      'Залиште запит у застосунку — менеджер звʼяжеться з вами у зручний спосіб.';
 
   @override
-  String get houseTab => 'Лаунж';
+  String get houseTab => 'Сервіс';
 
   @override
-  String get houseKicker => 'Про лаунж';
+  String get houseKicker => 'Про сервіс';
 
   @override
-  String get houseTitle => 'Лаунж\nRoyal Smoke';
+  String get houseTitle => 'Сервіс\nRoyalSmoke';
 
   @override
   String get houseBody =>
-      'Royal Smoke — дім, що представляє в Україні родинні традиції з багаторічною історією. Тут можна дізнатися про походження і познайомитися з колекцією під час візиту.';
+      'RoyalSmoke — застосунок для звʼязку з персональним менеджером. Опишіть, чим вам допомогти, вкажіть контакт і зручний час — менеджер отримає запит і звʼяжеться з вами.';
 
   @override
-  String get bookVisit => 'Забронювати візит';
+  String get bookVisit => 'Залишити запит';
 
   @override
   String get contacts => 'Контакти';
@@ -76,7 +77,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get houseBlockServiceBody =>
-      'Консультації щодо історії та зберігання.';
+      'Персональний менеджер опрацьовує кожен запит.';
 
   @override
   String get houseBlock2Index => '02';
@@ -86,19 +87,20 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get houseBlockB2bBody =>
-      'Співпраця із закладами та професійними партнерами.';
+      'Окремі запити від компаній і професійних партнерів.';
 
   @override
   String get houseBlock3Index => '03';
 
   @override
-  String get visitTitle => 'Візит';
+  String get visitTitle => 'Запит';
 
   @override
-  String get houseBlockVisitBody => 'Знайомство з домом за попереднім записом.';
+  String get houseBlockVisitBody =>
+      'Форма в застосунку: тема, контакт і зручний час для звʼязку.';
 
   @override
-  String get visitKicker => 'Лаунж Royal Smoke';
+  String get visitKicker => 'RoyalSmoke';
 
   @override
   String get visitNewRequest => 'НОВИЙ ЗАПИТ';
@@ -111,14 +113,14 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get visitSuccessBody =>
-      'Ми звʼяжемося з вами, щоб підтвердити дату та час візиту.';
+      'Менеджер звʼяжеться з вами за вказаними контактами.';
 
   @override
-  String get appVersion => 'Royal Smoke · v1.0';
+  String get appVersion => 'RoyalSmoke · v1.0';
 
   @override
   String get appBlurb =>
-      'Royal Smoke — інформаційний довідник лаунжу. Застосунок призначений для осіб 21+.';
+      'RoyalSmoke — персональний сервіс: залиште запит, і менеджер звʼяжеться з вами. Вікове обмеження 21+.';
 
   @override
   String get contactAddress => '';
@@ -127,105 +129,101 @@ class AppLocalizationsUk extends AppLocalizations {
   String get contactPhone => '+380 00 000 00 00';
 
   @override
-  String get contactHours => 'Пн–Нд · 11:00–22:00';
+  String get contactHours => 'Менеджер на звʼязку: Пн–Нд · 11:00–22:00';
 
   @override
   String get privacyTitle => 'Політика конфіденційності';
 
   @override
   String get privacyBody1 =>
-      'Ця політика пояснює, які дані може обробляти застосунок Royal Smoke і з якою метою.';
+      'Ця політика пояснює, які дані обробляє застосунок RoyalSmoke і з якою метою.';
 
   @override
   String get privacyBody2 =>
-      'Royal Smoke — інформаційний довідник лаунжу. Ми збираємо лише мінімальні технічні дані, потрібні для стабільної роботи сервісу: наприклад, локально збережені дані на вашому пристрої, базові відомості про сесію та технічні журнали для діагностики збоїв.';
+      'Коли ви надсилаєте запит, ми отримуємо дані, які ви вказали у формі (імʼя, контакт для звʼязку, текст запиту, зручний час). Ці дані використовуються лише для того, щоб менеджер міг звʼязатися з вами й відповісти на запит.';
 
   @override
   String get privacyBody3 =>
-      'Ми не створюємо рекламні профілі користувачів і не передаємо персональні дані третім сторонам для маркетингу.';
+      'Також застосунок зберігає на пристрої налаштування (мова, підтвердження віку) і може передавати технічні журнали для діагностики збоїв.';
 
   @override
   String get privacyBody4 =>
-      'Вміст довідника призначений виключно для повнолітніх (21+). Доступ можливий лише після підтвердження віку. Якщо ви не згодні з цими умовами — припиніть користування застосунком.';
+      'Ми не створюємо рекламні профілі та не передаємо персональні дані третім сторонам для маркетингу.';
 
   @override
   String get privacyBody5 =>
-      'Запити щодо даних, доступу чи видалення інформації на пристрої можна надіслати через розділ «Контакти». Ми відповідаємо в розумні строки та в межах вимог чинного законодавства України.';
+      'Запити щодо доступу до даних або їх видалення надсилайте через розділ «Контакти». Ми відповідаємо в розумні строки відповідно до чинного законодавства України.';
 
   @override
   String get termsTitle => 'Умови';
 
   @override
   String get termsBody1 =>
-      'Користуючись застосунком Royal Smoke, ви підтверджуєте, що вам виповнилося 21 рік і що ви ознайомилися з цими умовами.';
+      'Користуючись застосунком RoyalSmoke, ви підтверджуєте, що вам виповнилося 21 рік і що ви ознайомилися з цими умовами.';
 
   @override
   String get termsBody2 =>
-      'Довідник надається з інформаційною метою: опис партнерів, історії дому, лінійок і контактів. Матеріали допомагають зорієнтуватися у світі партнерів і атмосфері простору.';
+      'Застосунок дає змогу надіслати запит менеджеру та знайти контакти для звʼязку. Надсилаючи запит, ви погоджуєтеся, що менеджер звʼяжеться з вами за вказаними даними.';
 
   @override
   String get termsBody3 =>
-      'Будь-які рішення щодо відвідування дому чи ознайомлення з матеріалами приймаєте ви самостійно, з урахуванням вікових обмежень і правил закладу.';
+      'Вказуйте достовірні контактні дані. За надання неправдивих відомостей, зокрема про вік, доступ до застосунку може бути обмежено.';
 
   @override
   String get termsBody4 =>
-      'Ми можемо оновлювати тексти, зображення та структуру розділів без попереднього окремого повідомлення. Продовження користування після оновлення означає згоду з чинною редакцією умов.';
+      'Ми можемо оновлювати тексти та структуру розділів. Продовження користування після оновлення означає згоду з чинною редакцією умов. Питання — через «Контакти».';
 
   @override
-  String get termsBody5 =>
-      'За порушення правил користування або надання неправдивих відомостей про вік доступ до довідника може бути обмежено. Питання щодо умов — через «Контакти».';
+  String get termsBody5 => '';
 
   @override
   String get agePolicyTitle => 'Вікова політика';
 
   @override
   String get agePolicyBody1 =>
-      'Вміст довідника Royal Smoke призначений виключно для осіб, яким виповнилося 21 рік.';
+      'Застосунок RoyalSmoke доступний користувачам віком від 21 року.';
 
   @override
   String get agePolicyBody2 =>
-      'Перед входом до основних розділів застосунок запитує підтвердження віку. Це обовʼязкова умова доступу до матеріалів про дім і повʼязаний контент. Якщо вам ще немає 21 року — будь ласка, залиште застосунок.';
+      'Під час першого запуску застосунок просить підтвердити вік. Без підтвердження основні розділи недоступні. Якщо вам ще немає 21 року — будь ласка, не користуйтеся застосунком.';
 
   @override
   String get agePolicyBody3 =>
-      'Усі сторінки мають довідковий характер і слугують для ознайомлення з партнерами дому та його простором.';
+      'Ми можемо оновлювати формулювання вікової політики, якщо цього вимагають зміни в законодавстві. Актуальна версія завжди доступна в розділі «Ще».';
 
   @override
   String get agePolicyBody4 =>
-      'Ми залишаємо за собою право оновлювати формулювання вікової політики, якщо цього вимагають зміни в законодавстві чи внутрішні стандарти дому. Актуальна версія завжди доступна в розділі «Ще».';
+      'Користуючись застосунком, ви підтверджуєте свій вік і згоду з цією політикою. Запитання — через «Контакти».';
 
   @override
-  String get agePolicyBody5 =>
-      'Використовуючи застосунок, ви підтверджуєте свій вік і згоду з цією політикою. Запитання — через «Контакти».';
+  String get agePolicyBody5 => '';
 
   @override
   String get aboutTitle => 'Про застосунок';
 
   @override
-  String get aboutBody1 =>
-      'Royal Smoke — лаунж і цифровий довідник його світу.';
+  String get aboutBody1 => 'RoyalSmoke — застосунок персонального сервісу.';
 
   @override
   String get aboutBody2 =>
-      'Тут зібрано партнерів дому, короткі історії мануфактур, характер лінійок і контакти простору. Мета застосунку — допомогти спокійно зорієнтуватися: хто поруч із домом, чим вирізняється кожен партнер і як до нас звернутися.';
+      'У застосунку можна надіслати запит менеджеру, переглянути статус «Запит надіслано» та знайти контакти: телефон і години звʼязку.';
 
   @override
-  String get aboutBody3 =>
-      'Довідник створено для дорослої аудиторії 21+; він розповідає про культуру, походження та атмосферу простору, який ми підтримуємо.';
+  String get aboutBody3 => 'Вікове обмеження застосунку — 21+.';
 
   @override
   String get aboutBody4 =>
-      'Якщо шукаєте адресу, години роботи чи маршрут — відкрийте «Контакти». Якщо цікавлять партнери — розділ «Лаунж». А щоб зрозуміти сам простір дому — зазирніть у «Лаунж».';
+      'Щоб залишити запит — відкрийте розділ «Запит». Щоб дізнатися, як працює сервіс, — розділ «Сервіс». Щоб звʼязатися напряму — «Контакти».';
 
   @override
-  String get aboutBody5 =>
-      'Дякуємо, що обираєте Royal Smoke як місце для знайомства.';
+  String get aboutBody5 => '';
 
   @override
-  String get appName => 'Royal Smoke';
+  String get appName => 'RoyalSmoke';
 
   @override
-  String get ageBodyShort => 'Застосунок є інформаційним довідником.';
+  String get ageBodyShort =>
+      'Застосунок RoyalSmoke доступний користувачам віком від 21 року.';
 
   @override
   String get visitNameLabel => 'Імʼя';
@@ -243,10 +241,10 @@ class AppLocalizationsUk extends AppLocalizations {
   String get phonePrefix => '+380';
 
   @override
-  String get dateLabel => 'Дата';
+  String get dateLabel => 'Зручний час для звʼязку';
 
   @override
-  String get dateHint => 'ДД.ММ.РРРР';
+  String get dateHint => 'Наприклад, завтра о 18:00';
 
   @override
   String get timeLabel => 'Час';
@@ -277,7 +275,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get houseBodyShort =>
-      'Royal Smoke — дім, що представляє в Україні родинні традиції з багаторічною історією.';
+      'RoyalSmoke — застосунок для звʼязку з персональним менеджером. Опишіть, чим вам допомогти, вкажіть контакт і зручний час — менеджер отримає запит і звʼяжеться з вами.';
 
   @override
   String get documentFallback => 'Документ';

@@ -16,7 +16,7 @@
 		<string>fil</string>
 	</array>
 	<key>CFBundleDisplayName</key>
-	<string>Royal Smoke</string>
+	<string>RoyalSmoke</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -24,7 +24,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Royal Smoke</string>
+	<string>RoyalSmoke</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

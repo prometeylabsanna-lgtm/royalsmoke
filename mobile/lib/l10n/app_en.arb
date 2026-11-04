@@ -1,10 +1,10 @@
 {
   "@@locale": "en",
-  "splashKicker": "LOUNGE",
+  "splashKicker": "PERSONAL SERVICE",
   "@splashKicker": {
     "description": "M001"
   },
-  "splashTitle": "ROYAL SMOKE",
+  "splashTitle": "ROYALSMOKE",
   "@splashTitle": {
     "description": "M002"
   },
@@ -16,7 +16,7 @@
   "@ageKicker": {
     "description": "M004"
   },
-  "ageTitle": "Adults only",
+  "ageTitle": "Age restriction 21+",
   "@ageTitle": {
     "description": "M005"
   },
@@ -24,7 +24,7 @@
   "@ageBadge": {
     "description": "M006"
   },
-  "ageBody": "The app is an informational guide. Its content is intended exclusively for people who are 21 or older.",
+  "ageBody": "The RoyalSmoke app is available to users aged 21 and over.",
   "@ageBody": {
     "description": "M007"
   },
@@ -32,43 +32,43 @@
   "@ageExit": {
     "description": "M008"
   },
-  "ageConfirm": "I am 21+",
+  "ageConfirm": "I am 21 or older",
   "@ageConfirm": {
     "description": "M009"
   },
-  "ageLegal": "By continuing, you confirm your age and agree to the age policy.",
+  "ageLegal": "By continuing, you confirm your age and accept the age policy.",
   "@ageLegal": {
     "description": "M010"
   },
-  "homeKicker": "LOUNGE",
+  "homeKicker": "PERSONAL SERVICE",
   "@homeKicker": {
     "description": "M011"
   },
-  "homeTitle": "ROYAL\nSMOKE",
+  "homeTitle": "ROYALSMOKE",
   "@homeTitle": {
     "description": "M012"
   },
-  "homeBody": "Guide to the lounge and its partners",
+  "homeBody": "Leave a request in the app — a manager will get back to you the way you prefer.",
   "@homeBody": {
     "description": "M013"
   },
-  "houseTab": "Lounge",
+  "houseTab": "Service",
   "@houseTab": {
     "description": "M015"
   },
-  "houseKicker": "About the lounge",
+  "houseKicker": "About the service",
   "@houseKicker": {
     "description": "M016"
   },
-  "houseTitle": "Lounge of\nRoyal Smoke",
+  "houseTitle": "RoyalSmoke\nService",
   "@houseTitle": {
     "description": "M017"
   },
-  "houseBody": "Royal Smoke is a house that represents families with a long history in Ukraine. Here you can learn about the origins and get acquainted with the collection during a visit.",
+  "houseBody": "RoyalSmoke is an app for getting in touch with a personal manager. Describe what you need, add your contact details and a convenient time — the manager receives your request and contacts you.",
   "@houseBody": {
     "description": "M018"
   },
-  "bookVisit": "Book a visit",
+  "bookVisit": "Leave a request",
   "@bookVisit": {
     "description": "M019"
   },
@@ -84,7 +84,7 @@
   "@houseBlockServiceTitle": {
     "description": "M022"
   },
-  "houseBlockServiceBody": "Consultations on history, and storage.",
+  "houseBlockServiceBody": "A personal manager handles every request.",
   "@houseBlockServiceBody": {
     "description": "M023"
   },
@@ -96,7 +96,7 @@
   "@houseBlockB2bTitle": {
     "description": "M025"
   },
-  "houseBlockB2bBody": "Cooperation with venues and professional partners.",
+  "houseBlockB2bBody": "Separate requests from companies and professional partners.",
   "@houseBlockB2bBody": {
     "description": "M026"
   },
@@ -104,15 +104,15 @@
   "@houseBlock3Index": {
     "description": "M027"
   },
-  "visitTitle": "Visit",
+  "visitTitle": "Request",
   "@visitTitle": {
     "description": "M028"
   },
-  "houseBlockVisitBody": "Get to know the house by prior appointment.",
+  "houseBlockVisitBody": "An in-app form: topic, contact details and a convenient time to reach you.",
   "@houseBlockVisitBody": {
     "description": "M029"
   },
-  "visitKicker": "Lounge of Royal Smoke",
+  "visitKicker": "RoyalSmoke",
   "@visitKicker": {
     "description": "M030"
   },
@@ -128,15 +128,15 @@
   "@visitSuccessTitle": {
     "description": "M033"
   },
-  "visitSuccessBody": "We will contact you to confirm the date and time of the visit.",
+  "visitSuccessBody": "A manager will contact you using the details you provided.",
   "@visitSuccessBody": {
     "description": "M034"
   },
-  "appVersion": "Royal Smoke · v1.0",
+  "appVersion": "RoyalSmoke · v1.0",
   "@appVersion": {
     "description": "M035"
   },
-  "appBlurb": "Royal Smoke is an informational guide to the lounge. The app is intended for people aged 21+.",
+  "appBlurb": "RoyalSmoke is a personal service: leave a request and a manager will contact you. Age rating 21+.",
   "@appBlurb": {
     "description": "M036"
   },
@@ -148,7 +148,7 @@
   "@contactPhone": {
     "description": "M038"
   },
-  "contactHours": "Mon–Sun · 11:00–22:00",
+  "contactHours": "Manager available: Mon–Sun · 11:00–22:00",
   "@contactHours": {
     "description": "M039"
   },
@@ -156,23 +156,23 @@
   "@privacyTitle": {
     "description": "M090"
   },
-  "privacyBody1": "This policy explains what data the Royal Smoke app may process and for what purpose.",
+  "privacyBody1": "This policy explains what data the RoyalSmoke app processes and why.",
   "@privacyBody1": {
     "description": "M091"
   },
-  "privacyBody2": "Royal Smoke is an informational guide to the lounge. We collect only the minimum technical data needed for the service to run reliably: for example, data saved locally on your device, basic session information, and technical logs for diagnosing failures.",
+  "privacyBody2": "When you send a request, we receive the details you entered in the form (name, contact details, request text, preferred time). This data is used only so that a manager can contact you and respond to your request.",
   "@privacyBody2": {
     "description": "M092"
   },
-  "privacyBody3": "We do not build advertising profiles of users and do not share personal data with third parties for marketing.",
+  "privacyBody3": "The app also stores settings on your device (language, age confirmation) and may send technical logs to diagnose failures.",
   "@privacyBody3": {
     "description": "M093"
   },
-  "privacyBody4": "The guide's content is intended exclusively for adults (21+). Access is possible only after age confirmation. If you do not agree to these terms, stop using the app.",
+  "privacyBody4": "We do not build advertising profiles and do not share personal data with third parties for marketing.",
   "@privacyBody4": {
     "description": "M094"
   },
-  "privacyBody5": "Requests about data, access, or deletion of information on the device can be sent through the “Contacts” section. We respond within a reasonable time and within the requirements of current Ukrainian law.",
+  "privacyBody5": "Requests to access or delete your data can be sent via “Contacts”. We respond within a reasonable time in accordance with the applicable law of Ukraine.",
   "@privacyBody5": {
     "description": "M095"
   },
@@ -180,23 +180,23 @@
   "@termsTitle": {
     "description": "M096"
   },
-  "termsBody1": "By using the Royal Smoke app, you confirm that you are 21 years old or older and that you have read these terms.",
+  "termsBody1": "By using the RoyalSmoke app, you confirm that you are 21 or older and that you have read these terms.",
   "@termsBody1": {
     "description": "M097"
   },
-  "termsBody2": "The guide is provided for informational purposes: descriptions of partners, the history of the house, product lines, and contacts. The materials help you find your way around the world of our partners and the atmosphere of the space.",
+  "termsBody2": "The app lets you send a request to a manager and find contact details. By sending a request, you agree that a manager may contact you using the details you provided.",
   "@termsBody2": {
     "description": "M098"
   },
-  "termsBody3": "Any decisions about visiting the house or reviewing the materials are yours alone, taking into account age restrictions and the rules of the venue.",
+  "termsBody3": "Please provide accurate contact details. Providing false information, including about your age, may result in restricted access to the app.",
   "@termsBody3": {
     "description": "M099"
   },
-  "termsBody4": "We may update the texts, images, and structure of sections without separate prior notice. Continuing to use the app after an update means you agree to the current version of the terms.",
+  "termsBody4": "We may update texts and section structure. Continuing to use the app after an update means you accept the current version of the terms. Questions — via “Contacts”.",
   "@termsBody4": {
     "description": "M100"
   },
-  "termsBody5": "For violating the rules of use or providing false information about your age, access to the guide may be restricted. For questions about the terms, use “Contacts”.",
+  "termsBody5": "",
   "@termsBody5": {
     "description": "M101"
   },
@@ -204,23 +204,23 @@
   "@agePolicyTitle": {
     "description": "M102"
   },
-  "agePolicyBody1": "The content of the Royal Smoke guide is intended exclusively for people who are 21 or older.",
+  "agePolicyBody1": "The RoyalSmoke app is available to users aged 21 and over.",
   "@agePolicyBody1": {
     "description": "M103"
   },
-  "agePolicyBody2": "Before entering the main sections, the app asks you to confirm your age. This is a mandatory condition for accessing materials about the house and related content. If you are not yet 21, please leave the app.",
+  "agePolicyBody2": "On first launch the app asks you to confirm your age. Without confirmation the main sections are unavailable. If you are under 21, please do not use the app.",
   "@agePolicyBody2": {
     "description": "M104"
   },
-  "agePolicyBody3": "All pages are for reference and serve to introduce you to the house's partners and its space.",
+  "agePolicyBody3": "We may update the wording of this policy if required by changes in legislation. The current version is always available under “More”.",
   "@agePolicyBody3": {
     "description": "M105"
   },
-  "agePolicyBody4": "We reserve the right to update the wording of the age policy if required by changes in legislation or the house's internal standards. The current version is always available in the “More” section.",
+  "agePolicyBody4": "By using the app, you confirm your age and accept this policy. For questions, use “Contacts”.",
   "@agePolicyBody4": {
     "description": "M106"
   },
-  "agePolicyBody5": "By using the app, you confirm your age and agree to this policy. For questions, use “Contacts”.",
+  "agePolicyBody5": "",
   "@agePolicyBody5": {
     "description": "M107"
   },
@@ -228,31 +228,31 @@
   "@aboutTitle": {
     "description": "M108"
   },
-  "aboutBody1": "Royal Smoke is a lounge and a digital guide to its world.",
+  "aboutBody1": "RoyalSmoke is a personal service app.",
   "@aboutBody1": {
     "description": "M109"
   },
-  "aboutBody2": "Here you will find the house's partners, short histories of the manufactories, the character of the lines, and the contacts of the space. The purpose of the app is to help you find your bearings calmly: who stands alongside the house, what sets each partner apart, and how to reach us.",
+  "aboutBody2": "In the app you can send a request to a manager, see the “Request sent” confirmation, and find our contacts: phone and contact hours.",
   "@aboutBody2": {
     "description": "M110"
   },
-  "aboutBody3": "The guide is created for an adult audience of 21+ and covers the culture, origins, and atmosphere of the space we support.",
+  "aboutBody3": "The app's age rating is 21+.",
   "@aboutBody3": {
     "description": "M111"
   },
-  "aboutBody4": "If you are looking for the address, opening hours, or directions, open “Contacts”. If you are interested in the partners, go to the “Lounge” section. And to understand the space of the house itself, take a look at “Lounge”.",
+  "aboutBody4": "To leave a request, open “Request”. To learn how the service works, open “Service”. To reach us directly, open “Contacts”.",
   "@aboutBody4": {
     "description": "M112"
   },
-  "aboutBody5": "Thank you for choosing Royal Smoke as a place to get to know us.",
+  "aboutBody5": "",
   "@aboutBody5": {
     "description": "M113"
   },
-  "appName": "Royal Smoke",
+  "appName": "RoyalSmoke",
   "@appName": {
     "description": "M114"
   },
-  "ageBodyShort": "The app is an informational guide.",
+  "ageBodyShort": "The RoyalSmoke app is available to users aged 21 and over.",
   "@ageBodyShort": {
     "description": "M115"
   },
@@ -276,11 +276,11 @@
   "@phonePrefix": {
     "description": "M120"
   },
-  "dateLabel": "Date",
+  "dateLabel": "Convenient time to get in touch",
   "@dateLabel": {
     "description": "M121"
   },
-  "dateHint": "DD.MM.YYYY",
+  "dateHint": "For example, tomorrow at 18:00",
   "@dateHint": {
     "description": "M122"
   },
@@ -320,7 +320,7 @@
   "@hoursLabel": {
     "description": "M139"
   },
-  "houseBodyShort": "Royal Smoke is a house that represents families with a long history in Ukraine.",
+  "houseBodyShort": "RoyalSmoke is an app for getting in touch with a personal manager. Describe what you need, add your contact details and a convenient time — the manager receives your request and contacts you.",
   "@houseBodyShort": {
     "description": "M141"
   },

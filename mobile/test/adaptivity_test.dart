@@ -6,7 +6,9 @@ import 'package:royal_smoke/features/home/presentation/home_screen.dart';
 import 'l10n_app.dart';
 
 void main() {
-  testWidgets('головна і візит не переповнюються на вузькому екрані', (tester) async {
+  testWidgets('головна і запит не переповнюються на вузькому екрані', (
+    tester,
+  ) async {
     tester.view.physicalSize = const Size(320, 568);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
@@ -18,7 +20,10 @@ void main() {
 
     await tester.pumpWidget(l10nApp(home: const Scaffold(body: VisitScreen())));
     await tester.pump();
-    expect(find.text('ВІЗИТ'), findsOneWidget);
+    expect(find.text('ЗАПИТ'), findsOneWidget);
+    expect(find.text('ЗРУЧНИЙ ЧАС ДЛЯ ЗВʼЯЗКУ'), findsOneWidget);
+    expect(find.text('ДАТА'), findsNothing);
+    expect(find.text('ЧАС'), findsNothing);
     expect(tester.takeException(), isNull);
   });
 }

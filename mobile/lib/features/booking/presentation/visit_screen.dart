@@ -22,8 +22,7 @@ class VisitScreen extends ConsumerStatefulWidget {
 class _VisitScreenState extends ConsumerState<VisitScreen> {
   final _name = TextEditingController();
   final _phone = TextEditingController();
-  final _date = TextEditingController();
-  final _time = TextEditingController();
+  final _when = TextEditingController();
   final _comment = TextEditingController();
   bool _tried = false;
   bool _sent = false;
@@ -32,8 +31,7 @@ class _VisitScreenState extends ConsumerState<VisitScreen> {
   void dispose() {
     _name.dispose();
     _phone.dispose();
-    _date.dispose();
-    _time.dispose();
+    _when.dispose();
     _comment.dispose();
     super.dispose();
   }
@@ -140,24 +138,11 @@ class _VisitScreenState extends ConsumerState<VisitScreen> {
             onChanged: (_) => setState(() {}),
           ),
           const SizedBox(height: 20),
-          Row(
-            children: [
-              Expanded(
-                child: RsTextField(
-                  label: l10n.dateLabel,
-                  hint: l10n.dateHint,
-                  controller: _date,
-                ),
-              ),
-              const SizedBox(width: AppSizes.s12),
-              Expanded(
-                child: RsTextField(
-                  label: l10n.timeLabel,
-                  hint: l10n.timeHint,
-                  controller: _time,
-                ),
-              ),
-            ],
+          RsTextField(
+            label: l10n.dateLabel,
+            hint: l10n.dateHint,
+            controller: _when,
+            onChanged: (_) => setState(() {}),
           ),
           const SizedBox(height: 20),
           RsTextField(

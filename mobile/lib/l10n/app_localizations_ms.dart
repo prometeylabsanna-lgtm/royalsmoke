@@ -9,10 +9,10 @@ class AppLocalizationsMs extends AppLocalizations {
   AppLocalizationsMs([String locale = 'ms']) : super(locale);
 
   @override
-  String get splashKicker => 'PANDUAN JENAMA';
+  String get splashKicker => 'PERKHIDMATAN PERIBADI';
 
   @override
-  String get splashTitle => 'ROYAL SMOKE';
+  String get splashTitle => 'ROYALSMOKE';
 
   @override
   String get splashOpen => 'BUKA';
@@ -21,14 +21,14 @@ class AppLocalizationsMs extends AppLocalizations {
   String get ageKicker => 'Pengesahan umur · 21+';
 
   @override
-  String get ageTitle => 'Untuk orang dewasa sahaja';
+  String get ageTitle => 'Had umur 21+';
 
   @override
   String get ageBadge => '21+';
 
   @override
   String get ageBody =>
-      'Aplikasi ini ialah panduan maklumat tentang jenama. Kandungannya khusus untuk mereka yang berumur 21 tahun ke atas.';
+      'Aplikasi RoyalSmoke tersedia untuk pengguna berumur 21 tahun ke atas.';
 
   @override
   String get ageExit => 'KELUAR';
@@ -38,35 +38,36 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get ageLegal =>
-      'Dengan meneruskan, anda mengesahkan umur anda dan bersetuju dengan dasar umur.';
+      'Dengan meneruskan, anda mengesahkan umur anda dan menerima dasar umur.';
 
   @override
-  String get homeKicker => 'LOUNGE';
+  String get homeKicker => 'PERKHIDMATAN PERIBADI';
 
   @override
-  String get homeTitle => 'ROYAL\nSMOKE';
+  String get homeTitle => 'ROYALSMOKE';
 
   @override
-  String get homeBody => 'Panduan lounge dan rakan kongsinya';
+  String get homeBody =>
+      'Hantar permintaan dalam aplikasi — pengurus akan menghubungi anda mengikut cara pilihan anda.';
 
   @override
-  String get houseTab => 'Lounge';
+  String get houseTab => 'Perkhidmatan';
 
   @override
-  String get houseKicker => 'Tentang lounge';
+  String get houseKicker => 'Tentang perkhidmatan';
 
   @override
-  String get houseTitle => 'Lounge\nRoyal Smoke';
+  String get houseTitle => 'RoyalSmoke\nPerkhidmatan';
 
   @override
   String get houseBody =>
-      'Royal Smoke ialah rumah yang mewakili jenama keluarga yang mempunyai sejarah panjang di Ukraine. Di sini anda boleh mengetahui asal-usul jenama dan mengenali koleksinya semasa lawatan.';
+      'RoyalSmoke ialah aplikasi untuk berhubung dengan pengurus peribadi. Terangkan keperluan anda, masukkan butiran hubungan dan masa yang sesuai — pengurus akan menerima permintaan dan menghubungi anda.';
 
   @override
-  String get bookVisit => 'Tempah lawatan';
+  String get bookVisit => 'Hantar permintaan';
 
   @override
-  String get contacts => 'Hubungi kami';
+  String get contacts => 'Hubungi';
 
   @override
   String get houseBlock1Index => '01';
@@ -76,7 +77,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get houseBlockServiceBody =>
-      'Perundingan tentang jenama, sejarah dan penyimpanan.';
+      'Pengurus peribadi mengendalikan setiap permintaan.';
 
   @override
   String get houseBlock2Index => '02';
@@ -86,23 +87,23 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get houseBlockB2bBody =>
-      'Kerjasama dengan premis dan rakan kongsi profesional.';
+      'Permintaan berasingan daripada syarikat dan rakan profesional.';
 
   @override
   String get houseBlock3Index => '03';
 
   @override
-  String get visitTitle => 'Lawatan';
+  String get visitTitle => 'Permintaan';
 
   @override
   String get houseBlockVisitBody =>
-      'Kenali rumah ini melalui temu janji terlebih dahulu.';
+      'Borang dalam aplikasi: topik, butiran hubungan dan masa yang sesuai untuk dihubungi.';
 
   @override
-  String get visitKicker => 'Lounge Royal Smoke';
+  String get visitKicker => 'RoyalSmoke';
 
   @override
-  String get visitNewRequest => 'PERMINTAAN BARU';
+  String get visitNewRequest => 'PERMINTAAN BAHARU';
 
   @override
   String get visitSendRequest => 'Hantar permintaan';
@@ -112,14 +113,14 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get visitSuccessBody =>
-      'Kami akan menghubungi anda untuk mengesahkan tarikh dan masa lawatan.';
+      'Pengurus akan menghubungi anda menggunakan butiran yang diberikan.';
 
   @override
-  String get appVersion => 'Royal Smoke · v1.0';
+  String get appVersion => 'RoyalSmoke · v1.0';
 
   @override
   String get appBlurb =>
-      'Royal Smoke ialah panduan maklumat tentang rumah jenama. Aplikasi ini ditujukan untuk mereka yang berumur 21 tahun ke atas.';
+      'RoyalSmoke ialah perkhidmatan peribadi: hantar permintaan dan pengurus akan menghubungi anda. Penarafan umur 21+.';
 
   @override
   String get contactAddress => '';
@@ -128,106 +129,101 @@ class AppLocalizationsMs extends AppLocalizations {
   String get contactPhone => '+380 00 000 00 00';
 
   @override
-  String get contactHours => 'Isn–Ahd · 11:00–22:00';
+  String get contactHours => 'Pengurus tersedia: Isn–Ahd · 11:00–22:00';
 
   @override
   String get privacyTitle => 'Dasar privasi';
 
   @override
   String get privacyBody1 =>
-      'Dasar ini menerangkan data yang mungkin diproses oleh aplikasi Royal Smoke dan tujuannya.';
+      'Dasar ini menerangkan data yang diproses oleh aplikasi RoyalSmoke dan sebabnya.';
 
   @override
   String get privacyBody2 =>
-      'Royal Smoke ialah panduan maklumat tentang rumah jenama. Kami hanya mengumpul data teknikal yang minimum yang diperlukan untuk perkhidmatan berfungsi dengan stabil: contohnya, jenama yang disimpan secara setempat pada peranti anda, maklumat asas sesi dan log teknikal untuk mendiagnosis kegagalan.';
+      'Apabila anda menghantar permintaan, kami menerima butiran yang anda masukkan dalam borang (nama, butiran hubungan, teks permintaan, masa pilihan). Data ini hanya digunakan supaya pengurus dapat menghubungi anda dan menjawab permintaan anda.';
 
   @override
   String get privacyBody3 =>
-      'Kami tidak membuat profil pengiklanan pengguna dan tidak berkongsi data peribadi dengan pihak ketiga untuk pemasaran.';
+      'Aplikasi juga menyimpan tetapan pada peranti anda (bahasa, pengesahan umur) dan mungkin menghantar log teknikal untuk mendiagnosis kerosakan.';
 
   @override
   String get privacyBody4 =>
-      'Kandungan panduan ini khusus untuk orang dewasa (21+). Akses hanya dibenarkan selepas pengesahan umur. Jika anda tidak bersetuju dengan terma ini, sila berhenti menggunakan aplikasi.';
+      'Kami tidak membina profil pengiklanan dan tidak berkongsi data peribadi dengan pihak ketiga untuk pemasaran.';
 
   @override
   String get privacyBody5 =>
-      'Permintaan berkaitan data, akses atau pemadaman maklumat pada peranti boleh dihantar melalui bahagian “Hubungi kami”. Kami membalas dalam tempoh yang munasabah dan dalam lingkungan keperluan undang-undang Ukraine yang berkuat kuasa.';
+      'Permintaan untuk mengakses atau memadam data boleh dihantar melalui “Hubungi”. Kami menjawab dalam tempoh yang munasabah mengikut undang-undang Ukraine yang berkuat kuasa.';
 
   @override
   String get termsTitle => 'Terma';
 
   @override
   String get termsBody1 =>
-      'Dengan menggunakan aplikasi Royal Smoke, anda mengesahkan bahawa anda berumur 21 tahun atau lebih dan telah membaca terma ini.';
+      'Dengan menggunakan aplikasi RoyalSmoke, anda mengesahkan bahawa anda berumur 21 tahun ke atas dan telah membaca terma ini.';
 
   @override
   String get termsBody2 =>
-      'Panduan ini disediakan untuk tujuan maklumat: penerangan tentang jenama rakan kongsi, sejarah rumah, barisan produk dan maklumat hubungan. Bahan ini membantu anda mengenali dunia rakan kongsi dan suasana ruang tersebut.';
+      'Aplikasi ini membolehkan anda menghantar permintaan kepada pengurus dan mencari maklumat hubungan. Dengan menghantar permintaan, anda bersetuju bahawa pengurus boleh menghubungi anda menggunakan butiran yang diberikan.';
 
   @override
   String get termsBody3 =>
-      'Sebarang keputusan mengenai lawatan ke rumah atau mengkaji bahan dibuat oleh anda sendiri, dengan mengambil kira had umur dan peraturan premis.';
+      'Sila berikan butiran hubungan yang tepat. Memberikan maklumat palsu, termasuk tentang umur, boleh menyebabkan akses ke aplikasi dihadkan.';
 
   @override
   String get termsBody4 =>
-      'Kami boleh mengemas kini teks, imej dan struktur bahagian tanpa notis berasingan terlebih dahulu. Penggunaan berterusan selepas kemas kini bermakna anda bersetuju dengan versi terma semasa.';
+      'Kami boleh mengemas kini teks dan struktur bahagian. Terus menggunakan aplikasi selepas kemas kini bermakna anda menerima versi terma semasa. Pertanyaan — melalui “Hubungi”.';
 
   @override
-  String get termsBody5 =>
-      'Akses kepada panduan boleh dihadkan jika peraturan penggunaan dilanggar atau maklumat umur yang palsu diberikan. Untuk soalan tentang terma, gunakan “Hubungi kami”.';
+  String get termsBody5 => '';
 
   @override
   String get agePolicyTitle => 'Dasar umur';
 
   @override
   String get agePolicyBody1 =>
-      'Kandungan panduan Royal Smoke khusus untuk mereka yang berumur 21 tahun ke atas.';
+      'Aplikasi RoyalSmoke tersedia untuk pengguna berumur 21 tahun ke atas.';
 
   @override
   String get agePolicyBody2 =>
-      'Sebelum memasuki bahagian utama, aplikasi meminta pengesahan umur. Ini ialah syarat wajib untuk mengakses bahan tentang jenama, rumah dan kandungan berkaitan. Jika anda belum berumur 21 tahun, sila keluar daripada aplikasi.';
+      'Semasa pelancaran pertama, aplikasi meminta anda mengesahkan umur. Tanpa pengesahan, bahagian utama tidak boleh diakses. Jika anda belum berumur 21 tahun, sila jangan gunakan aplikasi ini.';
 
   @override
   String get agePolicyBody3 =>
-      'Semua halaman bersifat rujukan dan bertujuan memperkenalkan rakan kongsi rumah ini serta ruangnya.';
+      'Kami boleh mengemas kini kata-kata dasar ini jika diperlukan oleh perubahan undang-undang. Versi terkini sentiasa tersedia di bahagian “Lagi”.';
 
   @override
   String get agePolicyBody4 =>
-      'Kami berhak mengemas kini perkataan dasar umur jika perubahan perundangan atau piawaian dalaman rumah memerlukannya. Versi terkini sentiasa tersedia di bahagian “Lagi”.';
+      'Dengan menggunakan aplikasi, anda mengesahkan umur dan menerima dasar ini. Untuk pertanyaan, gunakan “Hubungi”.';
 
   @override
-  String get agePolicyBody5 =>
-      'Dengan menggunakan aplikasi, anda mengesahkan umur anda dan bersetuju dengan dasar ini. Untuk soalan, gunakan “Hubungi kami”.';
+  String get agePolicyBody5 => '';
 
   @override
   String get aboutTitle => 'Tentang aplikasi';
 
   @override
-  String get aboutBody1 =>
-      'Royal Smoke ialah rumah jenama dan panduan digital kepada dunianya.';
+  String get aboutBody1 => 'RoyalSmoke ialah aplikasi perkhidmatan peribadi.';
 
   @override
   String get aboutBody2 =>
-      'Di sini dikumpulkan rakan kongsi rumah ini, sejarah ringkas kilang, ciri barisan produk dan maklumat hubungan ruang. Tujuan aplikasi ini ialah membantu anda memahami dengan tenang: siapa yang berada bersama rumah ini, apa yang membezakan setiap jenama dan bagaimana menghubungi kami.';
+      'Dalam aplikasi, anda boleh menghantar permintaan kepada pengurus, melihat pengesahan “Permintaan dihantar” dan mencari maklumat hubungan: telefon dan waktu hubungan.';
 
   @override
-  String get aboutBody3 =>
-      'Panduan ini dicipta untuk khalayak dewasa 21+ dan menceritakan budaya, asal-usul serta suasana ruang yang kami sokong.';
+  String get aboutBody3 => 'Penarafan umur aplikasi ialah 21+.';
 
   @override
   String get aboutBody4 =>
-      'Jika anda mencari alamat, waktu operasi atau arah laluan, buka “Hubungi kami”. Jika berminat dengan rakan kongsi, lihat bahagian “Jenama”. Untuk memahami ruang rumah itu sendiri, jenguk “Lounge”.';
+      'Untuk menghantar permintaan, buka “Permintaan”. Untuk mengetahui cara perkhidmatan berfungsi, buka “Perkhidmatan”. Untuk menghubungi kami terus, buka “Hubungi”.';
 
   @override
-  String get aboutBody5 =>
-      'Terima kasih kerana memilih Royal Smoke sebagai tempat untuk mengenali jenama yang kami sokong.';
+  String get aboutBody5 => '';
 
   @override
-  String get appName => 'Royal Smoke';
+  String get appName => 'RoyalSmoke';
 
   @override
   String get ageBodyShort =>
-      'Aplikasi ini ialah panduan maklumat tentang jenama.';
+      'Aplikasi RoyalSmoke tersedia untuk pengguna berumur 21 tahun ke atas.';
 
   @override
   String get visitNameLabel => 'Nama';
@@ -245,10 +241,10 @@ class AppLocalizationsMs extends AppLocalizations {
   String get phonePrefix => '+380';
 
   @override
-  String get dateLabel => 'Tarikh';
+  String get dateLabel => 'Masa yang sesuai untuk dihubungi';
 
   @override
-  String get dateHint => 'HH.BB.TTTT';
+  String get dateHint => 'Contoh: esok jam 18:00';
 
   @override
   String get timeLabel => 'Masa';
@@ -279,7 +275,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get houseBodyShort =>
-      'Royal Smoke ialah rumah yang mewakili jenama keluarga yang mempunyai sejarah panjang di Ukraine.';
+      'RoyalSmoke ialah aplikasi untuk berhubung dengan pengurus peribadi. Terangkan keperluan anda, masukkan butiran hubungan dan masa yang sesuai — pengurus akan menerima permintaan dan menghubungi anda.';
 
   @override
   String get documentFallback => 'Dokumen';

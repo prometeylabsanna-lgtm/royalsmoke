@@ -68,9 +68,19 @@ class HomeScreen extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: AppSizes.s12),
-                Text(
-                  textOr(home.title, l10n.homeTitle),
-                  style: AppTextStyles.hero,
+                SizedBox(
+                  width: double.infinity,
+                  height: 52,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      textOr(home.title, l10n.homeTitle),
+                      maxLines: 1,
+                      softWrap: false,
+                      style: AppTextStyles.hero,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: AppSizes.s24),
                 Text(
@@ -79,13 +89,13 @@ class HomeScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: AppSizes.s16),
                 RsButton(
-                  label: l10n.bookVisit,
+                  label: textOr(home.ctaPrimary, l10n.bookVisit),
                   expand: true,
                   onPressed: () => context.go('/visit'),
                 ),
                 const SizedBox(height: AppSizes.s12),
                 RsButton(
-                  label: l10n.houseTab,
+                  label: textOr(home.ctaSecondary, l10n.houseKicker),
                   variant: RsButtonVariant.secondary,
                   expand: true,
                   onPressed: () => context.go('/house'),

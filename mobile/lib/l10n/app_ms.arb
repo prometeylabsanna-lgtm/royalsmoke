@@ -1,10 +1,10 @@
 {
   "@@locale": "ms",
-  "splashKicker": "PANDUAN JENAMA",
+  "splashKicker": "PERKHIDMATAN PERIBADI",
   "@splashKicker": {
     "description": "M001"
   },
-  "splashTitle": "ROYAL SMOKE",
+  "splashTitle": "ROYALSMOKE",
   "@splashTitle": {
     "description": "M002"
   },
@@ -16,7 +16,7 @@
   "@ageKicker": {
     "description": "M004"
   },
-  "ageTitle": "Untuk orang dewasa sahaja",
+  "ageTitle": "Had umur 21+",
   "@ageTitle": {
     "description": "M005"
   },
@@ -24,7 +24,7 @@
   "@ageBadge": {
     "description": "M006"
   },
-  "ageBody": "Aplikasi ini ialah panduan maklumat tentang jenama. Kandungannya khusus untuk mereka yang berumur 21 tahun ke atas.",
+  "ageBody": "Aplikasi RoyalSmoke tersedia untuk pengguna berumur 21 tahun ke atas.",
   "@ageBody": {
     "description": "M007"
   },
@@ -36,43 +36,43 @@
   "@ageConfirm": {
     "description": "M009"
   },
-  "ageLegal": "Dengan meneruskan, anda mengesahkan umur anda dan bersetuju dengan dasar umur.",
+  "ageLegal": "Dengan meneruskan, anda mengesahkan umur anda dan menerima dasar umur.",
   "@ageLegal": {
     "description": "M010"
   },
-  "homeKicker": "LOUNGE",
+  "homeKicker": "PERKHIDMATAN PERIBADI",
   "@homeKicker": {
     "description": "M011"
   },
-  "homeTitle": "ROYAL\nSMOKE",
+  "homeTitle": "ROYALSMOKE",
   "@homeTitle": {
     "description": "M012"
   },
-  "homeBody": "Panduan lounge dan rakan kongsinya",
+  "homeBody": "Hantar permintaan dalam aplikasi — pengurus akan menghubungi anda mengikut cara pilihan anda.",
   "@homeBody": {
     "description": "M013"
   },
-  "houseTab": "Lounge",
+  "houseTab": "Perkhidmatan",
   "@houseTab": {
     "description": "M015"
   },
-  "houseKicker": "Tentang lounge",
+  "houseKicker": "Tentang perkhidmatan",
   "@houseKicker": {
     "description": "M016"
   },
-  "houseTitle": "Lounge\nRoyal Smoke",
+  "houseTitle": "RoyalSmoke\nPerkhidmatan",
   "@houseTitle": {
     "description": "M017"
   },
-  "houseBody": "Royal Smoke ialah rumah yang mewakili jenama keluarga yang mempunyai sejarah panjang di Ukraine. Di sini anda boleh mengetahui asal-usul jenama dan mengenali koleksinya semasa lawatan.",
+  "houseBody": "RoyalSmoke ialah aplikasi untuk berhubung dengan pengurus peribadi. Terangkan keperluan anda, masukkan butiran hubungan dan masa yang sesuai — pengurus akan menerima permintaan dan menghubungi anda.",
   "@houseBody": {
     "description": "M018"
   },
-  "bookVisit": "Tempah lawatan",
+  "bookVisit": "Hantar permintaan",
   "@bookVisit": {
     "description": "M019"
   },
-  "contacts": "Hubungi kami",
+  "contacts": "Hubungi",
   "@contacts": {
     "description": "M020"
   },
@@ -84,7 +84,7 @@
   "@houseBlockServiceTitle": {
     "description": "M022"
   },
-  "houseBlockServiceBody": "Perundingan tentang jenama, sejarah dan penyimpanan.",
+  "houseBlockServiceBody": "Pengurus peribadi mengendalikan setiap permintaan.",
   "@houseBlockServiceBody": {
     "description": "M023"
   },
@@ -96,7 +96,7 @@
   "@houseBlockB2bTitle": {
     "description": "M025"
   },
-  "houseBlockB2bBody": "Kerjasama dengan premis dan rakan kongsi profesional.",
+  "houseBlockB2bBody": "Permintaan berasingan daripada syarikat dan rakan profesional.",
   "@houseBlockB2bBody": {
     "description": "M026"
   },
@@ -104,19 +104,19 @@
   "@houseBlock3Index": {
     "description": "M027"
   },
-  "visitTitle": "Lawatan",
+  "visitTitle": "Permintaan",
   "@visitTitle": {
     "description": "M028"
   },
-  "houseBlockVisitBody": "Kenali rumah ini melalui temu janji terlebih dahulu.",
+  "houseBlockVisitBody": "Borang dalam aplikasi: topik, butiran hubungan dan masa yang sesuai untuk dihubungi.",
   "@houseBlockVisitBody": {
     "description": "M029"
   },
-  "visitKicker": "Lounge Royal Smoke",
+  "visitKicker": "RoyalSmoke",
   "@visitKicker": {
     "description": "M030"
   },
-  "visitNewRequest": "PERMINTAAN BARU",
+  "visitNewRequest": "PERMINTAAN BAHARU",
   "@visitNewRequest": {
     "description": "M031"
   },
@@ -128,15 +128,15 @@
   "@visitSuccessTitle": {
     "description": "M033"
   },
-  "visitSuccessBody": "Kami akan menghubungi anda untuk mengesahkan tarikh dan masa lawatan.",
+  "visitSuccessBody": "Pengurus akan menghubungi anda menggunakan butiran yang diberikan.",
   "@visitSuccessBody": {
     "description": "M034"
   },
-  "appVersion": "Royal Smoke · v1.0",
+  "appVersion": "RoyalSmoke · v1.0",
   "@appVersion": {
     "description": "M035"
   },
-  "appBlurb": "Royal Smoke ialah panduan maklumat tentang rumah jenama. Aplikasi ini ditujukan untuk mereka yang berumur 21 tahun ke atas.",
+  "appBlurb": "RoyalSmoke ialah perkhidmatan peribadi: hantar permintaan dan pengurus akan menghubungi anda. Penarafan umur 21+.",
   "@appBlurb": {
     "description": "M036"
   },
@@ -148,7 +148,7 @@
   "@contactPhone": {
     "description": "M038"
   },
-  "contactHours": "Isn–Ahd · 11:00–22:00",
+  "contactHours": "Pengurus tersedia: Isn–Ahd · 11:00–22:00",
   "@contactHours": {
     "description": "M039"
   },
@@ -156,23 +156,23 @@
   "@privacyTitle": {
     "description": "M090"
   },
-  "privacyBody1": "Dasar ini menerangkan data yang mungkin diproses oleh aplikasi Royal Smoke dan tujuannya.",
+  "privacyBody1": "Dasar ini menerangkan data yang diproses oleh aplikasi RoyalSmoke dan sebabnya.",
   "@privacyBody1": {
     "description": "M091"
   },
-  "privacyBody2": "Royal Smoke ialah panduan maklumat tentang rumah jenama. Kami hanya mengumpul data teknikal yang minimum yang diperlukan untuk perkhidmatan berfungsi dengan stabil: contohnya, jenama yang disimpan secara setempat pada peranti anda, maklumat asas sesi dan log teknikal untuk mendiagnosis kegagalan.",
+  "privacyBody2": "Apabila anda menghantar permintaan, kami menerima butiran yang anda masukkan dalam borang (nama, butiran hubungan, teks permintaan, masa pilihan). Data ini hanya digunakan supaya pengurus dapat menghubungi anda dan menjawab permintaan anda.",
   "@privacyBody2": {
     "description": "M092"
   },
-  "privacyBody3": "Kami tidak membuat profil pengiklanan pengguna dan tidak berkongsi data peribadi dengan pihak ketiga untuk pemasaran.",
+  "privacyBody3": "Aplikasi juga menyimpan tetapan pada peranti anda (bahasa, pengesahan umur) dan mungkin menghantar log teknikal untuk mendiagnosis kerosakan.",
   "@privacyBody3": {
     "description": "M093"
   },
-  "privacyBody4": "Kandungan panduan ini khusus untuk orang dewasa (21+). Akses hanya dibenarkan selepas pengesahan umur. Jika anda tidak bersetuju dengan terma ini, sila berhenti menggunakan aplikasi.",
+  "privacyBody4": "Kami tidak membina profil pengiklanan dan tidak berkongsi data peribadi dengan pihak ketiga untuk pemasaran.",
   "@privacyBody4": {
     "description": "M094"
   },
-  "privacyBody5": "Permintaan berkaitan data, akses atau pemadaman maklumat pada peranti boleh dihantar melalui bahagian “Hubungi kami”. Kami membalas dalam tempoh yang munasabah dan dalam lingkungan keperluan undang-undang Ukraine yang berkuat kuasa.",
+  "privacyBody5": "Permintaan untuk mengakses atau memadam data boleh dihantar melalui “Hubungi”. Kami menjawab dalam tempoh yang munasabah mengikut undang-undang Ukraine yang berkuat kuasa.",
   "@privacyBody5": {
     "description": "M095"
   },
@@ -180,23 +180,23 @@
   "@termsTitle": {
     "description": "M096"
   },
-  "termsBody1": "Dengan menggunakan aplikasi Royal Smoke, anda mengesahkan bahawa anda berumur 21 tahun atau lebih dan telah membaca terma ini.",
+  "termsBody1": "Dengan menggunakan aplikasi RoyalSmoke, anda mengesahkan bahawa anda berumur 21 tahun ke atas dan telah membaca terma ini.",
   "@termsBody1": {
     "description": "M097"
   },
-  "termsBody2": "Panduan ini disediakan untuk tujuan maklumat: penerangan tentang jenama rakan kongsi, sejarah rumah, barisan produk dan maklumat hubungan. Bahan ini membantu anda mengenali dunia rakan kongsi dan suasana ruang tersebut.",
+  "termsBody2": "Aplikasi ini membolehkan anda menghantar permintaan kepada pengurus dan mencari maklumat hubungan. Dengan menghantar permintaan, anda bersetuju bahawa pengurus boleh menghubungi anda menggunakan butiran yang diberikan.",
   "@termsBody2": {
     "description": "M098"
   },
-  "termsBody3": "Sebarang keputusan mengenai lawatan ke rumah atau mengkaji bahan dibuat oleh anda sendiri, dengan mengambil kira had umur dan peraturan premis.",
+  "termsBody3": "Sila berikan butiran hubungan yang tepat. Memberikan maklumat palsu, termasuk tentang umur, boleh menyebabkan akses ke aplikasi dihadkan.",
   "@termsBody3": {
     "description": "M099"
   },
-  "termsBody4": "Kami boleh mengemas kini teks, imej dan struktur bahagian tanpa notis berasingan terlebih dahulu. Penggunaan berterusan selepas kemas kini bermakna anda bersetuju dengan versi terma semasa.",
+  "termsBody4": "Kami boleh mengemas kini teks dan struktur bahagian. Terus menggunakan aplikasi selepas kemas kini bermakna anda menerima versi terma semasa. Pertanyaan — melalui “Hubungi”.",
   "@termsBody4": {
     "description": "M100"
   },
-  "termsBody5": "Akses kepada panduan boleh dihadkan jika peraturan penggunaan dilanggar atau maklumat umur yang palsu diberikan. Untuk soalan tentang terma, gunakan “Hubungi kami”.",
+  "termsBody5": "",
   "@termsBody5": {
     "description": "M101"
   },
@@ -204,23 +204,23 @@
   "@agePolicyTitle": {
     "description": "M102"
   },
-  "agePolicyBody1": "Kandungan panduan Royal Smoke khusus untuk mereka yang berumur 21 tahun ke atas.",
+  "agePolicyBody1": "Aplikasi RoyalSmoke tersedia untuk pengguna berumur 21 tahun ke atas.",
   "@agePolicyBody1": {
     "description": "M103"
   },
-  "agePolicyBody2": "Sebelum memasuki bahagian utama, aplikasi meminta pengesahan umur. Ini ialah syarat wajib untuk mengakses bahan tentang jenama, rumah dan kandungan berkaitan. Jika anda belum berumur 21 tahun, sila keluar daripada aplikasi.",
+  "agePolicyBody2": "Semasa pelancaran pertama, aplikasi meminta anda mengesahkan umur. Tanpa pengesahan, bahagian utama tidak boleh diakses. Jika anda belum berumur 21 tahun, sila jangan gunakan aplikasi ini.",
   "@agePolicyBody2": {
     "description": "M104"
   },
-  "agePolicyBody3": "Semua halaman bersifat rujukan dan bertujuan memperkenalkan rakan kongsi rumah ini serta ruangnya.",
+  "agePolicyBody3": "Kami boleh mengemas kini kata-kata dasar ini jika diperlukan oleh perubahan undang-undang. Versi terkini sentiasa tersedia di bahagian “Lagi”.",
   "@agePolicyBody3": {
     "description": "M105"
   },
-  "agePolicyBody4": "Kami berhak mengemas kini perkataan dasar umur jika perubahan perundangan atau piawaian dalaman rumah memerlukannya. Versi terkini sentiasa tersedia di bahagian “Lagi”.",
+  "agePolicyBody4": "Dengan menggunakan aplikasi, anda mengesahkan umur dan menerima dasar ini. Untuk pertanyaan, gunakan “Hubungi”.",
   "@agePolicyBody4": {
     "description": "M106"
   },
-  "agePolicyBody5": "Dengan menggunakan aplikasi, anda mengesahkan umur anda dan bersetuju dengan dasar ini. Untuk soalan, gunakan “Hubungi kami”.",
+  "agePolicyBody5": "",
   "@agePolicyBody5": {
     "description": "M107"
   },
@@ -228,31 +228,31 @@
   "@aboutTitle": {
     "description": "M108"
   },
-  "aboutBody1": "Royal Smoke ialah rumah jenama dan panduan digital kepada dunianya.",
+  "aboutBody1": "RoyalSmoke ialah aplikasi perkhidmatan peribadi.",
   "@aboutBody1": {
     "description": "M109"
   },
-  "aboutBody2": "Di sini dikumpulkan rakan kongsi rumah ini, sejarah ringkas kilang, ciri barisan produk dan maklumat hubungan ruang. Tujuan aplikasi ini ialah membantu anda memahami dengan tenang: siapa yang berada bersama rumah ini, apa yang membezakan setiap jenama dan bagaimana menghubungi kami.",
+  "aboutBody2": "Dalam aplikasi, anda boleh menghantar permintaan kepada pengurus, melihat pengesahan “Permintaan dihantar” dan mencari maklumat hubungan: telefon dan waktu hubungan.",
   "@aboutBody2": {
     "description": "M110"
   },
-  "aboutBody3": "Panduan ini dicipta untuk khalayak dewasa 21+ dan menceritakan budaya, asal-usul serta suasana ruang yang kami sokong.",
+  "aboutBody3": "Penarafan umur aplikasi ialah 21+.",
   "@aboutBody3": {
     "description": "M111"
   },
-  "aboutBody4": "Jika anda mencari alamat, waktu operasi atau arah laluan, buka “Hubungi kami”. Jika berminat dengan rakan kongsi, lihat bahagian “Jenama”. Untuk memahami ruang rumah itu sendiri, jenguk “Lounge”.",
+  "aboutBody4": "Untuk menghantar permintaan, buka “Permintaan”. Untuk mengetahui cara perkhidmatan berfungsi, buka “Perkhidmatan”. Untuk menghubungi kami terus, buka “Hubungi”.",
   "@aboutBody4": {
     "description": "M112"
   },
-  "aboutBody5": "Terima kasih kerana memilih Royal Smoke sebagai tempat untuk mengenali jenama yang kami sokong.",
+  "aboutBody5": "",
   "@aboutBody5": {
     "description": "M113"
   },
-  "appName": "Royal Smoke",
+  "appName": "RoyalSmoke",
   "@appName": {
     "description": "M114"
   },
-  "ageBodyShort": "Aplikasi ini ialah panduan maklumat tentang jenama.",
+  "ageBodyShort": "Aplikasi RoyalSmoke tersedia untuk pengguna berumur 21 tahun ke atas.",
   "@ageBodyShort": {
     "description": "M115"
   },
@@ -276,11 +276,11 @@
   "@phonePrefix": {
     "description": "M120"
   },
-  "dateLabel": "Tarikh",
+  "dateLabel": "Masa yang sesuai untuk dihubungi",
   "@dateLabel": {
     "description": "M121"
   },
-  "dateHint": "HH.BB.TTTT",
+  "dateHint": "Contoh: esok jam 18:00",
   "@dateHint": {
     "description": "M122"
   },
@@ -320,7 +320,7 @@
   "@hoursLabel": {
     "description": "M139"
   },
-  "houseBodyShort": "Royal Smoke ialah rumah yang mewakili jenama keluarga yang mempunyai sejarah panjang di Ukraine.",
+  "houseBodyShort": "RoyalSmoke ialah aplikasi untuk berhubung dengan pengurus peribadi. Terangkan keperluan anda, masukkan butiran hubungan dan masa yang sesuai — pengurus akan menerima permintaan dan menghubungi anda.",
   "@houseBodyShort": {
     "description": "M141"
   },

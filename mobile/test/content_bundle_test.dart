@@ -6,10 +6,18 @@ import 'package:royal_smoke/l10n/app_localizations.dart';
 
 void main() {
   test('fallback bundle має екрани та політику', () {
-    final bundle = buildFallbackBundle(lookupAppLocalizations(const Locale('uk')));
-    expect(bundle.screen('home').title, isNotEmpty);
-    expect(bundle.screen('visit').ctaPrimary, isNotEmpty);
-    expect(bundle.page('privacy')?.body, isNotEmpty);
+    final bundle = buildFallbackBundle(
+      lookupAppLocalizations(const Locale('uk')),
+    );
+    expect(bundle.screen('home').title, 'ROYALSMOKE');
+    expect(bundle.screen('visit').title, 'Запит');
+    expect(bundle.screen('visit').ctaPrimary, 'Надіслати запит');
+    expect(
+      bundle.screen('house').houseBlocks.map((block) => block.title).toList(),
+      ['Сервіс', 'Запит', 'B2B'],
+    );
+    expect(bundle.page('privacy')?.body, contains('зручний час'));
+    expect(bundle.settings.appBlurb.toLowerCase().contains('лаунж'), isFalse);
   });
 
   test('parser читає екрани і пропускає каталог', () {
@@ -25,10 +33,7 @@ void main() {
         'app_seal': '',
       },
       'brands': [
-        {
-          'id': 'hidden',
-          'name': 'Hidden',
-        },
+        {'id': 'hidden', 'name': 'Hidden'},
       ],
       'screens': {
         'home': {

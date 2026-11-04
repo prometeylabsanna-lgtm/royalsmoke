@@ -77,14 +77,12 @@ void main() {
     await tester.pump();
   }
 
-  testWidgets('брівка Лаунж, Visit і More нижче за статус-бар', (
-    tester,
-  ) async {
+  testWidgets('брівка Сервіс, Запит і Ще нижче за статус-бар', (tester) async {
     addTearDown(tester.view.reset);
     const screens = <(Widget, String)>[
-      (HouseScreen(), 'ПРО ЛАУНЖ'),
-      (VisitScreen(), 'ЛАУНЖ ROYAL SMOKE'),
-      (MoreScreen(), 'ROYAL SMOKE'),
+      (HouseScreen(), 'ПРО СЕРВІС'),
+      (VisitScreen(), 'ROYALSMOKE'),
+      (MoreScreen(), 'ROYALSMOKE'),
     ];
 
     for (final top in tops) {
@@ -107,24 +105,22 @@ void main() {
     }
   });
 
-  testWidgets('брівка Лаунж читає viewPadding, навіть якщо padding.top = 0', (
+  testWidgets('брівка Сервіс читає viewPadding, навіть якщо padding.top = 0', (
     tester,
   ) async {
     addTearDown(tester.view.reset);
     await pumpScreen(tester, const HouseScreen(), top: 0, viewTop: 59);
-    final dy = tester.getTopLeft(find.text('ПРО ЛАУНЖ')).dy;
+    final dy = tester.getTopLeft(find.text('ПРО СЕРВІС')).dy;
     expect(dy, greaterThanOrEqualTo(59));
   });
 
-  testWidgets('Home і контакти: верхній текст нижче за інсет', (
-    tester,
-  ) async {
+  testWidgets('Home і контакти: верхній текст нижче за інсет', (tester) async {
     addTearDown(tester.view.reset);
     for (final top in tops) {
       await pumpScreen(tester, const HomeScreen(), top: top);
       expect(tester.takeException(), isNull);
       expect(
-        tester.getTopLeft(find.text('ЛАУНЖ').first).dy,
+        tester.getTopLeft(find.text('ПЕРСОНАЛЬНИЙ СЕРВІС').first).dy,
         greaterThanOrEqualTo(top),
         reason: 'home top=$top',
       );

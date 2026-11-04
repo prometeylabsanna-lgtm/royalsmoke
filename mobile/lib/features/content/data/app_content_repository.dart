@@ -9,11 +9,12 @@ import '../domain/app_content.dart';
 import 'bundle_parser.dart';
 import 'fallback_bundle.dart';
 
-String _cacheKey(String lang) => 'rs_app_content_bundle_v2_$lang';
-String _cacheAtKey(String lang) => 'rs_app_content_bundle_at_v2_$lang';
+String _cacheKey(String lang) => 'rs_app_content_bundle_v3_$lang';
+String _cacheAtKey(String lang) => 'rs_app_content_bundle_at_v3_$lang';
 
 class AppContentRepository {
-  AppContentRepository({http.Client? client}) : _client = client ?? http.Client();
+  AppContentRepository({http.Client? client})
+    : _client = client ?? http.Client();
 
   final http.Client _client;
 
@@ -35,7 +36,9 @@ class AppContentRepository {
           // Паралельно оновлюємо з мережі у фоні не блокуємо — нижче спробуємо network.
           final bundle = parseAppBundle(
             map,
-            updatedAt: atMs == null ? null : DateTime.fromMillisecondsSinceEpoch(atMs),
+            updatedAt: atMs == null
+                ? null
+                : DateTime.fromMillisecondsSinceEpoch(atMs),
           );
           final fresh = await _tryFetchAndCache(prefs, lang);
           return fresh ?? bundle;
@@ -56,7 +59,9 @@ class AppContentRepository {
           final atMs = prefs.getInt(cacheAtKey);
           return parseAppBundle(
             map,
-            updatedAt: atMs == null ? null : DateTime.fromMillisecondsSinceEpoch(atMs),
+            updatedAt: atMs == null
+                ? null
+                : DateTime.fromMillisecondsSinceEpoch(atMs),
           );
         } catch (_) {}
       }
@@ -73,16 +78,17 @@ class AppContentRepository {
     }
   }
 
-  Future<AppContentBundle?> _tryFetchAndCache(SharedPreferences prefs, String lang) async {
+  Future<AppContentBundle?> _tryFetchAndCache(
+    SharedPreferences prefs,
+    String lang,
+  ) async {
     try {
       final response = await _client
-          .get(
-            ApiConfig.bundleUri(lang),
-            headers: {'Accept-Language': lang},
-          )
+          .get(ApiConfig.bundleUri(lang), headers: {'Accept-Language': lang})
           .timeout(const Duration(seconds: 8));
       if (response.statusCode != 200) return null;
-      final map = jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
+      final map =
+          jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
       final now = DateTime.now();
       await prefs.setString(_cacheKey(lang), jsonEncode(map));
       await prefs.setInt(_cacheAtKey(lang), now.millisecondsSinceEpoch);

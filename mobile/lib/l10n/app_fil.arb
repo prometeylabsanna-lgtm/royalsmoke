@@ -1,10 +1,10 @@
 {
   "@@locale": "fil",
-  "splashKicker": "LOUNGE",
+  "splashKicker": "PERSONAL NA SERBISYO",
   "@splashKicker": {
     "description": "M001"
   },
-  "splashTitle": "ROYAL SMOKE",
+  "splashTitle": "ROYALSMOKE",
   "@splashTitle": {
     "description": "M002"
   },
@@ -16,7 +16,7 @@
   "@ageKicker": {
     "description": "M004"
   },
-  "ageTitle": "Para sa mga nasa hustong gulang lamang",
+  "ageTitle": "Limitasyon sa edad 21+",
   "@ageTitle": {
     "description": "M005"
   },
@@ -24,7 +24,7 @@
   "@ageBadge": {
     "description": "M006"
   },
-  "ageBody": "Ang app ay isang gabay ng impormasyon. Ang nilalaman nito ay para lamang sa mga taong 21 taong gulang pataas.",
+  "ageBody": "Ang RoyalSmoke app ay para sa mga user na 21 taong gulang pataas.",
   "@ageBody": {
     "description": "M007"
   },
@@ -32,47 +32,47 @@
   "@ageExit": {
     "description": "M008"
   },
-  "ageConfirm": "21 pataas na ako",
+  "ageConfirm": "Ako ay 21 taong gulang pataas",
   "@ageConfirm": {
     "description": "M009"
   },
-  "ageLegal": "Sa pagpapatuloy, kinukumpirma mo ang iyong edad at sumasang-ayon ka sa patakaran sa edad.",
+  "ageLegal": "Sa pagpapatuloy, kinukumpirma mo ang iyong edad at tinatanggap ang patakaran sa edad.",
   "@ageLegal": {
     "description": "M010"
   },
-  "homeKicker": "LOUNGE",
+  "homeKicker": "PERSONAL NA SERBISYO",
   "@homeKicker": {
     "description": "M011"
   },
-  "homeTitle": "ROYAL\nSMOKE",
+  "homeTitle": "ROYALSMOKE",
   "@homeTitle": {
     "description": "M012"
   },
-  "homeBody": "Gabay sa lounge at mga katuwang nito",
+  "homeBody": "Magpadala ng kahilingan sa app — kokontakin ka ng manager sa paraang gusto mo.",
   "@homeBody": {
     "description": "M013"
   },
-  "houseTab": "Lounge",
+  "houseTab": "Serbisyo",
   "@houseTab": {
     "description": "M015"
   },
-  "houseKicker": "Tungkol sa lounge",
+  "houseKicker": "Tungkol sa serbisyo",
   "@houseKicker": {
     "description": "M016"
   },
-  "houseTitle": "Lounge ng\nRoyal Smoke",
+  "houseTitle": "RoyalSmoke\nSerbisyo",
   "@houseTitle": {
     "description": "M017"
   },
-  "houseBody": "Ang Royal Smoke ay isang bahay na kumakatawan sa mga pamilya na may mahabang kasaysayan sa Ukraine. Dito, malalaman mo ang pinagmulan at makikilala ang koleksyon sa pagbisita.",
+  "houseBody": "Ang RoyalSmoke ay app para makipag-ugnayan sa personal na manager. Ilarawan ang kailangan mo, ilagay ang iyong contact at maginhawang oras — matatanggap ng manager ang kahilingan at kokontakin ka.",
   "@houseBody": {
     "description": "M018"
   },
-  "bookVisit": "Mag-book ng pagbisita",
+  "bookVisit": "Magpadala ng kahilingan",
   "@bookVisit": {
     "description": "M019"
   },
-  "contacts": "Makipag-ugnayan",
+  "contacts": "Contact",
   "@contacts": {
     "description": "M020"
   },
@@ -84,7 +84,7 @@
   "@houseBlockServiceTitle": {
     "description": "M022"
   },
-  "houseBlockServiceBody": "Mga konsultasyon tungkol sa kasaysayan, at pag-iimbak.",
+  "houseBlockServiceBody": "Personal na manager ang humahawak sa bawat kahilingan.",
   "@houseBlockServiceBody": {
     "description": "M023"
   },
@@ -96,7 +96,7 @@
   "@houseBlockB2bTitle": {
     "description": "M025"
   },
-  "houseBlockB2bBody": "Pakikipagtulungan sa mga establisyimento at propesyonal na katuwang.",
+  "houseBlockB2bBody": "Hiwalay na kahilingan mula sa mga kumpanya at propesyonal na partner.",
   "@houseBlockB2bBody": {
     "description": "M026"
   },
@@ -104,15 +104,15 @@
   "@houseBlock3Index": {
     "description": "M027"
   },
-  "visitTitle": "Pagbisita",
+  "visitTitle": "Kahilingan",
   "@visitTitle": {
     "description": "M028"
   },
-  "houseBlockVisitBody": "Kilalanin ang bahay sa pamamagitan ng paunang appointment.",
+  "houseBlockVisitBody": "Form sa app: paksa, contact at maginhawang oras para makontak ka.",
   "@houseBlockVisitBody": {
     "description": "M029"
   },
-  "visitKicker": "Lounge ng Royal Smoke",
+  "visitKicker": "RoyalSmoke",
   "@visitKicker": {
     "description": "M030"
   },
@@ -128,15 +128,15 @@
   "@visitSuccessTitle": {
     "description": "M033"
   },
-  "visitSuccessBody": "Makikipag-ugnayan kami sa iyo upang kumpirmahin ang petsa at oras ng pagbisita.",
+  "visitSuccessBody": "Kokontakin ka ng manager gamit ang mga detalyeng ibinigay mo.",
   "@visitSuccessBody": {
     "description": "M034"
   },
-  "appVersion": "Royal Smoke · v1.0",
+  "appVersion": "RoyalSmoke · v1.0",
   "@appVersion": {
     "description": "M035"
   },
-  "appBlurb": "Ang Royal Smoke ay isang gabay ng impormasyon tungkol sa lounge. Ang app ay para sa mga may edad na 21 pataas.",
+  "appBlurb": "Ang RoyalSmoke ay personal na serbisyo: magpadala ng kahilingan at kokontakin ka ng manager. Age rating 21+.",
   "@appBlurb": {
     "description": "M036"
   },
@@ -148,7 +148,7 @@
   "@contactPhone": {
     "description": "M038"
   },
-  "contactHours": "Lun–Lin · 11:00–22:00",
+  "contactHours": "Available ang manager: Lun–Lin · 11:00–22:00",
   "@contactHours": {
     "description": "M039"
   },
@@ -156,23 +156,23 @@
   "@privacyTitle": {
     "description": "M090"
   },
-  "privacyBody1": "Ipinaliliwanag ng patakarang ito kung anong data ang maaaring iproseso ng Royal Smoke app at para sa anong layunin.",
+  "privacyBody1": "Ipinapaliwanag ng patakarang ito kung anong data ang pinoproseso ng RoyalSmoke app at bakit.",
   "@privacyBody1": {
     "description": "M091"
   },
-  "privacyBody2": "Ang Royal Smoke ay isang gabay ng impormasyon tungkol sa lounge. Kinokolekta lang namin ang pinakamababang teknikal na data na kailangan para maging matatag ang serbisyo: halimbawa, mga datos na lokal na naka-save sa iyong device, pangunahing impormasyon ng session, at mga teknikal na log para sa pagsusuri ng mga pagkabigo.",
+  "privacyBody2": "Kapag nagpadala ka ng kahilingan, natatanggap namin ang mga detalyeng inilagay mo sa form (pangalan, contact, teksto ng kahilingan, gustong oras). Ginagamit lamang ang data na ito para makontak ka ng manager at masagot ang iyong kahilingan.",
   "@privacyBody2": {
     "description": "M092"
   },
-  "privacyBody3": "Hindi kami gumagawa ng mga advertising profile ng mga user at hindi namin ibinabahagi ang personal na data sa mga third party para sa marketing.",
+  "privacyBody3": "Nag-iimbak din ang app ng mga setting sa iyong device (wika, kumpirmasyon ng edad) at maaaring magpadala ng mga teknikal na log para sa pag-diagnose ng aberya.",
   "@privacyBody3": {
     "description": "M093"
   },
-  "privacyBody4": "Ang nilalaman ng gabay ay para lamang sa mga nasa hustong gulang (21+). Posible lamang ang pag-access pagkatapos kumpirmahin ang edad. Kung hindi ka sumasang-ayon sa mga tuntuning ito, itigil ang paggamit ng app.",
+  "privacyBody4": "Hindi kami gumagawa ng mga advertising profile at hindi nagbabahagi ng personal na data sa mga third party para sa marketing.",
   "@privacyBody4": {
     "description": "M094"
   },
-  "privacyBody5": "Maaaring ipadala ang mga kahilingan tungkol sa data, access, o pagbura ng impormasyon sa device sa pamamagitan ng seksyong “Makipag-ugnayan”. Sumasagot kami sa loob ng makatwirang panahon at alinsunod sa mga kinakailangan ng umiiral na batas ng Ukraine.",
+  "privacyBody5": "Ang mga kahilingan para ma-access o mabura ang data ay maaaring ipadala sa “Contact”. Tumutugon kami sa makatwirang panahon alinsunod sa umiiral na batas ng Ukraine.",
   "@privacyBody5": {
     "description": "M095"
   },
@@ -180,23 +180,23 @@
   "@termsTitle": {
     "description": "M096"
   },
-  "termsBody1": "Sa paggamit ng Royal Smoke app, kinukumpirma mong 21 taong gulang ka na pataas at nabasa mo ang mga tuntuning ito.",
+  "termsBody1": "Sa paggamit ng RoyalSmoke app, kinukumpirma mong ikaw ay 21 taong gulang pataas at nabasa mo ang mga tuntuning ito.",
   "@termsBody1": {
     "description": "M097"
   },
-  "termsBody2": "Ibinibigay ang gabay para sa layuning pang-impormasyon: paglalarawan ng mga katuwang, kasaysayan ng bahay, mga linya, at mga contact. Tinutulungan ng mga materyal na ito na maunawaan ang mundo ng mga katuwang at ang kapaligiran ng espasyo.",
+  "termsBody2": "Pinapayagan ka ng app na magpadala ng kahilingan sa manager at hanapin ang mga contact. Sa pagpapadala ng kahilingan, sumasang-ayon ka na maaari kang kontakin ng manager gamit ang mga detalyeng ibinigay mo.",
   "@termsBody2": {
     "description": "M098"
   },
-  "termsBody3": "Ikaw mismo ang gagawa ng anumang desisyon tungkol sa pagbisita sa bahay o pagtingin sa mga materyal, na isinasaalang-alang ang mga paghihigpit sa edad at mga patakaran ng establisyimento.",
+  "termsBody3": "Magbigay ng tamang contact details. Ang pagbibigay ng maling impormasyon, kabilang ang tungkol sa edad, ay maaaring magresulta sa paglimita ng access sa app.",
   "@termsBody3": {
     "description": "M099"
   },
-  "termsBody4": "Maaari naming i-update ang mga teksto, larawan, at istruktura ng mga seksyon nang walang hiwalay na paunang abiso. Ang patuloy na paggamit pagkatapos ng update ay nangangahulugang pagsang-ayon sa kasalukuyang bersyon ng mga tuntunin.",
+  "termsBody4": "Maaari naming i-update ang mga teksto at istruktura ng mga seksyon. Ang patuloy na paggamit pagkatapos ng update ay nangangahulugang tinatanggap mo ang kasalukuyang bersyon ng mga tuntunin. Mga tanong — sa “Contact”.",
   "@termsBody4": {
     "description": "M100"
   },
-  "termsBody5": "Maaaring limitahan ang access sa gabay kapag nilabag ang mga patakaran sa paggamit o nagbigay ng maling impormasyon tungkol sa edad. Para sa mga tanong tungkol sa mga tuntunin, gamitin ang “Makipag-ugnayan”.",
+  "termsBody5": "",
   "@termsBody5": {
     "description": "M101"
   },
@@ -204,23 +204,23 @@
   "@agePolicyTitle": {
     "description": "M102"
   },
-  "agePolicyBody1": "Ang nilalaman ng gabay ng Royal Smoke ay para lamang sa mga taong 21 taong gulang pataas.",
+  "agePolicyBody1": "Ang RoyalSmoke app ay para sa mga user na 21 taong gulang pataas.",
   "@agePolicyBody1": {
     "description": "M103"
   },
-  "agePolicyBody2": "Bago pumasok sa mga pangunahing seksyon, hihingin ng app ang kumpirmasyon ng edad. Ito ay sapilitang kondisyon para ma-access ang mga materyal tungkol sa bahay at kaugnay na nilalaman. Kung wala ka pang 21 taong gulang, mangyaring umalis sa app.",
+  "agePolicyBody2": "Sa unang pagbukas, hihilingin ng app na kumpirmahin mo ang iyong edad. Kung walang kumpirmasyon, hindi magagamit ang mga pangunahing seksyon. Kung wala ka pang 21 taong gulang, mangyaring huwag gamitin ang app.",
   "@agePolicyBody2": {
     "description": "M104"
   },
-  "agePolicyBody3": "Lahat ng pahina ay para sa sanggunian at nagsisilbing pagpapakilala sa mga katuwang ng bahay at sa espasyo nito.",
+  "agePolicyBody3": "Maaari naming i-update ang patakarang ito kung hinihingi ng mga pagbabago sa batas. Ang kasalukuyang bersyon ay laging nasa seksyong “Higit pa”.",
   "@agePolicyBody3": {
     "description": "M105"
   },
-  "agePolicyBody4": "May karapatan kaming i-update ang pananalita ng patakaran sa edad kung hinihingi ito ng mga pagbabago sa batas o ng mga panloob na pamantayan ng bahay. Palaging makukuha ang kasalukuyang bersyon sa seksyong “Higit pa”.",
+  "agePolicyBody4": "Sa paggamit ng app, kinukumpirma mo ang iyong edad at tinatanggap ang patakarang ito. Para sa mga tanong, gamitin ang “Contact”.",
   "@agePolicyBody4": {
     "description": "M106"
   },
-  "agePolicyBody5": "Sa paggamit ng app, kinukumpirma mo ang iyong edad at sumasang-ayon ka sa patakarang ito. Para sa mga tanong, gamitin ang “Makipag-ugnayan”.",
+  "agePolicyBody5": "",
   "@agePolicyBody5": {
     "description": "M107"
   },
@@ -228,31 +228,31 @@
   "@aboutTitle": {
     "description": "M108"
   },
-  "aboutBody1": "Ang Royal Smoke ay isang lounge at digital na gabay sa mundo nito.",
+  "aboutBody1": "Ang RoyalSmoke ay app ng personal na serbisyo.",
   "@aboutBody1": {
     "description": "M109"
   },
-  "aboutBody2": "Dito makikita ang mga katuwang ng bahay, maiikling kasaysayan ng mga pagawaan, katangian ng mga linya, at mga contact ng espasyo. Layunin ng app na tulungan kang makaunawa nang mahinahon: sino ang kasama ng bahay, ano ang nagpapaiba sa bawat katuwang, at paano kami makokontak.",
+  "aboutBody2": "Sa app, maaari kang magpadala ng kahilingan sa manager, makita ang kumpirmasyong “Naipadala ang kahilingan”, at hanapin ang aming contact: telepono at oras ng pakikipag-ugnayan.",
   "@aboutBody2": {
     "description": "M110"
   },
-  "aboutBody3": "Ginawa ang gabay para sa madlang nasa hustong gulang na 21+ at isinasalaysay nito ang kultura, pinagmulan, at ambiance ng espasyong sinusuportahan namin.",
+  "aboutBody3": "Ang age rating ng app ay 21+.",
   "@aboutBody3": {
     "description": "M111"
   },
-  "aboutBody4": "Kung hinahanap mo ang address, oras ng bukas, o ruta, buksan ang “Makipag-ugnayan”. Kung interesado ka sa mga katuwang, pumunta sa seksyong “Lounge”. At para maunawaan ang mismong espasyo ng bahay, silipin ang “Lounge”.",
+  "aboutBody4": "Para magpadala ng kahilingan, buksan ang “Kahilingan”. Para malaman kung paano gumagana ang serbisyo, buksan ang “Serbisyo”. Para direktang makipag-ugnayan, buksan ang “Contact”.",
   "@aboutBody4": {
     "description": "M112"
   },
-  "aboutBody5": "Salamat sa pagpili sa Royal Smoke bilang lugar upang makilala kami.",
+  "aboutBody5": "",
   "@aboutBody5": {
     "description": "M113"
   },
-  "appName": "Royal Smoke",
+  "appName": "RoyalSmoke",
   "@appName": {
     "description": "M114"
   },
-  "ageBodyShort": "Ang app ay isang gabay ng impormasyon.",
+  "ageBodyShort": "Ang RoyalSmoke app ay para sa mga user na 21 taong gulang pataas.",
   "@ageBodyShort": {
     "description": "M115"
   },
@@ -276,11 +276,11 @@
   "@phonePrefix": {
     "description": "M120"
   },
-  "dateLabel": "Petsa",
+  "dateLabel": "Maginhawang oras para makontak",
   "@dateLabel": {
     "description": "M121"
   },
-  "dateHint": "DD.MM.YYYY",
+  "dateHint": "Halimbawa: bukas, 18:00",
   "@dateHint": {
     "description": "M122"
   },
@@ -320,7 +320,7 @@
   "@hoursLabel": {
     "description": "M139"
   },
-  "houseBodyShort": "Ang Royal Smoke ay isang bahay na kumakatawan sa mga pamilya na may mahabang kasaysayan sa Ukraine.",
+  "houseBodyShort": "Ang RoyalSmoke ay app para makipag-ugnayan sa personal na manager. Ilarawan ang kailangan mo, ilagay ang iyong contact at maginhawang oras — matatanggap ng manager ang kahilingan at kokontakin ka.",
   "@houseBodyShort": {
     "description": "M141"
   },

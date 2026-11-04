@@ -225,14 +225,22 @@ class RsTabBar extends StatelessWidget {
                                 active: item.$1 == current,
                               ),
                               const SizedBox(height: 4),
-                              Text(
-                                item.$2,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTextStyles.tabLabel.copyWith(
-                                  color: item.$1 == current
-                                      ? AppColors.gold
-                                      : AppColors.tabInactive,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 2,
+                                ),
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    item.$2,
+                                    maxLines: 1,
+                                    softWrap: false,
+                                    style: AppTextStyles.tabLabel.copyWith(
+                                      color: item.$1 == current
+                                          ? AppColors.gold
+                                          : AppColors.tabInactive,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
