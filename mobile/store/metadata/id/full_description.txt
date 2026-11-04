@@ -1,11 +1,15 @@
-RoyalSmoke adalah lounge dengan pencatatan kunjungan.
+RoyalSmoke adalah aplikasi untuk terhubung dengan manajer personal.
 
-Aplikasi ini untuk orang yang berusia 21 tahun ke atas. Konfirmasi usia diperlukan sebelum bagian utama.
+Cara kerjanya:
+• Buka tab “Permintaan”.
+• Jelaskan kebutuhan Anda dan isi nama, kontak, serta waktu yang nyaman.
+• Kirim permintaan — manajer akan menerimanya dan menghubungi Anda.
 
-Ruang ini dikenali melalui janji temu terlebih dahulu. Anda dapat mengirim permintaan kunjungan dengan nama, telepon, tanggal, waktu, dan komentar opsional.
+Di aplikasi:
+• Formulir permintaan ke manajer
+• Konfirmasi permintaan terkirim
+• Kontak dan jam layanan
+• Jenis permintaan terpisah untuk perusahaan (B2B)
+• Pilihan bahasa antarmuka
 
-Jam: Sen–Min, 11:00–22:00. Telepon tersedia di aplikasi.
-
-Bahasa antarmuka: Ukraina, Inggris, Tionghoa, Melayu, Filipino, Indonesia, dan Vietnam.
-
-RoyalSmoke tidak membuat profil iklan.
+Rating usia: 21+.

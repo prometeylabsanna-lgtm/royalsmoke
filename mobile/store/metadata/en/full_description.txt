@@ -1,11 +1,15 @@
-RoyalSmoke is a lounge with visit booking.
+RoyalSmoke is an app for getting in touch with a personal manager.
 
-The app is for people aged 21 and over. Age confirmation is required before the main sections.
+How it works:
+• Open the “Request” tab.
+• Describe what you need and add your name, contact details and a convenient time.
+• Send the request — a manager receives it and contacts you.
 
-You get to know the space by prior appointment. The app lets you send a visit request with your name, phone, date, time, and an optional comment.
+In the app:
+• Request form for a manager
+• Confirmation that your request was sent
+• Contacts and contact hours
+• Separate request type for companies (B2B)
+• Interface language selection
 
-Hours: Mon–Sun, 11:00–22:00. The phone number is in the app.
-
-Interface languages: Ukrainian, English, Chinese, Malay, Filipino, Indonesian, and Vietnamese.
-
-RoyalSmoke does not build advertising profiles.
+Age rating: 21+.

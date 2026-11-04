@@ -1,11 +1,15 @@
-RoyalSmoke là lounge với đặt lịch thăm.
+RoyalSmoke là ứng dụng để liên hệ với quản lý cá nhân.
 
-Ứng dụng dành cho người từ 21 tuổi. Cần xác nhận tuổi trước khi vào các mục chính.
+Cách hoạt động:
+• Mở tab “Yêu cầu”.
+• Mô tả nhu cầu, nhập tên, thông tin liên hệ và thời gian thuận tiện.
+• Gửi yêu cầu — quản lý sẽ nhận và liên hệ với bạn.
 
-Không gian được tìm hiểu theo lịch hẹn trước. Bạn có thể gửi yêu cầu thăm: tên, điện thoại, ngày, giờ và ghi chú không bắt buộc.
+Trong ứng dụng:
+• Biểu mẫu gửi yêu cầu cho quản lý
+• Xác nhận đã gửi yêu cầu
+• Thông tin và giờ liên hệ
+• Loại yêu cầu riêng cho doanh nghiệp (B2B)
+• Chọn ngôn ngữ giao diện
 
-Giờ: T2–CN, 11:00–22:00. Số điện thoại có trong ứng dụng.
-
-Ngôn ngữ giao diện: Ukraina, Anh, Trung, Mã Lai, Filipino, Indonesia và Việt.
-
-RoyalSmoke không tạo hồ sơ quảng cáo.
+Giới hạn độ tuổi: 21+.

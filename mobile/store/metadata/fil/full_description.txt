@@ -1,11 +1,15 @@
-Ang RoyalSmoke ay lounge na may pagtatala ng bisita.
+Ang RoyalSmoke ay app para makipag-ugnayan sa personal na manager.
 
-Para sa mga taong 21 taong gulang pataas ang app. Kailangan ang kumpirmasyon ng edad bago ang mga pangunahing seksyon.
+Paano ito gumagana:
+• Buksan ang tab na “Kahilingan”.
+• Ilarawan ang kailangan mo at ilagay ang pangalan, contact at maginhawang oras.
+• Ipadala ang kahilingan — matatanggap ito ng manager at kokontakin ka.
 
-Nakikilala ang espasyo sa pamamagitan ng paunang appointment. Maaari kang magpadala ng kahilingan sa bisita: pangalan, telepono, petsa, oras, at opsyonal na komento.
+Sa app:
+• Form ng kahilingan sa manager
+• Kumpirmasyon na naipadala ang kahilingan
+• Contact at oras ng pakikipag-ugnayan
+• Hiwalay na uri ng kahilingan para sa mga kumpanya (B2B)
+• Pagpili ng wika ng interface
 
-Oras: Lun–Lin, 11:00–22:00. Nasa app ang telepono.
-
-Mga wika ng interface: Ukrainian, English, Chinese, Malay, Filipino, Indonesian, at Vietnamese.
-
-Hindi gumagawa ng mga profile para sa patalastas ang RoyalSmoke.
+Age rating: 21+.

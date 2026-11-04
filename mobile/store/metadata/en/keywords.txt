@@ -1,1 +1,1 @@
-lounge,visit,booking,contacts,21+
+request,manager,personal service,consultation,contact,callback,inquiry,b2b
