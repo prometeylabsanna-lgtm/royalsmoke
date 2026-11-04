@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:royal_smoke/app.dart';
 import 'package:royal_smoke/core/l10n/app_locale.dart';
 import 'package:royal_smoke/l10n/app_localizations.dart';
+import 'package:royal_smoke/shared/widgets/rs_chrome.dart';
 
 void main() {
   setUp(() {
@@ -34,6 +35,15 @@ void main() {
     expect(en.dateLabel, 'Convenient time to get in touch');
     expect(uk.appName, 'RoyalSmoke');
     expect(en.appName, 'RoyalSmoke');
+    expect(uk.tabHome, 'Головна');
+    expect(en.tabHome, 'Home');
+    for (final locale in AppLocalizations.supportedLocales) {
+      expect(
+        lookupAppLocalizations(locale).tabHome.trim(),
+        isNotEmpty,
+        reason: locale.toLanguageTag(),
+      );
+    }
   });
 
   testWidgets('застосунок стартує з темною темою', (tester) async {
@@ -62,7 +72,19 @@ void main() {
     );
     expect(find.text('ПЕРСОНАЛЬНИЙ СЕРВІС'), findsWidgets);
     expect(find.text('ЗАЛИШИТИ ЗАПИТ'), findsOneWidget);
-    expect(find.text('Головна'), findsNothing);
+    expect(find.byIcon(Icons.home), findsOneWidget);
+    expect(find.byIcon(Icons.room_service_outlined), findsOneWidget);
+    final tabLabels = ['Головна', 'Сервіс', 'Запит', 'Контакти', 'Ще'];
+    double? tabLeft;
+    for (final label in tabLabels) {
+      final rect = tester.getRect(
+        find.descendant(of: find.byType(RsTabBar), matching: find.text(label)),
+      );
+      if (tabLeft != null) {
+        expect(rect.left, greaterThan(tabLeft), reason: label);
+      }
+      tabLeft = rect.left;
+    }
     expect(find.text('Сервіс'), findsOneWidget);
     expect(find.text('Контакти'), findsWidgets);
     expect(find.text('Ще'), findsOneWidget);

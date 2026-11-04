@@ -181,6 +181,7 @@ class RsTabBar extends StatelessWidget {
 
   List<(RsTab, String)> _items(AppLocalizations l10n) {
     return [
+      (RsTab.home, l10n.tabHome),
       (RsTab.house, l10n.houseTab),
       (RsTab.visit, l10n.visitTitle),
       (RsTab.contacts, l10n.contacts),
@@ -263,13 +264,23 @@ class _TabGlyph extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      size: const Size(AppSizes.tabIcon, AppSizes.tabIcon),
-      painter: _TabPainter(
-        tab: tab,
-        color: active ? AppColors.gold : AppColors.tabInactive,
+    final color = active ? AppColors.gold : AppColors.tabInactive;
+    return switch (tab) {
+      RsTab.home => Icon(
+        active ? Icons.home : Icons.home_outlined,
+        size: AppSizes.tabIcon,
+        color: color,
       ),
-    );
+      RsTab.house => Icon(
+        active ? Icons.room_service : Icons.room_service_outlined,
+        size: AppSizes.tabIcon,
+        color: color,
+      ),
+      _ => CustomPaint(
+        size: const Size(AppSizes.tabIcon, AppSizes.tabIcon),
+        painter: _TabPainter(tab: tab, color: color),
+      ),
+    };
   }
 }
 
@@ -290,30 +301,8 @@ class _TabPainter extends CustomPainter {
     final path = Path();
     switch (tab) {
       case RsTab.home:
-        path
-          ..moveTo(4, 11)
-          ..lineTo(12, 5)
-          ..lineTo(20, 11)
-          ..lineTo(20, 20)
-          ..lineTo(15, 20)
-          ..lineTo(15, 15)
-          ..lineTo(9, 15)
-          ..lineTo(9, 20)
-          ..lineTo(4, 20)
-          ..close();
       case RsTab.house:
-        path
-          ..moveTo(3.5, 9)
-          ..lineTo(12, 4)
-          ..lineTo(20.5, 9);
-        for (final x in const [6.0, 10.0, 14.0, 18.0]) {
-          path
-            ..moveTo(x, 10)
-            ..lineTo(x, 18);
-        }
-        path
-          ..moveTo(4, 20.5)
-          ..lineTo(20, 20.5);
+        return;
       case RsTab.visit:
         path
           ..addRRect(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:royal_smoke/features/booking/presentation/visit_screen.dart';
 import 'package:royal_smoke/features/home/presentation/home_screen.dart';
+import 'package:royal_smoke/shared/widgets/rs_chrome.dart';
 
 import 'l10n_app.dart';
 
@@ -25,5 +26,42 @@ void main() {
     expect(find.text('ДАТА'), findsNothing);
     expect(find.text('ЧАС'), findsNothing);
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('пʼять підписів меню не переповнюються на ширині 320', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(320, 568);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    const locales = <Locale>[
+      Locale('uk'),
+      Locale('en'),
+      Locale('ms'),
+      Locale('fil'),
+      Locale('id'),
+      Locale('vi'),
+      Locale('zh'),
+      Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'),
+    ];
+    for (final locale in locales) {
+      await tester.pumpWidget(
+        l10nApp(
+          locale: locale,
+          home: Scaffold(
+            body: const SizedBox.expand(),
+            bottomNavigationBar: RsTabBar(
+              current: RsTab.home,
+              onChanged: (_) {},
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+      expect(tester.takeException(), isNull, reason: locale.toLanguageTag());
+      expect(find.byType(RsTabBar), findsOneWidget);
+    }
   });
 }
