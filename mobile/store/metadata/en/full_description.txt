@@ -1,15 +1,11 @@
-RoyalSmoke is an informational guide to the brand house.
+RoyalSmoke is a lounge and club with visit booking.
 
 The app is for people aged 21 and over. Age confirmation is required before the main sections.
 
-The guide presents the partner brands the house represents in Ukraine: AJ Fernandez, Oliva, Perdomo, and Casa Turrent. Each entry covers origin, a short history of the manufactory, and the character of the lines.
-
 You get to know the space by prior appointment. The app lets you send a visit request with your name, phone, date, time, and an optional comment.
 
-Contacts for the space in Kyiv: 1 Khreshchatyk St. Hours: Mon–Sun, 11:00–22:00. Phone and directions are included.
+Contacts in Kyiv: 1 Khreshchatyk St. Hours: Mon–Sun, 11:00–22:00. Phone and directions are included.
 
-Also in the guide: consultations on brands, history, and storage, and cooperation with venues and professional partners.
+Interface languages: Ukrainian, English, Chinese, Malay, Filipino, Indonesian, and Vietnamese.
 
-Selected brands can be saved on the device. Interface languages: Ukrainian, English, Chinese, Malay, Filipino, Indonesian, and Vietnamese.
-
-RoyalSmoke does not sell goods in the app and does not build advertising profiles. The materials are informational.
+RoyalSmoke does not sell goods in the app and does not build advertising profiles.
