@@ -102,6 +102,9 @@ class AppBackdropState extends State<AppBackdrop>
           const ColoredBox(color: AppColors.canvas),
           if (size.width > 0 && size.height > 0) ...[
             _KenBurnsPlate(size: size, motion: _kenBurnsT),
+            const IgnorePointer(
+              child: ColoredBox(color: AppColors.backdropDim),
+            ),
             _BottomMask(height: size.height),
             _TopScrim(height: size.height),
             _GoldGlow(height: size.height, glow: _glowT),
