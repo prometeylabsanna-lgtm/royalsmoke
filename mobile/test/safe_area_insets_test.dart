@@ -26,6 +26,32 @@ class _FallbackRepository extends AppContentRepository {
   }
 }
 
+class _BlankContactsRepository extends AppContentRepository {
+  @override
+  Future<AppContentBundle> load({
+    required String lang,
+    required AppLocalizations l10n,
+    bool forceNetwork = false,
+  }) {
+    final base = buildFallbackBundle(l10n);
+    return Future<AppContentBundle>.value(
+      AppContentBundle(
+        settings: AppSettingsContent(
+          appVersion: base.settings.appVersion,
+          appBlurb: base.settings.appBlurb,
+          contactAddress: 'hidden-line',
+          contactPhone: ' ',
+          contactHours: '',
+          contactLat: 1,
+          contactLng: 2,
+        ),
+        screens: base.screens,
+        pages: base.pages,
+      ),
+    );
+  }
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -37,6 +63,7 @@ void main() {
     required double top,
     double bottom = 0,
     double viewTop = -1,
+    AppContentRepository? repository,
   }) async {
     final resolvedViewTop = viewTop < 0 ? top : viewTop;
     tester.view.devicePixelRatio = 1;
@@ -46,17 +73,17 @@ void main() {
       top: resolvedViewTop,
       bottom: bottom,
     );
-    await tester.pumpWidget(_host(screen));
+    await tester.pumpWidget(_host(screen, repository: repository));
     await tester.pump();
   }
 
-  testWidgets('брівка House, Visit і More нижче за статус-бар', (
+  testWidgets('брівка Лаунж, Visit і More нижче за статус-бар', (
     tester,
   ) async {
     addTearDown(tester.view.reset);
     const screens = <(Widget, String)>[
-      (HouseScreen(), 'ПРО ДІМ'),
-      (VisitScreen(), 'ДІМ ROYAL SMOKE'),
+      (HouseScreen(), 'ПРО ЛАУНЖ'),
+      (VisitScreen(), 'ЛАУНЖ ROYAL SMOKE'),
       (MoreScreen(), 'ROYAL SMOKE'),
     ];
 
@@ -80,12 +107,12 @@ void main() {
     }
   });
 
-  testWidgets('брівка House читає viewPadding, навіть якщо padding.top = 0', (
+  testWidgets('брівка Лаунж читає viewPadding, навіть якщо padding.top = 0', (
     tester,
   ) async {
     addTearDown(tester.view.reset);
     await pumpScreen(tester, const HouseScreen(), top: 0, viewTop: 59);
-    final dy = tester.getTopLeft(find.text('ПРО ДІМ')).dy;
+    final dy = tester.getTopLeft(find.text('ПРО ЛАУНЖ')).dy;
     expect(dy, greaterThanOrEqualTo(59));
   });
 
@@ -97,7 +124,7 @@ void main() {
       await pumpScreen(tester, const HomeScreen(), top: top);
       expect(tester.takeException(), isNull);
       expect(
-        tester.getTopLeft(find.text('ДІМ БРЕНДУ')).dy,
+        tester.getTopLeft(find.text('ЛАУНЖ').first).dy,
         greaterThanOrEqualTo(top),
         reason: 'home top=$top',
       );
@@ -109,7 +136,31 @@ void main() {
         greaterThanOrEqualTo(top),
         reason: 'contacts top=$top',
       );
+      expect(find.text('ТЕЛЕФОН'), findsOneWidget);
+      expect(find.text('+380 00 000 00 00'), findsOneWidget);
+      expect(find.text('ГОДИНИ'), findsOneWidget);
+      expect(find.text('АДРЕСА'), findsNothing);
+      expect(find.text('МАПА'), findsNothing);
     }
+  });
+
+  testWidgets('порожні телефон і години не показуються, адреса теж', (
+    tester,
+  ) async {
+    addTearDown(tester.view.reset);
+    await pumpScreen(
+      tester,
+      const ContactsScreen(),
+      top: 59,
+      repository: _BlankContactsRepository(),
+    );
+    expect(tester.takeException(), isNull);
+    expect(find.text('ТЕЛЕФОН'), findsNothing);
+    expect(find.text('ГОДИНИ'), findsNothing);
+    expect(find.text('АДРЕСА'), findsNothing);
+    expect(find.text('hidden-line'), findsNothing);
+    expect(find.text('МАПА'), findsNothing);
+    expect(find.text('КОНТАКТИ'), findsOneWidget);
   });
 
   testWidgets('таб-бар тримає підпис над home indicator і жестом Android', (
@@ -153,11 +204,13 @@ void main() {
   });
 }
 
-Widget _host(Widget home) {
+Widget _host(Widget home, {AppContentRepository? repository}) {
   return ProviderScope(
     overrides: [
       initialLocaleProvider.overrideWithValue(const Locale('uk')),
-      appContentRepositoryProvider.overrideWithValue(_FallbackRepository()),
+      appContentRepositoryProvider.overrideWithValue(
+        repository ?? _FallbackRepository(),
+      ),
     ],
     child: MaterialApp(
       locale: const Locale('uk'),

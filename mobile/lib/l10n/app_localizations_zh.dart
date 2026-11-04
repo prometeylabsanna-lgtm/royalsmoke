@@ -39,26 +39,26 @@ class AppLocalizationsZh extends AppLocalizations {
   String get ageLegal => '继续即表示您确认自己的年龄，并同意年龄政策。';
 
   @override
-  String get homeKicker => '品牌之家';
+  String get homeKicker => '休息室';
 
   @override
   String get homeTitle => 'ROYAL\nSMOKE';
 
   @override
-  String get homeBody => '品牌之家与合作伙伴指南';
+  String get homeBody => '休息室与合作伙伴指南';
 
   @override
-  String get houseTab => '品牌之家';
+  String get houseTab => '休息室';
 
   @override
-  String get houseKicker => '关于品牌之家';
+  String get houseKicker => '关于休息室';
 
   @override
-  String get houseTitle => 'Royal Smoke\n之家';
+  String get houseTitle => 'Royal Smoke\n休息室';
 
   @override
   String get houseBody =>
-      'Royal Smoke 是一座品牌之家，在乌克兰代理历史悠久的家族品牌。在这里，您可以了解各品牌的渊源，并在参观期间认识品牌系列。';
+      'Royal Smoke 是一座休息室，在乌克兰代理历史悠久的家族品牌。在这里，您可以了解各品牌的渊源，并在参观期间认识品牌系列。';
 
   @override
   String get bookVisit => '预约参观';
@@ -91,10 +91,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get visitTitle => '参观';
 
   @override
-  String get houseBlockVisitBody => '凭预约了解品牌之家。';
+  String get houseBlockVisitBody => '凭预约了解休息室。';
 
   @override
-  String get visitKicker => 'Royal Smoke 之家';
+  String get visitKicker => 'Royal Smoke 休息室';
 
   @override
   String get visitNewRequest => '新请求';
@@ -112,10 +112,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appVersion => 'Royal Smoke · v1.0';
 
   @override
-  String get appBlurb => 'Royal Smoke 是品牌之家的信息指南。本应用面向21岁及以上人士。';
+  String get appBlurb => 'Royal Smoke 是休息室的信息指南。本应用面向21岁及以上人士。';
 
   @override
-  String get contactAddress => '基辅，赫雷夏蒂克街1号';
+  String get contactAddress => '';
 
   @override
   String get contactPhone => '+380 00 000 00 00';
@@ -131,7 +131,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get privacyBody2 =>
-      'Royal Smoke 是品牌之家的信息指南。我们仅收集服务稳定运行所必需的最少技术数据：例如保存在您设备本地的品牌、基本的会话信息，以及用于诊断故障的技术日志。';
+      'Royal Smoke 是休息室的信息指南。我们仅收集服务稳定运行所必需的最少技术数据：例如保存在您设备本地的品牌、基本的会话信息，以及用于诊断故障的技术日志。';
 
   @override
   String get privacyBody3 => '我们不建立用户的广告画像，也不会为营销目的向第三方提供个人数据。';
@@ -152,10 +152,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get termsBody2 =>
-      '本指南仅供信息参考：包括合作品牌介绍、品牌之家的历史、产品系列和联系方式。这些内容有助于您了解合作伙伴的世界和空间的氛围。';
+      '本指南仅供信息参考：包括合作品牌介绍、休息室的历史、产品系列和联系方式。这些内容有助于您了解合作伙伴的世界和空间的氛围。';
 
   @override
-  String get termsBody3 => '是否参观品牌之家或查阅相关内容，均由您自行决定，并应遵守年龄限制和场所规定。';
+  String get termsBody3 => '是否参观休息室或查阅相关内容，均由您自行决定，并应遵守年龄限制和场所规定。';
 
   @override
   String get termsBody4 => '我们可能会更新文字、图片和栏目结构，恕不另行提前通知。更新后继续使用即表示您同意现行版本的条款。';
@@ -172,14 +172,14 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get agePolicyBody2 =>
-      '进入主要栏目之前，应用会要求确认年龄。这是访问品牌、品牌之家及相关内容的必要条件。如果您尚未年满21周岁，请退出本应用。';
+      '进入主要栏目之前，应用会要求确认年龄。这是访问品牌、休息室及相关内容的必要条件。如果您尚未年满21周岁，请退出本应用。';
 
   @override
-  String get agePolicyBody3 => '所有页面均为参考性质，旨在帮助您了解品牌之家的合作伙伴及其空间。';
+  String get agePolicyBody3 => '所有页面均为参考性质，旨在帮助您了解休息室的合作伙伴及其空间。';
 
   @override
   String get agePolicyBody4 =>
-      '如因法律变化或品牌之家的内部标准需要，我们保留更新年龄政策措辞的权利。最新版本始终可在“更多”栏目中查阅。';
+      '如因法律变化或休息室的内部标准需要，我们保留更新年龄政策措辞的权利。最新版本始终可在“更多”栏目中查阅。';
 
   @override
   String get agePolicyBody5 => '使用本应用即表示您确认自己的年龄并同意本政策。如有疑问，请通过“联系方式”联系我们。';
@@ -188,18 +188,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String get aboutTitle => '关于本应用';
 
   @override
-  String get aboutBody1 => 'Royal Smoke 是一座品牌之家，也是了解其世界的数字指南。';
+  String get aboutBody1 => 'Royal Smoke 是一座休息室，也是了解其世界的数字指南。';
 
   @override
   String get aboutBody2 =>
-      '这里汇集了品牌之家的合作伙伴、各工坊的简史、各系列的特点，以及位于基辅的空间的联系方式。本应用旨在帮助您从容了解：谁与品牌之家同行，每个品牌有何与众不同之处，以及如何联系我们。';
+      '这里汇集了休息室的合作伙伴、各工坊的简史、各系列的特点，以及空间的联系方式。本应用旨在帮助您从容了解：谁与休息室同行，每个品牌有何与众不同之处，以及如何联系我们。';
 
   @override
   String get aboutBody3 => '本指南面向21岁及以上的成年受众，介绍我们所支持的空间的文化、渊源和氛围。';
 
   @override
   String get aboutBody4 =>
-      '如需查看地址、营业时间或路线，请打开“联系方式”。如果您对合作伙伴感兴趣，请前往“品牌”栏目。想了解品牌之家本身的空间，请看“品牌之家”。';
+      '如需查看地址、营业时间或路线，请打开“联系方式”。如果您对合作伙伴感兴趣，请前往“品牌”栏目。想了解休息室本身的空间，请看“休息室”。';
 
   @override
   String get aboutBody5 => '感谢您选择 Royal Smoke 来认识我们所支持的品牌。';
@@ -259,7 +259,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get hoursLabel => '营业时间';
 
   @override
-  String get houseBodyShort => 'Royal Smoke 是一座品牌之家，在乌克兰代理历史悠久的家族品牌。';
+  String get houseBodyShort => 'Royal Smoke 是一座休息室，在乌克兰代理历史悠久的家族品牌。';
 
   @override
   String get documentFallback => '文档';
@@ -309,26 +309,26 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get ageLegal => '继续即表示您确认自己的年龄，并同意年龄政策。';
 
   @override
-  String get homeKicker => '品牌之家';
+  String get homeKicker => '休息室';
 
   @override
   String get homeTitle => 'ROYAL\nSMOKE';
 
   @override
-  String get homeBody => '品牌之家与合作伙伴指南';
+  String get homeBody => '休息室与合作伙伴指南';
 
   @override
-  String get houseTab => '品牌之家';
+  String get houseTab => '休息室';
 
   @override
-  String get houseKicker => '关于品牌之家';
+  String get houseKicker => '关于休息室';
 
   @override
-  String get houseTitle => 'Royal Smoke\n之家';
+  String get houseTitle => 'Royal Smoke\n休息室';
 
   @override
   String get houseBody =>
-      'Royal Smoke 是一座品牌之家，在乌克兰代理历史悠久的家族品牌。在这里，您可以了解各品牌的渊源，并在参观期间认识品牌系列。';
+      'Royal Smoke 是一座休息室，在乌克兰代理历史悠久的家族品牌。在这里，您可以了解各品牌的渊源，并在参观期间认识品牌系列。';
 
   @override
   String get bookVisit => '预约参观';
@@ -361,10 +361,10 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get visitTitle => '参观';
 
   @override
-  String get houseBlockVisitBody => '凭预约了解品牌之家。';
+  String get houseBlockVisitBody => '凭预约了解休息室。';
 
   @override
-  String get visitKicker => 'Royal Smoke 之家';
+  String get visitKicker => 'Royal Smoke 休息室';
 
   @override
   String get visitNewRequest => '新请求';
@@ -382,10 +382,10 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get appVersion => 'Royal Smoke · v1.0';
 
   @override
-  String get appBlurb => 'Royal Smoke 是品牌之家的信息指南。本应用面向21岁及以上人士。';
+  String get appBlurb => 'Royal Smoke 是休息室的信息指南。本应用面向21岁及以上人士。';
 
   @override
-  String get contactAddress => '基辅，赫雷夏蒂克街1号';
+  String get contactAddress => '';
 
   @override
   String get contactPhone => '+380 00 000 00 00';
@@ -401,7 +401,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get privacyBody2 =>
-      'Royal Smoke 是品牌之家的信息指南。我们仅收集服务稳定运行所必需的最少技术数据：例如保存在您设备本地的品牌、基本的会话信息，以及用于诊断故障的技术日志。';
+      'Royal Smoke 是休息室的信息指南。我们仅收集服务稳定运行所必需的最少技术数据：例如保存在您设备本地的品牌、基本的会话信息，以及用于诊断故障的技术日志。';
 
   @override
   String get privacyBody3 => '我们不建立用户的广告画像，也不会为营销目的向第三方提供个人数据。';
@@ -422,10 +422,10 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get termsBody2 =>
-      '本指南仅供信息参考：包括合作品牌介绍、品牌之家的历史、产品系列和联系方式。这些内容有助于您了解合作伙伴的世界和空间的氛围。';
+      '本指南仅供信息参考：包括合作品牌介绍、休息室的历史、产品系列和联系方式。这些内容有助于您了解合作伙伴的世界和空间的氛围。';
 
   @override
-  String get termsBody3 => '是否参观品牌之家或查阅相关内容，均由您自行决定，并应遵守年龄限制和场所规定。';
+  String get termsBody3 => '是否参观休息室或查阅相关内容，均由您自行决定，并应遵守年龄限制和场所规定。';
 
   @override
   String get termsBody4 => '我们可能会更新文字、图片和栏目结构，恕不另行提前通知。更新后继续使用即表示您同意现行版本的条款。';
@@ -442,14 +442,14 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get agePolicyBody2 =>
-      '进入主要栏目之前，应用会要求确认年龄。这是访问品牌、品牌之家及相关内容的必要条件。如果您尚未年满21周岁，请退出本应用。';
+      '进入主要栏目之前，应用会要求确认年龄。这是访问品牌、休息室及相关内容的必要条件。如果您尚未年满21周岁，请退出本应用。';
 
   @override
-  String get agePolicyBody3 => '所有页面均为参考性质，旨在帮助您了解品牌之家的合作伙伴及其空间。';
+  String get agePolicyBody3 => '所有页面均为参考性质，旨在帮助您了解休息室的合作伙伴及其空间。';
 
   @override
   String get agePolicyBody4 =>
-      '如因法律变化或品牌之家的内部标准需要，我们保留更新年龄政策措辞的权利。最新版本始终可在“更多”栏目中查阅。';
+      '如因法律变化或休息室的内部标准需要，我们保留更新年龄政策措辞的权利。最新版本始终可在“更多”栏目中查阅。';
 
   @override
   String get agePolicyBody5 => '使用本应用即表示您确认自己的年龄并同意本政策。如有疑问，请通过“联系方式”联系我们。';
@@ -458,18 +458,18 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get aboutTitle => '关于本应用';
 
   @override
-  String get aboutBody1 => 'Royal Smoke 是一座品牌之家，也是了解其世界的数字指南。';
+  String get aboutBody1 => 'Royal Smoke 是一座休息室，也是了解其世界的数字指南。';
 
   @override
   String get aboutBody2 =>
-      '这里汇集了品牌之家的合作伙伴、各工坊的简史、各系列的特点，以及位于基辅的空间的联系方式。本应用旨在帮助您从容了解：谁与品牌之家同行，每个品牌有何与众不同之处，以及如何联系我们。';
+      '这里汇集了休息室的合作伙伴、各工坊的简史、各系列的特点，以及空间的联系方式。本应用旨在帮助您从容了解：谁与休息室同行，每个品牌有何与众不同之处，以及如何联系我们。';
 
   @override
   String get aboutBody3 => '本指南面向21岁及以上的成年受众，介绍我们所支持的空间的文化、渊源和氛围。';
 
   @override
   String get aboutBody4 =>
-      '如需查看地址、营业时间或路线，请打开“联系方式”。如果您对合作伙伴感兴趣，请前往“品牌”栏目。想了解品牌之家本身的空间，请看“品牌之家”。';
+      '如需查看地址、营业时间或路线，请打开“联系方式”。如果您对合作伙伴感兴趣，请前往“品牌”栏目。想了解休息室本身的空间，请看“休息室”。';
 
   @override
   String get aboutBody5 => '感谢您选择 Royal Smoke 来认识我们所支持的品牌。';
@@ -529,7 +529,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get hoursLabel => '营业时间';
 
   @override
-  String get houseBodyShort => 'Royal Smoke 是一座品牌之家，在乌克兰代理历史悠久的家族品牌。';
+  String get houseBodyShort => 'Royal Smoke 是一座休息室，在乌克兰代理历史悠久的家族品牌。';
 
   @override
   String get documentFallback => '文档';

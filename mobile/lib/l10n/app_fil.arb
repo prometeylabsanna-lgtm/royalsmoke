@@ -1,6 +1,6 @@
 {
   "@@locale": "fil",
-  "splashKicker": "GABAY SA BRAND",
+  "splashKicker": "LOUNGE",
   "@splashKicker": {
     "description": "M001"
   },
@@ -24,7 +24,7 @@
   "@ageBadge": {
     "description": "M006"
   },
-  "ageBody": "Ang app ay isang gabay ng impormasyon tungkol sa mga brand. Ang nilalaman nito ay para lamang sa mga taong 21 taong gulang pataas.",
+  "ageBody": "Ang app ay isang gabay ng impormasyon. Ang nilalaman nito ay para lamang sa mga taong 21 taong gulang pataas.",
   "@ageBody": {
     "description": "M007"
   },
@@ -40,7 +40,7 @@
   "@ageLegal": {
     "description": "M010"
   },
-  "homeKicker": "BAHAY NG BRAND",
+  "homeKicker": "LOUNGE",
   "@homeKicker": {
     "description": "M011"
   },
@@ -48,23 +48,23 @@
   "@homeTitle": {
     "description": "M012"
   },
-  "homeBody": "Gabay sa bahay ng brand at mga katuwang nito",
+  "homeBody": "Gabay sa lounge at mga katuwang nito",
   "@homeBody": {
     "description": "M013"
   },
-  "houseTab": "Bahay",
+  "houseTab": "Lounge",
   "@houseTab": {
     "description": "M015"
   },
-  "houseKicker": "Tungkol sa bahay",
+  "houseKicker": "Tungkol sa lounge",
   "@houseKicker": {
     "description": "M016"
   },
-  "houseTitle": "Bahay ng\nRoyal Smoke",
+  "houseTitle": "Lounge ng\nRoyal Smoke",
   "@houseTitle": {
     "description": "M017"
   },
-  "houseBody": "Ang Royal Smoke ay isang bahay na kumakatawan sa mga brand ng pamilya na may mahabang kasaysayan sa Ukraine. Dito, malalaman mo ang pinagmulan ng mga brand at makikilala ang koleksyon sa pagbisita.",
+  "houseBody": "Ang Royal Smoke ay isang bahay na kumakatawan sa mga pamilya na may mahabang kasaysayan sa Ukraine. Dito, malalaman mo ang pinagmulan at makikilala ang koleksyon sa pagbisita.",
   "@houseBody": {
     "description": "M018"
   },
@@ -84,7 +84,7 @@
   "@houseBlockServiceTitle": {
     "description": "M022"
   },
-  "houseBlockServiceBody": "Mga konsultasyon tungkol sa mga brand, kasaysayan, at pag-iimbak.",
+  "houseBlockServiceBody": "Mga konsultasyon tungkol sa kasaysayan, at pag-iimbak.",
   "@houseBlockServiceBody": {
     "description": "M023"
   },
@@ -112,7 +112,7 @@
   "@houseBlockVisitBody": {
     "description": "M029"
   },
-  "visitKicker": "Bahay ng Royal Smoke",
+  "visitKicker": "Lounge ng Royal Smoke",
   "@visitKicker": {
     "description": "M030"
   },
@@ -136,11 +136,11 @@
   "@appVersion": {
     "description": "M035"
   },
-  "appBlurb": "Ang Royal Smoke ay isang gabay ng impormasyon tungkol sa bahay ng brand. Ang app ay para sa mga may edad na 21 pataas.",
+  "appBlurb": "Ang Royal Smoke ay isang gabay ng impormasyon tungkol sa lounge. Ang app ay para sa mga may edad na 21 pataas.",
   "@appBlurb": {
     "description": "M036"
   },
-  "contactAddress": "1 Khreshchatyk St., Kyiv",
+  "contactAddress": "",
   "@contactAddress": {
     "description": "M037"
   },
@@ -160,7 +160,7 @@
   "@privacyBody1": {
     "description": "M091"
   },
-  "privacyBody2": "Ang Royal Smoke ay isang gabay ng impormasyon tungkol sa bahay ng brand. Kinokolekta lang namin ang pinakamababang teknikal na data na kailangan para maging matatag ang serbisyo: halimbawa, mga brand na lokal na naka-save sa iyong device, pangunahing impormasyon ng session, at mga teknikal na log para sa pagsusuri ng mga pagkabigo.",
+  "privacyBody2": "Ang Royal Smoke ay isang gabay ng impormasyon tungkol sa lounge. Kinokolekta lang namin ang pinakamababang teknikal na data na kailangan para maging matatag ang serbisyo: halimbawa, mga datos na lokal na naka-save sa iyong device, pangunahing impormasyon ng session, at mga teknikal na log para sa pagsusuri ng mga pagkabigo.",
   "@privacyBody2": {
     "description": "M092"
   },
@@ -184,7 +184,7 @@
   "@termsBody1": {
     "description": "M097"
   },
-  "termsBody2": "Ibinibigay ang gabay para sa layuning pang-impormasyon: paglalarawan ng mga brand ng mga katuwang, kasaysayan ng bahay, mga linya, at mga contact. Tinutulungan ng mga materyal na ito na maunawaan ang mundo ng mga katuwang at ang kapaligiran ng espasyo.",
+  "termsBody2": "Ibinibigay ang gabay para sa layuning pang-impormasyon: paglalarawan ng mga katuwang, kasaysayan ng bahay, mga linya, at mga contact. Tinutulungan ng mga materyal na ito na maunawaan ang mundo ng mga katuwang at ang kapaligiran ng espasyo.",
   "@termsBody2": {
     "description": "M098"
   },
@@ -208,7 +208,7 @@
   "@agePolicyBody1": {
     "description": "M103"
   },
-  "agePolicyBody2": "Bago pumasok sa mga pangunahing seksyon, hihingin ng app ang kumpirmasyon ng edad. Ito ay sapilitang kondisyon para ma-access ang mga materyal tungkol sa mga brand, sa bahay, at kaugnay na nilalaman. Kung wala ka pang 21 taong gulang, mangyaring umalis sa app.",
+  "agePolicyBody2": "Bago pumasok sa mga pangunahing seksyon, hihingin ng app ang kumpirmasyon ng edad. Ito ay sapilitang kondisyon para ma-access ang mga materyal tungkol sa bahay at kaugnay na nilalaman. Kung wala ka pang 21 taong gulang, mangyaring umalis sa app.",
   "@agePolicyBody2": {
     "description": "M104"
   },
@@ -228,11 +228,11 @@
   "@aboutTitle": {
     "description": "M108"
   },
-  "aboutBody1": "Ang Royal Smoke ay isang bahay ng brand at digital na gabay sa mundo nito.",
+  "aboutBody1": "Ang Royal Smoke ay isang lounge at digital na gabay sa mundo nito.",
   "@aboutBody1": {
     "description": "M109"
   },
-  "aboutBody2": "Dito makikita ang mga katuwang ng bahay, maiikling kasaysayan ng mga pagawaan, katangian ng mga linya, at mga contact ng espasyo sa Kyiv. Layunin ng app na tulungan kang makaunawa nang mahinahon: sino ang kasama ng bahay, ano ang nagpapaiba sa bawat brand, at paano kami makokontak.",
+  "aboutBody2": "Dito makikita ang mga katuwang ng bahay, maiikling kasaysayan ng mga pagawaan, katangian ng mga linya, at mga contact ng espasyo. Layunin ng app na tulungan kang makaunawa nang mahinahon: sino ang kasama ng bahay, ano ang nagpapaiba sa bawat katuwang, at paano kami makokontak.",
   "@aboutBody2": {
     "description": "M110"
   },
@@ -240,11 +240,11 @@
   "@aboutBody3": {
     "description": "M111"
   },
-  "aboutBody4": "Kung hinahanap mo ang address, oras ng bukas, o ruta, buksan ang “Makipag-ugnayan”. Kung interesado ka sa mga katuwang, pumunta sa seksyong “Mga brand”. At para maunawaan ang mismong espasyo ng bahay, silipin ang “Bahay”.",
+  "aboutBody4": "Kung hinahanap mo ang address, oras ng bukas, o ruta, buksan ang “Makipag-ugnayan”. Kung interesado ka sa mga katuwang, pumunta sa seksyong “Lounge”. At para maunawaan ang mismong espasyo ng bahay, silipin ang “Lounge”.",
   "@aboutBody4": {
     "description": "M112"
   },
-  "aboutBody5": "Salamat sa pagpili sa Royal Smoke bilang lugar upang makilala ang mga brand na sinusuportahan namin.",
+  "aboutBody5": "Salamat sa pagpili sa Royal Smoke bilang lugar upang makilala kami.",
   "@aboutBody5": {
     "description": "M113"
   },
@@ -252,7 +252,7 @@
   "@appName": {
     "description": "M114"
   },
-  "ageBodyShort": "Ang app ay isang gabay ng impormasyon tungkol sa mga brand.",
+  "ageBodyShort": "Ang app ay isang gabay ng impormasyon.",
   "@ageBodyShort": {
     "description": "M115"
   },
@@ -320,7 +320,7 @@
   "@hoursLabel": {
     "description": "M139"
   },
-  "houseBodyShort": "Ang Royal Smoke ay isang bahay na kumakatawan sa mga brand ng pamilya na may mahabang kasaysayan sa Ukraine.",
+  "houseBodyShort": "Ang Royal Smoke ay isang bahay na kumakatawan sa mga pamilya na may mahabang kasaysayan sa Ukraine.",
   "@houseBodyShort": {
     "description": "M141"
   },

@@ -40,7 +40,7 @@
   "@ageLegal": {
     "description": "M010"
   },
-  "homeKicker": "品牌之家",
+  "homeKicker": "休息室",
   "@homeKicker": {
     "description": "M011"
   },
@@ -48,23 +48,23 @@
   "@homeTitle": {
     "description": "M012"
   },
-  "homeBody": "品牌之家与合作伙伴指南",
+  "homeBody": "休息室与合作伙伴指南",
   "@homeBody": {
     "description": "M013"
   },
-  "houseTab": "品牌之家",
+  "houseTab": "休息室",
   "@houseTab": {
     "description": "M015"
   },
-  "houseKicker": "关于品牌之家",
+  "houseKicker": "关于休息室",
   "@houseKicker": {
     "description": "M016"
   },
-  "houseTitle": "Royal Smoke\n之家",
+  "houseTitle": "Royal Smoke\n休息室",
   "@houseTitle": {
     "description": "M017"
   },
-  "houseBody": "Royal Smoke 是一座品牌之家，在乌克兰代理历史悠久的家族品牌。在这里，您可以了解各品牌的渊源，并在参观期间认识品牌系列。",
+  "houseBody": "Royal Smoke 是一座休息室，在乌克兰代理历史悠久的家族品牌。在这里，您可以了解各品牌的渊源，并在参观期间认识品牌系列。",
   "@houseBody": {
     "description": "M018"
   },
@@ -108,11 +108,11 @@
   "@visitTitle": {
     "description": "M028"
   },
-  "houseBlockVisitBody": "凭预约了解品牌之家。",
+  "houseBlockVisitBody": "凭预约了解休息室。",
   "@houseBlockVisitBody": {
     "description": "M029"
   },
-  "visitKicker": "Royal Smoke 之家",
+  "visitKicker": "Royal Smoke 休息室",
   "@visitKicker": {
     "description": "M030"
   },
@@ -136,11 +136,11 @@
   "@appVersion": {
     "description": "M035"
   },
-  "appBlurb": "Royal Smoke 是品牌之家的信息指南。本应用面向21岁及以上人士。",
+  "appBlurb": "Royal Smoke 是休息室的信息指南。本应用面向21岁及以上人士。",
   "@appBlurb": {
     "description": "M036"
   },
-  "contactAddress": "基辅，赫雷夏蒂克街1号",
+  "contactAddress": "",
   "@contactAddress": {
     "description": "M037"
   },
@@ -160,7 +160,7 @@
   "@privacyBody1": {
     "description": "M091"
   },
-  "privacyBody2": "Royal Smoke 是品牌之家的信息指南。我们仅收集服务稳定运行所必需的最少技术数据：例如保存在您设备本地的品牌、基本的会话信息，以及用于诊断故障的技术日志。",
+  "privacyBody2": "Royal Smoke 是休息室的信息指南。我们仅收集服务稳定运行所必需的最少技术数据：例如保存在您设备本地的品牌、基本的会话信息，以及用于诊断故障的技术日志。",
   "@privacyBody2": {
     "description": "M092"
   },
@@ -184,11 +184,11 @@
   "@termsBody1": {
     "description": "M097"
   },
-  "termsBody2": "本指南仅供信息参考：包括合作品牌介绍、品牌之家的历史、产品系列和联系方式。这些内容有助于您了解合作伙伴的世界和空间的氛围。",
+  "termsBody2": "本指南仅供信息参考：包括合作品牌介绍、休息室的历史、产品系列和联系方式。这些内容有助于您了解合作伙伴的世界和空间的氛围。",
   "@termsBody2": {
     "description": "M098"
   },
-  "termsBody3": "是否参观品牌之家或查阅相关内容，均由您自行决定，并应遵守年龄限制和场所规定。",
+  "termsBody3": "是否参观休息室或查阅相关内容，均由您自行决定，并应遵守年龄限制和场所规定。",
   "@termsBody3": {
     "description": "M099"
   },
@@ -208,15 +208,15 @@
   "@agePolicyBody1": {
     "description": "M103"
   },
-  "agePolicyBody2": "进入主要栏目之前，应用会要求确认年龄。这是访问品牌、品牌之家及相关内容的必要条件。如果您尚未年满21周岁，请退出本应用。",
+  "agePolicyBody2": "进入主要栏目之前，应用会要求确认年龄。这是访问品牌、休息室及相关内容的必要条件。如果您尚未年满21周岁，请退出本应用。",
   "@agePolicyBody2": {
     "description": "M104"
   },
-  "agePolicyBody3": "所有页面均为参考性质，旨在帮助您了解品牌之家的合作伙伴及其空间。",
+  "agePolicyBody3": "所有页面均为参考性质，旨在帮助您了解休息室的合作伙伴及其空间。",
   "@agePolicyBody3": {
     "description": "M105"
   },
-  "agePolicyBody4": "如因法律变化或品牌之家的内部标准需要，我们保留更新年龄政策措辞的权利。最新版本始终可在“更多”栏目中查阅。",
+  "agePolicyBody4": "如因法律变化或休息室的内部标准需要，我们保留更新年龄政策措辞的权利。最新版本始终可在“更多”栏目中查阅。",
   "@agePolicyBody4": {
     "description": "M106"
   },
@@ -228,11 +228,11 @@
   "@aboutTitle": {
     "description": "M108"
   },
-  "aboutBody1": "Royal Smoke 是一座品牌之家，也是了解其世界的数字指南。",
+  "aboutBody1": "Royal Smoke 是一座休息室，也是了解其世界的数字指南。",
   "@aboutBody1": {
     "description": "M109"
   },
-  "aboutBody2": "这里汇集了品牌之家的合作伙伴、各工坊的简史、各系列的特点，以及位于基辅的空间的联系方式。本应用旨在帮助您从容了解：谁与品牌之家同行，每个品牌有何与众不同之处，以及如何联系我们。",
+  "aboutBody2": "这里汇集了休息室的合作伙伴、各工坊的简史、各系列的特点，以及空间的联系方式。本应用旨在帮助您从容了解：谁与休息室同行，每个品牌有何与众不同之处，以及如何联系我们。",
   "@aboutBody2": {
     "description": "M110"
   },
@@ -240,7 +240,7 @@
   "@aboutBody3": {
     "description": "M111"
   },
-  "aboutBody4": "如需查看地址、营业时间或路线，请打开“联系方式”。如果您对合作伙伴感兴趣，请前往“品牌”栏目。想了解品牌之家本身的空间，请看“品牌之家”。",
+  "aboutBody4": "如需查看地址、营业时间或路线，请打开“联系方式”。如果您对合作伙伴感兴趣，请前往“品牌”栏目。想了解休息室本身的空间，请看“休息室”。",
   "@aboutBody4": {
     "description": "M112"
   },
@@ -320,7 +320,7 @@
   "@hoursLabel": {
     "description": "M139"
   },
-  "houseBodyShort": "Royal Smoke 是一座品牌之家，在乌克兰代理历史悠久的家族品牌。",
+  "houseBodyShort": "Royal Smoke 是一座休息室，在乌克兰代理历史悠久的家族品牌。",
   "@houseBodyShort": {
     "description": "M141"
   },

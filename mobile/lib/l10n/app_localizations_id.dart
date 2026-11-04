@@ -41,22 +41,22 @@ class AppLocalizationsId extends AppLocalizations {
       'Dengan melanjutkan, Anda mengonfirmasi usia Anda dan menyetujui kebijakan usia.';
 
   @override
-  String get homeKicker => 'RUMAH MEREK';
+  String get homeKicker => 'LOUNGE';
 
   @override
   String get homeTitle => 'ROYAL\nSMOKE';
 
   @override
-  String get homeBody => 'Panduan rumah merek dan para mitranya';
+  String get homeBody => 'Panduan lounge dan para mitranya';
 
   @override
-  String get houseTab => 'Rumah';
+  String get houseTab => 'Lounge';
 
   @override
-  String get houseKicker => 'Tentang rumah';
+  String get houseKicker => 'Tentang lounge';
 
   @override
-  String get houseTitle => 'Rumah\nRoyal Smoke';
+  String get houseTitle => 'Lounge\nRoyal Smoke';
 
   @override
   String get houseBody =>
@@ -99,7 +99,7 @@ class AppLocalizationsId extends AppLocalizations {
       'Kenali rumah ini melalui janji temu terlebih dahulu.';
 
   @override
-  String get visitKicker => 'Rumah Royal Smoke';
+  String get visitKicker => 'Lounge Royal Smoke';
 
   @override
   String get visitNewRequest => 'PERMINTAAN BARU';
@@ -122,7 +122,7 @@ class AppLocalizationsId extends AppLocalizations {
       'Royal Smoke adalah panduan informasi tentang rumah merek. Aplikasi ini ditujukan bagi orang berusia 21 tahun ke atas.';
 
   @override
-  String get contactAddress => 'Jl. Khreshchatyk No. 1, Kyiv';
+  String get contactAddress => '';
 
   @override
   String get contactPhone => '+380 00 000 00 00';
@@ -208,7 +208,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get aboutBody2 =>
-      'Di sini terkumpul mitra rumah ini, sejarah singkat manufaktur, karakter lini produk, dan kontak ruang di Kyiv. Tujuan aplikasi ini adalah membantu Anda memahami dengan tenang: siapa saja yang berada di sekitar rumah ini, apa yang membedakan setiap merek, dan bagaimana menghubungi kami.';
+      'Di sini terkumpul mitra rumah ini, sejarah singkat manufaktur, karakter lini produk, dan kontak ruang. Tujuan aplikasi ini adalah membantu Anda memahami dengan tenang: siapa saja yang berada di sekitar rumah ini, apa yang membedakan setiap merek, dan bagaimana menghubungi kami.';
 
   @override
   String get aboutBody3 =>
@@ -216,7 +216,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get aboutBody4 =>
-      'Jika Anda mencari alamat, jam buka, atau rute, buka “Kontak”. Jika tertarik pada mitra, buka bagian “Merek”. Dan untuk memahami ruang rumah itu sendiri, lihat “Rumah”.';
+      'Jika Anda mencari alamat, jam buka, atau rute, buka “Kontak”. Jika tertarik pada mitra, buka bagian “Merek”. Dan untuk memahami ruang rumah itu sendiri, lihat “Lounge”.';
 
   @override
   String get aboutBody5 =>

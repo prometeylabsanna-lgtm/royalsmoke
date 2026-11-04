@@ -40,7 +40,7 @@
   "@ageLegal": {
     "description": "M010"
   },
-  "homeKicker": "RUMAH MEREK",
+  "homeKicker": "LOUNGE",
   "@homeKicker": {
     "description": "M011"
   },
@@ -48,19 +48,19 @@
   "@homeTitle": {
     "description": "M012"
   },
-  "homeBody": "Panduan rumah merek dan para mitranya",
+  "homeBody": "Panduan lounge dan para mitranya",
   "@homeBody": {
     "description": "M013"
   },
-  "houseTab": "Rumah",
+  "houseTab": "Lounge",
   "@houseTab": {
     "description": "M015"
   },
-  "houseKicker": "Tentang rumah",
+  "houseKicker": "Tentang lounge",
   "@houseKicker": {
     "description": "M016"
   },
-  "houseTitle": "Rumah\nRoyal Smoke",
+  "houseTitle": "Lounge\nRoyal Smoke",
   "@houseTitle": {
     "description": "M017"
   },
@@ -112,7 +112,7 @@
   "@houseBlockVisitBody": {
     "description": "M029"
   },
-  "visitKicker": "Rumah Royal Smoke",
+  "visitKicker": "Lounge Royal Smoke",
   "@visitKicker": {
     "description": "M030"
   },
@@ -140,7 +140,7 @@
   "@appBlurb": {
     "description": "M036"
   },
-  "contactAddress": "Jl. Khreshchatyk No. 1, Kyiv",
+  "contactAddress": "",
   "@contactAddress": {
     "description": "M037"
   },
@@ -232,7 +232,7 @@
   "@aboutBody1": {
     "description": "M109"
   },
-  "aboutBody2": "Di sini terkumpul mitra rumah ini, sejarah singkat manufaktur, karakter lini produk, dan kontak ruang di Kyiv. Tujuan aplikasi ini adalah membantu Anda memahami dengan tenang: siapa saja yang berada di sekitar rumah ini, apa yang membedakan setiap merek, dan bagaimana menghubungi kami.",
+  "aboutBody2": "Di sini terkumpul mitra rumah ini, sejarah singkat manufaktur, karakter lini produk, dan kontak ruang. Tujuan aplikasi ini adalah membantu Anda memahami dengan tenang: siapa saja yang berada di sekitar rumah ini, apa yang membedakan setiap merek, dan bagaimana menghubungi kami.",
   "@aboutBody2": {
     "description": "M110"
   },
@@ -240,7 +240,7 @@
   "@aboutBody3": {
     "description": "M111"
   },
-  "aboutBody4": "Jika Anda mencari alamat, jam buka, atau rute, buka “Kontak”. Jika tertarik pada mitra, buka bagian “Merek”. Dan untuk memahami ruang rumah itu sendiri, lihat “Rumah”.",
+  "aboutBody4": "Jika Anda mencari alamat, jam buka, atau rute, buka “Kontak”. Jika tertarik pada mitra, buka bagian “Merek”. Dan untuk memahami ruang rumah itu sendiri, lihat “Lounge”.",
   "@aboutBody4": {
     "description": "M112"
   },

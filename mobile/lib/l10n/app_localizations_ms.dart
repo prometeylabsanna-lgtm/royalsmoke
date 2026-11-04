@@ -41,22 +41,22 @@ class AppLocalizationsMs extends AppLocalizations {
       'Dengan meneruskan, anda mengesahkan umur anda dan bersetuju dengan dasar umur.';
 
   @override
-  String get homeKicker => 'RUMAH JENAMA';
+  String get homeKicker => 'LOUNGE';
 
   @override
   String get homeTitle => 'ROYAL\nSMOKE';
 
   @override
-  String get homeBody => 'Panduan rumah jenama dan rakan kongsinya';
+  String get homeBody => 'Panduan lounge dan rakan kongsinya';
 
   @override
-  String get houseTab => 'Rumah';
+  String get houseTab => 'Lounge';
 
   @override
-  String get houseKicker => 'Tentang rumah';
+  String get houseKicker => 'Tentang lounge';
 
   @override
-  String get houseTitle => 'Rumah\nRoyal Smoke';
+  String get houseTitle => 'Lounge\nRoyal Smoke';
 
   @override
   String get houseBody =>
@@ -99,7 +99,7 @@ class AppLocalizationsMs extends AppLocalizations {
       'Kenali rumah ini melalui temu janji terlebih dahulu.';
 
   @override
-  String get visitKicker => 'Rumah Royal Smoke';
+  String get visitKicker => 'Lounge Royal Smoke';
 
   @override
   String get visitNewRequest => 'PERMINTAAN BARU';
@@ -122,7 +122,7 @@ class AppLocalizationsMs extends AppLocalizations {
       'Royal Smoke ialah panduan maklumat tentang rumah jenama. Aplikasi ini ditujukan untuk mereka yang berumur 21 tahun ke atas.';
 
   @override
-  String get contactAddress => '1, Jalan Khreshchatyk, Kyiv';
+  String get contactAddress => '';
 
   @override
   String get contactPhone => '+380 00 000 00 00';
@@ -208,7 +208,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get aboutBody2 =>
-      'Di sini dikumpulkan rakan kongsi rumah ini, sejarah ringkas kilang, ciri barisan produk dan maklumat hubungan ruang di Kyiv. Tujuan aplikasi ini ialah membantu anda memahami dengan tenang: siapa yang berada bersama rumah ini, apa yang membezakan setiap jenama dan bagaimana menghubungi kami.';
+      'Di sini dikumpulkan rakan kongsi rumah ini, sejarah ringkas kilang, ciri barisan produk dan maklumat hubungan ruang. Tujuan aplikasi ini ialah membantu anda memahami dengan tenang: siapa yang berada bersama rumah ini, apa yang membezakan setiap jenama dan bagaimana menghubungi kami.';
 
   @override
   String get aboutBody3 =>
@@ -216,7 +216,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get aboutBody4 =>
-      'Jika anda mencari alamat, waktu operasi atau arah laluan, buka “Hubungi kami”. Jika berminat dengan rakan kongsi, lihat bahagian “Jenama”. Untuk memahami ruang rumah itu sendiri, jenguk “Rumah”.';
+      'Jika anda mencari alamat, waktu operasi atau arah laluan, buka “Hubungi kami”. Jika berminat dengan rakan kongsi, lihat bahagian “Jenama”. Untuk memahami ruang rumah itu sendiri, jenguk “Lounge”.';
 
   @override
   String get aboutBody5 =>

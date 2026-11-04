@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -11,21 +10,13 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_chrome.dart';
 import '../../../shared/widgets/rs_insets.dart';
-import '../../../shared/widgets/rs_venue_map.dart';
 
 class ContactsScreen extends ConsumerWidget {
   const ContactsScreen({super.key});
 
-  Future<void> _openMaps(double lat, double lng, String address) async {
-    final encoded = Uri.encodeComponent(address);
-    final uri = defaultTargetPlatform == TargetPlatform.iOS
-        ? Uri.parse('maps://?ll=$lat,$lng&q=$encoded')
-        : Uri.parse('geo:$lat,$lng?q=$encoded');
-    await launchUrl(uri, mode: LaunchMode.externalApplication);
-  }
-
   Future<void> _call(String phone) async {
     final digits = phone.replaceAll(RegExp(r'[^\d+]'), '');
+    if (digits.isEmpty) return;
     final uri = Uri(scheme: 'tel', path: digits);
     await launchUrl(uri);
   }
@@ -34,6 +25,10 @@ class ContactsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final settings = watchContent(ref).settings;
+    final phone = settings.contactPhone.trim();
+    final hours = settings.contactHours.trim();
+    final hasDetails = phone.isNotEmpty || hours.isNotEmpty;
+
     return RsSafeBody(
       child: ListView(
         padding: const EdgeInsets.fromLTRB(
@@ -54,29 +49,19 @@ class ContactsScreen extends ConsumerWidget {
             },
           ),
           RsPageHeading(kicker: l10n.visitKicker, title: l10n.contacts),
-          const SizedBox(height: 12),
-          Text(settings.appBlurb, style: AppTextStyles.body),
-          const SizedBox(height: 20),
-          RsVenueMap(lat: settings.contactLat, lng: settings.contactLng),
-          const SizedBox(height: 20),
-          const Divider(height: 1, color: AppColors.hairline),
-          _ContactBlock(
-            label: l10n.addressLabel,
-            value: settings.contactAddress,
-            action: l10n.getDirections,
-            onAction: () => _openMaps(
-              settings.contactLat,
-              settings.contactLng,
-              settings.contactAddress,
-            ),
-          ),
-          _ContactBlock(
-            label: l10n.phoneLabel,
-            value: settings.contactPhone,
-            action: l10n.call,
-            onAction: () => _call(settings.contactPhone),
-          ),
-          _ContactBlock(label: l10n.hoursLabel, value: settings.contactHours),
+          if (hasDetails) ...[
+            const SizedBox(height: 20),
+            const Divider(height: 1, color: AppColors.hairline),
+            if (phone.isNotEmpty)
+              _ContactBlock(
+                label: l10n.phoneLabel,
+                value: phone,
+                action: l10n.call,
+                onAction: () => _call(phone),
+              ),
+            if (hours.isNotEmpty)
+              _ContactBlock(label: l10n.hoursLabel, value: hours),
+          ],
         ],
       ),
     );

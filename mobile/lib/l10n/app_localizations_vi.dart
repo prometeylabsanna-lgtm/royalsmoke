@@ -41,22 +41,22 @@ class AppLocalizationsVi extends AppLocalizations {
       'Khi tiếp tục, bạn xác nhận độ tuổi của mình và đồng ý với chính sách độ tuổi.';
 
   @override
-  String get homeKicker => 'NGÔI NHÀ THƯƠNG HIỆU';
+  String get homeKicker => 'LOUNGE';
 
   @override
   String get homeTitle => 'ROYAL\nSMOKE';
 
   @override
-  String get homeBody => 'Cẩm nang về ngôi nhà thương hiệu và các đối tác';
+  String get homeBody => 'Cẩm nang về lounge và các đối tác';
 
   @override
-  String get houseTab => 'Ngôi nhà';
+  String get houseTab => 'Lounge';
 
   @override
-  String get houseKicker => 'Về ngôi nhà';
+  String get houseKicker => 'Về lounge';
 
   @override
-  String get houseTitle => 'Ngôi nhà\nRoyal Smoke';
+  String get houseTitle => 'Lounge\nRoyal Smoke';
 
   @override
   String get houseBody =>
@@ -99,7 +99,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Làm quen với ngôi nhà theo lịch hẹn trước.';
 
   @override
-  String get visitKicker => 'Ngôi nhà Royal Smoke';
+  String get visitKicker => 'Lounge Royal Smoke';
 
   @override
   String get visitNewRequest => 'YÊU CẦU MỚI';
@@ -122,7 +122,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Royal Smoke là cẩm nang thông tin về ngôi nhà thương hiệu. Ứng dụng dành cho người từ 21 tuổi trở lên.';
 
   @override
-  String get contactAddress => '1 phố Khreshchatyk, Kyiv';
+  String get contactAddress => '';
 
   @override
   String get contactPhone => '+380 00 000 00 00';
@@ -208,7 +208,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get aboutBody2 =>
-      'Tại đây tập hợp các đối tác của ngôi nhà, lịch sử ngắn gọn của các xưởng, đặc tính của các dòng sản phẩm và thông tin liên hệ của không gian tại Kyiv. Mục đích của ứng dụng là giúp bạn định hướng một cách thoải mái: ai đồng hành cùng ngôi nhà, điều gì làm nên nét riêng của từng thương hiệu và cách liên hệ với chúng tôi.';
+      'Tại đây tập hợp các đối tác của ngôi nhà, lịch sử ngắn gọn của các xưởng, đặc tính của các dòng sản phẩm và thông tin liên hệ của không gian. Mục đích của ứng dụng là giúp bạn định hướng một cách thoải mái: ai đồng hành cùng ngôi nhà, điều gì làm nên nét riêng của từng thương hiệu và cách liên hệ với chúng tôi.';
 
   @override
   String get aboutBody3 =>
@@ -216,7 +216,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get aboutBody4 =>
-      'Nếu bạn đang tìm địa chỉ, giờ mở cửa hoặc đường đi, hãy mở mục “Liên hệ”. Nếu quan tâm đến các đối tác, hãy vào mục “Thương hiệu”. Còn để hiểu chính không gian của ngôi nhà, hãy xem mục “Ngôi nhà”.';
+      'Nếu bạn đang tìm địa chỉ, giờ mở cửa hoặc đường đi, hãy mở mục “Liên hệ”. Nếu quan tâm đến các đối tác, hãy vào mục “Thương hiệu”. Còn để hiểu chính không gian của ngôi nhà, hãy xem mục “Lounge”.';
 
   @override
   String get aboutBody5 =>

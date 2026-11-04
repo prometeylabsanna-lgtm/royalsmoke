@@ -40,7 +40,7 @@
   "@ageLegal": {
     "description": "M010"
   },
-  "homeKicker": "RUMAH JENAMA",
+  "homeKicker": "LOUNGE",
   "@homeKicker": {
     "description": "M011"
   },
@@ -48,19 +48,19 @@
   "@homeTitle": {
     "description": "M012"
   },
-  "homeBody": "Panduan rumah jenama dan rakan kongsinya",
+  "homeBody": "Panduan lounge dan rakan kongsinya",
   "@homeBody": {
     "description": "M013"
   },
-  "houseTab": "Rumah",
+  "houseTab": "Lounge",
   "@houseTab": {
     "description": "M015"
   },
-  "houseKicker": "Tentang rumah",
+  "houseKicker": "Tentang lounge",
   "@houseKicker": {
     "description": "M016"
   },
-  "houseTitle": "Rumah\nRoyal Smoke",
+  "houseTitle": "Lounge\nRoyal Smoke",
   "@houseTitle": {
     "description": "M017"
   },
@@ -112,7 +112,7 @@
   "@houseBlockVisitBody": {
     "description": "M029"
   },
-  "visitKicker": "Rumah Royal Smoke",
+  "visitKicker": "Lounge Royal Smoke",
   "@visitKicker": {
     "description": "M030"
   },
@@ -140,7 +140,7 @@
   "@appBlurb": {
     "description": "M036"
   },
-  "contactAddress": "1, Jalan Khreshchatyk, Kyiv",
+  "contactAddress": "",
   "@contactAddress": {
     "description": "M037"
   },
@@ -232,7 +232,7 @@
   "@aboutBody1": {
     "description": "M109"
   },
-  "aboutBody2": "Di sini dikumpulkan rakan kongsi rumah ini, sejarah ringkas kilang, ciri barisan produk dan maklumat hubungan ruang di Kyiv. Tujuan aplikasi ini ialah membantu anda memahami dengan tenang: siapa yang berada bersama rumah ini, apa yang membezakan setiap jenama dan bagaimana menghubungi kami.",
+  "aboutBody2": "Di sini dikumpulkan rakan kongsi rumah ini, sejarah ringkas kilang, ciri barisan produk dan maklumat hubungan ruang. Tujuan aplikasi ini ialah membantu anda memahami dengan tenang: siapa yang berada bersama rumah ini, apa yang membezakan setiap jenama dan bagaimana menghubungi kami.",
   "@aboutBody2": {
     "description": "M110"
   },
@@ -240,7 +240,7 @@
   "@aboutBody3": {
     "description": "M111"
   },
-  "aboutBody4": "Jika anda mencari alamat, waktu operasi atau arah laluan, buka “Hubungi kami”. Jika berminat dengan rakan kongsi, lihat bahagian “Jenama”. Untuk memahami ruang rumah itu sendiri, jenguk “Rumah”.",
+  "aboutBody4": "Jika anda mencari alamat, waktu operasi atau arah laluan, buka “Hubungi kami”. Jika berminat dengan rakan kongsi, lihat bahagian “Jenama”. Untuk memahami ruang rumah itu sendiri, jenguk “Lounge”.",
   "@aboutBody4": {
     "description": "M112"
   },

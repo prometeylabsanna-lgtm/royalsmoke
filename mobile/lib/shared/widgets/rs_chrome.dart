@@ -152,7 +152,7 @@ class RsSeal extends StatelessWidget {
       height: size,
       child: ClipOval(
         child: Image.asset(
-          'assets/images/branding/seal.jpg',
+          'assets/images/mark/seal.jpg',
           fit: BoxFit.cover,
           errorBuilder: (_, _, _) => Container(
             color: AppColors.coffee,

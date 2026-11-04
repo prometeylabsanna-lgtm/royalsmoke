@@ -40,7 +40,7 @@
   "@ageLegal": {
     "description": "M010"
   },
-  "homeKicker": "NGÔI NHÀ THƯƠNG HIỆU",
+  "homeKicker": "LOUNGE",
   "@homeKicker": {
     "description": "M011"
   },
@@ -48,19 +48,19 @@
   "@homeTitle": {
     "description": "M012"
   },
-  "homeBody": "Cẩm nang về ngôi nhà thương hiệu và các đối tác",
+  "homeBody": "Cẩm nang về lounge và các đối tác",
   "@homeBody": {
     "description": "M013"
   },
-  "houseTab": "Ngôi nhà",
+  "houseTab": "Lounge",
   "@houseTab": {
     "description": "M015"
   },
-  "houseKicker": "Về ngôi nhà",
+  "houseKicker": "Về lounge",
   "@houseKicker": {
     "description": "M016"
   },
-  "houseTitle": "Ngôi nhà\nRoyal Smoke",
+  "houseTitle": "Lounge\nRoyal Smoke",
   "@houseTitle": {
     "description": "M017"
   },
@@ -112,7 +112,7 @@
   "@houseBlockVisitBody": {
     "description": "M029"
   },
-  "visitKicker": "Ngôi nhà Royal Smoke",
+  "visitKicker": "Lounge Royal Smoke",
   "@visitKicker": {
     "description": "M030"
   },
@@ -140,7 +140,7 @@
   "@appBlurb": {
     "description": "M036"
   },
-  "contactAddress": "1 phố Khreshchatyk, Kyiv",
+  "contactAddress": "",
   "@contactAddress": {
     "description": "M037"
   },
@@ -232,7 +232,7 @@
   "@aboutBody1": {
     "description": "M109"
   },
-  "aboutBody2": "Tại đây tập hợp các đối tác của ngôi nhà, lịch sử ngắn gọn của các xưởng, đặc tính của các dòng sản phẩm và thông tin liên hệ của không gian tại Kyiv. Mục đích của ứng dụng là giúp bạn định hướng một cách thoải mái: ai đồng hành cùng ngôi nhà, điều gì làm nên nét riêng của từng thương hiệu và cách liên hệ với chúng tôi.",
+  "aboutBody2": "Tại đây tập hợp các đối tác của ngôi nhà, lịch sử ngắn gọn của các xưởng, đặc tính của các dòng sản phẩm và thông tin liên hệ của không gian. Mục đích của ứng dụng là giúp bạn định hướng một cách thoải mái: ai đồng hành cùng ngôi nhà, điều gì làm nên nét riêng của từng thương hiệu và cách liên hệ với chúng tôi.",
   "@aboutBody2": {
     "description": "M110"
   },
@@ -240,7 +240,7 @@
   "@aboutBody3": {
     "description": "M111"
   },
-  "aboutBody4": "Nếu bạn đang tìm địa chỉ, giờ mở cửa hoặc đường đi, hãy mở mục “Liên hệ”. Nếu quan tâm đến các đối tác, hãy vào mục “Thương hiệu”. Còn để hiểu chính không gian của ngôi nhà, hãy xem mục “Ngôi nhà”.",
+  "aboutBody4": "Nếu bạn đang tìm địa chỉ, giờ mở cửa hoặc đường đi, hãy mở mục “Liên hệ”. Nếu quan tâm đến các đối tác, hãy vào mục “Thương hiệu”. Còn để hiểu chính không gian của ngôi nhà, hãy xem mục “Lounge”.",
   "@aboutBody4": {
     "description": "M112"
   },

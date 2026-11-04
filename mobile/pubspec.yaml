@@ -1,5 +1,5 @@
 name: royal_smoke
-description: "RoyalSmoke — лаунж і клуб."
+description: "RoyalSmoke — лаунж із записом на візит."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -40,8 +40,6 @@ dependencies:
   flutter_riverpod: ^3.3.2
   go_router: ^17.2.3
   flutter_svg: ^2.3.0
-  flutter_map: ^8.3.2
-  latlong2: ^0.10.1
   url_launcher: ^6.3.2
   http: ^1.5.0
   shared_preferences: ^2.5.3
@@ -62,11 +60,11 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: assets/images/branding/app_icon_master.png
+  image_path: assets/images/mark/app_icon_master.png
   remove_alpha_ios: true
   background_color_ios: "#100D0C"
   adaptive_icon_background: "#100D0C"
-  adaptive_icon_foreground: assets/images/branding/app_icon_master.png
+  adaptive_icon_foreground: assets/images/mark/app_icon_master.png
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -81,7 +79,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/branding/
+    - assets/images/mark/
     - assets/images/home/
 
   fonts:

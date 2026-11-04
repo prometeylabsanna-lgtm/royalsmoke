@@ -63,15 +63,6 @@ abstract final class AppTextStyles {
         color: AppColors.seashell,
       );
 
-  static TextStyle get brandName => TextStyle(
-        fontFamily: family,
-        fontSize: 15,
-        fontWeight: FontWeight.w600,
-        height: 1.2,
-        letterSpacing: _track(15, 0.06),
-        color: AppColors.seashell,
-      );
-
   static TextStyle get country => TextStyle(
         fontFamily: family,
         fontSize: 11,

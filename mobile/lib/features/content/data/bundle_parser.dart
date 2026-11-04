@@ -6,7 +6,7 @@ String _heroAsset(String key) => switch (key) {
       _ => '',
     };
 
-/// Поле `brands` у відповіді навмисно не читається: назви, логотипи й історії не показуємо.
+/// Каталог у відповіді навмисно не читається: назви, логотипи й історії не показуємо.
 AppContentBundle parseAppBundle(Map<String, dynamic> json, {DateTime? updatedAt}) {
   final settingsJson = (json['settings'] as Map?)?.cast<String, dynamic>() ?? {};
   final screensJson = (json['screens'] as Map?)?.cast<String, dynamic>() ?? {};
@@ -61,8 +61,8 @@ AppContentBundle parseAppBundle(Map<String, dynamic> json, {DateTime? updatedAt}
       contactAddress: (settingsJson['contact_address'] ?? '').toString(),
       contactPhone: (settingsJson['contact_phone'] ?? '').toString(),
       contactHours: (settingsJson['contact_hours'] ?? '').toString(),
-      contactLat: double.tryParse('${settingsJson['contact_lat']}') ?? 50.4501,
-      contactLng: double.tryParse('${settingsJson['contact_lng']}') ?? 30.5226,
+      contactLat: double.tryParse('${settingsJson['contact_lat']}') ?? 0,
+      contactLng: double.tryParse('${settingsJson['contact_lng']}') ?? 0,
       appSealUrl: (settingsJson['app_seal'] ?? '').toString(),
     ),
     screens: screens,

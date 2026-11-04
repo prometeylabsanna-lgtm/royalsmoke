@@ -75,7 +75,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                               child: RsCoverImage(
                                 imageUrl: sealUrl,
                                 assetFallback:
-                                    'assets/images/branding/app_icon_master.png',
+                                    'assets/images/mark/app_icon_master.png',
                               ),
                             ),
                           )

@@ -11,8 +11,12 @@ void main() {
     final en = lookupAppLocalizations(const Locale('en'));
     expect(uk.termsBody2, contains('допомагають'));
     expect(uk.termsBody2.contains('допомогають'), isFalse);
-    expect(uk.appBlurb, contains('дому бренду'));
-    expect(en.appBlurb, contains('brand house'));
+    expect(uk.houseTab, 'Лаунж');
+    expect(en.houseTab, 'Lounge');
+    expect(uk.contactAddress, isEmpty);
+    expect(en.contactAddress, isEmpty);
+    expect(uk.appBlurb, contains('лаунжу'));
+    expect(en.appBlurb, contains('lounge'));
     expect(uk.aboutBody3, contains('він розповідає'));
     expect(en.aboutBody3, contains('covers the culture'));
     expect(uk.visitTitle, 'Візит');
@@ -37,7 +41,8 @@ void main() {
 
     await tester.tap(find.text('МЕНІ Є 21 РІК'));
     await tester.pumpAndSettle();
-    expect(find.text('Довідник дому бренду та партнерів'), findsOneWidget);
+    expect(find.text('Довідник лаунжу та партнерів'), findsOneWidget);
+    expect(find.text('ЛАУНЖ'), findsWidgets);
     expect(find.text('ЗАБРОНЮВАТИ ВІЗИТ'), findsOneWidget);
     expect(find.text('Бренди'), findsNothing);
 
@@ -58,7 +63,7 @@ void main() {
     );
     await tester.pump();
     expect(find.text('OPEN'), findsOneWidget);
-    expect(find.text('BRAND GUIDE'), findsOneWidget);
+    expect(find.text('LOUNGE'), findsOneWidget);
 
     await tester.tap(find.text('OPEN'));
     await tester.pumpAndSettle();

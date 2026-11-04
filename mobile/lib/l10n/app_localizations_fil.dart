@@ -9,7 +9,7 @@ class AppLocalizationsFil extends AppLocalizations {
   AppLocalizationsFil([String locale = 'fil']) : super(locale);
 
   @override
-  String get splashKicker => 'GABAY SA BRAND';
+  String get splashKicker => 'LOUNGE';
 
   @override
   String get splashTitle => 'ROYAL SMOKE';
@@ -28,7 +28,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get ageBody =>
-      'Ang app ay isang gabay ng impormasyon tungkol sa mga brand. Ang nilalaman nito ay para lamang sa mga taong 21 taong gulang pataas.';
+      'Ang app ay isang gabay ng impormasyon. Ang nilalaman nito ay para lamang sa mga taong 21 taong gulang pataas.';
 
   @override
   String get ageExit => 'LUMABAS';
@@ -41,26 +41,26 @@ class AppLocalizationsFil extends AppLocalizations {
       'Sa pagpapatuloy, kinukumpirma mo ang iyong edad at sumasang-ayon ka sa patakaran sa edad.';
 
   @override
-  String get homeKicker => 'BAHAY NG BRAND';
+  String get homeKicker => 'LOUNGE';
 
   @override
   String get homeTitle => 'ROYAL\nSMOKE';
 
   @override
-  String get homeBody => 'Gabay sa bahay ng brand at mga katuwang nito';
+  String get homeBody => 'Gabay sa lounge at mga katuwang nito';
 
   @override
-  String get houseTab => 'Bahay';
+  String get houseTab => 'Lounge';
 
   @override
-  String get houseKicker => 'Tungkol sa bahay';
+  String get houseKicker => 'Tungkol sa lounge';
 
   @override
-  String get houseTitle => 'Bahay ng\nRoyal Smoke';
+  String get houseTitle => 'Lounge ng\nRoyal Smoke';
 
   @override
   String get houseBody =>
-      'Ang Royal Smoke ay isang bahay na kumakatawan sa mga brand ng pamilya na may mahabang kasaysayan sa Ukraine. Dito, malalaman mo ang pinagmulan ng mga brand at makikilala ang koleksyon sa pagbisita.';
+      'Ang Royal Smoke ay isang bahay na kumakatawan sa mga pamilya na may mahabang kasaysayan sa Ukraine. Dito, malalaman mo ang pinagmulan at makikilala ang koleksyon sa pagbisita.';
 
   @override
   String get bookVisit => 'Mag-book ng pagbisita';
@@ -76,7 +76,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get houseBlockServiceBody =>
-      'Mga konsultasyon tungkol sa mga brand, kasaysayan, at pag-iimbak.';
+      'Mga konsultasyon tungkol sa kasaysayan, at pag-iimbak.';
 
   @override
   String get houseBlock2Index => '02';
@@ -99,7 +99,7 @@ class AppLocalizationsFil extends AppLocalizations {
       'Kilalanin ang bahay sa pamamagitan ng paunang appointment.';
 
   @override
-  String get visitKicker => 'Bahay ng Royal Smoke';
+  String get visitKicker => 'Lounge ng Royal Smoke';
 
   @override
   String get visitNewRequest => 'BAGONG KAHILINGAN';
@@ -119,10 +119,10 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get appBlurb =>
-      'Ang Royal Smoke ay isang gabay ng impormasyon tungkol sa bahay ng brand. Ang app ay para sa mga may edad na 21 pataas.';
+      'Ang Royal Smoke ay isang gabay ng impormasyon tungkol sa lounge. Ang app ay para sa mga may edad na 21 pataas.';
 
   @override
-  String get contactAddress => '1 Khreshchatyk St., Kyiv';
+  String get contactAddress => '';
 
   @override
   String get contactPhone => '+380 00 000 00 00';
@@ -139,7 +139,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get privacyBody2 =>
-      'Ang Royal Smoke ay isang gabay ng impormasyon tungkol sa bahay ng brand. Kinokolekta lang namin ang pinakamababang teknikal na data na kailangan para maging matatag ang serbisyo: halimbawa, mga brand na lokal na naka-save sa iyong device, pangunahing impormasyon ng session, at mga teknikal na log para sa pagsusuri ng mga pagkabigo.';
+      'Ang Royal Smoke ay isang gabay ng impormasyon tungkol sa lounge. Kinokolekta lang namin ang pinakamababang teknikal na data na kailangan para maging matatag ang serbisyo: halimbawa, mga datos na lokal na naka-save sa iyong device, pangunahing impormasyon ng session, at mga teknikal na log para sa pagsusuri ng mga pagkabigo.';
 
   @override
   String get privacyBody3 =>
@@ -162,7 +162,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get termsBody2 =>
-      'Ibinibigay ang gabay para sa layuning pang-impormasyon: paglalarawan ng mga brand ng mga katuwang, kasaysayan ng bahay, mga linya, at mga contact. Tinutulungan ng mga materyal na ito na maunawaan ang mundo ng mga katuwang at ang kapaligiran ng espasyo.';
+      'Ibinibigay ang gabay para sa layuning pang-impormasyon: paglalarawan ng mga katuwang, kasaysayan ng bahay, mga linya, at mga contact. Tinutulungan ng mga materyal na ito na maunawaan ang mundo ng mga katuwang at ang kapaligiran ng espasyo.';
 
   @override
   String get termsBody3 =>
@@ -185,7 +185,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get agePolicyBody2 =>
-      'Bago pumasok sa mga pangunahing seksyon, hihingin ng app ang kumpirmasyon ng edad. Ito ay sapilitang kondisyon para ma-access ang mga materyal tungkol sa mga brand, sa bahay, at kaugnay na nilalaman. Kung wala ka pang 21 taong gulang, mangyaring umalis sa app.';
+      'Bago pumasok sa mga pangunahing seksyon, hihingin ng app ang kumpirmasyon ng edad. Ito ay sapilitang kondisyon para ma-access ang mga materyal tungkol sa bahay at kaugnay na nilalaman. Kung wala ka pang 21 taong gulang, mangyaring umalis sa app.';
 
   @override
   String get agePolicyBody3 =>
@@ -204,11 +204,11 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get aboutBody1 =>
-      'Ang Royal Smoke ay isang bahay ng brand at digital na gabay sa mundo nito.';
+      'Ang Royal Smoke ay isang lounge at digital na gabay sa mundo nito.';
 
   @override
   String get aboutBody2 =>
-      'Dito makikita ang mga katuwang ng bahay, maiikling kasaysayan ng mga pagawaan, katangian ng mga linya, at mga contact ng espasyo sa Kyiv. Layunin ng app na tulungan kang makaunawa nang mahinahon: sino ang kasama ng bahay, ano ang nagpapaiba sa bawat brand, at paano kami makokontak.';
+      'Dito makikita ang mga katuwang ng bahay, maiikling kasaysayan ng mga pagawaan, katangian ng mga linya, at mga contact ng espasyo. Layunin ng app na tulungan kang makaunawa nang mahinahon: sino ang kasama ng bahay, ano ang nagpapaiba sa bawat katuwang, at paano kami makokontak.';
 
   @override
   String get aboutBody3 =>
@@ -216,18 +216,17 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get aboutBody4 =>
-      'Kung hinahanap mo ang address, oras ng bukas, o ruta, buksan ang “Makipag-ugnayan”. Kung interesado ka sa mga katuwang, pumunta sa seksyong “Mga brand”. At para maunawaan ang mismong espasyo ng bahay, silipin ang “Bahay”.';
+      'Kung hinahanap mo ang address, oras ng bukas, o ruta, buksan ang “Makipag-ugnayan”. Kung interesado ka sa mga katuwang, pumunta sa seksyong “Lounge”. At para maunawaan ang mismong espasyo ng bahay, silipin ang “Lounge”.';
 
   @override
   String get aboutBody5 =>
-      'Salamat sa pagpili sa Royal Smoke bilang lugar upang makilala ang mga brand na sinusuportahan namin.';
+      'Salamat sa pagpili sa Royal Smoke bilang lugar upang makilala kami.';
 
   @override
   String get appName => 'Royal Smoke';
 
   @override
-  String get ageBodyShort =>
-      'Ang app ay isang gabay ng impormasyon tungkol sa mga brand.';
+  String get ageBodyShort => 'Ang app ay isang gabay ng impormasyon.';
 
   @override
   String get visitNameLabel => 'Pangalan';
@@ -280,7 +279,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get houseBodyShort =>
-      'Ang Royal Smoke ay isang bahay na kumakatawan sa mga brand ng pamilya na may mahabang kasaysayan sa Ukraine.';
+      'Ang Royal Smoke ay isang bahay na kumakatawan sa mga pamilya na may mahabang kasaysayan sa Ukraine.';
 
   @override
   String get documentFallback => 'Dokumento';

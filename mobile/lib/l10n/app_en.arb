@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "splashKicker": "BRAND GUIDE",
+  "splashKicker": "LOUNGE",
   "@splashKicker": {
     "description": "M001"
   },
@@ -24,7 +24,7 @@
   "@ageBadge": {
     "description": "M006"
   },
-  "ageBody": "The app is an informational guide to brands. Its content is intended exclusively for people who are 21 or older.",
+  "ageBody": "The app is an informational guide. Its content is intended exclusively for people who are 21 or older.",
   "@ageBody": {
     "description": "M007"
   },
@@ -40,7 +40,7 @@
   "@ageLegal": {
     "description": "M010"
   },
-  "homeKicker": "BRAND HOUSE",
+  "homeKicker": "LOUNGE",
   "@homeKicker": {
     "description": "M011"
   },
@@ -48,23 +48,23 @@
   "@homeTitle": {
     "description": "M012"
   },
-  "homeBody": "Guide to the brand house and its partners",
+  "homeBody": "Guide to the lounge and its partners",
   "@homeBody": {
     "description": "M013"
   },
-  "houseTab": "House",
+  "houseTab": "Lounge",
   "@houseTab": {
     "description": "M015"
   },
-  "houseKicker": "About the house",
+  "houseKicker": "About the lounge",
   "@houseKicker": {
     "description": "M016"
   },
-  "houseTitle": "House of\nRoyal Smoke",
+  "houseTitle": "Lounge of\nRoyal Smoke",
   "@houseTitle": {
     "description": "M017"
   },
-  "houseBody": "Royal Smoke is a house that represents family brands with a long history in Ukraine. Here you can learn about the origins of the brands and get acquainted with the collection during a visit.",
+  "houseBody": "Royal Smoke is a house that represents families with a long history in Ukraine. Here you can learn about the origins and get acquainted with the collection during a visit.",
   "@houseBody": {
     "description": "M018"
   },
@@ -84,7 +84,7 @@
   "@houseBlockServiceTitle": {
     "description": "M022"
   },
-  "houseBlockServiceBody": "Consultations on brands, history, and storage.",
+  "houseBlockServiceBody": "Consultations on history, and storage.",
   "@houseBlockServiceBody": {
     "description": "M023"
   },
@@ -112,7 +112,7 @@
   "@houseBlockVisitBody": {
     "description": "M029"
   },
-  "visitKicker": "House of Royal Smoke",
+  "visitKicker": "Lounge of Royal Smoke",
   "@visitKicker": {
     "description": "M030"
   },
@@ -136,11 +136,11 @@
   "@appVersion": {
     "description": "M035"
   },
-  "appBlurb": "Royal Smoke is an informational guide to the brand house. The app is intended for people aged 21+.",
+  "appBlurb": "Royal Smoke is an informational guide to the lounge. The app is intended for people aged 21+.",
   "@appBlurb": {
     "description": "M036"
   },
-  "contactAddress": "1 Khreshchatyk St., Kyiv",
+  "contactAddress": "",
   "@contactAddress": {
     "description": "M037"
   },
@@ -160,7 +160,7 @@
   "@privacyBody1": {
     "description": "M091"
   },
-  "privacyBody2": "Royal Smoke is an informational guide to the brand house. We collect only the minimum technical data needed for the service to run reliably: for example, brands saved locally on your device, basic session information, and technical logs for diagnosing failures.",
+  "privacyBody2": "Royal Smoke is an informational guide to the lounge. We collect only the minimum technical data needed for the service to run reliably: for example, data saved locally on your device, basic session information, and technical logs for diagnosing failures.",
   "@privacyBody2": {
     "description": "M092"
   },
@@ -184,7 +184,7 @@
   "@termsBody1": {
     "description": "M097"
   },
-  "termsBody2": "The guide is provided for informational purposes: descriptions of partner brands, the history of the house, product lines, and contacts. The materials help you find your way around the world of our partners and the atmosphere of the space.",
+  "termsBody2": "The guide is provided for informational purposes: descriptions of partners, the history of the house, product lines, and contacts. The materials help you find your way around the world of our partners and the atmosphere of the space.",
   "@termsBody2": {
     "description": "M098"
   },
@@ -208,7 +208,7 @@
   "@agePolicyBody1": {
     "description": "M103"
   },
-  "agePolicyBody2": "Before entering the main sections, the app asks you to confirm your age. This is a mandatory condition for accessing materials about the brands, the house, and related content. If you are not yet 21, please leave the app.",
+  "agePolicyBody2": "Before entering the main sections, the app asks you to confirm your age. This is a mandatory condition for accessing materials about the house and related content. If you are not yet 21, please leave the app.",
   "@agePolicyBody2": {
     "description": "M104"
   },
@@ -228,11 +228,11 @@
   "@aboutTitle": {
     "description": "M108"
   },
-  "aboutBody1": "Royal Smoke is a brand house and a digital guide to its world.",
+  "aboutBody1": "Royal Smoke is a lounge and a digital guide to its world.",
   "@aboutBody1": {
     "description": "M109"
   },
-  "aboutBody2": "Here you will find the house's partners, short histories of the manufactories, the character of the lines, and the contacts of the space in Kyiv. The purpose of the app is to help you find your bearings calmly: who stands alongside the house, what sets each brand apart, and how to reach us.",
+  "aboutBody2": "Here you will find the house's partners, short histories of the manufactories, the character of the lines, and the contacts of the space. The purpose of the app is to help you find your bearings calmly: who stands alongside the house, what sets each partner apart, and how to reach us.",
   "@aboutBody2": {
     "description": "M110"
   },
@@ -240,11 +240,11 @@
   "@aboutBody3": {
     "description": "M111"
   },
-  "aboutBody4": "If you are looking for the address, opening hours, or directions, open “Contacts”. If you are interested in the partners, go to the “Brands” section. And to understand the space of the house itself, take a look at “House”.",
+  "aboutBody4": "If you are looking for the address, opening hours, or directions, open “Contacts”. If you are interested in the partners, go to the “Lounge” section. And to understand the space of the house itself, take a look at “Lounge”.",
   "@aboutBody4": {
     "description": "M112"
   },
-  "aboutBody5": "Thank you for choosing Royal Smoke as a place to get to know the brands we support.",
+  "aboutBody5": "Thank you for choosing Royal Smoke as a place to get to know us.",
   "@aboutBody5": {
     "description": "M113"
   },
@@ -252,7 +252,7 @@
   "@appName": {
     "description": "M114"
   },
-  "ageBodyShort": "The app is an informational guide to brands.",
+  "ageBodyShort": "The app is an informational guide.",
   "@ageBodyShort": {
     "description": "M115"
   },
@@ -320,7 +320,7 @@
   "@hoursLabel": {
     "description": "M139"
   },
-  "houseBodyShort": "Royal Smoke is a house that represents family brands with a long history in Ukraine.",
+  "houseBodyShort": "Royal Smoke is a house that represents families with a long history in Ukraine.",
   "@houseBodyShort": {
     "description": "M141"
   },

@@ -1,4 +1,3 @@
-import 'package:royal_smoke/core/constants/app_copy.dart';
 import 'package:royal_smoke/features/content/domain/app_content.dart';
 import 'package:royal_smoke/l10n/app_localizations.dart';
 
@@ -13,8 +12,8 @@ AppContentBundle buildFallbackBundle(AppLocalizations t) {
       contactAddress: t.contactAddress,
       contactPhone: t.contactPhone,
       contactHours: t.contactHours,
-      contactLat: AppCopy.contactLat,
-      contactLng: AppCopy.contactLng,
+      contactLat: 0,
+      contactLng: 0,
     ),
     screens: {
       'splash': AppScreenContent(

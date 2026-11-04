@@ -9,7 +9,7 @@ class AppLocalizationsUk extends AppLocalizations {
   AppLocalizationsUk([String locale = 'uk']) : super(locale);
 
   @override
-  String get splashKicker => 'ДОВІДНИК БРЕНДУ';
+  String get splashKicker => 'ЛАУНЖ';
 
   @override
   String get splashTitle => 'ROYAL SMOKE';
@@ -28,7 +28,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get ageBody =>
-      'Застосунок є інформаційним довідником брендів. Вміст призначений виключно для осіб, яким виповнилося 21 рік.';
+      'Застосунок є інформаційним довідником. Вміст призначений виключно для осіб, яким виповнилося 21 рік.';
 
   @override
   String get ageExit => 'ВИЙТИ';
@@ -41,26 +41,26 @@ class AppLocalizationsUk extends AppLocalizations {
       'Продовжуючи, ви підтверджуєте свій вік і погоджуєтеся з віковою політикою.';
 
   @override
-  String get homeKicker => 'ДІМ БРЕНДУ';
+  String get homeKicker => 'ЛАУНЖ';
 
   @override
   String get homeTitle => 'ROYAL\nSMOKE';
 
   @override
-  String get homeBody => 'Довідник дому бренду та партнерів';
+  String get homeBody => 'Довідник лаунжу та партнерів';
 
   @override
-  String get houseTab => 'Дім';
+  String get houseTab => 'Лаунж';
 
   @override
-  String get houseKicker => 'Про дім';
+  String get houseKicker => 'Про лаунж';
 
   @override
-  String get houseTitle => 'Дім\nRoyal Smoke';
+  String get houseTitle => 'Лаунж\nRoyal Smoke';
 
   @override
   String get houseBody =>
-      'Royal Smoke — дім, що представляє в Україні родинні бренди з багаторічною історією. Тут можна дізнатися про походження брендів і познайомитися з колекцією під час візиту.';
+      'Royal Smoke — дім, що представляє в Україні родинні традиції з багаторічною історією. Тут можна дізнатися про походження і познайомитися з колекцією під час візиту.';
 
   @override
   String get bookVisit => 'Забронювати візит';
@@ -76,7 +76,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get houseBlockServiceBody =>
-      'Консультації щодо брендів, історії та зберігання.';
+      'Консультації щодо історії та зберігання.';
 
   @override
   String get houseBlock2Index => '02';
@@ -98,7 +98,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get houseBlockVisitBody => 'Знайомство з домом за попереднім записом.';
 
   @override
-  String get visitKicker => 'Дім Royal Smoke';
+  String get visitKicker => 'Лаунж Royal Smoke';
 
   @override
   String get visitNewRequest => 'НОВИЙ ЗАПИТ';
@@ -118,10 +118,10 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get appBlurb =>
-      'Royal Smoke — інформаційний довідник дому бренду. Застосунок призначений для осіб 21+.';
+      'Royal Smoke — інформаційний довідник лаунжу. Застосунок призначений для осіб 21+.';
 
   @override
-  String get contactAddress => 'вул. Хрещатик, 1, Київ';
+  String get contactAddress => '';
 
   @override
   String get contactPhone => '+380 00 000 00 00';
@@ -138,7 +138,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get privacyBody2 =>
-      'Royal Smoke — інформаційний довідник дому бренду. Ми збираємо лише мінімальні технічні дані, потрібні для стабільної роботи сервісу: наприклад, локально збережені бренди на вашому пристрої, базові відомості про сесію та технічні журнали для діагностики збоїв.';
+      'Royal Smoke — інформаційний довідник лаунжу. Ми збираємо лише мінімальні технічні дані, потрібні для стабільної роботи сервісу: наприклад, локально збережені дані на вашому пристрої, базові відомості про сесію та технічні журнали для діагностики збоїв.';
 
   @override
   String get privacyBody3 =>
@@ -161,7 +161,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get termsBody2 =>
-      'Довідник надається з інформаційною метою: опис брендів-партнерів, історії дому, лінійок і контактів. Матеріали допомагають зорієнтуватися у світі партнерів і атмосфері простору.';
+      'Довідник надається з інформаційною метою: опис партнерів, історії дому, лінійок і контактів. Матеріали допомагають зорієнтуватися у світі партнерів і атмосфері простору.';
 
   @override
   String get termsBody3 =>
@@ -184,7 +184,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get agePolicyBody2 =>
-      'Перед входом до основних розділів застосунок запитує підтвердження віку. Це обовʼязкова умова доступу до матеріалів про бренди, дім і повʼязаний контент. Якщо вам ще немає 21 року — будь ласка, залиште застосунок.';
+      'Перед входом до основних розділів застосунок запитує підтвердження віку. Це обовʼязкова умова доступу до матеріалів про дім і повʼязаний контент. Якщо вам ще немає 21 року — будь ласка, залиште застосунок.';
 
   @override
   String get agePolicyBody3 =>
@@ -203,11 +203,11 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get aboutBody1 =>
-      'Royal Smoke — дім бренду і цифровий довідник його світу.';
+      'Royal Smoke — лаунж і цифровий довідник його світу.';
 
   @override
   String get aboutBody2 =>
-      'Тут зібрано партнерів дому, короткі історії мануфактур, характер лінійок і контакти простору в Києві. Мета застосунку — допомогти спокійно зорієнтуватися: хто поруч із домом, чим вирізняється кожен бренд і як до нас звернутися.';
+      'Тут зібрано партнерів дому, короткі історії мануфактур, характер лінійок і контакти простору. Мета застосунку — допомогти спокійно зорієнтуватися: хто поруч із домом, чим вирізняється кожен партнер і як до нас звернутися.';
 
   @override
   String get aboutBody3 =>
@@ -215,17 +215,17 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get aboutBody4 =>
-      'Якщо шукаєте адресу, години роботи чи маршрут — відкрийте «Контакти». Якщо цікавлять партнери — розділ «Бренди». А щоб зрозуміти сам простір дому — зазирніть у «Дім».';
+      'Якщо шукаєте адресу, години роботи чи маршрут — відкрийте «Контакти». Якщо цікавлять партнери — розділ «Лаунж». А щоб зрозуміти сам простір дому — зазирніть у «Лаунж».';
 
   @override
   String get aboutBody5 =>
-      'Дякуємо, що обираєте Royal Smoke як місце для знайомства з брендами, які ми підтримуємо.';
+      'Дякуємо, що обираєте Royal Smoke як місце для знайомства.';
 
   @override
   String get appName => 'Royal Smoke';
 
   @override
-  String get ageBodyShort => 'Застосунок є інформаційним довідником брендів.';
+  String get ageBodyShort => 'Застосунок є інформаційним довідником.';
 
   @override
   String get visitNameLabel => 'Імʼя';
@@ -277,7 +277,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get houseBodyShort =>
-      'Royal Smoke — дім, що представляє в Україні родинні бренди з багаторічною історією.';
+      'Royal Smoke — дім, що представляє в Україні родинні традиції з багаторічною історією.';
 
   @override
   String get documentFallback => 'Документ';

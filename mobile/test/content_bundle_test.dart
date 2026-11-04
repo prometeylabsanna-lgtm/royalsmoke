@@ -12,16 +12,16 @@ void main() {
     expect(bundle.page('privacy')?.body, isNotEmpty);
   });
 
-  test('parser читає екрани і пропускає brands', () {
+  test('parser читає екрани і пропускає каталог', () {
     final bundle = parseAppBundle({
       'settings': {
         'app_version': 'v-test',
         'app_blurb': 'blurb',
-        'contact_address': 'Київ',
+        'contact_address': '',
         'contact_phone': '+380',
         'contact_hours': '11-22',
-        'contact_lat': 50.45,
-        'contact_lng': 30.52,
+        'contact_lat': 0,
+        'contact_lng': 0,
         'app_seal': '',
       },
       'brands': [
@@ -45,6 +45,9 @@ void main() {
     });
 
     expect(bundle.settings.appVersion, 'v-test');
+    expect(bundle.settings.contactAddress, isEmpty);
+    expect(bundle.settings.contactPhone, '+380');
+    expect(bundle.settings.contactHours, '11-22');
     expect(bundle.screen('home').title, 'T');
     expect(bundle.screen('home').heroImageUrl, isEmpty);
     expect(bundle.page('about')?.title, 'Про');
