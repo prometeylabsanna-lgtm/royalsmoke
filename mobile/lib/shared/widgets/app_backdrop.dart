@@ -58,17 +58,16 @@ class AppBackdropState extends State<AppBackdrop>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _syncMotion(MediaQuery.disableAnimationsOf(context));
+    _syncMotion();
     if (_precached) return;
     _precached = true;
     precacheImage(const AssetImage(AppImages.appBackground), context);
   }
 
-  void _syncMotion(bool reduce) {
-    // Знімки стора збираються з --dart-define=FORCE_REDUCE_MOTION=true,
-    // бо симулятор не завжди прокидає Reduce Motion у Flutter.
-    const forced = bool.fromEnvironment('FORCE_REDUCE_MOTION');
-    reduce = forced || reduce;
+  void _syncMotion() {
+    // Пауза лише для знімків стора: --dart-define=FORCE_REDUCE_MOTION=true.
+    // MediaQuery.disableAnimationsOf фон не зупиняє.
+    const reduce = bool.fromEnvironment('FORCE_REDUCE_MOTION');
     if (_reduceMotion == reduce) return;
     _reduceMotion = reduce;
     if (reduce) {
@@ -156,6 +155,38 @@ class _KenBurnsPlate extends StatelessWidget {
   }
 }
 
+/// Rec. 709, saturation 0.35: (1−s)·lum + s на діагоналі.
+const double _plateSaturation = 0.35;
+const double _plateSatInv = 1 - _plateSaturation;
+const double _lumR = 0.2126;
+const double _lumG = 0.7152;
+const double _lumB = 0.0722;
+const double _satR = _lumR * _plateSatInv;
+const double _satG = _lumG * _plateSatInv;
+const double _satB = _lumB * _plateSatInv;
+const List<double> _plateSaturationMatrix = <double>[
+  _satR + _plateSaturation,
+  _satG,
+  _satB,
+  0,
+  0,
+  _satR,
+  _satG + _plateSaturation,
+  _satB,
+  0,
+  0,
+  _satR,
+  _satG,
+  _satB + _plateSaturation,
+  0,
+  0,
+  0,
+  0,
+  0,
+  1,
+  0,
+];
+
 class _StillPlate extends StatelessWidget {
   const _StillPlate();
 
@@ -164,12 +195,15 @@ class _StillPlate extends StatelessWidget {
     return const Stack(
       fit: StackFit.expand,
       children: [
-        Image(
-          image: AssetImage(AppImages.appBackground),
-          fit: BoxFit.fitWidth,
-          alignment: Alignment.topCenter,
-          filterQuality: FilterQuality.medium,
-          gaplessPlayback: true,
+        ColorFiltered(
+          colorFilter: ColorFilter.matrix(_plateSaturationMatrix),
+          child: Image(
+            image: AssetImage(AppImages.appBackground),
+            fit: BoxFit.fitWidth,
+            alignment: Alignment.topCenter,
+            filterQuality: FilterQuality.medium,
+            gaplessPlayback: true,
+          ),
         ),
         Align(
           alignment: Alignment.bottomCenter,
@@ -243,8 +277,8 @@ class _TopScrim extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Color(0x6B1E1009),
-                Color(0x331E1009),
+                Color(0x6B1B1715),
+                Color(0x331B1715),
                 AppColors.canvasClear,
               ],
               stops: [0, 0.42, 1],

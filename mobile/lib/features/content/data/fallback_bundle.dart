@@ -1,3 +1,4 @@
+import 'package:royal_smoke/core/constants/app_images.dart';
 import 'package:royal_smoke/features/content/domain/app_content.dart';
 import 'package:royal_smoke/l10n/app_localizations.dart';
 
@@ -37,7 +38,7 @@ AppContentBundle buildFallbackBundle(AppLocalizations t) {
         body: t.homeBody,
         ctaPrimary: t.bookVisit,
         ctaSecondary: t.houseKicker,
-        heroAssetFallback: 'assets/images/home/hero.jpg',
+        heroAssetFallback: AppImages.appBackground,
       ),
       'house': AppScreenContent(
         kicker: t.houseKicker,
@@ -45,7 +46,7 @@ AppContentBundle buildFallbackBundle(AppLocalizations t) {
         body: t.houseBody,
         ctaPrimary: t.bookVisit,
         ctaSecondary: t.contacts,
-        heroAssetFallback: 'assets/images/home/house.jpg',
+        heroAssetFallback: AppImages.appBackground,
         houseBlocks: [
           AppHouseBlock(
             indexLabel: t.houseBlock1Index,

@@ -31,7 +31,11 @@ class MoreScreen extends ConsumerWidget {
           AppSizes.s24,
         ),
         children: [
-          RsPageHeading(kicker: l10n.appName, title: l10n.moreTitle),
+          RsPageHeading(
+            kicker: l10n.appName,
+            title: l10n.moreTitle,
+            titleTrackingEm: 0.04,
+          ),
           const SizedBox(height: AppSizes.s24),
           const Divider(height: 1, color: AppColors.hairline),
           RsEditorialRow(

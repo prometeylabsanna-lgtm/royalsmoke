@@ -15,6 +15,7 @@ class RsPageHeading extends StatelessWidget {
     required this.title,
     this.subtitle,
     this.compactTitle = false,
+    this.titleTrackingEm,
   });
 
   final String kicker;
@@ -24,15 +25,23 @@ class RsPageHeading extends StatelessWidget {
   /// Менший letter-spacing і перенос лише по словах (для довгих юр. заголовків).
   final bool compactTitle;
 
+  /// Трекінг заголовка в em. null лишає стиль title.
+  final double? titleTrackingEm;
+
   @override
   Widget build(BuildContext context) {
-    final titleStyle = compactTitle
+    var titleStyle = compactTitle
         ? AppTextStyles.title.copyWith(
             fontSize: 26,
             letterSpacing: 26 * 0.08,
             height: 1.15,
           )
         : AppTextStyles.title;
+    final tracking = titleTrackingEm;
+    if (tracking != null) {
+      final size = titleStyle.fontSize ?? 28;
+      titleStyle = titleStyle.copyWith(letterSpacing: size * tracking);
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,25 +159,7 @@ class RsSeal extends StatelessWidget {
     return SizedBox(
       width: size,
       height: size,
-      child: ClipOval(
-        child: Image.asset(
-          'assets/images/mark/seal.jpg',
-          fit: BoxFit.cover,
-          errorBuilder: (_, _, _) => Container(
-            color: AppColors.coffee,
-            alignment: Alignment.center,
-            child: Text(
-              AppLocalizations.of(context).monogramRs,
-              style: TextStyle(
-                fontFamily: AppTextStyles.family,
-                fontSize: size * 0.2,
-                fontWeight: FontWeight.w600,
-                color: AppColors.gold,
-              ),
-            ),
-          ),
-        ),
-      ),
+      child: const CustomPaint(painter: _SealMarkPainter()),
     );
   }
 }
@@ -334,6 +325,38 @@ class _TabPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant _TabPainter oldDelegate) =>
       oldDelegate.tab != tab || oldDelegate.color != color;
+}
+
+class _SealMarkPainter extends CustomPainter {
+  const _SealMarkPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final side = size.shortestSide;
+    final center = Offset(size.width / 2, size.height / 2);
+    final ring = Paint()
+      ..color = AppColors.gold
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = side * 0.045;
+    canvas.drawCircle(center, side * 0.40, ring);
+
+    final inner = Paint()
+      ..color = AppColors.gold
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = side * 0.018;
+    canvas.drawCircle(center, side * 0.30, inner);
+
+    final diamond = Path()
+      ..moveTo(center.dx, center.dy - side * 0.11)
+      ..lineTo(center.dx + side * 0.08, center.dy)
+      ..lineTo(center.dx, center.dy + side * 0.11)
+      ..lineTo(center.dx - side * 0.08, center.dy)
+      ..close();
+    canvas.drawPath(diamond, Paint()..color = AppColors.gold);
+  }
+
+  @override
+  bool shouldRepaint(covariant _SealMarkPainter oldDelegate) => false;
 }
 
 class _BackPainter extends CustomPainter {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:royal_smoke/core/constants/app_images.dart';
 import 'package:royal_smoke/features/content/data/bundle_parser.dart';
 import 'package:royal_smoke/features/content/data/fallback_bundle.dart';
 import 'package:royal_smoke/l10n/app_localizations.dart';
@@ -9,6 +10,8 @@ void main() {
     final bundle = buildFallbackBundle(
       lookupAppLocalizations(const Locale('uk')),
     );
+    expect(bundle.screen('home').heroAssetFallback, AppImages.appBackground);
+    expect(bundle.screen('house').heroAssetFallback, AppImages.appBackground);
     expect(bundle.screen('home').title, 'ROYALSMOKE');
     expect(bundle.screen('visit').title, 'Запит');
     expect(bundle.screen('visit').ctaPrimary, 'Надіслати запит');
@@ -55,6 +58,7 @@ void main() {
     expect(bundle.settings.contactHours, '11-22');
     expect(bundle.screen('home').title, 'T');
     expect(bundle.screen('home').heroImageUrl, isEmpty);
+    expect(bundle.screen('home').heroAssetFallback, AppImages.appBackground);
     expect(bundle.page('about')?.title, 'Про');
   });
 }

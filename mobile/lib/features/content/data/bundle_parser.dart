@@ -1,14 +1,18 @@
+import 'package:royal_smoke/core/constants/app_images.dart';
 import 'package:royal_smoke/features/content/domain/app_content.dart';
 
 String _heroAsset(String key) => switch (key) {
-      'house' => 'assets/images/home/house.jpg',
-      'home' => 'assets/images/home/hero.jpg',
-      _ => '',
-    };
+  'house' || 'home' => AppImages.appBackground,
+  _ => '',
+};
 
 /// Каталог у відповіді навмисно не читається: назви, логотипи й історії не показуємо.
-AppContentBundle parseAppBundle(Map<String, dynamic> json, {DateTime? updatedAt}) {
-  final settingsJson = (json['settings'] as Map?)?.cast<String, dynamic>() ?? {};
+AppContentBundle parseAppBundle(
+  Map<String, dynamic> json, {
+  DateTime? updatedAt,
+}) {
+  final settingsJson =
+      (json['settings'] as Map?)?.cast<String, dynamic>() ?? {};
   final screensJson = (json['screens'] as Map?)?.cast<String, dynamic>() ?? {};
   final pagesJson = (json['pages'] as Map?)?.cast<String, dynamic>() ?? {};
 
@@ -19,11 +23,13 @@ AppContentBundle parseAppBundle(Map<String, dynamic> json, {DateTime? updatedAt}
     final blocks = <AppHouseBlock>[];
     for (final b in (m['house_blocks'] as List?) ?? const []) {
       if (b is! Map) continue;
-      blocks.add(AppHouseBlock(
-        indexLabel: (b['index_label'] ?? '').toString(),
-        title: (b['title'] ?? '').toString(),
-        body: (b['body'] ?? '').toString(),
-      ));
+      blocks.add(
+        AppHouseBlock(
+          indexLabel: (b['index_label'] ?? '').toString(),
+          title: (b['title'] ?? '').toString(),
+          body: (b['body'] ?? '').toString(),
+        ),
+      );
     }
     screens[key] = AppScreenContent(
       kicker: (m['kicker'] ?? '').toString(),

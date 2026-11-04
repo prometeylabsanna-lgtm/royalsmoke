@@ -3,8 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:royal_smoke/app.dart';
 import 'package:royal_smoke/core/l10n/app_locale.dart';
+import 'package:royal_smoke/features/more/presentation/more_screen.dart';
 import 'package:royal_smoke/l10n/app_localizations.dart';
 import 'package:royal_smoke/shared/widgets/rs_chrome.dart';
+
+import 'l10n_app.dart';
 
 void main() {
   setUp(() {
@@ -59,11 +62,11 @@ void main() {
     expect(find.text('21+'), findsOneWidget);
 
     await tester.tap(find.text('ВІДКРИТИ'));
-    await tester.pumpAndSettle();
+    await _pumpRoute(tester);
     expect(find.text('ВІКОВЕ ОБМЕЖЕННЯ 21+'), findsOneWidget);
 
     await tester.tap(find.text('МЕНІ Є 21 РІК'));
-    await tester.pumpAndSettle();
+    await _pumpRoute(tester);
     expect(
       find.text(
         'Залиште запит у застосунку — менеджер звʼяжеться з вами у зручний спосіб.',
@@ -91,10 +94,11 @@ void main() {
     expect(find.text('Бренди'), findsNothing);
 
     await tester.tap(find.text('Запит'));
-    await tester.pumpAndSettle();
+    await _pumpRoute(tester);
     expect(find.text('ЗАПИТ'), findsOneWidget);
     expect(find.text('ЗРУЧНИЙ ЧАС ДЛЯ ЗВʼЯЗКУ'), findsOneWidget);
     expect(find.textContaining('Купити'), findsNothing);
+    await _releaseApp(tester);
   });
 
   testWidgets('англійські рядки рендеряться', (tester) async {
@@ -111,9 +115,10 @@ void main() {
     expect(find.text('PERSONAL SERVICE'), findsOneWidget);
 
     await tester.tap(find.text('OPEN'));
-    await tester.pumpAndSettle();
+    await _pumpRoute(tester);
     expect(find.text('AGE RESTRICTION 21+'), findsOneWidget);
     expect(find.text('I AM 21 OR OLDER'), findsOneWidget);
+    await _releaseApp(tester);
   });
 
   testWidgets('fil не валить Material і Cupertino', (tester) async {
@@ -128,5 +133,24 @@ void main() {
     await tester.pump();
     expect(tester.takeException(), isNull);
     expect(find.text('BUKSAN'), findsOneWidget);
+    await _releaseApp(tester);
   });
+
+  testWidgets('заголовок ЩЕ без широкого трекінгу', (tester) async {
+    await tester.pumpWidget(l10nApp(home: const Scaffold(body: MoreScreen())));
+    await tester.pump();
+    final title = tester.widget<Text>(find.text('ЩЕ'));
+    expect(title.style?.letterSpacing, lessThanOrEqualTo(28 * 0.04));
+    expect(tester.takeException(), isNull);
+  });
+}
+
+Future<void> _pumpRoute(WidgetTester tester) async {
+  await tester.pump();
+  await tester.pump(const Duration(milliseconds: 400));
+}
+
+Future<void> _releaseApp(WidgetTester tester) async {
+  await tester.pumpWidget(const SizedBox.shrink());
+  await tester.pump();
 }

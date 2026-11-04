@@ -25,34 +25,49 @@ void main() {
     );
   });
 
-  test('полотно теми рівно #1E1009, app bar прозорий', () {
+  test('полотно теми рівно #1B1715, app bar прозорий', () {
     final theme = AppTheme.dark;
-    expect(theme.scaffoldBackgroundColor, const Color(0xFF1E1009));
-    expect(theme.canvasColor, const Color(0xFF1E1009));
+    expect(theme.scaffoldBackgroundColor, const Color(0xFF1B1715));
+    expect(theme.canvasColor, const Color(0xFF1B1715));
     expect(theme.colorScheme.surface, AppColors.canvas);
+    expect(AppColors.canvasClear, const Color(0x001B1715));
+    expect(AppColors.backdropDim, const Color(0x991B1715));
     expect(theme.appBarTheme.backgroundColor, Colors.transparent);
     expect(AppTheme.overlay.systemNavigationBarColor, AppColors.canvas);
     expect(AppTheme.overlay.statusBarColor, Colors.transparent);
   });
 
-  test('ken-burns тримає ширину і масштаб 2–4%', () {
-    expect(BackdropMotion.kenBurnsDuration, const Duration(seconds: 24));
-    expect(BackdropMotion.glowDuration, const Duration(seconds: 8));
-    expect(BackdropMotion.glowPeakOpacity, 0.15);
+  test('ken-burns 6 с, краї кадру лишаються закриті', () {
+    expect(BackdropMotion.kenBurnsDuration, const Duration(seconds: 6));
+    expect(BackdropMotion.glowDuration, const Duration(seconds: 6));
+    expect(BackdropMotion.glowPeakOpacity, 0.35);
 
+    const bleed = 2.0;
     for (final width in const [320.0, 390.0, 440.0, 768.0, 1024.0]) {
-      final imageHeight = width * BackdropMotion.imageAspect;
+      final plateWidth = width + bleed * 2;
+      final imageHeight = plateWidth * BackdropMotion.imageAspect;
       for (var step = 0; step <= 20; step++) {
+        final t = step / 20;
         final frame = BackdropMotion.at(
-          t: step / 20,
+          t: t,
           width: width,
           imageHeight: imageHeight,
         );
-        expect(frame.scale, inInclusiveRange(1.02, 1.04));
+        expect(frame.scale, closeTo(1.0 + 0.12 * t, 0.0001));
         final slack = width * (frame.scale - 1) / 2;
+        expect(frame.dx, closeTo(slack * 0.6 * (2 * t - 1), 0.001));
         expect(frame.dx.abs(), lessThanOrEqualTo(slack + 0.001));
+        expect(frame.dy, closeTo(-imageHeight * 0.03 * t, 0.001));
         expect(frame.dy, lessThanOrEqualTo(0));
-        expect(frame.dy, greaterThanOrEqualTo(-imageHeight * 0.02 - 0.001));
+
+        final left = width / 2 - plateWidth * frame.scale / 2 + frame.dx;
+        final right = width / 2 + plateWidth * frame.scale / 2 + frame.dx;
+        expect(left, lessThanOrEqualTo(0.001));
+        expect(right, greaterThanOrEqualTo(width - 0.001));
+        expect(
+          imageHeight * frame.scale + frame.dy,
+          greaterThanOrEqualTo(imageHeight - 0.001),
+        );
       }
     }
   });
@@ -85,17 +100,18 @@ void main() {
     await tester.pump();
 
     expect(find.byType(AppBackdrop), findsOneWidget);
+    expect(find.byType(ColorFiltered), findsOneWidget);
     expect(_backgroundImages, findsOneWidget);
     final backdrop = tester.state<AppBackdropState>(find.byType(AppBackdrop));
-    expect(backdrop.motionRunning, isFalse);
-    expect(backdrop.kenBurnsT, 0);
+    expect(backdrop.motionRunning, isTrue);
 
+    final started = backdrop.kenBurnsT;
     await tester.pump(const Duration(milliseconds: 400));
-    expect(backdrop.kenBurnsT, 0);
-    expect(backdrop.motionRunning, isFalse);
+    expect(backdrop.kenBurnsT, greaterThan(started));
+    expect(backdrop.motionRunning, isTrue);
 
     await tester.tap(find.text('ВІДКРИТИ'));
-    await tester.pumpAndSettle();
+    await _pumpRoute(tester);
     expect(find.text('ВІКОВЕ ОБМЕЖЕННЯ 21+'), findsOneWidget);
     expect(
       tester.state<AppBackdropState>(find.byType(AppBackdrop)),
@@ -107,7 +123,7 @@ void main() {
     expect(scaffold.backgroundColor, Colors.transparent);
 
     await tester.tap(find.text('МЕНІ Є 21 РІК'));
-    await tester.pumpAndSettle();
+    await _pumpRoute(tester);
     expect(
       tester.state<AppBackdropState>(find.byType(AppBackdrop)),
       same(backdrop),
@@ -131,7 +147,7 @@ void main() {
     );
 
     await tester.tap(find.text('Сервіс'));
-    await tester.pumpAndSettle();
+    await _pumpRoute(tester);
     expect(find.text('ПРО СЕРВІС'), findsOneWidget);
     expect(find.byType(RsCoverImage), findsNothing);
     expect(
@@ -139,6 +155,7 @@ void main() {
       same(backdrop),
     );
     expect(_backgroundImages, findsOneWidget);
+    await _releaseApp(tester);
   });
 
   testWidgets('анімація йде і не перезапускається на вкладці', (tester) async {
@@ -190,6 +207,16 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump();
   });
+}
+
+Future<void> _pumpRoute(WidgetTester tester) async {
+  await tester.pump();
+  await tester.pump(const Duration(milliseconds: 400));
+}
+
+Future<void> _releaseApp(WidgetTester tester) async {
+  await tester.pumpWidget(const SizedBox.shrink());
+  await tester.pump();
 }
 
 final Finder _backgroundImages = find.byWidgetPredicate((widget) {
