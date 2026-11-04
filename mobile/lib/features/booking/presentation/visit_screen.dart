@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:royal_smoke/core/l10n/app_locale.dart';
 import 'package:royal_smoke/l10n/app_localizations.dart';
 
@@ -112,15 +111,11 @@ class _VisitScreenState extends ConsumerState<VisitScreen> {
       child: ListView(
         padding: const EdgeInsets.fromLTRB(
           AppSizes.padX,
-          8,
+          24,
           AppSizes.padX,
           AppSizes.s24,
         ),
         children: [
-          RsBackBar(
-            label: l10n.houseTab,
-            onPressed: () => context.go('/house'),
-          ),
           RsPageHeading(
             kicker: textOr(visit.kicker, l10n.visitKicker),
             title: textOr(visit.title, l10n.visitTitle),

@@ -187,12 +187,6 @@ abstract class AppLocalizations {
   /// **'Довідник дому бренду та партнерів'**
   String get homeBody;
 
-  /// M014
-  ///
-  /// In uk, this message translates to:
-  /// **'Бренди'**
-  String get brands;
-
   /// M015
   ///
   /// In uk, this message translates to:
@@ -342,306 +336,6 @@ abstract class AppLocalizations {
   /// In uk, this message translates to:
   /// **'Пн–Нд · 11:00–22:00'**
   String get contactHours;
-
-  /// M040
-  ///
-  /// In uk, this message translates to:
-  /// **'AJ Fernandez'**
-  String get brandAjName;
-
-  /// M041
-  ///
-  /// In uk, this message translates to:
-  /// **'AJ'**
-  String get brandAjShort;
-
-  /// M042
-  ///
-  /// In uk, this message translates to:
-  /// **'Нікарагуа'**
-  String get countryNicaragua;
-
-  /// M043
-  ///
-  /// In uk, this message translates to:
-  /// **'Abdel Fernández — представник четвертого покоління кубинської родини майстрів. Власну мануфактуру в Естелі заснував на початку 2000-х; компанія розвиває виробництво в кількох регіонах Нікарагуа.'**
-  String get brandAjHeritage;
-
-  /// M044
-  ///
-  /// In uk, this message translates to:
-  /// **'Походження'**
-  String get factOrigin;
-
-  /// M045
-  ///
-  /// In uk, this message translates to:
-  /// **'Естелі, Нікарагуа'**
-  String get factOriginEsteli;
-
-  /// M046
-  ///
-  /// In uk, this message translates to:
-  /// **'Засновано'**
-  String get factFounded;
-
-  /// M047
-  ///
-  /// In uk, this message translates to:
-  /// **'Початок 2000-х'**
-  String get factFoundedAj;
-
-  /// M048
-  ///
-  /// In uk, this message translates to:
-  /// **'Родина'**
-  String get factFamily;
-
-  /// M049
-  ///
-  /// In uk, this message translates to:
-  /// **'Fernández, кубинське коріння'**
-  String get factFamilyAj;
-
-  /// M050
-  ///
-  /// In uk, this message translates to:
-  /// **'Характер ліній'**
-  String get factLineCharacter;
-
-  /// M051
-  ///
-  /// In uk, this message translates to:
-  /// **'Насичені, виразні профілі'**
-  String get factLineCharacterAj;
-
-  /// M052
-  ///
-  /// In uk, this message translates to:
-  /// **'New World'**
-  String get lineAjNewWorld;
-
-  /// M053
-  ///
-  /// In uk, this message translates to:
-  /// **'Bellas Artes'**
-  String get lineAjBellasArtes;
-
-  /// M054
-  ///
-  /// In uk, this message translates to:
-  /// **'Enclave'**
-  String get lineAjEnclave;
-
-  /// M055
-  ///
-  /// In uk, this message translates to:
-  /// **'San Lotano'**
-  String get lineAjSanLotano;
-
-  /// M056
-  ///
-  /// In uk, this message translates to:
-  /// **'Oliva'**
-  String get brandOlivaName;
-
-  /// M057
-  ///
-  /// In uk, this message translates to:
-  /// **'O'**
-  String get brandOlivaMono;
-
-  /// M058
-  ///
-  /// In uk, this message translates to:
-  /// **'Родина Oliva розвиває свою справу з кінця XIX століття, починаючи з провінції Пінар-дель-Ріо на Кубі. Після еміграції виробництво зосередилося в Нікарагуа, де розташовані основні майстерні та фабрика бренду.'**
-  String get brandOlivaHeritage;
-
-  /// M059
-  ///
-  /// In uk, this message translates to:
-  /// **'Традиція'**
-  String get factTradition;
-
-  /// M060
-  ///
-  /// In uk, this message translates to:
-  /// **'З кінця XIX ст., Куба'**
-  String get factTraditionOliva;
-
-  /// M061
-  ///
-  /// In uk, this message translates to:
-  /// **'Виробництво'**
-  String get factProduction;
-
-  /// M062
-  ///
-  /// In uk, this message translates to:
-  /// **'Власні майстерні в долині Хамастран'**
-  String get factProductionOliva;
-
-  /// M063
-  ///
-  /// In uk, this message translates to:
-  /// **'Від збалансованих до насичених'**
-  String get factLineCharacterOliva;
-
-  /// M064
-  ///
-  /// In uk, this message translates to:
-  /// **'Serie V'**
-  String get lineOlivaSerieV;
-
-  /// M065
-  ///
-  /// In uk, this message translates to:
-  /// **'Serie G'**
-  String get lineOlivaSerieG;
-
-  /// M066
-  ///
-  /// In uk, this message translates to:
-  /// **'Master Blends'**
-  String get lineOlivaMasterBlends;
-
-  /// M067
-  ///
-  /// In uk, this message translates to:
-  /// **'Serie O'**
-  String get lineOlivaSerieO;
-
-  /// M068
-  ///
-  /// In uk, this message translates to:
-  /// **'Perdomo'**
-  String get brandPerdomoName;
-
-  /// M069
-  ///
-  /// In uk, this message translates to:
-  /// **'P'**
-  String get brandPerdomoMono;
-
-  /// M070
-  ///
-  /// In uk, this message translates to:
-  /// **'Бренд засновано в Маямі на початку 1990-х. Згодом виробництво перенесено до Естелі, де компанія вибудувала повний цикл — від власних ділянок до фабрики та тривалої витримки.'**
-  String get brandPerdomoHeritage;
-
-  /// M071
-  ///
-  /// In uk, this message translates to:
-  /// **'1990-ті, Маямі'**
-  String get factFoundedPerdomo;
-
-  /// M072
-  ///
-  /// In uk, this message translates to:
-  /// **'Засновник'**
-  String get factFounder;
-
-  /// M073
-  ///
-  /// In uk, this message translates to:
-  /// **'Nick Perdomo'**
-  String get factFounderPerdomo;
-
-  /// M074
-  ///
-  /// In uk, this message translates to:
-  /// **'Особливість'**
-  String get factFeature;
-
-  /// M075
-  ///
-  /// In uk, this message translates to:
-  /// **'Тривала витримка матеріалів'**
-  String get factFeaturePerdomo;
-
-  /// M076
-  ///
-  /// In uk, this message translates to:
-  /// **'Reserve 10th Anniversary'**
-  String get linePerdomoReserve;
-
-  /// M077
-  ///
-  /// In uk, this message translates to:
-  /// **'Habano'**
-  String get linePerdomoHabano;
-
-  /// M078
-  ///
-  /// In uk, this message translates to:
-  /// **'Lot 23'**
-  String get linePerdomoLot23;
-
-  /// M079
-  ///
-  /// In uk, this message translates to:
-  /// **'Casa Turrent'**
-  String get brandTurrentName;
-
-  /// M080
-  ///
-  /// In uk, this message translates to:
-  /// **'CT'**
-  String get brandTurrentMono;
-
-  /// M081
-  ///
-  /// In uk, this message translates to:
-  /// **'Мексика'**
-  String get countryMexico;
-
-  /// M082
-  ///
-  /// In uk, this message translates to:
-  /// **'Мексиканський бренд родини Turrent. Виробництво в долині Сан-Андрес, штат Веракрус; глибокі місцеві традиції та характерний стиль регіону.'**
-  String get brandTurrentHeritage;
-
-  /// M083
-  ///
-  /// In uk, this message translates to:
-  /// **'Сан-Андрес, Мексика'**
-  String get factOriginTurrent;
-
-  /// M084
-  ///
-  /// In uk, this message translates to:
-  /// **'Turrent'**
-  String get factFamilyTurrent;
-
-  /// M085
-  ///
-  /// In uk, this message translates to:
-  /// **'Насичений профіль, стійкий фініш'**
-  String get factLineCharacterTurrent;
-
-  /// M086
-  ///
-  /// In uk, this message translates to:
-  /// **'1942'**
-  String get lineTurrent1942;
-
-  /// M087
-  ///
-  /// In uk, this message translates to:
-  /// **'1880'**
-  String get lineTurrent1880;
-
-  /// M088
-  ///
-  /// In uk, this message translates to:
-  /// **'Origin Series'**
-  String get lineTurrentOrigin;
-
-  /// M089
-  ///
-  /// In uk, this message translates to:
-  /// **'Serie 1901'**
-  String get lineTurrent1901;
 
   /// M090
   ///
@@ -865,54 +559,6 @@ abstract class AppLocalizations {
   /// **'Необовʼязково'**
   String get commentHint;
 
-  /// M127
-  ///
-  /// In uk, this message translates to:
-  /// **'Бренд не знайдено'**
-  String get brandNotFound;
-
-  /// M128
-  ///
-  /// In uk, this message translates to:
-  /// **'ROYAL'**
-  String get patternRoyal;
-
-  /// M129
-  ///
-  /// In uk, this message translates to:
-  /// **'БРЕНДИ'**
-  String get brandsBack;
-
-  /// M130
-  ///
-  /// In uk, this message translates to:
-  /// **'КОРОТКО'**
-  String get factsKicker;
-
-  /// M131
-  ///
-  /// In uk, this message translates to:
-  /// **'ЛІНІЙКИ'**
-  String get linesKicker;
-
-  /// M132
-  ///
-  /// In uk, this message translates to:
-  /// **'УСІ БРЕНДИ'**
-  String get allBrands;
-
-  /// M133
-  ///
-  /// In uk, this message translates to:
-  /// **'Партнери дому'**
-  String get partnersKicker;
-
-  /// M134
-  ///
-  /// In uk, this message translates to:
-  /// **'Усі'**
-  String get filterAll;
-
   /// M135
   ///
   /// In uk, this message translates to:
@@ -943,23 +589,11 @@ abstract class AppLocalizations {
   /// **'Години'**
   String get hoursLabel;
 
-  /// M140
-  ///
-  /// In uk, this message translates to:
-  /// **'ПАРТНЕРИ'**
-  String get partnersSection;
-
   /// M141
   ///
   /// In uk, this message translates to:
   /// **'Royal Smoke — дім, що представляє в Україні родинні бренди з багаторічною історією.'**
   String get houseBodyShort;
-
-  /// M142
-  ///
-  /// In uk, this message translates to:
-  /// **'Збережені бренди'**
-  String get savedBrands;
 
   /// M143
   ///
@@ -967,71 +601,11 @@ abstract class AppLocalizations {
   /// **'Документ'**
   String get documentFallback;
 
-  /// M144
-  ///
-  /// In uk, this message translates to:
-  /// **'Локальний каталог'**
-  String get offlineLocalCatalog;
-
-  /// M145
-  ///
-  /// In uk, this message translates to:
-  /// **'Оновлено {date}'**
-  String offlineUpdated(String date);
-
-  /// M146
-  ///
-  /// In uk, this message translates to:
-  /// **'Довідник'**
-  String get offlineKicker;
-
-  /// M147
-  ///
-  /// In uk, this message translates to:
-  /// **'Офлайн'**
-  String get offlineTitle;
-
-  /// M148
-  ///
-  /// In uk, this message translates to:
-  /// **'Збережений довідник брендів'**
-  String get offlineSubtitle;
-
-  /// M149
-  ///
-  /// In uk, this message translates to:
-  /// **'Поки немає збережених брендів.\nДодайте їх закладкою на картці бренду.'**
-  String get offlineEmpty;
-
-  /// M150
-  ///
-  /// In uk, this message translates to:
-  /// **'ЗБЕРЕЖЕНО'**
-  String get savedBadge;
-
   /// M151
   ///
   /// In uk, this message translates to:
   /// **'RS'**
   String get monogramRs;
-
-  /// M152
-  ///
-  /// In uk, this message translates to:
-  /// **'Нічого не знайдено'**
-  String get emptySearchTitle;
-
-  /// M153
-  ///
-  /// In uk, this message translates to:
-  /// **'Спробуйте іншу назву'**
-  String get emptySearchBody;
-
-  /// M154
-  ///
-  /// In uk, this message translates to:
-  /// **'ОФЛАЙН-РЕЖИМ'**
-  String get offlineMode;
 
   /// M155
   ///
@@ -1039,29 +613,11 @@ abstract class AppLocalizations {
   /// **'Головна'**
   String get tabHome;
 
-  /// M156
-  ///
-  /// In uk, this message translates to:
-  /// **'Пошук бренду'**
-  String get searchBrandHint;
-
   /// M157
   ///
   /// In uk, this message translates to:
   /// **'МАПА'**
   String get mapLabel;
-
-  /// M158
-  ///
-  /// In uk, this message translates to:
-  /// **'Royal Smoke — довідник бренду.'**
-  String get packageDescription;
-
-  /// M159
-  ///
-  /// In uk, this message translates to:
-  /// **'Довідник бренду Royal Smoke.'**
-  String get webDescription;
 }
 
 class _AppLocalizationsDelegate

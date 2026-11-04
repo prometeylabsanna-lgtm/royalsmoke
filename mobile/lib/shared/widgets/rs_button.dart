@@ -36,9 +36,14 @@ class RsButton extends StatelessWidget {
                   : AppColors.gold,
             ),
           )
-        : Text(
-            label.toUpperCase(),
-            style: AppTextStyles.button.copyWith(color: _foreground),
+        : FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              label.toUpperCase(),
+              maxLines: 1,
+              softWrap: false,
+              style: AppTextStyles.button.copyWith(color: _foreground),
+            ),
           );
 
     final button = SizedBox(

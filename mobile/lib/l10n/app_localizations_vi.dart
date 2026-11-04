@@ -50,9 +50,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get homeBody => 'Cẩm nang về ngôi nhà thương hiệu và các đối tác';
 
   @override
-  String get brands => 'Thương hiệu';
-
-  @override
   String get houseTab => 'Ngôi nhà';
 
   @override
@@ -132,160 +129,6 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get contactHours => 'T2–CN · 11:00–22:00';
-
-  @override
-  String get brandAjName => 'AJ Fernandez';
-
-  @override
-  String get brandAjShort => 'AJ';
-
-  @override
-  String get countryNicaragua => 'Nicaragua';
-
-  @override
-  String get brandAjHeritage =>
-      'Abdel Fernández là đại diện thế hệ thứ tư của một gia đình nghệ nhân người Cuba. Ông thành lập xưởng sản xuất riêng tại Estelí vào đầu những năm 2000; công ty đang phát triển sản xuất ở nhiều vùng của Nicaragua.';
-
-  @override
-  String get factOrigin => 'Xuất xứ';
-
-  @override
-  String get factOriginEsteli => 'Estelí, Nicaragua';
-
-  @override
-  String get factFounded => 'Thành lập';
-
-  @override
-  String get factFoundedAj => 'Đầu những năm 2000';
-
-  @override
-  String get factFamily => 'Gia đình';
-
-  @override
-  String get factFamilyAj => 'Fernández, gốc Cuba';
-
-  @override
-  String get factLineCharacter => 'Đặc tính các dòng sản phẩm';
-
-  @override
-  String get factLineCharacterAj => 'Hương vị đậm đà, rõ nét';
-
-  @override
-  String get lineAjNewWorld => 'New World';
-
-  @override
-  String get lineAjBellasArtes => 'Bellas Artes';
-
-  @override
-  String get lineAjEnclave => 'Enclave';
-
-  @override
-  String get lineAjSanLotano => 'San Lotano';
-
-  @override
-  String get brandOlivaName => 'Oliva';
-
-  @override
-  String get brandOlivaMono => 'O';
-
-  @override
-  String get brandOlivaHeritage =>
-      'Gia đình Oliva phát triển cơ nghiệp của mình từ cuối thế kỷ 19, bắt đầu từ tỉnh Pinar del Río ở Cuba. Sau khi di cư, hoạt động sản xuất tập trung tại Nicaragua, nơi đặt các xưởng chính và nhà máy của thương hiệu.';
-
-  @override
-  String get factTradition => 'Truyền thống';
-
-  @override
-  String get factTraditionOliva => 'Từ cuối thế kỷ 19, Cuba';
-
-  @override
-  String get factProduction => 'Sản xuất';
-
-  @override
-  String get factProductionOliva => 'Xưởng riêng tại thung lũng Jamastrán';
-
-  @override
-  String get factLineCharacterOliva => 'Từ cân bằng đến đậm đà';
-
-  @override
-  String get lineOlivaSerieV => 'Serie V';
-
-  @override
-  String get lineOlivaSerieG => 'Serie G';
-
-  @override
-  String get lineOlivaMasterBlends => 'Master Blends';
-
-  @override
-  String get lineOlivaSerieO => 'Serie O';
-
-  @override
-  String get brandPerdomoName => 'Perdomo';
-
-  @override
-  String get brandPerdomoMono => 'P';
-
-  @override
-  String get brandPerdomoHeritage =>
-      'Thương hiệu được thành lập tại Miami vào đầu những năm 1990. Sau đó, hoạt động sản xuất được chuyển đến Estelí, nơi công ty xây dựng quy trình khép kín — từ các vùng trồng riêng đến nhà máy và thời gian ủ lâu dài.';
-
-  @override
-  String get factFoundedPerdomo => 'Những năm 1990, Miami';
-
-  @override
-  String get factFounder => 'Người sáng lập';
-
-  @override
-  String get factFounderPerdomo => 'Nick Perdomo';
-
-  @override
-  String get factFeature => 'Đặc điểm';
-
-  @override
-  String get factFeaturePerdomo => 'Nguyên liệu được ủ lâu dài';
-
-  @override
-  String get linePerdomoReserve => 'Reserve 10th Anniversary';
-
-  @override
-  String get linePerdomoHabano => 'Habano';
-
-  @override
-  String get linePerdomoLot23 => 'Lot 23';
-
-  @override
-  String get brandTurrentName => 'Casa Turrent';
-
-  @override
-  String get brandTurrentMono => 'CT';
-
-  @override
-  String get countryMexico => 'Mexico';
-
-  @override
-  String get brandTurrentHeritage =>
-      'Thương hiệu Mexico của gia đình Turrent. Sản xuất tại thung lũng San Andrés, bang Veracruz; truyền thống địa phương sâu sắc và phong cách đặc trưng của vùng.';
-
-  @override
-  String get factOriginTurrent => 'San Andrés, Mexico';
-
-  @override
-  String get factFamilyTurrent => 'Turrent';
-
-  @override
-  String get factLineCharacterTurrent => 'Hương vị đậm đà, hậu vị kéo dài';
-
-  @override
-  String get lineTurrent1942 => '1942';
-
-  @override
-  String get lineTurrent1880 => '1880';
-
-  @override
-  String get lineTurrentOrigin => 'Origin Series';
-
-  @override
-  String get lineTurrent1901 => 'Serie 1901';
 
   @override
   String get privacyTitle => 'Chính sách bảo mật';
@@ -420,30 +263,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get commentHint => 'Không bắt buộc';
 
   @override
-  String get brandNotFound => 'Không tìm thấy thương hiệu';
-
-  @override
-  String get patternRoyal => 'ROYAL';
-
-  @override
-  String get brandsBack => 'THƯƠNG HIỆU';
-
-  @override
-  String get factsKicker => 'TÓM TẮT';
-
-  @override
-  String get linesKicker => 'DÒNG SẢN PHẨM';
-
-  @override
-  String get allBrands => 'TẤT CẢ THƯƠNG HIỆU';
-
-  @override
-  String get partnersKicker => 'Đối tác của ngôi nhà';
-
-  @override
-  String get filterAll => 'Tất cả';
-
-  @override
   String get moreTitle => 'Thêm';
 
   @override
@@ -459,66 +278,18 @@ class AppLocalizationsVi extends AppLocalizations {
   String get hoursLabel => 'Giờ mở cửa';
 
   @override
-  String get partnersSection => 'ĐỐI TÁC';
-
-  @override
   String get houseBodyShort =>
       'Royal Smoke là ngôi nhà đại diện cho các thương hiệu gia đình có lịch sử lâu đời tại Ukraine.';
-
-  @override
-  String get savedBrands => 'Thương hiệu đã lưu';
 
   @override
   String get documentFallback => 'Tài liệu';
 
   @override
-  String get offlineLocalCatalog => 'Danh mục cục bộ';
-
-  @override
-  String offlineUpdated(String date) {
-    return 'Đã cập nhật $date';
-  }
-
-  @override
-  String get offlineKicker => 'Cẩm nang';
-
-  @override
-  String get offlineTitle => 'Ngoại tuyến';
-
-  @override
-  String get offlineSubtitle => 'Cẩm nang thương hiệu đã lưu';
-
-  @override
-  String get offlineEmpty =>
-      'Chưa có thương hiệu nào được lưu.\nHãy thêm bằng dấu trang trên thẻ thương hiệu.';
-
-  @override
-  String get savedBadge => 'ĐÃ LƯU';
-
-  @override
   String get monogramRs => 'RS';
-
-  @override
-  String get emptySearchTitle => 'Không tìm thấy kết quả';
-
-  @override
-  String get emptySearchBody => 'Hãy thử tên khác';
-
-  @override
-  String get offlineMode => 'CHẾ ĐỘ NGOẠI TUYẾN';
 
   @override
   String get tabHome => 'Trang chủ';
 
   @override
-  String get searchBrandHint => 'Tìm thương hiệu';
-
-  @override
   String get mapLabel => 'BẢN ĐỒ';
-
-  @override
-  String get packageDescription => 'Royal Smoke — cẩm nang thương hiệu.';
-
-  @override
-  String get webDescription => 'Cẩm nang thương hiệu Royal Smoke.';
 }

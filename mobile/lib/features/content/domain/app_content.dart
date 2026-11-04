@@ -1,5 +1,3 @@
-import '../../brands/domain/partner_brand.dart';
-
 class AppSettingsContent {
   const AppSettingsContent({
     required this.appVersion,
@@ -79,24 +77,15 @@ class AppLegalPage {
 class AppContentBundle {
   const AppContentBundle({
     required this.settings,
-    required this.brands,
     required this.screens,
     required this.pages,
     this.updatedAt,
   });
 
   final AppSettingsContent settings;
-  final List<PartnerBrand> brands;
   final Map<String, AppScreenContent> screens;
   final Map<String, AppLegalPage> pages;
   final DateTime? updatedAt;
-
-  PartnerBrand? brandById(String id) {
-    for (final b in brands) {
-      if (b.id == id) return b;
-    }
-    return null;
-  }
 
   AppScreenContent screen(String key) =>
       screens[key] ?? const AppScreenContent();

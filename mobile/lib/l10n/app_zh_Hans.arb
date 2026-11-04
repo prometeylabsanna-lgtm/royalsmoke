@@ -1,321 +1,343 @@
 {
   "@@locale": "zh_Hans",
   "splashKicker": "品牌指南",
-  "@splashKicker": {"description": "M001"},
+  "@splashKicker": {
+    "description": "M001"
+  },
   "splashTitle": "ROYAL SMOKE",
-  "@splashTitle": {"description": "M002"},
+  "@splashTitle": {
+    "description": "M002"
+  },
   "splashOpen": "打开",
-  "@splashOpen": {"description": "M003"},
+  "@splashOpen": {
+    "description": "M003"
+  },
   "ageKicker": "年龄确认 · 21+",
-  "@ageKicker": {"description": "M004"},
+  "@ageKicker": {
+    "description": "M004"
+  },
   "ageTitle": "仅限成年人",
-  "@ageTitle": {"description": "M005"},
+  "@ageTitle": {
+    "description": "M005"
+  },
   "ageBadge": "21+",
-  "@ageBadge": {"description": "M006"},
+  "@ageBadge": {
+    "description": "M006"
+  },
   "ageBody": "本应用是品牌信息指南，内容仅面向年满21周岁的人士。",
-  "@ageBody": {"description": "M007"},
+  "@ageBody": {
+    "description": "M007"
+  },
   "ageExit": "退出",
-  "@ageExit": {"description": "M008"},
+  "@ageExit": {
+    "description": "M008"
+  },
   "ageConfirm": "我已满21岁",
-  "@ageConfirm": {"description": "M009"},
+  "@ageConfirm": {
+    "description": "M009"
+  },
   "ageLegal": "继续即表示您确认自己的年龄，并同意年龄政策。",
-  "@ageLegal": {"description": "M010"},
+  "@ageLegal": {
+    "description": "M010"
+  },
   "homeKicker": "品牌之家",
-  "@homeKicker": {"description": "M011"},
+  "@homeKicker": {
+    "description": "M011"
+  },
   "homeTitle": "ROYAL\nSMOKE",
-  "@homeTitle": {"description": "M012"},
+  "@homeTitle": {
+    "description": "M012"
+  },
   "homeBody": "品牌之家与合作伙伴指南",
-  "@homeBody": {"description": "M013"},
-  "brands": "品牌",
-  "@brands": {"description": "M014"},
+  "@homeBody": {
+    "description": "M013"
+  },
   "houseTab": "品牌之家",
-  "@houseTab": {"description": "M015"},
+  "@houseTab": {
+    "description": "M015"
+  },
   "houseKicker": "关于品牌之家",
-  "@houseKicker": {"description": "M016"},
+  "@houseKicker": {
+    "description": "M016"
+  },
   "houseTitle": "Royal Smoke\n之家",
-  "@houseTitle": {"description": "M017"},
+  "@houseTitle": {
+    "description": "M017"
+  },
   "houseBody": "Royal Smoke 是一座品牌之家，在乌克兰代理历史悠久的家族品牌。在这里，您可以了解各品牌的渊源，并在参观期间认识品牌系列。",
-  "@houseBody": {"description": "M018"},
+  "@houseBody": {
+    "description": "M018"
+  },
   "bookVisit": "预约参观",
-  "@bookVisit": {"description": "M019"},
+  "@bookVisit": {
+    "description": "M019"
+  },
   "contacts": "联系方式",
-  "@contacts": {"description": "M020"},
+  "@contacts": {
+    "description": "M020"
+  },
   "houseBlock1Index": "01",
-  "@houseBlock1Index": {"description": "M021"},
+  "@houseBlock1Index": {
+    "description": "M021"
+  },
   "houseBlockServiceTitle": "服务",
-  "@houseBlockServiceTitle": {"description": "M022"},
+  "@houseBlockServiceTitle": {
+    "description": "M022"
+  },
   "houseBlockServiceBody": "品牌、历史与存放方面的咨询。",
-  "@houseBlockServiceBody": {"description": "M023"},
+  "@houseBlockServiceBody": {
+    "description": "M023"
+  },
   "houseBlock2Index": "02",
-  "@houseBlock2Index": {"description": "M024"},
+  "@houseBlock2Index": {
+    "description": "M024"
+  },
   "houseBlockB2bTitle": "B2B",
-  "@houseBlockB2bTitle": {"description": "M025"},
+  "@houseBlockB2bTitle": {
+    "description": "M025"
+  },
   "houseBlockB2bBody": "与场所及专业合作伙伴开展合作。",
-  "@houseBlockB2bBody": {"description": "M026"},
+  "@houseBlockB2bBody": {
+    "description": "M026"
+  },
   "houseBlock3Index": "03",
-  "@houseBlock3Index": {"description": "M027"},
+  "@houseBlock3Index": {
+    "description": "M027"
+  },
   "visitTitle": "参观",
-  "@visitTitle": {"description": "M028"},
+  "@visitTitle": {
+    "description": "M028"
+  },
   "houseBlockVisitBody": "凭预约了解品牌之家。",
-  "@houseBlockVisitBody": {"description": "M029"},
+  "@houseBlockVisitBody": {
+    "description": "M029"
+  },
   "visitKicker": "Royal Smoke 之家",
-  "@visitKicker": {"description": "M030"},
+  "@visitKicker": {
+    "description": "M030"
+  },
   "visitNewRequest": "新请求",
-  "@visitNewRequest": {"description": "M031"},
+  "@visitNewRequest": {
+    "description": "M031"
+  },
   "visitSendRequest": "发送请求",
-  "@visitSendRequest": {"description": "M032"},
+  "@visitSendRequest": {
+    "description": "M032"
+  },
   "visitSuccessTitle": "请求已发送",
-  "@visitSuccessTitle": {"description": "M033"},
+  "@visitSuccessTitle": {
+    "description": "M033"
+  },
   "visitSuccessBody": "我们会与您联系，以确认参观的日期和时间。",
-  "@visitSuccessBody": {"description": "M034"},
+  "@visitSuccessBody": {
+    "description": "M034"
+  },
   "appVersion": "Royal Smoke · v1.0",
-  "@appVersion": {"description": "M035"},
+  "@appVersion": {
+    "description": "M035"
+  },
   "appBlurb": "Royal Smoke 是品牌之家的信息指南。本应用面向21岁及以上人士。",
-  "@appBlurb": {"description": "M036"},
+  "@appBlurb": {
+    "description": "M036"
+  },
   "contactAddress": "基辅，赫雷夏蒂克街1号",
-  "@contactAddress": {"description": "M037"},
+  "@contactAddress": {
+    "description": "M037"
+  },
   "contactPhone": "+380 00 000 00 00",
-  "@contactPhone": {"description": "M038"},
+  "@contactPhone": {
+    "description": "M038"
+  },
   "contactHours": "周一至周日 · 11:00–22:00",
-  "@contactHours": {"description": "M039"},
-  "brandAjName": "AJ Fernandez",
-  "@brandAjName": {"description": "M040"},
-  "brandAjShort": "AJ",
-  "@brandAjShort": {"description": "M041"},
-  "countryNicaragua": "尼加拉瓜",
-  "@countryNicaragua": {"description": "M042"},
-  "brandAjHeritage": "Abdel Fernández 是古巴工匠世家的第四代传人。他于2000年代初在埃斯特利创立了自己的工坊；公司在尼加拉瓜多个地区发展生产。",
-  "@brandAjHeritage": {"description": "M043"},
-  "factOrigin": "产地",
-  "@factOrigin": {"description": "M044"},
-  "factOriginEsteli": "埃斯特利，尼加拉瓜",
-  "@factOriginEsteli": {"description": "M045"},
-  "factFounded": "创立于",
-  "@factFounded": {"description": "M046"},
-  "factFoundedAj": "2000年代初",
-  "@factFoundedAj": {"description": "M047"},
-  "factFamily": "家族",
-  "@factFamily": {"description": "M048"},
-  "factFamilyAj": "Fernández，古巴渊源",
-  "@factFamilyAj": {"description": "M049"},
-  "factLineCharacter": "系列特点",
-  "@factLineCharacter": {"description": "M050"},
-  "factLineCharacterAj": "浓郁、鲜明的风味",
-  "@factLineCharacterAj": {"description": "M051"},
-  "lineAjNewWorld": "New World",
-  "@lineAjNewWorld": {"description": "M052"},
-  "lineAjBellasArtes": "Bellas Artes",
-  "@lineAjBellasArtes": {"description": "M053"},
-  "lineAjEnclave": "Enclave",
-  "@lineAjEnclave": {"description": "M054"},
-  "lineAjSanLotano": "San Lotano",
-  "@lineAjSanLotano": {"description": "M055"},
-  "brandOlivaName": "Oliva",
-  "@brandOlivaName": {"description": "M056"},
-  "brandOlivaMono": "O",
-  "@brandOlivaMono": {"description": "M057"},
-  "brandOlivaHeritage": "Oliva 家族自19世纪末起经营这一事业，起点是古巴的比那尔德里奥省。移居国外后，生产集中在尼加拉瓜，品牌的主要工坊和工厂都设在那里。",
-  "@brandOlivaHeritage": {"description": "M058"},
-  "factTradition": "传承",
-  "@factTradition": {"description": "M059"},
-  "factTraditionOliva": "自19世纪末，古巴",
-  "@factTraditionOliva": {"description": "M060"},
-  "factProduction": "生产",
-  "@factProduction": {"description": "M061"},
-  "factProductionOliva": "位于哈马斯特兰山谷的自有工坊",
-  "@factProductionOliva": {"description": "M062"},
-  "factLineCharacterOliva": "从均衡到浓郁",
-  "@factLineCharacterOliva": {"description": "M063"},
-  "lineOlivaSerieV": "Serie V",
-  "@lineOlivaSerieV": {"description": "M064"},
-  "lineOlivaSerieG": "Serie G",
-  "@lineOlivaSerieG": {"description": "M065"},
-  "lineOlivaMasterBlends": "Master Blends",
-  "@lineOlivaMasterBlends": {"description": "M066"},
-  "lineOlivaSerieO": "Serie O",
-  "@lineOlivaSerieO": {"description": "M067"},
-  "brandPerdomoName": "Perdomo",
-  "@brandPerdomoName": {"description": "M068"},
-  "brandPerdomoMono": "P",
-  "@brandPerdomoMono": {"description": "M069"},
-  "brandPerdomoHeritage": "该品牌于1990年代初创立于迈阿密。随后生产迁至埃斯特利，公司在那里建立了完整的产业链——从自有种植地到工厂，再到长时间陈化。",
-  "@brandPerdomoHeritage": {"description": "M070"},
-  "factFoundedPerdomo": "1990年代，迈阿密",
-  "@factFoundedPerdomo": {"description": "M071"},
-  "factFounder": "创始人",
-  "@factFounder": {"description": "M072"},
-  "factFounderPerdomo": "Nick Perdomo",
-  "@factFounderPerdomo": {"description": "M073"},
-  "factFeature": "特色",
-  "@factFeature": {"description": "M074"},
-  "factFeaturePerdomo": "原料长期陈化",
-  "@factFeaturePerdomo": {"description": "M075"},
-  "linePerdomoReserve": "Reserve 10th Anniversary",
-  "@linePerdomoReserve": {"description": "M076"},
-  "linePerdomoHabano": "Habano",
-  "@linePerdomoHabano": {"description": "M077"},
-  "linePerdomoLot23": "Lot 23",
-  "@linePerdomoLot23": {"description": "M078"},
-  "brandTurrentName": "Casa Turrent",
-  "@brandTurrentName": {"description": "M079"},
-  "brandTurrentMono": "CT",
-  "@brandTurrentMono": {"description": "M080"},
-  "countryMexico": "墨西哥",
-  "@countryMexico": {"description": "M081"},
-  "brandTurrentHeritage": "Turrent 家族的墨西哥品牌。生产位于韦拉克鲁斯州的圣安德烈斯山谷；拥有深厚的本地传统和鲜明的地区风格。",
-  "@brandTurrentHeritage": {"description": "M082"},
-  "factOriginTurrent": "圣安德烈斯，墨西哥",
-  "@factOriginTurrent": {"description": "M083"},
-  "factFamilyTurrent": "Turrent",
-  "@factFamilyTurrent": {"description": "M084"},
-  "factLineCharacterTurrent": "浓郁风味，持久余韵",
-  "@factLineCharacterTurrent": {"description": "M085"},
-  "lineTurrent1942": "1942",
-  "@lineTurrent1942": {"description": "M086"},
-  "lineTurrent1880": "1880",
-  "@lineTurrent1880": {"description": "M087"},
-  "lineTurrentOrigin": "Origin Series",
-  "@lineTurrentOrigin": {"description": "M088"},
-  "lineTurrent1901": "Serie 1901",
-  "@lineTurrent1901": {"description": "M089"},
+  "@contactHours": {
+    "description": "M039"
+  },
   "privacyTitle": "隐私政策",
-  "@privacyTitle": {"description": "M090"},
+  "@privacyTitle": {
+    "description": "M090"
+  },
   "privacyBody1": "本政策说明 Royal Smoke 应用可能处理哪些数据及其处理目的。",
-  "@privacyBody1": {"description": "M091"},
+  "@privacyBody1": {
+    "description": "M091"
+  },
   "privacyBody2": "Royal Smoke 是品牌之家的信息指南。我们仅收集服务稳定运行所必需的最少技术数据：例如保存在您设备本地的品牌、基本的会话信息，以及用于诊断故障的技术日志。",
-  "@privacyBody2": {"description": "M092"},
+  "@privacyBody2": {
+    "description": "M092"
+  },
   "privacyBody3": "我们不建立用户的广告画像，也不会为营销目的向第三方提供个人数据。",
-  "@privacyBody3": {"description": "M093"},
+  "@privacyBody3": {
+    "description": "M093"
+  },
   "privacyBody4": "本指南的内容仅面向成年人（21岁及以上）。只有在确认年龄后才能访问。如果您不同意这些条款，请停止使用本应用。",
-  "@privacyBody4": {"description": "M094"},
+  "@privacyBody4": {
+    "description": "M094"
+  },
   "privacyBody5": "有关数据、访问或删除设备上信息的请求，可通过“联系方式”栏目提交。我们会在合理期限内，并在乌克兰现行法律要求的范围内予以答复。",
-  "@privacyBody5": {"description": "M095"},
+  "@privacyBody5": {
+    "description": "M095"
+  },
   "termsTitle": "使用条款",
-  "@termsTitle": {"description": "M096"},
+  "@termsTitle": {
+    "description": "M096"
+  },
   "termsBody1": "使用 Royal Smoke 应用即表示您确认自己已年满21周岁，并已阅读这些条款。",
-  "@termsBody1": {"description": "M097"},
+  "@termsBody1": {
+    "description": "M097"
+  },
   "termsBody2": "本指南仅供信息参考：包括合作品牌介绍、品牌之家的历史、产品系列和联系方式。这些内容有助于您了解合作伙伴的世界和空间的氛围。",
-  "@termsBody2": {"description": "M098"},
+  "@termsBody2": {
+    "description": "M098"
+  },
   "termsBody3": "是否参观品牌之家或查阅相关内容，均由您自行决定，并应遵守年龄限制和场所规定。",
-  "@termsBody3": {"description": "M099"},
+  "@termsBody3": {
+    "description": "M099"
+  },
   "termsBody4": "我们可能会更新文字、图片和栏目结构，恕不另行提前通知。更新后继续使用即表示您同意现行版本的条款。",
-  "@termsBody4": {"description": "M100"},
+  "@termsBody4": {
+    "description": "M100"
+  },
   "termsBody5": "违反使用规则或提供虚假年龄信息的，对本指南的访问可能受到限制。有关条款的问题，请通过“联系方式”咨询。",
-  "@termsBody5": {"description": "M101"},
+  "@termsBody5": {
+    "description": "M101"
+  },
   "agePolicyTitle": "年龄政策",
-  "@agePolicyTitle": {"description": "M102"},
+  "@agePolicyTitle": {
+    "description": "M102"
+  },
   "agePolicyBody1": "Royal Smoke 指南的内容仅面向年满21周岁的人士。",
-  "@agePolicyBody1": {"description": "M103"},
+  "@agePolicyBody1": {
+    "description": "M103"
+  },
   "agePolicyBody2": "进入主要栏目之前，应用会要求确认年龄。这是访问品牌、品牌之家及相关内容的必要条件。如果您尚未年满21周岁，请退出本应用。",
-  "@agePolicyBody2": {"description": "M104"},
+  "@agePolicyBody2": {
+    "description": "M104"
+  },
   "agePolicyBody3": "所有页面均为参考性质，旨在帮助您了解品牌之家的合作伙伴及其空间。",
-  "@agePolicyBody3": {"description": "M105"},
+  "@agePolicyBody3": {
+    "description": "M105"
+  },
   "agePolicyBody4": "如因法律变化或品牌之家的内部标准需要，我们保留更新年龄政策措辞的权利。最新版本始终可在“更多”栏目中查阅。",
-  "@agePolicyBody4": {"description": "M106"},
+  "@agePolicyBody4": {
+    "description": "M106"
+  },
   "agePolicyBody5": "使用本应用即表示您确认自己的年龄并同意本政策。如有疑问，请通过“联系方式”联系我们。",
-  "@agePolicyBody5": {"description": "M107"},
+  "@agePolicyBody5": {
+    "description": "M107"
+  },
   "aboutTitle": "关于本应用",
-  "@aboutTitle": {"description": "M108"},
+  "@aboutTitle": {
+    "description": "M108"
+  },
   "aboutBody1": "Royal Smoke 是一座品牌之家，也是了解其世界的数字指南。",
-  "@aboutBody1": {"description": "M109"},
+  "@aboutBody1": {
+    "description": "M109"
+  },
   "aboutBody2": "这里汇集了品牌之家的合作伙伴、各工坊的简史、各系列的特点，以及位于基辅的空间的联系方式。本应用旨在帮助您从容了解：谁与品牌之家同行，每个品牌有何与众不同之处，以及如何联系我们。",
-  "@aboutBody2": {"description": "M110"},
+  "@aboutBody2": {
+    "description": "M110"
+  },
   "aboutBody3": "本指南面向21岁及以上的成年受众，介绍我们所支持的空间的文化、渊源和氛围。",
-  "@aboutBody3": {"description": "M111"},
+  "@aboutBody3": {
+    "description": "M111"
+  },
   "aboutBody4": "如需查看地址、营业时间或路线，请打开“联系方式”。如果您对合作伙伴感兴趣，请前往“品牌”栏目。想了解品牌之家本身的空间，请看“品牌之家”。",
-  "@aboutBody4": {"description": "M112"},
+  "@aboutBody4": {
+    "description": "M112"
+  },
   "aboutBody5": "感谢您选择 Royal Smoke 来认识我们所支持的品牌。",
-  "@aboutBody5": {"description": "M113"},
+  "@aboutBody5": {
+    "description": "M113"
+  },
   "appName": "Royal Smoke",
-  "@appName": {"description": "M114"},
+  "@appName": {
+    "description": "M114"
+  },
   "ageBodyShort": "本应用是品牌信息指南。",
-  "@ageBodyShort": {"description": "M115"},
+  "@ageBodyShort": {
+    "description": "M115"
+  },
   "visitNameLabel": "姓名",
-  "@visitNameLabel": {"description": "M116"},
+  "@visitNameLabel": {
+    "description": "M116"
+  },
   "visitNameHint": "您的姓名",
-  "@visitNameHint": {"description": "M117"},
+  "@visitNameHint": {
+    "description": "M117"
+  },
   "visitNamePhoneError": "请填写姓名和电话",
-  "@visitNamePhoneError": {"description": "M118"},
+  "@visitNamePhoneError": {
+    "description": "M118"
+  },
   "phoneLabel": "电话",
-  "@phoneLabel": {"description": "M119"},
+  "@phoneLabel": {
+    "description": "M119"
+  },
   "phonePrefix": "+380",
-  "@phonePrefix": {"description": "M120"},
+  "@phonePrefix": {
+    "description": "M120"
+  },
   "dateLabel": "日期",
-  "@dateLabel": {"description": "M121"},
+  "@dateLabel": {
+    "description": "M121"
+  },
   "dateHint": "日.月.年",
-  "@dateHint": {"description": "M122"},
+  "@dateHint": {
+    "description": "M122"
+  },
   "timeLabel": "时间",
-  "@timeLabel": {"description": "M123"},
+  "@timeLabel": {
+    "description": "M123"
+  },
   "timeHint": "时:分",
-  "@timeHint": {"description": "M124"},
+  "@timeHint": {
+    "description": "M124"
+  },
   "commentLabel": "备注",
-  "@commentLabel": {"description": "M125"},
+  "@commentLabel": {
+    "description": "M125"
+  },
   "commentHint": "选填",
-  "@commentHint": {"description": "M126"},
-  "brandNotFound": "未找到该品牌",
-  "@brandNotFound": {"description": "M127"},
-  "patternRoyal": "ROYAL",
-  "@patternRoyal": {"description": "M128"},
-  "brandsBack": "品牌",
-  "@brandsBack": {"description": "M129"},
-  "factsKicker": "概览",
-  "@factsKicker": {"description": "M130"},
-  "linesKicker": "系列",
-  "@linesKicker": {"description": "M131"},
-  "allBrands": "全部品牌",
-  "@allBrands": {"description": "M132"},
-  "partnersKicker": "品牌之家的合作伙伴",
-  "@partnersKicker": {"description": "M133"},
-  "filterAll": "全部",
-  "@filterAll": {"description": "M134"},
+  "@commentHint": {
+    "description": "M126"
+  },
   "moreTitle": "更多",
-  "@moreTitle": {"description": "M135"},
+  "@moreTitle": {
+    "description": "M135"
+  },
   "addressLabel": "地址",
-  "@addressLabel": {"description": "M136"},
+  "@addressLabel": {
+    "description": "M136"
+  },
   "getDirections": "规划路线",
-  "@getDirections": {"description": "M137"},
+  "@getDirections": {
+    "description": "M137"
+  },
   "call": "拨打电话",
-  "@call": {"description": "M138"},
+  "@call": {
+    "description": "M138"
+  },
   "hoursLabel": "营业时间",
-  "@hoursLabel": {"description": "M139"},
-  "partnersSection": "合作伙伴",
-  "@partnersSection": {"description": "M140"},
+  "@hoursLabel": {
+    "description": "M139"
+  },
   "houseBodyShort": "Royal Smoke 是一座品牌之家，在乌克兰代理历史悠久的家族品牌。",
-  "@houseBodyShort": {"description": "M141"},
-  "savedBrands": "已保存的品牌",
-  "@savedBrands": {"description": "M142"},
+  "@houseBodyShort": {
+    "description": "M141"
+  },
   "documentFallback": "文档",
-  "@documentFallback": {"description": "M143"},
-  "offlineLocalCatalog": "本地目录",
-  "@offlineLocalCatalog": {"description": "M144"},
-  "offlineUpdated": "更新于 {date}",
-  "@offlineUpdated": {"description": "M145", "placeholders": {"date": {"type": "String"}}},
-  "offlineKicker": "指南",
-  "@offlineKicker": {"description": "M146"},
-  "offlineTitle": "离线",
-  "@offlineTitle": {"description": "M147"},
-  "offlineSubtitle": "已保存的品牌指南",
-  "@offlineSubtitle": {"description": "M148"},
-  "offlineEmpty": "暂无已保存的品牌。\n请点击品牌卡片上的书签进行添加。",
-  "@offlineEmpty": {"description": "M149"},
-  "savedBadge": "已保存",
-  "@savedBadge": {"description": "M150"},
+  "@documentFallback": {
+    "description": "M143"
+  },
   "monogramRs": "RS",
-  "@monogramRs": {"description": "M151"},
-  "emptySearchTitle": "未找到结果",
-  "@emptySearchTitle": {"description": "M152"},
-  "emptySearchBody": "请尝试其他名称",
-  "@emptySearchBody": {"description": "M153"},
-  "offlineMode": "离线模式",
-  "@offlineMode": {"description": "M154"},
+  "@monogramRs": {
+    "description": "M151"
+  },
   "tabHome": "首页",
-  "@tabHome": {"description": "M155"},
-  "searchBrandHint": "搜索品牌",
-  "@searchBrandHint": {"description": "M156"},
+  "@tabHome": {
+    "description": "M155"
+  },
   "mapLabel": "地图",
-  "@mapLabel": {"description": "M157"},
-  "packageDescription": "Royal Smoke — 品牌指南。",
-  "@packageDescription": {"description": "M158"},
-  "webDescription": "Royal Smoke 品牌指南。",
-  "@webDescription": {"description": "M159"}
+  "@mapLabel": {
+    "description": "M157"
+  }
 }

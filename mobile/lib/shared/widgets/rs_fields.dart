@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:royal_smoke/l10n/app_localizations.dart';
 
 import '../../core/constants/app_sizes.dart';
 import '../../core/theme/app_colors.dart';
@@ -91,68 +90,6 @@ class RsTextField extends StatelessWidget {
       borderSide: BorderSide(color: color),
     );
   }
-}
-
-class RsSearchField extends StatelessWidget {
-  const RsSearchField({
-    super.key,
-    required this.controller,
-    this.hint,
-    this.onChanged,
-  });
-
-  final TextEditingController controller;
-  final String? hint;
-  final ValueChanged<String>? onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: controller,
-      builder: (context, _) {
-        final hasText = controller.text.isNotEmpty;
-        return RsTextField(
-          controller: controller,
-          hint: hint ?? AppLocalizations.of(context).searchBrandHint,
-          onChanged: onChanged,
-          prefix: const _SearchMark(),
-          onClear: hasText
-              ? () {
-                  controller.clear();
-                  onChanged?.call('');
-                }
-              : null,
-        );
-      },
-    );
-  }
-}
-
-class _SearchMark extends StatelessWidget {
-  const _SearchMark();
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomPaint(
-      size: const Size(18, 18),
-      painter: _SearchPainter(),
-    );
-  }
-}
-
-class _SearchPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = AppColors.textMuted
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.4;
-    canvas.drawCircle(const Offset(8, 8), 5.5, paint);
-    canvas.drawLine(const Offset(12, 12), const Offset(16, 16), paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
 class _ClearMark extends StatelessWidget {

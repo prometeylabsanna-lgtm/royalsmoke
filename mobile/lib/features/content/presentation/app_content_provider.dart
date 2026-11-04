@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:royal_smoke/core/l10n/app_locale.dart';
 import 'package:royal_smoke/l10n/app_localizations.dart';
 
-import '../../brands/domain/partner_brand.dart';
 import '../data/app_content_repository.dart';
 import '../data/fallback_bundle.dart';
 import '../domain/app_content.dart';
@@ -47,9 +46,3 @@ AppContentBundle watchContent(WidgetRef ref) {
   final l10n = lookupAppLocalizations(locale);
   return ref.watch(appContentProvider).asData?.value ?? buildFallbackBundle(l10n);
 }
-
-final appBrandsProvider = Provider<List<PartnerBrand>>((ref) {
-  final locale = ref.watch(appLocaleProvider);
-  final l10n = lookupAppLocalizations(locale);
-  return ref.watch(appContentProvider).asData?.value.brands ?? buildFallbackBundle(l10n).brands;
-});

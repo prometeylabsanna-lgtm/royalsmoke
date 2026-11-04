@@ -1,321 +1,343 @@
 {
   "@@locale": "uk",
   "splashKicker": "ДОВІДНИК БРЕНДУ",
-  "@splashKicker": {"description": "M001"},
+  "@splashKicker": {
+    "description": "M001"
+  },
   "splashTitle": "ROYAL SMOKE",
-  "@splashTitle": {"description": "M002"},
+  "@splashTitle": {
+    "description": "M002"
+  },
   "splashOpen": "ВІДКРИТИ",
-  "@splashOpen": {"description": "M003"},
+  "@splashOpen": {
+    "description": "M003"
+  },
   "ageKicker": "Підтвердження віку · 21+",
-  "@ageKicker": {"description": "M004"},
+  "@ageKicker": {
+    "description": "M004"
+  },
   "ageTitle": "Лише для повнолітніх",
-  "@ageTitle": {"description": "M005"},
+  "@ageTitle": {
+    "description": "M005"
+  },
   "ageBadge": "21+",
-  "@ageBadge": {"description": "M006"},
+  "@ageBadge": {
+    "description": "M006"
+  },
   "ageBody": "Застосунок є інформаційним довідником брендів. Вміст призначений виключно для осіб, яким виповнилося 21 рік.",
-  "@ageBody": {"description": "M007"},
+  "@ageBody": {
+    "description": "M007"
+  },
   "ageExit": "ВИЙТИ",
-  "@ageExit": {"description": "M008"},
+  "@ageExit": {
+    "description": "M008"
+  },
   "ageConfirm": "Мені є 21 рік",
-  "@ageConfirm": {"description": "M009"},
+  "@ageConfirm": {
+    "description": "M009"
+  },
   "ageLegal": "Продовжуючи, ви підтверджуєте свій вік і погоджуєтеся з віковою політикою.",
-  "@ageLegal": {"description": "M010"},
+  "@ageLegal": {
+    "description": "M010"
+  },
   "homeKicker": "ДІМ БРЕНДУ",
-  "@homeKicker": {"description": "M011"},
+  "@homeKicker": {
+    "description": "M011"
+  },
   "homeTitle": "ROYAL\nSMOKE",
-  "@homeTitle": {"description": "M012"},
+  "@homeTitle": {
+    "description": "M012"
+  },
   "homeBody": "Довідник дому бренду та партнерів",
-  "@homeBody": {"description": "M013"},
-  "brands": "Бренди",
-  "@brands": {"description": "M014"},
+  "@homeBody": {
+    "description": "M013"
+  },
   "houseTab": "Дім",
-  "@houseTab": {"description": "M015"},
+  "@houseTab": {
+    "description": "M015"
+  },
   "houseKicker": "Про дім",
-  "@houseKicker": {"description": "M016"},
+  "@houseKicker": {
+    "description": "M016"
+  },
   "houseTitle": "Дім\nRoyal Smoke",
-  "@houseTitle": {"description": "M017"},
+  "@houseTitle": {
+    "description": "M017"
+  },
   "houseBody": "Royal Smoke — дім, що представляє в Україні родинні бренди з багаторічною історією. Тут можна дізнатися про походження брендів і познайомитися з колекцією під час візиту.",
-  "@houseBody": {"description": "M018"},
+  "@houseBody": {
+    "description": "M018"
+  },
   "bookVisit": "Забронювати візит",
-  "@bookVisit": {"description": "M019"},
+  "@bookVisit": {
+    "description": "M019"
+  },
   "contacts": "Контакти",
-  "@contacts": {"description": "M020"},
+  "@contacts": {
+    "description": "M020"
+  },
   "houseBlock1Index": "01",
-  "@houseBlock1Index": {"description": "M021"},
+  "@houseBlock1Index": {
+    "description": "M021"
+  },
   "houseBlockServiceTitle": "Сервіс",
-  "@houseBlockServiceTitle": {"description": "M022"},
+  "@houseBlockServiceTitle": {
+    "description": "M022"
+  },
   "houseBlockServiceBody": "Консультації щодо брендів, історії та зберігання.",
-  "@houseBlockServiceBody": {"description": "M023"},
+  "@houseBlockServiceBody": {
+    "description": "M023"
+  },
   "houseBlock2Index": "02",
-  "@houseBlock2Index": {"description": "M024"},
+  "@houseBlock2Index": {
+    "description": "M024"
+  },
   "houseBlockB2bTitle": "B2B",
-  "@houseBlockB2bTitle": {"description": "M025"},
+  "@houseBlockB2bTitle": {
+    "description": "M025"
+  },
   "houseBlockB2bBody": "Співпраця із закладами та професійними партнерами.",
-  "@houseBlockB2bBody": {"description": "M026"},
+  "@houseBlockB2bBody": {
+    "description": "M026"
+  },
   "houseBlock3Index": "03",
-  "@houseBlock3Index": {"description": "M027"},
+  "@houseBlock3Index": {
+    "description": "M027"
+  },
   "visitTitle": "Візит",
-  "@visitTitle": {"description": "M028"},
+  "@visitTitle": {
+    "description": "M028"
+  },
   "houseBlockVisitBody": "Знайомство з домом за попереднім записом.",
-  "@houseBlockVisitBody": {"description": "M029"},
+  "@houseBlockVisitBody": {
+    "description": "M029"
+  },
   "visitKicker": "Дім Royal Smoke",
-  "@visitKicker": {"description": "M030"},
+  "@visitKicker": {
+    "description": "M030"
+  },
   "visitNewRequest": "НОВИЙ ЗАПИТ",
-  "@visitNewRequest": {"description": "M031"},
+  "@visitNewRequest": {
+    "description": "M031"
+  },
   "visitSendRequest": "Надіслати запит",
-  "@visitSendRequest": {"description": "M032"},
+  "@visitSendRequest": {
+    "description": "M032"
+  },
   "visitSuccessTitle": "ЗАПИТ НАДІСЛАНО",
-  "@visitSuccessTitle": {"description": "M033"},
+  "@visitSuccessTitle": {
+    "description": "M033"
+  },
   "visitSuccessBody": "Ми звʼяжемося з вами, щоб підтвердити дату та час візиту.",
-  "@visitSuccessBody": {"description": "M034"},
+  "@visitSuccessBody": {
+    "description": "M034"
+  },
   "appVersion": "Royal Smoke · v1.0",
-  "@appVersion": {"description": "M035"},
+  "@appVersion": {
+    "description": "M035"
+  },
   "appBlurb": "Royal Smoke — інформаційний довідник дому бренду. Застосунок призначений для осіб 21+.",
-  "@appBlurb": {"description": "M036"},
+  "@appBlurb": {
+    "description": "M036"
+  },
   "contactAddress": "вул. Хрещатик, 1, Київ",
-  "@contactAddress": {"description": "M037"},
+  "@contactAddress": {
+    "description": "M037"
+  },
   "contactPhone": "+380 00 000 00 00",
-  "@contactPhone": {"description": "M038"},
+  "@contactPhone": {
+    "description": "M038"
+  },
   "contactHours": "Пн–Нд · 11:00–22:00",
-  "@contactHours": {"description": "M039"},
-  "brandAjName": "AJ Fernandez",
-  "@brandAjName": {"description": "M040"},
-  "brandAjShort": "AJ",
-  "@brandAjShort": {"description": "M041"},
-  "countryNicaragua": "Нікарагуа",
-  "@countryNicaragua": {"description": "M042"},
-  "brandAjHeritage": "Abdel Fernández — представник четвертого покоління кубинської родини майстрів. Власну мануфактуру в Естелі заснував на початку 2000-х; компанія розвиває виробництво в кількох регіонах Нікарагуа.",
-  "@brandAjHeritage": {"description": "M043"},
-  "factOrigin": "Походження",
-  "@factOrigin": {"description": "M044"},
-  "factOriginEsteli": "Естелі, Нікарагуа",
-  "@factOriginEsteli": {"description": "M045"},
-  "factFounded": "Засновано",
-  "@factFounded": {"description": "M046"},
-  "factFoundedAj": "Початок 2000-х",
-  "@factFoundedAj": {"description": "M047"},
-  "factFamily": "Родина",
-  "@factFamily": {"description": "M048"},
-  "factFamilyAj": "Fernández, кубинське коріння",
-  "@factFamilyAj": {"description": "M049"},
-  "factLineCharacter": "Характер ліній",
-  "@factLineCharacter": {"description": "M050"},
-  "factLineCharacterAj": "Насичені, виразні профілі",
-  "@factLineCharacterAj": {"description": "M051"},
-  "lineAjNewWorld": "New World",
-  "@lineAjNewWorld": {"description": "M052"},
-  "lineAjBellasArtes": "Bellas Artes",
-  "@lineAjBellasArtes": {"description": "M053"},
-  "lineAjEnclave": "Enclave",
-  "@lineAjEnclave": {"description": "M054"},
-  "lineAjSanLotano": "San Lotano",
-  "@lineAjSanLotano": {"description": "M055"},
-  "brandOlivaName": "Oliva",
-  "@brandOlivaName": {"description": "M056"},
-  "brandOlivaMono": "O",
-  "@brandOlivaMono": {"description": "M057"},
-  "brandOlivaHeritage": "Родина Oliva розвиває свою справу з кінця XIX століття, починаючи з провінції Пінар-дель-Ріо на Кубі. Після еміграції виробництво зосередилося в Нікарагуа, де розташовані основні майстерні та фабрика бренду.",
-  "@brandOlivaHeritage": {"description": "M058"},
-  "factTradition": "Традиція",
-  "@factTradition": {"description": "M059"},
-  "factTraditionOliva": "З кінця XIX ст., Куба",
-  "@factTraditionOliva": {"description": "M060"},
-  "factProduction": "Виробництво",
-  "@factProduction": {"description": "M061"},
-  "factProductionOliva": "Власні майстерні в долині Хамастран",
-  "@factProductionOliva": {"description": "M062"},
-  "factLineCharacterOliva": "Від збалансованих до насичених",
-  "@factLineCharacterOliva": {"description": "M063"},
-  "lineOlivaSerieV": "Serie V",
-  "@lineOlivaSerieV": {"description": "M064"},
-  "lineOlivaSerieG": "Serie G",
-  "@lineOlivaSerieG": {"description": "M065"},
-  "lineOlivaMasterBlends": "Master Blends",
-  "@lineOlivaMasterBlends": {"description": "M066"},
-  "lineOlivaSerieO": "Serie O",
-  "@lineOlivaSerieO": {"description": "M067"},
-  "brandPerdomoName": "Perdomo",
-  "@brandPerdomoName": {"description": "M068"},
-  "brandPerdomoMono": "P",
-  "@brandPerdomoMono": {"description": "M069"},
-  "brandPerdomoHeritage": "Бренд засновано в Маямі на початку 1990-х. Згодом виробництво перенесено до Естелі, де компанія вибудувала повний цикл — від власних ділянок до фабрики та тривалої витримки.",
-  "@brandPerdomoHeritage": {"description": "M070"},
-  "factFoundedPerdomo": "1990-ті, Маямі",
-  "@factFoundedPerdomo": {"description": "M071"},
-  "factFounder": "Засновник",
-  "@factFounder": {"description": "M072"},
-  "factFounderPerdomo": "Nick Perdomo",
-  "@factFounderPerdomo": {"description": "M073"},
-  "factFeature": "Особливість",
-  "@factFeature": {"description": "M074"},
-  "factFeaturePerdomo": "Тривала витримка матеріалів",
-  "@factFeaturePerdomo": {"description": "M075"},
-  "linePerdomoReserve": "Reserve 10th Anniversary",
-  "@linePerdomoReserve": {"description": "M076"},
-  "linePerdomoHabano": "Habano",
-  "@linePerdomoHabano": {"description": "M077"},
-  "linePerdomoLot23": "Lot 23",
-  "@linePerdomoLot23": {"description": "M078"},
-  "brandTurrentName": "Casa Turrent",
-  "@brandTurrentName": {"description": "M079"},
-  "brandTurrentMono": "CT",
-  "@brandTurrentMono": {"description": "M080"},
-  "countryMexico": "Мексика",
-  "@countryMexico": {"description": "M081"},
-  "brandTurrentHeritage": "Мексиканський бренд родини Turrent. Виробництво в долині Сан-Андрес, штат Веракрус; глибокі місцеві традиції та характерний стиль регіону.",
-  "@brandTurrentHeritage": {"description": "M082"},
-  "factOriginTurrent": "Сан-Андрес, Мексика",
-  "@factOriginTurrent": {"description": "M083"},
-  "factFamilyTurrent": "Turrent",
-  "@factFamilyTurrent": {"description": "M084"},
-  "factLineCharacterTurrent": "Насичений профіль, стійкий фініш",
-  "@factLineCharacterTurrent": {"description": "M085"},
-  "lineTurrent1942": "1942",
-  "@lineTurrent1942": {"description": "M086"},
-  "lineTurrent1880": "1880",
-  "@lineTurrent1880": {"description": "M087"},
-  "lineTurrentOrigin": "Origin Series",
-  "@lineTurrentOrigin": {"description": "M088"},
-  "lineTurrent1901": "Serie 1901",
-  "@lineTurrent1901": {"description": "M089"},
+  "@contactHours": {
+    "description": "M039"
+  },
   "privacyTitle": "Політика конфіденційності",
-  "@privacyTitle": {"description": "M090"},
+  "@privacyTitle": {
+    "description": "M090"
+  },
   "privacyBody1": "Ця політика пояснює, які дані може обробляти застосунок Royal Smoke і з якою метою.",
-  "@privacyBody1": {"description": "M091"},
+  "@privacyBody1": {
+    "description": "M091"
+  },
   "privacyBody2": "Royal Smoke — інформаційний довідник дому бренду. Ми збираємо лише мінімальні технічні дані, потрібні для стабільної роботи сервісу: наприклад, локально збережені бренди на вашому пристрої, базові відомості про сесію та технічні журнали для діагностики збоїв.",
-  "@privacyBody2": {"description": "M092"},
+  "@privacyBody2": {
+    "description": "M092"
+  },
   "privacyBody3": "Ми не створюємо рекламні профілі користувачів і не передаємо персональні дані третім сторонам для маркетингу.",
-  "@privacyBody3": {"description": "M093"},
+  "@privacyBody3": {
+    "description": "M093"
+  },
   "privacyBody4": "Вміст довідника призначений виключно для повнолітніх (21+). Доступ можливий лише після підтвердження віку. Якщо ви не згодні з цими умовами — припиніть користування застосунком.",
-  "@privacyBody4": {"description": "M094"},
+  "@privacyBody4": {
+    "description": "M094"
+  },
   "privacyBody5": "Запити щодо даних, доступу чи видалення інформації на пристрої можна надіслати через розділ «Контакти». Ми відповідаємо в розумні строки та в межах вимог чинного законодавства України.",
-  "@privacyBody5": {"description": "M095"},
+  "@privacyBody5": {
+    "description": "M095"
+  },
   "termsTitle": "Умови",
-  "@termsTitle": {"description": "M096"},
+  "@termsTitle": {
+    "description": "M096"
+  },
   "termsBody1": "Користуючись застосунком Royal Smoke, ви підтверджуєте, що вам виповнилося 21 рік і що ви ознайомилися з цими умовами.",
-  "@termsBody1": {"description": "M097"},
+  "@termsBody1": {
+    "description": "M097"
+  },
   "termsBody2": "Довідник надається з інформаційною метою: опис брендів-партнерів, історії дому, лінійок і контактів. Матеріали допомагають зорієнтуватися у світі партнерів і атмосфері простору.",
-  "@termsBody2": {"description": "M098"},
+  "@termsBody2": {
+    "description": "M098"
+  },
   "termsBody3": "Будь-які рішення щодо відвідування дому чи ознайомлення з матеріалами приймаєте ви самостійно, з урахуванням вікових обмежень і правил закладу.",
-  "@termsBody3": {"description": "M099"},
+  "@termsBody3": {
+    "description": "M099"
+  },
   "termsBody4": "Ми можемо оновлювати тексти, зображення та структуру розділів без попереднього окремого повідомлення. Продовження користування після оновлення означає згоду з чинною редакцією умов.",
-  "@termsBody4": {"description": "M100"},
+  "@termsBody4": {
+    "description": "M100"
+  },
   "termsBody5": "За порушення правил користування або надання неправдивих відомостей про вік доступ до довідника може бути обмежено. Питання щодо умов — через «Контакти».",
-  "@termsBody5": {"description": "M101"},
+  "@termsBody5": {
+    "description": "M101"
+  },
   "agePolicyTitle": "Вікова політика",
-  "@agePolicyTitle": {"description": "M102"},
+  "@agePolicyTitle": {
+    "description": "M102"
+  },
   "agePolicyBody1": "Вміст довідника Royal Smoke призначений виключно для осіб, яким виповнилося 21 рік.",
-  "@agePolicyBody1": {"description": "M103"},
+  "@agePolicyBody1": {
+    "description": "M103"
+  },
   "agePolicyBody2": "Перед входом до основних розділів застосунок запитує підтвердження віку. Це обовʼязкова умова доступу до матеріалів про бренди, дім і повʼязаний контент. Якщо вам ще немає 21 року — будь ласка, залиште застосунок.",
-  "@agePolicyBody2": {"description": "M104"},
+  "@agePolicyBody2": {
+    "description": "M104"
+  },
   "agePolicyBody3": "Усі сторінки мають довідковий характер і слугують для ознайомлення з партнерами дому та його простором.",
-  "@agePolicyBody3": {"description": "M105"},
+  "@agePolicyBody3": {
+    "description": "M105"
+  },
   "agePolicyBody4": "Ми залишаємо за собою право оновлювати формулювання вікової політики, якщо цього вимагають зміни в законодавстві чи внутрішні стандарти дому. Актуальна версія завжди доступна в розділі «Ще».",
-  "@agePolicyBody4": {"description": "M106"},
+  "@agePolicyBody4": {
+    "description": "M106"
+  },
   "agePolicyBody5": "Використовуючи застосунок, ви підтверджуєте свій вік і згоду з цією політикою. Запитання — через «Контакти».",
-  "@agePolicyBody5": {"description": "M107"},
+  "@agePolicyBody5": {
+    "description": "M107"
+  },
   "aboutTitle": "Про застосунок",
-  "@aboutTitle": {"description": "M108"},
+  "@aboutTitle": {
+    "description": "M108"
+  },
   "aboutBody1": "Royal Smoke — дім бренду і цифровий довідник його світу.",
-  "@aboutBody1": {"description": "M109"},
+  "@aboutBody1": {
+    "description": "M109"
+  },
   "aboutBody2": "Тут зібрано партнерів дому, короткі історії мануфактур, характер лінійок і контакти простору в Києві. Мета застосунку — допомогти спокійно зорієнтуватися: хто поруч із домом, чим вирізняється кожен бренд і як до нас звернутися.",
-  "@aboutBody2": {"description": "M110"},
+  "@aboutBody2": {
+    "description": "M110"
+  },
   "aboutBody3": "Довідник створено для дорослої аудиторії 21+; він розповідає про культуру, походження та атмосферу простору, який ми підтримуємо.",
-  "@aboutBody3": {"description": "M111"},
+  "@aboutBody3": {
+    "description": "M111"
+  },
   "aboutBody4": "Якщо шукаєте адресу, години роботи чи маршрут — відкрийте «Контакти». Якщо цікавлять партнери — розділ «Бренди». А щоб зрозуміти сам простір дому — зазирніть у «Дім».",
-  "@aboutBody4": {"description": "M112"},
+  "@aboutBody4": {
+    "description": "M112"
+  },
   "aboutBody5": "Дякуємо, що обираєте Royal Smoke як місце для знайомства з брендами, які ми підтримуємо.",
-  "@aboutBody5": {"description": "M113"},
+  "@aboutBody5": {
+    "description": "M113"
+  },
   "appName": "Royal Smoke",
-  "@appName": {"description": "M114"},
+  "@appName": {
+    "description": "M114"
+  },
   "ageBodyShort": "Застосунок є інформаційним довідником брендів.",
-  "@ageBodyShort": {"description": "M115"},
+  "@ageBodyShort": {
+    "description": "M115"
+  },
   "visitNameLabel": "Імʼя",
-  "@visitNameLabel": {"description": "M116"},
+  "@visitNameLabel": {
+    "description": "M116"
+  },
   "visitNameHint": "Ваше імʼя",
-  "@visitNameHint": {"description": "M117"},
+  "@visitNameHint": {
+    "description": "M117"
+  },
   "visitNamePhoneError": "Вкажіть імʼя та телефон",
-  "@visitNamePhoneError": {"description": "M118"},
+  "@visitNamePhoneError": {
+    "description": "M118"
+  },
   "phoneLabel": "Телефон",
-  "@phoneLabel": {"description": "M119"},
+  "@phoneLabel": {
+    "description": "M119"
+  },
   "phonePrefix": "+380",
-  "@phonePrefix": {"description": "M120"},
+  "@phonePrefix": {
+    "description": "M120"
+  },
   "dateLabel": "Дата",
-  "@dateLabel": {"description": "M121"},
+  "@dateLabel": {
+    "description": "M121"
+  },
   "dateHint": "ДД.ММ.РРРР",
-  "@dateHint": {"description": "M122"},
+  "@dateHint": {
+    "description": "M122"
+  },
   "timeLabel": "Час",
-  "@timeLabel": {"description": "M123"},
+  "@timeLabel": {
+    "description": "M123"
+  },
   "timeHint": "ГГ:ХХ",
-  "@timeHint": {"description": "M124"},
+  "@timeHint": {
+    "description": "M124"
+  },
   "commentLabel": "Коментар",
-  "@commentLabel": {"description": "M125"},
+  "@commentLabel": {
+    "description": "M125"
+  },
   "commentHint": "Необовʼязково",
-  "@commentHint": {"description": "M126"},
-  "brandNotFound": "Бренд не знайдено",
-  "@brandNotFound": {"description": "M127"},
-  "patternRoyal": "ROYAL",
-  "@patternRoyal": {"description": "M128"},
-  "brandsBack": "БРЕНДИ",
-  "@brandsBack": {"description": "M129"},
-  "factsKicker": "КОРОТКО",
-  "@factsKicker": {"description": "M130"},
-  "linesKicker": "ЛІНІЙКИ",
-  "@linesKicker": {"description": "M131"},
-  "allBrands": "УСІ БРЕНДИ",
-  "@allBrands": {"description": "M132"},
-  "partnersKicker": "Партнери дому",
-  "@partnersKicker": {"description": "M133"},
-  "filterAll": "Усі",
-  "@filterAll": {"description": "M134"},
+  "@commentHint": {
+    "description": "M126"
+  },
   "moreTitle": "Ще",
-  "@moreTitle": {"description": "M135"},
+  "@moreTitle": {
+    "description": "M135"
+  },
   "addressLabel": "Адреса",
-  "@addressLabel": {"description": "M136"},
+  "@addressLabel": {
+    "description": "M136"
+  },
   "getDirections": "Прокласти маршрут",
-  "@getDirections": {"description": "M137"},
+  "@getDirections": {
+    "description": "M137"
+  },
   "call": "Зателефонувати",
-  "@call": {"description": "M138"},
+  "@call": {
+    "description": "M138"
+  },
   "hoursLabel": "Години",
-  "@hoursLabel": {"description": "M139"},
-  "partnersSection": "ПАРТНЕРИ",
-  "@partnersSection": {"description": "M140"},
+  "@hoursLabel": {
+    "description": "M139"
+  },
   "houseBodyShort": "Royal Smoke — дім, що представляє в Україні родинні бренди з багаторічною історією.",
-  "@houseBodyShort": {"description": "M141"},
-  "savedBrands": "Збережені бренди",
-  "@savedBrands": {"description": "M142"},
+  "@houseBodyShort": {
+    "description": "M141"
+  },
   "documentFallback": "Документ",
-  "@documentFallback": {"description": "M143"},
-  "offlineLocalCatalog": "Локальний каталог",
-  "@offlineLocalCatalog": {"description": "M144"},
-  "offlineUpdated": "Оновлено {date}",
-  "@offlineUpdated": {"description": "M145", "placeholders": {"date": {"type": "String"}}},
-  "offlineKicker": "Довідник",
-  "@offlineKicker": {"description": "M146"},
-  "offlineTitle": "Офлайн",
-  "@offlineTitle": {"description": "M147"},
-  "offlineSubtitle": "Збережений довідник брендів",
-  "@offlineSubtitle": {"description": "M148"},
-  "offlineEmpty": "Поки немає збережених брендів.\nДодайте їх закладкою на картці бренду.",
-  "@offlineEmpty": {"description": "M149"},
-  "savedBadge": "ЗБЕРЕЖЕНО",
-  "@savedBadge": {"description": "M150"},
+  "@documentFallback": {
+    "description": "M143"
+  },
   "monogramRs": "RS",
-  "@monogramRs": {"description": "M151"},
-  "emptySearchTitle": "Нічого не знайдено",
-  "@emptySearchTitle": {"description": "M152"},
-  "emptySearchBody": "Спробуйте іншу назву",
-  "@emptySearchBody": {"description": "M153"},
-  "offlineMode": "ОФЛАЙН-РЕЖИМ",
-  "@offlineMode": {"description": "M154"},
+  "@monogramRs": {
+    "description": "M151"
+  },
   "tabHome": "Головна",
-  "@tabHome": {"description": "M155"},
-  "searchBrandHint": "Пошук бренду",
-  "@searchBrandHint": {"description": "M156"},
+  "@tabHome": {
+    "description": "M155"
+  },
   "mapLabel": "МАПА",
-  "@mapLabel": {"description": "M157"},
-  "packageDescription": "Royal Smoke — довідник бренду.",
-  "@packageDescription": {"description": "M158"},
-  "webDescription": "Довідник бренду Royal Smoke.",
-  "@webDescription": {"description": "M159"}
+  "@mapLabel": {
+    "description": "M157"
+  }
 }

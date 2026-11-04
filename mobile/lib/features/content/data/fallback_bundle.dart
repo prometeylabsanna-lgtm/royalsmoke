@@ -1,5 +1,4 @@
 import 'package:royal_smoke/core/constants/app_copy.dart';
-import 'package:royal_smoke/features/brands/data/partner_catalog.dart';
 import 'package:royal_smoke/features/content/domain/app_content.dart';
 import 'package:royal_smoke/l10n/app_localizations.dart';
 
@@ -17,7 +16,6 @@ AppContentBundle buildFallbackBundle(AppLocalizations t) {
       contactLat: AppCopy.contactLat,
       contactLng: AppCopy.contactLng,
     ),
-    brands: PartnerCatalog.of(t),
     screens: {
       'splash': AppScreenContent(
         kicker: t.splashKicker,
@@ -37,7 +35,7 @@ AppContentBundle buildFallbackBundle(AppLocalizations t) {
         kicker: t.homeKicker,
         title: t.homeTitle,
         body: t.homeBody,
-        ctaPrimary: t.brands,
+        ctaPrimary: t.bookVisit,
         ctaSecondary: t.houseTab,
         heroAssetFallback: 'assets/images/home/hero.jpg',
       ),

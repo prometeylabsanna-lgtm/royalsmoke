@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:royal_smoke/core/l10n/app_locale.dart';
 import 'package:royal_smoke/core/theme/app_theme.dart';
-import 'package:royal_smoke/features/brands/presentation/brand_detail_screen.dart';
-import 'package:royal_smoke/features/brands/presentation/brands_screen.dart';
+import 'package:royal_smoke/features/booking/presentation/visit_screen.dart';
+import 'package:royal_smoke/features/contacts/presentation/contacts_screen.dart';
 import 'package:royal_smoke/features/content/data/app_content_repository.dart';
 import 'package:royal_smoke/features/content/data/fallback_bundle.dart';
 import 'package:royal_smoke/features/content/domain/app_content.dart';
@@ -12,7 +12,6 @@ import 'package:royal_smoke/features/content/presentation/app_content_provider.d
 import 'package:royal_smoke/features/home/presentation/home_screen.dart';
 import 'package:royal_smoke/features/house/presentation/house_screen.dart';
 import 'package:royal_smoke/features/more/presentation/more_screen.dart';
-import 'package:royal_smoke/features/offline/presentation/offline_screen.dart';
 import 'package:royal_smoke/l10n/app_localizations.dart';
 import 'package:royal_smoke/shared/widgets/rs_chrome.dart';
 
@@ -51,14 +50,13 @@ void main() {
     await tester.pump();
   }
 
-  testWidgets('брівка House, Offline, Brands і More нижче за статус-бар', (
+  testWidgets('брівка House, Visit і More нижче за статус-бар', (
     tester,
   ) async {
     addTearDown(tester.view.reset);
     const screens = <(Widget, String)>[
       (HouseScreen(), 'ПРО ДІМ'),
-      (OfflineScreen(), 'ДОВІДНИК'),
-      (BrandsScreen(), 'ПАРТНЕРИ ДОМУ'),
+      (VisitScreen(), 'ДІМ ROYAL SMOKE'),
       (MoreScreen(), 'ROYAL SMOKE'),
     ];
 
@@ -91,7 +89,7 @@ void main() {
     expect(dy, greaterThanOrEqualTo(59));
   });
 
-  testWidgets('Home і картка бренду: верхній текст нижче за інсет', (
+  testWidgets('Home і контакти: верхній текст нижче за інсет', (
     tester,
   ) async {
     addTearDown(tester.view.reset);
@@ -104,16 +102,12 @@ void main() {
         reason: 'home top=$top',
       );
 
-      await pumpScreen(
-        tester,
-        const BrandDetailScreen(brandId: 'turrent'),
-        top: top,
-      );
+      await pumpScreen(tester, const ContactsScreen(), top: top);
       expect(tester.takeException(), isNull);
       expect(
-        tester.getTopLeft(find.text('БРЕНДИ')).dy,
+        tester.getTopLeft(find.text('ЩЕ')).dy,
         greaterThanOrEqualTo(top),
-        reason: 'brand top=$top',
+        reason: 'contacts top=$top',
       );
     }
   });

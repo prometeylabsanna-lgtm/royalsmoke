@@ -50,9 +50,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get homeBody => 'Panduan rumah merek dan para mitranya';
 
   @override
-  String get brands => 'Merek';
-
-  @override
   String get houseTab => 'Rumah';
 
   @override
@@ -132,162 +129,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get contactHours => 'Sen–Min · 11:00–22:00';
-
-  @override
-  String get brandAjName => 'AJ Fernandez';
-
-  @override
-  String get brandAjShort => 'AJ';
-
-  @override
-  String get countryNicaragua => 'Nikaragua';
-
-  @override
-  String get brandAjHeritage =>
-      'Abdel Fernández adalah perwakilan generasi keempat dari keluarga pengrajin Kuba. Ia mendirikan manufakturnya sendiri di Estelí pada awal tahun 2000-an; perusahaan ini mengembangkan produksi di beberapa wilayah Nikaragua.';
-
-  @override
-  String get factOrigin => 'Asal';
-
-  @override
-  String get factOriginEsteli => 'Estelí, Nikaragua';
-
-  @override
-  String get factFounded => 'Didirikan';
-
-  @override
-  String get factFoundedAj => 'Awal tahun 2000-an';
-
-  @override
-  String get factFamily => 'Keluarga';
-
-  @override
-  String get factFamilyAj => 'Fernández, berakar Kuba';
-
-  @override
-  String get factLineCharacter => 'Karakter lini produk';
-
-  @override
-  String get factLineCharacterAj => 'Profil yang kaya dan ekspresif';
-
-  @override
-  String get lineAjNewWorld => 'New World';
-
-  @override
-  String get lineAjBellasArtes => 'Bellas Artes';
-
-  @override
-  String get lineAjEnclave => 'Enclave';
-
-  @override
-  String get lineAjSanLotano => 'San Lotano';
-
-  @override
-  String get brandOlivaName => 'Oliva';
-
-  @override
-  String get brandOlivaMono => 'O';
-
-  @override
-  String get brandOlivaHeritage =>
-      'Keluarga Oliva mengembangkan usahanya sejak akhir abad ke-19, dimulai dari provinsi Pinar del Río di Kuba. Setelah berimigrasi, produksi terpusat di Nikaragua, tempat bengkel utama dan pabrik merek ini berada.';
-
-  @override
-  String get factTradition => 'Tradisi';
-
-  @override
-  String get factTraditionOliva => 'Sejak akhir abad ke-19, Kuba';
-
-  @override
-  String get factProduction => 'Produksi';
-
-  @override
-  String get factProductionOliva => 'Bengkel milik sendiri di Lembah Jamastrán';
-
-  @override
-  String get factLineCharacterOliva =>
-      'Dari yang seimbang hingga yang kaya rasa';
-
-  @override
-  String get lineOlivaSerieV => 'Serie V';
-
-  @override
-  String get lineOlivaSerieG => 'Serie G';
-
-  @override
-  String get lineOlivaMasterBlends => 'Master Blends';
-
-  @override
-  String get lineOlivaSerieO => 'Serie O';
-
-  @override
-  String get brandPerdomoName => 'Perdomo';
-
-  @override
-  String get brandPerdomoMono => 'P';
-
-  @override
-  String get brandPerdomoHeritage =>
-      'Merek ini didirikan di Miami pada awal tahun 1990-an. Kemudian produksi dipindahkan ke Estelí, tempat perusahaan membangun siklus lengkap — dari lahan sendiri hingga pabrik dan pematangan yang panjang.';
-
-  @override
-  String get factFoundedPerdomo => 'Tahun 1990-an, Miami';
-
-  @override
-  String get factFounder => 'Pendiri';
-
-  @override
-  String get factFounderPerdomo => 'Nick Perdomo';
-
-  @override
-  String get factFeature => 'Ciri khas';
-
-  @override
-  String get factFeaturePerdomo => 'Pematangan bahan yang lama';
-
-  @override
-  String get linePerdomoReserve => 'Reserve 10th Anniversary';
-
-  @override
-  String get linePerdomoHabano => 'Habano';
-
-  @override
-  String get linePerdomoLot23 => 'Lot 23';
-
-  @override
-  String get brandTurrentName => 'Casa Turrent';
-
-  @override
-  String get brandTurrentMono => 'CT';
-
-  @override
-  String get countryMexico => 'Meksiko';
-
-  @override
-  String get brandTurrentHeritage =>
-      'Merek Meksiko milik keluarga Turrent. Produksi di Lembah San Andrés, negara bagian Veracruz; tradisi lokal yang mendalam dan gaya khas kawasan tersebut.';
-
-  @override
-  String get factOriginTurrent => 'San Andrés, Meksiko';
-
-  @override
-  String get factFamilyTurrent => 'Turrent';
-
-  @override
-  String get factLineCharacterTurrent =>
-      'Profil yang kaya, kesan akhir yang bertahan lama';
-
-  @override
-  String get lineTurrent1942 => '1942';
-
-  @override
-  String get lineTurrent1880 => '1880';
-
-  @override
-  String get lineTurrentOrigin => 'Origin Series';
-
-  @override
-  String get lineTurrent1901 => 'Serie 1901';
 
   @override
   String get privacyTitle => 'Kebijakan privasi';
@@ -422,30 +263,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get commentHint => 'Opsional';
 
   @override
-  String get brandNotFound => 'Merek tidak ditemukan';
-
-  @override
-  String get patternRoyal => 'ROYAL';
-
-  @override
-  String get brandsBack => 'MEREK';
-
-  @override
-  String get factsKicker => 'RINGKASAN';
-
-  @override
-  String get linesKicker => 'LINI PRODUK';
-
-  @override
-  String get allBrands => 'SEMUA MEREK';
-
-  @override
-  String get partnersKicker => 'Mitra rumah';
-
-  @override
-  String get filterAll => 'Semua';
-
-  @override
   String get moreTitle => 'Lainnya';
 
   @override
@@ -461,66 +278,18 @@ class AppLocalizationsId extends AppLocalizations {
   String get hoursLabel => 'Jam buka';
 
   @override
-  String get partnersSection => 'MITRA';
-
-  @override
   String get houseBodyShort =>
       'Royal Smoke adalah rumah yang mewakili merek-merek keluarga dengan sejarah panjang di Ukraina.';
-
-  @override
-  String get savedBrands => 'Merek tersimpan';
 
   @override
   String get documentFallback => 'Dokumen';
 
   @override
-  String get offlineLocalCatalog => 'Katalog lokal';
-
-  @override
-  String offlineUpdated(String date) {
-    return 'Diperbarui $date';
-  }
-
-  @override
-  String get offlineKicker => 'Panduan';
-
-  @override
-  String get offlineTitle => 'Offline';
-
-  @override
-  String get offlineSubtitle => 'Panduan merek tersimpan';
-
-  @override
-  String get offlineEmpty =>
-      'Belum ada merek tersimpan.\nTambahkan dengan penanda pada kartu merek.';
-
-  @override
-  String get savedBadge => 'TERSIMPAN';
-
-  @override
   String get monogramRs => 'RS';
-
-  @override
-  String get emptySearchTitle => 'Tidak ada hasil';
-
-  @override
-  String get emptySearchBody => 'Coba nama lain';
-
-  @override
-  String get offlineMode => 'MODE OFFLINE';
 
   @override
   String get tabHome => 'Beranda';
 
   @override
-  String get searchBrandHint => 'Cari merek';
-
-  @override
   String get mapLabel => 'PETA';
-
-  @override
-  String get packageDescription => 'Royal Smoke — panduan merek.';
-
-  @override
-  String get webDescription => 'Panduan merek Royal Smoke.';
 }

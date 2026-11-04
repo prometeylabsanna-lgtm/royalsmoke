@@ -5,14 +5,14 @@ import 'package:royal_smoke/features/content/data/fallback_bundle.dart';
 import 'package:royal_smoke/l10n/app_localizations.dart';
 
 void main() {
-  test('fallback bundle має бренди та екрани', () {
+  test('fallback bundle має екрани та політику', () {
     final bundle = buildFallbackBundle(lookupAppLocalizations(const Locale('uk')));
-    expect(bundle.brands.length, greaterThanOrEqualTo(4));
     expect(bundle.screen('home').title, isNotEmpty);
+    expect(bundle.screen('visit').ctaPrimary, isNotEmpty);
     expect(bundle.page('privacy')?.body, isNotEmpty);
   });
 
-  test('parser читає bundle JSON', () {
+  test('parser читає екрани і пропускає brands', () {
     final bundle = parseAppBundle({
       'settings': {
         'app_version': 'v-test',
@@ -26,20 +26,8 @@ void main() {
       },
       'brands': [
         {
-          'id': 'aj',
-          'slug': 'aj',
-          'name': 'AJ Fernandez',
-          'short_name': 'AJ',
-          'mono': 'AJ',
-          'country': 'Нікарагуа',
-          'panel': 'amber',
-          'cover': 'https://example.com/aj.jpg',
-          'heritage': 'story',
-          'facts': [
-            {'label': 'A', 'value': 'B'},
-          ],
-          'lines': ['Line 1'],
-          'photos': [],
+          'id': 'hidden',
+          'name': 'Hidden',
         },
       ],
       'screens': {
@@ -47,7 +35,7 @@ void main() {
           'kicker': 'К',
           'title': 'T',
           'body': 'B',
-          'hero_image': 'https://example.com/h.jpg',
+          'hero_image': '',
           'house_blocks': [],
         },
       },
@@ -57,9 +45,8 @@ void main() {
     });
 
     expect(bundle.settings.appVersion, 'v-test');
-    expect(bundle.brands.single.id, 'aj');
-    expect(bundle.brands.single.imageUrl, contains('aj.jpg'));
     expect(bundle.screen('home').title, 'T');
+    expect(bundle.screen('home').heroImageUrl, isEmpty);
     expect(bundle.page('about')?.title, 'Про');
   });
 }

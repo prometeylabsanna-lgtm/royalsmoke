@@ -50,9 +50,6 @@ class AppLocalizationsUk extends AppLocalizations {
   String get homeBody => 'Довідник дому бренду та партнерів';
 
   @override
-  String get brands => 'Бренди';
-
-  @override
   String get houseTab => 'Дім';
 
   @override
@@ -131,160 +128,6 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get contactHours => 'Пн–Нд · 11:00–22:00';
-
-  @override
-  String get brandAjName => 'AJ Fernandez';
-
-  @override
-  String get brandAjShort => 'AJ';
-
-  @override
-  String get countryNicaragua => 'Нікарагуа';
-
-  @override
-  String get brandAjHeritage =>
-      'Abdel Fernández — представник четвертого покоління кубинської родини майстрів. Власну мануфактуру в Естелі заснував на початку 2000-х; компанія розвиває виробництво в кількох регіонах Нікарагуа.';
-
-  @override
-  String get factOrigin => 'Походження';
-
-  @override
-  String get factOriginEsteli => 'Естелі, Нікарагуа';
-
-  @override
-  String get factFounded => 'Засновано';
-
-  @override
-  String get factFoundedAj => 'Початок 2000-х';
-
-  @override
-  String get factFamily => 'Родина';
-
-  @override
-  String get factFamilyAj => 'Fernández, кубинське коріння';
-
-  @override
-  String get factLineCharacter => 'Характер ліній';
-
-  @override
-  String get factLineCharacterAj => 'Насичені, виразні профілі';
-
-  @override
-  String get lineAjNewWorld => 'New World';
-
-  @override
-  String get lineAjBellasArtes => 'Bellas Artes';
-
-  @override
-  String get lineAjEnclave => 'Enclave';
-
-  @override
-  String get lineAjSanLotano => 'San Lotano';
-
-  @override
-  String get brandOlivaName => 'Oliva';
-
-  @override
-  String get brandOlivaMono => 'O';
-
-  @override
-  String get brandOlivaHeritage =>
-      'Родина Oliva розвиває свою справу з кінця XIX століття, починаючи з провінції Пінар-дель-Ріо на Кубі. Після еміграції виробництво зосередилося в Нікарагуа, де розташовані основні майстерні та фабрика бренду.';
-
-  @override
-  String get factTradition => 'Традиція';
-
-  @override
-  String get factTraditionOliva => 'З кінця XIX ст., Куба';
-
-  @override
-  String get factProduction => 'Виробництво';
-
-  @override
-  String get factProductionOliva => 'Власні майстерні в долині Хамастран';
-
-  @override
-  String get factLineCharacterOliva => 'Від збалансованих до насичених';
-
-  @override
-  String get lineOlivaSerieV => 'Serie V';
-
-  @override
-  String get lineOlivaSerieG => 'Serie G';
-
-  @override
-  String get lineOlivaMasterBlends => 'Master Blends';
-
-  @override
-  String get lineOlivaSerieO => 'Serie O';
-
-  @override
-  String get brandPerdomoName => 'Perdomo';
-
-  @override
-  String get brandPerdomoMono => 'P';
-
-  @override
-  String get brandPerdomoHeritage =>
-      'Бренд засновано в Маямі на початку 1990-х. Згодом виробництво перенесено до Естелі, де компанія вибудувала повний цикл — від власних ділянок до фабрики та тривалої витримки.';
-
-  @override
-  String get factFoundedPerdomo => '1990-ті, Маямі';
-
-  @override
-  String get factFounder => 'Засновник';
-
-  @override
-  String get factFounderPerdomo => 'Nick Perdomo';
-
-  @override
-  String get factFeature => 'Особливість';
-
-  @override
-  String get factFeaturePerdomo => 'Тривала витримка матеріалів';
-
-  @override
-  String get linePerdomoReserve => 'Reserve 10th Anniversary';
-
-  @override
-  String get linePerdomoHabano => 'Habano';
-
-  @override
-  String get linePerdomoLot23 => 'Lot 23';
-
-  @override
-  String get brandTurrentName => 'Casa Turrent';
-
-  @override
-  String get brandTurrentMono => 'CT';
-
-  @override
-  String get countryMexico => 'Мексика';
-
-  @override
-  String get brandTurrentHeritage =>
-      'Мексиканський бренд родини Turrent. Виробництво в долині Сан-Андрес, штат Веракрус; глибокі місцеві традиції та характерний стиль регіону.';
-
-  @override
-  String get factOriginTurrent => 'Сан-Андрес, Мексика';
-
-  @override
-  String get factFamilyTurrent => 'Turrent';
-
-  @override
-  String get factLineCharacterTurrent => 'Насичений профіль, стійкий фініш';
-
-  @override
-  String get lineTurrent1942 => '1942';
-
-  @override
-  String get lineTurrent1880 => '1880';
-
-  @override
-  String get lineTurrentOrigin => 'Origin Series';
-
-  @override
-  String get lineTurrent1901 => 'Serie 1901';
 
   @override
   String get privacyTitle => 'Політика конфіденційності';
@@ -418,30 +261,6 @@ class AppLocalizationsUk extends AppLocalizations {
   String get commentHint => 'Необовʼязково';
 
   @override
-  String get brandNotFound => 'Бренд не знайдено';
-
-  @override
-  String get patternRoyal => 'ROYAL';
-
-  @override
-  String get brandsBack => 'БРЕНДИ';
-
-  @override
-  String get factsKicker => 'КОРОТКО';
-
-  @override
-  String get linesKicker => 'ЛІНІЙКИ';
-
-  @override
-  String get allBrands => 'УСІ БРЕНДИ';
-
-  @override
-  String get partnersKicker => 'Партнери дому';
-
-  @override
-  String get filterAll => 'Усі';
-
-  @override
   String get moreTitle => 'Ще';
 
   @override
@@ -457,66 +276,18 @@ class AppLocalizationsUk extends AppLocalizations {
   String get hoursLabel => 'Години';
 
   @override
-  String get partnersSection => 'ПАРТНЕРИ';
-
-  @override
   String get houseBodyShort =>
       'Royal Smoke — дім, що представляє в Україні родинні бренди з багаторічною історією.';
-
-  @override
-  String get savedBrands => 'Збережені бренди';
 
   @override
   String get documentFallback => 'Документ';
 
   @override
-  String get offlineLocalCatalog => 'Локальний каталог';
-
-  @override
-  String offlineUpdated(String date) {
-    return 'Оновлено $date';
-  }
-
-  @override
-  String get offlineKicker => 'Довідник';
-
-  @override
-  String get offlineTitle => 'Офлайн';
-
-  @override
-  String get offlineSubtitle => 'Збережений довідник брендів';
-
-  @override
-  String get offlineEmpty =>
-      'Поки немає збережених брендів.\nДодайте їх закладкою на картці бренду.';
-
-  @override
-  String get savedBadge => 'ЗБЕРЕЖЕНО';
-
-  @override
   String get monogramRs => 'RS';
-
-  @override
-  String get emptySearchTitle => 'Нічого не знайдено';
-
-  @override
-  String get emptySearchBody => 'Спробуйте іншу назву';
-
-  @override
-  String get offlineMode => 'ОФЛАЙН-РЕЖИМ';
 
   @override
   String get tabHome => 'Головна';
 
   @override
-  String get searchBrandHint => 'Пошук бренду';
-
-  @override
   String get mapLabel => 'МАПА';
-
-  @override
-  String get packageDescription => 'Royal Smoke — довідник бренду.';
-
-  @override
-  String get webDescription => 'Довідник бренду Royal Smoke.';
 }

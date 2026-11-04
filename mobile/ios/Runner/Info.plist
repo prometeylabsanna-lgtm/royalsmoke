@@ -60,8 +60,6 @@
 	<array>
 		<string>tel</string>
 		<string>maps</string>
-		<string>http</string>
-		<string>https</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>

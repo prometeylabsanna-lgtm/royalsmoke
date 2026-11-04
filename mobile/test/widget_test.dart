@@ -11,14 +11,12 @@ void main() {
     final en = lookupAppLocalizations(const Locale('en'));
     expect(uk.termsBody2, contains('допомагають'));
     expect(uk.termsBody2.contains('допомогають'), isFalse);
-    expect(uk.factFamilyTurrent, 'Turrent');
-    expect(en.factFamilyTurrent, 'Turrent');
     expect(uk.appBlurb, contains('дому бренду'));
     expect(en.appBlurb, contains('brand house'));
     expect(uk.aboutBody3, contains('він розповідає'));
     expect(en.aboutBody3, contains('covers the culture'));
-    expect(uk.offlineUpdated('01.01.2026'), 'Оновлено 01.01.2026');
-    expect(en.offlineUpdated('01.01.2026'), 'Updated 01.01.2026');
+    expect(uk.visitTitle, 'Візит');
+    expect(en.visitTitle, 'Visit');
   });
 
   testWidgets('застосунок стартує з темною темою', (tester) async {
@@ -40,11 +38,12 @@ void main() {
     await tester.tap(find.text('МЕНІ Є 21 РІК'));
     await tester.pumpAndSettle();
     expect(find.text('Довідник дому бренду та партнерів'), findsOneWidget);
+    expect(find.text('ЗАБРОНЮВАТИ ВІЗИТ'), findsOneWidget);
+    expect(find.text('Бренди'), findsNothing);
 
-    await tester.tap(find.text('Бренди').last);
+    await tester.tap(find.text('Візит'));
     await tester.pumpAndSettle();
-    // Назви на картках у uppercase по словах (RsBrandTitle).
-    expect(find.text('TURRENT'), findsOneWidget);
+    expect(find.text('ВІЗИТ'), findsOneWidget);
     expect(find.textContaining('Купити'), findsNothing);
   });
 

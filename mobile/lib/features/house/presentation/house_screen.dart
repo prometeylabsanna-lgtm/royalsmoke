@@ -65,7 +65,7 @@ class HouseScreen extends ConsumerWidget {
           RsButton(
             label: textOr(house.ctaPrimary, l10n.bookVisit),
             expand: true,
-            onPressed: () => context.go('/house/visit'),
+            onPressed: () => context.go('/visit'),
           ),
           const SizedBox(height: AppSizes.s8),
           RsButton(

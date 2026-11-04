@@ -1,321 +1,343 @@
 {
   "@@locale": "en",
   "splashKicker": "BRAND GUIDE",
-  "@splashKicker": {"description": "M001"},
+  "@splashKicker": {
+    "description": "M001"
+  },
   "splashTitle": "ROYAL SMOKE",
-  "@splashTitle": {"description": "M002"},
+  "@splashTitle": {
+    "description": "M002"
+  },
   "splashOpen": "OPEN",
-  "@splashOpen": {"description": "M003"},
+  "@splashOpen": {
+    "description": "M003"
+  },
   "ageKicker": "Age confirmation · 21+",
-  "@ageKicker": {"description": "M004"},
+  "@ageKicker": {
+    "description": "M004"
+  },
   "ageTitle": "Adults only",
-  "@ageTitle": {"description": "M005"},
+  "@ageTitle": {
+    "description": "M005"
+  },
   "ageBadge": "21+",
-  "@ageBadge": {"description": "M006"},
+  "@ageBadge": {
+    "description": "M006"
+  },
   "ageBody": "The app is an informational guide to brands. Its content is intended exclusively for people who are 21 or older.",
-  "@ageBody": {"description": "M007"},
+  "@ageBody": {
+    "description": "M007"
+  },
   "ageExit": "EXIT",
-  "@ageExit": {"description": "M008"},
+  "@ageExit": {
+    "description": "M008"
+  },
   "ageConfirm": "I am 21+",
-  "@ageConfirm": {"description": "M009"},
+  "@ageConfirm": {
+    "description": "M009"
+  },
   "ageLegal": "By continuing, you confirm your age and agree to the age policy.",
-  "@ageLegal": {"description": "M010"},
+  "@ageLegal": {
+    "description": "M010"
+  },
   "homeKicker": "BRAND HOUSE",
-  "@homeKicker": {"description": "M011"},
+  "@homeKicker": {
+    "description": "M011"
+  },
   "homeTitle": "ROYAL\nSMOKE",
-  "@homeTitle": {"description": "M012"},
+  "@homeTitle": {
+    "description": "M012"
+  },
   "homeBody": "Guide to the brand house and its partners",
-  "@homeBody": {"description": "M013"},
-  "brands": "Brands",
-  "@brands": {"description": "M014"},
+  "@homeBody": {
+    "description": "M013"
+  },
   "houseTab": "House",
-  "@houseTab": {"description": "M015"},
+  "@houseTab": {
+    "description": "M015"
+  },
   "houseKicker": "About the house",
-  "@houseKicker": {"description": "M016"},
+  "@houseKicker": {
+    "description": "M016"
+  },
   "houseTitle": "House of\nRoyal Smoke",
-  "@houseTitle": {"description": "M017"},
+  "@houseTitle": {
+    "description": "M017"
+  },
   "houseBody": "Royal Smoke is a house that represents family brands with a long history in Ukraine. Here you can learn about the origins of the brands and get acquainted with the collection during a visit.",
-  "@houseBody": {"description": "M018"},
+  "@houseBody": {
+    "description": "M018"
+  },
   "bookVisit": "Book a visit",
-  "@bookVisit": {"description": "M019"},
+  "@bookVisit": {
+    "description": "M019"
+  },
   "contacts": "Contacts",
-  "@contacts": {"description": "M020"},
+  "@contacts": {
+    "description": "M020"
+  },
   "houseBlock1Index": "01",
-  "@houseBlock1Index": {"description": "M021"},
+  "@houseBlock1Index": {
+    "description": "M021"
+  },
   "houseBlockServiceTitle": "Service",
-  "@houseBlockServiceTitle": {"description": "M022"},
+  "@houseBlockServiceTitle": {
+    "description": "M022"
+  },
   "houseBlockServiceBody": "Consultations on brands, history, and storage.",
-  "@houseBlockServiceBody": {"description": "M023"},
+  "@houseBlockServiceBody": {
+    "description": "M023"
+  },
   "houseBlock2Index": "02",
-  "@houseBlock2Index": {"description": "M024"},
+  "@houseBlock2Index": {
+    "description": "M024"
+  },
   "houseBlockB2bTitle": "B2B",
-  "@houseBlockB2bTitle": {"description": "M025"},
+  "@houseBlockB2bTitle": {
+    "description": "M025"
+  },
   "houseBlockB2bBody": "Cooperation with venues and professional partners.",
-  "@houseBlockB2bBody": {"description": "M026"},
+  "@houseBlockB2bBody": {
+    "description": "M026"
+  },
   "houseBlock3Index": "03",
-  "@houseBlock3Index": {"description": "M027"},
+  "@houseBlock3Index": {
+    "description": "M027"
+  },
   "visitTitle": "Visit",
-  "@visitTitle": {"description": "M028"},
+  "@visitTitle": {
+    "description": "M028"
+  },
   "houseBlockVisitBody": "Get to know the house by prior appointment.",
-  "@houseBlockVisitBody": {"description": "M029"},
+  "@houseBlockVisitBody": {
+    "description": "M029"
+  },
   "visitKicker": "House of Royal Smoke",
-  "@visitKicker": {"description": "M030"},
+  "@visitKicker": {
+    "description": "M030"
+  },
   "visitNewRequest": "NEW REQUEST",
-  "@visitNewRequest": {"description": "M031"},
+  "@visitNewRequest": {
+    "description": "M031"
+  },
   "visitSendRequest": "Send request",
-  "@visitSendRequest": {"description": "M032"},
+  "@visitSendRequest": {
+    "description": "M032"
+  },
   "visitSuccessTitle": "REQUEST SENT",
-  "@visitSuccessTitle": {"description": "M033"},
+  "@visitSuccessTitle": {
+    "description": "M033"
+  },
   "visitSuccessBody": "We will contact you to confirm the date and time of the visit.",
-  "@visitSuccessBody": {"description": "M034"},
+  "@visitSuccessBody": {
+    "description": "M034"
+  },
   "appVersion": "Royal Smoke · v1.0",
-  "@appVersion": {"description": "M035"},
+  "@appVersion": {
+    "description": "M035"
+  },
   "appBlurb": "Royal Smoke is an informational guide to the brand house. The app is intended for people aged 21+.",
-  "@appBlurb": {"description": "M036"},
+  "@appBlurb": {
+    "description": "M036"
+  },
   "contactAddress": "1 Khreshchatyk St., Kyiv",
-  "@contactAddress": {"description": "M037"},
+  "@contactAddress": {
+    "description": "M037"
+  },
   "contactPhone": "+380 00 000 00 00",
-  "@contactPhone": {"description": "M038"},
+  "@contactPhone": {
+    "description": "M038"
+  },
   "contactHours": "Mon–Sun · 11:00–22:00",
-  "@contactHours": {"description": "M039"},
-  "brandAjName": "AJ Fernandez",
-  "@brandAjName": {"description": "M040"},
-  "brandAjShort": "AJ",
-  "@brandAjShort": {"description": "M041"},
-  "countryNicaragua": "Nicaragua",
-  "@countryNicaragua": {"description": "M042"},
-  "brandAjHeritage": "Abdel Fernández is a representative of the fourth generation of a Cuban family of master craftsmen. He founded his own manufactory in Estelí in the early 2000s; the company is developing production in several regions of Nicaragua.",
-  "@brandAjHeritage": {"description": "M043"},
-  "factOrigin": "Origin",
-  "@factOrigin": {"description": "M044"},
-  "factOriginEsteli": "Estelí, Nicaragua",
-  "@factOriginEsteli": {"description": "M045"},
-  "factFounded": "Founded",
-  "@factFounded": {"description": "M046"},
-  "factFoundedAj": "Early 2000s",
-  "@factFoundedAj": {"description": "M047"},
-  "factFamily": "Family",
-  "@factFamily": {"description": "M048"},
-  "factFamilyAj": "Fernández, Cuban roots",
-  "@factFamilyAj": {"description": "M049"},
-  "factLineCharacter": "Character of the lines",
-  "@factLineCharacter": {"description": "M050"},
-  "factLineCharacterAj": "Rich, expressive profiles",
-  "@factLineCharacterAj": {"description": "M051"},
-  "lineAjNewWorld": "New World",
-  "@lineAjNewWorld": {"description": "M052"},
-  "lineAjBellasArtes": "Bellas Artes",
-  "@lineAjBellasArtes": {"description": "M053"},
-  "lineAjEnclave": "Enclave",
-  "@lineAjEnclave": {"description": "M054"},
-  "lineAjSanLotano": "San Lotano",
-  "@lineAjSanLotano": {"description": "M055"},
-  "brandOlivaName": "Oliva",
-  "@brandOlivaName": {"description": "M056"},
-  "brandOlivaMono": "O",
-  "@brandOlivaMono": {"description": "M057"},
-  "brandOlivaHeritage": "The Oliva family has been building its business since the late 19th century, starting in the province of Pinar del Río in Cuba. After emigration, production became concentrated in Nicaragua, where the brand's main workshops and factory are located.",
-  "@brandOlivaHeritage": {"description": "M058"},
-  "factTradition": "Tradition",
-  "@factTradition": {"description": "M059"},
-  "factTraditionOliva": "Since the late 19th century, Cuba",
-  "@factTraditionOliva": {"description": "M060"},
-  "factProduction": "Production",
-  "@factProduction": {"description": "M061"},
-  "factProductionOliva": "Own workshops in the Jamastrán Valley",
-  "@factProductionOliva": {"description": "M062"},
-  "factLineCharacterOliva": "From balanced to rich",
-  "@factLineCharacterOliva": {"description": "M063"},
-  "lineOlivaSerieV": "Serie V",
-  "@lineOlivaSerieV": {"description": "M064"},
-  "lineOlivaSerieG": "Serie G",
-  "@lineOlivaSerieG": {"description": "M065"},
-  "lineOlivaMasterBlends": "Master Blends",
-  "@lineOlivaMasterBlends": {"description": "M066"},
-  "lineOlivaSerieO": "Serie O",
-  "@lineOlivaSerieO": {"description": "M067"},
-  "brandPerdomoName": "Perdomo",
-  "@brandPerdomoName": {"description": "M068"},
-  "brandPerdomoMono": "P",
-  "@brandPerdomoMono": {"description": "M069"},
-  "brandPerdomoHeritage": "The brand was founded in Miami in the early 1990s. Production was later moved to Estelí, where the company built a full cycle — from its own plots to the factory and long aging.",
-  "@brandPerdomoHeritage": {"description": "M070"},
-  "factFoundedPerdomo": "1990s, Miami",
-  "@factFoundedPerdomo": {"description": "M071"},
-  "factFounder": "Founder",
-  "@factFounder": {"description": "M072"},
-  "factFounderPerdomo": "Nick Perdomo",
-  "@factFounderPerdomo": {"description": "M073"},
-  "factFeature": "Feature",
-  "@factFeature": {"description": "M074"},
-  "factFeaturePerdomo": "Long aging of materials",
-  "@factFeaturePerdomo": {"description": "M075"},
-  "linePerdomoReserve": "Reserve 10th Anniversary",
-  "@linePerdomoReserve": {"description": "M076"},
-  "linePerdomoHabano": "Habano",
-  "@linePerdomoHabano": {"description": "M077"},
-  "linePerdomoLot23": "Lot 23",
-  "@linePerdomoLot23": {"description": "M078"},
-  "brandTurrentName": "Casa Turrent",
-  "@brandTurrentName": {"description": "M079"},
-  "brandTurrentMono": "CT",
-  "@brandTurrentMono": {"description": "M080"},
-  "countryMexico": "Mexico",
-  "@countryMexico": {"description": "M081"},
-  "brandTurrentHeritage": "A Mexican brand of the Turrent family. Production in the San Andrés Valley, Veracruz state; deep local traditions and the distinctive style of the region.",
-  "@brandTurrentHeritage": {"description": "M082"},
-  "factOriginTurrent": "San Andrés, Mexico",
-  "@factOriginTurrent": {"description": "M083"},
-  "factFamilyTurrent": "Turrent",
-  "@factFamilyTurrent": {"description": "M084"},
-  "factLineCharacterTurrent": "Rich profile, lasting finish",
-  "@factLineCharacterTurrent": {"description": "M085"},
-  "lineTurrent1942": "1942",
-  "@lineTurrent1942": {"description": "M086"},
-  "lineTurrent1880": "1880",
-  "@lineTurrent1880": {"description": "M087"},
-  "lineTurrentOrigin": "Origin Series",
-  "@lineTurrentOrigin": {"description": "M088"},
-  "lineTurrent1901": "Serie 1901",
-  "@lineTurrent1901": {"description": "M089"},
+  "@contactHours": {
+    "description": "M039"
+  },
   "privacyTitle": "Privacy policy",
-  "@privacyTitle": {"description": "M090"},
+  "@privacyTitle": {
+    "description": "M090"
+  },
   "privacyBody1": "This policy explains what data the Royal Smoke app may process and for what purpose.",
-  "@privacyBody1": {"description": "M091"},
+  "@privacyBody1": {
+    "description": "M091"
+  },
   "privacyBody2": "Royal Smoke is an informational guide to the brand house. We collect only the minimum technical data needed for the service to run reliably: for example, brands saved locally on your device, basic session information, and technical logs for diagnosing failures.",
-  "@privacyBody2": {"description": "M092"},
+  "@privacyBody2": {
+    "description": "M092"
+  },
   "privacyBody3": "We do not build advertising profiles of users and do not share personal data with third parties for marketing.",
-  "@privacyBody3": {"description": "M093"},
+  "@privacyBody3": {
+    "description": "M093"
+  },
   "privacyBody4": "The guide's content is intended exclusively for adults (21+). Access is possible only after age confirmation. If you do not agree to these terms, stop using the app.",
-  "@privacyBody4": {"description": "M094"},
+  "@privacyBody4": {
+    "description": "M094"
+  },
   "privacyBody5": "Requests about data, access, or deletion of information on the device can be sent through the “Contacts” section. We respond within a reasonable time and within the requirements of current Ukrainian law.",
-  "@privacyBody5": {"description": "M095"},
+  "@privacyBody5": {
+    "description": "M095"
+  },
   "termsTitle": "Terms",
-  "@termsTitle": {"description": "M096"},
+  "@termsTitle": {
+    "description": "M096"
+  },
   "termsBody1": "By using the Royal Smoke app, you confirm that you are 21 years old or older and that you have read these terms.",
-  "@termsBody1": {"description": "M097"},
+  "@termsBody1": {
+    "description": "M097"
+  },
   "termsBody2": "The guide is provided for informational purposes: descriptions of partner brands, the history of the house, product lines, and contacts. The materials help you find your way around the world of our partners and the atmosphere of the space.",
-  "@termsBody2": {"description": "M098"},
+  "@termsBody2": {
+    "description": "M098"
+  },
   "termsBody3": "Any decisions about visiting the house or reviewing the materials are yours alone, taking into account age restrictions and the rules of the venue.",
-  "@termsBody3": {"description": "M099"},
+  "@termsBody3": {
+    "description": "M099"
+  },
   "termsBody4": "We may update the texts, images, and structure of sections without separate prior notice. Continuing to use the app after an update means you agree to the current version of the terms.",
-  "@termsBody4": {"description": "M100"},
+  "@termsBody4": {
+    "description": "M100"
+  },
   "termsBody5": "For violating the rules of use or providing false information about your age, access to the guide may be restricted. For questions about the terms, use “Contacts”.",
-  "@termsBody5": {"description": "M101"},
+  "@termsBody5": {
+    "description": "M101"
+  },
   "agePolicyTitle": "Age policy",
-  "@agePolicyTitle": {"description": "M102"},
+  "@agePolicyTitle": {
+    "description": "M102"
+  },
   "agePolicyBody1": "The content of the Royal Smoke guide is intended exclusively for people who are 21 or older.",
-  "@agePolicyBody1": {"description": "M103"},
+  "@agePolicyBody1": {
+    "description": "M103"
+  },
   "agePolicyBody2": "Before entering the main sections, the app asks you to confirm your age. This is a mandatory condition for accessing materials about the brands, the house, and related content. If you are not yet 21, please leave the app.",
-  "@agePolicyBody2": {"description": "M104"},
+  "@agePolicyBody2": {
+    "description": "M104"
+  },
   "agePolicyBody3": "All pages are for reference and serve to introduce you to the house's partners and its space.",
-  "@agePolicyBody3": {"description": "M105"},
+  "@agePolicyBody3": {
+    "description": "M105"
+  },
   "agePolicyBody4": "We reserve the right to update the wording of the age policy if required by changes in legislation or the house's internal standards. The current version is always available in the “More” section.",
-  "@agePolicyBody4": {"description": "M106"},
+  "@agePolicyBody4": {
+    "description": "M106"
+  },
   "agePolicyBody5": "By using the app, you confirm your age and agree to this policy. For questions, use “Contacts”.",
-  "@agePolicyBody5": {"description": "M107"},
+  "@agePolicyBody5": {
+    "description": "M107"
+  },
   "aboutTitle": "About the app",
-  "@aboutTitle": {"description": "M108"},
+  "@aboutTitle": {
+    "description": "M108"
+  },
   "aboutBody1": "Royal Smoke is a brand house and a digital guide to its world.",
-  "@aboutBody1": {"description": "M109"},
+  "@aboutBody1": {
+    "description": "M109"
+  },
   "aboutBody2": "Here you will find the house's partners, short histories of the manufactories, the character of the lines, and the contacts of the space in Kyiv. The purpose of the app is to help you find your bearings calmly: who stands alongside the house, what sets each brand apart, and how to reach us.",
-  "@aboutBody2": {"description": "M110"},
+  "@aboutBody2": {
+    "description": "M110"
+  },
   "aboutBody3": "The guide is created for an adult audience of 21+ and covers the culture, origins, and atmosphere of the space we support.",
-  "@aboutBody3": {"description": "M111"},
+  "@aboutBody3": {
+    "description": "M111"
+  },
   "aboutBody4": "If you are looking for the address, opening hours, or directions, open “Contacts”. If you are interested in the partners, go to the “Brands” section. And to understand the space of the house itself, take a look at “House”.",
-  "@aboutBody4": {"description": "M112"},
+  "@aboutBody4": {
+    "description": "M112"
+  },
   "aboutBody5": "Thank you for choosing Royal Smoke as a place to get to know the brands we support.",
-  "@aboutBody5": {"description": "M113"},
+  "@aboutBody5": {
+    "description": "M113"
+  },
   "appName": "Royal Smoke",
-  "@appName": {"description": "M114"},
+  "@appName": {
+    "description": "M114"
+  },
   "ageBodyShort": "The app is an informational guide to brands.",
-  "@ageBodyShort": {"description": "M115"},
+  "@ageBodyShort": {
+    "description": "M115"
+  },
   "visitNameLabel": "Name",
-  "@visitNameLabel": {"description": "M116"},
+  "@visitNameLabel": {
+    "description": "M116"
+  },
   "visitNameHint": "Your name",
-  "@visitNameHint": {"description": "M117"},
+  "@visitNameHint": {
+    "description": "M117"
+  },
   "visitNamePhoneError": "Enter your name and phone number",
-  "@visitNamePhoneError": {"description": "M118"},
+  "@visitNamePhoneError": {
+    "description": "M118"
+  },
   "phoneLabel": "Phone",
-  "@phoneLabel": {"description": "M119"},
+  "@phoneLabel": {
+    "description": "M119"
+  },
   "phonePrefix": "+380",
-  "@phonePrefix": {"description": "M120"},
+  "@phonePrefix": {
+    "description": "M120"
+  },
   "dateLabel": "Date",
-  "@dateLabel": {"description": "M121"},
+  "@dateLabel": {
+    "description": "M121"
+  },
   "dateHint": "DD.MM.YYYY",
-  "@dateHint": {"description": "M122"},
+  "@dateHint": {
+    "description": "M122"
+  },
   "timeLabel": "Time",
-  "@timeLabel": {"description": "M123"},
+  "@timeLabel": {
+    "description": "M123"
+  },
   "timeHint": "HH:MM",
-  "@timeHint": {"description": "M124"},
+  "@timeHint": {
+    "description": "M124"
+  },
   "commentLabel": "Comment",
-  "@commentLabel": {"description": "M125"},
+  "@commentLabel": {
+    "description": "M125"
+  },
   "commentHint": "Optional",
-  "@commentHint": {"description": "M126"},
-  "brandNotFound": "Brand not found",
-  "@brandNotFound": {"description": "M127"},
-  "patternRoyal": "ROYAL",
-  "@patternRoyal": {"description": "M128"},
-  "brandsBack": "BRANDS",
-  "@brandsBack": {"description": "M129"},
-  "factsKicker": "IN BRIEF",
-  "@factsKicker": {"description": "M130"},
-  "linesKicker": "LINES",
-  "@linesKicker": {"description": "M131"},
-  "allBrands": "ALL BRANDS",
-  "@allBrands": {"description": "M132"},
-  "partnersKicker": "Partners of the house",
-  "@partnersKicker": {"description": "M133"},
-  "filterAll": "All",
-  "@filterAll": {"description": "M134"},
+  "@commentHint": {
+    "description": "M126"
+  },
   "moreTitle": "More",
-  "@moreTitle": {"description": "M135"},
+  "@moreTitle": {
+    "description": "M135"
+  },
   "addressLabel": "Address",
-  "@addressLabel": {"description": "M136"},
+  "@addressLabel": {
+    "description": "M136"
+  },
   "getDirections": "Get directions",
-  "@getDirections": {"description": "M137"},
+  "@getDirections": {
+    "description": "M137"
+  },
   "call": "Call",
-  "@call": {"description": "M138"},
+  "@call": {
+    "description": "M138"
+  },
   "hoursLabel": "Hours",
-  "@hoursLabel": {"description": "M139"},
-  "partnersSection": "PARTNERS",
-  "@partnersSection": {"description": "M140"},
+  "@hoursLabel": {
+    "description": "M139"
+  },
   "houseBodyShort": "Royal Smoke is a house that represents family brands with a long history in Ukraine.",
-  "@houseBodyShort": {"description": "M141"},
-  "savedBrands": "Saved brands",
-  "@savedBrands": {"description": "M142"},
+  "@houseBodyShort": {
+    "description": "M141"
+  },
   "documentFallback": "Document",
-  "@documentFallback": {"description": "M143"},
-  "offlineLocalCatalog": "Local catalog",
-  "@offlineLocalCatalog": {"description": "M144"},
-  "offlineUpdated": "Updated {date}",
-  "@offlineUpdated": {"description": "M145", "placeholders": {"date": {"type": "String"}}},
-  "offlineKicker": "Guide",
-  "@offlineKicker": {"description": "M146"},
-  "offlineTitle": "Offline",
-  "@offlineTitle": {"description": "M147"},
-  "offlineSubtitle": "Saved brand guide",
-  "@offlineSubtitle": {"description": "M148"},
-  "offlineEmpty": "No saved brands yet.\nAdd them with the bookmark on a brand card.",
-  "@offlineEmpty": {"description": "M149"},
-  "savedBadge": "SAVED",
-  "@savedBadge": {"description": "M150"},
+  "@documentFallback": {
+    "description": "M143"
+  },
   "monogramRs": "RS",
-  "@monogramRs": {"description": "M151"},
-  "emptySearchTitle": "Nothing found",
-  "@emptySearchTitle": {"description": "M152"},
-  "emptySearchBody": "Try a different name",
-  "@emptySearchBody": {"description": "M153"},
-  "offlineMode": "OFFLINE MODE",
-  "@offlineMode": {"description": "M154"},
+  "@monogramRs": {
+    "description": "M151"
+  },
   "tabHome": "Home",
-  "@tabHome": {"description": "M155"},
-  "searchBrandHint": "Search brand",
-  "@searchBrandHint": {"description": "M156"},
+  "@tabHome": {
+    "description": "M155"
+  },
   "mapLabel": "MAP",
-  "@mapLabel": {"description": "M157"},
-  "packageDescription": "Royal Smoke — brand guide.",
-  "@packageDescription": {"description": "M158"},
-  "webDescription": "Royal Smoke brand guide.",
-  "@webDescription": {"description": "M159"}
+  "@mapLabel": {
+    "description": "M157"
+  }
 }

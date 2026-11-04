@@ -48,9 +48,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get homeBody => '品牌之家与合作伙伴指南';
 
   @override
-  String get brands => '品牌';
-
-  @override
   String get houseTab => '品牌之家';
 
   @override
@@ -125,160 +122,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get contactHours => '周一至周日 · 11:00–22:00';
-
-  @override
-  String get brandAjName => 'AJ Fernandez';
-
-  @override
-  String get brandAjShort => 'AJ';
-
-  @override
-  String get countryNicaragua => '尼加拉瓜';
-
-  @override
-  String get brandAjHeritage =>
-      'Abdel Fernández 是古巴工匠世家的第四代传人。他于2000年代初在埃斯特利创立了自己的工坊；公司在尼加拉瓜多个地区发展生产。';
-
-  @override
-  String get factOrigin => '产地';
-
-  @override
-  String get factOriginEsteli => '埃斯特利，尼加拉瓜';
-
-  @override
-  String get factFounded => '创立于';
-
-  @override
-  String get factFoundedAj => '2000年代初';
-
-  @override
-  String get factFamily => '家族';
-
-  @override
-  String get factFamilyAj => 'Fernández，古巴渊源';
-
-  @override
-  String get factLineCharacter => '系列特点';
-
-  @override
-  String get factLineCharacterAj => '浓郁、鲜明的风味';
-
-  @override
-  String get lineAjNewWorld => 'New World';
-
-  @override
-  String get lineAjBellasArtes => 'Bellas Artes';
-
-  @override
-  String get lineAjEnclave => 'Enclave';
-
-  @override
-  String get lineAjSanLotano => 'San Lotano';
-
-  @override
-  String get brandOlivaName => 'Oliva';
-
-  @override
-  String get brandOlivaMono => 'O';
-
-  @override
-  String get brandOlivaHeritage =>
-      'Oliva 家族自19世纪末起经营这一事业，起点是古巴的比那尔德里奥省。移居国外后，生产集中在尼加拉瓜，品牌的主要工坊和工厂都设在那里。';
-
-  @override
-  String get factTradition => '传承';
-
-  @override
-  String get factTraditionOliva => '自19世纪末，古巴';
-
-  @override
-  String get factProduction => '生产';
-
-  @override
-  String get factProductionOliva => '位于哈马斯特兰山谷的自有工坊';
-
-  @override
-  String get factLineCharacterOliva => '从均衡到浓郁';
-
-  @override
-  String get lineOlivaSerieV => 'Serie V';
-
-  @override
-  String get lineOlivaSerieG => 'Serie G';
-
-  @override
-  String get lineOlivaMasterBlends => 'Master Blends';
-
-  @override
-  String get lineOlivaSerieO => 'Serie O';
-
-  @override
-  String get brandPerdomoName => 'Perdomo';
-
-  @override
-  String get brandPerdomoMono => 'P';
-
-  @override
-  String get brandPerdomoHeritage =>
-      '该品牌于1990年代初创立于迈阿密。随后生产迁至埃斯特利，公司在那里建立了完整的产业链——从自有种植地到工厂，再到长时间陈化。';
-
-  @override
-  String get factFoundedPerdomo => '1990年代，迈阿密';
-
-  @override
-  String get factFounder => '创始人';
-
-  @override
-  String get factFounderPerdomo => 'Nick Perdomo';
-
-  @override
-  String get factFeature => '特色';
-
-  @override
-  String get factFeaturePerdomo => '原料长期陈化';
-
-  @override
-  String get linePerdomoReserve => 'Reserve 10th Anniversary';
-
-  @override
-  String get linePerdomoHabano => 'Habano';
-
-  @override
-  String get linePerdomoLot23 => 'Lot 23';
-
-  @override
-  String get brandTurrentName => 'Casa Turrent';
-
-  @override
-  String get brandTurrentMono => 'CT';
-
-  @override
-  String get countryMexico => '墨西哥';
-
-  @override
-  String get brandTurrentHeritage =>
-      'Turrent 家族的墨西哥品牌。生产位于韦拉克鲁斯州的圣安德烈斯山谷；拥有深厚的本地传统和鲜明的地区风格。';
-
-  @override
-  String get factOriginTurrent => '圣安德烈斯，墨西哥';
-
-  @override
-  String get factFamilyTurrent => 'Turrent';
-
-  @override
-  String get factLineCharacterTurrent => '浓郁风味，持久余韵';
-
-  @override
-  String get lineTurrent1942 => '1942';
-
-  @override
-  String get lineTurrent1880 => '1880';
-
-  @override
-  String get lineTurrentOrigin => 'Origin Series';
-
-  @override
-  String get lineTurrent1901 => 'Serie 1901';
 
   @override
   String get privacyTitle => '隐私政策';
@@ -401,30 +244,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get commentHint => '选填';
 
   @override
-  String get brandNotFound => '未找到该品牌';
-
-  @override
-  String get patternRoyal => 'ROYAL';
-
-  @override
-  String get brandsBack => '品牌';
-
-  @override
-  String get factsKicker => '概览';
-
-  @override
-  String get linesKicker => '系列';
-
-  @override
-  String get allBrands => '全部品牌';
-
-  @override
-  String get partnersKicker => '品牌之家的合作伙伴';
-
-  @override
-  String get filterAll => '全部';
-
-  @override
   String get moreTitle => '更多';
 
   @override
@@ -440,66 +259,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get hoursLabel => '营业时间';
 
   @override
-  String get partnersSection => '合作伙伴';
-
-  @override
   String get houseBodyShort => 'Royal Smoke 是一座品牌之家，在乌克兰代理历史悠久的家族品牌。';
-
-  @override
-  String get savedBrands => '已保存的品牌';
 
   @override
   String get documentFallback => '文档';
 
   @override
-  String get offlineLocalCatalog => '本地目录';
-
-  @override
-  String offlineUpdated(String date) {
-    return '更新于 $date';
-  }
-
-  @override
-  String get offlineKicker => '指南';
-
-  @override
-  String get offlineTitle => '离线';
-
-  @override
-  String get offlineSubtitle => '已保存的品牌指南';
-
-  @override
-  String get offlineEmpty => '暂无已保存的品牌。\n请点击品牌卡片上的书签进行添加。';
-
-  @override
-  String get savedBadge => '已保存';
-
-  @override
   String get monogramRs => 'RS';
-
-  @override
-  String get emptySearchTitle => '未找到结果';
-
-  @override
-  String get emptySearchBody => '请尝试其他名称';
-
-  @override
-  String get offlineMode => '离线模式';
 
   @override
   String get tabHome => '首页';
 
   @override
-  String get searchBrandHint => '搜索品牌';
-
-  @override
   String get mapLabel => '地图';
-
-  @override
-  String get packageDescription => 'Royal Smoke — 品牌指南。';
-
-  @override
-  String get webDescription => 'Royal Smoke 品牌指南。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -546,9 +318,6 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get homeBody => '品牌之家与合作伙伴指南';
 
   @override
-  String get brands => '品牌';
-
-  @override
   String get houseTab => '品牌之家';
 
   @override
@@ -623,160 +392,6 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get contactHours => '周一至周日 · 11:00–22:00';
-
-  @override
-  String get brandAjName => 'AJ Fernandez';
-
-  @override
-  String get brandAjShort => 'AJ';
-
-  @override
-  String get countryNicaragua => '尼加拉瓜';
-
-  @override
-  String get brandAjHeritage =>
-      'Abdel Fernández 是古巴工匠世家的第四代传人。他于2000年代初在埃斯特利创立了自己的工坊；公司在尼加拉瓜多个地区发展生产。';
-
-  @override
-  String get factOrigin => '产地';
-
-  @override
-  String get factOriginEsteli => '埃斯特利，尼加拉瓜';
-
-  @override
-  String get factFounded => '创立于';
-
-  @override
-  String get factFoundedAj => '2000年代初';
-
-  @override
-  String get factFamily => '家族';
-
-  @override
-  String get factFamilyAj => 'Fernández，古巴渊源';
-
-  @override
-  String get factLineCharacter => '系列特点';
-
-  @override
-  String get factLineCharacterAj => '浓郁、鲜明的风味';
-
-  @override
-  String get lineAjNewWorld => 'New World';
-
-  @override
-  String get lineAjBellasArtes => 'Bellas Artes';
-
-  @override
-  String get lineAjEnclave => 'Enclave';
-
-  @override
-  String get lineAjSanLotano => 'San Lotano';
-
-  @override
-  String get brandOlivaName => 'Oliva';
-
-  @override
-  String get brandOlivaMono => 'O';
-
-  @override
-  String get brandOlivaHeritage =>
-      'Oliva 家族自19世纪末起经营这一事业，起点是古巴的比那尔德里奥省。移居国外后，生产集中在尼加拉瓜，品牌的主要工坊和工厂都设在那里。';
-
-  @override
-  String get factTradition => '传承';
-
-  @override
-  String get factTraditionOliva => '自19世纪末，古巴';
-
-  @override
-  String get factProduction => '生产';
-
-  @override
-  String get factProductionOliva => '位于哈马斯特兰山谷的自有工坊';
-
-  @override
-  String get factLineCharacterOliva => '从均衡到浓郁';
-
-  @override
-  String get lineOlivaSerieV => 'Serie V';
-
-  @override
-  String get lineOlivaSerieG => 'Serie G';
-
-  @override
-  String get lineOlivaMasterBlends => 'Master Blends';
-
-  @override
-  String get lineOlivaSerieO => 'Serie O';
-
-  @override
-  String get brandPerdomoName => 'Perdomo';
-
-  @override
-  String get brandPerdomoMono => 'P';
-
-  @override
-  String get brandPerdomoHeritage =>
-      '该品牌于1990年代初创立于迈阿密。随后生产迁至埃斯特利，公司在那里建立了完整的产业链——从自有种植地到工厂，再到长时间陈化。';
-
-  @override
-  String get factFoundedPerdomo => '1990年代，迈阿密';
-
-  @override
-  String get factFounder => '创始人';
-
-  @override
-  String get factFounderPerdomo => 'Nick Perdomo';
-
-  @override
-  String get factFeature => '特色';
-
-  @override
-  String get factFeaturePerdomo => '原料长期陈化';
-
-  @override
-  String get linePerdomoReserve => 'Reserve 10th Anniversary';
-
-  @override
-  String get linePerdomoHabano => 'Habano';
-
-  @override
-  String get linePerdomoLot23 => 'Lot 23';
-
-  @override
-  String get brandTurrentName => 'Casa Turrent';
-
-  @override
-  String get brandTurrentMono => 'CT';
-
-  @override
-  String get countryMexico => '墨西哥';
-
-  @override
-  String get brandTurrentHeritage =>
-      'Turrent 家族的墨西哥品牌。生产位于韦拉克鲁斯州的圣安德烈斯山谷；拥有深厚的本地传统和鲜明的地区风格。';
-
-  @override
-  String get factOriginTurrent => '圣安德烈斯，墨西哥';
-
-  @override
-  String get factFamilyTurrent => 'Turrent';
-
-  @override
-  String get factLineCharacterTurrent => '浓郁风味，持久余韵';
-
-  @override
-  String get lineTurrent1942 => '1942';
-
-  @override
-  String get lineTurrent1880 => '1880';
-
-  @override
-  String get lineTurrentOrigin => 'Origin Series';
-
-  @override
-  String get lineTurrent1901 => 'Serie 1901';
 
   @override
   String get privacyTitle => '隐私政策';
@@ -899,30 +514,6 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get commentHint => '选填';
 
   @override
-  String get brandNotFound => '未找到该品牌';
-
-  @override
-  String get patternRoyal => 'ROYAL';
-
-  @override
-  String get brandsBack => '品牌';
-
-  @override
-  String get factsKicker => '概览';
-
-  @override
-  String get linesKicker => '系列';
-
-  @override
-  String get allBrands => '全部品牌';
-
-  @override
-  String get partnersKicker => '品牌之家的合作伙伴';
-
-  @override
-  String get filterAll => '全部';
-
-  @override
   String get moreTitle => '更多';
 
   @override
@@ -938,64 +529,17 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get hoursLabel => '营业时间';
 
   @override
-  String get partnersSection => '合作伙伴';
-
-  @override
   String get houseBodyShort => 'Royal Smoke 是一座品牌之家，在乌克兰代理历史悠久的家族品牌。';
-
-  @override
-  String get savedBrands => '已保存的品牌';
 
   @override
   String get documentFallback => '文档';
 
   @override
-  String get offlineLocalCatalog => '本地目录';
-
-  @override
-  String offlineUpdated(String date) {
-    return '更新于 $date';
-  }
-
-  @override
-  String get offlineKicker => '指南';
-
-  @override
-  String get offlineTitle => '离线';
-
-  @override
-  String get offlineSubtitle => '已保存的品牌指南';
-
-  @override
-  String get offlineEmpty => '暂无已保存的品牌。\n请点击品牌卡片上的书签进行添加。';
-
-  @override
-  String get savedBadge => '已保存';
-
-  @override
   String get monogramRs => 'RS';
-
-  @override
-  String get emptySearchTitle => '未找到结果';
-
-  @override
-  String get emptySearchBody => '请尝试其他名称';
-
-  @override
-  String get offlineMode => '离线模式';
 
   @override
   String get tabHome => '首页';
 
   @override
-  String get searchBrandHint => '搜索品牌';
-
-  @override
   String get mapLabel => '地图';
-
-  @override
-  String get packageDescription => 'Royal Smoke — 品牌指南。';
-
-  @override
-  String get webDescription => 'Royal Smoke 品牌指南。';
 }

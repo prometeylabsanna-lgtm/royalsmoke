@@ -10,8 +10,6 @@ class AppShell extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
 
   void _onTab(RsTab tab) {
-    // Завжди відкриваємо корінь вкладки: після картки бренду «Бренди»
-    // знову показує список, а не залишений detail.
     navigationShell.goBranch(tab.index, initialLocation: true);
   }
 

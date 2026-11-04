@@ -1,20 +1,4 @@
-import 'package:royal_smoke/features/brands/domain/partner_brand.dart';
 import 'package:royal_smoke/features/content/domain/app_content.dart';
-
-BrandPanel _panel(String raw) => switch (raw) {
-      'burgundy' => BrandPanel.burgundy,
-      'green' => BrandPanel.green,
-      'brown' => BrandPanel.brown,
-      _ => BrandPanel.amber,
-    };
-
-String _assetForSlug(String slug) => switch (slug) {
-      'aj' => 'assets/images/brands/aj.jpg',
-      'oliva' => 'assets/images/brands/oliva.jpg',
-      'perdomo' => 'assets/images/brands/perdomo.jpg',
-      'turrent' => 'assets/images/brands/turrent.jpg',
-      _ => 'assets/images/brands/aj.jpg',
-    };
 
 String _heroAsset(String key) => switch (key) {
       'house' => 'assets/images/home/house.jpg',
@@ -22,55 +6,11 @@ String _heroAsset(String key) => switch (key) {
       _ => '',
     };
 
+/// Поле `brands` у відповіді навмисно не читається: назви, логотипи й історії не показуємо.
 AppContentBundle parseAppBundle(Map<String, dynamic> json, {DateTime? updatedAt}) {
   final settingsJson = (json['settings'] as Map?)?.cast<String, dynamic>() ?? {};
-  final brandsJson = (json['brands'] as List?) ?? const [];
   final screensJson = (json['screens'] as Map?)?.cast<String, dynamic>() ?? {};
   final pagesJson = (json['pages'] as Map?)?.cast<String, dynamic>() ?? {};
-
-  final brands = <PartnerBrand>[];
-  for (final raw in brandsJson) {
-    if (raw is! Map) continue;
-    final m = raw.cast<String, dynamic>();
-    final id = (m['id'] ?? m['slug'] ?? '').toString();
-    if (id.isEmpty) continue;
-    final facts = <BrandFact>[];
-    for (final f in (m['facts'] as List?) ?? const []) {
-      if (f is! Map) continue;
-      facts.add(BrandFact(
-        label: (f['label'] ?? '').toString(),
-        value: (f['value'] ?? '').toString(),
-      ));
-    }
-    final lines = <String>[];
-    for (final l in (m['lines'] as List?) ?? const []) {
-      if (l is String) {
-        lines.add(l);
-      } else if (l is Map && l['name'] != null) {
-        lines.add(l['name'].toString());
-      }
-    }
-    final photos = <String>[];
-    for (final p in (m['photos'] as List?) ?? const []) {
-      if (p is Map && (p['image'] ?? '').toString().isNotEmpty) {
-        photos.add(p['image'].toString());
-      }
-    }
-    brands.add(PartnerBrand(
-      id: id,
-      mono: (m['mono'] ?? '').toString(),
-      shortName: (m['short_name'] ?? m['name'] ?? '').toString(),
-      name: (m['name'] ?? '').toString(),
-      country: (m['country'] ?? '').toString(),
-      panel: _panel((m['panel'] ?? 'amber').toString()),
-      imageAsset: _assetForSlug(id),
-      imageUrl: (m['cover'] ?? '').toString(),
-      photoUrls: photos,
-      heritage: (m['heritage'] ?? '').toString(),
-      facts: facts,
-      lines: lines,
-    ));
-  }
 
   final screens = <String, AppScreenContent>{};
   screensJson.forEach((key, value) {
@@ -125,7 +65,6 @@ AppContentBundle parseAppBundle(Map<String, dynamic> json, {DateTime? updatedAt}
       contactLng: double.tryParse('${settingsJson['contact_lng']}') ?? 30.5226,
       appSealUrl: (settingsJson['app_seal'] ?? '').toString(),
     ),
-    brands: brands,
     screens: screens,
     pages: pages,
     updatedAt: updatedAt,

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -16,10 +17,10 @@ class ContactsScreen extends ConsumerWidget {
   const ContactsScreen({super.key});
 
   Future<void> _openMaps(double lat, double lng, String address) async {
-    final uri = Uri.parse(
-      'https://maps.apple.com/?ll=$lat,$lng'
-      '&q=${Uri.encodeComponent(address)}',
-    );
+    final encoded = Uri.encodeComponent(address);
+    final uri = defaultTargetPlatform == TargetPlatform.iOS
+        ? Uri.parse('maps://?ll=$lat,$lng&q=$encoded')
+        : Uri.parse('geo:$lat,$lng?q=$encoded');
     await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 

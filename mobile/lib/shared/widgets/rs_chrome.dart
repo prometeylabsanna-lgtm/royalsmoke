@@ -6,7 +6,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 import 'rs_insets.dart';
 
-enum RsTab { home, brands, house, offline, more }
+enum RsTab { home, house, visit, more }
 
 class RsPageHeading extends StatelessWidget {
   const RsPageHeading({
@@ -173,99 +173,6 @@ class RsSeal extends StatelessWidget {
   }
 }
 
-class RsEmptySearch extends StatelessWidget {
-  const RsEmptySearch({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          width: 64,
-          height: 64,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: AppColors.gold),
-          ),
-          child: Container(
-            width: 54,
-            height: 54,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: AppColors.gold.withValues(alpha: 0.35)),
-            ),
-            child: Text(
-              l10n.monogramRs,
-              style: AppTextStyles.brandName.copyWith(
-                fontSize: 14,
-                letterSpacing: 14 * 0.14,
-                color: AppColors.gold,
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: AppSizes.s16),
-        Text(
-          l10n.emptySearchTitle,
-          style: AppTextStyles.body.copyWith(
-            fontSize: 17,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const SizedBox(height: AppSizes.s8),
-        Text(
-          l10n.emptySearchBody,
-          style: AppTextStyles.body.copyWith(
-            fontSize: 14,
-            color: AppColors.textMuted,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class RsOfflineChip extends StatelessWidget {
-  const RsOfflineChip({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 28,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppSizes.radiusChip),
-        border: Border.all(color: const Color(0x33FCF2EE)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: 6,
-            height: 6,
-            decoration: const BoxDecoration(
-              color: AppColors.gold,
-              shape: BoxShape.circle,
-            ),
-          ),
-          const SizedBox(width: AppSizes.s8),
-          Text(
-            AppLocalizations.of(context).offlineMode,
-            style: AppTextStyles.kicker.copyWith(
-              letterSpacing: 11 * 0.16,
-              color: AppColors.seashell,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class RsTabBar extends StatelessWidget {
   const RsTabBar({super.key, required this.current, required this.onChanged});
 
@@ -275,9 +182,8 @@ class RsTabBar extends StatelessWidget {
   List<(RsTab, String)> _items(AppLocalizations l10n) {
     return [
       (RsTab.home, l10n.tabHome),
-      (RsTab.brands, l10n.brands),
       (RsTab.house, l10n.houseTab),
-      (RsTab.offline, l10n.offlineTitle),
+      (RsTab.visit, l10n.visitTitle),
       (RsTab.more, l10n.moreTitle),
     ];
   }
@@ -321,6 +227,8 @@ class RsTabBar extends StatelessWidget {
                               const SizedBox(height: 4),
                               Text(
                                 item.$2,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 style: AppTextStyles.tabLabel.copyWith(
                                   color: item.$1 == current
                                       ? AppColors.gold
@@ -388,15 +296,6 @@ class _TabPainter extends CustomPainter {
           ..lineTo(9, 20)
           ..lineTo(4, 20)
           ..close();
-      case RsTab.brands:
-        for (final origin in const [
-          Offset(4, 4),
-          Offset(13, 4),
-          Offset(4, 13),
-          Offset(13, 13),
-        ]) {
-          path.addRect(Rect.fromLTWH(origin.dx, origin.dy, 7, 7));
-        }
       case RsTab.house:
         path
           ..moveTo(3.5, 9)
@@ -410,12 +309,20 @@ class _TabPainter extends CustomPainter {
         path
           ..moveTo(4, 20.5)
           ..lineTo(20, 20.5);
-      case RsTab.offline:
+      case RsTab.visit:
         path
-          ..addRect(const Rect.fromLTWH(4, 8, 16, 12))
-          ..addRect(const Rect.fromLTWH(3, 4, 18, 4))
-          ..moveTo(10, 12)
-          ..lineTo(14, 12);
+          ..addRRect(
+            RRect.fromRectAndRadius(
+              const Rect.fromLTWH(4, 5, 16, 14),
+              const Radius.circular(2),
+            ),
+          )
+          ..moveTo(4, 9)
+          ..lineTo(20, 9)
+          ..moveTo(8, 3)
+          ..lineTo(8, 7)
+          ..moveTo(16, 3)
+          ..lineTo(16, 7);
       case RsTab.more:
         canvas.drawCircle(const Offset(6, 12), 1.2, Paint()..color = color);
         canvas.drawCircle(const Offset(12, 12), 1.2, Paint()..color = color);

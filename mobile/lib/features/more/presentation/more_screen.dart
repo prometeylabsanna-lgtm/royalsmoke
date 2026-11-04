@@ -6,7 +6,6 @@ import 'package:royal_smoke/l10n/app_localizations.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
-import '../../../features/brands/presentation/saved_brands_provider.dart';
 import '../../../features/content/data/fallback_bundle.dart';
 import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_chrome.dart';
@@ -22,7 +21,6 @@ class MoreScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final content = watchContent(ref);
-    final savedCount = ref.watch(savedBrandsProvider).length;
     final sealUrl = content.settings.appSealUrl;
     return RsSafeBody(
       child: ListView(
@@ -36,22 +34,6 @@ class MoreScreen extends ConsumerWidget {
           RsPageHeading(kicker: l10n.appName, title: l10n.moreTitle),
           const SizedBox(height: AppSizes.s24),
           const Divider(height: 1, color: AppColors.hairline),
-          RsEditorialRow(
-            label: l10n.savedBrands,
-            leading: const Icon(
-              Icons.bookmark_border,
-              color: AppColors.gold,
-              size: 18,
-            ),
-            trailing: Text(
-              '$savedCount',
-              style: AppTextStyles.body.copyWith(
-                fontSize: 13,
-                color: AppColors.textMuted,
-              ),
-            ),
-            onTap: () => context.go('/offline'),
-          ),
           RsEditorialRow(
             label: l10n.contacts,
             onTap: () => context.push('/more/contacts'),
