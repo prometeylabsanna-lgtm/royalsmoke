@@ -65,6 +65,10 @@ class AppBackdropState extends State<AppBackdrop>
   }
 
   void _syncMotion(bool reduce) {
+    // Знімки стора збираються з --dart-define=FORCE_REDUCE_MOTION=true,
+    // бо симулятор не завжди прокидає Reduce Motion у Flutter.
+    const forced = bool.fromEnvironment('FORCE_REDUCE_MOTION');
+    reduce = forced || reduce;
     if (_reduceMotion == reduce) return;
     _reduceMotion = reduce;
     if (reduce) {
