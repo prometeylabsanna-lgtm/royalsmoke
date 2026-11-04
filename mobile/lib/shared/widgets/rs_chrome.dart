@@ -193,10 +193,7 @@ class RsTabBar extends StatelessWidget {
     final items = _items(AppLocalizations.of(context));
     final edges = rsSafeEdges(context, top: false, bottom: true);
     return DecoratedBox(
-      decoration: const BoxDecoration(
-        color: AppColors.coffee,
-        border: Border(top: BorderSide(color: Color(0x1AFCF2EE))),
-      ),
+      decoration: const BoxDecoration(color: AppColors.canvas),
       child: Padding(
         padding: EdgeInsets.only(
           left: edges.left,

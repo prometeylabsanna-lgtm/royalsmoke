@@ -6,6 +6,15 @@ import 'package:royal_smoke/core/l10n/app_locale.dart';
 import 'package:royal_smoke/l10n/app_localizations.dart';
 
 void main() {
+  setUp(() {
+    TestWidgetsFlutterBinding
+        .instance
+        .platformDispatcher
+        .accessibilityFeaturesTestValue = const FakeAccessibilityFeatures(
+      disableAnimations: true,
+    );
+  });
+
   test('uk та en рядки з таблиць', () {
     final uk = lookupAppLocalizations(const Locale('uk'));
     final en = lookupAppLocalizations(const Locale('en'));

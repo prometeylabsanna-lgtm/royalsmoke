@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 
 /// Кольори інтерфейсу.
 abstract final class AppColors {
+  /// Полотно застосунку. Нижні ~10% `app_background.png` вже цього кольору.
+  static const Color canvas = Color(0xFF1E1009);
+
+  /// Той самий тон з нульовою альфою — край градієнта без шва.
+  static const Color canvasClear = Color(0x001E1009);
+
   static const Color bark = Color(0xFF100D0C);
   static const Color barkLight = Color(0xFF181412);
   static const Color coffee = Color(0xFF1C1715);

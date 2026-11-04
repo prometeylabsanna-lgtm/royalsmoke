@@ -5,9 +5,20 @@ import 'app_colors.dart';
 import 'app_text_styles.dart';
 
 abstract final class AppTheme {
+  static const SystemUiOverlayStyle overlay = SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.light,
+    statusBarBrightness: Brightness.dark,
+    systemNavigationBarColor: AppColors.canvas,
+    systemNavigationBarDividerColor: AppColors.canvas,
+    systemNavigationBarIconBrightness: Brightness.light,
+    systemNavigationBarContrastEnforced: false,
+    systemStatusBarContrastEnforced: false,
+  );
+
   static ThemeData get dark {
     const scheme = ColorScheme.dark(
-      surface: AppColors.bark,
+      surface: AppColors.canvas,
       primary: AppColors.gold,
       onPrimary: AppColors.bark,
       secondary: AppColors.gold,
@@ -20,7 +31,8 @@ abstract final class AppTheme {
       useMaterial3: true,
       brightness: Brightness.dark,
       fontFamily: AppTextStyles.family,
-      scaffoldBackgroundColor: AppColors.bark,
+      canvasColor: AppColors.canvas,
+      scaffoldBackgroundColor: AppColors.canvas,
       pageTransitionsTheme: const PageTransitionsTheme(
         builders: {
           TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
@@ -36,16 +48,13 @@ abstract final class AppTheme {
         labelLarge: AppTextStyles.button,
       ),
       appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.bark,
+        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
         foregroundColor: AppColors.seashell,
         elevation: 0,
         scrolledUnderElevation: 0,
         centerTitle: true,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: AppColors.bark,
-          statusBarIconBrightness: Brightness.light,
-          statusBarBrightness: Brightness.dark,
-        ),
+        systemOverlayStyle: overlay,
       ),
       dividerTheme: const DividerThemeData(
         color: AppColors.hairline,

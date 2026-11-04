@@ -4,6 +4,7 @@ import 'package:royal_smoke/core/l10n/app_locale.dart';
 import 'package:royal_smoke/core/router/app_router.dart';
 import 'package:royal_smoke/core/theme/app_theme.dart';
 import 'package:royal_smoke/l10n/app_localizations.dart';
+import 'package:royal_smoke/shared/widgets/app_backdrop.dart';
 
 class RoyalSmokeApp extends ConsumerStatefulWidget {
   const RoyalSmokeApp({super.key});
@@ -26,6 +27,9 @@ class _RoyalSmokeAppState extends ConsumerState<RoyalSmokeApp> {
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: appLocalizationDelegates,
       routerConfig: _router,
+      builder: (context, child) {
+        return AppBackdrop(child: child ?? const SizedBox.shrink());
+      },
     );
   }
 }

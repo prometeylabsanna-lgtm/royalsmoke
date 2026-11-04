@@ -79,6 +79,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/images/app_background.png
     - assets/images/mark/
     - assets/images/home/
 

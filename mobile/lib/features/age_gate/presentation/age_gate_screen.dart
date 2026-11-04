@@ -20,11 +20,10 @@ class AgeGateScreen extends ConsumerWidget {
     final age = watchContent(ref).screen('age');
     final bottom = rsBottomInset(context);
     return Scaffold(
-      backgroundColor: AppColors.bark,
+      backgroundColor: Colors.transparent,
       body: RsSafeBody(
         child: Stack(
           children: [
-            const Positioned.fill(child: ColoredBox(color: Color(0x8C0A0705))),
             Center(
               child: Opacity(
                 opacity: 0.35,

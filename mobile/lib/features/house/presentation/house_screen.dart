@@ -10,7 +10,6 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../features/content/presentation/app_content_provider.dart';
 import '../../../shared/widgets/rs_button.dart';
 import '../../../shared/widgets/rs_chrome.dart';
-import '../../../shared/widgets/rs_cover_image.dart';
 import '../../../shared/widgets/rs_insets.dart';
 
 class HouseScreen extends ConsumerWidget {
@@ -38,20 +37,6 @@ class HouseScreen extends ConsumerWidget {
           Text(
             textOr(house.body, l10n.houseBodyShort),
             style: AppTextStyles.body,
-          ),
-          const SizedBox(height: AppSizes.s24),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(AppSizes.radiusSearch),
-            child: SizedBox(
-              height: 220,
-              width: double.infinity,
-              child: RsCoverImage(
-                imageUrl: house.heroImageUrl,
-                assetFallback: house.heroAssetFallback.isEmpty
-                    ? 'assets/images/home/house.jpg'
-                    : house.heroAssetFallback,
-              ),
-            ),
           ),
           const SizedBox(height: AppSizes.s24),
           const Divider(height: 1, color: AppColors.hairline),
